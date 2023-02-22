@@ -11,6 +11,9 @@
 # production
 /build
 /public/emberPB
+/dist
+/dist_prod
+/binaries
 
 # misc
 /tmp
