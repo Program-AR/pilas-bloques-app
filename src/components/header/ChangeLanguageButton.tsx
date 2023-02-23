@@ -2,7 +2,7 @@ import {IconButton, Menu, MenuItem} from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import React from "react";
 import i18next from "i18next";
-import { availableLanguages } from "../../i18n";
+import { availableLanguages, InternalizationLanguage } from "../../i18n";
 
 export const ChangeLanguageButton = () => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -16,8 +16,8 @@ export const ChangeLanguageButton = () => {
         setAnchorEl(null);
     }
 
-    const handleLanguageSelection = (selectedLanguage: string) => {
-        i18next.changeLanguage(selectedLanguage)
+    const handleLanguageSelection = (selectedLanguage: InternalizationLanguage) => {
+        i18next.changeLanguage(selectedLanguage.localeCode)
         closeMenu()
     };
     
@@ -31,9 +31,9 @@ export const ChangeLanguageButton = () => {
         open={open}
         onClose={closeMenu}
       >
-        {availableLanguages.map((language) => (
-          <MenuItem key={language} onClick={() => handleLanguageSelection(language)}>
-            {language}
+        {availableLanguages.map((language: InternalizationLanguage) => (
+          <MenuItem key={language.name} onClick={() => handleLanguageSelection(language)}>
+            {language.name}
           </MenuItem>
         ))}
       </Menu>
