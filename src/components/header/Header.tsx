@@ -10,7 +10,7 @@ export const Header = () => {
     return <AppBar position="fixed">
             <Grid container justifyContent="space-between">
                 <PBLogo height="50px"/>
-                <div>{t('title')}</div>
+                <div>{t('tool')}</div>
                 <ChangeLanguageButton/>
             </Grid>
         </AppBar>
