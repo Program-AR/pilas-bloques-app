@@ -8,18 +8,20 @@ export type InternalizationLanguage = {
   languageCode: string
 }
 
+export const spanish: InternalizationLanguage = {
+  name: "Español",
+  languageCode: "es-ar"
+}
+
 export const availableLanguages: InternalizationLanguage[] = [
-  {
-    name: "Español",
-    languageCode: "es-AR"
-  },
+  spanish,
   {
     name: "English",
-    languageCode: "en-US"
+    languageCode: "en-us"
   },
   {
     name: "Português",
-    languageCode: "pt-BR"
+    languageCode: "pt-br"
   }
 ];
 
