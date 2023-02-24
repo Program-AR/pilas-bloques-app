@@ -9,7 +9,7 @@ DIST_FOLDER_NAME=dist_prod
 DIST=./$DIST_FOLDER_NAME
 
 # The project version.
-VERSION="$(sh scripts/projectVersion.sh)$(node scripts/experimentGroupId.js $DIST)"
+VERSION="$(sh scripts/projectVersion.sh)$(node scripts/experimentGroupId.js $DIST)$(node scripts/fixingAbsolutePath.js $DIST)"
 
 # The electron executable path.
 ELECTRON=./node_modules/dist/electron

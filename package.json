@@ -30,9 +30,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:prod": "BUILD_PATH='./dist_prod' react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "build:prod": "BUILD_PATH='./dist_prod' react-scripts build",
+    "electron-start": "electron ./dist_prod",
     "postinstall": "sh scripts/copyEmberPB.sh",
     "pack:linux_x64_deb": "bash ./scripts/package.sh -linux_x64_deb",
     "pack:linux_x64_zip": "bash ./scripts/package.sh -linux_x64_zip",
@@ -68,5 +69,46 @@
   "optionalDependencies": {
     "electron-installer-debian": "^3.1.0"
   },
-  "main": "electron.js"
+  "main": "electron.js",
+  "ember-electron": {
+    "WHAT IS THIS?": "Please see the README.md",
+    "copy-files": [
+      "electron.js",
+      "package.json"
+    ],
+    "name": null,
+    "platform": null,
+    "arch": null,
+    "version": null,
+    "app-bundle-id": null,
+    "app-category-type": null,
+    "app-copyright": null,
+    "app-version": null,
+    "asar": null,
+    "asar-unpack": null,
+    "asar-unpack-dir": null,
+    "build-version": null,
+    "cache": null,
+    "extend-info": null,
+    "extra-resource": null,
+    "helper-bundle-id": null,
+    "icon": null,
+    "ignore": null,
+    "out": null,
+    "osx-sign": {
+      "identity": null,
+      "entitlements": null,
+      "entitlements-inherit": null
+    },
+    "overwrite": null,
+    "prune": null,
+    "strict-ssl": null,
+    "version-string": {
+      "CompanyName": null,
+      "FileDescription": null,
+      "OriginalFilename": null,
+      "ProductName": null,
+      "InternalName": null
+    }
+  }
 }
