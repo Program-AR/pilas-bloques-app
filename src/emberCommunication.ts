@@ -8,7 +8,7 @@ export namespace Ember{
     }
 
     export const changeLanguage = (newLanguage: InternalizationLanguage) => {
-        localStorage.setItem("PB_SELECTED_LOCALE", `"${newLanguage.localeCode.toLocaleLowerCase()}"`) //codes are lowercase in ember
+        localStorage.setItem("PB_SELECTED_LOCALE", `"${newLanguage.languageCode.toLocaleLowerCase()}"`) //codes are lowercase in ember
         refreshIframe()
     }
 

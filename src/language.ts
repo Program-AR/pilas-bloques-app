@@ -1,28 +1,38 @@
 import i18next from "i18next";
 import { Ember } from "./emberCommunication";
 
+const SELECTED_LANGUAGE_KEY = 'PILAS_SELECTED_LANGUAGE'
+
 export type InternalizationLanguage = {
   name: string
-  localeCode: string
+  languageCode: string
 }
 
 export const availableLanguages: InternalizationLanguage[] = [
   {
     name: "Español",
-    localeCode: "es-AR"
+    languageCode: "es-AR"
   },
   {
     name: "English",
-    localeCode: "en-US"
+    languageCode: "en-US"
   },
   {
     name: "Português",
-    localeCode: "pt-BR"
+    languageCode: "pt-BR"
   }
 ];
 
+const setSelectedLanguageInStorage = (selectedLanguage: InternalizationLanguage) => {
+  localStorage.setItem(SELECTED_LANGUAGE_KEY, selectedLanguage.languageCode)
+}
 
 export const changeLanguage = (selectedLanguage: InternalizationLanguage) => {
-  i18next.changeLanguage(selectedLanguage.localeCode)
+  i18next.changeLanguage(selectedLanguage.languageCode)
+  setSelectedLanguageInStorage(selectedLanguage)
   Ember.changeLanguage(selectedLanguage)
+}
+
+export const selectedLanguage = (): string | null => {
+  return localStorage.getItem(SELECTED_LANGUAGE_KEY)
 }
