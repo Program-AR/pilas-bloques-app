@@ -2,7 +2,7 @@ PB_APP_VERSION="1.13.2"
 
 echo ::::: Download Pilas Bloques app online ::::: 
 mkdir -p tmp
-wget -O tmp/pilasbloques-${PB_APP_VERSION}-html.tar.gz https://github.com/Program-AR/pilas-bloques/releases/download/${PB_APP_VERSION}/pilasbloques-${PB_APP_VERSION}a-html.tar.gz
+curl -o tmp/pilasbloques-${PB_APP_VERSION}-html.tar.gz -kLSs https://github.com/Program-AR/pilas-bloques/releases/download/${PB_APP_VERSION}/pilasbloques-${PB_APP_VERSION}a-html.tar.gz
 
 echo ::::: Extract, delete, rename Pilas Bloques app online ::::: 
 EMBERPB_FOLDER="public/emberPB"
