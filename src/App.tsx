@@ -4,7 +4,7 @@ import './App.css';
 import { ChallengeView } from './components/ChallengeView';
 import { Header } from './components/header/Header';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from './components/Home';
+import { Home } from './components/home/Home';
 
 function App() {
   
