@@ -1,4 +1,4 @@
-import { AppBar, Grid, Typography } from "@mui/material";
+import { AppBar, Grid } from "@mui/material";
 import {ReactComponent as PBLogo} from "./pblogo-whiteborder.svg"
 import { useTranslation } from 'react-i18next';
 import { ChangeLanguageButton } from "./ChangeLanguageButton";
