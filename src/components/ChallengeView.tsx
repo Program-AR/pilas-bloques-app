@@ -1,8 +1,8 @@
-import React from "react";
-import { ReactNode } from "react";
+import { useParams } from "react-router-dom";
+import { EmberView } from "./EmberView";
 
-export class ChallengeView extends React.Component {
-    render(): ReactNode {
-        return <iframe id="ember-iframe" title='challenge' src='emberPB/index.html' width='100%' height='99%'/>
-    }
+export const ChallengeView = () =>{
+    const {id} = useParams()
+
+    return <EmberView path={`desafio/${id}`}/>
 }
