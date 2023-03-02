@@ -2,7 +2,7 @@ import { CssBaseline } from '@mui/material';
 import React from 'react';
 import './App.css';
 import { ChallengeView } from './components/ChallengeView';
-import { Header } from './components/Header';
+import { Header } from './components/header/Header';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/Home';
 
