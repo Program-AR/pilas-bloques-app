@@ -1,6 +1,6 @@
 {
   "name": "pilasbloques",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "productName": "Pilas Bloques",
   "genericName": "Programacion con bloques",
   "description": "Una herramienta para aprender a programar utilizando bloques",
@@ -32,8 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:prod": "BUILD_PATH='./dist_prod' react-scripts build",
-    "electron-start": "electron ./dist_prod",
+    "electron-start": "electron ./build",
     "postinstall": "sh scripts/copyEmberPB.sh",
     "pack:linux_x64_deb": "bash ./scripts/package.sh -linux_x64_deb",
     "pack:linux_x64_zip": "bash ./scripts/package.sh -linux_x64_zip",

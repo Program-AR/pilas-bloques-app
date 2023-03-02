@@ -3,7 +3,7 @@
 #The project name, used by electron-packager in order to create files and folders for the app binaries.
 NAME=$(sh scripts/projectName.sh)
 
-DIST_FOLDER_NAME=dist_prod
+DIST_FOLDER_NAME=build
 
 # The folder with all the publishable webapp
 DIST=./$DIST_FOLDER_NAME
