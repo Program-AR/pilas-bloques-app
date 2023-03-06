@@ -6,8 +6,11 @@ import { BookCards} from "./BookCards"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const RegisterButton = () => 
-    <Link to="register"><Button variant="outlined" startIcon={<ArrowForwardIcon />}>Registrate</Button></Link>
+const RegisterButton = () => {
+    const { t } = useTranslation("home/home");
+
+    return <Link to="register"><Button variant="outlined" startIcon={<ArrowForwardIcon />}>{t("signUp")}</Button></Link>
+}
 
 export const Home = () => {
     const { t } = useTranslation("home/home");
