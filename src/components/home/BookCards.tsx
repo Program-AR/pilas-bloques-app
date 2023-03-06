@@ -13,7 +13,7 @@ type BookCardProps = {
 }
 
 const BookCard = (props: BookCardProps) => {
-    const { t } = useTranslation("bookCards");
+    const { t } = useTranslation("home/bookCards");
 
     return (
     <Link to={props.url}>
