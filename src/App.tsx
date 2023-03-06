@@ -5,6 +5,7 @@ import { ChallengeView } from './components/ChallengeView';
 import { Header } from './components/header/Header';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
+import { Footer } from './components/footer/Footer';
 
 function App() {
   
@@ -26,6 +27,7 @@ function App() {
       <CssBaseline />
       <Header/>
       <RouterProvider router={router} />
+      <Footer/>
     </React.Fragment>
   );
 }

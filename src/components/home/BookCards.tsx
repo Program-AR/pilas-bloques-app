@@ -1,35 +1,27 @@
 import { Card, CardActionArea, Stack, Typography } from "@mui/material"
-import {ReactComponent as TotoInitial} from "../../assets/toto-initial-level.svg"
-import {ReactComponent as TotoIntermediate} from "../../assets/toto-intermediate-level.svg"
-import {ReactComponent as TotoAdvanced} from "../../assets/toto-advanced-level.svg"
+import TotoInitial from "../../assets/toto-initial-level.svg"
+import TotoIntermediate from "../../assets/toto-intermediate-level.svg"
+import TotoAdvanced from "../../assets/toto-advanced-level.svg"
 import { Link } from "react-router-dom";
 
-const InitialBookCard = () => <Link to="desafio/1">
-    <Card>
-        <CardActionArea>
-            <TotoInitial/>
-            <Typography variant="h5">Inicial</Typography>
-        </CardActionArea>
-    </Card>
-</Link>
+type BookCardProps = {
+    url: string,
+    name: string,
+    image: string,
+    color: string 
+}
 
-const IntermediateBookCard = () => <Link to="desafio/2">
-    <Card>
-        <CardActionArea>
-            <TotoIntermediate/>
-            <Typography variant="h5">Intermedio</Typography>
-        </CardActionArea>
-    </Card>
-</Link>
+const BookCard = (props: BookCardProps) => 
+    <Link to={props.url}>
+        <Card style={{minHeight:"10rem", minWidth:"8rem", backgroundColor: props.color}}>
+            <img src={props.image}></img>
+            <Typography variant="h5" align="center">{props.name}</Typography>
+        </Card>
+    </Link>
 
-const AdvancedBookCard = () => <Link to="desafio/3">
-    <Card>
-        <CardActionArea>
-            <TotoAdvanced/>
-            <Typography variant="h5">Avanzado</Typography>
-        </CardActionArea>
-    </Card>
-</Link>
+const InitialBookCard = () => <BookCard url="libros/1" name="Inicial" color="#FCE43E" image={TotoInitial}/>
+const IntermediateBookCard = () => <BookCard url="libros/2" name="Intermedio" color="#53BF24" image={TotoIntermediate}/>
+const AdvancedBookCard = () => <BookCard url="libros/100" name="Avanzado" color="#32CFC1" image={TotoAdvanced}/>
 
 export const BookCards = () =>
     <Stack direction="row" spacing={10}>

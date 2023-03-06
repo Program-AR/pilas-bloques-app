@@ -23,7 +23,7 @@ export const ChangeLanguageButton = () => {
     
     return <>
     <IconButton onClick={handleIconClick}>
-        <LanguageIcon sx={{ color: common.white }}/>
+        <LanguageIcon style={{ color: common.white }}/>
     </IconButton>
 
     <Menu

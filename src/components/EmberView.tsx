@@ -4,5 +4,5 @@ type EmberViewProps = {
 
 export const EmberView = (props: EmberViewProps) => {
 
-    return <iframe title='challenge' src={`/emberPB/#/${props.path}`} width='100%' height='100%'/>
+    return <iframe title='ember-view' src={`/emberPB/#/${props.path}`} width='100%' height='100%'/>
 }
