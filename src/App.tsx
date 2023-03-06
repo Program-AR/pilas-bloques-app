@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import { Footer } from './components/footer/Footer';
 import theme from './theme';
+import { Book } from './components/book/Book';
 
 function App() {
   
@@ -18,6 +19,10 @@ function App() {
     {
       path: "/desafio/:id",
       element: <ChallengeView/>,
+    },
+    {
+      path: "/libros/:id",
+      element: <Book/>
     }
   ]);
 
