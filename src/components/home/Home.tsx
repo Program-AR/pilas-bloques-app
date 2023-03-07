@@ -16,11 +16,11 @@ export const Home = () => {
     const { t } = useTranslation("home/home");
 
     return <>
-    <Container style={{marginBottom: "-20%", overflow: "hidden", zIndex: -1, position: "relative"}}><Background/></Container>
+    <Container style={{marginBottom: "-18rem", height: "30rem", zIndex: -1, position: "relative", maxWidth: "100%"}}><Background/></Container>
     
-    <Grid style={{backgroundColor: '#311C3B'}} container direction="column" alignItems="center" justifyContent="space-evenly" minHeight="70%">
+    <Grid style={{backgroundColor: '#311C3B'}} container direction="column" alignItems="center" justifyContent="space-evenly" height={"40rem"}>
         <Container maxWidth="xs"><PBLogo/></Container>
-        <Typography color="white">{t("title")}</Typography>
+        <Typography color="white" variant="h5">{t("title")}</Typography>
         <RegisterButton/>
         <BookCards/>
     </Grid>

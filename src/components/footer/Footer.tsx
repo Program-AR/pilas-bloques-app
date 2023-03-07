@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import {ReactComponent as FooterLogos} from "../../assets/footer-logos.svg"
 
 const Version = () => 
-    <div>Versión 1.2.3 - pepita</div>
+    <span>Versión 1.2.3 - pepita</span>
 
 const Links = () =>{
     const {t} = useTranslation("footer")
@@ -22,10 +22,11 @@ export const Footer = () =>
         <Grid> 
             <Typography fontSize={"14px"}>
                 <Version/>
+                <br/>
                 <Links/>
             </Typography>
         </Grid>
 
-        <FooterLogos width={"30%"}/>
+        <FooterLogos width="30rem"/>
 
     </Stack>
