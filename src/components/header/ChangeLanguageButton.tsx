@@ -1,7 +1,6 @@
 import {IconButton, Menu, MenuItem} from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import React from "react";
-import { common } from '@mui/material/colors';
 import { availableLanguages, changeLanguage, InternalizationLanguage } from "../../language";
 
 export const ChangeLanguageButton = () => {
@@ -23,7 +22,7 @@ export const ChangeLanguageButton = () => {
     
     return <>
     <IconButton onClick={handleIconClick}>
-        <LanguageIcon style={{ color: common.white }}/>
+        <LanguageIcon sx={{ color: 'GrayText'}}/>
     </IconButton>
 
     <Menu
