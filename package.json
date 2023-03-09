@@ -54,26 +54,6 @@
       "react-app/jest"
     ]
   },
-  "build": {
-    "extraResources": [
-      {
-        "from": "./src/locales/",
-        "to": "extraResources",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ],
-    "extraFiles": [
-      {
-        "from": "./src/locales/",
-        "to": "extraResources",
-        "filter": [
-          "**/*"
-        ]
-      }
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
