@@ -28,7 +28,7 @@ i18n
           resourcesToBackend((language: string, namespace: string) => import(`../locales/${language}/${namespace}.json`))
         ],
         backendOptions: [{
-          loadPath: '/locales/{{lng}}/{{ns}}.json'
+          loadPath: './locales/{{lng}}/{{ns}}.json'
         }]
       }
 
