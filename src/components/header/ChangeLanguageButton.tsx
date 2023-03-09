@@ -1,11 +1,14 @@
 import {IconButton, Menu, MenuItem} from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
-import React from "react";
+import React, { useContext } from "react";
 import { availableLanguages, changeLanguage, InternalizationLanguage } from "../../language";
+import { AppContext } from "../../AppContext";
 
 export const ChangeLanguageButton = () => {
     const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorElement);
+
+    const { setLanguage } = useContext(AppContext)
 
     const handleIconClick = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElement(event.currentTarget);
@@ -16,7 +19,8 @@ export const ChangeLanguageButton = () => {
     }
 
     const handleLanguageSelection = (selectedLanguage: InternalizationLanguage) => {
-      changeLanguage(selectedLanguage)
+      changeLanguage(selectedLanguage) //This changes the language in react
+      setLanguage(selectedLanguage.languageCode) //This changes the language in the App Context, so that the iframe re renders with the new language
       closeMenu()
     };
     

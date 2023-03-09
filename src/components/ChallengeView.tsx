@@ -1,8 +1,8 @@
-import React from "react";
-import { ReactNode } from "react";
+import { useContext } from "react";
+import { AppContext } from "../AppContext";
 
-export class ChallengeView extends React.Component {
-    render(): ReactNode {
-        return <iframe id="ember-iframe" title='challenge' src='emberPB/index.html' width='100%' height='99%'/>
-    }
+export const ChallengeView = () => {
+    const context = useContext(AppContext)
+
+    return <iframe key={JSON.stringify(context)} id="ember-iframe" title='challenge' src='emberPB/index.html' width='100%' height='99%'/>
 }
