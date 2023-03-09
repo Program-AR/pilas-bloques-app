@@ -2,6 +2,7 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { selectedLanguage, spanish } from './language';
 import HttpBackend from 'i18next-http-backend'
+import resourcesToBackend from 'i18next-resources-to-backend'
 import ChainedBackend from 'i18next-chained-backend'
 
 i18n
@@ -23,10 +24,11 @@ i18n
     },
       backend: {
         backends: [
-          HttpBackend
+          HttpBackend,
+          resourcesToBackend((language: string, namespace: string) => import(`../locales/${language}/${namespace}.json`))
         ],
         backendOptions: [{
-          loadPath: './locales/{{lng}}/{{ns}}.json'
+          loadPath: '/locales/{{lng}}/{{ns}}.json'
         }]
       }
 
