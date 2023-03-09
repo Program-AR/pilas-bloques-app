@@ -24,6 +24,7 @@
     "@types/react-dom": "^18.0.10",
     "i18next": "^22.4.10",
     "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-chained-backend": "^4.2.0",
     "i18next-http-backend": "^2.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -50,6 +51,26 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "build": {
+    "extraResources": [
+      {
+        "from": "./src/locales/",
+        "to": "extraResources",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "extraFiles": [
+      {
+        "from": "./src/locales/",
+        "to": "extraResources",
+        "filter": [
+          "**/*"
+        ]
+      }
     ]
   },
   "browserslist": {

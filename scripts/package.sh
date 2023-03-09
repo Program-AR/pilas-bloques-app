@@ -49,6 +49,7 @@ prebuild() {
     mkdir -p ./binaries
     cp package.json $DIST/package.json
     cp packaging/electron.js $DIST
+    cp -R locales $DIST
 }
 
 package() {
