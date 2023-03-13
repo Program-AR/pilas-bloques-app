@@ -1,4 +1,4 @@
-import { Card, CardActionArea, Stack, Typography } from "@mui/material"
+import { Card, Stack, Typography } from "@mui/material"
 import TotoInitial from "../../assets/toto-initial-level.svg"
 import TotoIntermediate from "../../assets/toto-intermediate-level.svg"
 import TotoAdvanced from "../../assets/toto-advanced-level.svg"
@@ -18,7 +18,7 @@ const BookCard = (props: BookCardProps) => {
     return (
     <Link to={props.url}>
         <Card style={{ width:"9rem", backgroundColor: props.color}}>
-            <img src={props.image}></img>
+            <img src={`.${props.image}`}/>
             <Typography variant="h5" align="center">{t(props.nameKey)}</Typography>
         </Card>
     </Link>
