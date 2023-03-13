@@ -1,5 +1,5 @@
-import { AppBar, Grid } from "@mui/material";
-import {ReactComponent as PBLogo} from "./pblogo-whiteborder.svg"
+import { AppBar, Grid, Link } from "@mui/material";
+import {ReactComponent as PBLogo} from "../../assets/pblogo-whiteborder.svg"
 import { useTranslation } from 'react-i18next';
 import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
@@ -9,7 +9,7 @@ export const Header = () => {
     
     return <AppBar position="fixed" elevation={0}>
             <Grid container className={styles.header}>
-                <PBLogo className={styles.logo}/>
+                <Link href="/"><PBLogo className={styles.logo}/></Link>
                 <p className={styles.headerTitle}>{t('tool')}</p>
                 <ChangeLanguageButton/>
             </Grid>
