@@ -24,9 +24,9 @@ const BookCard = (props: BookCardProps) => {
     </Link>
     )
 }
-const InitialBookCard = () => <BookCard url="libros/1" nameKey="initial" color="#FCE43E" image={TotoInitial}/>
-const IntermediateBookCard = () => <BookCard url="libros/2" nameKey="intermediate" color="#53BF24" image={TotoIntermediate}/>
-const AdvancedBookCard = () => <BookCard url="libros/100" nameKey="advanced" color="#32CFC1" image={TotoAdvanced}/>
+const InitialBookCard = () => <BookCard url="/libros/1" nameKey="initial" color="#FCE43E" image={TotoInitial}/>
+const IntermediateBookCard = () => <BookCard url="/libros/2" nameKey="intermediate" color="#53BF24" image={TotoIntermediate}/>
+const AdvancedBookCard = () => <BookCard url="/libros/100" nameKey="advanced" color="#32CFC1" image={TotoAdvanced}/>
 
 export const BookCards = () =>
     <Stack direction="row" spacing={10}>
