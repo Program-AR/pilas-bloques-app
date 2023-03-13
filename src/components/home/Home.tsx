@@ -5,6 +5,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { BookCards} from "./BookCards"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Footer } from "../footer/Footer";
 
 const RegisterButton = () => {
     const { t } = useTranslation("home/home");
@@ -24,5 +25,6 @@ export const Home = () => {
         <RegisterButton/>
         <BookCards/>
     </Grid>
+    <Footer/>
 </>
 }
