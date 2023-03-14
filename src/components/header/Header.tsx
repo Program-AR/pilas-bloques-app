@@ -9,7 +9,7 @@ export const Header = () => {
     
     return <AppBar position="fixed" elevation={0}>
             <Grid container className={styles.header}>
-                <Link href="/"><PBLogo className={styles.logo}/></Link>
+                <Link href="#"><PBLogo className={styles.logo}/></Link>
                 <p className={styles.headerTitle}>{t('tool')}</p>
                 <ChangeLanguageButton/>
             </Grid>

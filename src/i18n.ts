@@ -1,13 +1,15 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import Backend from 'i18next-http-backend';
 import { selectedLanguage, spanish } from './language';
+import HttpBackend from 'i18next-http-backend'
+import resourcesToBackend from 'i18next-resources-to-backend'
+import ChainedBackend from 'i18next-chained-backend'
 
 i18n
   // i18next-http-backend
   // loads translations from your server
   // https://github.com/i18next/i18next-http-backend
-  .use(Backend)
+  .use(ChainedBackend)
   // pass the i18n instance to react-i18next.
   .use(initReactI18next)
   // init i18next
@@ -19,7 +21,17 @@ i18n
     lng: selectedLanguage() || spanish.languageCode,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
-    }
+    },
+      backend: {
+        backends: [
+          HttpBackend, // Doesn't make sense, but apparently without this Electron doesn't work
+          resourcesToBackend((language: string, namespace: string) => import(`../locales/${language}/${namespace}.json`))
+        ],
+        backendOptions: [{
+          loadPath: './locales/{{lng}}/{{ns}}.json'
+        }]
+      }
+
   });
 
 export default i18n;
