@@ -24,7 +24,7 @@ i18n
     },
       backend: {
         backends: [
-          HttpBackend,
+          HttpBackend, // Doesn't make sense, but apparently without this Electron doesn't work
           resourcesToBackend((language: string, namespace: string) => import(`../locales/${language}/${namespace}.json`))
         ],
         backendOptions: [{
