@@ -7,6 +7,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import theme from './theme';
 import { Book } from './components/book/Book';
+import { getBook } from './staticData/books';
 
 function App() {
   
@@ -16,12 +17,15 @@ function App() {
       element: <Home/>,
     },
     {
-      path: "/desafio/:id",
-      element: <ChallengeView/>,
+      path: "/libros/:id",
+      element: <Book/>,
+      loader: async ({ params }) => {
+        return getBook(Number(params.id))
+      },
     },
     {
-      path: "/libros/:id",
-      element: <Book/>
+      path: "/desafio/:id",
+      element: <ChallengeView/>,
     }
   ]);
 
