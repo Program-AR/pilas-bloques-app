@@ -46,7 +46,9 @@
     "pack:linux": "bash ./scripts/package.sh -linux",
     "pack:osx": "bash ./scripts/package.sh -osx",
     "pack:win32": "bash ./scripts/package.sh -win32",
-    "pack:html": "bash ./scripts/package.sh -html"
+    "pack:html": "bash ./scripts/package.sh -html",
+    "clean": "rm -rf node_modules dist",
+    "release": "release-it --only-version" 
   },
   "eslintConfig": {
     "extends": [
@@ -70,7 +72,8 @@
     "electron": "^23.1.0",
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
-    "makensis": "^2.0.5"
+    "makensis": "^2.0.5",
+    "release-it": "^15.6.0"
   },
   "optionalDependencies": {
     "electron-installer-debian": "^3.1.0"
@@ -115,6 +118,17 @@
       "OriginalFilename": null,
       "ProductName": null,
       "InternalName": null
+    }
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "tag": true,
+      "commit": true,
+      "push": true
+    },
+    "npm": {
+      "publish": false
     }
   }
 }
