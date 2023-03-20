@@ -1,6 +1,6 @@
 {
   "name": "pilasbloques",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "productName": "Pilas Bloques",
   "genericName": "Programacion con bloques",
   "description": "Una herramienta para aprender a programar utilizando bloques",
@@ -48,7 +48,7 @@
     "pack:win32": "bash ./scripts/package.sh -win32",
     "pack:html": "bash ./scripts/package.sh -html",
     "clean": "rm -rf node_modules dist",
-    "release": "release-it --only-version" 
+    "release": "release-it --only-version"
   },
   "eslintConfig": {
     "extends": [
