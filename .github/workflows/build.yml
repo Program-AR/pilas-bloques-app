@@ -28,8 +28,27 @@ jobs:
       - name: Run tests
         run: npm run test
 
-pack-linux: # When there is a tag, pack the installers and upload to Github.
-    runs-on: ubuntu-latest
+  pack-linux: # When there is a tag, pack the installers and upload to Github.
+      runs-on: ubuntu-latest
+      if: startsWith(github.ref, 'refs/tags')
+      needs: test
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+            node-version-file: '.nvmrc'
+        - run: npm install
+        - run: npm run build
+        - run: npm run pack:linux
+        - run: npm run pack:html
+        - uses: ncipollo/release-action@v1
+          with:
+            allowUpdates: true
+            artifacts: "binaries/*.zip,binaries/*.deb,binaries/*.tar.gz"
+            token: ${{ secrets.GITHUB_TOKEN }}
+
+  pack-macos: # When there is a tag, pack the installers and upload to Github.
+    runs-on: macos-latest
     if: startsWith(github.ref, 'refs/tags')
     needs: test
     steps:
@@ -39,46 +58,27 @@ pack-linux: # When there is a tag, pack the installers and upload to Github.
           node-version-file: '.nvmrc'
       - run: npm install
       - run: npm run build
-      - run: npm run pack:linux
-      - run: npm run pack:html
+      - run: npm run pack:osx
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: "binaries/*.zip,binaries/*.deb,binaries/*.tar.gz"
+          artifacts: "binaries/*.dmg"
           token: ${{ secrets.GITHUB_TOKEN }}
 
-pack-macos: # When there is a tag, pack the installers and upload to Github.
-  runs-on: macos-latest
-  if: startsWith(github.ref, 'refs/tags')
-  needs: test
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-    - run: npm install
-    - run: npm run build
-    - run: npm run pack:osx
-    - uses: ncipollo/release-action@v1
-      with:
-        allowUpdates: true
-        artifacts: "binaries/*.dmg"
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-pack-windows: # When there is a tag, pack the installers and upload to Github.
-  runs-on: windows-latest
-  if: startsWith(github.ref, 'refs/tags')
-  needs: test
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-        node-version-file: '.nvmrc'
-    - run: npm install
-    - run: npm run build
-    - run: npm run pack:win32
-    - uses: ncipollo/release-action@v1
-      with:
-        allowUpdates: true
-        artifacts: "binaries/*.exe"
-        token: ${{ secrets.GITHUB_TOKEN }}
+  pack-windows: # When there is a tag, pack the installers and upload to Github.
+    runs-on: windows-latest
+    if: startsWith(github.ref, 'refs/tags')
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+      - run: npm install
+      - run: npm run build
+      - run: npm run pack:win32
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "binaries/*.exe"
+          token: ${{ secrets.GITHUB_TOKEN }}
