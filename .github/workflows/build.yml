@@ -26,7 +26,7 @@ jobs:
       - run: npm install
 
       - name: Run tests
-        run: npm run test
+        run: xvfb-run -a npm run test
 
   pack-linux: # When there is a tag, pack the installers and upload to Github.
       runs-on: ubuntu-latest
