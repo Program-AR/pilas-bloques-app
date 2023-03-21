@@ -3,16 +3,16 @@ import React from 'react';
 import './App.css';
 import { ChallengeView } from './components/ChallengeView';
 import { Header } from './components/header/Header';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import theme from './theme';
 import { Book } from './components/book/Book';
 
 function App() {
   
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
-      path: "/",
+      path: "",
       element: <Home/>,
     },
     {

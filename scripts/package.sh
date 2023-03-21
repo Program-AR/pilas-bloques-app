@@ -49,6 +49,7 @@ prebuild() {
     mkdir -p ./binaries
     cp package.json $DIST/package.json
     cp packaging/electron.js $DIST
+    cp -R locales $DIST
 }
 
 package() {
@@ -96,7 +97,7 @@ package_osx() {
     # TODO
     # se quita esta linea ya que hdiutil es copyright protected by Apple y no existe mas
     # se deberia conseguir otro empaquetador para generar el dmg
-    # hdiutil create binaries/$NAME-$VERSION.dmg -srcfolder ./binaries/$NAME-darwin-x64/$NAME.app -size 1g
+    hdiutil create binaries/$NAME-$VERSION.dmg -srcfolder ./binaries/$NAME-darwin-x64/$NAME.app -size 1g
 }
 
 package_win32() {
