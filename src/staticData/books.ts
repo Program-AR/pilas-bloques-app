@@ -1,4 +1,5 @@
-import { Chapter, getChapter } from "./chapters"
+import { Challenge } from "./challenges"
+import { Chapter, chapterIncludesChallenge, getChapter } from "./chapters"
 
 export type Book = {
   id: number,
@@ -13,6 +14,10 @@ type RawBookData = {
   expectations?: any
 }
 
+export const getAllBooks = (): Book[] => {
+  return rawBooksData.map(rawDataToBook)
+}
+
 /**
   @throws Error
  **/
@@ -21,15 +26,23 @@ export const getBook = (id: number): Book => {
 
   if(!bookData) throw new Error("Book does not exist")
 
-  const chapters = bookData.chapterIds.map(getChapter) 
-  return {id, chapters, simpleReadMode: bookData.simpleReadMode}
+  return rawDataToBook(bookData)
+}
+
+const rawDataToBook = (rawBook: RawBookData): Book => {
+  const chapters = rawBook.chapterIds.map(getChapter) 
+  return {id: rawBook.id, chapters, simpleReadMode: rawBook.simpleReadMode}
+}
+
+export const bookIncludesChallenge = (book: Book, challenge: Challenge): boolean => {
+  return book.chapters.some(chapter => chapterIncludesChallenge(chapter, challenge))
 }
 
 const rawBooksData: RawBookData[] = [
   {
     id: 1,
     chapterIds: ['Capítulo 3', 'Capítulo 4', 'Capítulo 5'],
-    simpleReadMode: true // modo de lectura para niños pequeños.
+    simpleReadMode: true
   },
   {
     id: 2,

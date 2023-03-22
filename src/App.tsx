@@ -1,13 +1,13 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import './App.css';
-import { ChallengeView } from './components/ChallengeView';
 import { Header } from './components/header/Header';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import theme from './theme';
-import { Book } from './components/book/Book';
-import { getBook } from './staticData/books';
+import { PBError } from './components/PBError';
+import { ChallengeView } from './components/ChallengeView';
+import { BookView } from './components/book/Book';
 
 function App() {
   
@@ -18,14 +18,13 @@ function App() {
     },
     {
       path: "/libros/:id",
-      element: <Book/>,
-      loader: async ({ params }) => {
-        return getBook(Number(params.id))
-      },
+      element: <BookView/>,
+      errorElement: <PBError />
     },
     {
       path: "/desafio/:id",
       element: <ChallengeView/>,
+      errorElement: <PBError />
     }
   ]);
 

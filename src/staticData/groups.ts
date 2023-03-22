@@ -16,6 +16,10 @@ export const getGroup = (id: string): Group => {
   return {id, challenges}
 }
 
+export const groupIncludesChallenge = (group: Group, challenge: Challenge): boolean => {
+  return group.challenges.some(otherChallenge => otherChallenge.id === challenge.id)
+}
+
 const rawGroupData: RawGroupData[] = [
   {
     id: 'AlienTocaBoton',

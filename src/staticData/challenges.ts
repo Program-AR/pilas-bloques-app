@@ -1,3 +1,7 @@
+import { Book, bookIncludesChallenge, getAllBooks } from "./books"
+import { Chapter, chapterIncludesChallenge } from "./chapters"
+import { Group, groupIncludesChallenge } from "./groups"
+
 export type Challenge = {
   /** 
     Es el número por el cual se accederá al desafío en la URL
@@ -43,6 +47,20 @@ export const getChallenge = (id: number): Challenge => {
   if (!challenge) throw new Error("Challenge does not exist")
 
   return challenge
+}
+
+export type PathToChallenge = {
+  book: Book,
+  chapter: Chapter,
+  group: Group
+}
+
+export const getPathToChallenge = (challenge: Challenge): PathToChallenge => {
+  const book: Book = getAllBooks().find(book => bookIncludesChallenge(book, challenge))!
+  const chapter: Chapter = book.chapters.find(chapter => chapterIncludesChallenge(chapter, challenge))!
+  const group: Group = chapter.groups.find(group => groupIncludesChallenge(group, challenge))!
+
+  return {book, chapter, group}
 }
 
 const challenges: Challenge[] = [

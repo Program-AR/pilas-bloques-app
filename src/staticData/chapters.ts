@@ -1,4 +1,5 @@
-import { getGroup, Group } from "./groups"
+import { Challenge } from "./challenges"
+import { getGroup, Group, groupIncludesChallenge } from "./groups"
 
 type RawChapterData = {
     id: string,
@@ -16,6 +17,10 @@ export const getChapter = (id: string): Chapter => {
     const groupData: RawChapterData = rawChapterData.find(chapter => chapter.id === id)!
     const groups = groupData.groupIds.map(getGroup)
     return {id, groups, expectations: groupData.expectations}
+}
+
+export const chapterIncludesChallenge = (chapter: Chapter, challenge: Challenge): boolean => {
+    return chapter.groups.some(group => groupIncludesChallenge(group, challenge))
 }
 
 export const rawChapterData: RawChapterData[] = [
