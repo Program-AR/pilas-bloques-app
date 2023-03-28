@@ -14,6 +14,7 @@ function App() {
     {
       path: "",
       element: <Home/>,
+      errorElement: <PBError />
     },
     {
       path: "/libros/:id",
