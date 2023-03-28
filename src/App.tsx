@@ -1,7 +1,6 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import './App.css';
-import { Header } from './components/header/Header';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import theme from './theme';
@@ -34,7 +33,6 @@ function App() {
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header/>
         <RouterProvider router={router} />
       </ThemeProvider>
     </React.Fragment>

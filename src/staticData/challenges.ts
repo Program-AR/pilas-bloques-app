@@ -52,15 +52,17 @@ export const getChallenge = (id: number): Challenge => {
 export type PathToChallenge = {
   book: Book,
   chapter: Chapter,
-  group: Group
+  group: Group,
+  challenge: Challenge
 }
 
-export const getPathToChallenge = (challenge: Challenge): PathToChallenge => {
+export const getPathToChallenge = (challengeId: number): PathToChallenge => {
+  const challenge: Challenge = getChallenge(challengeId)
   const book: Book = getAllBooks().find(book => bookIncludesChallenge(book, challenge))!
   const chapter: Chapter = book.chapters.find(chapter => chapterIncludesChallenge(chapter, challenge))!
   const group: Group = chapter.groups.find(group => groupIncludesChallenge(group, challenge))!
 
-  return {book, chapter, group}
+  return {book, chapter, group, challenge}
 }
 
 const challenges: Challenge[] = [
