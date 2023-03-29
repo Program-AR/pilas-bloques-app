@@ -15,6 +15,7 @@ function createWindow() {
 
   // and load the index.html of the app. 
   win.loadURL('file://' + __dirname + '/index.html')
+  win.webContents.openDevTools({ mode: 'detach' })
 }
 
 // This method will be called when Electron has finished
