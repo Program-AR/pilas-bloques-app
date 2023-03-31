@@ -17,7 +17,7 @@ const Breadcrumb = (book: Book) => {
             <HomeIcon/> 
         </Link>
         
-        <Typography>{t(`${book.id}.title`, {ns: "books"})}</Typography>
+        <Typography>{t(`${book.id}.title`)}</Typography>
 
     </Breadcrumbs>
 }

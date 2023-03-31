@@ -13,11 +13,6 @@
     width: 150px;
 }
 
-.headerTitle{
-    color: #787878;
-    align-content: center;
-}
-
 @media (max-width: 600px) {
     .headerTitle {
         display: none;

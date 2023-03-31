@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
-import styles from '../header/header.module.css'; //TODO CAMBIAR
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home/home");
@@ -17,7 +16,7 @@ const RegisterButton: React.FC = () => {
 
 const HeaderText: React.FC = () => {
     const { t } = useTranslation("header");
-    return <p className={styles.headerTitle}>{t('tool')}</p>
+    return <p style={{color: "#787878", alignContent: "center"}} >{t('tool')}</p>
 }
 
 export const Home = () => {

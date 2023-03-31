@@ -1,10 +1,10 @@
 import { Breadcrumbs, Typography } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
-import { getChallenge, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
+import { getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 const Breadcrumb = (path: PathToChallenge) => {
     const {t} = useTranslation(["books", "challenges", "chapters", "groups"])
