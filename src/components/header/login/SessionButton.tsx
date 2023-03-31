@@ -37,7 +37,7 @@ export const SessionButton = () => {
 
     return <div>
         <img className={`${styles.face} ${!isLoggedIn ? styles.gray : ''}`} src={!isLoggedIn ? getRandomAvatar() : AVATAR_PATH + 'avatar-1.png'}/>
-        <Button className={styles.loginBtn} onClick={handleButtonClick}>{t('login')}</Button>
+        <Button className={styles.loginBtn} onClick={handleButtonClick}>Iniciar sesión</Button>
 
         <LoginModal open={openModal} onClose={closeModal}/>
         {isLoggedIn ? (<Menu
