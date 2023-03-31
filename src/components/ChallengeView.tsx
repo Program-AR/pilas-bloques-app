@@ -1,4 +1,4 @@
-import { Breadcrumbs, Typography } from "@mui/material";
+import { Breadcrumbs, Typography, useMediaQuery } from "@mui/material";
 import { Link, useParams } from "react-router-dom";
 import { getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./EmberView";
@@ -8,8 +8,11 @@ import { useTranslation } from "react-i18next";
 
 const Breadcrumb = (path: PathToChallenge) => {
     const {t} = useTranslation(["books", "challenges", "chapters", "groups"])
+    const isSmallScreen: boolean = useMediaQuery('(max-width:1100px)');
+    const isVerySmallScreen: boolean = useMediaQuery('(max-width:700px)');
 
-    const shouldShowGroup: boolean = path.book.id === 1
+    const shouldShowGroup = path.book.id === 1 && !isVerySmallScreen
+    const shouldShowChapter = !isSmallScreen
 
     return <>
         <Breadcrumbs separator=">">
@@ -21,10 +24,12 @@ const Breadcrumb = (path: PathToChallenge) => {
             <Link to={`/libros/${path.book.id}`}>
                 <Typography>{t(`${path.book.id}.title`, {ns: "books"})}</Typography>
             </Link>
-            
-            <Typography>{t(`${path.chapter.id}.title`, {ns: "chapters"})}</Typography>
 
-            {shouldShowGroup && 
+            {shouldShowChapter && 
+                <Typography>{t(`${path.chapter.id}.title`, {ns: "chapters"})}</Typography>
+            }
+
+            {shouldShowGroup &&
                 <Typography>{t(`${path.group.id}.title`, {ns: "groups"})}</Typography>
             }
 
