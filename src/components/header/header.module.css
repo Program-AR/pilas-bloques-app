@@ -1,18 +1,18 @@
 .header {
     height: 48px;
-    background-color: #f8f8f8;
+    background-color: var(--theme-background-color);
     padding: 0 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     justify-content: space-between;
 }
 
 .logo {
-    padding-top: 8px;
+    padding: 8px 0 8px 0;
     height: 100%;
 }
 
 .headerTitle{
-    color: #787878;
+    color: var(--theme-font-color);
     align-content: center;
 }
 

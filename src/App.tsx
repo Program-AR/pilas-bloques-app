@@ -7,6 +7,7 @@ import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import theme from './theme';
 import { Book } from './components/book/Book';
+import "./theme-light.css"
 
 function App() {
   
