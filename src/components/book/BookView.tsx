@@ -5,16 +5,19 @@ import { EmberView } from "../EmberView";
 import { Header } from "../header/Header";
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Breadcrumb = (book: Book) => {
+    const {t} = useTranslation("books")
 
-    return <Breadcrumbs>
+
+    return <Breadcrumbs separator=">">
 
         <Link to="/">
             <HomeIcon/> 
         </Link>
         
-        <Typography>Ciclo {book.id}</Typography>
+        <Typography>{t(`${book.id}.title`, {ns: "books"})}</Typography>
 
     </Breadcrumbs>
 }

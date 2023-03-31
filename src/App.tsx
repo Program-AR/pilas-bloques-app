@@ -6,7 +6,7 @@ import { Home } from './components/home/Home';
 import theme from './theme';
 import { PBError } from './components/PBError';
 import { ChallengeView } from './components/ChallengeView';
-import { BookView } from './components/book/Book';
+import { BookView } from './components/book/BookView';
 
 function App() {
   

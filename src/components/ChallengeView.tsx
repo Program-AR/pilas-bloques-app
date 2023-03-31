@@ -4,25 +4,31 @@ import { getChallenge, getPathToChallenge, PathToChallenge } from "../staticData
 import { EmberView } from "./EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
+import { Trans, useTranslation } from "react-i18next";
 
 const Breadcrumb = (path: PathToChallenge) => {
+    const {t} = useTranslation(["books", "challenges", "chapters", "groups"])
+
+    const shouldShowGroup: boolean = path.book.id === 1
 
     return <>
-        <Breadcrumbs>
+        <Breadcrumbs separator=">">
 
             <Link to="/">
                 <HomeIcon/> 
             </Link>
             
             <Link to={`/libros/${path.book.id}`}>
-                <Typography>Ciclo {path.book.id}</Typography>
+                <Typography>{t(`${path.book.id}.title`, {ns: "books"})}</Typography>
             </Link>
             
-            <Typography>{path.chapter.id}</Typography>
+            <Typography>{t(`${path.chapter.id}.title`, {ns: "chapters"})}</Typography>
 
-            <Typography>{path.group.id}</Typography>
+            {shouldShowGroup && 
+                <Typography>{t(`${path.group.id}.title`, {ns: "groups"})}</Typography>
+            }
 
-            <Typography>{path.challenge.id}</Typography>
+            <Typography>{t(`${path.challenge.id}.title`, {ns: "challenges"})}</Typography>
 
         </Breadcrumbs>
     </>
@@ -34,5 +40,6 @@ export const ChallengeView = () =>{
 
     return <>
     <Header CenterComponent={Breadcrumb(path)}/>
-    <EmberView path={`desafio/${id}`}/></>
+    <EmberView path={`desafio/${id}`}/>
+    </>
 }
