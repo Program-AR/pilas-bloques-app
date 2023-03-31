@@ -1983,20 +1983,20 @@ const challenges: Challenge[] = [
     [-,-,-,-,-,-],\
   ")`,
     toolboxStyle:  'noCategories',
-    initialSolution: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
-    <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"269\" y=\"15\">
-      <statement name=\"program\">
-        <shadow type=\"required_statement\"></shadow>
-        <block type=\"MoverACasillaDerecha\">
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
+      <statement name="program">
+        <shadow type="required_statement"></shadow>
+        <block type="MoverACasillaDerecha">
           <next>
-            <block type=\"MoverACasillaDerecha\">
+            <block type="MoverACasillaDerecha">
               <next>
-                <block type=\"MoverACasillaDerecha\">
+                <block type="MoverACasillaDerecha">
                   <next>
-                    <block type=\"MoverACasillaAbajo\">
+                    <block type="MoverACasillaAbajo">
                       <next>
-                        <block type=\"ComerChurrasco\"></block>
+                        <block type="ComerChurrasco"></block>
                       </next>
                     </block>
                   </next>
@@ -2030,26 +2030,26 @@ const challenges: Challenge[] = [
     [-,-,-,-,-,-],\
   ")`,
     toolboxStyle:  'noCategories',
-    initialSolution: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
-    <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"15\" y=\"15\">
-      <statement name=\"program\">
-        <shadow type=\"required_statement\"></shadow>
-        <block type=\"repetir\">
-          <value name=\"count\">
-            <shadow type=\"required_value\"></shadow>
-            <block type=\"math_number\">
-              <field name=\"NUM\">3</field>
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+      <statement name="program">
+        <shadow type="required_statement"></shadow>
+        <block type="repetir">
+          <value name="count">
+            <shadow type="required_value"></shadow>
+            <block type="math_number">
+              <field name="NUM">3</field>
             </block>
           </value>
-          <statement name=\"block\">
-            <shadow type=\"required_statement\"></shadow>
-            <block type=\"MoverACasillaDerecha\"></block>
+          <statement name="block">
+            <shadow type="required_statement"></shadow>
+            <block type="MoverACasillaDerecha"></block>
           </statement>
           <next>
-            <block type=\"MoverACasillaAbajo\">
+            <block type="MoverACasillaAbajo">
               <next>
-                <block type=\"ComerChurrasco\"></block>
+                <block type="ComerChurrasco"></block>
               </next>
             </block>
           </next>
@@ -2748,23 +2748,23 @@ const challenges: Challenge[] = [
       'Repetir'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
-    <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"269\" y=\"15\">
-      <statement name=\"program\">
-        <shadow type=\"required_statement\"></shadow>
-        <block type=\"repetir\">
-          <value name=\"count\">
-            <shadow type=\"required_value\"></shadow>
-            <block type=\"math_number\">
-              <field name=\"NUM\">3</field>
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
+      <statement name="program">
+        <shadow type="required_statement"></shadow>
+        <block type="repetir">
+          <value name="count">
+            <shadow type="required_value"></shadow>
+            <block type="math_number">
+              <field name="NUM">3</field>
             </block>
           </value>
-          <statement name=\"block\">
-            <shadow type=\"required_statement\"></shadow>
-            <block type=\"MoverLeyendoArriba\">
+          <statement name="block">
+            <shadow type="required_statement"></shadow>
+            <block type="MoverLeyendoArriba">
               <next>
-                <block type=\"MoverLeyendoDerecha\"></block>
+                <block type="MoverLeyendoDerecha"></block>
               </next>
             </block>
           </statement>
