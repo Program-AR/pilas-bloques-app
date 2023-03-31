@@ -21,3 +21,28 @@
         display: none;
     }
 }
+
+.header div{
+    display: flex;
+    height: inherit;
+}
+
+.face {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.gray {
+    filter: grayscale(1);
+}
+
+.loginBtn {
+    animation: blinker 1s linear infinite;
+    color: var(--theme-font-color);
+}
+
+@keyframes blinker {
+  50% {
+    color: var(--theme-link-color);
+  }
+}
