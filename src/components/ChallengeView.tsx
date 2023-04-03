@@ -15,7 +15,7 @@ const Breadcrumb = (path: PathToChallenge) => {
     const shouldShowChapter = !isSmallScreen
 
     return <>
-        <Breadcrumbs separator=">">
+        <Breadcrumbs separator=">" >
 
             <Link to="/">
                 <HomeIcon/> 
