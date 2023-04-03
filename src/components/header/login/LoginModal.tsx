@@ -57,7 +57,7 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
                         label={t('username')}
                         variant="standard"
                         onChange={props => setUsername(props.target.value)}
-                        required={true} />
+                        required />
                     <TextField 
                         className={styles['input']}
                         id="standard-basic"
@@ -65,9 +65,9 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
                         variant="standard"
                         type="password"
                         onChange={props => setPassword(props.target.value)}
-                        required={true} />
+                        required />
                     <Paper hidden={!wrongLogin} className={styles['paper']} elevation={2}>{t('wrong')}</Paper>
-                    <Button className={styles['loginBtn']} onClick={handleSubmit}>{t('login')}</Button>
+                    <Button type='submit' className={styles['loginBtn']}>{t('login')}</Button>
                     </form>
                     <a className={styles.link} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>
                 </div>  

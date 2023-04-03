@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import styles from '../header.module.css';
 import { LoginModal } from "./LoginModal";
 import { PB_USER, PilasBloquesApi } from "../../../pbApi";
-import { Ember } from "../../../emberCommunication";
 
 const AVATAR_COUNT = 16
 const AVATAR_PATH = "imagenes/avatars/"
@@ -43,16 +42,16 @@ export const SessionButton = () => {
         setOpenModal(false)
     }
 
-    const getNickname = () => PilasBloquesApi.getUser()?.nickName
+    const getUser = () => PilasBloquesApi.getUser()
 
     const avatars = Array.from(Array(AVATAR_COUNT).keys()).map((n) => `${AVATAR_PATH}avatar-${n + 1}.png`)
 
-    const getRandomAvatar = () =>  avatars[Math.floor(Math.random() * avatars.length)]
+    const getRandomAvatar = () => avatars[Math.floor(Math.random() * avatars.length)]
 
 
     return <div>
-        <img className={`${styles.face} ${!isLoggedIn() ? styles.gray : ''}`} src={!isLoggedIn() ? getRandomAvatar() : AVATAR_PATH + 'avatar-1.png'}/>
-        <Button className={styles.loginBtn} onClick={handleButtonClick}>{isLoggedIn() ? getNickname() : t('login')}</Button>
+        <img className={`${styles.face} ${!isLoggedIn() ? styles.gray : ''}`} src={!isLoggedIn() ? getRandomAvatar() : getUser()?.avatarURL}/>
+        <Button className={styles.loginBtn} onClick={handleButtonClick}>{isLoggedIn() ? getUser()?.nickName : t('login')}</Button>
 
         <LoginModal open={openModal} onClose={closeModal} />
         {isLoggedIn() ? (<Menu
