@@ -1,0 +1,12 @@
+{
+  "already": "Já tenho um usuário",
+  "wrong": "Nome de usuário ou senha incorretos, tente novamente",
+  "forgot": "Esqueci meu nome de usuário ou senha",
+  "dontHaveUser": "Ainda não tenho usuário",
+  "register": "Cadastre-se clicando aqui!",
+  "login": "Entrar",
+  "username": "Usuario",
+  "password": "Senha",
+  "logout": "Fechar sessão",
+  "changeUser": "Mudar usuário"
+}
