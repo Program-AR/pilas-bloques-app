@@ -1,5 +1,9 @@
 import { EmberView } from "./EmberView";
+import { Header } from "./header/Header";
 
 export const ImportedChallengeView = () =>{
-    return <EmberView path={`desafio/react-imported-challenge`}/>
+    return <>
+    <Header CenterComponent={<></>}/>
+    <EmberView path={`desafio/react-imported-challenge`}/>
+    </>
 }
