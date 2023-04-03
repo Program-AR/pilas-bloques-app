@@ -52,3 +52,9 @@
     color: var(--theme-link-color);
     text-decoration: none;
 } 
+
+.paper{
+  padding: 24px 16px 16px;
+  color: var(--theme-font-color) !important;
+  margin: 0 -30%;
+}
