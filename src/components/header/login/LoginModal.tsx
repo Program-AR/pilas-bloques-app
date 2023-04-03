@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, TextField } from "@mui/material"
-import { FC, useState } from "react"
+import { FC, FormEvent, useState } from "react"
 import styles from './loginModal.module.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
@@ -19,11 +19,12 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
     const [password, setPassword] = useState<string | null>(null)
     const [wrongLogin, setWrongLogin] = useState<boolean>(false)
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
         const credentials = {username, password}
         try{
-            await PilasBloquesApi.login(credentials)
-            handleOnClose()
+           await PilasBloquesApi.login(credentials)
+           handleOnClose()
         }catch(error: any){
             if (error.status === 400) setWrongLogin(true)
         }
