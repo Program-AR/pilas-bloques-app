@@ -50,8 +50,8 @@ export const SessionButton = () => {
 
 
     return <div>
-        <img className={`${styles.face} ${!isLoggedIn() ? styles.gray : ''}`} src={!isLoggedIn() ? getRandomAvatar() : getUser()?.avatarURL}/>
-        <Button className={styles.loginBtn} onClick={handleButtonClick}>{isLoggedIn() ? getUser()?.nickName : t('login')}</Button>
+        <img alt='profile-avatar' className={`${styles['face']} ${!isLoggedIn() ? styles.gray : ''}`} src={!isLoggedIn() ? getRandomAvatar() : getUser()?.avatarURL}/>
+        <Button className={styles['login-btn']} onClick={handleButtonClick}>{isLoggedIn() ? getUser()?.nickName : t('login')}</Button>
 
         <LoginModal open={openModal} onClose={closeModal} />
         {isLoggedIn() ? (<Menu

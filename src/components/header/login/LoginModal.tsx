@@ -1,5 +1,5 @@
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, TextField } from "@mui/material"
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import styles from './loginModal.module.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
@@ -67,14 +67,14 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
                         onChange={props => setPassword(props.target.value)}
                         required />
                     <Paper hidden={!wrongLogin} className={styles['paper']} elevation={2}>{t('wrong')}</Paper>
-                    <Button type='submit' className={styles['loginBtn']}>{t('login')}</Button>
+                    <Button type='submit' className={styles['login-btn']}>{t('login')}</Button>
                     </form>
-                    <a className={styles.link} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>
+                    <a className={styles['link']} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>
                 </div>  
                 <div className={styles['login-item']}>
-                    <img className={styles['login-img']} src="imagenes/session/login.png"/>
+                    <img alt='login' className={styles['login-img']} src="imagenes/session/login.png"/>
                     <h3>{t('dontHaveUser')}</h3>
-                    <a className={styles.link} onClick={handleOnClose} href="#/register" target="">{t('register')}</a>
+                    <a className={styles['link']} onClick={handleOnClose} href="#/register" target="">{t('register')}</a>
                 </div>  
                 </DialogContent>
         </Dialog>

@@ -44,7 +44,7 @@
   display: inline-block;
 }
 
-.loginBtn{
+.login-btn{
   color: var(--theme-font-color) !important;
 }
 

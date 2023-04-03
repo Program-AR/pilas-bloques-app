@@ -11,13 +11,13 @@
     height: 100%;
 }
 
-.headerTitle{
+.header-title{
     color: var(--theme-font-color);
     align-content: center;
 }
 
 @media (max-width: 600px) {
-    .headerTitle {
+    .header-title {
         display: none;
     }
 }
@@ -36,7 +36,7 @@
     filter: grayscale(1);
 }
 
-.loginBtn {
+.login-btn {
     animation: blinker 1s linear infinite;
     color: var(--theme-font-color);
 }

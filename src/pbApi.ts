@@ -8,17 +8,25 @@ interface User{
     answeredQuestionIds: number[]
 }
 
+export interface Credentials{
+  username: string | null,
+  password: string | null
+}
+
 export namespace PilasBloquesApi{
     export const getUser: () => User | null = () => {
         const userString = localStorage.getItem(PB_USER);
         return userString ? JSON.parse(userString) : null;
     }
 
-    export const login = async (credentials:any) => await _send('POST', 'login', credentials).then(user => localStorage.setItem('PB_USER', JSON.stringify(user)))
+    export const login = async (credentials: Credentials) => {
+      await _send('POST', 'login', credentials)
+      .then(user => localStorage.setItem(PB_USER, JSON.stringify(user)))
+    }
 
-    const baseURL = 'http://localhost:3001'
+    const baseURL = process.env.REACT_APP_API_URL
 
-    async function _send(method: any, resource: string, body: { context: any; timestamp: Date }) {
+    async function _send(method: any, resource: string, body: any) {
         const user = getUser()
         const url = `${baseURL}/${resource}`
         const headers = {
