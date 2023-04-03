@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 export type HomeCardProps = {
     nameKey: string,
     image: string,
-    color: string 
+    color: string
 }
 
 export const HomeCard = (props: HomeCardProps) => {

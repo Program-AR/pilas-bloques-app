@@ -1,3 +1,4 @@
+import { ImportedChallenge } from "./components/home/ImportChallengeButton"
 import { InternalizationLanguage } from "./language"
 
 export namespace Ember{
@@ -10,6 +11,10 @@ export namespace Ember{
     export const changeLanguage = (newLanguage: InternalizationLanguage) => {
         localStorage.setItem("PB_SELECTED_LOCALE", `"${newLanguage.languageCode}"`)
         refreshIframe()
+    }
+
+    export const importChallenge = (challenge: ImportedChallenge) => {
+        localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
     }
 
 }
