@@ -73,7 +73,8 @@
     "electron": "^23.1.0",
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
-    "makensis": "^2.0.5"
+    "makensis": "^2.0.5",
+    "simple-type-guard": "^3.3.9"
   },
   "optionalDependencies": {
     "electron-installer-debian": "^3.1.0"
