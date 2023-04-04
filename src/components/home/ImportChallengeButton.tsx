@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
 import simpleTypeGuard, { SimpleArray, SimpleNumber, SimpleString } from 'simple-type-guard';
+import { useState } from "react";
+import { Modal } from "@mui/material";
 
 export type ImportedChallenge = {
     version: number,
@@ -12,44 +14,48 @@ export type ImportedChallenge = {
     bloques: string[]
 }
 
-
-const isValidChallenge = (json: unknown): boolean => 
-    simpleTypeGuard<ImportedChallenge>(json, {
-        version: SimpleNumber, 
-        nombre: SimpleString, 
-        escena: SimpleString, 
-        bloques: new SimpleArray(SimpleString)
-    })
-
-
 export const ImportChallengeCard = () => {
     const navigate = useNavigate();
+    const [modalOpen, setModalOpen] = useState(false);
 
     const goToChallenge = (challenge: ImportedChallenge) => {
         Ember.importChallenge(challenge)
         navigate("/desafioImportado")
     }
 
-    const getChallengeFromFile = async (file: File): Promise<ImportedChallenge> => {
-        const content: string = await file.text()
-        const challengeJson: unknown = JSON.parse(content)
-
-        if(!isValidChallenge(challengeJson)) throw Error("Invalid challenge")
-
-        return challengeJson as ImportedChallenge
-
+    const showErrorModal = () => {
+        setModalOpen(true)
     }
+
+    const isValidChallenge = (json: unknown): boolean => 
+        simpleTypeGuard<ImportedChallenge>(json, {
+            version: SimpleNumber, 
+            nombre: SimpleString, 
+            escena: SimpleString, 
+            bloques: new SimpleArray(SimpleString)
+        })
 
     const readFile = async (event: any) => {
         const file: File = event.target.files[0]
-        const challenge: ImportedChallenge = await getChallengeFromFile(file)
-        goToChallenge(challenge)
+        const content: string = await file.text()
+        const challengeJson: unknown = JSON.parse(content)
+
+        if(!isValidChallenge(challengeJson)){
+            showErrorModal()
+        }
+        else{
+            goToChallenge(challengeJson as ImportedChallenge)
+        }
+
     }
 
     return (
     <Button component="label" style={{textTransform: 'none'}}>
         <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
         <input hidden accept=".json" type="file" onChange={readFile}/>
+        <Modal open={modalOpen} onClose={() => {setModalOpen(false)}}>
+            <img src={ImportImage}/>
+        </Modal>
     </Button>
 )
 }
