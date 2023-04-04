@@ -32,7 +32,7 @@ export const ImportChallengeCard = () => {
             version: SimpleNumber, 
             nombre: SimpleString, 
             escena: SimpleString, 
-            bloques: new SimpleArray(SimpleString)
+            bloques: new SimpleArray(SimpleString),
         })
 
     const readFile = async (event: any) => {
@@ -40,11 +40,13 @@ export const ImportChallengeCard = () => {
         const content: string = await file.text()
         const challengeJson: unknown = JSON.parse(content)
 
-        if(!isValidChallenge(challengeJson)){
-            showErrorModal()
-        }
-        else{
+        event.target.value = null // Without this Chrome seems to cache the file and prevents reruns of this function. 
+
+        if (isValidChallenge(challengeJson)) {
             goToChallenge(challengeJson as ImportedChallenge)
+        }
+        else {
+            showErrorModal()
         }
 
     }
