@@ -52,11 +52,11 @@ export type Challenge = {
    **/
   hasAutomaticGrading?: boolean,
   /**
-   * Predefined solution to appear in challenge.
+   * Predefined solution (in XML format) to appear in challenge.
    * Usually used together with debugging in true 
    * (i.e. when you want the student to fix a bug in the provided solution).
    */
-  initialSolution?: string,
+  predefinedSolution?: string,
 }
 
 export type ExpectationConfig = {
@@ -889,7 +889,7 @@ const challenges: Challenge[] = [
       'ComerChurrasco'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <block type="MoverACasillaArriba">
@@ -946,7 +946,7 @@ const challenges: Challenge[] = [
       'ComerChurrasco'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <block type="MoverACasillaIzquierda">
@@ -987,7 +987,7 @@ const challenges: Challenge[] = [
       'ComerChurrasco'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <block type="MoverACasillaAbajo">
@@ -1032,7 +1032,7 @@ const challenges: Challenge[] = [
       'ComerChurrasco'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <block type="MoverACasillaIzquierda">
@@ -1077,7 +1077,7 @@ const challenges: Challenge[] = [
       [O,O,O,O,O,O,O]\
     ")`,
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverACasillaDerecha">
@@ -1187,7 +1187,7 @@ const challenges: Challenge[] = [
       'MoverLeyendoDerecha',
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverLeyendoDerecha">
@@ -1236,7 +1236,7 @@ const challenges: Challenge[] = [
       'MoverLeyendoDerecha',
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverLeyendoIzquierda">
@@ -1424,7 +1424,7 @@ const challenges: Challenge[] = [
       'Repetir'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <block type="MoverACasillaArriba">
@@ -1473,7 +1473,7 @@ const challenges: Challenge[] = [
       'Repetir'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <block type="Repetir">
@@ -1520,7 +1520,7 @@ const challenges: Challenge[] = [
       'Repetir'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
           <block type="Repetir">
@@ -1570,7 +1570,7 @@ const challenges: Challenge[] = [
       'Repetir'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
           <block type="Repetir">
@@ -1652,7 +1652,7 @@ const challenges: Challenge[] = [
       [-,O,O,-,-,O,O]\
     ")`,
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="Repetir">
@@ -2011,7 +2011,7 @@ const challenges: Challenge[] = [
     [-,-,-,-,-,-],\
   ")`,
     toolboxStyle:  'noCategories',
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
       <statement name="program">
@@ -2058,7 +2058,7 @@ const challenges: Challenge[] = [
     [-,-,-,-,-,-],\
   ")`,
     toolboxStyle:  'noCategories',
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
@@ -2646,7 +2646,7 @@ const challenges: Challenge[] = [
       'MoverLeyendoDerecha',
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" id="1" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverLeyendoIzquierda">
@@ -2776,7 +2776,7 @@ const challenges: Challenge[] = [
       'Repetir'
     ],
     debugging: true,
-    initialSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    predefinedSolution: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
       <statement name="program">
