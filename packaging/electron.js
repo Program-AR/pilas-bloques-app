@@ -8,14 +8,14 @@ function createWindow() {
   const win = new BrowserWindow()
 
   win.setMenuBarVisibility(false)
-  win.setMenu(null)
+  //win.setMenu(null)
   win.setMinimumSize(800, 600)
   win.setSize(1024, 600, true)
   win.maximize()
 
   // and load the index.html of the app. 
   win.loadURL('file://' + __dirname + '/index.html')
-  win.webContents.openDevTools({ mode: 'detach' })
+  //win.webContents.openDevTools({ mode: 'detach' })
 }
 
 // This method will be called when Electron has finished
