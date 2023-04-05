@@ -3,38 +3,63 @@ import { Chapter, chapterIncludesChallenge } from "./chapters"
 import { Group, groupIncludesChallenge } from "./groups"
 
 export type Challenge = {
-  /** 
-    Es el número por el cual se accederá al desafío en la URL
-  **/
+  /**
+   * Unique numerical identifier.
+   * Used to access the challenge by URL.
+   */
   id: number,
   /**
-    Es un segundo identificador único. 
-    Se usa para cosas como para chequear que 
-    la solución cargada sea de este desafío y no otro.
-   **/
+   * Unique string identifier.
+   * Used for images and checks when importing solutions.
+   * DON'T use this. Soon to be deprecated.
+   */
   name: string,
   /**
-   Indica un nombre de clase, o EL STRING con un "new Escena..." 
-   que luego se PARSEARÁ como javascript para construir 
-   la escena de pilas-bloques-exercises asociada a este desafío.
-   **/
+   * The pilasweb framework's scene for the challenge.
+   * Scene class name or scene string initializer e.g. "new Scene..."
+   * Parsed as js, defined in pilas-bloques-exercises.
+   */
   scene: string,
   /**
-   Los ids de bloque de Blockly que habrá en el toolbox de la actividad.
-   **/
+   * Blockly toolbox block ids.
+   */
   blocks: string[],
+  /**
+   * When true, challenge has "step" button.
+   */
   debugging?: boolean,
+  /**
+   * When present, overrides default challenge image.
+   */
   image?: string,
+  /**
+   * Json object with expectation configuration for this challenge.
+   * See https://github.com/Program-AR/pilas-bloques/blob/develop/app/services/challenge-expectations.js
+   */
   expectations?: any,
+  /**
+   * When true, shows yelow arrow that remembers the user there are multiple scenarios.
+   */
   shouldShowMultipleScenarioHelp?: boolean,
+  /**
+   * 'categorized' shows the toolbox with titles and flyout menu.
+   * 'uncategorized' just shows the toolbox blocks with no titles and no flyout menu.
+   */
   toolboxStyle?: string,
   /**
-   Indica si tiene sentido que el desafío chequee e informe al alumno 
-   la concreción exitosa de su programa. 
-   En una actividad de dibujo libre estaría en false.
+   * Default to true. When false, we don't check if the solution solves the challenge i.e. no congratulations modal.
+   * E.g. The "free draw" challenges will be false.
    **/
   hasAutomaticGrading?: boolean,
+  /**
+   * Predefined solution to appear in challenge.
+   * Usually used together with debugging in true 
+   * (i.e. when you want the student to fix a bug in the provided solution).
+   */
   initialSolution?: string,
+  /**
+   * When true, hides the challenge.
+   */
   disabled?: boolean
 }
 
