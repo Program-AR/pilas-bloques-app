@@ -18,7 +18,7 @@ const BookCard = (props: BookCardProps) => {
     return (
     <Link to={props.url}>
         <Card style={{ width:"9rem", backgroundColor: props.color}}>
-            <img src={`.${props.image}`}/>
+            <img alt="" src={`.${props.image}`}/>
             <Typography variant="h5" align="center">{t(props.nameKey)}</Typography>
         </Card>
     </Link>
