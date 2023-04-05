@@ -37,12 +37,12 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "npm run ember:noRoot && react-scripts start",
-    "build": "npm run ember:emberPBRoot && react-scripts build",
+    "prestart": "node scripts/setEmberRoot.js public/emberPB ''",
+    "start": "react-scripts start",
+    "prebuild": "node scripts/setEmberRoot.js public/emberPB ''",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "ember:noRoot": "node scripts/setEmberRoot.js public/emberPB ''",
-    "ember:emberPBRoot": "node scripts/setEmberRoot.js public/emberPB ''",
     "electron-start": "electron ./build",
     "postinstall": "sh scripts/copyEmberPB.sh",
     "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
