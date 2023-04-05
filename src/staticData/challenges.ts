@@ -36,7 +36,7 @@ export type Challenge = {
    * Json object with expectation configuration for this challenge.
    * See https://github.com/Program-AR/pilas-bloques/blob/develop/app/services/challenge-expectations.js
    */
-  expectations?: any,
+  expectations?: ExpectationConfig,
   /**
    * When true, shows yelow arrow that remembers the user there are multiple scenarios.
    */
@@ -57,6 +57,14 @@ export type Challenge = {
    * (i.e. when you want the student to fix a bug in the provided solution).
    */
   initialSolution?: string,
+}
+
+export type ExpectationConfig = {
+  decomposition?: boolean,
+  decomposition9?: boolean,
+  conditionalAlternative?: boolean,
+  simpleRepetition?: boolean,
+  conditionalRepetition?: boolean
 }
 
 /**

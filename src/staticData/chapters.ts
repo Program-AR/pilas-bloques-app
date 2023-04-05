@@ -1,16 +1,16 @@
-import { Challenge } from "./challenges"
+import { Challenge, ExpectationConfig } from "./challenges"
 import { getGroup, Group, groupIncludesChallenge } from "./groups"
 
 type RawChapterData = {
     id: string,
     groupIds: string[],
-    expectations?: any
+    expectations?: ExpectationConfig
 }
 
 export type Chapter = {
     id: string,
     groups: Group[],
-    expectations?: any
+    expectations?: ExpectationConfig
 }
 
 export const getChapter = (id: string): Chapter => {
