@@ -37,7 +37,7 @@ prepack() {
     cp packaging/electron.js $DIST
     cp -R locales $DIST
     node scripts/fixingAbsolutePath.js $DIST
-    #node scripts/setEmberRoot.js "$DIST/emberPB" "emberPB/"
+    node scripts/setEmberRoot.js "$DIST/emberPB" ""
 }
 
 pack() {
