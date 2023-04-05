@@ -1,12 +1,12 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React from 'react';
 import './App.css';
-import { ChallengeView } from './components/ChallengeView';
-import { Header } from './components/header/Header';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import theme from './theme';
-import { Book } from './components/book/Book';
+import { PBError } from './components/PBError';
+import { ChallengeView } from './components/ChallengeView';
+import { BookView } from './components/book/BookView';
 
 function App() {
   
@@ -14,14 +14,17 @@ function App() {
     {
       path: "",
       element: <Home/>,
+      errorElement: <PBError />
+    },
+    {
+      path: "/libros/:id",
+      element: <BookView/>,
+      errorElement: <PBError />
     },
     {
       path: "/desafio/:id",
       element: <ChallengeView/>,
-    },
-    {
-      path: "/libros/:id",
-      element: <Book/>
+      errorElement: <PBError />
     }
   ]);
 
@@ -31,7 +34,6 @@ function App() {
     <React.Fragment>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Header/>
         <RouterProvider router={router} />
       </ThemeProvider>
     </React.Fragment>

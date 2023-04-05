@@ -6,17 +6,24 @@ import { BookCards} from "./BookCards"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
+import { Header } from "../header/Header";
 
-const RegisterButton = () => {
+const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home/home");
 
     return <Link to="register"><Button variant="outlined" startIcon={<ArrowForwardIcon />}>{t("signUp")}</Button></Link>
+}
+
+const HeaderText: React.FC = () => {
+    const { t } = useTranslation("header");
+    return <p style={{color: "#787878", alignContent: "center"}} >{t('tool')}</p>
 }
 
 export const Home = () => {
     const { t } = useTranslation("home/home");
 
     return <>
+    <Header CenterComponent={<HeaderText/>}/>
     <Container style={{marginBottom: "-18rem", height: "30rem", zIndex: -1, position: "relative", maxWidth: "100%"}}><Background/></Container>
     
     <Grid style={{backgroundColor: '#311C3B'}} container direction="column" alignItems="center" justifyContent="space-evenly" height={"40rem"}>

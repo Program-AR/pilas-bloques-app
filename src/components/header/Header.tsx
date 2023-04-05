@@ -1,16 +1,19 @@
-import { AppBar, Grid, Link } from "@mui/material";
+import { AppBar, Grid } from "@mui/material";
 import {ReactComponent as PBLogo} from "../../assets/pblogo-whiteborder.svg"
-import { useTranslation } from 'react-i18next';
 import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
+import { Link } from "react-router-dom";
 
-export const Header = () => {
-    const { t } = useTranslation("header");
+type HeaderProps = {
+    CenterComponent: React.ReactNode
+}
+
+export const Header = (props: HeaderProps) => {
     
     return <AppBar position="fixed" elevation={0}>
             <Grid container className={styles.header}>
-                <Link href="#"><PBLogo className={styles.logo}/></Link>
-                <p className={styles.headerTitle}>{t('tool')}</p>
+                <Link to="/"><PBLogo className={styles.logo}/></Link>
+                {props.CenterComponent}
                 <ChangeLanguageButton/>
             </Grid>
         </AppBar>

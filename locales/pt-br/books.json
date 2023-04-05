@@ -1,0 +1,18 @@
+{
+
+    "1": {
+        "title": "Primeiro Ciclo",
+        "description": "Desafios do manual para professores \"Informática para a sala de aula, 1º ciclo do ensino básico\""
+    },
+
+    "2": {
+        "title": "Segundo Ciclo",
+        "description": "Desafios do caderno para professores \"Programa Atividades para aprender.AR\" A partir do 2º ciclo do ensino básico."
+    },
+
+    "100": {
+        "title": "Tecnopolis 2021",
+        "description": "Desafios de Tecnopolis 2021"
+    }
+    
+}
