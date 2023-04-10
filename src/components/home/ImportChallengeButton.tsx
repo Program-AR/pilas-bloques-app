@@ -25,7 +25,7 @@ export const ImportChallengeCard = () => {
 
     const goToChallenge = (challenge: ImportedChallenge) => {
         Ember.importChallenge(challenge)
-        navigate("/desafioImportado")
+        navigate("/desafioImportado", {state: challenge})
     }
 
     const showErrorModal = () => {

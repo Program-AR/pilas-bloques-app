@@ -30,6 +30,7 @@ function App() {
     {
       path: "/desafioImportado",
       element: <ImportedChallengeView/>,
+      errorElement: <PBError />
     }
   ]);
 
