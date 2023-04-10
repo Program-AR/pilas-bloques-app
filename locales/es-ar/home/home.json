@@ -1,4 +1,5 @@
 {
     "title": "Elegí tu nivel y empezá a programar",
-    "signUp": "Registrate"
+    "signUp": "Registrate",
+    "importError": "El archivo es invalido"
 }

@@ -5,7 +5,8 @@ import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
 import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleBoolean, SimpleNumber, SimpleString } from 'simple-type-guard';
 import { useState } from "react";
-import { Modal } from "@mui/material";
+import { Modal, Paper, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 export type ImportedChallenge = {
     version: number,
@@ -65,9 +66,18 @@ export const ImportChallengeCard = () => {
     <Button component="label" style={{textTransform: 'none'}}>
         <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
         <input hidden accept=".pbch,.json" type="file" onChange={readFile}/>
-        <Modal open={modalOpen} onClose={() => {setModalOpen(false)}}>
-            <img src={ImportImage}/>
+        <Modal open={modalOpen} onClose={() => {setModalOpen(false)}} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+            <ErrorMessage/>
         </Modal>
     </Button>
 )
+}
+
+const ErrorMessage = () => {
+    const { t } = useTranslation("home/home");
+
+    return <Paper elevation={24} sx={{maxWidth: "25%", maxHeight: "25%" , display: "flex", alignItems: "center"}}>
+        <Typography textAlign='center'>{t("importError")}</Typography>
+        <img src={ImportImage}/>
+    </Paper>
 }
