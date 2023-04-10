@@ -9,9 +9,10 @@ import { Modal } from "@mui/material";
 
 export type ImportedChallenge = {
     version: number,
-    nombre: string,
-    escena: string,
-    bloques: string[]
+    name: string,
+    scene: string,
+    blocks: string[],
+    toolboxStyle: string
 }
 
 export const ImportChallengeCard = () => {
@@ -30,9 +31,10 @@ export const ImportChallengeCard = () => {
     const isValidChallenge = (json: unknown): boolean => 
         simpleTypeGuard<ImportedChallenge>(json, {
             version: SimpleNumber, 
-            nombre: SimpleString, 
-            escena: SimpleString, 
-            bloques: new SimpleArray(SimpleString),
+            name: SimpleString, 
+            scene: SimpleString, 
+            blocks: new SimpleArray(SimpleString),
+            toolboxStyle: SimpleString
         })
 
     const readFile = async (event: any) => {

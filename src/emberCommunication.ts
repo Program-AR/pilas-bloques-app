@@ -1,6 +1,12 @@
 import { ImportedChallenge } from "./components/home/ImportChallengeButton"
 import { InternalizationLanguage } from "./language"
 
+type EmberExecutableChallenge = {
+    escena: string,
+    bloques: string[],
+    estiloToolbox: string
+}
+
 export namespace Ember{
 
     const refreshIframe = () => {
@@ -13,8 +19,18 @@ export namespace Ember{
         refreshIframe()
     }
 
-    export const importChallenge = (challenge: ImportedChallenge) => {
+    const setImportedChallenge = (challenge: EmberExecutableChallenge) => {
         localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
+    }
+
+    export const importChallenge = (importedChallenge: ImportedChallenge) => {
+        const emberChallenge: EmberExecutableChallenge = {
+            escena: importedChallenge.scene,
+            bloques: importedChallenge.blocks,
+            estiloToolbox: importedChallenge.toolboxStyle
+        }
+
+        setImportedChallenge(emberChallenge)
     }
 
 }
