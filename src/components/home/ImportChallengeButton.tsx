@@ -56,7 +56,7 @@ export const ImportChallengeCard = () => {
     return (
     <Button component="label" style={{textTransform: 'none'}}>
         <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
-        <input hidden accept=".json" type="file" onChange={readFile}/>
+        <input hidden accept=".pbch,.json" type="file" onChange={readFile}/>
         <Modal open={modalOpen} onClose={() => {setModalOpen(false)}}>
             <img src={ImportImage}/>
         </Modal>
