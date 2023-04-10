@@ -3,16 +3,20 @@ import ImportImage from "../../assets/import.png"
 import Button from '@mui/material/Button';
 import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
-import simpleTypeGuard, { SimpleArray, SimpleNumber, SimpleString } from 'simple-type-guard';
+import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleBoolean, SimpleNumber, SimpleString } from 'simple-type-guard';
 import { useState } from "react";
 import { Modal } from "@mui/material";
 
 export type ImportedChallenge = {
     version: number,
-    name: string,
+    title: string,
+    description: string,
+    clue?: string,
     scene: string,
     blocks: string[],
-    toolboxStyle: string
+    uncategorizedToolbox: boolean,
+    debugging: boolean,
+    predefinedSolution?: string,
 }
 
 export const ImportChallengeCard = () => {
@@ -31,10 +35,14 @@ export const ImportChallengeCard = () => {
     const isValidChallenge = (json: unknown): boolean => 
         simpleTypeGuard<ImportedChallenge>(json, {
             version: SimpleNumber, 
-            name: SimpleString, 
+            title: SimpleString, 
             scene: SimpleString, 
             blocks: new SimpleArray(SimpleString),
-            toolboxStyle: SimpleString
+            uncategorizedToolbox: SimpleBoolean,
+            debugging: SimpleBoolean,
+            description: SimpleString,
+            clue: SimpleStringOptional,
+            predefinedSolution: SimpleStringOptional
         })
 
     const readFile = async (event: any) => {

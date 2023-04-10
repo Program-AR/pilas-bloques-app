@@ -4,7 +4,9 @@ import { InternalizationLanguage } from "./language"
 type EmberExecutableChallenge = {
     escena: string,
     bloques: string[],
-    estiloToolbox: string
+    debugging: boolean,
+    estiloToolbox?: "sinCategorias",
+    solucionInicial?: string
 }
 
 export namespace Ember{
@@ -27,7 +29,9 @@ export namespace Ember{
         const emberChallenge: EmberExecutableChallenge = {
             escena: importedChallenge.scene,
             bloques: importedChallenge.blocks,
-            estiloToolbox: importedChallenge.toolboxStyle
+            estiloToolbox: importedChallenge.uncategorizedToolbox ? "sinCategorias" : undefined,
+            debugging: importedChallenge.debugging,
+            solucionInicial: importedChallenge.predefinedSolution
         }
 
         setImportedChallenge(emberChallenge)
