@@ -8,5 +8,6 @@
   "username": "Username",
   "password": "Password",
   "logout": "Log out",
-  "changeUser": "Change user"
+  "changeUser": "Change user",
+  "serverError": "There's a problem with the server, try again later"
 }
