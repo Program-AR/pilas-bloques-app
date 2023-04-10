@@ -54,14 +54,12 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
                     <form className={styles['login-form']} onSubmit={handleSubmit}>
                     <TextField 
                         className={styles['input']}
-                        id="standard-basic"
                         label={t('username')}
                         variant="standard"
                         onChange={props => setUsername(props.target.value)}
                         required />
                     <TextField 
                         className={styles['input']}
-                        id="standard-basic"
                         label={t('password')}
                         variant="standard"
                         type="password"
