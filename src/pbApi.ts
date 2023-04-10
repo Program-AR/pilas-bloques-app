@@ -13,6 +13,8 @@ export interface Credentials{
   password: string | null
 }
 
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
+
 export namespace PilasBloquesApi{
     export const getUser: () => User | null = () => {
         const userString = localStorage.getItem(PB_USER);
@@ -20,25 +22,25 @@ export namespace PilasBloquesApi{
     }
 
     export const login = async (credentials: Credentials) => {
-      await _send('POST', 'login', credentials)
+      await _send<Credentials>('POST', 'login', credentials)
       .then(user => localStorage.setItem(PB_USER, JSON.stringify(user)))
     }
 
     const baseURL = process.env.REACT_APP_API_URL
 
-    async function _send(method: any, resource: string, body: any) {
+    async function _send<T>(method: HttpMethod, resource: string, body: T) {
         const user = getUser()
         const url = `${baseURL}/${resource}`
-        const headers = {
-          'Content-Type': 'application/json',
-          'Authorization': user ? `Bearer ${user.token}` : null
-        }
+
+        const headers = new Headers()
+        headers.append('Content-Type', 'application/json');
+        if(user) headers.append('Authorization', `Bearer ${user.token}`)
 
         return _doFetch(url, {
           method,
           body: JSON.stringify(body),
           headers
-        })
+        })  
           .catch(connectionErr => {
             throw connectionErr
           })
@@ -48,7 +50,7 @@ export namespace PilasBloquesApi{
           })    
       }
     
-      function _doFetch(url: RequestInfo | URL, options: any) {
+      function _doFetch(url: RequestInfo | URL, options: RequestInit) {
         try {
           return fetch(url, options)
         } catch (err) {
