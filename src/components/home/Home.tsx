@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
-import { ImportChallengeCard } from "./ImportChallengeButton";
+import { ImportChallengeCard } from "./ImportChallengeCard";
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home/home");

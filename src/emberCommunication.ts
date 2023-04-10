@@ -1,4 +1,4 @@
-import { ImportedChallenge } from "./components/home/ImportChallengeButton"
+import { ImportedChallenge } from "./components/home/ImportChallengeCard"
 import { InternalizationLanguage } from "./language"
 
 type EmberExecutableChallenge = {

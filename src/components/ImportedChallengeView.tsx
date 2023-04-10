@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { EmberView } from "./EmberView";
 import { Header } from "./header/Header";
-import { ImportedChallenge } from "./home/ImportChallengeButton";
+import { ImportedChallenge } from "./home/ImportChallengeCard";
 
 export const ImportedChallengeView = () =>{
     const location = useLocation();
