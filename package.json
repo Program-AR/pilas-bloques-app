@@ -1,6 +1,6 @@
 {
   "name": "pilasbloques",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "productName": "Pilas Bloques",
   "genericName": "Programacion con bloques",
   "description": "Una herramienta para aprender a programar utilizando bloques",
@@ -22,6 +22,7 @@
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-router-dom": "^5.3.3",
     "i18next": "^22.4.10",
     "i18next-browser-languagedetector": "^7.0.1",
     "i18next-chained-backend": "^4.2.0",
@@ -30,7 +31,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-i18next": "^12.1.5",
-    "@types/react-router-dom": "^5.3.3",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -49,7 +49,8 @@
     "pack:osx": "bash ./scripts/package.sh -osx",
     "pack:win32": "bash ./scripts/package.sh -win32",
     "pack:html": "bash ./scripts/package.sh -html",
-    "clean": "rm -rf node_modules && rm -rf binaries"
+    "clean": "rm -rf node_modules dist binaries",
+    "release": "release-it --only-version"
   },
   "eslintConfig": {
     "extends": [
@@ -73,7 +74,8 @@
     "electron": "^23.1.0",
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
-    "makensis": "^2.0.5"
+    "makensis": "^2.0.5",
+    "release-it": "^15.6.0"
   },
   "optionalDependencies": {
     "electron-installer-debian": "^3.1.0"
@@ -118,6 +120,17 @@
       "OriginalFilename": null,
       "ProductName": null,
       "InternalName": null
+    }
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "tag": true,
+      "commit": true,
+      "push": true
+    },
+    "npm": {
+      "publish": false
     }
   }
 }
