@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, TextField } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, Snackbar, SnackbarContent, TextField } from "@mui/material"
 import { FC, FormEvent, useState } from "react"
 import styles from './loginModal.module.css';
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,6 +11,27 @@ export interface DialogBasicProps {
     onClose: () => void
 }
 
+interface ServerErrorSnackbarProps {
+    open: boolean
+}
+
+export const ServerErrorSnackbar = (props: ServerErrorSnackbarProps) => {
+    const { t } = useTranslation('login');
+
+    return <Snackbar
+        anchorOrigin={{
+            vertical: 'top',
+            horizontal: 'right',
+        }}
+        open={props.open}
+        autoHideDuration={4000}>
+            <SnackbarContent 
+                message={t('serverError')}
+                className={styles.serverError}
+            />
+        </Snackbar>
+}
+
 export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
 
     const { t } = useTranslation('login');
@@ -18,6 +39,7 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
     const [username, setUsername] = useState<string | null>(null)
     const [password, setPassword] = useState<string | null>(null)
     const [wrongLogin, setWrongLogin] = useState<boolean>(false)
+    const [serverError, setServerError] = useState<boolean>(false)
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -26,12 +48,17 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
            await PilasBloquesApi.login(credentials)
            handleOnClose()
         }catch(error: any){
-            if (error.status === 400) setWrongLogin(true)
+            if (error.status === 400){
+                setWrongLogin(true)
+            }else{
+                setServerError(true)
+            } 
         }
     }   
 
     const handleOnClose = () =>{
         setWrongLogin(false)
+        setServerError(false)
         onClose()
     }
 
@@ -66,6 +93,7 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
                         onChange={props => setPassword(props.target.value)}
                         required />
                     <Paper hidden={!wrongLogin} className={styles['paper']} elevation={2}>{t('wrong')}</Paper>
+                    <ServerErrorSnackbar open={serverError} />
                     <Button type='submit' className={styles['login-btn']}>{t('login')}</Button>
                     </form>
                     <a className={styles['link']} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>

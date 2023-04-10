@@ -58,3 +58,8 @@
   color: var(--theme-font-color) !important;
   margin: 0 -30%;
 }
+
+.serverError{
+  background-color: #f3e4a8 !important;
+  color: black !important;
+}
