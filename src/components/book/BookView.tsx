@@ -14,7 +14,7 @@ const Breadcrumb = (book: Book) => {
     return <Breadcrumbs separator=">">
 
         <Link to="/">
-            <HomeIcon/> 
+            <HomeIcon style={{ display:'flex', color: '#787878'}}/> 
         </Link>
         
         <Typography>{t(`${book.id}.title`)}</Typography>

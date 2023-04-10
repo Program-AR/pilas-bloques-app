@@ -12,7 +12,7 @@ export const HomeCard = (props: HomeCardProps) => {
 
     return (
         <Card style={{ width:"9rem", backgroundColor: props.color}}>
-            <img src={`.${props.image}`}/>
+            <img alt={props.nameKey} src={`.${props.image}`}/>
             <Typography variant="h5" align="center">{t(props.nameKey)}</Typography>
         </Card>
     )

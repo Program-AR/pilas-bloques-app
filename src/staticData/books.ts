@@ -1,4 +1,4 @@
-import { Challenge } from "./challenges"
+import { Challenge, ExpectationConfig } from "./challenges"
 import { Chapter, chapterIncludesChallenge, getChapter } from "./chapters"
 
 export type Book = {
@@ -11,7 +11,7 @@ type RawBookData = {
   id: number,
   chapterIds: string[],
   simpleReadMode: boolean,
-  expectations?: any
+  expectations?: ExpectationConfig
 }
 
 export const getAllBooks = (): Book[] => {

@@ -18,7 +18,8 @@ const Breadcrumb = (path: PathToChallenge) => {
         <Breadcrumbs separator=">" >
 
             <Link to="/">
-                <HomeIcon/> 
+                <HomeIcon style={{ display:'flex', color: '#787878'}}/> 
+
             </Link>
             
             <Link to={`/libros/${path.book.id}`}>

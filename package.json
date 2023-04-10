@@ -1,6 +1,6 @@
 {
   "name": "pilasbloques",
-  "version": "2.0.0",
+  "version": "2.0.3",
   "productName": "Pilas Bloques",
   "genericName": "Programacion con bloques",
   "description": "Una herramienta para aprender a programar utilizando bloques",
@@ -49,7 +49,8 @@
     "pack:osx": "bash ./scripts/package.sh -osx",
     "pack:win32": "bash ./scripts/package.sh -win32",
     "pack:html": "bash ./scripts/package.sh -html",
-    "clean": "rm -rf node_modules && rm -rf binaries"
+    "clean": "rm -rf node_modules dist binaries",
+    "release": "release-it --only-version"
   },
   "eslintConfig": {
     "extends": [
@@ -74,7 +75,8 @@
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
     "makensis": "^2.0.5",
-    "simple-type-guard": "^3.3.9"
+    "simple-type-guard": "^3.3.9",
+    "release-it": "^15.6.0"
   },
   "optionalDependencies": {
     "electron-installer-debian": "^3.1.0"
@@ -119,6 +121,17 @@
       "OriginalFilename": null,
       "ProductName": null,
       "InternalName": null
+    }
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "tag": true,
+      "commit": true,
+      "push": true
+    },
+    "npm": {
+      "publish": false
     }
   }
 }
