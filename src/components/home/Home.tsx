@@ -15,7 +15,8 @@ const RegisterButton: React.FC = () => {
 }
 
 const HeaderText: React.FC = () => {
-    return <p style={{color: "#787878", alignContent: "center"}} >{process.env.REACT_APP_API_URL}</p>
+    const { t } = useTranslation("header");
+    return <p style={{color: "#787878", alignContent: "center"}} >{t('tool')}</p>
 }
 
 export const Home = () => {
