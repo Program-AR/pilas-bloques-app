@@ -15,7 +15,6 @@ const RegisterButton: React.FC = () => {
 }
 
 const HeaderText: React.FC = () => {
-    const { t } = useTranslation("header");
     return <p style={{color: "#787878", alignContent: "center"}} >{process.env.REACT_APP_API_URL}</p>
 }
 
