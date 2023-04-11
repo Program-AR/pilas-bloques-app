@@ -14,7 +14,7 @@ const oldIndex = fs.readFileSync(indexPath).toString()
 const metaContents = oldIndex.split(`<meta name="pilasbloques/config/environment" content=`)[1].split(`/>`)[0]
 // Replacing environment configuration with new
 var newIndex = oldIndex.replace(metaContents, JSON.stringify(replaceApiUrl(JSON.parse(metaContents))))
-// deletes rootURL from emberPB index.html. They were causing incorrect relative accesses.
+// changes rootURL in emberPB index.html.
 newIndex = newIndex.replace(/src=".*assets\//g, `src="${rootURL}assets/`)
 newIndex = newIndex.replace(/href=".*assets\//g, `href="${rootURL}assets/`)
 // Writing new index file
