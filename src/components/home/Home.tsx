@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
+import { ImportChallengeCard } from "./ImportChallengeCard";
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home/home");
@@ -31,6 +32,7 @@ export const Home = () => {
         <Typography color="white" variant="h5">{t("title")}</Typography>
         <RegisterButton/>
         <BookCards/>
+        <ImportChallengeCard/>
     </Grid>
     <Footer/>
 </>
