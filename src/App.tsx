@@ -6,6 +6,7 @@ import { Home } from './components/home/Home';
 import { PBError } from './components/PBError';
 import { ChallengeView } from './components/ChallengeView';
 import { BookView } from './components/book/BookView';
+import { ImportedChallengeView } from './components/ImportedChallengeView';
 import theme from './theme';
 import "./theme-light.css"
 
@@ -25,6 +26,11 @@ function App() {
     {
       path: "/desafio/:id",
       element: <ChallengeView/>,
+      errorElement: <PBError />
+    },
+    {
+      path: "/desafioImportado",
+      element: <ImportedChallengeView/>,
       errorElement: <PBError />
     }
   ]);

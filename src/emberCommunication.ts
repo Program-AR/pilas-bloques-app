@@ -1,4 +1,13 @@
+import { ImportedChallenge } from "./components/home/ImportChallengeCard"
 import { InternalizationLanguage } from "./language"
+
+type EmberExecutableChallenge = {
+    escena: string,
+    bloques: string[],
+    debugging: boolean,
+    estiloToolbox?: "sinCategorias",
+    solucionInicial?: string
+}
 
 export namespace Ember{
 
@@ -10,6 +19,22 @@ export namespace Ember{
     export const changeLanguage = (newLanguage: InternalizationLanguage) => {
         localStorage.setItem("PB_SELECTED_LOCALE", `"${newLanguage.languageCode}"`)
         refreshIframe()
+    }
+
+    const setImportedChallenge = (challenge: EmberExecutableChallenge) => {
+        localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
+    }
+
+    export const importChallenge = (importedChallenge: ImportedChallenge) => {
+        const emberChallenge: EmberExecutableChallenge = {
+            escena: importedChallenge.scene,
+            bloques: importedChallenge.blocks,
+            estiloToolbox: importedChallenge.uncategorizedToolbox ? "sinCategorias" : undefined,
+            debugging: importedChallenge.debugging,
+            solucionInicial: importedChallenge.predefinedSolution
+        }
+
+        setImportedChallenge(emberChallenge)
     }
 
 }
