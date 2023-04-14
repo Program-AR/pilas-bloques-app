@@ -1,6 +1,6 @@
 .header {
     height: 48px;
-    background-color: #f8f8f8;
+    background-color: var(--theme-background-color);
     padding: 0 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     justify-content: space-between;
@@ -9,12 +9,43 @@
 
 .logo {
     padding-top: 8px;
-    height: 100%;
+    height: 45px;
+}
+
+.header-title{
+    color: var(--theme-font-color);
+    align-content: center;
     width: 150px;
 }
 
 @media (max-width: 600px) {
-    .headerTitle {
+    .header-title {
         display: none;
     }
+}
+
+.header div{
+    display: flex;
+    height: inherit;
+    align-self: flex-start;
+}
+
+.face {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.gray {
+    filter: grayscale(1);
+}
+
+.login-btn {
+    animation: blinker 1s linear infinite;
+    color: var(--theme-font-color);
+}
+
+@keyframes blinker {
+  50% {
+    color: var(--theme-link-color);
+  }
 }

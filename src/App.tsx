@@ -3,11 +3,12 @@ import React from 'react';
 import './App.css';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
-import theme from './theme';
 import { PBError } from './components/PBError';
 import { ChallengeView } from './components/ChallengeView';
 import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
+import theme from './theme';
+import "./theme-light.css"
 
 function App() {
   
