@@ -6,16 +6,12 @@ import { useTranslation } from "react-i18next";
 import { PilasBloquesApi } from "../../../pbApi";
 
 
-export interface DialogBasicProps {
+export interface DialogSnackbarProps {
     open: boolean,
     onClose: () => void
 }
 
-interface ServerErrorSnackbarProps {
-    open: boolean
-}
-
-export const ServerErrorSnackbar = (props: ServerErrorSnackbarProps) => {
+export const ServerErrorSnackbar:FC<DialogSnackbarProps> = ({open, onClose}) => {
     const { t } = useTranslation('login');
 
     return <Snackbar
@@ -23,8 +19,9 @@ export const ServerErrorSnackbar = (props: ServerErrorSnackbarProps) => {
             vertical: 'top',
             horizontal: 'right',
         }}
-        open={props.open}
-        autoHideDuration={4000}>
+        open={open}
+        autoHideDuration={3000}
+        onClose={onClose}>
             <SnackbarContent 
                 message={t('serverError')}
                 className={styles.serverError}
@@ -32,7 +29,7 @@ export const ServerErrorSnackbar = (props: ServerErrorSnackbarProps) => {
         </Snackbar>
 }
 
-export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
+export const LoginModal:FC<DialogSnackbarProps> = ({open, onClose}) => {
 
     const { t } = useTranslation('login');
 
@@ -58,7 +55,6 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
 
     const handleOnClose = () =>{
         setWrongLogin(false)
-        setServerError(false)
         onClose()
     }
 
@@ -93,7 +89,9 @@ export const LoginModal:FC<DialogBasicProps> = ({open, onClose}) => {
                         onChange={props => setPassword(props.target.value)}
                         required />
                     <Paper hidden={!wrongLogin} className={styles['paper']} elevation={2}>{t('wrong')}</Paper>
-                    <ServerErrorSnackbar open={serverError} />
+                    <ServerErrorSnackbar 
+                        open={serverError}
+                        onClose={() => setServerError(false)} />
                     <Button type='submit' className={styles['login-btn']}>{t('login')}</Button>
                     </form>
                     <a className={styles['link']} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>

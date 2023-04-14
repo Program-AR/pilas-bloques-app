@@ -13,6 +13,14 @@ export interface Credentials{
   password: string | null
 }
 
+export class ApiError extends Error {
+  status: number;
+  constructor(status: number, message: string) {
+    super(message);
+    this.status = status;
+  }
+}
+
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export namespace PilasBloquesApi{
@@ -45,7 +53,7 @@ export namespace PilasBloquesApi{
             throw connectionErr
           })
           .then(res => {
-            if (res.status >= 400) { return res.text().then(message => { throw { status: res.status, message } }) }
+            if (res.status >= 400) { return res.text().then(message => { throw new ApiError(res.status, message) }) }
             else { return res.json().catch(() => { /** if not body present */ }) }
           })    
       }
