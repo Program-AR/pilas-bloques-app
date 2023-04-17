@@ -7,6 +7,7 @@ import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleBoolean, Simp
 import { useState } from "react";
 import { Modal, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 
 export type ImportedChallenge = {
     version: number,
@@ -21,16 +22,17 @@ export type ImportedChallenge = {
 }
 
 export const ImportChallengeCard = () => {
+    const { t } = useTranslation("home/home");
     const navigate = useNavigate();
-    const [modalOpen, setModalOpen] = useState(false);
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
 
     const goToChallenge = (challenge: ImportedChallenge) => {
         Ember.importChallenge(challenge)
         navigate("/desafioImportado", {state: challenge})
     }
 
-    const showErrorModal = () => {
-        setModalOpen(true)
+    const showErrorSnackbar = () => {
+        setSnackbarOpen(true)
     }
 
     const isValidChallenge = (json: unknown): boolean => 
@@ -57,27 +59,21 @@ export const ImportChallengeCard = () => {
             goToChallenge(challengeJson as ImportedChallenge)
         }
         else {
-            showErrorModal()
+            showErrorSnackbar()
         }
 
     }
 
-    return (
+    return <>
     <Button component="label" style={{textTransform: 'none'}}>
         <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
         <input id="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
-        <Modal data-testid="invalid-import-modal" open={modalOpen} onClose={() => {setModalOpen(false)}} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-            <ErrorMessage />
+        <Modal data-testid="invalid-import-modal" open={snackbarOpen} onClose={() => {setSnackbarOpen(false)}} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <DialogSnackbar 
+            open={snackbarOpen}
+            onClose={() => setSnackbarOpen(false)} 
+            message={t('importError')}/>
         </Modal>
     </Button>
-)
-}
-
-const ErrorMessage = () => {
-    const { t } = useTranslation("home/home");
-
-    return <Paper elevation={24} sx={{maxWidth: "25%", maxHeight: "25%" , display: "flex", alignItems: "center"}}>
-        <Typography textAlign='center'>{t("importError")}</Typography>
-        <img src={ImportImage}/>
-    </Paper>
+</>
 }
