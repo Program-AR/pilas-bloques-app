@@ -68,12 +68,10 @@ export const ImportChallengeCard = () => {
     <Button component="label" style={{textTransform: 'none'}}>
         <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
         <input id="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
-        <Modal data-testid="invalid-import-modal" open={snackbarOpen} onClose={() => {setSnackbarOpen(false)}} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
         <DialogSnackbar 
             open={snackbarOpen}
             onClose={() => setSnackbarOpen(false)} 
             message={t('importError')}/>
-        </Modal>
     </Button>
 </>
 }

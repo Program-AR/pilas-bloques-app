@@ -11,6 +11,7 @@ export interface DialogSnackbarProps {
 export const DialogSnackbar: FC<DialogSnackbarProps> = ({open, onClose, message}) => {
 
     return <Snackbar
+        data-testid="dialog-snackbar"
         anchorOrigin={{
             vertical: 'top',
             horizontal: 'right',
