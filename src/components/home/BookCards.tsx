@@ -8,7 +8,7 @@ import { HomeCard, HomeCardProps } from "./HomeCard";
 type BookCardProps = {url: string} & HomeCardProps
 
 const BookCard = (props: BookCardProps) =>
-    <Link to={props.url}>
+    <Link to={props.url} style={{ textDecoration: 'none' }}>
         {HomeCard(props)}
     </Link>
 
