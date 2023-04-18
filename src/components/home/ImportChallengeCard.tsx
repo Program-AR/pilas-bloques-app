@@ -3,28 +3,58 @@ import ImportImage from "../../assets/import.png"
 import Button from '@mui/material/Button';
 import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
-import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleBoolean, SimpleNumber, SimpleString } from 'simple-type-guard';
+import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleBoolean, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleExactMatch } from 'simple-type-guard';
 import { useState } from "react";
 import { Modal, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-export type ImportedChallenge = {
-    version: number,
-    title: string,
-    description: string,
-    clue?: string,
-    scene: string,
-    blocks: string[],
-    uncategorizedToolbox: boolean,
-    debugging: boolean,
-    predefinedSolution?: string,
+
+type SceneType = "lita" | "duba" | "toto" | "coty" | "niandu" | "pinguine" | "yaguarete" | "carpincho" | "custom"
+const sceneTypes: SceneType[] =  ["lita", "duba", "toto", "coty", "niandu", "pinguine", "yaguarete", "carpincho", "custom"] //Used for file validity checking
+
+type Cell = "P" | "-" | "A" | "" // should consider different objects / empty cell / no cell at all
+const cells: Cell[] = ["P", "-", "A", ""] //Used for file validity checking
+
+type SceneMap = Cell[]
+
+type DecompositionAssessment = { maxProgramLength: number }
+
+type Assesments =  {
+    itWorks?: boolean, // old "debeFelicitar", default true
+    decomposition?: DecompositionAssessment,
+    simpleRepetition?: boolean,
+    conditionalRepetition?: boolean,
+    conditionalAlternative?: boolean,
 }
+
+export type SerializedChallenge = {
+    fileVersion: number,
+    title: string,
+    statement: {
+        description: string,
+        clue?: string
+    },
+    scene: {
+         type: SceneType
+         maps: SceneMap[]
+    },
+    toolbox: {
+        blocks: string[], // for now, block ids, future: could be objects.
+        categorized?: boolean // default true
+    },
+    stepByStep?: boolean, // default false
+    predefinedSolution?: string,
+    assesments?: Assesments
+}
+
+
+//                 maps: SimpleArray<Cell[]>(SimpleArray<Cell>(new SimpleExactMatch(cells)))
 
 export const ImportChallengeCard = () => {
     const navigate = useNavigate();
     const [modalOpen, setModalOpen] = useState(false);
 
-    const goToChallenge = (challenge: ImportedChallenge) => {
+    const goToChallenge = (challenge: SerializedChallenge) => {
         Ember.importChallenge(challenge)
         navigate("/desafioImportado", {state: challenge})
     }
@@ -34,16 +64,27 @@ export const ImportChallengeCard = () => {
     }
 
     const isValidChallenge = (json: unknown): boolean => 
-        simpleTypeGuard<ImportedChallenge>(json, {
-            version: SimpleNumber, 
-            title: SimpleString, 
-            scene: SimpleString, 
-            blocks: new SimpleArray(SimpleString),
-            uncategorizedToolbox: SimpleBoolean,
-            debugging: SimpleBoolean,
-            description: SimpleString,
-            clue: SimpleStringOptional,
-            predefinedSolution: SimpleStringOptional
+        simpleTypeGuard<SerializedChallenge>(json, {
+            fileVersion: SimpleNumber,
+            title: SimpleString,
+            statement: {description: SimpleString, clue: SimpleStringOptional},
+            toolbox: {blocks: new SimpleArray(SimpleString), categorized: SimpleBooleanOptional},
+            stepByStep: SimpleBooleanOptional,
+            predefinedSolution: SimpleStringOptional,
+            scene: { 
+                type: SimpleString,
+                maps: new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString))
+            },
+            assesments: new SimpleObjectOptional<Assesments>({
+                itWorks: SimpleBooleanOptional,
+                simpleRepetition: SimpleBooleanOptional,
+                conditionalRepetition: SimpleBooleanOptional,
+                conditionalAlternative: SimpleBooleanOptional,
+                decomposition: new SimpleObjectOptional<DecompositionAssessment>({
+                    maxProgramLength: SimpleNumber
+                })
+
+            })
         })
 
     const readFile = async (event: any) => {
@@ -54,7 +95,7 @@ export const ImportChallengeCard = () => {
         event.target.value = null // Without this Chrome seems to cache the file and prevents reruns of this function. 
 
         if (isValidChallenge(challengeJson)) {
-            goToChallenge(challengeJson as ImportedChallenge)
+            goToChallenge(challengeJson as SerializedChallenge)
         }
         else {
             showErrorModal()

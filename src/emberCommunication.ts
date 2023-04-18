@@ -1,4 +1,4 @@
-import { ImportedChallenge } from "./components/home/ImportChallengeCard"
+import { SerializedChallenge } from "./components/home/ImportChallengeCard"
 import { InternalizationLanguage } from "./language"
 
 type EmberExecutableChallenge = {
@@ -25,7 +25,7 @@ export namespace Ember{
         localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
     }
 
-    export const importChallenge = (importedChallenge: ImportedChallenge) => {
+    export const importChallenge = (importedChallenge: SerializedChallenge) => {
         const emberChallenge: EmberExecutableChallenge = {
             escena: importedChallenge.scene,
             bloques: importedChallenge.blocks,
