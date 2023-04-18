@@ -1,10 +1,10 @@
-import { SerializedChallenge } from "./components/home/ImportChallengeCard"
+import { Scene, SerializedChallenge } from "./components/home/ImportChallengeCard"
 import { InternalizationLanguage } from "./language"
 
 type EmberExecutableChallenge = {
     escena: string,
     bloques: string[],
-    debugging: boolean,
+    debugging?: boolean,
     estiloToolbox?: "sinCategorias",
     solucionInicial?: string
 }
@@ -25,12 +25,16 @@ export namespace Ember{
         localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
     }
 
+    const serializedSceneToEmberScene = (scene: Scene) => { //TODO
+        return "new EscenaDuba('[O,O,O,O,O,-,-,-],[O,P,-,O,O,-,-,-],[O,-,-,O,-,-,-,-],[O,-,O,O,-,-,-,-],[O,-,O,O,O,-,-,-],[-,-,O,O,O,O,-,-],[-,-,O,O,O,O,O,O],[-,-,A,O,O,O,O,O]')"
+    }
+
     export const importChallenge = (importedChallenge: SerializedChallenge) => {
         const emberChallenge: EmberExecutableChallenge = {
-            escena: importedChallenge.scene,
-            bloques: importedChallenge.blocks,
-            estiloToolbox: importedChallenge.uncategorizedToolbox ? "sinCategorias" : undefined,
-            debugging: importedChallenge.debugging,
+            escena: serializedSceneToEmberScene(importedChallenge.scene),
+            bloques: importedChallenge.toolbox.blocks,
+            estiloToolbox: importedChallenge.toolbox.categorized ? undefined :  "sinCategorias",
+            debugging: importedChallenge.stepByStep,
             solucionInicial: importedChallenge.predefinedSolution
         }
 

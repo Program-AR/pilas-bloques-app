@@ -17,7 +17,10 @@ const cells: Cell[] = ["P", "-", "A", ""] //Used for file validity checking
 
 type SceneMap = Cell[]
 
-type DecompositionAssessment = { maxProgramLength: number }
+export type Scene = {
+    type: SceneType
+    maps: SceneMap[]
+}
 
 type Assesments =  {
     itWorks?: boolean, // old "debeFelicitar", default true
@@ -27,6 +30,8 @@ type Assesments =  {
     conditionalAlternative?: boolean,
 }
 
+type DecompositionAssessment = { maxProgramLength: number }
+
 export type SerializedChallenge = {
     fileVersion: number,
     title: string,
@@ -34,10 +39,7 @@ export type SerializedChallenge = {
         description: string,
         clue?: string
     },
-    scene: {
-         type: SceneType
-         maps: SceneMap[]
-    },
+    scene: Scene,
     toolbox: {
         blocks: string[], // for now, block ids, future: could be objects.
         categorized?: boolean // default true
@@ -46,9 +48,6 @@ export type SerializedChallenge = {
     predefinedSolution?: string,
     assesments?: Assesments
 }
-
-
-//                 maps: SimpleArray<Cell[]>(SimpleArray<Cell>(new SimpleExactMatch(cells)))
 
 export const ImportChallengeCard = () => {
     const navigate = useNavigate();
@@ -72,8 +71,8 @@ export const ImportChallengeCard = () => {
             stepByStep: SimpleBooleanOptional,
             predefinedSolution: SimpleStringOptional,
             scene: { 
-                type: SimpleString,
-                maps: new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString))
+                type: SimpleString, //TODO: Poner los exact match
+                maps: new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString)) //TODO: Poner los exact match
             },
             assesments: new SimpleObjectOptional<Assesments>({
                 itWorks: SimpleBooleanOptional,
