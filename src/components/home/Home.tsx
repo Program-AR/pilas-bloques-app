@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
 import { ImportChallengeCard } from "./ImportChallengeCard";
+import styles from './home.module.css';
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home/home");
@@ -21,7 +22,7 @@ const RegisterButton: React.FC = () => {
 
 const HeaderText: React.FC = () => {
     const { t } = useTranslation("header");
-    return <p style={{color: "#787878", alignContent: "center"}} >{t('tool')}</p>
+    return <p className={styles['header-text']} >{t('tool')}</p>
 }
 
 export const Home = () => {
@@ -29,11 +30,11 @@ export const Home = () => {
 
     return <>
     <Header CenterComponent={<HeaderText/>}/>
-    <Container style={{marginBottom: "-18rem", height: "30rem", zIndex: -1, position: "relative", maxWidth: "100%"}}><Background/></Container>
+    <Container className={styles.background}><Background/></Container>
     
-    <Grid style={{backgroundColor: '#311C3B'}} container direction="column" alignItems="center" justifyContent="space-evenly" height={"50rem"}>
-        <Container maxWidth="sm" style={{position:"absolute", top:"7rem"}}><PBLogo/></Container>
-        <Typography color="white" variant="h5" textTransform='uppercase' style={{position:"relative", top:"1.5rem"}}>{t("title")}</Typography>
+    <Grid className={styles['home-grid']} container direction="column">
+        <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
+        <Typography className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton/>
         <BookCards/>
         <ImportChallengeCard/>
