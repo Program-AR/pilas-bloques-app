@@ -31,9 +31,9 @@ export const Home = () => {
     <Header CenterComponent={<HeaderText/>}/>
     <Container style={{marginBottom: "-18rem", height: "30rem", zIndex: -1, position: "relative", maxWidth: "100%"}}><Background/></Container>
     
-    <Grid style={{backgroundColor: '#311C3B'}} container direction="column" alignItems="center" justifyContent="space-evenly" height={"40rem"}>
-        <Container maxWidth="xs"><PBLogo/></Container>
-        <Typography color="white" variant="h5">{t("title")}</Typography>
+    <Grid style={{backgroundColor: '#311C3B'}} container direction="column" alignItems="center" justifyContent="space-evenly" height={"50rem"}>
+        <Container maxWidth="sm" style={{position:"absolute", top:"7rem"}}><PBLogo/></Container>
+        <Typography color="white" variant="h5" textTransform='uppercase' style={{position:"relative", top:"1.5rem"}}>{t("title")}</Typography>
         <RegisterButton/>
         <BookCards/>
         <ImportChallengeCard/>

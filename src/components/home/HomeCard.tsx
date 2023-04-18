@@ -11,9 +11,9 @@ export const HomeCard = (props: HomeCardProps) => {
     const { t } = useTranslation("home/cards");
 
     return (
-        <Card style={{ width:"9rem", backgroundColor: props.color}}>
+        <Card style={{ width:"13rem", backgroundColor: props.color}}>
             <img alt={props.nameKey} src={`.${props.image}`}/>
-            <Typography variant="h5" align="center">{t(props.nameKey)}</Typography>
+            <Typography variant="h4" align="center">{t(props.nameKey)}</Typography>
         </Card>
     )
 }

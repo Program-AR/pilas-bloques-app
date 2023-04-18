@@ -5,7 +5,6 @@ import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
 import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleBoolean, SimpleNumber, SimpleString } from 'simple-type-guard';
 import { useState } from "react";
-import { Modal, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 
