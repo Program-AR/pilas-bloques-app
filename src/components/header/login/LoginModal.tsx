@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, Snackbar, SnackbarContent, TextField } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, TextField } from "@mui/material"
 import { FC, FormEvent, useState } from "react"
 import styles from './loginModal.module.css';
 import CloseIcon from '@mui/icons-material/Close';
