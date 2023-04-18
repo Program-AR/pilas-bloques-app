@@ -12,7 +12,11 @@ import { ImportChallengeCard } from "./ImportChallengeCard";
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home/home");
 
-    return <Link to="register"><Button variant="outlined" startIcon={<ArrowForwardIcon />}>{t("signUp")}</Button></Link>
+    return <>
+    <Link to="register">
+        <Button variant="outlined" style={{color: "white", borderColor: "white"}} startIcon={<ArrowForwardIcon />}>{t("signUp")}</Button>
+    </Link>
+</>
 }
 
 const HeaderText: React.FC = () => {
