@@ -2,8 +2,7 @@
     position: relative;
     margin-bottom: -18rem;
     height: 30rem;
-    z-index: -1;
-    max-width: 100%
+    z-index: -1
 }
 
 .title {

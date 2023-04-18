@@ -30,7 +30,7 @@ export const Home = () => {
 
     return <>
     <Header CenterComponent={<HeaderText/>}/>
-    <Container className={styles.background}><Background/></Container>
+    <Container className={styles.background} maxWidth={false}><Background/></Container>
     
     <Grid className={styles['home-grid']} container direction="column">
         <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
