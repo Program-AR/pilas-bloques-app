@@ -1,4 +1,4 @@
-import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleExactMatch, SimpleSkip } from 'simple-type-guard';
+import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleSkip } from 'simple-type-guard';
 
 
 export type SerializedChallenge = {
@@ -51,7 +51,7 @@ export const isValidChallenge = (json: unknown): json is SerializedChallenge => 
         toolbox: {blocks: new SimpleArray(SimpleString), categorized: SimpleBooleanOptional},
         stepByStep: SimpleBooleanOptional,
         predefinedSolution: SimpleStringOptional,
-        scene: SimpleSkip, //We cant check if the scene values are valid here, so we need to check them manually.
+        scene: SimpleSkip, //We cant check if the scene values are valid here, so we need to check them manually. This is because "SimpleExactMatch" seems to be broken.
         assesments: new SimpleObjectOptional<Assesments>({
             itWorks: SimpleBooleanOptional,
             simpleRepetition: SimpleBooleanOptional,
@@ -67,7 +67,7 @@ export const isValidChallenge = (json: unknown): json is SerializedChallenge => 
     return structureIsValid && sceneIsValid((json as any).scene)
 }
 
-const sceneIsValid = (serializedScene: unknown): serializedScene is Scene => {
+export const sceneIsValid = (serializedScene: unknown): serializedScene is Scene => {
 
     const sceneStructureIsValid: boolean = simpleTypeGuard<Scene>(serializedScene, { //Verify if the structure of the scene is valid, without checking if the values are valid.
         type: SimpleString,
@@ -90,11 +90,11 @@ const sceneIsValid = (serializedScene: unknown): serializedScene is Scene => {
 const isSceneType = (type: any): type is SceneType => 
     sceneTypes.includes(type)
 
-const isSceneMaps = (maps: any): maps is SceneMap[] => 
-    maps.all(isSceneMap)
+const isSceneMaps = (maps: string[][]): maps is SceneMap[] => 
+    maps.every(isSceneMap)
 
-const isSceneMap = (map: any): map is SceneMap =>
-    map.all(isCell)
+const isSceneMap = (map: string[]): map is SceneMap =>
+    map.every(isCell)
 
 const isCell = (cell: any): cell is Cell =>
     cells.includes(cell)
