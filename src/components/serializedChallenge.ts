@@ -1,4 +1,4 @@
-import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleExactMatch } from 'simple-type-guard';
+import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleExactMatch, SimpleSkip } from 'simple-type-guard';
 
 
 export type SerializedChallenge = {
@@ -51,10 +51,7 @@ export const isValidChallenge = (json: unknown): json is SerializedChallenge => 
         toolbox: {blocks: new SimpleArray(SimpleString), categorized: SimpleBooleanOptional},
         stepByStep: SimpleBooleanOptional,
         predefinedSolution: SimpleStringOptional,
-        scene: { //We cant check if the scene values are valid here, so we need to check them manually.
-            type: SimpleString,
-            maps: new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString)) 
-        },
+        scene: SimpleSkip, //We cant check if the scene values are valid here, so we need to check them manually.
         assesments: new SimpleObjectOptional<Assesments>({
             itWorks: SimpleBooleanOptional,
             simpleRepetition: SimpleBooleanOptional,
@@ -70,11 +67,17 @@ export const isValidChallenge = (json: unknown): json is SerializedChallenge => 
     return structureIsValid && sceneIsValid((json as any).scene)
 }
 
-const sceneIsValid = (serializedScene: any): serializedScene is Scene => {
-    //TODO: Poner el simple typeguard aca
+const sceneIsValid = (serializedScene: unknown): serializedScene is Scene => {
 
-    const type: string | SceneType = serializedScene.type
-    const maps: string[][] | SceneMap[] = serializedScene.maps
+    const sceneStructureIsValid: boolean = simpleTypeGuard<Scene>(serializedScene, { //Verify if the structure of the scene is valid, without checking if the values are valid.
+        type: SimpleString,
+        maps: new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString)) 
+    })
+
+    if(!sceneStructureIsValid) return false
+
+    const type: string | SceneType = (serializedScene as any).type
+    const maps: string[][] | SceneMap[] = (serializedScene as any).maps
 
     if (!isSceneType(type)) return false
     if (!isSceneMaps(maps)) return false
