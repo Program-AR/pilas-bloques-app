@@ -27,7 +27,7 @@ type Cell = typeof cells[number]
 
 type SceneMap = Cell[]
 
-type Scene = {
+export type Scene = {
     type: SceneType
     maps: SceneMap[]
 }
@@ -79,8 +79,7 @@ const sceneIsValid = (serializedScene: unknown): serializedScene is Scene => {
     const type: string | SceneType = (serializedScene as any).type
     const maps: string[][] | SceneMap[] = (serializedScene as any).maps
 
-    if (!isSceneType(type)) return false
-    if (!isSceneMaps(maps)) return false
+    if (!isSceneType(type) || !isSceneMaps(maps)) return false
 
     const scene: Scene = {type, maps} //This line is needed to let typescript verify on compile time if we satisfy the type of Scene.
 

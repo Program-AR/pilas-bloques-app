@@ -1,4 +1,4 @@
-import { Scene, SerializedChallenge } from "./components/home/ImportChallengeCard"
+import { Scene, SerializedChallenge } from "./components/serializedChallenge"
 import { InternalizationLanguage } from "./language"
 
 type EmberExecutableChallenge = {
