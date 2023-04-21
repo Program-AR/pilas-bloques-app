@@ -3,7 +3,7 @@ import { ImportChallengeCard } from '../components/home/ImportChallengeCard';
 import { BrowserRouter } from 'react-router-dom';
 
 
-test('shows error modal when invalid file is uploaded', async () => {
+test('shows error snackbar when invalid file is uploaded', async () => {
   const { container } = render(<BrowserRouter><ImportChallengeCard /></BrowserRouter>);
   const input = container.querySelector('#import-input')!
   
@@ -13,8 +13,8 @@ test('shows error modal when invalid file is uploaded', async () => {
   
   fireEvent.change(input, { target: { files: [invalidFileMock] } });
 
-  const errorModal = await screen.findByTestId("invalid-import-modal")
+  const errorSnackbar = await screen.findByTestId("dialog-snackbar")
 
-  expect(errorModal).toBeTruthy()
+  expect(errorSnackbar).toBeTruthy()
 
 })

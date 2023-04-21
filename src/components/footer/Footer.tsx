@@ -11,16 +11,16 @@ const Links = () =>{
     
     return <>
         <Link href="acercade">{t("aboutPilasBloques")}</Link> |
-        <Link href="docentes"> {t("toTeachersSite")}</Link> |
+        <Link href="https://pilasbloques.program.ar/docentes"> {t("toTeachersSite")}</Link> |
         <Link href={termsAndConditionsLink}> {t("terms")}</Link>
     </>
 }
 
 export const Footer = () => 
-    <Stack direction="row" justifyContent={"center"} spacing={12}>
+    <Stack direction="row" justifyContent={"center"} alignItems={"center"} spacing={12} height={"6rem"}>
 
         <Grid> 
-            <Typography fontSize={"14px"}>
+            <Typography fontSize={"18px"}>
                 <Version/>
                 <br/>
                 <Links/>
