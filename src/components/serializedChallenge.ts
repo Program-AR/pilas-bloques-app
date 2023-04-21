@@ -81,7 +81,7 @@ export const sceneIsValid = (serializedScene: unknown): serializedScene is Scene
 
     if (!isSceneType(type) || !isSceneMaps(maps)) return false
 
-    const scene: Scene = {type, maps} //This line is needed to let typescript verify on compile time if we satisfy the type of Scene.
+    const scene: Scene = {type, maps} //This line is needed to let typescript verify on compile time if this function (sceneIsValid) completely satisfies the type of Scene. (e.g. if we add a field to scene, this line breaks, and we want that to bring the attention to this function, which probably will need changes)
 
     return !!scene
 }
