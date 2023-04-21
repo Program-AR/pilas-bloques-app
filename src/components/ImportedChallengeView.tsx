@@ -1,11 +1,12 @@
 import { useLocation } from "react-router-dom";
 import { EmberView } from "./EmberView";
 import { Header } from "./header/Header";
-import { ImportedChallenge } from "./home/ImportChallengeCard";
+import { SerializedChallenge } from "./serializedChallenge";
+
 
 export const ImportedChallengeView = () =>{
     const location = useLocation();
-    const importedChallenge: ImportedChallenge | undefined = location.state;
+    const importedChallenge: SerializedChallenge | undefined = location.state;
 
     if (!importedChallenge) throw new Error("No hay desafio importado :(")
 
