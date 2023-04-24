@@ -26,7 +26,8 @@ export namespace Ember{
     }
 
     const serializedSceneToEmberScene = (scene: Scene) => { //TODO
-        return "new EscenaDuba('[O,O,O,O,O,-,-,-],[O,P,-,O,O,-,-,-],[O,-,-,O,-,-,-,-],[O,-,O,O,-,-,-,-],[O,-,O,O,O,-,-,-],[-,-,O,O,O,O,-,-],[-,-,O,O,O,O,O,O],[-,-,A,O,O,O,O,O]')"
+        const maps: string = JSON.stringify(scene.maps).replace(/"/g,'') //[["a"],["b","c"]] to "[[a],[b,c]]"
+        return `new Escena${scene.type}('${maps}')`
     }
 
     export const importChallenge = (importedChallenge: SerializedChallenge) => {

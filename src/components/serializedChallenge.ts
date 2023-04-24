@@ -19,11 +19,10 @@ export type SerializedChallenge = {
 }
 
 
-const sceneTypes =  ["lita", "duba", "toto", "coty", "niandu", "pinguine", "yaguarete", "carpincho", "custom"] as const //Used for file validity checking
+const sceneTypes =  ["Lita", "Duba", "Toto", "Coty", "Niandu", "Pinguine", "Yaguarete", "Carpincho", "Custom"] as const //Used for file validity checking
 type SceneType = typeof sceneTypes[number]
 
-const cells = ["P", "-", "A", ""] as const //Used for file validity checking. Should consider different objects / empty cell / no cell at all
-type Cell = typeof cells[number]
+type Cell = string
 
 type SceneMap = Cell[]
 
@@ -79,22 +78,40 @@ export const sceneIsValid = (serializedScene: unknown): serializedScene is Scene
     const type: string | SceneType = (serializedScene as any).type
     const maps: string[][] | SceneMap[] = (serializedScene as any).maps
 
-    if (!isSceneType(type) || !isSceneMaps(maps)) return false
+    if (!isSceneType(type) || !mapsAreValidForType(maps, type)) return false
 
     const scene: Scene = {type, maps} //This line is needed to let typescript verify on compile time if this function (sceneIsValid) completely satisfies the type of Scene. (e.g. if we add a field to scene, this line breaks, and we want that to bring the attention to this function, which probably will need changes)
 
     return !!scene
 }
+
+const mapsAreValidForType = (maps: SceneMap[], type: SceneType): boolean =>
+    maps.every(map => mapIsValidForType(map, type))
+
+const mapIsValidForType = (map: SceneMap, type: SceneType): map is SceneMap => 
+    map.every(cell => cellIsValidForType(cell, type))
+
+const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
+    switch(type){
+        case 'Lita': return cellIsIncluded(['L','E','T'],cell)
+        case 'Duba': return cellIsIncluded(['P'],cell)
+        case 'Toto': return true
+        case 'Coty': return true
+        case 'Niandu': return cellIsIncluded([],cell)
+        case 'Pinguine': return cellIsIncluded([],cell)
+        case 'Yaguarete': return cellIsIncluded([],cell)
+        case 'Carpincho': return cellIsIncluded([],cell)
+        case 'Custom': return cellIsIncluded([],cell)
+    }
+}
     
+const cellIsIncluded = (typeCells: string[], cell: string) =>{
+    const basicCells: string[] = ['A','O','-']
+    return basicCells.concat(typeCells).includes(cell)
+}
+
+
 
 const isSceneType = (type: any): type is SceneType => 
     sceneTypes.includes(type)
 
-const isSceneMaps = (maps: string[][]): maps is SceneMap[] => 
-    maps.every(isSceneMap)
-
-const isSceneMap = (map: string[]): map is SceneMap =>
-    map.every(isCell)
-
-const isCell = (cell: any): cell is Cell =>
-    cells.includes(cell)

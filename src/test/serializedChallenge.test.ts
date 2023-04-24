@@ -2,8 +2,8 @@ import {describe, expect, test} from '@jest/globals';
 import { Scene, SerializedChallenge, isValidChallenge, sceneIsValid } from '../components/serializedChallenge';
 
 const validScene: Scene = {
-    type: "lita",
-    maps: [['P', '-'], ['A','-']]
+    type: "Lita",
+    maps: [['L', '-'], ['A','-']]
 }
 
 
@@ -15,7 +15,7 @@ describe('Scene validity', () => {
 
     test('Incomplete scene is invalid', () => {
         const incompleteScene = {
-            type: "lita"
+            type: "Lita"
         }
         
         expect(sceneIsValid(incompleteScene)).toBeFalsy()
@@ -23,7 +23,7 @@ describe('Scene validity', () => {
 
     test('Complete scene with invalid scene type is invalid', () => {
         const invalidScene = {
-            type: "pepita",
+            type: "Pepita",
             maps: [['P', '-'], ['A','-']]
         }
 
@@ -32,7 +32,7 @@ describe('Scene validity', () => {
 
     test('Complete scene with an invalid cell is invalid', () => {
         const invalidScene = {
-            type: "lita",
+            type: "Lita",
             maps: [['P', '-'], ['A','ZZZ']]
         }
 
