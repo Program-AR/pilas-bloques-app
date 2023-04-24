@@ -76,7 +76,7 @@ export const sceneIsValid = (serializedScene: unknown): serializedScene is Scene
     if(!sceneStructureIsValid) return false
 
     const type: string | SceneType = (serializedScene as any).type
-    const maps: string[][][] | SceneMap[] = (serializedScene as any).maps
+    const maps: [string[][]] | SceneMap[] = (serializedScene as any).maps
 
     if (!isSceneType(type) || !mapsAreValidForType(maps, type)) return false
 
