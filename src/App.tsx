@@ -4,11 +4,14 @@ import './App.css';
 import { createHashRouter, RouterProvider } from "react-router-dom";
 import { Home } from './components/home/Home';
 import { PBError } from './components/PBError';
-import { ChallengeView } from './components/ChallengeView';
+import { ChallengeById, ChallengeByName } from './components/ChallengeView';
 import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import theme from './theme';
 import "./theme-light.css"
+import { About } from './components/About';
+import { PasswordRecovery } from './components/PasswordRecovery';
+import { Register } from './components/Register';
 
 function App() {
   
@@ -25,14 +28,31 @@ function App() {
     },
     {
       path: "/desafio/:id",
-      element: <ChallengeView/>,
+      element: <ChallengeById/>,
+      errorElement: <PBError />
+    },
+    {
+      path: "/desafios/:challengeName",
+      element: <ChallengeByName />,
       errorElement: <PBError />
     },
     {
       path: "/desafioImportado",
       element: <ImportedChallengeView/>,
       errorElement: <PBError />
-    }
+    },
+    {
+      path: "/acercade",
+      element: <About/>
+    },
+    {
+      path: "/password-recovery",
+      element: <PasswordRecovery/>
+    },
+    {
+      path: "/register",
+      element: <Register/>
+    },
   ]);
 
 

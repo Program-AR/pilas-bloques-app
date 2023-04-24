@@ -1,4 +1,4 @@
-import { Challenge, getChallenge } from "./challenges"
+import { Challenge, getChallengeWithId } from "./challenges"
 
 type RawGroupData = {
   id: string,
@@ -12,7 +12,7 @@ export type Group = {
 
 export const getGroup = (id: string): Group => {
   const groupData: RawGroupData = rawGroupData.find(group => group.id === id)!
-  const challenges: Challenge[] = groupData.challengeIds.map(getChallenge)
+  const challenges: Challenge[] = groupData.challengeIds.map(getChallengeWithId)
   return {id, challenges}
 }
 
