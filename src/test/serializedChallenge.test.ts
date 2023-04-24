@@ -1,5 +1,6 @@
 import {describe, expect, test} from '@jest/globals';
 import { Scene, SerializedChallenge, isValidChallenge, sceneIsValid } from '../components/serializedChallenge';
+import { Ember } from '../emberCommunication';
 
 const validScene: Scene = {
     type: "Lita",
@@ -95,5 +96,9 @@ describe('serialized challenge validity', () => {
         const invalidChallenge = {...validChallenge, title: 1337}
 
         expect(isValidChallenge(invalidChallenge)).toBeFalsy()
+    })
+
+    test('Serialized scene to ember scene', () => {
+        expect(Ember.serializedSceneToEmberScene(validScene)).toBe('new EscenaLita(["[[L,-],[A,-],[L,-],[T,-]]","[[T,-],[A,-],[T,-],[L,-]]"])')
     })
 })
