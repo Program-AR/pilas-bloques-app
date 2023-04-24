@@ -1,4 +1,4 @@
-import { Scene, SerializedChallenge } from "./components/serializedChallenge"
+import { Scene, SceneMap, SerializedChallenge } from "./components/serializedChallenge"
 import { InternalizationLanguage } from "./language"
 
 type EmberExecutableChallenge = {
@@ -25,9 +25,11 @@ export namespace Ember{
         localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
     }
 
-    const serializedSceneToEmberScene = (scene: Scene) => { //TODO
-        const maps: string = JSON.stringify(scene.maps).replace(/"/g,'') //[["a"],["b","c"]] to "[[a],[b,c]]"
-        return `new Escena${scene.type}('${maps}')`
+    const serializedSceneToEmberScene = (scene: Scene) => { 
+        const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g,'')}"` //[["a","a"],["b","c"]] to "[[a,a],[b,c]]"
+        const mapsAsString = scene.maps.map(mapToString).join(',')
+        
+        return `new Escena${scene.type}([${mapsAsString}])`
     }
 
     export const importChallenge = (importedChallenge: SerializedChallenge) => {

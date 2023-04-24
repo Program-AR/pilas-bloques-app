@@ -3,7 +3,20 @@ import { Scene, SerializedChallenge, isValidChallenge, sceneIsValid } from '../c
 
 const validScene: Scene = {
     type: "Lita",
-    maps: [['L', '-'], ['A','-']]
+    maps: [[ 
+        ['L', '-'], 
+        ['A', '-'],
+        ['L', '-'], 
+        ['T', '-']
+     ],
+     [ 
+        ['T', '-'], 
+        ['A', '-'],
+        ['T', '-'], 
+        ['L', '-']
+     ]
+    
+    ]
 }
 
 

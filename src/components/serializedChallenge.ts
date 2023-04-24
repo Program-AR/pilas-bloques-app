@@ -24,7 +24,7 @@ type SceneType = typeof sceneTypes[number]
 
 type Cell = string
 
-type SceneMap = Cell[]
+export type SceneMap = Cell[][]
 
 export type Scene = {
     type: SceneType
@@ -70,13 +70,13 @@ export const sceneIsValid = (serializedScene: unknown): serializedScene is Scene
 
     const sceneStructureIsValid: boolean = simpleTypeGuard<Scene>(serializedScene, { //Verify if the structure of the scene is valid, without checking if the values are valid.
         type: SimpleString,
-        maps: new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString)) 
+        maps: new SimpleArray<SceneMap>(new SimpleArray<Cell[]>(new SimpleArray<Cell>(SimpleString))) 
     })
 
     if(!sceneStructureIsValid) return false
 
     const type: string | SceneType = (serializedScene as any).type
-    const maps: string[][] | SceneMap[] = (serializedScene as any).maps
+    const maps: string[][][] | SceneMap[] = (serializedScene as any).maps
 
     if (!isSceneType(type) || !mapsAreValidForType(maps, type)) return false
 
@@ -88,8 +88,10 @@ export const sceneIsValid = (serializedScene: unknown): serializedScene is Scene
 const mapsAreValidForType = (maps: SceneMap[], type: SceneType): boolean =>
     maps.every(map => mapIsValidForType(map, type))
 
-const mapIsValidForType = (map: SceneMap, type: SceneType): map is SceneMap => 
-    map.every(cell => cellIsValidForType(cell, type))
+const mapIsValidForType = (map: SceneMap, type: SceneType): map is SceneMap => {
+    const rowIsValid = (row: Cell[]) => row.every(cell => cellIsValidForType(cell, type))
+    return map.every(rowIsValid)
+}
 
 const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
     switch(type){
