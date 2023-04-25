@@ -1,0 +1,22 @@
+.acercade {
+    text-align: center;
+}
+
+.version {
+    margin: 5px;
+    font-size: 18px;
+    text-align: justify;
+}
+
+.footer-links {
+    text-align: center;
+}
+
+@media (max-width: 767px) {
+    .version {
+        font-size: 12px;
+    }
+    .footer-links {
+        display: none;
+    }
+}
