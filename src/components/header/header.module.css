@@ -12,18 +12,6 @@
     height: 45px;
 }
 
-.header-title{
-    color: var(--theme-font-color);
-    align-content: center;
-    width: 150px;
-}
-
-@media (max-width: 600px) {
-    .header-title {
-        display: none;
-    }
-}
-
 .header div{
     display: flex;
     height: inherit;

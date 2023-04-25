@@ -22,8 +22,8 @@ const RegisterButton: React.FC = () => {
 
 const HeaderText: React.FC = () => {
     const { t } = useTranslation("header");
-    return <p className={styles['header-text']} >{t('tool')}</p>
-}
+    return <p className={styles['header-text']}>{t('tool')}</p>
+} 
 
 export const Home = () => {
     const { t } = useTranslation("home/home");
@@ -32,10 +32,12 @@ export const Home = () => {
     <Header CenterComponent={<HeaderText/>}/>
     <Container className={styles.background} maxWidth={false}><Background/></Container>
     
-    <Grid className={styles['home-grid']} container direction="column">
+    <Grid className={styles['home-logo-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
         <Typography className={styles.title} variant="h5">{t("title")}</Typography>
-        <RegisterButton/>
+        <RegisterButton />
+    </Grid>
+    <Grid className={styles['home-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <BookCards/>
         <ImportChallengeCard/>
     </Grid>
