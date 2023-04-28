@@ -1,12 +1,12 @@
 import { Breadcrumbs, Typography, useMediaQuery } from "@mui/material";
-import { Link, useParams } from "react-router-dom";
-import { getPathToChallenge, PathToChallenge } from "../staticData/challenges";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import { Challenge, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
 
-const Breadcrumb = (path: PathToChallenge) => {
+const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const {t} = useTranslation(["books", "challenges", "chapters", "groups"])
     const isSmallScreen: boolean = useMediaQuery('(max-width:1100px)');
     const isVerySmallScreen: boolean = useMediaQuery('(max-width:700px)');
@@ -40,12 +40,36 @@ const Breadcrumb = (path: PathToChallenge) => {
     </>
 }
 
-export const ChallengeView = () =>{
-    const {id} = useParams()
-    const path: PathToChallenge = getPathToChallenge(Number(id))
+
+type ChallengeViewProps = {
+    challengeId: number
+}
+
+const ChallengeView = (props: ChallengeViewProps) =>{
+    const [searchParams] = useSearchParams();
+    const solution: string | null = searchParams.get("codigo")
+    
+    const path: PathToChallenge = getPathToChallenge(props.challengeId)
+    
+    const solutionParam: string = solution ? `?codigo=${solution}` : ""
 
     return <>
-    <Header CenterComponent={Breadcrumb(path)}/>
-    <EmberView path={`desafio/${id}`}/>
+    <Header CenterComponent={ChallengeBreadcrumb(path)}/>
+    <EmberView path={`desafio/${props.challengeId}${solutionParam}`}/>
     </>
+}
+
+
+export const ChallengeById = () => {
+    const {id} = useParams()
+
+    return <ChallengeView challengeId={Number(id)}/>
+}
+
+export const ChallengeByName = () => {
+    const {challengeName} = useParams()
+
+    const challenge: Challenge = getChallengeWithName(challengeName!)
+
+    return <ChallengeView challengeId={challenge.id}/> 
 }
