@@ -9,7 +9,7 @@ export const PasswordRecovery = () =>{
     const tokenParam: string = token ? `?token=${token}` : ""
     
     return <>
-    <Header CenterComponent={<></>}/>
+    <Header/>
     <EmberView path={`password-recovery${tokenParam}`}/>
     </>
 }
