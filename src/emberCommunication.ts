@@ -22,7 +22,7 @@ export namespace Ember{
     }
 
     const setImportedChallenge = (challenge: EmberExecutableChallenge) => {
-        localStorage.setItem("PB_EMBER_CHALLENGE", JSON.stringify(challenge))
+        localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
     }
 
     const serializedSceneToEmberScene = (scene: Scene) => { //TODO
