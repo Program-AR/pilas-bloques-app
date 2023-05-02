@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
 import { ImportChallengeCard } from "./ImportChallengeCard";
+import theme from '../../theme';
 import styles from './home.module.css';
 
 const RegisterButton: React.FC = () => {
@@ -22,7 +23,10 @@ const RegisterButton: React.FC = () => {
 
 const HeaderText: React.FC = () => {
     const { t } = useTranslation("header");
-    return <p className={styles['header-text']}>{t('tool')}</p>
+    return <Typography className={styles['header-text']} 
+                sx={{ display:'block', 
+                        [theme.breakpoints.down('sm')]: {
+                            display: 'none' } }}>{t('tool')}</Typography>
 } 
 
 export const Home = () => {

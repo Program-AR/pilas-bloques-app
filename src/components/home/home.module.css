@@ -38,8 +38,3 @@
     align-content: center;
 }
 
-@media (max-width: 767px) {
-    .header-text {
-        display: none;
-    }
-}
