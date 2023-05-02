@@ -1,12 +1,13 @@
-import { Button, Dialog, DialogContent, Stack } from "@mui/material"
+import { Button, Dialog, DialogContent, Stack, Typography } from "@mui/material"
 import { Header } from "../header/Header"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const CreatorSelection = () =>{
     const thereIsChallengeInCreation: boolean = !!localStorage.getItem("PB_CREATOR_CHALLENGE")
     const [openModal, setOpenModal] = useState(thereIsChallengeInCreation);
-        
+    const {t} = useTranslation("creator/selection")
 
     const onDiscard = () => {
         setOpenModal(false)
@@ -21,8 +22,12 @@ export const CreatorSelection = () =>{
             onClose={() => setOpenModal(false)}>
         <DialogContent>
             <Stack direction="column">
-                Ya tenes un desafio chabon que queres hacer bro
-                <div><Link to="/creador/editar"><Button>Seguir editando</Button></Link> <Button onClick={onDiscard}>Descartar</Button></div>
+                    {t("challengeBeingCreated")}<br/>
+                    <b>{t("discardWarning")}</b>
+                <div>
+                    <Link to="/creador/editar"><Button>{t("continueEditing")}</Button></Link> 
+                    <Button onClick={onDiscard}>{t("discard")}</Button>
+                </div>
             </Stack>
         </DialogContent>
 
