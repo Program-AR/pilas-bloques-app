@@ -25,12 +25,13 @@ const ChallengeInProgressDialog = () => {
         localStorage.removeItem("PB_CREATOR_CHALLENGE")
     }
 
-    return <><Header/>
+    return <>
         <Dialog 
             scroll='paper'
             maxWidth={false}
             open={openModal} 
-            onClose={() => setOpenModal(false)}>
+            onClose={() => setOpenModal(false)}
+            data-testid="challenge-progress-warning">
         <DialogContent>
             <Stack direction="column">
                     {t("challengeBeingCreated")}<br/>
