@@ -1,30 +1,30 @@
 .background {
-    position: relative;
-    margin-bottom: -18rem;
-    height: 30rem;
-    z-index: -1
+  position: relative;
+  margin-bottom: -18rem;
+  height: 30rem;
+  z-index: -1;
 }
 
 .title {
-    position: relative;
-    top: 1.5rem; 
-    text-transform: uppercase;
-    color: white;
+  position: relative;
+  top: 1.5rem;
+  text-transform: uppercase;
+  color: white;
 }
 
 .logo {
-    position: absolute;
-    top: 7rem;
+  position: absolute;
+  top: 7rem;
 }
 
 .home-grid {
-    background-color: #311C3B;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 50rem;
+  background-color: #311c3b;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 50rem;
 }
 
 .header-text {
-    color: #787878;
-    align-content: center;
+  color: #787878;
+  align-content: center;
 }

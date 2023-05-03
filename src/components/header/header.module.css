@@ -1,47 +1,47 @@
 .header {
-    height: 48px;
-    background-color: var(--theme-background-color);
-    padding: 0 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    justify-content: space-between;
-    align-items: center;
+  height: 48px;
+  background-color: var(--theme-background-color);
+  padding: 0 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {
-    padding-top: 8px;
-    height: 45px;
+  padding-top: 8px;
+  height: 45px;
 }
 
-.header-title{
-    color: var(--theme-font-color);
-    align-content: center;
-    width: 150px;
+.header-title {
+  color: var(--theme-font-color);
+  align-content: center;
+  width: 150px;
 }
 
 @media (max-width: 600px) {
-    .header-title {
-        display: none;
-    }
+  .header-title {
+    display: none;
+  }
 }
 
-.header div{
-    display: flex;
-    height: inherit;
-    align-self: flex-start;
+.header div {
+  display: flex;
+  height: inherit;
+  align-self: flex-start;
 }
 
 .face {
-    border-radius: 10px;
-    border: 1px solid #ddd;
+  border-radius: 10px;
+  border: 1px solid #ddd;
 }
 
 .gray {
-    filter: grayscale(1);
+  filter: grayscale(1);
 }
 
 .login-btn {
-    animation: blinker 1s linear infinite;
-    color: var(--theme-font-color);
+  animation: blinker 1s linear infinite;
+  color: var(--theme-font-color);
 }
 
 @keyframes blinker {

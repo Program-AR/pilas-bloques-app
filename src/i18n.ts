@@ -1,9 +1,9 @@
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-import { selectedLanguage, spanish } from './language';
-import HttpBackend from 'i18next-http-backend'
-import resourcesToBackend from 'i18next-resources-to-backend'
-import ChainedBackend from 'i18next-chained-backend'
+import i18n from "i18next"
+import { initReactI18next } from "react-i18next"
+import { selectedLanguage, spanish } from "./language"
+import HttpBackend from "i18next-http-backend"
+import resourcesToBackend from "i18next-resources-to-backend"
+import ChainedBackend from "i18next-chained-backend"
 
 i18n
   // i18next-http-backend
@@ -22,16 +22,20 @@ i18n
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
-      backend: {
-        backends: [
-          HttpBackend, // Doesn't make sense, but apparently without this Electron doesn't work
-          resourcesToBackend((language: string, namespace: string) => import(`../locales/${language}/${namespace}.json`))
-        ],
-        backendOptions: [{
-          loadPath: './locales/{{lng}}/{{ns}}.json'
-        }]
-      }
+    backend: {
+      backends: [
+        HttpBackend, // Doesn't make sense, but apparently without this Electron doesn't work
+        resourcesToBackend(
+          (language: string, namespace: string) =>
+            import(`../locales/${language}/${namespace}.json`)
+        ),
+      ],
+      backendOptions: [
+        {
+          loadPath: "./locales/{{lng}}/{{ns}}.json",
+        },
+      ],
+    },
+  })
 
-  });
-
-export default i18n;
+export default i18n

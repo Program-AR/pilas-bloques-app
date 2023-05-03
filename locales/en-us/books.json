@@ -1,18 +1,16 @@
 {
+  "1": {
+    "title": "First Cycle",
+    "description": "Challenges of Teachers` Handbook  \"Computer Science in the classroom, 1st cycle of elementary school\""
+  },
 
-    "1": {
-        "title": "First Cycle",
-        "description": "Challenges of Teachers` Handbook  \"Computer Science in the classroom, 1st cycle of elementary school\""
-    },
+  "2": {
+    "title": "Second Cycle",
+    "description": "Challenges of Teachers` Book \"Activities to learn how to Program.AR\", for the 2nd cycle of elementary school, and beyond."
+  },
 
-    "2" : {
-        "title": "Second Cycle",
-        "description": "Challenges of Teachers` Book \"Activities to learn how to Program.AR\", for the 2nd cycle of elementary school, and beyond."
-    },
-
-    "100" : {
-        "title": "Tecnópolis",
-        "description": "Tecnópolis Challenges"
-    }
-    
+  "100": {
+    "title": "Tecnópolis",
+    "description": "Tecnópolis Challenges"
+  }
 }

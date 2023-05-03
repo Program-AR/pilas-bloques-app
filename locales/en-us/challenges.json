@@ -1,712 +1,712 @@
 {
-    "1": {
-      "title": "The alien pushes the button",
-      "description": "Help our Alien push the button of his lab.\nClues: look at the available actions. You will have to move forward several times!\n",
-      "clue": "The blocks allow you to create sequences of actions to solve the challenges we offer in Pilas Bloques."
-    },
-    "2": {
-      "title": "The cat in the street",
-      "description": "Make the cat take a step forward, get to sleep, wake up, greet, and then come back to his original place.",
-      "clue": "You can create new actions in _My procedures_ by defining new blocks including other actions."
-    },
-    "3": {
-      "title": "I love jumping",
-      "description": "Help the cat get rid of laziness by jumping 30 times non-stop. Clue: you can solve this challenge with less than 30 blocks.\n",
-      "clue": "The Repeat block allows you to select the number of times you want to repeat a sequence of actions. This is called \"Simple repetition\"."
-    },
-    "4": {
-      "title": "The Martian in the desert",
-      "description": "The Martian is lost in the desert and needs to eat his favorite food: apples! Help him meet his goal. Clue: Create a procedure (block) for each group of apples\n",
-      "clue": "There are many ways to eat the apples. You can start by eating the apples on the right, or you can start from top to bottom! Can you figure out another strategy? Consider it always before programming."
-    },
-    "5": {
-      "title": "Tito turns the lights on",
-      "description": "Help Tito turn all lights on.\nClue: create a procedure to turn on all lights in a diagonal line.\n",
-      "clue": "You can create a procedure once, and then use it anytime you want within the same program."
-    },
-    "6": {
-      "title": "The alien and the nuts",
-      "description": "Define a program to help the alien pick up all nuts. Clue: Can’t the alien move in a diagonal line? You can create your own procedure to help him do it.\n",
-      "clue": ""
-    },
-    "7": {
-      "title": "The stars collector",
-      "description": "Help our friend collect all stars. Clue: you can create a procedure for collecting a row of stars.\n",
-      "clue": "Using the same procedure several times saves your efforts."
-    },
-    "8": {
-      "title": "Mary and the watermelons",
-      "description": "Mary needs to eat all watermelons in the grid. Think how you could help her do it by creating the necessary blocks.\n",
-      "clue": "You can also think if there is a strategy that allows you to **reuse** the same procedure several times."
-    },
-    "9": {
-      "title": "Feeding the fishes",
-      "description": "Our diver needs to feed the 7 fishes on screen with worms. First pick up the worms, and then go to each fish to feed them. Clue: How many steps should your strategy have?\n",
-      "clue": ""
-    },
-    "10": {
-      "title": "Installing games",
-      "description": "Ramiro needs to install a game in 3 different computers to have fun with his friends. The steps to install the game in each computer are: powering the computer on, writing the password (\"ABC\"), installing the game, and finally powering the computer off. Clue: make the most of the fact that you have to do the same work in each computer.\n",
-      "clue": ""
-    },
-    "11": {
-      "title": "The great adventure of the enchanted sea",
-      "description": "Help the heroine rescue her prince. To achieve this, she needs to overcome the following challenges one after the other:\n1) Finding the key.\n2) Opening the chest with the key, and then taking the magic hat that’s inside.\n3) Giving the hat to the magician to receive the sword in return.\n4) Fighting against the dark knight using her sword.\n5) Running away riding a unicorn.\n",
-      "clue": ""
-    },
-    "12": {
-      "title": "Repairing the spaceship",
-      "description": "The Martian needs to repair his spaceship to get back home. To achieve this, he needs to carry 3 units of carbon and 3 units of iron to the spaceship, but he cannot load more than one unit at a time.",
-      "clue": ""
-    },
-    "13": {
-      "title": "The monkey and the bananas",
-      "description": "Can you help the monkey move forward to the opposite box? If there is a banana, he should eat it. Otherwise, he will be happy just by reaching there.\nRun the program several times to make sure it always works.\nClue: look at the \"Sensors\" category and the \"Alternatives\" category.\n",
-      "clue": "The \"If\" block runs a sequence of instructions only when the condition is true. This is called \"Conditional alternative\"."
-    },
-    "14": {
-      "title": "Monkey’s choice",
-      "description": "Can you help our monkey again? This time he should eat all fruits appearing on the screen, whether banana or apple.\nRun the program several times to make sure it always works.\nClue: this time the \"If\" block is not enough.\n",
-      "clue": "When there are only 2 options, making one question is enough. In those cases, you can use the \"If... Else\" block."
-    },
-    "15": {
-      "title": "Short maze",
-      "description": "Guide the mouse to reach the finish line. To achieve this, he needs to move forward one box in the direction of the arrow. Clue: look in the \"Sensors\" category which questions you could ask.\n",
-      "clue": ""
-    },
-    "16": {
-      "title": "Three oranges",
-      "description": "The alien should eat all orange sections appearing in the violet boxes. But they neither appear always in the same places, nor the same number of oranges! Clue: first think what procedure you should create to eat only one orange, if it appears.\n",
-      "clue": ""
-    },
-    "17": {
-      "title": "Tito reloaded",
-      "description": "Tito needs to turn all lights on to know the route... But they change their places each time you run the program! You can use the procedures and control blocks.",
-      "clue": ""
-    },
-    "18": {
-      "title": "Long maze",
-      "description": "Help the mouse get out of the maze. Opposite to the previous maze, here the mouse needs to move forward a lot of boxes. How many? Is it always the same number? Clue: first think how to move forward one single box.\n",
-      "clue": ""
-    },
-    "19": {
-      "title": "Super Tito 1",
-      "description": "Help Tito turn all lights on.\nWatch out! There’s a light in every cell, but you don´t know how many cells are there each time you run the program.\n",
-      "clue": "There are new blocks that can help you solve this challenge very easily. Use them!"
-    },
-    "20": {
-      "title": "Super Tito 2",
-      "description": "Super Tito should turn all lights on, but opposite to the previous challenge, there are cells without any light here. Could you use the same procedure you used in Super Tito 1?\n",
-      "clue": "The \"Repeat until\" block will repeat a sequence of actions until one condition is met. This is called \"Conditional repetition\"."
-    },
-    "21": {
-      "title": "Maze with cheese",
-      "description": "The mouse is hungrier than ever! Guide him along the maze so that he can eat all pieces of cheese. Clue: before starting, push the “Run” button several times to learn how the scenario changes.\n",
-      "clue": "It is important to consider if the block’s condition called \"Repeat until\" is met at any given time. Otherwise, the program might never end!"
-    },
-    "22": {
-      "title": "Detective Chaparro",
-      "description": "The detective should discover the guilty of a crime. Starting by the first on the left, interrogate each one of the suspects until you find the guilty party!",
-      "clue": "The \"Repeat until\" block allows us to finish the program when we finally find the guilty party, without need to interrogate all suspects in the row."
-    },
-    "23": {
-      "title": "Football for robots",
-      "description": "Help our football player robot kick all balls. Always remember that a proper task division using procedures can help you face the challenge better.",
-      "clue": "The procedure to be defined should consider the variable scenario and offer a solution with little number of blocks. It is important to take into account that the action repeats several times, and the length of the rows is usually different."
-    },
-    "24": {
-      "title": "Powering all computers on",
-      "description": "We should power all computers on taking into account that the scenario width and height change each time you run the program. Clue: think how you could turn on all computers from only one rectangle, and then repeat the same action for the rest of the sides.\n",
-      "clue": ""
-    },
-    "25": {
-      "title": "The monkey who knows how to count",
-      "description": "The monkey should visit all boxes and count how many bananas and apples are there in total. Clue: first think how you could count whether there is any apple or banana in a particular box. Then think how you could count all fruits in only one particular column.\n",
-      "clue": "Splitting a big problem into several little problems can help you better understand each one of its parts. At the same time, this will allow us to focus on solving easier challenges if compared to the original one."
-    },
-    "26": {
-      "title": "The Supertrip",
-      "description": "Our superhero should complete his morning supertrip, which consists of going through a certain distance that changes from day to day (between 15 and 45 km). Help our superhero reach his destination every day without going past! Clue: look at the \"Sensors\" category to see if there is something useful for you there.\n",
-      "clue": "You can use the \"Repeat\" block with the value of a sensor. This will allow you to repeat a code sequence the number of times mentioned by the sensor."
-    },
-    "27": {
-      "title": "The monkey counts again",
-      "description": "The monkey needs to count the fruits again, but now he cannot check whether he reached the end of the column! Is there any sensor to help him?",
-      "clue": "A sensor will allow us to get information that can change each time you run the program, even during the same run. For example, the length of a column changes depending on the column on which the monkey is standing."
-    },
-    "28": {
-      "title": "Nano’s planet",
-      "description": "Help Nano eat all his bananas. Be careful! He cannot come down...\nTake into account that the scenario doesn’t change, and the bananas are always in the same boxes!\n",
-      "clue": "You can add parameters to the procedures, so that they become more general. For instance, if we create the following procedures: \"Eat 2 bananas on the right\", \"Eat 3 bananas on the right\", and \"Eat 4 bananas on the right\", we can replace these three procedures with one procedure with a parameter stating the number of bananas we want to eat on the right: \"Eat on the right the following number: [number]\".\nFor adding a parameter to a new procedure, you have to click on the plus sign.\n"
-    },
-    "29": {
-      "title": "Drawing: Squares\n",
-      "description": "Draw a square where each side's length is 100.",
-      "clue": ""
-    },
-    "30": {
-      "title": "Drawing: Robotic hopscotch\n",
-      "description": "Draw 5 squares in a row, where each side's length is 50, as shown by the shaded figure below.",
-      "clue": ""
-    },
-    "31": {
-      "title": "Drawing: Cutting through the diagonal line\n",
-      "description": "Draw 5 squares in a diagonal line, where each side's length is 50, as shown by the shaded figure below.",
-      "clue": ""
-    },
-    "32": {
-      "title": "Drawing: Squared mamushkas\n",
-      "description": "Draw 4 squares, where each side's length is 50, 100, 150, and 200 respectively, as shown by the shaded figure below. Clue: create a new procedure for drawing different squares with different side’s length.\n",
-      "clue": "Including parameters in the procedures will allow you to generalize a concept. For example, the side’s length of a square."
-    },
-    "33": {
-      "title": "Drawing: Squared stairs\n",
-      "description": "Draw 5 squares. 4 of them where each side's length is 50, and 1 of them where each side’s length is 100, as shown by the shaded figure below.\n",
-      "clue": "When creating a procedure with parameters, their values are not defined (for example: \"side's length\"). When you use the procedures, you have to set a particular value for such parameters (50, 100, etc.)."
-    },
-    "34": {
-      "title": "Drawing: Hexagon\n",
-      "description": "Draw a hexagon, where each side's length is 100, as shown by the shaded figure below. Clue: think how many degrees the robot needs to rotate considering the interior angles of the hexagon.\n",
-      "clue": "In polygons, the exterior angle value is equal to 180 degrees, less the interior angle value."
-    },
-    "35": {
-      "title": "Drawing: Inverted pyramid\n",
-      "description": "Draw an equilateral triangle, where each side's length is 100, as shown by the shaded figure below. Clue: consider if there exists a relationship between the different angles and the number of sides.\n",
-      "clue": "In polygons, the sum of all exterior angles is equal to 360"
-    },
-    "36": {
-      "title": "Drawing: Figures inside figures\n",
-      "description": "Draw a triangle, a square, and a pentagon, where each side's length is 100, as shown by the shaded figure below. Clue: create a procedure with a parameter for the number of sides.\n",
-      "clue": "Now we have the Operators: these blocks will allow us to do the numbers automatically, like a calculator!... How many degrees is a full circle rotation? What number should we divide this by?\n"
-    },
-    "37": {
-      "title": "Drawing: The cave of stalactites\n",
-      "description": "Draw 3 triangles, where each side's length is 40, 60, and 100 respectively, and a square where each side’s length is 200, as shown by the shaded figure below. Clue: create a procedure with 2 parameters, one for the number of sides and the other for their length.\n",
-      "clue": "In order to use the parameters in a new procedure, you have to right click on the block that defines such procedure."
-    },
-    "38": {
-      "title": "Nano’s rocks",
-      "description": "In Nano’s planet there are usually a lot of rockfalls. Some rocks fall on the path and get in the way to his favorite fruit. If that happens, Nano must take the long and winding rocky road. Help Nano eat the banana at the end of the road. Don't forget to download your solution! (you'll need it later).\n",
-      "clue": "How many roads to the banana are there? Can all of them always be traversed or does it depend on something?"
-    },
-    "39": {
-      "title": "Nano’s paths",
-      "description": "Nano heard about the location of another delicious fruit in their rocky planet, though the road it's longer and more dangerous. The green road is the safest but it's not always free of rocks.\n",
-      "clue": "Is there a pattern that repeats? Could the solution of the previous challenge (Nano's rocks) help us?"
-    },
-    "40": {
-      "title": "A spoiled party\n",
-      "description": "“Nothing better than getting up in the morning and spoiling a party“ thinks the spoilsport crab. Help the crab pinch all the balloons on its way. Don't forget to download your solution (you will need it later).\n",
-      "clue": "How can the crab easily tell if there is a balloon party? What should it do if no one is partying?"
-    },
-    "41": {
-      "title": "Redecorating parties\n",
-      "description": "Today is a special day to celebrate and decorate parties with many balloons... But there's a little crab that likes to cause trouble. Help the crab pinch all the balloons of all the parties on its way. \n",
-      "clue": "Is there a task the crab has to complete several times? Could the solution to the previous challenge (A spoiled party) help us?"
-    },
-    "42": {
-      "title": "The multifruit desert\n",
-      "description": "Life in the desert can be very hard for an alien, so running into an area full of oranges and apples is a dream come true. Help the alien to collect all the fruits they find on their way.\n",
-      "clue": "Think of a strategy that allows the alien to go down a row and eat all the fruits they find. Can the same be done in the other rows?"
-    },
-    "43": {
-      "title": "The watermelons curve aisle\n",
-      "description": "María found an aisle full of watermelons! The only problem is that the aisle turns several times and the watermelons are right there... Will María be able to eat all the watermelons in this aisle?\n",
-      "clue": "The watermelons are found right in the curves of the aisle. A strategy to eat the watermelons in a curve would be an excellent help."
-    },
-    "44": {
-      "title": "The fruit fest\n",
-      "description": "The monkey came to eat his fruits at the usual place, although he heard rumors that a great fruit banquet is taking place on the other side... Today is a great day to feast!\n",
-      "clue": "A normal monkey meal is a column of 6 fruits. How many columns does a fruit banquet have? If you can get the monkey to eat the fruits in a column, maybe you can do the same at a banquet."
-    },
-    "45": {
-      "title": "Galaxy collector\n",
-      "description": "The universe has millions and millions of galaxies; luckily for the star collector, today he must collect only two very small galaxies.\n",
-      "clue": "Each galaxy is a group of stars distributed differently but always in the same space. Think of a strategy that goes from the simplest to the most complex: first a box, then a row or column, and finally a galaxy."
-    },
-    "46": {
-      "title": "New commands",
-      "description": "Now our Alien needs to push two buttons to his right, then two lower ones, and one at the bottom.\n",
-      "clue": "Did you see the procedures? They can help you **create new commands** to use **as many times as you want.**"
-    },
-    "130": {
-      "title": "Dracula’s party",
-      "description": "For allowing Dracula’s party to start, we should change the color of 3 spotlights a certain number of times: 5 times the first spotlight, 8 times the second, and 12 times the third.\n",
-      "clue": ""
-    },
-    "131": {
-      "title": "Saving Christmas",
-      "description": "Help Santa leave a present at the end of each row. Please take into account that the scenario doesn’t change each time you run the program! Clue: if you have to choose a parameter for your procedure... Which one would you choose? What’s the variation from row to row?\n",
-      "clue": ""
-    },
-    "132": {
-      "title": "Powering all computers on by using parameters",
-      "description": "Just like before, we need to power all computers on. But this time you have to define a unique procedure to power them on, whichever side they are.",
-      "clue": "The parameters can be directions; they don’t always need to be numbers. For example, a parameter could be the direction in which the robot should move."
-    },
-    "133": {
-      "title": "Tito and the square",
-      "description": "Tito should turn on all lights in the square, but they are distributed in a different way each time you run the program. Take into account that the boxes in the corner never turn on, and that the size of the square doesn't change each time you run the program.",
-      "clue": ""
-    },
-    "134": {
-      "title": "The spoilsport crab",
-      "description": "The crab wants to pinch all balloons in the party. Take into account that they don’t change their position. Clue: could the number of balloons and the direction be parameters?\n",
-      "clue": "You can match numeric parameters (quantities, lengths) with text parameters (directions, names)."
-    },
-    "135": {
-      "title": "Lighting the campfires",
-      "description": "In this case we should light all campfires in the square, but they are distributed in a different way each time you run the program. Take into account that the boxes in the corner never turn on, and that the size of the square doesn´t change each time you run the program.",
-      "clue": "If you don´t have a procedure with parameters to move in any direction... You can create it!"
-    },
-    "136": {
-      "title": "Free drawing!",
-      "description": "In this activity you’ll be able to draw whatever you like.",
-      "clue": "We’ve included all blocks possible, so that you can unleash your creativity."
-    },
-    "201": {
-      "title": "Challenge 1",
-      "description": "Help Duba the puma eat her beefsteak. Avoid the obstacles.",
-      "clue": ""
-    },
-    "202": {
-      "title": "Challenge 2",
-      "description": "Duba wants to eat her beefsteak. Help her!",
-      "clue": ""
-    },
-    "203": {
-      "title": "Challenge 3",
-      "description": "Will you help the puma eat her beefsteak? Avoid the obstacles.",
-      "clue": ""
-    },
-    "204": {
-      "title": "Challenge 4",
-      "description": "Duba wants to eat her beefsteak. How could she do it without crashing with the obstacles?",
-      "clue": ""
-    },
-    "205": {
-      "title": "Challenge 5",
-      "description": "Help the puma Duba satisfy her hunger, avoiding the obstacles.",
-      "clue": ""
-    },
-    "206": {
-      "title": "Challenge 6",
-      "description": "Duba wants to eat her beefsteak up. How could she do it?",
-      "clue": ""
-    },
-    "207": {
-      "title": "Challenge 1",
-      "description": "Help the llama complete the tower.",
-      "clue": "To complete the drawing, Coty needs to draw on the grey lines."
-    },
-    "208": {
-      "title": "Challenge 2",
-      "description": "Coty wants to draw a house! Will you help her?",
-      "clue": ""
-    },
-    "209": {
-      "title": "Challenge 3",
-      "description": "The llama only wants to draw three lines. How could she do it?",
-      "clue": ""
-    },
-    "210": {
-      "title": "Challenge 4",
-      "description": "Will you help the llama complete the happy face?",
-      "clue": ""
-    },
-    "211": {
-      "title": "Challenge 5",
-      "description": "How could the llama finish the drawing of the bridge?",
-      "clue": ""
-    },
-    "212": {
-      "title": "Challenge 6",
-      "description": "How could the llama finish the drawing of the thistle?",
-      "clue": ""
-    },
-    "213": {
-      "title": "Challenge 7",
-      "description": "It’s time for a good mate. Help the llama finish her drawing.",
-      "clue": ""
-    },
-    "214": {
-      "title": "Challenge 1",
-      "description": "Help Lita the armadillo prepare a mixed green salad.",
-      "clue": ""
-    },
-    "215": {
-      "title": "Challenge 2",
-      "description": "Today Lita wants to eat a little salad. Help her prepare it!",
-      "clue": ""
-    },
-    "216": {
-      "title": "Challenge 1",
-      "description": "Tomato, lettuce leaves, and it´s ready. Help Lita prepare her salad.",
-      "clue": ""
-    },
-    "217": {
-      "title": "Challenge 2",
-      "description": "Help Lita prepare her favorite dish.",
-      "clue": ""
-    },
-    "218": {
-      "title": "Challenge 3",
-      "description": "Will she take tomato or lettuce leaves first? Help Lita prepare her favorite dish.",
-      "clue": ""
-    },
-    "219": {
-      "title": "Challenge 4",
-      "description": "What steps can the armadillo take to prepare her favorite dish?",
-      "clue": ""
-    },
-    "220": {
-      "title": "Challenge 1",
-      "description": "What’s the error here? Find it, and help Duba eat her beefsteak.",
-      "clue": ""
-    },
-    "221": {
-      "title": "Challenge 2",
-      "description": "What happens with Duba that she can’t eat her food? Correct the program and help the puma satisfy her hunger.",
-      "clue": ""
-    },
-    "222": {
-      "title": "Challenge 3",
-      "description": "Find out what the problem of this program is, and correct it, to help Duba eat her beefsteak.",
-      "clue": ""
-    },
-    "223": {
-      "title": "Challenge 4",
-      "description": "Are there instructions in excess or anything missing? Look at the program, find out what the error is, and help Duba eat her favorite dish.",
-      "clue": ""
-    },
-    "224": {
-      "title": "Challenge 5",
-      "description": "What error can you find in this program? Correct it and help the armadillo prepare her lunch.",
-      "clue": ""
-    },
-    "225": {
-      "title": "Challenge 1",
-      "description": "Help the fox read his name: TOTO.\n",
-      "clue": "TOTO reads the letters over which he moves."
-    },
-    "226": {
-      "title": "Challenge 2",
-      "description": "The fox is thinking about Coty, his friend from the Puna. Help him read LLAMA.",
-      "clue": ""
-    },
-    "227": {
-      "title": "Challenge 3",
-      "description": "Guess who the fox is thinking about! A clue: it’s an animal who likes eating beefsteak very much.\n",
-      "clue": ""
-    },
-    "228": {
-      "title": "Challenge 4",
-      "description": "What did the fox want to read? And what did he read finally? Find the error and correct it!",
-      "clue": "Toto is coming back. He will be a little late because he is riding a ..."
-    },
-    "229": {
-      "title": "Challenge 5",
-      "description": "The fox is absentminded. Help him read correctly what day he will arrive at Humahuaca.",
-      "clue": ""
-    },
-    "230": {
-      "title": "Challenge 1",
-      "description": "Could the puma reach the beefsteak by using the \"Move right\" block only once?",
-      "clue": "You can use the new \"Repeat\" block"
-    },
-    "231": {
-      "title": "Challenge 2",
-      "description": "The puma is hungry and she is far from her beefsteak. But now she knows how to repeat!",
-      "clue": ""
-    },
-    "232": {
-      "title": "Challenge 3",
-      "description": "How could the puma reach her food without need of using many \"Move\" blocks?",
-      "clue": ""
-    },
-    "233": {
-      "title": "Challenge 1",
-      "description": "The llama wants to draw four lines. What’s the repeated item this time?",
-      "clue": "I may be more than one block within the Repeat block"
-    },
-    "234": {
-      "title": "Challenge 2",
-      "description": "Now, in addition, you have to draw downwards! Will this be as easy as adding a block to what you did before? How many repetitions are needed now?",
-      "clue": ""
-    },
-    "235": {
-      "title": "Challenge 3",
-      "description": "The llama wants to draw a flight of stairs. Can you find the pattern that repeats? How many times does it repeat?",
-      "clue": ""
-    },
-    "236": {
-      "title": "Challenge 1",
-      "description": "Great, you found the solution! Will you test it?",
-      "clue": "You can test the programs step by step to find out the errors"
-    },
-    "237": {
-      "title": "Challenge 2",
-      "description": "What happens with Duba that she can’t eat her favorite dish? Remove, modify and/or add the missing blocks so that she can meet her goal.",
-      "clue": ""
-    },
-    "238": {
-      "title": "Challenge 3",
-      "description": "What pattern should Coty repeat this time? Is the proposed solution correct?",
-      "clue": ""
-    },
-    "239": {
-      "title": "Challenge 4",
-      "description": "Coty got lost again! Can you find the errors and correct them? The llama will be thankful.",
-      "clue": ""
-    },
-    "240": {
-      "title": "Challenge 1",
-      "description": "Can you find the steps that repeat? What are they? Create the program to help Lita prepare today’s special salad.",
-      "clue": ""
-    },
-    "241": {
-      "title": "Challenge 2",
-      "description": "The armadillo cannot prepare her salad! How many times does Lita repeat the steps to reach the lettuce? What should you modify? What happens when she tries to grab the tomato?",
-      "clue": ""
-    },
-    "242": {
-      "title": "Challenge 1",
-      "description": "Sometimes there is beefsteak; but sometimes not! Can you create only one program to help Duba move on and eat only if there is beefsteak?",
-      "clue": "The \"If\" block is useful for doing something sometimes, and sometimes not. It’s useful for asking!"
-    },
-    "243": {
-      "title": "Challenge 2",
-      "description": "Now Duba should move on twice. She should eat all beefsteaks appearing on screen! ... But only if they appear.",
-      "clue": ""
-    },
-    "244": {
-      "title": "Challenge 3",
-      "description": "Coty should draw a square, but... Be careful, sometimes a puddle appears!",
-      "clue": ""
-    },
-    "245": {
-      "title": "Challenge 1",
-      "description": "Lita wants to grab any vegetable. But she should grab only the correct one!",
-      "clue": "The If/Else block allows you to choose between two options. You just have to choose the question well."
-    },
-    "246": {
-      "title": "Challenge 2",
-      "description": "She doesn´t always have to move on to the right... What question is useful for Duba to decide?",
-      "clue": "You can also include more than one instruction in the If/Else block."
-    },
-    "247": {
-      "title": "Challenge 3",
-      "description": "Duba, be careful! Where may an obstacle appear? We will have to decide what route to take!",
-      "clue": ""
-    },
-    "248": {
-      "title": "Challenge 1",
-      "description": "Now Duba is far away, and she should decide whether to eat or not. Let’s help her with the blocks we’ve learnt about!",
-      "clue": "It’s important to push the \"Run\" button several times to understand the problem."
-    },
-    "249": {
-      "title": "Challenge 2",
-      "description": "So many beefsteaks! What pattern should Duba repeat? How many questions does she have to make?",
-      "clue": "It’s important to push the \"Run\" button several times to understand the problem."
-    },
-    "250": {
-      "title": "Challenge 3",
-      "description": "Lita should also repeat her decision several times! There is always a vegetable; she just needs to decide which she will grab in each step.",
-      "clue": ""
-    },
-    "251": {
-      "title": "Challenge 1",
-      "description": "Now Toto knows how to write! Make him copy the whole word.",
-      "clue": "Toto knows how to write the letter he is touching."
-    },
-    "252": {
-      "title": "Challenge 2",
-      "description": "Now Toto wants to write an X per each letter. No matter what he reads! How many Xs should he write?",
-      "clue": "Toto also knows how to write the letter you want."
-    },
-    "253": {
-      "title": "Challenge 3",
-      "description": "Toto likes playing with the letters: make him copy the word, but make him add \"ICH\" when he reaches the M.\n",
-      "clue": "When he copies \"Cement\", he will write \"Cemichent\""
-    },
-    "254": {
-      "title": "Challenge 4",
-      "description": "Make Toto copy the word in Jeringozo language. If the word were \"DUBA\", he will have to copy \"DUPUBAPA\"",
-      "clue": "Jeringozo language adds \"PA\" after an A, \"PE\" after an E, and so on with the rest of the vowels."
-    },
-    "255": {
-      "title": "Coty practices free drawing!",
-      "description": "In this activity you’ll be able to draw whatever you like.",
-      "clue": "We’ve included all blocks possible, so that you can unleash your creativity."
-    },
-    "202101": {
-      "title": "Introduction",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "202102": {
-      "title": "Introduction to repetition",
-      "description": "Help Duba pick all beefsteaks up. But now there is a new block! :thinking:.",
-      "clue": "See what happens when you press the Run button."
-    },
-    "2021001": {
-      "title": "Level 1",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021002": {
-      "title": "Level 2",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021003": {
-      "title": "Level 3",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021004": {
-      "title": "Level 4",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021005": {
-      "title": "Level 5",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021006": {
-      "title": "Level 6",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021007": {
-      "title": "Level 7",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021008": {
-      "title": "Level 8",
-      "description": "Help Duba pick all beefsteaks up.",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021101": {
-      "title": "Level 1",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021102": {
-      "title": "Level 2",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021103": {
-      "title": "Level 3",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021104": {
-      "title": "Level 4",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021105": {
-      "title": "Level 5",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021106": {
-      "title": "Level 6",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021107": {
-      "title": "Level 7",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021108": {
-      "title": "Level 8",
-      "description": "Help Lita prepare the salad (with tomato and lettuce).",
-      "clue": "The REPEAT block can help you."
-    },
-    "2021201": {
-      "title": "Level 1",
-      "description": "Help Coty the llama complete the tower.",
-      "clue": "To complete the drawing, Coty needs to draw on the grey lines."
-    },
-    "2021202": {
-      "title": "Level 2",
-      "description": "The llama wants to draw only three lines. How could she do it?",
-      "clue": ""
-    },
-    "2021203": {
-      "title": "Level 3",
-      "description": "It’s time for a good mate. Help the llama finish her drawing.",
-      "clue": ""
-    },
-    "2021204": {
-      "title": "Level 4",
-      "description": "La llama quiere dibujar cuatro líneas. ¿Qué es lo que se repite esta vez?",
-      "clue": "Puede haber más de un bloque dentro del Repetir"
-    },
-    "2021205": {
-      "title": "Level 5",
-      "description": "Coty tiene ganas de dibujar una escalera. ¿Encontrás el patrón que se repite? ¿Cuántas veces se repite?",
-      "clue": ""
-    },
-    "2021206": {
-      "title": "Level 6",
-      "description": "Help Coty draw the missing letter.",
-      "clue": ""
-    },
-    "2021207": {
-      "title": "Level 7",
-      "description": "¿Encontrás el patrón que se repite? ¿Cuántas veces se repite?",
-      "clue": ""
-    },
-    "2021301": {
-      "title": "Level 1",
-      "description": "Help the fox read his name: TOTO.\n",
-      "clue": "TOTO reads the letters over which he moves."
-    },
-    "2021302": {
-      "title": "Level 2",
-      "description": "The fox is thinking about Coty, his friend from the Puna. Help him read LLAMA.",
-      "clue": ""
-    },
-    "2021303": {
-      "title": "Level 3",
-      "description": "Guess who the fox is thinking about! A clue: it’s an animal who likes eating beefsteak very much.\n",
-      "clue": ""
-    },
-    "2021304": {
-      "title": "Level 4",
-      "description": "Arreglá el programa para que Toto pueda leer un día de la semana.",
-      "clue": "Con el botón 'PASO' Toto puede ir realizando las instrucciones una por una"
-    },
-    "2021305": {
-      "title": "Level 5",
-      "description": "Toto tiene que leer una palabra. ¿En dónde hay un stand de Pilas Bloques? ¡En Tec....!",
-      "clue": ""
-    },
-    "2021306": {
-      "title": "Level 6",
-      "description": "Toto tiene que leer el nombre de una provincia que se lee igual al derecho que al revés. ¿Sabés cuál es?",
-      "clue": "¡Apareció el bloque Repetir para ayudarnos a resolver el desafío!"
-    },
-    "2021307": {
-      "title": "Level 7",
-      "description": "Toto tiene que volver a leer Neuquén. ¡Recordá que se puede leer igual al derecho que al revés! :wink: \n",
-      "clue": ""
-    },
-    "2021308": {
-      "title": "Level 8",
-      "description": "Ayudalo a Toto a leer SANTA CRUZ. ¡Pero esta vez usando el bloque repetición!",
-      "clue": "¿Sabías que dentro de un bloque repetir pueden ponerse muchos bloques?"
-    },
-    "2021309": {
-      "title": "Level 9",
-      "description": "Tenemos un programa ya hecho para que toto lea la provincia que está al sur de rio negro.\nFijate si funciona o qué hay que arreglar.\n",
-      "clue": "Con el botón 'PASO' Toto puede ir realizando las instrucciones una por una"
-    }
+  "1": {
+    "title": "The alien pushes the button",
+    "description": "Help our Alien push the button of his lab.\nClues: look at the available actions. You will have to move forward several times!\n",
+    "clue": "The blocks allow you to create sequences of actions to solve the challenges we offer in Pilas Bloques."
+  },
+  "2": {
+    "title": "The cat in the street",
+    "description": "Make the cat take a step forward, get to sleep, wake up, greet, and then come back to his original place.",
+    "clue": "You can create new actions in _My procedures_ by defining new blocks including other actions."
+  },
+  "3": {
+    "title": "I love jumping",
+    "description": "Help the cat get rid of laziness by jumping 30 times non-stop. Clue: you can solve this challenge with less than 30 blocks.\n",
+    "clue": "The Repeat block allows you to select the number of times you want to repeat a sequence of actions. This is called \"Simple repetition\"."
+  },
+  "4": {
+    "title": "The Martian in the desert",
+    "description": "The Martian is lost in the desert and needs to eat his favorite food: apples! Help him meet his goal. Clue: Create a procedure (block) for each group of apples\n",
+    "clue": "There are many ways to eat the apples. You can start by eating the apples on the right, or you can start from top to bottom! Can you figure out another strategy? Consider it always before programming."
+  },
+  "5": {
+    "title": "Tito turns the lights on",
+    "description": "Help Tito turn all lights on.\nClue: create a procedure to turn on all lights in a diagonal line.\n",
+    "clue": "You can create a procedure once, and then use it anytime you want within the same program."
+  },
+  "6": {
+    "title": "The alien and the nuts",
+    "description": "Define a program to help the alien pick up all nuts. Clue: Can’t the alien move in a diagonal line? You can create your own procedure to help him do it.\n",
+    "clue": ""
+  },
+  "7": {
+    "title": "The stars collector",
+    "description": "Help our friend collect all stars. Clue: you can create a procedure for collecting a row of stars.\n",
+    "clue": "Using the same procedure several times saves your efforts."
+  },
+  "8": {
+    "title": "Mary and the watermelons",
+    "description": "Mary needs to eat all watermelons in the grid. Think how you could help her do it by creating the necessary blocks.\n",
+    "clue": "You can also think if there is a strategy that allows you to **reuse** the same procedure several times."
+  },
+  "9": {
+    "title": "Feeding the fishes",
+    "description": "Our diver needs to feed the 7 fishes on screen with worms. First pick up the worms, and then go to each fish to feed them. Clue: How many steps should your strategy have?\n",
+    "clue": ""
+  },
+  "10": {
+    "title": "Installing games",
+    "description": "Ramiro needs to install a game in 3 different computers to have fun with his friends. The steps to install the game in each computer are: powering the computer on, writing the password (\"ABC\"), installing the game, and finally powering the computer off. Clue: make the most of the fact that you have to do the same work in each computer.\n",
+    "clue": ""
+  },
+  "11": {
+    "title": "The great adventure of the enchanted sea",
+    "description": "Help the heroine rescue her prince. To achieve this, she needs to overcome the following challenges one after the other:\n1) Finding the key.\n2) Opening the chest with the key, and then taking the magic hat that’s inside.\n3) Giving the hat to the magician to receive the sword in return.\n4) Fighting against the dark knight using her sword.\n5) Running away riding a unicorn.\n",
+    "clue": ""
+  },
+  "12": {
+    "title": "Repairing the spaceship",
+    "description": "The Martian needs to repair his spaceship to get back home. To achieve this, he needs to carry 3 units of carbon and 3 units of iron to the spaceship, but he cannot load more than one unit at a time.",
+    "clue": ""
+  },
+  "13": {
+    "title": "The monkey and the bananas",
+    "description": "Can you help the monkey move forward to the opposite box? If there is a banana, he should eat it. Otherwise, he will be happy just by reaching there.\nRun the program several times to make sure it always works.\nClue: look at the \"Sensors\" category and the \"Alternatives\" category.\n",
+    "clue": "The \"If\" block runs a sequence of instructions only when the condition is true. This is called \"Conditional alternative\"."
+  },
+  "14": {
+    "title": "Monkey’s choice",
+    "description": "Can you help our monkey again? This time he should eat all fruits appearing on the screen, whether banana or apple.\nRun the program several times to make sure it always works.\nClue: this time the \"If\" block is not enough.\n",
+    "clue": "When there are only 2 options, making one question is enough. In those cases, you can use the \"If... Else\" block."
+  },
+  "15": {
+    "title": "Short maze",
+    "description": "Guide the mouse to reach the finish line. To achieve this, he needs to move forward one box in the direction of the arrow. Clue: look in the \"Sensors\" category which questions you could ask.\n",
+    "clue": ""
+  },
+  "16": {
+    "title": "Three oranges",
+    "description": "The alien should eat all orange sections appearing in the violet boxes. But they neither appear always in the same places, nor the same number of oranges! Clue: first think what procedure you should create to eat only one orange, if it appears.\n",
+    "clue": ""
+  },
+  "17": {
+    "title": "Tito reloaded",
+    "description": "Tito needs to turn all lights on to know the route... But they change their places each time you run the program! You can use the procedures and control blocks.",
+    "clue": ""
+  },
+  "18": {
+    "title": "Long maze",
+    "description": "Help the mouse get out of the maze. Opposite to the previous maze, here the mouse needs to move forward a lot of boxes. How many? Is it always the same number? Clue: first think how to move forward one single box.\n",
+    "clue": ""
+  },
+  "19": {
+    "title": "Super Tito 1",
+    "description": "Help Tito turn all lights on.\nWatch out! There’s a light in every cell, but you don´t know how many cells are there each time you run the program.\n",
+    "clue": "There are new blocks that can help you solve this challenge very easily. Use them!"
+  },
+  "20": {
+    "title": "Super Tito 2",
+    "description": "Super Tito should turn all lights on, but opposite to the previous challenge, there are cells without any light here. Could you use the same procedure you used in Super Tito 1?\n",
+    "clue": "The \"Repeat until\" block will repeat a sequence of actions until one condition is met. This is called \"Conditional repetition\"."
+  },
+  "21": {
+    "title": "Maze with cheese",
+    "description": "The mouse is hungrier than ever! Guide him along the maze so that he can eat all pieces of cheese. Clue: before starting, push the “Run” button several times to learn how the scenario changes.\n",
+    "clue": "It is important to consider if the block’s condition called \"Repeat until\" is met at any given time. Otherwise, the program might never end!"
+  },
+  "22": {
+    "title": "Detective Chaparro",
+    "description": "The detective should discover the guilty of a crime. Starting by the first on the left, interrogate each one of the suspects until you find the guilty party!",
+    "clue": "The \"Repeat until\" block allows us to finish the program when we finally find the guilty party, without need to interrogate all suspects in the row."
+  },
+  "23": {
+    "title": "Football for robots",
+    "description": "Help our football player robot kick all balls. Always remember that a proper task division using procedures can help you face the challenge better.",
+    "clue": "The procedure to be defined should consider the variable scenario and offer a solution with little number of blocks. It is important to take into account that the action repeats several times, and the length of the rows is usually different."
+  },
+  "24": {
+    "title": "Powering all computers on",
+    "description": "We should power all computers on taking into account that the scenario width and height change each time you run the program. Clue: think how you could turn on all computers from only one rectangle, and then repeat the same action for the rest of the sides.\n",
+    "clue": ""
+  },
+  "25": {
+    "title": "The monkey who knows how to count",
+    "description": "The monkey should visit all boxes and count how many bananas and apples are there in total. Clue: first think how you could count whether there is any apple or banana in a particular box. Then think how you could count all fruits in only one particular column.\n",
+    "clue": "Splitting a big problem into several little problems can help you better understand each one of its parts. At the same time, this will allow us to focus on solving easier challenges if compared to the original one."
+  },
+  "26": {
+    "title": "The Supertrip",
+    "description": "Our superhero should complete his morning supertrip, which consists of going through a certain distance that changes from day to day (between 15 and 45 km). Help our superhero reach his destination every day without going past! Clue: look at the \"Sensors\" category to see if there is something useful for you there.\n",
+    "clue": "You can use the \"Repeat\" block with the value of a sensor. This will allow you to repeat a code sequence the number of times mentioned by the sensor."
+  },
+  "27": {
+    "title": "The monkey counts again",
+    "description": "The monkey needs to count the fruits again, but now he cannot check whether he reached the end of the column! Is there any sensor to help him?",
+    "clue": "A sensor will allow us to get information that can change each time you run the program, even during the same run. For example, the length of a column changes depending on the column on which the monkey is standing."
+  },
+  "28": {
+    "title": "Nano’s planet",
+    "description": "Help Nano eat all his bananas. Be careful! He cannot come down...\nTake into account that the scenario doesn’t change, and the bananas are always in the same boxes!\n",
+    "clue": "You can add parameters to the procedures, so that they become more general. For instance, if we create the following procedures: \"Eat 2 bananas on the right\", \"Eat 3 bananas on the right\", and \"Eat 4 bananas on the right\", we can replace these three procedures with one procedure with a parameter stating the number of bananas we want to eat on the right: \"Eat on the right the following number: [number]\".\nFor adding a parameter to a new procedure, you have to click on the plus sign.\n"
+  },
+  "29": {
+    "title": "Drawing: Squares\n",
+    "description": "Draw a square where each side's length is 100.",
+    "clue": ""
+  },
+  "30": {
+    "title": "Drawing: Robotic hopscotch\n",
+    "description": "Draw 5 squares in a row, where each side's length is 50, as shown by the shaded figure below.",
+    "clue": ""
+  },
+  "31": {
+    "title": "Drawing: Cutting through the diagonal line\n",
+    "description": "Draw 5 squares in a diagonal line, where each side's length is 50, as shown by the shaded figure below.",
+    "clue": ""
+  },
+  "32": {
+    "title": "Drawing: Squared mamushkas\n",
+    "description": "Draw 4 squares, where each side's length is 50, 100, 150, and 200 respectively, as shown by the shaded figure below. Clue: create a new procedure for drawing different squares with different side’s length.\n",
+    "clue": "Including parameters in the procedures will allow you to generalize a concept. For example, the side’s length of a square."
+  },
+  "33": {
+    "title": "Drawing: Squared stairs\n",
+    "description": "Draw 5 squares. 4 of them where each side's length is 50, and 1 of them where each side’s length is 100, as shown by the shaded figure below.\n",
+    "clue": "When creating a procedure with parameters, their values are not defined (for example: \"side's length\"). When you use the procedures, you have to set a particular value for such parameters (50, 100, etc.)."
+  },
+  "34": {
+    "title": "Drawing: Hexagon\n",
+    "description": "Draw a hexagon, where each side's length is 100, as shown by the shaded figure below. Clue: think how many degrees the robot needs to rotate considering the interior angles of the hexagon.\n",
+    "clue": "In polygons, the exterior angle value is equal to 180 degrees, less the interior angle value."
+  },
+  "35": {
+    "title": "Drawing: Inverted pyramid\n",
+    "description": "Draw an equilateral triangle, where each side's length is 100, as shown by the shaded figure below. Clue: consider if there exists a relationship between the different angles and the number of sides.\n",
+    "clue": "In polygons, the sum of all exterior angles is equal to 360"
+  },
+  "36": {
+    "title": "Drawing: Figures inside figures\n",
+    "description": "Draw a triangle, a square, and a pentagon, where each side's length is 100, as shown by the shaded figure below. Clue: create a procedure with a parameter for the number of sides.\n",
+    "clue": "Now we have the Operators: these blocks will allow us to do the numbers automatically, like a calculator!... How many degrees is a full circle rotation? What number should we divide this by?\n"
+  },
+  "37": {
+    "title": "Drawing: The cave of stalactites\n",
+    "description": "Draw 3 triangles, where each side's length is 40, 60, and 100 respectively, and a square where each side’s length is 200, as shown by the shaded figure below. Clue: create a procedure with 2 parameters, one for the number of sides and the other for their length.\n",
+    "clue": "In order to use the parameters in a new procedure, you have to right click on the block that defines such procedure."
+  },
+  "38": {
+    "title": "Nano’s rocks",
+    "description": "In Nano’s planet there are usually a lot of rockfalls. Some rocks fall on the path and get in the way to his favorite fruit. If that happens, Nano must take the long and winding rocky road. Help Nano eat the banana at the end of the road. Don't forget to download your solution! (you'll need it later).\n",
+    "clue": "How many roads to the banana are there? Can all of them always be traversed or does it depend on something?"
+  },
+  "39": {
+    "title": "Nano’s paths",
+    "description": "Nano heard about the location of another delicious fruit in their rocky planet, though the road it's longer and more dangerous. The green road is the safest but it's not always free of rocks.\n",
+    "clue": "Is there a pattern that repeats? Could the solution of the previous challenge (Nano's rocks) help us?"
+  },
+  "40": {
+    "title": "A spoiled party\n",
+    "description": "“Nothing better than getting up in the morning and spoiling a party“ thinks the spoilsport crab. Help the crab pinch all the balloons on its way. Don't forget to download your solution (you will need it later).\n",
+    "clue": "How can the crab easily tell if there is a balloon party? What should it do if no one is partying?"
+  },
+  "41": {
+    "title": "Redecorating parties\n",
+    "description": "Today is a special day to celebrate and decorate parties with many balloons... But there's a little crab that likes to cause trouble. Help the crab pinch all the balloons of all the parties on its way. \n",
+    "clue": "Is there a task the crab has to complete several times? Could the solution to the previous challenge (A spoiled party) help us?"
+  },
+  "42": {
+    "title": "The multifruit desert\n",
+    "description": "Life in the desert can be very hard for an alien, so running into an area full of oranges and apples is a dream come true. Help the alien to collect all the fruits they find on their way.\n",
+    "clue": "Think of a strategy that allows the alien to go down a row and eat all the fruits they find. Can the same be done in the other rows?"
+  },
+  "43": {
+    "title": "The watermelons curve aisle\n",
+    "description": "María found an aisle full of watermelons! The only problem is that the aisle turns several times and the watermelons are right there... Will María be able to eat all the watermelons in this aisle?\n",
+    "clue": "The watermelons are found right in the curves of the aisle. A strategy to eat the watermelons in a curve would be an excellent help."
+  },
+  "44": {
+    "title": "The fruit fest\n",
+    "description": "The monkey came to eat his fruits at the usual place, although he heard rumors that a great fruit banquet is taking place on the other side... Today is a great day to feast!\n",
+    "clue": "A normal monkey meal is a column of 6 fruits. How many columns does a fruit banquet have? If you can get the monkey to eat the fruits in a column, maybe you can do the same at a banquet."
+  },
+  "45": {
+    "title": "Galaxy collector\n",
+    "description": "The universe has millions and millions of galaxies; luckily for the star collector, today he must collect only two very small galaxies.\n",
+    "clue": "Each galaxy is a group of stars distributed differently but always in the same space. Think of a strategy that goes from the simplest to the most complex: first a box, then a row or column, and finally a galaxy."
+  },
+  "46": {
+    "title": "New commands",
+    "description": "Now our Alien needs to push two buttons to his right, then two lower ones, and one at the bottom.\n",
+    "clue": "Did you see the procedures? They can help you **create new commands** to use **as many times as you want.**"
+  },
+  "130": {
+    "title": "Dracula’s party",
+    "description": "For allowing Dracula’s party to start, we should change the color of 3 spotlights a certain number of times: 5 times the first spotlight, 8 times the second, and 12 times the third.\n",
+    "clue": ""
+  },
+  "131": {
+    "title": "Saving Christmas",
+    "description": "Help Santa leave a present at the end of each row. Please take into account that the scenario doesn’t change each time you run the program! Clue: if you have to choose a parameter for your procedure... Which one would you choose? What’s the variation from row to row?\n",
+    "clue": ""
+  },
+  "132": {
+    "title": "Powering all computers on by using parameters",
+    "description": "Just like before, we need to power all computers on. But this time you have to define a unique procedure to power them on, whichever side they are.",
+    "clue": "The parameters can be directions; they don’t always need to be numbers. For example, a parameter could be the direction in which the robot should move."
+  },
+  "133": {
+    "title": "Tito and the square",
+    "description": "Tito should turn on all lights in the square, but they are distributed in a different way each time you run the program. Take into account that the boxes in the corner never turn on, and that the size of the square doesn't change each time you run the program.",
+    "clue": ""
+  },
+  "134": {
+    "title": "The spoilsport crab",
+    "description": "The crab wants to pinch all balloons in the party. Take into account that they don’t change their position. Clue: could the number of balloons and the direction be parameters?\n",
+    "clue": "You can match numeric parameters (quantities, lengths) with text parameters (directions, names)."
+  },
+  "135": {
+    "title": "Lighting the campfires",
+    "description": "In this case we should light all campfires in the square, but they are distributed in a different way each time you run the program. Take into account that the boxes in the corner never turn on, and that the size of the square doesn´t change each time you run the program.",
+    "clue": "If you don´t have a procedure with parameters to move in any direction... You can create it!"
+  },
+  "136": {
+    "title": "Free drawing!",
+    "description": "In this activity you’ll be able to draw whatever you like.",
+    "clue": "We’ve included all blocks possible, so that you can unleash your creativity."
+  },
+  "201": {
+    "title": "Challenge 1",
+    "description": "Help Duba the puma eat her beefsteak. Avoid the obstacles.",
+    "clue": ""
+  },
+  "202": {
+    "title": "Challenge 2",
+    "description": "Duba wants to eat her beefsteak. Help her!",
+    "clue": ""
+  },
+  "203": {
+    "title": "Challenge 3",
+    "description": "Will you help the puma eat her beefsteak? Avoid the obstacles.",
+    "clue": ""
+  },
+  "204": {
+    "title": "Challenge 4",
+    "description": "Duba wants to eat her beefsteak. How could she do it without crashing with the obstacles?",
+    "clue": ""
+  },
+  "205": {
+    "title": "Challenge 5",
+    "description": "Help the puma Duba satisfy her hunger, avoiding the obstacles.",
+    "clue": ""
+  },
+  "206": {
+    "title": "Challenge 6",
+    "description": "Duba wants to eat her beefsteak up. How could she do it?",
+    "clue": ""
+  },
+  "207": {
+    "title": "Challenge 1",
+    "description": "Help the llama complete the tower.",
+    "clue": "To complete the drawing, Coty needs to draw on the grey lines."
+  },
+  "208": {
+    "title": "Challenge 2",
+    "description": "Coty wants to draw a house! Will you help her?",
+    "clue": ""
+  },
+  "209": {
+    "title": "Challenge 3",
+    "description": "The llama only wants to draw three lines. How could she do it?",
+    "clue": ""
+  },
+  "210": {
+    "title": "Challenge 4",
+    "description": "Will you help the llama complete the happy face?",
+    "clue": ""
+  },
+  "211": {
+    "title": "Challenge 5",
+    "description": "How could the llama finish the drawing of the bridge?",
+    "clue": ""
+  },
+  "212": {
+    "title": "Challenge 6",
+    "description": "How could the llama finish the drawing of the thistle?",
+    "clue": ""
+  },
+  "213": {
+    "title": "Challenge 7",
+    "description": "It’s time for a good mate. Help the llama finish her drawing.",
+    "clue": ""
+  },
+  "214": {
+    "title": "Challenge 1",
+    "description": "Help Lita the armadillo prepare a mixed green salad.",
+    "clue": ""
+  },
+  "215": {
+    "title": "Challenge 2",
+    "description": "Today Lita wants to eat a little salad. Help her prepare it!",
+    "clue": ""
+  },
+  "216": {
+    "title": "Challenge 1",
+    "description": "Tomato, lettuce leaves, and it´s ready. Help Lita prepare her salad.",
+    "clue": ""
+  },
+  "217": {
+    "title": "Challenge 2",
+    "description": "Help Lita prepare her favorite dish.",
+    "clue": ""
+  },
+  "218": {
+    "title": "Challenge 3",
+    "description": "Will she take tomato or lettuce leaves first? Help Lita prepare her favorite dish.",
+    "clue": ""
+  },
+  "219": {
+    "title": "Challenge 4",
+    "description": "What steps can the armadillo take to prepare her favorite dish?",
+    "clue": ""
+  },
+  "220": {
+    "title": "Challenge 1",
+    "description": "What’s the error here? Find it, and help Duba eat her beefsteak.",
+    "clue": ""
+  },
+  "221": {
+    "title": "Challenge 2",
+    "description": "What happens with Duba that she can’t eat her food? Correct the program and help the puma satisfy her hunger.",
+    "clue": ""
+  },
+  "222": {
+    "title": "Challenge 3",
+    "description": "Find out what the problem of this program is, and correct it, to help Duba eat her beefsteak.",
+    "clue": ""
+  },
+  "223": {
+    "title": "Challenge 4",
+    "description": "Are there instructions in excess or anything missing? Look at the program, find out what the error is, and help Duba eat her favorite dish.",
+    "clue": ""
+  },
+  "224": {
+    "title": "Challenge 5",
+    "description": "What error can you find in this program? Correct it and help the armadillo prepare her lunch.",
+    "clue": ""
+  },
+  "225": {
+    "title": "Challenge 1",
+    "description": "Help the fox read his name: TOTO.\n",
+    "clue": "TOTO reads the letters over which he moves."
+  },
+  "226": {
+    "title": "Challenge 2",
+    "description": "The fox is thinking about Coty, his friend from the Puna. Help him read LLAMA.",
+    "clue": ""
+  },
+  "227": {
+    "title": "Challenge 3",
+    "description": "Guess who the fox is thinking about! A clue: it’s an animal who likes eating beefsteak very much.\n",
+    "clue": ""
+  },
+  "228": {
+    "title": "Challenge 4",
+    "description": "What did the fox want to read? And what did he read finally? Find the error and correct it!",
+    "clue": "Toto is coming back. He will be a little late because he is riding a ..."
+  },
+  "229": {
+    "title": "Challenge 5",
+    "description": "The fox is absentminded. Help him read correctly what day he will arrive at Humahuaca.",
+    "clue": ""
+  },
+  "230": {
+    "title": "Challenge 1",
+    "description": "Could the puma reach the beefsteak by using the \"Move right\" block only once?",
+    "clue": "You can use the new \"Repeat\" block"
+  },
+  "231": {
+    "title": "Challenge 2",
+    "description": "The puma is hungry and she is far from her beefsteak. But now she knows how to repeat!",
+    "clue": ""
+  },
+  "232": {
+    "title": "Challenge 3",
+    "description": "How could the puma reach her food without need of using many \"Move\" blocks?",
+    "clue": ""
+  },
+  "233": {
+    "title": "Challenge 1",
+    "description": "The llama wants to draw four lines. What’s the repeated item this time?",
+    "clue": "I may be more than one block within the Repeat block"
+  },
+  "234": {
+    "title": "Challenge 2",
+    "description": "Now, in addition, you have to draw downwards! Will this be as easy as adding a block to what you did before? How many repetitions are needed now?",
+    "clue": ""
+  },
+  "235": {
+    "title": "Challenge 3",
+    "description": "The llama wants to draw a flight of stairs. Can you find the pattern that repeats? How many times does it repeat?",
+    "clue": ""
+  },
+  "236": {
+    "title": "Challenge 1",
+    "description": "Great, you found the solution! Will you test it?",
+    "clue": "You can test the programs step by step to find out the errors"
+  },
+  "237": {
+    "title": "Challenge 2",
+    "description": "What happens with Duba that she can’t eat her favorite dish? Remove, modify and/or add the missing blocks so that she can meet her goal.",
+    "clue": ""
+  },
+  "238": {
+    "title": "Challenge 3",
+    "description": "What pattern should Coty repeat this time? Is the proposed solution correct?",
+    "clue": ""
+  },
+  "239": {
+    "title": "Challenge 4",
+    "description": "Coty got lost again! Can you find the errors and correct them? The llama will be thankful.",
+    "clue": ""
+  },
+  "240": {
+    "title": "Challenge 1",
+    "description": "Can you find the steps that repeat? What are they? Create the program to help Lita prepare today’s special salad.",
+    "clue": ""
+  },
+  "241": {
+    "title": "Challenge 2",
+    "description": "The armadillo cannot prepare her salad! How many times does Lita repeat the steps to reach the lettuce? What should you modify? What happens when she tries to grab the tomato?",
+    "clue": ""
+  },
+  "242": {
+    "title": "Challenge 1",
+    "description": "Sometimes there is beefsteak; but sometimes not! Can you create only one program to help Duba move on and eat only if there is beefsteak?",
+    "clue": "The \"If\" block is useful for doing something sometimes, and sometimes not. It’s useful for asking!"
+  },
+  "243": {
+    "title": "Challenge 2",
+    "description": "Now Duba should move on twice. She should eat all beefsteaks appearing on screen! ... But only if they appear.",
+    "clue": ""
+  },
+  "244": {
+    "title": "Challenge 3",
+    "description": "Coty should draw a square, but... Be careful, sometimes a puddle appears!",
+    "clue": ""
+  },
+  "245": {
+    "title": "Challenge 1",
+    "description": "Lita wants to grab any vegetable. But she should grab only the correct one!",
+    "clue": "The If/Else block allows you to choose between two options. You just have to choose the question well."
+  },
+  "246": {
+    "title": "Challenge 2",
+    "description": "She doesn´t always have to move on to the right... What question is useful for Duba to decide?",
+    "clue": "You can also include more than one instruction in the If/Else block."
+  },
+  "247": {
+    "title": "Challenge 3",
+    "description": "Duba, be careful! Where may an obstacle appear? We will have to decide what route to take!",
+    "clue": ""
+  },
+  "248": {
+    "title": "Challenge 1",
+    "description": "Now Duba is far away, and she should decide whether to eat or not. Let’s help her with the blocks we’ve learnt about!",
+    "clue": "It’s important to push the \"Run\" button several times to understand the problem."
+  },
+  "249": {
+    "title": "Challenge 2",
+    "description": "So many beefsteaks! What pattern should Duba repeat? How many questions does she have to make?",
+    "clue": "It’s important to push the \"Run\" button several times to understand the problem."
+  },
+  "250": {
+    "title": "Challenge 3",
+    "description": "Lita should also repeat her decision several times! There is always a vegetable; she just needs to decide which she will grab in each step.",
+    "clue": ""
+  },
+  "251": {
+    "title": "Challenge 1",
+    "description": "Now Toto knows how to write! Make him copy the whole word.",
+    "clue": "Toto knows how to write the letter he is touching."
+  },
+  "252": {
+    "title": "Challenge 2",
+    "description": "Now Toto wants to write an X per each letter. No matter what he reads! How many Xs should he write?",
+    "clue": "Toto also knows how to write the letter you want."
+  },
+  "253": {
+    "title": "Challenge 3",
+    "description": "Toto likes playing with the letters: make him copy the word, but make him add \"ICH\" when he reaches the M.\n",
+    "clue": "When he copies \"Cement\", he will write \"Cemichent\""
+  },
+  "254": {
+    "title": "Challenge 4",
+    "description": "Make Toto copy the word in Jeringozo language. If the word were \"DUBA\", he will have to copy \"DUPUBAPA\"",
+    "clue": "Jeringozo language adds \"PA\" after an A, \"PE\" after an E, and so on with the rest of the vowels."
+  },
+  "255": {
+    "title": "Coty practices free drawing!",
+    "description": "In this activity you’ll be able to draw whatever you like.",
+    "clue": "We’ve included all blocks possible, so that you can unleash your creativity."
+  },
+  "202101": {
+    "title": "Introduction",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "202102": {
+    "title": "Introduction to repetition",
+    "description": "Help Duba pick all beefsteaks up. But now there is a new block! :thinking:.",
+    "clue": "See what happens when you press the Run button."
+  },
+  "2021001": {
+    "title": "Level 1",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021002": {
+    "title": "Level 2",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021003": {
+    "title": "Level 3",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021004": {
+    "title": "Level 4",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021005": {
+    "title": "Level 5",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021006": {
+    "title": "Level 6",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021007": {
+    "title": "Level 7",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021008": {
+    "title": "Level 8",
+    "description": "Help Duba pick all beefsteaks up.",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021101": {
+    "title": "Level 1",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021102": {
+    "title": "Level 2",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021103": {
+    "title": "Level 3",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021104": {
+    "title": "Level 4",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021105": {
+    "title": "Level 5",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021106": {
+    "title": "Level 6",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021107": {
+    "title": "Level 7",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021108": {
+    "title": "Level 8",
+    "description": "Help Lita prepare the salad (with tomato and lettuce).",
+    "clue": "The REPEAT block can help you."
+  },
+  "2021201": {
+    "title": "Level 1",
+    "description": "Help Coty the llama complete the tower.",
+    "clue": "To complete the drawing, Coty needs to draw on the grey lines."
+  },
+  "2021202": {
+    "title": "Level 2",
+    "description": "The llama wants to draw only three lines. How could she do it?",
+    "clue": ""
+  },
+  "2021203": {
+    "title": "Level 3",
+    "description": "It’s time for a good mate. Help the llama finish her drawing.",
+    "clue": ""
+  },
+  "2021204": {
+    "title": "Level 4",
+    "description": "La llama quiere dibujar cuatro líneas. ¿Qué es lo que se repite esta vez?",
+    "clue": "Puede haber más de un bloque dentro del Repetir"
+  },
+  "2021205": {
+    "title": "Level 5",
+    "description": "Coty tiene ganas de dibujar una escalera. ¿Encontrás el patrón que se repite? ¿Cuántas veces se repite?",
+    "clue": ""
+  },
+  "2021206": {
+    "title": "Level 6",
+    "description": "Help Coty draw the missing letter.",
+    "clue": ""
+  },
+  "2021207": {
+    "title": "Level 7",
+    "description": "¿Encontrás el patrón que se repite? ¿Cuántas veces se repite?",
+    "clue": ""
+  },
+  "2021301": {
+    "title": "Level 1",
+    "description": "Help the fox read his name: TOTO.\n",
+    "clue": "TOTO reads the letters over which he moves."
+  },
+  "2021302": {
+    "title": "Level 2",
+    "description": "The fox is thinking about Coty, his friend from the Puna. Help him read LLAMA.",
+    "clue": ""
+  },
+  "2021303": {
+    "title": "Level 3",
+    "description": "Guess who the fox is thinking about! A clue: it’s an animal who likes eating beefsteak very much.\n",
+    "clue": ""
+  },
+  "2021304": {
+    "title": "Level 4",
+    "description": "Arreglá el programa para que Toto pueda leer un día de la semana.",
+    "clue": "Con el botón 'PASO' Toto puede ir realizando las instrucciones una por una"
+  },
+  "2021305": {
+    "title": "Level 5",
+    "description": "Toto tiene que leer una palabra. ¿En dónde hay un stand de Pilas Bloques? ¡En Tec....!",
+    "clue": ""
+  },
+  "2021306": {
+    "title": "Level 6",
+    "description": "Toto tiene que leer el nombre de una provincia que se lee igual al derecho que al revés. ¿Sabés cuál es?",
+    "clue": "¡Apareció el bloque Repetir para ayudarnos a resolver el desafío!"
+  },
+  "2021307": {
+    "title": "Level 7",
+    "description": "Toto tiene que volver a leer Neuquén. ¡Recordá que se puede leer igual al derecho que al revés! :wink: \n",
+    "clue": ""
+  },
+  "2021308": {
+    "title": "Level 8",
+    "description": "Ayudalo a Toto a leer SANTA CRUZ. ¡Pero esta vez usando el bloque repetición!",
+    "clue": "¿Sabías que dentro de un bloque repetir pueden ponerse muchos bloques?"
+  },
+  "2021309": {
+    "title": "Level 9",
+    "description": "Tenemos un programa ya hecho para que toto lea la provincia que está al sur de rio negro.\nFijate si funciona o qué hay que arreglar.\n",
+    "clue": "Con el botón 'PASO' Toto puede ir realizando las instrucciones una por una"
   }
+}

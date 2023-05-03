@@ -1,42 +1,49 @@
-import {IconButton, Menu, MenuItem} from "@mui/material";
-import LanguageIcon from '@mui/icons-material/Language';
-import React from "react";
-import { availableLanguages, changeLanguage, InternalizationLanguage } from "../../language";
+import { IconButton, Menu, MenuItem } from "@mui/material"
+import LanguageIcon from "@mui/icons-material/Language"
+import React from "react"
+import {
+  availableLanguages,
+  changeLanguage,
+  InternalizationLanguage,
+} from "../../language"
 
 export const ChangeLanguageButton = () => {
-    const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(null);
-    const open = Boolean(anchorElement);
+  const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(
+    null
+  )
+  const open = Boolean(anchorElement)
 
-    const handleIconClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElement(event.currentTarget);
-    };
+  const handleIconClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElement(event.currentTarget)
+  }
 
-    const closeMenu = () => {
-        setAnchorElement(null);
-    }
+  const closeMenu = () => {
+    setAnchorElement(null)
+  }
 
-    const handleLanguageSelection = (selectedLanguage: InternalizationLanguage) => {
-      changeLanguage(selectedLanguage)
-      closeMenu()
-    };
-    
-    return <>
-    <IconButton onClick={handleIconClick}>
-        <LanguageIcon sx={{ color: 'GrayText'}}/>
-    </IconButton>
+  const handleLanguageSelection = (
+    selectedLanguage: InternalizationLanguage
+  ) => {
+    changeLanguage(selectedLanguage)
+    closeMenu()
+  }
 
-    <Menu
-        anchorEl={anchorElement}
-        open={open}
-        onClose={closeMenu}
-      >
+  return (
+    <>
+      <IconButton onClick={handleIconClick}>
+        <LanguageIcon sx={{ color: "GrayText" }} />
+      </IconButton>
+
+      <Menu anchorEl={anchorElement} open={open} onClose={closeMenu}>
         {availableLanguages.map((language: InternalizationLanguage) => (
-          <MenuItem key={language.name} onClick={() => handleLanguageSelection(language)}>
+          <MenuItem
+            key={language.name}
+            onClick={() => handleLanguageSelection(language)}
+          >
             {language.name}
           </MenuItem>
         ))}
       </Menu>
     </>
+  )
 }
-
-

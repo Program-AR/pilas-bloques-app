@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
 
       #https://docs.github.com/es/actions/guides/caching-dependencies-to-speed-up-workflows#using-the-cache-action
       - name: Cache node modules
@@ -29,25 +29,25 @@ jobs:
         run: xvfb-run -a npm run test
 
   pack-linux: # When there is a tag, pack the installers and upload to Github.
-      runs-on: ubuntu-latest
-      env:
-        REACT_APP_API_URL: ${{ secrets.API_URL }}
-      if: startsWith(github.ref, 'refs/tags')
-      needs: test
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version-file: '.nvmrc'
-        - run: npm install
-        - run: npm run build
-        - run: npm run pack:linux
-        - run: npm run pack:html
-        - uses: ncipollo/release-action@v1
-          with:
-            allowUpdates: true
-            artifacts: "binaries/*.zip,binaries/*.deb,binaries/*.tar.gz"
-            token: ${{ secrets.GITHUB_TOKEN }}
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_API_URL: ${{ secrets.API_URL }}
+    if: startsWith(github.ref, 'refs/tags')
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - run: npm install
+      - run: npm run build
+      - run: npm run pack:linux
+      - run: npm run pack:html
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "binaries/*.zip,binaries/*.deb,binaries/*.tar.gz"
+          token: ${{ secrets.GITHUB_TOKEN }}
 
   pack-macos: # When there is a tag, pack the installers and upload to Github.
     runs-on: macos-latest
@@ -59,7 +59,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
       - run: npm install
       - run: npm run build
       - run: npm run pack:osx
@@ -79,7 +79,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version-file: '.nvmrc'
+          node-version-file: ".nvmrc"
       - run: npm install
       - run: npm run build
       - run: npm run pack:win32

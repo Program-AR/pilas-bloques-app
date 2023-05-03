@@ -1,13 +1,19 @@
-import {describe, expect, test} from '@jest/globals';
-import { Book, getBook } from '../staticData/books';
-import { Challenge, getChallengeWithId, getChallengeWithName, getPathToChallenge, PathToChallenge } from '../staticData/challenges';
+import { describe, expect, test } from "@jest/globals"
+import { Book, getBook } from "../staticData/books"
+import {
+  Challenge,
+  getChallengeWithId,
+  getChallengeWithName,
+  getPathToChallenge,
+  PathToChallenge,
+} from "../staticData/challenges"
 
-describe('Static data fetching', () => {
-  test('Should get book if it exists', () => {
+describe("Static data fetching", () => {
+  test("Should get book if it exists", () => {
     const book: Book = getBook(1)
 
     expect(book.id).toEqual(1)
-  });
+  })
 
   test("Should throw error on getting book if it doesnt exist", () => {
     expect(() => getBook(1337)).toThrowError()
@@ -41,4 +47,4 @@ describe('Static data fetching', () => {
     expect(path.chapter.id).toEqual("Capítulo 3")
     expect(path.book.id).toEqual(1)
   })
-});
+})

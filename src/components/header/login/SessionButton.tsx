@@ -1,66 +1,76 @@
 import { Button, Menu, MenuItem } from "@mui/material"
-import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
-import styles from '../header.module.css';
-import { LoginModal } from "./LoginModal";
-import { PB_USER, PilasBloquesApi } from "../../../pbApi";
+import React, { useState } from "react"
+import { useTranslation } from "react-i18next"
+import styles from "../header.module.css"
+import { LoginModal } from "./LoginModal"
+import { PB_USER, PilasBloquesApi } from "../../../pbApi"
 
 const AVATAR_COUNT = 16
 const AVATAR_PATH = "imagenes/avatars/"
 
-
 export const SessionButton = () => {
+  const { t } = useTranslation("login")
 
-    const { t } = useTranslation('login');
+  const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(
+    null
+  )
+  const [openModal, setOpenModal] = useState(false)
+  const open = Boolean(anchorElement)
 
-    const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(null);
-    const [openModal, setOpenModal] = useState(false);
-    const open = Boolean(anchorElement);
+  const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElement(event.currentTarget)
+    if (!isLoggedIn()) setOpenModal(true)
+  }
 
-    const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorElement(event.currentTarget);
-        if(!isLoggedIn()) setOpenModal(true)
-    }
+  const handleChangeUser = () => {
+    setOpenModal(true)
+    handleLogOut()
+  }
 
-    const handleChangeUser = () => {
-        setOpenModal(true)
-        handleLogOut()
-    }
+  const handleLogOut = () => {
+    localStorage.removeItem(PB_USER)
+    closeMenu()
+  }
 
-    const handleLogOut = () => {
-        localStorage.removeItem(PB_USER)
-        closeMenu()
-    }
+  const isLoggedIn = () => Boolean(localStorage.getItem(PB_USER))
 
-    const isLoggedIn = () => Boolean(localStorage.getItem(PB_USER));
+  const closeMenu = () => {
+    setAnchorElement(null)
+  }
 
-    const closeMenu = () => {
-        setAnchorElement(null);
-    }
+  const closeModal = () => {
+    setOpenModal(false)
+  }
 
-    const closeModal = () => {
-        setOpenModal(false)
-    }
+  const getUser = () => PilasBloquesApi.getUser()
 
-    const getUser = () => PilasBloquesApi.getUser()
+  const avatars = Array.from(Array(AVATAR_COUNT).keys()).map(
+    (n) => `${AVATAR_PATH}avatar-${n + 1}.png`
+  )
 
-    const avatars = Array.from(Array(AVATAR_COUNT).keys()).map((n) => `${AVATAR_PATH}avatar-${n + 1}.png`)
+  const getRandomAvatar = () =>
+    avatars[Math.floor(Math.random() * avatars.length)]
 
-    const getRandomAvatar = () => avatars[Math.floor(Math.random() * avatars.length)]
+  return (
+    <div>
+      <img
+        alt="profile-avatar"
+        className={`${styles["face"]} ${!isLoggedIn() ? styles.gray : ""}`}
+        src={!isLoggedIn() ? getRandomAvatar() : getUser()?.avatarURL}
+      />
+      <Button className={styles["login-btn"]} onClick={handleButtonClick}>
+        {isLoggedIn() ? getUser()?.nickName : t("login")}
+      </Button>
 
-
-    return <div>
-        <img alt='profile-avatar' className={`${styles['face']} ${!isLoggedIn() ? styles.gray : ''}`} src={!isLoggedIn() ? getRandomAvatar() : getUser()?.avatarURL}/>
-        <Button className={styles['login-btn']} onClick={handleButtonClick}>{isLoggedIn() ? getUser()?.nickName : t('login')}</Button>
-
-        <LoginModal open={openModal} onClose={closeModal} />
-        {isLoggedIn() ? (<Menu
-                anchorEl={anchorElement}
-                open={open}
-                onClose={closeMenu}>
-                    <MenuItem onClick={handleChangeUser}>{t('changeUser')}</MenuItem>
-                    <MenuItem onClick={handleLogOut}>{t('logout')}</MenuItem>
-                </Menu>) : <></>
-        }
-    </div>   
+      <LoginModal open={openModal} onClose={closeModal} />
+      {isLoggedIn() ? (
+        <Menu anchorEl={anchorElement} open={open} onClose={closeMenu}>
+          <MenuItem onClick={handleChangeUser}>{t("changeUser")}</MenuItem>
+          <MenuItem onClick={handleLogOut}>{t("logout")}</MenuItem>
+        </Menu>
+      ) : (
+        <></>
+      )}
+    </div>
+  )
 }
