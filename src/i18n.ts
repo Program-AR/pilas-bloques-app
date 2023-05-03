@@ -19,9 +19,6 @@ i18n
     lowerCaseLng: true,
     fallbackLng: spanish.languageCode,
     lng: selectedLanguage() || spanish.languageCode,
-    interpolation: {
-      escapeValue: false, // not needed for react as it escapes by default
-    },
       backend: {
         backends: [
           HttpBackend, // Doesn't make sense, but apparently without this Electron doesn't work

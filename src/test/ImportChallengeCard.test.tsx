@@ -1,11 +1,13 @@
-import { render, screen, fireEvent } from '@testing-library/react'
+import { screen, fireEvent } from '@testing-library/react'
 import { ImportChallengeCard } from '../components/home/ImportChallengeCard';
-import { BrowserRouter } from 'react-router-dom';
+import { renderComponent } from './testUtils';
 
 
 test('shows error snackbar when invalid file is uploaded', async () => {
-  const { container } = render(<BrowserRouter><ImportChallengeCard /></BrowserRouter>);
-  const input = container.querySelector('#import-input')!
+  
+  renderComponent(<ImportChallengeCard />)
+  
+  const input = await screen.findByTestId('import-input')
   
   const invalidFileMock = {
     text: () => JSON.stringify({pepita: "hola"})
