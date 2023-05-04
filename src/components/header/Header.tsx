@@ -13,11 +13,7 @@ type HeaderProps = {
 export const Header = (props: HeaderProps) => {
     
     return <AppBar position="fixed" elevation={0}>
-            <Grid container className={styles['header']} 
-                  sx={{ height: 'inherit',
-                        [theme.breakpoints.down('sm')]: {
-                        height: '35px'
-                      }}}>
+            <Grid container className={styles['header']}>
                 <Link to="/"><PBLogo className={styles['logo']}/></Link>
                 {props.CenterComponent}
                 <div>

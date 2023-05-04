@@ -24,9 +24,9 @@ const RegisterButton: React.FC = () => {
 const HeaderText: React.FC = () => {
     const { t } = useTranslation("header");
     return <Typography className={styles['header-text']} 
-                sx={{ display:'block', 
-                        [theme.breakpoints.down('sm')]: {
-                            display: 'none' } }}>{t('tool')}</Typography>
+                       sx={{[theme.breakpoints.down('sm')]: {display: 'none' } }}>
+                {t('tool')}
+            </Typography>
 } 
 
 export const Home = () => {

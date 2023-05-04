@@ -39,7 +39,7 @@ export const ImportChallengeCard = () => {
     }
 
     return <>
-    <Button component="label" style={{margin: '5rem', textTransform: 'none'}}>
+    <Button component="label" style={{margin: '3rem', textTransform: 'none'}}>
         <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
         <input id="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
         <DialogSnackbar 
