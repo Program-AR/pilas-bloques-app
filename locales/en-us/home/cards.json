@@ -1,5 +1,7 @@
 {
     "initial": "Initial",
     "intermediate": "Intermediate",
-    "advanced": "Advanced"
+    "advanced": "Advanced",
+    "import": "Import your challenge",
+    "creator": "Create your own challenge"
 }

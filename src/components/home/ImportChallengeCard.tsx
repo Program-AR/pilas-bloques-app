@@ -1,5 +1,5 @@
 import { HomeCard } from "./HomeCard";
-import ImportImage from "../../assets/import.png"
+import ImportImage from "../../assets/placeholder.png"
 import Button from '@mui/material/Button';
 import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";

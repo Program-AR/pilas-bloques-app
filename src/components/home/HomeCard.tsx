@@ -1,11 +1,19 @@
 import { Typography, Card } from "@mui/material"
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export type HomeCardProps = {
     nameKey: string,
     image: string,
     color: string
 }
+
+type LinkCardProps = {url: string} & HomeCardProps
+
+export const LinkCard = (props: LinkCardProps) =>
+    <Link to={props.url} style={{ textDecoration: 'none' }}>
+        {HomeCard(props)}
+    </Link>
 
 export const HomeCard = (props: HomeCardProps) => {
     const { t } = useTranslation("home/cards");

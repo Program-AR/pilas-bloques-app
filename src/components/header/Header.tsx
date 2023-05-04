@@ -6,15 +6,15 @@ import { SessionButton } from "./login/SessionButton";
 import { Link } from "react-router-dom";
 
 type HeaderProps = {
-    CenterComponent: React.ReactNode
+    CenterComponent?: React.ReactNode
 }
 
-export const Header = (props: HeaderProps) => {
+export const Header = ({CenterComponent= <></>}: HeaderProps) => {
     
     return <AppBar position="fixed" elevation={0}>
             <Grid container className={styles['header']}>
                 <Link to="/"><PBLogo className={styles['logo']}/></Link>
-                {props.CenterComponent}
+                {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
                     <SessionButton/>

@@ -3,7 +3,7 @@ import { Header } from "./header/Header"
 
 export const About = () =>{
     return <>
-    <Header CenterComponent={<></>}/>
+    <Header/>
     <EmberView path={`acercade`}/>
     </>
 }
