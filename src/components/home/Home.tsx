@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header } from "../header/Header";
 import { ImportChallengeCard } from "./ImportChallengeCard";
+import theme from '../../theme';
 import styles from './home.module.css';
 import CreatorImage from "../../assets/placeholder.png"
 import { LinkCard } from "./HomeCard";
@@ -24,8 +25,11 @@ const RegisterButton: React.FC = () => {
 
 const HeaderText: React.FC = () => {
     const { t } = useTranslation("header");
-    return <p className={styles['header-text']} >{t('tool')}</p>
-}
+    return <Typography className={styles['header-text']} 
+                       sx={{[theme.breakpoints.down('sm')]: {display: 'none' } }}>
+                {t('tool')}
+            </Typography>
+} 
 
 export const Home = () => {
     const { t } = useTranslation("home/home");
@@ -34,10 +38,12 @@ export const Home = () => {
     <Header CenterComponent={<HeaderText/>}/>
     <Container className={styles.background} maxWidth={false}><Background/></Container>
     
-    <Grid className={styles['home-grid']} container direction="column">
+    <Grid className={styles['home-logo-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
         <Typography className={styles.title} variant="h5">{t("title")}</Typography>
-        <RegisterButton/>
+        <RegisterButton />
+    </Grid>
+    <Grid className={styles['home-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <BookCards/>
         <Stack direction="row" spacing={10}>
             <LinkCard url="/creador/seleccionar" nameKey="creator" color="#ec3efc" image={CreatorImage}/>

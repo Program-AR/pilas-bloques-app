@@ -1,4 +1,5 @@
 .background {
+    display: center;
     position: relative;
     margin-bottom: -18rem;
     height: 30rem;
@@ -7,6 +8,7 @@
 
 .title {
     position: relative;
+    text-align: center;
     top: 1.5rem; 
     text-transform: uppercase;
     color: white;
@@ -17,14 +19,22 @@
     top: 7rem;
 }
 
+.home-logo-grid {
+    background-color: #311C3B;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 12rem;
+}
+
 .home-grid {
     background-color: #311C3B;
     align-items: center;
     justify-content: space-evenly;
-    height: 50rem;
+    min-height: 50rem;
 }
 
 .header-text {
     color: #787878;
     align-content: center;
 }
+

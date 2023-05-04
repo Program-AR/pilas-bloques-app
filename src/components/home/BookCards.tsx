@@ -9,7 +9,7 @@ const IntermediateBookCard = () => <LinkCard url="/libros/2" nameKey="intermedia
 const AdvancedBookCard = () => <LinkCard url="/libros/100" nameKey="advanced" color="#32CFC1" image={TotoAdvanced}/>
 
 export const BookCards = () =>
-    <Stack direction="row" spacing={10}>
+    <Stack direction={{ xs: 'column', sm: 'row' }} spacing={10}>
         <InitialBookCard/>
         <IntermediateBookCard/>
         <AdvancedBookCard/>
