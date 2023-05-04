@@ -12,8 +12,8 @@ import "./theme-light.css"
 import { About } from './components/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
-import { CreatorSelection } from './components/creator/CreatorSelection';
-import { CreatorEditor } from './components/creator/CreatorEditor';
+import { CreatorSelection } from './components/creator/Selection';
+import { CreatorEditor } from './components/creator/Editor';
 
 function App() {
   

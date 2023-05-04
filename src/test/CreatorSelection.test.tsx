@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, getByTestId } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom';
-import { CreatorSelection } from '../components/creator/CreatorSelection';
+import { CreatorSelection } from '../components/creator/Selection';
 
 describe('Creator selection', () => {
     afterEach(() => {
