@@ -70,13 +70,24 @@ export type ExpectationConfig = {
 /**
   @throws Error
  **/
-export const getChallenge = (id: number): Challenge => {
+export const getChallengeWithId = (id: number): Challenge => {
   const challenge: Challenge | undefined = challenges.find(challenge => challenge.id === id)
 
-  if (!challenge) throw new Error("Challenge does not exist")
+  if (!challenge) throw new Error("Challenge with that id does not exist")
 
   return challenge
 }
+
+/**
+  @throws Error
+ **/
+  export const getChallengeWithName = (challengeName: string): Challenge => {
+    const challenge: Challenge | undefined = challenges.find(challenge => challenge.name === challengeName)
+    
+    if (!challenge) throw new Error("Challenge with that name does not exist")
+  
+    return challenge
+  }
 
 export type PathToChallenge = {
   book: Book,
@@ -86,13 +97,15 @@ export type PathToChallenge = {
 }
 
 export const getPathToChallenge = (challengeId: number): PathToChallenge => {
-  const challenge: Challenge = getChallenge(challengeId)
+  const challenge: Challenge = getChallengeWithId(challengeId)
   const book: Book = getAllBooks().find(book => bookIncludesChallenge(book, challenge))!
   const chapter: Chapter = book.chapters.find(chapter => chapterIncludesChallenge(chapter, challenge))!
   const group: Group = chapter.groups.find(group => groupIncludesChallenge(group, challenge))!
 
   return {book, chapter, group, challenge}
 }
+
+
 
 const challenges: Challenge[] = [
   {
