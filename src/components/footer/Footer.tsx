@@ -25,5 +25,5 @@ export const Footer = () =>
       <Version />
       <Links />
     </Grid>
-    <FooterLogos style={{width: "30rem"}}/>
+    <FooterLogos style={{maxWidth: "30rem"}}/>
   </Stack>
