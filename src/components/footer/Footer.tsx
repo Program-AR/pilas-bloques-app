@@ -3,11 +3,9 @@ import { useTranslation } from "react-i18next";
 import styles from './footer.module.css';
 import { ReactComponent as FooterLogos } from "../../assets/footer-logos.svg"
 import { Link } from "react-router-dom";
-import theme from '../../theme';
 
 const Version = () =>
-  <Typography className={styles["version"]} 
-              sx={{ [theme.breakpoints.down('sm')]: {fontSize: '12px'}}}>
+  <Typography className={styles["version"]} >
     Versión 1.2.3 - pepita
   </Typography>
 
@@ -22,13 +20,10 @@ const Links = () => {
   </Box>
 }
 export const Footer = () =>
-  <Stack direction={{ xs: 'column', sm: 'row' }} spacing={12} justifyContent={"center"} sx={{ padding: '10px' }}>
-    <Grid >
+  <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ padding: '10px' }} justifyContent="space-evenly">
+    <Grid>
       <Version />
-      <br />
       <Links />
     </Grid>
-    <Box sx={{ padding: "10px", [theme.breakpoints.up('sm')]: {width:"30rem"} }}>
-      <FooterLogos />
-    </Box>
+    <FooterLogos style={{width: "30rem"}}/>
   </Stack>
