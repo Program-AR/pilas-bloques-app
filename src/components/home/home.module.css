@@ -19,18 +19,16 @@
     top: 7rem;
 }
 
-.home-logo-grid {
+.logo-grid {
     background-color: #311C3B;
     align-items: center;
     justify-content: space-evenly;
     height: 12rem;
 }
 
-.home-grid {
+.cards-group {
     background-color: #311C3B;
     align-items: center;
-    justify-content: space-evenly;
-    min-height: 50rem;
 }
 
 .header-text {
