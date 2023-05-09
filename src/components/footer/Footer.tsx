@@ -5,9 +5,10 @@ import { Link } from "react-router-dom";
 import GitInfo from 'react-git-info/macro';
 
 const Version = () => {
+    const {t} = useTranslation("footer")
     const gitInfo = GitInfo()
     const repoUrl = `https://github.com/Program-AR/pilas-bloques-react/tree/${gitInfo.commit.hash}`
-    return <span>Versión {process.env.REACT_APP_VERSION} - <Link to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</Link></span>
+    return <span>{t("version")} {process.env.REACT_APP_VERSION} - <Link to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</Link></span>
 }
 
 const Links = () =>{
