@@ -1,9 +1,9 @@
-import { Button, Dialog, DialogContent, Stack, Typography } from "@mui/material"
+import { Button, Container, Dialog, DialogContent, Stack, Typography } from "@mui/material"
 import { Header } from "../header/Header"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import Placeholder from "../../assets/placeholder.png"
+import styles from './selection.module.css';
 
 export const CreatorSelection = () => {
   const { t } = useTranslation("creator")
@@ -12,7 +12,9 @@ export const CreatorSelection = () => {
     <>
       <Header CenterComponent={<p>{t("selection.workshop")}</p>}/>
       <ChallengeInProgressDialog />
-      <img alt={"neco"} src={`.${Placeholder}`} />
+      <Container className={styles.selection}>
+        <p>Holaaa :)</p>
+      </Container>
     </>
   )
 }
