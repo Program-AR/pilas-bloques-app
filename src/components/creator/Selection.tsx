@@ -6,9 +6,11 @@ import { useTranslation } from "react-i18next"
 import Placeholder from "../../assets/placeholder.png"
 
 export const CreatorSelection = () => {
+  const { t } = useTranslation("creator")
+
   return (
     <>
-      <Header />
+      <Header CenterComponent={<p>{t("selection.workshop")}</p>}/>
       <ChallengeInProgressDialog />
       <img alt={"neco"} src={`.${Placeholder}`} />
     </>

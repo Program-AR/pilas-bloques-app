@@ -6,9 +6,8 @@ import { BookCards } from "./BookCards"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
-import { Header } from "../header/Header";
+import { Header, HeaderText } from "../header/Header";
 import { ImportChallengeCard } from "./ImportChallengeCard";
-import theme from '../../theme';
 import styles from './home.module.css';
 import CreatorImage from "../../assets/placeholder.png"
 import { LinkCard } from "./HomeCard";
@@ -23,19 +22,11 @@ const RegisterButton: React.FC = () => {
 </>
 }
 
-const HeaderText: React.FC = () => {
-    const { t } = useTranslation("header");
-    return <Typography className={styles['header-text']} 
-                       sx={{[theme.breakpoints.down('sm')]: {display: 'none' } }}>
-                {t('tool')}
-            </Typography>
-} 
-
 export const Home = () => {
     const { t } = useTranslation("home/home");
 
     return <>
-    <Header CenterComponent={<HeaderText/>}/>
+    <Header CenterComponent={<HeaderText text={t("header")}/>}/>
     <Container className={styles.background} maxWidth={false}><Background/></Container>
     
     <Grid className={styles['home-logo-grid']} container direction={{ xs: 'row', sm: 'column' }}>
