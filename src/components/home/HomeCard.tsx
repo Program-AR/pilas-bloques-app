@@ -16,12 +16,12 @@ export const LinkCard = (props: LinkCardProps) =>
     </Link>
 
 export const HomeCard = (props: HomeCardProps) => {
-    const { t } = useTranslation("home/cards");
+    const { t } = useTranslation("home");
 
     return (
         <Card style={{ width:"13rem", backgroundColor: props.color, borderRadius: "20px", padding: "30px"}}>
             <img alt={props.nameKey} src={`.${props.image}`}/>
-            <Typography variant="h5" align="center" fontWeight="600" >{t(props.nameKey)}</Typography>
+            <Typography variant="h5" align="center" fontWeight="600" >{t(`cards.${props.nameKey}`)}</Typography>
         </Card>
     )
 }

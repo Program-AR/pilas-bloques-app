@@ -9,7 +9,7 @@ import { SerializedChallenge, isValidChallenge } from "../serializedChallenge";
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 
 export const ImportChallengeCard = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("home");
     const navigate = useNavigate();
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
