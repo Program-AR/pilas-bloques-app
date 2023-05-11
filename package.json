@@ -77,8 +77,9 @@
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
     "makensis": "^2.0.5",
-    "simple-type-guard": "^3.3.9",
-    "release-it": "^15.6.0"
+    "react-git-info": "^2.0.1",
+    "release-it": "^15.6.0",
+    "simple-type-guard": "^3.3.9"
   },
   "optionalDependencies": {
     "electron-installer-debian": "git+https://github.com/Program-AR/electron-installer-debian.git"

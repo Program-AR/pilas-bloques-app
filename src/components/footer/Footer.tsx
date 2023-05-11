@@ -1,23 +1,25 @@
-import { Stack, Grid, Box, Typography } from "@mui/material";
+import { Stack, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import styles from './footer.module.css';
-import { ReactComponent as FooterLogos } from "../../assets/footer-logos.svg"
+import {ReactComponent as FooterLogos} from "../../assets/footer-logos.svg"
 import { Link } from "react-router-dom";
+import GitInfo from 'react-git-info/macro';
 
-const Version = () =>
-  <Typography className={styles["version"]} >
-    Versión 1.2.3 - pepita
-  </Typography>
+const Version = () => {
+    const {t} = useTranslation("footer")
+    const gitInfo = GitInfo()
+    const repoUrl = `https://github.com/Program-AR/pilas-bloques-react/tree/${gitInfo.commit.hash}`
+    return <span>{t("version")} {process.env.REACT_APP_VERSION} - <Link to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</Link></span>
+}
 
-const Links = () => {
-  const { t } = useTranslation("footer")
-  const termsAndConditionsLink = "https://docs.google.com/document/u/1/d/e/2PACX-1vTNX9zl8txZmuINNz2qODrodoQhvr0o2-r3T_6yFp6quEpidmPz6ORx1HSjo2KNUg6MnyHPN-Ti44z1/pub"
-
-  return <Box className={styles['footer-links']}>
-    <Link to="acercade">{t("aboutPilasBloques")}</Link> |
-    <Link to="https://pilasbloques.program.ar/docentes" target="_blank"> {t("toTeachersSite")}</Link> |
-    <Link to={termsAndConditionsLink} target="_blank"> {t("terms")}</Link>
-  </Box>
+const Links = () =>{
+    const {t} = useTranslation("footer")
+    const termsAndConditionsLink = "https://docs.google.com/document/u/1/d/e/2PACX-1vTNX9zl8txZmuINNz2qODrodoQhvr0o2-r3T_6yFp6quEpidmPz6ORx1HSjo2KNUg6MnyHPN-Ti44z1/pub"
+    
+    return <>
+        <Link to="acercade">{t("aboutPilasBloques")}</Link> |
+        <Link to="https://pilasbloques.program.ar/docentes"> {t("toTeachersSite")}</Link> |
+        <Link to={termsAndConditionsLink}> {t("terms")}</Link>
+    </>
 }
 export const Footer = () =>
   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ padding: '10px' }} justifyContent="space-evenly">
