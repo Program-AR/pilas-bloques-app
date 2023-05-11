@@ -43,12 +43,10 @@ export const Home = () => {
     <Header CenterComponent={<HeaderText/>}/>
     <Container className={styles.background} maxWidth={false}><Background/></Container>
     
-    <Grid className={styles['logo-grid']} container direction={{ xs: 'row', sm: 'column' }}>
+    <Grid className={styles['home-container']} container direction='column'>
         <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
         <Typography className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton />
-    </Grid>
-    <Grid className={styles['cards-group']} container direction='column'>
         <BookCards/>
         <Divider style={{ width:'90%', borderColor: 'white' }}/>
         <CreatorCards/>

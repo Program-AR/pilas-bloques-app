@@ -10,7 +10,7 @@ const IntermediateBookCard = () => <LinkCard url="/libros/2" nameKey="intermedia
 const AdvancedBookCard = () => <LinkCard url="/libros/100" nameKey="advanced" color="#32CFC1" image={TotoAdvanced}/>
 
 export const BookCards = () =>
-    <Stack direction={{ xs: 'column', sm: 'row' }} className={styles['cards-group']}>
+    <Stack direction='row' className={styles['home-container']}>
         <InitialBookCard/>
         <IntermediateBookCard/>
         <AdvancedBookCard/>
