@@ -18,7 +18,7 @@ export const CreatorSelection = () => {
 const ChallengeInProgressDialog = () => {
   const thereIsChallengeInCreation: boolean = !!localStorage.getItem("PB_CREATOR_CHALLENGE")
   const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
-  const { t } = useTranslation("creator/selection")
+  const { t } = useTranslation("creator")
 
   const onDiscard = () => {
     setOpenModal(false)
@@ -36,14 +36,14 @@ const ChallengeInProgressDialog = () => {
       >
         <DialogContent>
           <Stack direction="column">
-            {t("challengeBeingCreated")}
+            {t("selection.challengeBeingCreated")}
             <br />
-            <b>{t("discardWarning")}</b>
+            <b>{t("selection.discardWarning")}</b>
             <div>
               <Link to="/creador/editar">
-                <Button>{t("continueEditing")}</Button>
+                <Button>{t("selection.continueEditing")}</Button>
               </Link>
-              <Button onClick={onDiscard}>{t("discard")}</Button>
+              <Button onClick={onDiscard}>{t("selection.discard")}</Button>
             </div>
           </Stack>
         </DialogContent>

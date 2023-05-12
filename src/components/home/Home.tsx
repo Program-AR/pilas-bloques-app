@@ -14,7 +14,7 @@ import CreatorImage from "../../assets/placeholder.png"
 import { LinkCard } from "./HomeCard";
 
 const RegisterButton: React.FC = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("home");
 
     return <>
     <Link to="register">
@@ -32,7 +32,7 @@ const HeaderText: React.FC = () => {
 } 
 
 export const Home = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("home");
 
     return <>
     <Header CenterComponent={<HeaderText/>}/>
