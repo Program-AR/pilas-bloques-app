@@ -13,7 +13,7 @@ export const Header = ({CenterComponent= <></>}: HeaderProps) => {
     
     return <AppBar position="fixed" elevation={0}>
             <Grid container className={styles['header']}>
-                <Link to="/"><PBLogo className={styles['logo']}/></Link>
+                <Link to="/" style={{display: 'flex'}}><PBLogo className={styles['logo']}/></Link>
                 {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
