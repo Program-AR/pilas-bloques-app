@@ -1,0 +1,12 @@
+{
+	"title": "Elegí tu nivel y empezá a programar",
+	"signUp": "Registrate",
+	"importError": "El archivo es inválido",
+	"cards": {
+		"initial": "Inicial",
+		"intermediate": "Intermedio",
+		"advanced": "Avanzado",
+		"import": "Importá tu desafío",
+		"creator": "Creá tu desafío"
+	}
+}

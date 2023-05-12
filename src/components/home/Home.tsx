@@ -12,7 +12,7 @@ import styles from './home.module.css';
 import { CreatorCards } from "./CreatorCards";
 
 const RegisterButton: React.FC = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("home");
 
     return <>
         <Button 
@@ -37,7 +37,7 @@ const HeaderText: React.FC = () => {
 } 
 
 export const Home = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("home");
 
     return <>
     <Header CenterComponent={<HeaderText/>}/>
