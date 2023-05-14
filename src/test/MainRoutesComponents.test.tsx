@@ -28,15 +28,15 @@ test('Renders imported challenge without errors', async () => {
   renderComponent(<ImportedChallengeView/>, '', '', [{state: validChallenge}])
 })
 
-test('Renders about route without errors', async () => {
+test('Renders about without errors', async () => {
   renderComponent(<About/>)
 })
 
-test('Renders password-recovery route without errors', async () => {
+test('Renders password-recovery without errors', async () => {
   renderComponent(<PasswordRecovery/>)
 })
 
-test('Renders register route without errors', async () => {
+test('Renders register without errors', async () => {
   renderComponent(<Register/>)
 })
 
