@@ -63,21 +63,21 @@ describe('Scene validity', () => {
     })
 })
 
-describe('serialized challenge validity', () => {
-    const validChallenge: SerializedChallenge = {
-        fileVersion: 1,
-        title: "El ultimo desafio de Lita",
-        statement: {
-            description: "Va a poder lograrlo una ultima vez?",
-            clue: "Usa el poder secreto"
-        },
-        scene: validScene,
-        toolbox: {
-            blocks: ['Uno', 'Otro'],
-        },
-        stepByStep: true
-    }
+export const validChallenge: SerializedChallenge = {
+    fileVersion: 1,
+    title: "El ultimo desafio de Lita",
+    statement: {
+        description: "Va a poder lograrlo una ultima vez?",
+        clue: "Usa el poder secreto"
+    },
+    scene: validScene,
+    toolbox: {
+        blocks: ['Uno', 'Otro'],
+    },
+    stepByStep: true
+}
 
+describe('serialized challenge validity', () => {
 
     test('Valid challenge with valid scene is valid', () => {
         expect(isValidChallenge(validChallenge)).toBeTruthy()
