@@ -12,7 +12,7 @@ import styles from './home.module.css';
 import { LinkCard } from "./HomeCard";
 
 const RegisterButton: React.FC = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("home");
 
     return <>
     <Link to="register">
@@ -22,7 +22,7 @@ const RegisterButton: React.FC = () => {
 }
 
 export const Home = () => {
-    const { t } = useTranslation("");
+    const { t } = useTranslation("home");
 
     return <>
     <Header CenterComponent={<HeaderText text={t("header")}/>}/>
