@@ -48,14 +48,19 @@ const characters: CharacterCardProps[] = [
 ]
 
 const CharacterCard = (props: CharacterCardProps) => {
-  const {t} = useTranslation("selection")
-  
-  return <>
-		<Button component="label" style={{ margin: "3rem", textTransform: "none" }}>
-			<HomeCard text={t(`cards.${props.name}`)} image={`selection/${props.name}.png`} color={props.color} />
-		</Button>
-	</>
+	const { t } = useTranslation("creator")
 
+	return (
+		<>
+			<Button component="label" style={{ margin: "3rem", textTransform: "none" }}>
+				<HomeCard
+					text={t(`selection.cards.${props.name}`)}
+					image={`selection/${props.name}.png`}
+					color={props.color}
+				/>
+			</Button>
+		</>
+	)
 }
 
 const CharacterCards = () => {
@@ -73,13 +78,10 @@ export const CreatorSelection = () => {
 
 	return (
 		<>
-			<Header/>
+			<Header />
 			<ChallengeInProgressDialog />
 			<Container className={styles.selection}>
-				<Typography variant="h3">
-					Creá un nuevo desafio eligiendo un personaje. Cada uno tiene sus propios comandos,
-					sensores y objetivos.
-				</Typography>
+				<Typography variant="h3">{t("selection.title")}</Typography>
 				<CharacterCards />
 			</Container>
 		</>
@@ -87,38 +89,38 @@ export const CreatorSelection = () => {
 }
 
 const ChallengeInProgressDialog = () => {
-  const thereIsChallengeInCreation: boolean = !!localStorage.getItem("PB_CREATOR_CHALLENGE")
-  const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
-  const { t } = useTranslation("creator")
+	const thereIsChallengeInCreation: boolean = !!localStorage.getItem("PB_CREATOR_CHALLENGE")
+	const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
+	const { t } = useTranslation("creator")
 
 	const onDiscard = () => {
 		setOpenModal(false)
 		localStorage.removeItem("PB_CREATOR_CHALLENGE")
 	}
 
-  return (
-    <>
-      <Dialog
-        scroll="paper"
-        maxWidth={false}
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        data-testid="challenge-progress-warning"
-      >
-        <DialogContent>
-          <Stack direction="column">
-            {t("selection.challengeBeingCreated")}
-            <br />
-            <b>{t("selection.discardWarning")}</b>
-            <div>
-              <Link to="/creador/editar">
-                <Button>{t("selection.continueEditing")}</Button>
-              </Link>
-              <Button onClick={onDiscard}>{t("selection.discard")}</Button>
-            </div>
-          </Stack>
-        </DialogContent>
-      </Dialog>
-    </>
-  )
+	return (
+		<>
+			<Dialog
+				scroll="paper"
+				maxWidth={false}
+				open={openModal}
+				onClose={() => setOpenModal(false)}
+				data-testid="challenge-progress-warning"
+			>
+				<DialogContent>
+					<Stack direction="column">
+						{t("selection.challengeBeingCreated")}
+						<br />
+						<b>{t("selection.discardWarning")}</b>
+						<div>
+							<Link to="/creador/editar">
+								<Button>{t("selection.continueEditing")}</Button>
+							</Link>
+							<Button onClick={onDiscard}>{t("selection.discard")}</Button>
+						</div>
+					</Stack>
+				</DialogContent>
+			</Dialog>
+		</>
+	)
 }

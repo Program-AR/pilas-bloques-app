@@ -1,8 +1,17 @@
 {
 	"selection": {
+		"title": "Creá un nuevo desafio eligiendo un personaje. Cada uno tiene sus propios comandos, sensores y objetivos.",
 		"challengeBeingCreated": "Ya tenés un desafío en creación. Podes continuar editándolo o descartarlo",
 		"discardWarning": "¡Cuidado! ¡Si descartás tu desafío no vas a poder recuperarlo!",
 		"continueEditing": "Seguir editando",
-		"discard": "Descartar"
+		"discard": "Descartar",
+		"cards": {
+			"lita": "¡A preparar ensalada!",
+			"duba": "¡A comer churrasco!",
+			"yvoty": "¡A cargar el celu!",
+			"manic": "¡A observar el cielo!",
+			"capy": "¡A cuidar el medio ambiente!",
+			"chuy": "¡A jugar a la pelota!"
+		}
 	}
 }
