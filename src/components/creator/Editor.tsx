@@ -4,7 +4,7 @@ export const CreatorEditor = () => {
   return (
     <>
       <Header />
-      <img alt={"neco"} src={`placeholder.png`} />
+      <img alt={"neco"} src={require(`../../assets/placeholder.png`)} />
     </>
   )
 }

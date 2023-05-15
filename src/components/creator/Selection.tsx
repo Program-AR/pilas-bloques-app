@@ -1,19 +1,10 @@
-import {
-	Box,
-	Button,
-	Container,
-	Dialog,
-	DialogContent,
-	Grid,
-	Stack,
-	Typography,
-} from "@mui/material"
+import { Box, Button, Container, Dialog, DialogContent, Grid, Stack, Typography } from "@mui/material"
 import { Header } from "../header/Header"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
-import { HomeCard, LinkCard } from "../home/HomeCard"
+import { HomeCard } from "../home/HomeCard"
 
 type CharacterCardProps = {
 	name: string
@@ -49,10 +40,17 @@ const characters: CharacterCardProps[] = [
 
 const CharacterCard = (props: CharacterCardProps) => {
 	const { t } = useTranslation("creator")
+  const navigate = useNavigate();
+
+  const goToCreator = () => {
+    localStorage.setItem("PB_CREATOR_CHALLENGE", JSON.stringify({sceneType: props.name}))
+    navigate("/creador/editar")
+
+  }
 
 	return (
 		<>
-			<Button component="label" style={{ margin: "3rem", textTransform: "none" }}>
+			<Button component="label" style={{ margin: "3rem", textTransform: "none" }} onClick={goToCreator}>
 				<HomeCard
 					text={t(`selection.cards.${props.name}`)}
 					image={`selection/${props.name}.png`}
