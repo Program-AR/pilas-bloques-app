@@ -73,7 +73,7 @@ export const CreatorSelection = () => {
 
 	return (
 		<>
-			<Header CenterComponent={<p>{t("selection.workshop")}</p>} />
+			<Header/>
 			<ChallengeInProgressDialog />
 			<Container className={styles.selection}>
 				<Typography variant="h3">
