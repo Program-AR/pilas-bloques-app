@@ -7,7 +7,7 @@
 		"intermediate": "Intermedio",
 		"advanced": "Avanzado",
 		"import": "Importá tu desafío",
-		"creator": "Creá tu desafío",
-		"header": "Una herramienta para aprender a programar"
-	}
+		"creator": "Creá tu desafío"
+	},
+	"header": "Una herramienta para aprender a programar"
 }

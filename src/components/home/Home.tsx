@@ -30,13 +30,13 @@ export const Home = () => {
     
     <Grid className={styles['home-logo-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
-        <Typography className={styles.title} variant="h5">{t("home.title")}</Typography>
+        <Typography className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton />
     </Grid>
     <Grid className={styles['home-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <BookCards/>
         <Stack direction="row" spacing={10}>
-            <LinkCard url="/creador/seleccionar" text={t("home.cards.creator")} color="#ec3efc" image={"placeholder.png"}/>
+            <LinkCard url="/creador/seleccionar" text={t("cards.creator")} color="#ec3efc" image={"placeholder.png"}/>
             <ImportChallengeCard/>
         </Stack>
     </Grid>

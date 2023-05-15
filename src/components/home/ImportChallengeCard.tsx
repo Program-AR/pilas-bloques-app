@@ -39,12 +39,12 @@ export const ImportChallengeCard = () => {
 
     return <>
     <Button component="label" style={{margin: '3rem', textTransform: 'none'}}>
-        <HomeCard text={t("home.cards.import")} image={"placeholder.png"} color={"#fc3e5e"}/>
+        <HomeCard text={t("cards.import")} image={"placeholder.png"} color={"#fc3e5e"}/>
         <input data-testid="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
         <DialogSnackbar 
             open={snackbarOpen}
             onClose={() => setSnackbarOpen(false)} 
-            message={t('home.importError')}/>
+            message={t('importError')}/>
     </Button>
 </>
 }
