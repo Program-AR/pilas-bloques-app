@@ -9,7 +9,6 @@ import { Footer } from "../footer/Footer";
 import { Header, HeaderText } from "../header/Header";
 import { ImportChallengeCard } from "./ImportChallengeCard";
 import styles from './home.module.css';
-import CreatorImage from "../../assets/placeholder.png"
 import { LinkCard } from "./HomeCard";
 
 const RegisterButton: React.FC = () => {
@@ -23,7 +22,7 @@ const RegisterButton: React.FC = () => {
 }
 
 export const Home = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation("");
 
     return <>
     <Header CenterComponent={<HeaderText text={t("header")}/>}/>
@@ -31,13 +30,13 @@ export const Home = () => {
     
     <Grid className={styles['home-logo-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
-        <Typography className={styles.title} variant="h5">{t("title")}</Typography>
+        <Typography className={styles.title} variant="h5">{t("home.title")}</Typography>
         <RegisterButton />
     </Grid>
     <Grid className={styles['home-grid']} container direction={{ xs: 'row', sm: 'column' }}>
         <BookCards/>
         <Stack direction="row" spacing={10}>
-            <LinkCard url="/creador/seleccionar" nameKey="creator" color="#ec3efc" image={CreatorImage}/>
+            <LinkCard url="/creador/seleccionar" text={t("home.cards.creator")} color="#ec3efc" image={"placeholder.png"}/>
             <ImportChallengeCard/>
         </Stack>
     </Grid>

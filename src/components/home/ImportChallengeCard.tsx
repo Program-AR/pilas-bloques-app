@@ -1,5 +1,4 @@
 import { HomeCard } from "./HomeCard";
-import ImportImage from "../../assets/placeholder.png"
 import Button from '@mui/material/Button';
 import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +8,7 @@ import { SerializedChallenge, isValidChallenge } from "../serializedChallenge";
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 
 export const ImportChallengeCard = () => {
-    const { t } = useTranslation("home/home");
+    const { t } = useTranslation();
     const navigate = useNavigate();
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -40,12 +39,12 @@ export const ImportChallengeCard = () => {
 
     return <>
     <Button component="label" style={{margin: '3rem', textTransform: 'none'}}>
-        <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
+        <HomeCard text={t("home.cards.import")} image={"placeholder.png"} color={"#fc3e5e"}/>
         <input data-testid="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
         <DialogSnackbar 
             open={snackbarOpen}
             onClose={() => setSnackbarOpen(false)} 
-            message={t('importError')}/>
+            message={t('home.importError')}/>
     </Button>
 </>
 }
