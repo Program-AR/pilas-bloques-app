@@ -10,18 +10,20 @@ import { Register } from "../components/Register"
 import { renderComponent } from "./testUtils"
 import { validChallenge } from "./serializedChallenge.test"
 test('Renders home without errors', async () => {
-  renderComponent(<Home />)
+  await expect(
+    () => renderComponent(<Home />)
+  ).not.toThrowError();
 })
 test('Renders a challenge without errors', async () => {
-  renderComponent(<ChallengeById/>, ':id', '1')
+  renderComponent(<ChallengeById/>, '/desafio/:id', '1')
 })
 
 test('Renders the book challenge list without errors', async () => {
-  renderComponent(<BookView/>, ':id', '1')
+  renderComponent(<BookView/>, '/libros/:id', '1')
 })
 
 test('Renders challenge by name without errors', async () => {
-  renderComponent(<ChallengeByName />, ':challengeName', 'NoMeCansoDeSaltar')
+  renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'NoMeCansoDeSaltar')
 })
 
 test('Renders imported challenge without errors', async () => {

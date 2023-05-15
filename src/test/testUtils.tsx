@@ -20,7 +20,7 @@ export const renderComponent = (
     otherEntries: any[] = []) => {
   const basePath = routePath.split(":")[0]
   render(
-    <MemoryRouter initialEntries={[basePath + "/" + param].concat(otherEntries)}>
+    <MemoryRouter initialEntries={[basePath + param].concat(otherEntries)}>
         <Routes>
           <Route path={routePath}
             element = {
