@@ -81,7 +81,9 @@ export const CreatorSelection = () => {
 			<Header />
 			<ChallengeInProgressDialog />
 			<Container className={styles.selection}>
-				<Typography variant="h3">{t("selection.title")}</Typography>
+				<Typography variant="h4">{t("selection.title")}</Typography>
+				<Typography variant="h5">{t("selection.subtitle")}</Typography>
+
 				<CharacterCards />
 			</Container>
 		</>
