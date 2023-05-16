@@ -1,6 +1,7 @@
 {
 	"selection": {
-		"title": "Creá un nuevo desafio eligiendo un personaje. Cada uno tiene sus propios comandos, sensores y objetivos.",
+		"title": "Creá un nuevo desafio eligiendo un personaje.",
+		"subtitle": "Cada uno tiene sus propios comandos, sensores y objetivos.",
 		"challengeBeingCreated": "Ya tenés un desafío en creación. Podes continuar editándolo o descartarlo",
 		"discardWarning": "¡Cuidado! ¡Si descartás tu desafío no vas a poder recuperarlo!",
 		"continueEditing": "Seguir editando",
