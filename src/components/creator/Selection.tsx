@@ -40,17 +40,20 @@ const characters: CharacterCardProps[] = [
 
 const CharacterCard = (props: CharacterCardProps) => {
 	const { t } = useTranslation("creator")
-  const navigate = useNavigate();
+	const navigate = useNavigate()
 
-  const goToCreator = () => {
-    localStorage.setItem("PB_CREATOR_CHALLENGE", JSON.stringify({sceneType: props.name}))
-    navigate("/creador/editar")
-
-  }
+	const goToCreator = () => {
+		localStorage.setItem("PB_CREATOR_CHALLENGE", JSON.stringify({ sceneType: props.name }))
+		navigate("/creador/editar")
+	}
 
 	return (
 		<>
-			<Button component="label" style={{ margin: "3rem", textTransform: "none" }} onClick={goToCreator}>
+			<Button
+				component="label"
+				style={{ margin: "3rem", textTransform: "none" }}
+				onClick={goToCreator}
+			>
 				<HomeCard
 					text={t(`selection.cards.${props.name}`)}
 					image={`selection/${props.name}.png`}
