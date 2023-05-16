@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, Stack, Typography } from "@mui/material"
+import { Button, Dialog, DialogContent, Stack } from "@mui/material"
 import { Header } from "../header/Header"
 import { useState } from "react"
 import { Link } from "react-router-dom"

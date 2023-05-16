@@ -1,4 +1,4 @@
-import { Typography, Card } from "@mui/material"
+import { Typography, Card, CardMedia } from "@mui/material"
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
@@ -19,8 +19,8 @@ export const HomeCard = (props: HomeCardProps) => {
     const { t } = useTranslation("home");
 
     return (
-        <Card style={{ width:"13rem", backgroundColor: props.color, borderRadius: "20px", padding: "30px"}}>
-            <img alt={props.nameKey} src={`.${props.image}`}/>
+        <Card style={{ width:"14rem", backgroundColor: props.color, borderRadius: "20px", padding: "30px", margin: "30px"}}>
+            <CardMedia component="img" alt={props.nameKey} image={`.${props.image}`} height="120" sx={{objectFit: "contain"}} />
             <Typography variant="h5" align="center" fontWeight="600" >{t(`cards.${props.nameKey}`)}</Typography>
         </Card>
     )

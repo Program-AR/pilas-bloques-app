@@ -1,14 +1,20 @@
-import { Stack, Grid, Typography } from "@mui/material";
+import { Stack, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import {ReactComponent as FooterLogos} from "../../assets/footer-logos.svg"
 import { Link } from "react-router-dom";
 import GitInfo from 'react-git-info/macro';
+import { Code } from "@mui/icons-material";
 
 const Version = () => {
+    if(!process.env.REACT_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
     const {t} = useTranslation("footer")
     const gitInfo = GitInfo()
     const repoUrl = `https://github.com/Program-AR/pilas-bloques-react/tree/${gitInfo.commit.hash}`
-    return <span>{t("version")} {process.env.REACT_APP_VERSION} - <Link to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</Link></span>
+    return <Stack direction="row">
+      {t("version")} {process.env.REACT_APP_VERSION}
+      <Code/>
+      <Link to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</Link>
+    </Stack>
 }
 
 const Links = () =>{
@@ -21,18 +27,11 @@ const Links = () =>{
         <Link to={termsAndConditionsLink}> {t("terms")}</Link>
     </>
 }
-
-export const Footer = () => 
-    <Stack direction="row" justifyContent={"center"} alignItems={"center"} spacing={12} height={"6rem"}>
-
-        <Grid> 
-            <Typography fontSize={"18px"}>
-                <Version/>
-                <br/>
-                <Links/>
-            </Typography>
-        </Grid>
-
-        <FooterLogos width="30rem"/>
-
-    </Stack>
+export const Footer = () =>
+  <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ padding: '10px' }} justifyContent="space-evenly">
+    <Grid>
+      <Version />
+      <Links />
+    </Grid>
+    <FooterLogos style={{maxWidth: "30rem"}}/>
+  </Stack>
