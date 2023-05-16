@@ -48,19 +48,18 @@ const CharacterCard = (props: CharacterCardProps) => {
 	}
 
 	return (
-		<>
-			<Button
-				component="label"
-				style={{ margin: "3rem", textTransform: "none" }}
-				onClick={goToCreator}
-			>
-				<HomeCard
-					text={t(`selection.cards.${props.name}`)}
-					image={`selection/${props.name}.png`}
-					color={props.color}
-				/>
-			</Button>
-		</>
+		<Button
+			key={props.name} //Needed to prevent react warning
+			component="label"
+			style={{ margin: "3rem", textTransform: "none" }}
+			onClick={goToCreator}
+		>
+			<HomeCard
+				text={t(`selection.cards.${props.name}`)}
+				image={`selection/${props.name}.png`}
+				color={props.color}
+			/>
+		</Button>
 	)
 }
 
