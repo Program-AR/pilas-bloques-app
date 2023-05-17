@@ -1,4 +1,4 @@
-import { Box, Button, Container, Dialog, DialogContent, Grid, Stack, Typography } from "@mui/material"
+import { Button, Container, Dialog, DialogContent, Grid, Stack, Typography } from "@mui/material"
 import { Header } from "../header/Header"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
