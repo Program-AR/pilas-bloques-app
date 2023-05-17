@@ -10,42 +10,40 @@ import { Register } from "../components/Register"
 import { renderComponent } from "./testUtils"
 import { validChallenge } from "./serializedChallenge.test"
 test('Renders home without errors', async () => {
-  await expect(
-    () => renderComponent(<Home />)
-  ).not.toThrowError();
+  expect(() => renderComponent(<Home />)).not.toThrowError()
 })
 test('Renders a challenge without errors', async () => {
-  renderComponent(<ChallengeById/>, '/desafio/:id', '1')
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '1')).not.toThrowError()
 })
 
 test('Renders the book challenge list without errors', async () => {
-  renderComponent(<BookView/>, '/libros/:id', '1')
+  expect(() => renderComponent(<BookView/>, '/libros/:id', '1')).not.toThrowError()
 })
 
 test('Renders challenge by name without errors', async () => {
-  renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'NoMeCansoDeSaltar')
+  expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'NoMeCansoDeSaltar')).not.toThrowError()
 })
 
 test('Renders imported challenge without errors', async () => {
-  renderComponent(<ImportedChallengeView/>, '', '', [{state: validChallenge}])
+  expect(() => renderComponent(<ImportedChallengeView/>, '', '', [{state: validChallenge}])).not.toThrowError()
 })
 
 test('Renders about without errors', async () => {
-  renderComponent(<About/>)
+  expect(() => renderComponent(<About/>)).not.toThrowError()
 })
 
 test('Renders password-recovery without errors', async () => {
-  renderComponent(<PasswordRecovery/>)
+  expect(() => renderComponent(<PasswordRecovery/>)).not.toThrowError()
 })
 
 test('Renders register without errors', async () => {
-  renderComponent(<Register/>)
+  expect(() => renderComponent(<Register/>)).not.toThrowError()
 })
 
 test('Renders /creador/seleccionar route without errors', async () => {
-  renderComponent(<CreatorSelection/>)
+  expect(() => renderComponent(<CreatorSelection/>)).not.toThrowError()
 })
 
 test('Renders /creador/editar route without errors', async () => {
-  renderComponent(<CreatorEditor/>)
+  expect(() => renderComponent(<CreatorEditor/>)).not.toThrowError()
 })
