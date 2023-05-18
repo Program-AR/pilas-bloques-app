@@ -4,6 +4,7 @@ import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
 import { SessionButton } from "./login/SessionButton";
 import { Link } from "react-router-dom";
+import theme from '../../theme';
 
 type HeaderProps = {
     CenterComponent?: React.ReactNode

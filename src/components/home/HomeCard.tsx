@@ -18,7 +18,7 @@ export const LinkCard = (props: LinkCardProps) =>
 export const HomeCard = (props: HomeCardProps) => {
     return (
         <Card style={{ width:"14rem", backgroundColor: props.color, borderRadius: "20px", padding: "30px", margin: "30px"}}>
-            <CardMedia component="img" alt={props.text} image={`.${props.image}`} height="120" sx={{objectFit: "contain"}} />
+            <CardMedia component="img" alt={props.text} image={require(`../../assets/${props.image}`)} height="120" sx={{objectFit: "contain"}} />
             <Typography variant="h5" align="center" fontWeight="600" >{props.text}</Typography>
         </Card>
     )
