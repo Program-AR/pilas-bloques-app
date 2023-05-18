@@ -12,6 +12,8 @@
     top: 1.5rem; 
     text-transform: uppercase;
     color: white;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
 }
 
 .logo {
@@ -19,17 +21,10 @@
     top: 7rem;
 }
 
-.home-logo-grid {
+.home-container {
     background-color: #311C3B;
     align-items: center;
-    justify-content: space-evenly;
-    height: 12rem;
-}
-
-.home-grid {
-    background-color: #311C3B;
-    align-items: center;
-    justify-content: space-evenly;
-    min-height: 50rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 

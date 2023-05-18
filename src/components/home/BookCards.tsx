@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material"
 import { LinkCard } from "./HomeCard"
 import { useTranslation } from "react-i18next"
+import styles from './home.module.css';
 
 const InitialBookCard = () => {
 	const {t} = useTranslation("home")
@@ -18,7 +19,7 @@ const AdvancedBookCard = () => {
 }
 
 export const BookCards = () => (
-	<Stack direction={{ xs: "column", sm: "row" }} spacing={10}>
+	<Stack direction='row' className={styles['home-container']}>
 		<InitialBookCard />
 		<IntermediateBookCard />
 		<AdvancedBookCard />
