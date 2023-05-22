@@ -1,6 +1,4 @@
 import { Button, Container, Divider, Grid, Typography } from "@mui/material"
-import {ReactComponent as Background} from '../../assets/home-background.svg'
-import {ReactComponent as PBLogo} from "../../assets/pblogo-whiteborder.svg"
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { BookCards } from "./BookCards"
 import { Link } from "react-router-dom";
@@ -32,10 +30,10 @@ export const Home = () => {
 
     return <>
     <Header CenterComponent={<HeaderText text={t("header")}/>}/>
-    <Container className={styles.background} maxWidth={false}><Background/></Container>
+    <Container className={styles.background} maxWidth={false}><img src='imagenes/home-background.svg'/></Container>
     
     <Grid className={styles['home-container']} container direction='column'>
-        <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
+        <Container className={styles.logo} maxWidth="sm"><img src="imagenes/pblogo-whiteborder.svg"/></Container>
         <Typography className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton />
         <BookCards/>

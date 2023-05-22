@@ -1,6 +1,5 @@
 import { Stack, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import {ReactComponent as FooterLogos} from "../../assets/footer-logos.svg"
 import { Link } from "react-router-dom";
 import GitInfo from 'react-git-info/macro';
 import { Code } from "@mui/icons-material";
@@ -33,5 +32,5 @@ export const Footer = () =>
       <Version />
       <Links />
     </Grid>
-    <FooterLogos style={{maxWidth: "30rem"}}/>
+    <img src="imagenes/footer-logos.svg" style={{maxWidth: "30rem"}}/>
   </Stack>

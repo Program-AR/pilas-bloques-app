@@ -1,5 +1,4 @@
 import { AppBar, Grid, Typography } from "@mui/material";
-import {ReactComponent as PBLogo} from "../../assets/pblogo-whiteborder.svg"
 import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
 import { SessionButton } from "./login/SessionButton";
@@ -26,7 +25,7 @@ export const Header = ({CenterComponent= <></>}: HeaderProps) => {
     
     return <AppBar position="fixed" elevation={0}>
             <Grid container className={styles['header']}>
-                <Link to="/" style={{display: 'flex'}}><PBLogo className={styles['logo']}/></Link>
+                <Link to="/" style={{display: 'flex'}}><img src="imagenes/pblogo-whiteborder.svg" className={styles['logo']}/></Link>
                 {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
