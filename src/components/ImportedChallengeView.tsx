@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { EmberView } from "./EmberView";
-import { Header } from "./header/Header";
+import { Header, HeaderText } from "./header/Header";
 import { SerializedChallenge } from "./serializedChallenge";
 
 
@@ -11,7 +11,7 @@ export const ImportedChallengeView = () =>{
     if (!importedChallenge) throw new Error("No hay desafio importado :(")
 
     return <>
-    <Header CenterComponent={<p>{importedChallenge.title}</p>}/>
+    <Header CenterComponent={<HeaderText text={importedChallenge.title}/>}/>
     <EmberView path={`desafio/react-imported-challenge`}/>
     </>
 }

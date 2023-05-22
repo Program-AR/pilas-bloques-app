@@ -1,5 +1,4 @@
 import { HomeCard } from "./HomeCard";
-import ImportImage from "../../assets/placeholder.png"
 import Button from '@mui/material/Button';
 import { Ember } from "../../emberCommunication";
 import { useNavigate } from "react-router-dom";
@@ -40,7 +39,7 @@ export const ImportChallengeCard = () => {
 
     return <>
     <Button component="label" style={{textTransform: 'none', padding: 0}}>
-        <HomeCard nameKey={"import"} image={ImportImage} color={"#fc3e5e"}/>
+        <HomeCard text={t("cards.import")} image={"placeholder.png"} color={"#fc3e5e"}/>
         <input data-testid="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
         <DialogSnackbar 
             open={snackbarOpen}

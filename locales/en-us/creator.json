@@ -1,8 +1,18 @@
 {
 	"selection": {
+		"title": "Create your own challenge choosing a character. ",
+		"subtitle": "Each one has their own commands, sensors and objectives.",
 		"challengeBeingCreated": "You already have a challenge in progress. You can choose to continue editing or to discard it",
 		"discardWarning": "Careful! If you discard your challenge you won't be able to recover it!",
 		"continueEditing": "Continue editing",
-		"discard": "Discard"
+		"discard": "Discard",
+		"cards": {
+			"lita": "Prepare the salad!",
+			"duba": "Eat the steaks!",
+			"yvoty": "Charge the phones!",
+			"manic": "Stargaze!",
+			"capy": "Protect the environment!",
+			"chuy": "Play with the ball!"
+		}
 	}
 }

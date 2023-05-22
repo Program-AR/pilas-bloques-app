@@ -1,13 +1,10 @@
 import { Button, Container, Divider, Grid, Typography } from "@mui/material"
-import {ReactComponent as Background} from '../../assets/home-background.svg'
-import {ReactComponent as PBLogo} from "../../assets/pblogo-whiteborder.svg"
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { BookCards } from "./BookCards"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
-import { Header } from "../header/Header";
-import theme from '../../theme';
+import { Header, HeaderText } from "../header/Header";
 import styles from './home.module.css';
 import { CreatorCards } from "./CreatorCards";
 
@@ -28,23 +25,15 @@ const RegisterButton: React.FC = () => {
 </>
 }
 
-const HeaderText: React.FC = () => {
-    const { t } = useTranslation("header");
-    return <Typography className={styles['header-text']} 
-                       sx={{[theme.breakpoints.down('sm')]: {display: 'none' } }}>
-                {t('tool')}
-            </Typography>
-} 
-
 export const Home = () => {
     const { t } = useTranslation("home");
 
     return <>
-    <Header CenterComponent={<HeaderText/>}/>
-    <Container className={styles.background} maxWidth={false}><Background/></Container>
+    <Header CenterComponent={<HeaderText text={t("header")}/>}/>
+    <Container className={styles.background} maxWidth={false}><img src='imagenes/home-background.svg'/></Container>
     
     <Grid className={styles['home-container']} container direction='column'>
-        <Container className={styles.logo} maxWidth="sm"><PBLogo/></Container>
+        <Container className={styles.logo} maxWidth="sm"><img src="imagenes/pblogo-whiteborder.svg"/></Container>
         <Typography className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton />
         <BookCards/>

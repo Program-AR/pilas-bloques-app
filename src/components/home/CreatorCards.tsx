@@ -1,13 +1,20 @@
 import { Stack } from "@mui/material"
 import { LinkCard } from "./HomeCard"
 import { ImportChallengeCard } from "./ImportChallengeCard"
-import CreatorImage from "../../assets/placeholder.png"
-import styles from './home.module.css';
+import styles from "./home.module.css"
+import { useTranslation } from "react-i18next"
 
-const CreateChallengeCard = () => <LinkCard url="/creador/seleccionar" nameKey="creator" color="#ec3efc" image={CreatorImage}/>
+const CreateChallengeCard = () => {
+    const {t} = useTranslation("home")
 
-export const CreatorCards = () =>
-    <Stack direction='row' className={styles['home-container']}>
-        <CreateChallengeCard/>
-        <ImportChallengeCard/>
-    </Stack>
+	return (
+		<LinkCard url="creador/seleccionar" text={t("cards.creator")} color="#ec3efc" image={"placeholder.png"} />
+	)
+}
+
+export const CreatorCards = () => (
+	<Stack direction="row" className={styles["home-container"]}>
+		<CreateChallengeCard />
+		<ImportChallengeCard />
+	</Stack>
+)

@@ -9,5 +9,6 @@
 
 	"title": "Choose your level and start programming",
 	"signUp": "Sign up",
-	"importError": "The file is invalid"
+	"importError": "The file is invalid",
+	"tool": "A tool to learn computer programming"
 }
