@@ -1,8 +1,16 @@
-# Getting Started with Create React App
+¡Hola! :vulcan_salute: Este es un proyecto relacionado a [Pilas Bloques](https://pilasbloques.program.ar) :heart:. En el repositorio de ese proyecto encontrarás las guías sobre [cómo contribuir](https://github.com/Program-AR/pilas-bloques/blob/develop/CONTRIBUTING.md) y el [código de conducta](https://github.com/Program-AR/pilas-bloques/blob/develop/CODE_OF_CONDUCT.md), que son guías que aplican también a este proyecto.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hi! :vulcan_salute: This is a project related to [Pilas Bloques](https://pilasbloques.program.ar) :heart:. In that project's repository you'll find the [contribution guidelines](https://github.com/Program-AR/pilas-bloques/blob/develop/CONTRIBUTING_en.md) and the [code of conduct](https://github.com/Program-AR/pilas-bloques/blob/develop/CODE_OF_CONDUCT_en.md) which also apply to this project.
 
-## Available Scripts
+
+## Config project
+- Checkout this repository.
+- Create `.env` file with the required enviroments variables. You can copy from [`sample.env`](sample.env)
+- Make sure you are using the correct node version running `nvm use`
+- Run `npm install`
+
+
+## Available Scripts (from Create React App)
 
 In the project directory, you can run:
 
