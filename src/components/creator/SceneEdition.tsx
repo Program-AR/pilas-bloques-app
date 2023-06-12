@@ -15,7 +15,7 @@ const SceneEditor = () => <Stack alignItems="center" style={{height:"100%", widt
     <TextField margin="normal" label="Cantidad de filas" type="number" defaultValue={3}></TextField>
 </Stack>
 
-const SceneGrid = () => <Stack alignItems="center" style={{height:"100%", width:"50%"}}>
+const SceneGrid = () => <Stack alignItems="center" style={{height:"100%", width:"50%", minWidth:"450px"}}>
     Escenario
     </Stack>
 
