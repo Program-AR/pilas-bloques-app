@@ -2,31 +2,39 @@ import { Stack, TextField } from "@mui/material";
 
 
 export const SceneEdition = () => (
-    //<div style={{height: "100%"}}>Que</div>
-    <Stack direction="row" alignItems="center" justifyContent="space-around">
-        <SceneEditor />
+    <Stack direction="row" alignItems="center" justifyContent="space-between">
+        <SizeEditor />
         <SceneGrid />
-        <SceneToolbox />
+        <SceneTools />
     </Stack>
 )
 
-const SceneEditor = () => <Stack alignItems="center" style={{height:"100%", width:"25%"}}>
+const SizeEditor = () => <Stack alignItems="center" style={{padding: "10px"}}>
     <TextField margin="normal" label="Cantidad de columas" type="number" defaultValue={3}></TextField>
     <TextField margin="normal" label="Cantidad de filas" type="number" defaultValue={3}></TextField>
 </Stack>
 
-const SceneGrid = () => <Stack alignItems="center" style={{height:"100%", width:"50%", minWidth:"450px"}}>
+// the scene has multiple initial scenarios
+const SceneGrid = () => <Stack alignItems="center">
     Escenario
     </Stack>
 
-const SceneToolbox = () =>
- <Stack alignItems="center" style={{height:"100%", width:"25%"}}>
-    <p>Poner bstáculo</p>
-    <div style={{borderStyle:"solid", width:"4rem", height:"4rem"}}></div>
-    <p>Poner bjeto(s)</p>
-    <div style={{borderStyle:"solid", width:"4rem", height:"4rem"}}></div>
+const SceneTools = () =>
+ <Stack alignItems="center" style={{padding: "10px"}}>
+    <p>Poner obstáculo</p>
+    <Tool />
+    <p>Poner objeto(s)</p>
+    <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
+        <Tool />
+        <Tool />
+        <Tool />
+        <Tool />
+        <Tool />
+    </Stack>
     <p>Poner personaje</p>
-    <div style={{borderStyle:"solid", width:"4rem", height:"4rem"}}></div>
+    <Tool />
     <p>Borrar</p>
-    <div style={{borderStyle:"solid", width:"4rem", height:"4rem"}}></div>
+    <Tool />
 </Stack>
+
+const Tool = () => <div style={{borderStyle:"solid", width:"50px", height:"50px"}}></div>
