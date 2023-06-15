@@ -1,4 +1,4 @@
-import { Grid, Stack, TextField } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import React from "react";
 
 
@@ -11,8 +11,8 @@ export const SceneEdition = () => (
 )
 
 const SizeEditor = () => <Stack alignItems="center" style={{padding: "10px"}}>
-    <TextField margin="normal" label="Cantidad de columas" type="number" defaultValue={3}></TextField>
-    <TextField margin="normal" label="Cantidad de filas" type="number" defaultValue={3}></TextField>
+    <TextField variant="standard" margin="normal" label="Cantidad de columas" type="number" defaultValue={3}></TextField>
+    <TextField variant="standard" margin="normal" label="Cantidad de filas" type="number" defaultValue={3}></TextField>
 </Stack>
 
 // these consts are for testing purpose 
