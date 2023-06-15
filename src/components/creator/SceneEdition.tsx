@@ -1,4 +1,4 @@
-import { Grid, Stack, TextField } from "@mui/material";
+import { Stack, TextField } from "@mui/material";
 import React from "react";
 
 
@@ -51,6 +51,7 @@ const SceneTools = () =>
 
 const Tool = () => <div style={{borderStyle:"solid", width:"50px", height:"50px"}}></div>
 
-const Cell: React.FC<Props> = (props) => <Grid style={{borderStyle:"solid", aspectRatio:"1 / 1", width:"100%"}}>{props.children}</Grid>
+//May be of use in the future to try Grid with aspect-ratio: 1/1 to force the cell to be squared
+const Cell: React.FC<Props> = (props) => <div style={{borderStyle:"solid", height:"100%", width:"100%"}}>{props.children}</div>
 
 interface Props {children: React.ReactNode}
