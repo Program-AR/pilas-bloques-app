@@ -1,4 +1,4 @@
-import { Stack, TextField } from "@mui/material";
+import { Grid, Stack, TextField } from "@mui/material";
 import React from "react";
 
 
@@ -20,7 +20,7 @@ const A = "A"
 const O = "O"
 const E = "E"
 const G = "-"
-const mapa = [[A,O,O,O,O],[G,O,G,G,G],[G,O,O,O,G],[E,G,G,G,G]]
+const mapa = [[A,O,O,O,O,A,O,O,O,O,A,O,O,O,O],[G,O,G,G,G,A,O,O,O,O,A,O,O,O,O],[G,O,O,O,G,A,O,O,O,O,A,O,O,O,O],[E,G,G,G,G,A,O,O,O,O,A,O,O,O,O]]
 
 // the scene has multiple initial scenarios
 const SceneGrid = () => 
@@ -51,6 +51,6 @@ const SceneTools = () =>
 
 const Tool = () => <div style={{borderStyle:"solid", width:"50px", height:"50px"}}></div>
 
-const Cell: React.FC<Props> = (props) => <div style={{borderStyle:"solid", width:"100%", height:"100%"}}>{props.children}</div>
+const Cell: React.FC<Props> = (props) => <Grid style={{borderStyle:"solid", aspectRatio:"1 / 1", width:"100%"}}>{props.children}</Grid>
 
 interface Props {children: React.ReactNode}
