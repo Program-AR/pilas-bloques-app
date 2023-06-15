@@ -1,5 +1,6 @@
 import { Button, Stack } from "@mui/material";
 import { Header } from "../header/Header";
+import { SceneEdition } from "./SceneEdition";
 
 export const CreatorEditor = () => {
   return (
@@ -27,7 +28,6 @@ const Actions = () => <Stack direction="row">
   <Button>Compartir</Button>
 </Stack>
 
-const SceneEdition = () => <div style={{height: "100%"}}>Que</div>
 const ChallengeDetailsEdition = () => <Stack direction="row" style={{maxHeight: 70, justifyContent:"space-between"}}>
   <Button>Enunciado</Button>
   <Button>Panel de instrucciones</Button>
