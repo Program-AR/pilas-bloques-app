@@ -41,20 +41,20 @@ export const bookIncludesChallenge = (book: Book, challenge: Challenge): boolean
 const rawBooksData: RawBookData[] = [
   {
     id: 1,
-    chapterIds: ['Capítulo 3', 'Capítulo 4', 'Capítulo 5'],
+    chapterIds: ['Capítulo 3', 'Capítulo 4', 'Capítulo 5', 'Desafios complementarios'],
     simpleReadMode: true
   },
   {
     id: 2,
-    chapterIds: ['Autómatas, comandos, procedimientos y repetición', 'Alternativa condicional', 'Repetición condicional', 'Sensores Numéricos', 'Parametrización de soluciones'],
+    chapterIds: ['Autómatas, comandos, procedimientos y repetición', 'Alternativa condicional', 'Repetición condicional', 'Sensores Numéricos'],
     simpleReadMode: false,
     expectations: {
       decomposition: true
     }
   },
   {
-    id: 100,
-    chapterIds: ['Tecnopolis 2021 Ejercicio Modelo', 'Tecnopolis 2021 Con Duba', 'Tecnopolis 2021 Con Lita', 'Tecnopolis 2021 Con Coty', 'Tecnopolis 2021 Con Toto'],
+    id: 3,
+    chapterIds: ['Parametrización de soluciones'],
     simpleReadMode: true
   },
 ];
