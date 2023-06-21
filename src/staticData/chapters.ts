@@ -69,23 +69,7 @@ export const rawChapterData: RawChapterData[] = [
         }
     },
     {
-        id: 'Tecnopolis 2021 Ejercicio Modelo',
-        groupIds: ['tecnopolis2021EjercicioModelo']
-    },
-    {
-        id: 'Tecnopolis 2021 Con Duba',
-        groupIds: ['tecnopolis2021ConDuba']
-    },
-    {
-        id: 'Tecnopolis 2021 Con Lita',
-        groupIds: ['tecnopolis2021ConLita']
-    },
-    {
-        id: 'Tecnopolis 2021 Con Coty',
-        groupIds: ['tecnopolis2021ConCoty']
-    },
-    {
-        id: 'Tecnopolis 2021 Con Toto',
-        groupIds: ['tecnopolis2021ConToto']
+        id: 'Desafios complementarios',
+        groupIds: ['tecnopolis2021EjercicioModelo', 'tecnopolis2021ConDuba', 'tecnopolis2021ConLita', 'tecnopolis2021ConCoty', 'tecnopolis2021ConToto']
     }
 ];
