@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import styles from '../header.module.css';
 import { LoginModal } from "./LoginModal";
-import { PB_USER, PilasBloquesApi } from "../../../pbApi";
+import { LocalStorage } from "../../../localStorage";
 
 const AVATAR_COUNT = 16
 const AVATAR_PATH = "imagenes/avatars/"
@@ -28,11 +28,11 @@ export const SessionButton = () => {
     }
 
     const handleLogOut = () => {
-        localStorage.removeItem(PB_USER)
+        LocalStorage.saveUser(null)
         closeMenu()
     }
 
-    const isLoggedIn = () => Boolean(localStorage.getItem(PB_USER));
+    const isLoggedIn = () => !!getUser()
 
     const closeMenu = () => {
         setAnchorElement(null);
@@ -42,7 +42,7 @@ export const SessionButton = () => {
         setOpenModal(false)
     }
 
-    const getUser = () => PilasBloquesApi.getUser()
+    const getUser = () => LocalStorage.getUser()
 
     const avatars = Array.from(Array(AVATAR_COUNT).keys()).map((n) => `${AVATAR_PATH}avatar-${n + 1}.png`)
 
