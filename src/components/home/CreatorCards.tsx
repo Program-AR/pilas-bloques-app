@@ -13,7 +13,7 @@ const CreateChallengeCard = () => {
 }
 
 export const CreatorCards = () => {
-	const shouldShow = process.env.NODE_ENV != 'production'
+	const shouldShow = process.env.NODE_ENV !== 'production'
 	
 	return shouldShow ? (
 	<Stack direction="row" className={styles["home-container"]}>
