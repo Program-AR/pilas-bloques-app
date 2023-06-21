@@ -1,0 +1,14 @@
+{
+	"cards": {
+		"initial": "Initial",
+		"intermediate": "Intermediate",
+		"advanced": "Advanced",
+		"import": "Import your challenge",
+		"creator": "Create your own challenge"
+	},
+
+	"title": "Choose your level and start programming",
+	"signUp": "Sign up",
+	"importError": "The file is invalid",
+	"tool": "A tool to learn computer programming"
+}

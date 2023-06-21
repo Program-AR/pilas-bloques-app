@@ -1,9 +1,19 @@
 {
   "name": "pilasbloques",
-  "version": "0.1.0",
+  "version": "2.0.3",
+  "productName": "Pilas Bloques",
+  "genericName": "Programacion con bloques",
+  "description": "Una herramienta para aprender a programar utilizando bloques",
+  "homepage": "http://pilasbloques.program.ar",
+  "author": {
+    "name": "Program.AR",
+    "email": "info@program.ar",
+    "url": "http://program.ar"
+  },
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.9",
     "@mui/material": "^5.11.7",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -12,18 +22,37 @@
     "@types/node": "^16.18.11",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-router-dom": "^5.3.3",
+    "i18next": "^22.4.10",
+    "i18next-browser-languagedetector": "^7.0.1",
+    "i18next-chained-backend": "^4.2.0",
+    "i18next-http-backend": "^2.1.1",
+    "i18next-resources-to-backend": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.5",
+    "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "prestart": "node scripts/setEmberRoot.js public/emberPB ''",
     "start": "react-scripts start",
+    "prebuild": "node scripts/setEmberRoot.js public/emberPB emberPB/",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postinstall": "sh scripts/copyEmberPB.sh"
+    "electron-start": "electron ./build",
+    "postinstall": "sh scripts/copyEmberPB.sh",
+    "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
+    "pack:linux_zip": "bash ./scripts/package.sh -linux_zip",
+    "pack:linux": "bash ./scripts/package.sh -linux",
+    "pack:osx": "bash ./scripts/package.sh -osx",
+    "pack:win32": "bash ./scripts/package.sh -win32",
+    "pack:html": "bash ./scripts/package.sh -html",
+    "clean": "rm -rf node_modules dist binaries",
+    "release": "release-it --only-version"
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +71,70 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "electron": "^23.1.0",
+    "electron-packager": "^17.1.1",
+    "electron-rebuild": "^3.2.9",
+    "makensis": "^2.0.5",
+    "react-git-info": "^2.0.1",
+    "release-it": "^15.6.0",
+    "simple-type-guard": "^3.3.9"
+  },
+  "optionalDependencies": {
+    "electron-installer-debian": "git+https://github.com/Program-AR/electron-installer-debian.git"
+  },
+  "main": "electron.js",
+  "ember-electron": {
+    "WHAT IS THIS?": "Please see the README.md",
+    "copy-files": [
+      "electron.js",
+      "package.json"
+    ],
+    "name": null,
+    "platform": null,
+    "arch": null,
+    "version": null,
+    "app-bundle-id": null,
+    "app-category-type": null,
+    "app-copyright": null,
+    "app-version": null,
+    "asar": null,
+    "asar-unpack": null,
+    "asar-unpack-dir": null,
+    "build-version": null,
+    "cache": null,
+    "extend-info": null,
+    "extra-resource": null,
+    "helper-bundle-id": null,
+    "icon": null,
+    "ignore": null,
+    "out": null,
+    "osx-sign": {
+      "identity": null,
+      "entitlements": null,
+      "entitlements-inherit": null
+    },
+    "overwrite": null,
+    "prune": null,
+    "strict-ssl": null,
+    "version-string": {
+      "CompanyName": null,
+      "FileDescription": null,
+      "OriginalFilename": null,
+      "ProductName": null,
+      "InternalName": null
+    }
+  },
+  "release-it": {
+    "github": {
+      "release": true,
+      "tag": true,
+      "commit": true,
+      "push": true
+    },
+    "npm": {
+      "publish": false
+    }
   }
 }

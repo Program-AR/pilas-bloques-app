@@ -1,4 +1,9 @@
+:root {
+    --header-height: 48px;
+}
+  
 html, body, #root {
     height: 100%;
+    margin: 0 -1px;
 }
 

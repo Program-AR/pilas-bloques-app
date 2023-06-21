@@ -1,0 +1,13 @@
+{
+  "already": "Ya tengo usuario",
+  "wrong": "Usuario o contraseña incorrectos, volvé a intentar",
+  "forgot": "Olvidé mi usuario o constraseña",
+  "dontHaveUser": "Aún no tengo usuario",
+  "register": "¡Registrate haciendo click acá!",
+  "login": "Iniciar sesión",
+  "username": "Usuario",
+  "password": "Contraseña",
+  "logout": "Cerrar sesión",
+  "changeUser": "Cambiar usuario",
+  "serverError": "Problema con el servidor, intente más tarde"
+}

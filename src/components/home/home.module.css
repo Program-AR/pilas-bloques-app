@@ -1,0 +1,30 @@
+.background {
+    display: center;
+    position: relative;
+    margin-bottom: -18rem;
+    height: 30rem;
+    z-index: -1
+}
+
+.title {
+    position: relative;
+    text-align: center;
+    top: 1.5rem; 
+    text-transform: uppercase;
+    color: white;
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+}
+
+.logo {
+    position: absolute;
+    top: 7rem;
+}
+
+.home-container {
+    background-color: #311C3B;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+

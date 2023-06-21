@@ -1,0 +1,13 @@
+{
+  "already": "I already have a username",
+  "wrong": "Username or password are not correct; try it again",
+  "forgot": "I forgot my username and password",
+  "dontHaveUser": "I don’t have a username yet",
+  "register": "Click here to register now!",
+  "login": "Log in",
+  "username": "Username",
+  "password": "Password",
+  "logout": "Log out",
+  "changeUser": "Change user",
+  "serverError": "There's a problem with the server, try again later"
+}
