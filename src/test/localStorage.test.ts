@@ -21,6 +21,12 @@ describe('Storage', () => {
         expect(LocalStorage.getUser()).toEqual(fakeUser)
     })
 
+    test('Should save localStorage data', () => {
+        const newUser = { ...fakeUser, id: "cba" }
+        LocalStorage.saveUser(newUser)
+        expect(LocalStorage.getUser()).toEqual(newUser)
+    })
+
     test('Should return null when data does not exist', () => {
         localStorage.clear()
         expect(LocalStorage.getUser()).toBeNull()
