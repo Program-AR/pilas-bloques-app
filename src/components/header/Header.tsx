@@ -23,7 +23,7 @@ export const HeaderText = (props: HeaderTextProps) => (
 
 export const Header = ({CenterComponent= <></>}: HeaderProps) => {
     
-    return <AppBar position="fixed" elevation={0}>
+    return <AppBar position="fixed" className={styles['appbar']} elevation={0}>
             <Grid container className={styles['header']}>
                 <Link to="/" style={{display: 'flex'}}><img src="imagenes/pblogo-whiteborder.svg" className={styles['logo']} alt="logo pilas bloques"/></Link>
                 {CenterComponent}
