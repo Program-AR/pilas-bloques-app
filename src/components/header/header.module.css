@@ -1,14 +1,12 @@
-.appbar {
-    background-color: var(--theme-background-color);
-    padding: 0 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    max-height: 48px;
-    flex-wrap: nowrap;
-    flex-direction: row;
-}
 .header {
+    background-color: var( --theme-background-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    max-height: var(--header-height);
+    padding: 0 16px;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 
 .logo {
@@ -22,7 +20,7 @@
 }
 
 .face {
-    height: 48px; /* the min height of the header is controlled by this */
+    height: var(--header-height); 
     border-radius: 10px;
     border: 1px solid #ddd;
 }
@@ -33,6 +31,7 @@
 
 .login-btn {
     animation: blinker 1s linear infinite;
+    height: var(--header-height); 
     color: var(--theme-font-color);
 }
 
