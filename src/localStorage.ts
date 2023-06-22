@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom"
 import { EmberExecutableChallenge } from "./emberCommunication"
 import { User } from "./pbApi"
 import { LanguageCode } from "./language"
