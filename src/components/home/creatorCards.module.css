@@ -1,0 +1,24 @@
+.creator-card-img {
+    margin: auto;
+    background-color: #C469FF; 
+    border-radius: 50%; 
+    text-align: center;
+    width: 50%;
+    height: 50%
+}
+
+.creator-card-text {
+    border-style: solid;
+    border-radius: 20px;
+    border-width: thin;
+    margin-top: 15px;
+    transition: transform .2s; 
+}
+
+.creator-card-text:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+    }
