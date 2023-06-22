@@ -1,11 +1,12 @@
 import { Breadcrumbs, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { Book, getBook } from "../../staticData/books";
-import { EmberView } from "../EmberView";
+import { EmberView } from "../emberView/EmberView";
 import { Header } from "../header/Header";
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import theme from '../../theme';
 
 const Breadcrumb = (book: Book) => {
     const {t} = useTranslation("books")
@@ -17,7 +18,7 @@ const Breadcrumb = (book: Book) => {
             <HomeIcon style={{ display:'flex', color: '#787878'}}/> 
         </Link>
         
-        <Typography>{t(`${book.id}.title`)}</Typography>
+        <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${book.id}.title`)}</Typography>
 
     </Breadcrumbs>
 }
