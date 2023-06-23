@@ -1,7 +1,8 @@
 import { Scene, SceneMap, SerializedChallenge } from "./components/serializedChallenge"
 import { InternalizationLanguage } from "./language"
+import { LocalStorage } from "./localStorage"
 
-type EmberExecutableChallenge = {
+export type EmberExecutableChallenge = {
     escena: string,
     bloques: string[],
     debugging?: boolean,
@@ -17,12 +18,8 @@ export namespace Ember{
     }
 
     export const changeLanguage = (newLanguage: InternalizationLanguage) => {
-        localStorage.setItem("PB_SELECTED_LOCALE", `"${newLanguage.languageCode}"`)
+        LocalStorage.saveSelectedLocale(newLanguage.languageCode)
         refreshIframe()
-    }
-
-    const setImportedChallenge = (challenge: EmberExecutableChallenge) => {
-        localStorage.setItem("PB_IMPORTED_CHALLENGE", JSON.stringify(challenge))
     }
 
     export const serializedSceneToEmberScene = (scene: Scene) => { 
@@ -41,7 +38,7 @@ export namespace Ember{
             solucionInicial: importedChallenge.predefinedSolution
         }
 
-        setImportedChallenge(emberChallenge)
+        LocalStorage.saveImportedChallenge(emberChallenge)
     }
 
 }

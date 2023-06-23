@@ -1,6 +1,6 @@
-export const PB_USER = 'PB_USER'
+import { LocalStorage } from "./localStorage";
 
-interface User{
+export interface User{
     id: string,
     token: string,
     nickName: string,
@@ -24,20 +24,16 @@ export class ApiError extends Error {
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 export namespace PilasBloquesApi{
-    export const getUser: () => User | null = () => {
-        const userString = localStorage.getItem(PB_USER);
-        return userString ? JSON.parse(userString) : null;
-    }
 
     export const login = async (credentials: Credentials) => {
       await _send<Credentials>('POST', 'login', credentials)
-      .then(user => localStorage.setItem(PB_USER, JSON.stringify(user)))
+      .then(user => LocalStorage.saveUser(user))
     }
 
     const baseURL = process.env.REACT_APP_API_URL
 
     async function _send<T>(method: HttpMethod, resource: string, body: T) {
-        const user = getUser()
+        const user = LocalStorage.getUser()
         const url = `${baseURL}/${resource}`
 
         const headers = new Headers()
