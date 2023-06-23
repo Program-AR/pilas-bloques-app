@@ -6,6 +6,9 @@
     width: 50%;
     height: 50%;
     color: white;
+    vertical-align: middle;
+    padding: 20px;
+    font-size: x-large;
 }
 
 .creator-card-text {

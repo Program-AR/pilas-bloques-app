@@ -38,6 +38,7 @@ export const Home = () => {
         <RegisterButton />
         <BookCards/>
         <Divider style={{ width:'90%', borderColor: 'white' }}/>
+        <Typography className={styles.title} variant="h5">{t("creatorTitle")}</Typography>
         <CreatorCards/>
     </Grid>
     <Footer/>
