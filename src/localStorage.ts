@@ -28,12 +28,12 @@ export namespace LocalStorage {
     export const saveUser = (user: User | null) => _save(PB_USER, user)
     export const saveCreatorChallenge = (challenge: CreatorChallenge | null) => _save(PB_CREATOR_CHALLENGE, challenge)
 
-    const _get = (key: string, shouldParse: boolean = true) => _doSafe(key, (storage: Storage) => {
+    const _get = (key: string) => _doSafe(key, (storage: Storage) => {
         const value = storage.getItem(key)
-        return value && shouldParse ? JSON.parse(value) : value
+        return value && JSON.parse(value)
     })
 
-    const _save = (key: string, data: any = null, shouldStringify: boolean = true) => { _doSafe(key, (storage: Storage) => storage.setItem(key, (shouldStringify ? JSON.stringify(data) : data))) }
+    const _save = (key: string, data: any = null) => { _doSafe(key, (storage: Storage) => storage.setItem(key, JSON.stringify(data))) }
 
     const _doSafe = <T>(key: string, fn: (storage: Storage) => T) => {
         try {
