@@ -1,28 +1,21 @@
-import { Typography, Card, CardMedia } from "@mui/material"
-import { Link } from "react-router-dom";
-import styles from "./creatorCards.module.css";
+import { Typography, Card } from "@mui/material"
+import creatorCardsStyles from "./creatorCards.module.css";
+import homeCardStyles from "./homeCard.module.css";
 
-export type HomeCardCreatorProps = {
+export type CreatorCardProps = {
     text: string,
-    image: string,
-    color: string
+    color: string,
+    icon: React.FC
 }
 
-type LinkCardCreatorProps = {url: string} & HomeCardCreatorProps
-
-export const LinkCardCreator = (props: LinkCardCreatorProps) =>
-    <Link to={props.url} style={{ textDecoration: 'none' }}>
-        {HomeCardCreator(props)}
-    </Link>
-
-export const HomeCardCreator = (props: HomeCardCreatorProps) => {
+export const CreatorCard = (props: CreatorCardProps) => {
     
     return (
-        <Card style={{ width:"14rem", backgroundColor: props.color, borderRadius: "20px", padding: "30px", margin: "30px"}}>
-            <div className={styles['creator-card-img']} >
-                <img src={`imagenes/${props.image}`} style={{filter:"invert(100%)", padding:"15px"}} />
+        <Card className={homeCardStyles['home-card']} style={{ backgroundColor: props.color}}>
+            <div className={creatorCardsStyles['creator-card-icon']} >
+                <props.icon />
             </div>
-            <div className={styles['creator-card-text']}>
+            <div className={creatorCardsStyles['creator-card-text']}>
                 <Typography variant="h6" align="center" fontWeight="300" >{props.text}</Typography>
             </div>
         </Card>

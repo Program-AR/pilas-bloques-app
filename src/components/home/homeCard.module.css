@@ -1,0 +1,15 @@
+.home-card {
+    border-radius: 20px;
+    width: 14rem;
+    padding: 30px;
+    margin: 30px;
+    transition: transform .2s
+}
+
+.home-card:hover {
+    -webkit-transform:scale(1.2);
+    -moz-transform:scale(1.2);
+    -ms-transform:scale(1.2);
+    -o-transform:scale(1.2);
+    transform:scale(1.2);
+}

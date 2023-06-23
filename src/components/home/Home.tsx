@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header, HeaderText } from "../header/Header";
 import styles from './home.module.css';
-import { CreatorCards } from "./CreatorCards";
+import { CreatorCards } from "./CreatorCard";
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home");
