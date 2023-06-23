@@ -28,6 +28,6 @@ export const availableLanguages: InternalizationLanguage[] = [
 
 export const changeLanguage = (selectedLanguage: InternalizationLanguage) => {
   i18next.changeLanguage(selectedLanguage.languageCode)
-  LocalStorage.saveSelectedLanguageKey(selectedLanguage.languageCode)
+  LocalStorage.saveSelectedLocale(selectedLanguage.languageCode)
   Ember.changeLanguage(selectedLanguage)
 }

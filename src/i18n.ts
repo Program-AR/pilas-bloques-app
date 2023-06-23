@@ -19,7 +19,7 @@ i18n
     debug: false,
     lowerCaseLng: true,
     fallbackLng: spanish.languageCode,
-    lng: LocalStorage.getSelectedLanguageKey() || spanish.languageCode,
+    lng: LocalStorage.getSelectedLocale() || spanish.languageCode,
       backend: {
         backends: [
           HttpBackend, // Doesn't make sense, but apparently without this Electron doesn't work
