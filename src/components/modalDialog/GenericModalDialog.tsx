@@ -4,6 +4,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 export interface ModalDialogProps {
     isOpen: boolean;
     onClose: () => void;
+    onCancel: () => void;
     title: string;
     subtitle: string;
     children?: JSX.Element;
@@ -12,6 +13,7 @@ export interface ModalDialogProps {
 export const GenericModalDialog: FC<ModalDialogProps> = ({
     isOpen,
     onClose,
+    onCancel,
     title,
     subtitle,
     children
@@ -36,8 +38,8 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
           {children}
         </DialogContent>
         <DialogActions>
-          <Button color="error" variant="contained" onClick={onClose}>X</Button>
-          <Button color="success" variant="contained"  onClick={onClose}>✔</Button>
+          <Button color="error" variant="contained" onClick={onCancel}>X</Button>
+          <Button color="success" variant="contained" onClick={onClose}>✔</Button>
         </DialogActions>
       </Dialog>
       </>

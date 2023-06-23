@@ -9,19 +9,26 @@ export const SampleModalDialog:React.FC = () => {
     const handleClickOpen = () => {
       setOpen(true);
     };
-  
+
+    const handleOnCancel = () => {
+      alert('cancelé')
+      setOpen(false);
+    };
+
     const handleOnClose = () => {
+      alert('acepté')
       setOpen(false);
     };
   
     return (
-      <div>
+      <div style={{display: "flex", justifyContent: "center"}}>
         <Button variant="outlined" onClick={handleClickOpen}>
           Abrir Dialogo Modal
         </Button>
         <GenericModalDialog
                         isOpen={open}
                         onClose={handleOnClose}
+                        onCancel={handleOnCancel}
                         title="Ejemplo de Dialogo Modal"
                         subtitle="Texto que se quiera mostrar en el contenido del Dialogo"
                         children={ <>
