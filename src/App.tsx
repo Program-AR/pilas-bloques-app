@@ -14,6 +14,7 @@ import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { CreatorSelection } from './components/creator/Selection';
 import { CreatorEditor } from './components/creator/Editor';
+import { SampleModalDialog } from './components/modalDialog/SampleModalDialog';
 
 function App() {
   
@@ -62,6 +63,10 @@ function App() {
     {
       path: "/creador/editar",
       element: <CreatorEditor/>
+    },
+    {
+      path: "/sample-modal",
+      element: <SampleModalDialog/>
     }
   ]);
 
