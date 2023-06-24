@@ -9,7 +9,7 @@ describe('Creator selection', () => {
     })
 
     test('Shows warning modal if there is a challenge in progress', async () => {
-        LocalStorage.saveCreatorChallenge(defaultChallenge)
+        LocalStorage.saveCreatorChallenge(defaultChallenge("Duba"))
         render(<BrowserRouter><CreatorSelection /></BrowserRouter>)
     
         const dialog = await screen.findByTestId("challenge-progress-warning")

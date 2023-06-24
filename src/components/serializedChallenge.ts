@@ -19,8 +19,8 @@ export type SerializedChallenge = {
 }
 
 
-const sceneTypes =  ["Lita", "Duba", "Toto", "Coty", "Niandu", "Pinguine", "Yaguarete", "Carpincho", "Custom"] as const //Used for file validity checking
-type SceneType = typeof sceneTypes[number]
+const sceneTypes =  ["Lita", "Duba", "Toto", "Coty", "Manic", "Chuy", "Yvoty", "Capy", "Custom"] as const //Used for file validity checking
+export type SceneType = typeof sceneTypes[number]
 
 type Cell = string
 
@@ -99,10 +99,10 @@ const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
         case 'Duba': return cellIsIncluded(['P'],cell)
         case 'Toto': return true
         case 'Coty': return true
-        case 'Niandu': return cellIsIncluded([],cell)
-        case 'Pinguine': return cellIsIncluded([],cell)
-        case 'Yaguarete': return cellIsIncluded([],cell)
-        case 'Carpincho': return cellIsIncluded([],cell)
+        case 'Manic': return cellIsIncluded([],cell)
+        case 'Chuy': return cellIsIncluded([],cell)
+        case 'Yvoty': return cellIsIncluded([],cell)
+        case 'Capy': return cellIsIncluded([],cell)
         case 'Custom': return cellIsIncluded([],cell)
     }
 }

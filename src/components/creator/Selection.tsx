@@ -6,56 +6,60 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
-import { Scene, SerializedChallenge } from "../serializedChallenge"
+import { Scene, SceneType, SerializedChallenge } from "../serializedChallenge"
 
 type CharacterCardProps = {
-	name: string
+	name: SceneType
 	color: string
 }
 
 const characters: CharacterCardProps[] = [
 	{
-		name: "lita",
+		name: "Lita",
 		color: "#fc5e3e",
 	},
 	{
-		name: "duba",
+		name: "Duba",
 		color: "#fcaa3e",
 	},
 	{
-		name: "chuy",
+		name: "Chuy",
 		color: "#6e3efc",
 	},
 	{
-		name: "manic",
+		name: "Manic",
 		color: "#3ed0fc",
 	},
 	{
-		name: "capy",
+		name: "Capy",
 		color: "#3efc6a",
 	},
 	{
-		name: "yvoty",
+		name: "Yvoty",
 		color: "#e33efc",
 	},
 ]
 
-const defaultScene: Scene = {
-	type: "Duba",
-	maps: [[['A', '-', '-'],
-		    ['-', '-', '-'],
-		    ['-', '-', '-']]]
+const defaultScene = (type: SceneType): Scene => {
+	return {
+		type: type,
+		maps: [[['A', '-', '-'],
+		['-', '-', '-'],
+		['-', '-', '-']]]
+	}
 }
 
-export const defaultChallenge: SerializedChallenge = {
-	fileVersion: 1,
-	title: "",
-	statement: {
-		description: ""
-	},
-	scene: defaultScene,
-	toolbox: {
-		blocks: []
+export const defaultChallenge = (type: SceneType): SerializedChallenge => {
+	return {
+		fileVersion: 1,
+		title: "",
+		statement: {
+			description: ""
+		},
+		scene: defaultScene(type),
+		toolbox: {
+			blocks: []
+		}
 	}
 }
 
@@ -64,7 +68,7 @@ const CharacterCard = (props: CharacterCardProps) => {
 	const navigate = useNavigate()
 
 	const goToCreator = () => {
-		LocalStorage.saveCreatorChallenge(defaultChallenge)
+		LocalStorage.saveCreatorChallenge(defaultChallenge(props.name))
 		navigate("/creador/editar")
 	}
 
