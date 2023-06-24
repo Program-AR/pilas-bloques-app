@@ -27,7 +27,7 @@ export const TitleEdition = () => {
             {isEditing ? (
                 <TextField
                     style={{width: "100%"}}
-                    value={titleInProgress}
+                    value={titleInProgress || currentTitle}
                     onChange={props => setTitleInProgress(props.target.value)}
                     onBlur={handleOnBlur}
                 />) : (
