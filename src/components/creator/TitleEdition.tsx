@@ -1,5 +1,5 @@
 import { Stack, TextField, Typography } from "@mui/material";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { LocalStorage } from "../../localStorage";
 import { useTranslation } from "react-i18next";
 
@@ -21,16 +21,17 @@ export const TitleEdition = () => {
         setIsEditing(false)
     }
 
-    return <Stack direction='row'>
-        <Typography variant="h6" >{t('editor.title')}:</Typography>
-        <div>
+    return <Stack direction='row' style={{borderStyle: "solid", justifyContent:"space-between"}}>
+        <Typography variant="h6">{t('editor.title')}: </Typography>
+        <div style={{width: "600px"}}>
             {isEditing ? (
                 <TextField
+                    style={{width: "100%"}}
                     value={titleInProgress}
                     onChange={props => setTitleInProgress(props.target.value)}
                     onBlur={handleOnBlur}
                 />) : (
-                <div onClick={() => setIsEditing(true)}>
+                <div onClick={() => setIsEditing(true)} style={{height: "100%"}}>
                     <Typography variant="h6">{currentTitle}</Typography>
                 </div>
             )}
