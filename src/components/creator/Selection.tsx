@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
+import { Scene, SerializedChallenge } from "../serializedChallenge"
 
 type CharacterCardProps = {
 	name: string
@@ -39,12 +40,31 @@ const characters: CharacterCardProps[] = [
 	},
 ]
 
+const defaultScene: Scene = {
+	type: "Duba",
+	maps: [[['A', '-', '-'],
+		    ['-', '-', '-'],
+		    ['-', '-', '-']]]
+}
+
+export const defaultChallenge: SerializedChallenge = {
+	fileVersion: 1,
+	title: "",
+	statement: {
+		description: ""
+	},
+	scene: defaultScene,
+	toolbox: {
+		blocks: []
+	}
+}
+
 const CharacterCard = (props: CharacterCardProps) => {
 	const { t } = useTranslation("creator")
 	const navigate = useNavigate()
 
 	const goToCreator = () => {
-		LocalStorage.saveCreatorChallenge({ sceneType: props.name })
+		LocalStorage.saveCreatorChallenge(defaultChallenge)
 		navigate("/creador/editar")
 	}
 

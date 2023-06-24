@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom';
-import { CreatorSelection } from '../components/creator/Selection';
+import { CreatorSelection, defaultChallenge } from '../components/creator/Selection';
 import { LocalStorage } from '../localStorage';
 
 describe('Creator selection', () => {
@@ -9,7 +9,7 @@ describe('Creator selection', () => {
     })
 
     test('Shows warning modal if there is a challenge in progress', async () => {
-        LocalStorage.saveCreatorChallenge({ sceneType: "pepita" })
+        LocalStorage.saveCreatorChallenge(defaultChallenge)
         render(<BrowserRouter><CreatorSelection /></BrowserRouter>)
     
         const dialog = await screen.findByTestId("challenge-progress-warning")
