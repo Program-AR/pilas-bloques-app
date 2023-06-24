@@ -14,5 +14,8 @@
 			"capy": "¡A cuidar el medio ambiente!",
 			"chuy": "¡A jugar a la pelota!"
 		}
+	},
+	"editor": {
+		"title": "Título"
 	}
 }

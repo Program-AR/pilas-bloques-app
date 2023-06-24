@@ -1,6 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import { Header } from "../header/Header";
 import { SceneEdition } from "./SceneEdition";
+import { TitleEdition } from "./TitleEdition";
 
 export const CreatorEditor = () => {
   return (
@@ -21,7 +22,6 @@ const EditorHeader: React.FC = () =>
     <Actions />
   </Stack>
 
-const TitleEdition = () => <div>Titulo: fafafa</div>
 const Actions = () => <Stack direction="row">
   <Button>Nuevo Desafío</Button>
   <Button>Probar</Button>
