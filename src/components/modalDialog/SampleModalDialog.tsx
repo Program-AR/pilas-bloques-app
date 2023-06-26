@@ -15,7 +15,7 @@ export const SampleModalDialog:React.FC = () => {
       setOpen(false);
     };
 
-    const handleOnClose = () => {
+    const handleOnConfirm = () => {
       alert('acepté')
       setOpen(false);
     };
@@ -27,10 +27,9 @@ export const SampleModalDialog:React.FC = () => {
         </Button>
         <GenericModalDialog
                         isOpen={open}
-                        onClose={handleOnClose}
+                        onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         title="Ejemplo de Dialogo Modal"
-                        subtitle="Texto que se quiera mostrar en el contenido del Dialogo"
                         children={ <>
                                    <TextField
                                       required

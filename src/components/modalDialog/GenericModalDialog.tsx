@@ -1,21 +1,19 @@
 import { FC } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
 
 export interface ModalDialogProps {
     isOpen: boolean;
-    onClose: () => void;
+    onConfirm: () => void;
     onCancel: () => void;
     title: string;
-    subtitle: string;
     children?: JSX.Element;
   }
 
 export const GenericModalDialog: FC<ModalDialogProps> = ({
     isOpen,
-    onClose,
+    onConfirm,
     onCancel,
     title,
-    subtitle,
     children
   }) => {
  
@@ -24,7 +22,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
       reason: "backdropClick" | "escapeKeyDown"
     ) => {
       if (reason !== "backdropClick") {
-        onClose();
+        onCancel();
       }
     };
 
@@ -33,13 +31,11 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
         <Dialog open={isOpen} onClose={handleClose} >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
-          <DialogContentText>{subtitle}</DialogContentText>
-          <br/>
           {children}
         </DialogContent>
         <DialogActions>
           <Button color="error" variant="contained" onClick={onCancel}>X</Button>
-          <Button color="success" variant="contained" onClick={onClose}>✔</Button>
+          <Button color="success" variant="contained" onClick={onConfirm}>✔</Button>
         </DialogActions>
       </Dialog>
       </>
