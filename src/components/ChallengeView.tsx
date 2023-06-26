@@ -1,10 +1,11 @@
 import { Breadcrumbs, Typography, useMediaQuery } from "@mui/material";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Challenge, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
-import { EmberView } from "./EmberView";
+import { EmberView } from "./emberView/EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
+import theme from '../theme';
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const {t} = useTranslation(["books", "challenges", "chapters", "groups"])
@@ -23,15 +24,15 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
             </Link>
             
             <Link to={`/libros/${path.book.id}`}>
-                <Typography>{t(`${path.book.id}.title`, {ns: "books"})}</Typography>
+                <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.book.id}.title`, {ns: "books"})}</Typography>
             </Link>
 
             {shouldShowChapter && 
-                <Typography>{t(`${path.chapter.id}.title`, {ns: "chapters"})}</Typography>
+                <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.chapter.id}.title`, {ns: "chapters"})}</Typography>
             }
 
             {shouldShowGroup &&
-                <Typography>{t(`${path.group.id}.title`, {ns: "groups"})}</Typography>
+                <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.group.id}.title`, {ns: "groups"})}</Typography>
             }
 
             <Typography>{t(`${path.challenge.id}.title`, {ns: "challenges"})}</Typography>

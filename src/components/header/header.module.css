@@ -1,9 +1,10 @@
 .header {
-    background-color: var(--theme-background-color);
-    padding: 0 16px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: 0 16px;
+    background-color: var(--theme-background-color);
     justify-content: space-between;
     align-items: center;
+    max-height: var(--header-height);
 }
 
 .logo {
@@ -17,7 +18,7 @@
 }
 
 .face {
-    height: 48px; /* the min height of the header is controlled by this */
+    height: var(--header-height);
     border-radius: 10px;
     border: 1px solid #ddd;
 }
@@ -28,6 +29,7 @@
 
 .login-btn {
     animation: blinker 1s linear infinite;
+    height: var(--header-height);
     color: var(--theme-font-color);
 }
 
@@ -40,4 +42,7 @@
 .header-text {
     color: #787878;
     align-content: center;
+    text-align: center;
+    flex-wrap: nowrap;
+    max-height: var(--header-height);
 }

@@ -14,7 +14,7 @@ type HeaderTextProps = {
 }
 
 export const HeaderText = (props: HeaderTextProps) => (
-	<Typography
+	<Typography 
 		className={styles["header-text"]}
 		sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>
 		{props.text}
@@ -23,8 +23,8 @@ export const HeaderText = (props: HeaderTextProps) => (
 
 export const Header = ({CenterComponent= <></>}: HeaderProps) => {
     
-    return <AppBar position="fixed" elevation={0}>
-            <Grid container className={styles['header']}>
+    return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
+            <Grid container className={styles['header']} wrap="nowrap">
                 <Link to="/" style={{display: 'flex'}}><img src="imagenes/pblogo-whiteborder.svg" className={styles['logo']} alt="logo pilas bloques"/></Link>
                 {CenterComponent}
                 <div>
