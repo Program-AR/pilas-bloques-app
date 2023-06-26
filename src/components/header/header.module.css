@@ -18,7 +18,7 @@
 }
 
 .face {
-    height: 48px; 
+    height: var(--header-height);
     border-radius: 10px;
     border: 1px solid #ddd;
 }
@@ -29,7 +29,7 @@
 
 .login-btn {
     animation: blinker 1s linear infinite;
-    height: 48px; 
+    height: var(--header-height);
     color: var(--theme-font-color);
 }
 
