@@ -4,7 +4,7 @@
     background-color: var(--theme-background-color);
     justify-content: space-between;
     align-items: center;
-    max-height: 48px;
+    max-height: var(--header-height);
 }
 
 .logo {
@@ -44,5 +44,5 @@
     align-content: center;
     text-align: center;
     flex-wrap: nowrap;
-    max-height: 48px;
+    max-height: var(--header-height);
 }
