@@ -44,5 +44,5 @@
     align-content: center;
     text-align: center;
     flex-wrap: nowrap;
-    max-height: 48px;
+    max-height: var(--header-height);
 }
