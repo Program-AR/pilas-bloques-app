@@ -29,6 +29,7 @@ describe('Creator selection', () => {
                 maps: [[["A","-","-","-","-"],["-","-","-","-","-"],["-","-","-","-","-"]]]
             }
         }
+
         LocalStorage.saveCreatorChallenge(challenge)
         render(<SceneGrid />)
 
@@ -37,7 +38,7 @@ describe('Creator selection', () => {
 
     })
 
-    test('Should set grid size according to local storage', async () => {
+    test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
         render(<SceneGrid />)
 
