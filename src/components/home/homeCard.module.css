@@ -1,9 +1,9 @@
 .home-card {
-    border-radius: 20px;
+    border-radius: 20px !important; 
     width: 14rem;
     padding: 30px;
     margin: 30px;
-    transition: transform .2s
+    transition: transform .2s !important
 }
 
 .home-card:hover {
