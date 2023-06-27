@@ -38,7 +38,7 @@ export const StatementEdition = () => {
     }
 
     return <>
-        <Button onClick={handleButtonClick}>{t('statement.title')}</Button>
+        <Button data-testid="statement-button" onClick={handleButtonClick}>{t('statement.title')}</Button>
         <GenericModalDialog
                         isOpen={open}
                         onConfirm={handleOnConfirm}
@@ -49,6 +49,7 @@ export const StatementEdition = () => {
                 sx={{ margin: "6px", width: { sm: 200, md: 500 } }}
                 size="small"
                 multiline={true}
+                inputProps={{ "data-testid": "statement-input" }}
                 label={t('statement.description')}
                 value={statementInProgress}
                 onChange={props => setStatementInProgress(props.target.value)}

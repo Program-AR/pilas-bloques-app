@@ -35,7 +35,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
         </DialogContent>
         <DialogActions>
           <Button color="error" variant="contained" onClick={onCancel}>X</Button>
-          <Button color="success" variant="contained" onClick={onConfirm}>✔</Button>
+          <Button color="success" variant="contained" data-testid="generic-ok" onClick={onConfirm}>✔</Button>
         </DialogActions>
       </Dialog>
       </>
