@@ -2,6 +2,7 @@ import { Stack } from "@mui/material"
 import { SceneMap, SerializedChallenge } from "../serializedChallenge"
 import { LocalStorage } from "../../localStorage"
 import { defaultMaps } from "./Selection"
+import styles from "./grid.module.css"
 
 // these consts are for testing purpose 
 const A = "A"
@@ -18,15 +19,19 @@ export const SceneGrid = () => {
 
     const maps: SceneMap[] = challenge ? challenge.scene.maps : defaultMaps
 
-    return <Stack>
-        {maps[0].map((row, i) =>
-            <Stack  key={i} direction="row" data-testid="challenge-row">
-                {row.map((cellContent, j) => <Cell key={j} testId="challenge-cell">{cellContent}</Cell>)}
-            </Stack>)}
-    </Stack>
+    return <div className={styles.container}>
+        <Stack className={styles.grid + ' ' + styles.border} >
+            {maps[0].map((row, i) =>
+                <Stack  key={i} className={styles.row} direction="row" data-testid="challenge-row">
+                    {row.map((cellContent, j) => <Cell key={j} testId="challenge-cell">{cellContent}</Cell>)}
+                </Stack>)}
+        </Stack>
+    </div>
 }
 
-//May be of use in the future to try Grid with aspect-ratio: 1/1 to force the cell to be squared
-const Cell: React.FC<CellProps> = (props) => <div data-testid={props.testId} style={{ borderStyle: "solid", height: "100%", width: "100%" }}>{props.children}</div>
+const Cell: React.FC<CellProps> = (props) => 
+    <div data-testid={props.testId} className = {styles.cell + ' ' + styles.border}>
+            {props.children}
+    </div>
 
 interface CellProps { children: React.ReactNode, testId: string}

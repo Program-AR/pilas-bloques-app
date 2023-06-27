@@ -1,0 +1,30 @@
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    border-left-style: solid;
+    border-top-style: solid;
+    margin: 10px;
+    width: 100%;
+}
+
+.row {
+    justify-content: center;
+}
+
+.cell {
+    border-bottom-style: solid;
+    border-right-style: solid;
+    aspect-ratio: 1/1;
+    width: 100%;
+}
+
+.border {
+    border-width: thin;
+    border-color: gray;
+}
