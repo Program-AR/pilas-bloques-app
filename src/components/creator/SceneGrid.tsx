@@ -19,14 +19,12 @@ export const SceneGrid = () => {
 
     const maps: SceneMap[] = challenge ? challenge.scene.maps : defaultMaps
 
-    return <div className={styles.container}>
-        <Stack className={styles.grid + ' ' + styles.border} >
+    return <Stack className={styles.grid + ' ' + styles.border} >
             {maps[0].map((row, i) =>
-                <Stack  key={i} className={styles.row} direction="row" data-testid="challenge-row">
+                <Stack  key={i} direction="row" data-testid="challenge-row">
                     {row.map((cellContent, j) => <Cell key={j} testId="challenge-cell">{cellContent}</Cell>)}
                 </Stack>)}
         </Stack>
-    </div>
 }
 
 const Cell: React.FC<CellProps> = (props) => 
