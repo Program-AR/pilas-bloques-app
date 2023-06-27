@@ -1,5 +1,4 @@
 import { SvgIconProps, SvgIcon } from "@mui/material";
-import creatorCardsStyles from "./creatorCards.module.css";
 
 export default function UploadIcon (props: SvgIconProps) {
    return <SvgIcon {...props} >
