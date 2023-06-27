@@ -3,7 +3,10 @@
     width: 14rem;
     padding: 30px;
     margin: 30px;
-    transition: transform .2s !important
+    transition: transform .2s !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .home-card:hover {

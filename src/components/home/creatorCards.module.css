@@ -1,23 +1,19 @@
 .creator-card-icon {
-    margin: auto;
     background-color: #C469FF; 
     border-radius: 50%; 
-    text-align: center;
-    width: 65%;
-    height: 80%;
+    aspect-ratio: 1/1; /* forces circle and not ellipse */
+    width: 30%;
     color: white;
-    vertical-align: middle;
-    padding: 20px;
+    display: flex; /* to be able to use align and justify */
+    align-items: center; /* centers white svg inside purple circle in one axis */
+    justify-content: center; /* centers white svg inside purple circle in the other axis */
 }
 
 .creator-card-text {
     border-style: solid;
-    border-radius: 20px;
+    border-radius: 50px;
     border-width: thin;
     margin-top: 15px;
-    padding: 5px;
-}
-
-.icon-size {
-    font-size: 50px;
+    padding: 15px;
+    text-transform: uppercase;
 }

@@ -5,18 +5,18 @@ import homeCardStyles from "./homeCard.module.css";
 export type CreatorCardProps = {
     text: string,
     color: string,
-    icon: React.FC
+    icon: React.FC<{style: any}>
 }
 
 export const CreatorCard = (props: CreatorCardProps) => {
     
     return (
-        <Card className={homeCardStyles['home-card']} style={{ backgroundColor: props.color}}>
+        <Card className={homeCardStyles['home-card']} style={{ backgroundColor: props.color, width: '18rem'}}>
             <div className={creatorCardsStyles['creator-card-icon']} >
-                <props.icon />
+                <props.icon style={{fontSize: '2.5em'}} />
             </div>
             <div className={creatorCardsStyles['creator-card-text']}>
-                <Typography variant="h6" align="center" fontWeight="300" >{props.text}</Typography>
+                <Typography align="center" fontWeight="400" >{props.text}</Typography>
             </div>
         </Card>
     )
