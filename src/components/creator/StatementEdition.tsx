@@ -13,11 +13,16 @@ export const StatementEdition = () => {
 
     const [statementInProgress, setStatementInProgress] = useState(currentStatement);
     const [clueInProgress, setClueInProgress] = useState(currentClue);
-    const [clueCheck, setClueCheck] = useState(currentClue !== '');
+    const [clueCheck, setClueCheck] = useState(currentClue !== '' && currentClue !== undefined);
     const [open, setOpen] = useState(false);
 
     const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
-        if(!open) setOpen(true)
+        if(!open) {
+            setStatementInProgress(currentStatement)
+            setClueInProgress(currentClue)
+            setClueCheck(currentClue !== '' && currentClue !== undefined)
+            setOpen(true)
+        }
     }    
 
     const handleOnCancel = () => {
