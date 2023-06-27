@@ -9,7 +9,7 @@ import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import theme from './theme';
 import "./theme-light.css"
-import { About } from './components/About';
+import { About } from './components/about/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { CreatorSelection } from './components/creator/Selection';

@@ -1,0 +1,8 @@
+.about{
+    text-align: justify;
+    flex-wrap: wrap;
+}
+.title{
+    padding: 10px 0px;
+    text-align: left;
+}

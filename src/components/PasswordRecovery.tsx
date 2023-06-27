@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { EmberView } from "./EmberView"
+import { EmberView } from "./emberView/EmberView"
 import { Header } from "./header/Header"
 
 export const PasswordRecovery = () =>{

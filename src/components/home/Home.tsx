@@ -30,10 +30,10 @@ export const Home = () => {
 
     return <>
     <Header CenterComponent={<HeaderText text={t("header")}/>}/>
-    <Container className={styles.background} maxWidth={false}><img alt="" src='imagenes/home-background.svg'/></Container>
+    <Container className={styles.background} maxWidth={false}><img src='imagenes/home-background.svg' alt="background"/></Container>
     
     <Grid className={styles['home-container']} container direction='column'>
-        <Container className={styles.logo} maxWidth="sm"><img alt="pilas bloques logo" src="imagenes/pblogo-whiteborder.svg"/></Container>
+        <Container className={styles.logo} maxWidth="sm"><img src="imagenes/pblogo-whiteborder.svg" alt="pilas bloques logo"/></Container>
         <Typography className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton />
         <BookCards/>

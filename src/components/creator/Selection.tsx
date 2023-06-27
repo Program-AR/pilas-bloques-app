@@ -5,45 +5,70 @@ import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
+import { LocalStorage } from "../../localStorage"
+import { Scene, SceneType, SerializedChallenge } from "../serializedChallenge"
 
 type CharacterCardProps = {
-	name: string
+	name: SceneType
 	color: string
 }
 
 const characters: CharacterCardProps[] = [
 	{
-		name: "lita",
+		name: "Lita",
 		color: "#fc5e3e",
 	},
 	{
-		name: "duba",
+		name: "Duba",
 		color: "#fcaa3e",
 	},
 	{
-		name: "chuy",
+		name: "Chuy",
 		color: "#6e3efc",
 	},
 	{
-		name: "manic",
+		name: "Manic",
 		color: "#3ed0fc",
 	},
 	{
-		name: "capy",
+		name: "Capy",
 		color: "#3efc6a",
 	},
 	{
-		name: "yvoty",
+		name: "Yvoty",
 		color: "#e33efc",
 	},
 ]
+
+const defaultScene = (type: SceneType): Scene => {
+	return {
+		type: type,
+		maps: [[['A', '-', '-'],
+		['-', '-', '-'],
+		['-', '-', '-']]]
+	}
+}
+
+export const defaultChallenge = (type: SceneType): SerializedChallenge => {
+	return {
+		fileVersion: 1,
+		title: "",
+		statement: {
+			description: ""
+		},
+		scene: defaultScene(type),
+		toolbox: {
+			blocks: []
+		}
+	}
+}
 
 const CharacterCard = (props: CharacterCardProps) => {
 	const { t } = useTranslation("creator")
 	const navigate = useNavigate()
 
 	const goToCreator = () => {
-		localStorage.setItem("PB_CREATOR_CHALLENGE", JSON.stringify({ sceneType: props.name }))
+		LocalStorage.saveCreatorChallenge(defaultChallenge(props.name))
 		navigate("/creador/editar")
 	}
 
@@ -89,13 +114,13 @@ export const CreatorSelection = () => {
 }
 
 const ChallengeInProgressDialog = () => {
-	const thereIsChallengeInCreation: boolean = !!localStorage.getItem("PB_CREATOR_CHALLENGE")
+	const thereIsChallengeInCreation: boolean = !!LocalStorage.getCreatorChallenge()
 	const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
 	const { t } = useTranslation("creator")
 
 	const onDiscard = () => {
 		setOpenModal(false)
-		localStorage.removeItem("PB_CREATOR_CHALLENGE")
+		LocalStorage.saveCreatorChallenge(null)
 	}
 
 	return (

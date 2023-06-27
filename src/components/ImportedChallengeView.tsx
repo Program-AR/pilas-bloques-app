@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { EmberView } from "./EmberView";
+import { EmberView } from "./emberView/EmberView";
 import { Header, HeaderText } from "./header/Header";
 import { SerializedChallenge } from "./serializedChallenge";
 

@@ -1,4 +1,4 @@
-import { About } from "../components/About"
+import { About } from "../components/about/About"
 import { BookView } from "../components/book/BookView"
 import { ChallengeById, ChallengeByName } from "../components/ChallengeView"
 import { CreatorEditor } from "../components/creator/Editor"
