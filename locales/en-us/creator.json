@@ -14,5 +14,9 @@
 			"capy": "Protect the environment!",
 			"chuy": "Play with the ball!"
 		}
-	}
+	},
+	"statement": {
+		"title": "Statement",
+		"description": "Description",
+		"clue": "Clue"	}
 }

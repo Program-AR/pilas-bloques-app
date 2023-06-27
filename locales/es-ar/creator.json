@@ -17,5 +17,10 @@
 	},
 	"editor": {
 		"title": "Título"
+	},
+	"statement": {
+		"title": "Enunciado",
+		"description": "Descripción",
+		"clue": "Pista"
 	}
-}
+	}
