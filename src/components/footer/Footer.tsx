@@ -32,5 +32,5 @@ export const Footer = () =>
       <Version />
       <Links />
     </Grid>
-    <img src="imagenes/footer-logos.svg" style={{maxWidth: "30rem"}}/>
+    <img alt="logos" src="imagenes/footer-logos.svg" style={{maxWidth: "30rem"}}/>
   </Stack>
