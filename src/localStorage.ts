@@ -1,10 +1,7 @@
 import { EmberExecutableChallenge } from "./emberCommunication"
 import { User } from "./pbApi"
 import { LanguageCode } from "./language"
-
-type CreatorChallenge = {
-    sceneType: string
-}
+import { SerializedChallenge } from "./components/serializedChallenge"
 
 export namespace LocalStorage {
 
@@ -18,12 +15,12 @@ export namespace LocalStorage {
     export const getSelectedLocale = (): LanguageCode => _get(PB_SELECTED_LOCALE)
     export const getImportedChallenge = (): EmberExecutableChallenge => _get(PB_IMPORTED_CHALLENGE)
     export const getUser = (): User | null => _get(PB_USER)
-    export const getCreatorChallenge = (): CreatorChallenge | null => _get(PB_CREATOR_CHALLENGE)
+    export const getCreatorChallenge = (): SerializedChallenge | null => _get(PB_CREATOR_CHALLENGE)
 
     export const saveSelectedLocale = (selectedLocale: LanguageCode) => _save(PB_SELECTED_LOCALE, selectedLocale)
     export const saveImportedChallenge = (importedChallenge: EmberExecutableChallenge) => _save(PB_IMPORTED_CHALLENGE, importedChallenge)
     export const saveUser = (user: User | null) => _save(PB_USER, user)
-    export const saveCreatorChallenge = (challenge: CreatorChallenge | null) => _save(PB_CREATOR_CHALLENGE, challenge)
+    export const saveCreatorChallenge = (challenge: SerializedChallenge | null) => _save(PB_CREATOR_CHALLENGE, challenge)
 
     const _get = (key: string) => _doSafe(key, (storage: Storage) => {
         const value = storage.getItem(key)

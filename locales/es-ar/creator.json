@@ -7,12 +7,15 @@
 		"continueEditing": "Seguir editando",
 		"discard": "Descartar",
 		"cards": {
-			"lita": "¡A preparar ensalada!",
-			"duba": "¡A comer churrasco!",
-			"yvoty": "¡A cargar el celu!",
-			"manic": "¡A observar el cielo!",
-			"capy": "¡A cuidar el medio ambiente!",
-			"chuy": "¡A jugar a la pelota!"
+			"Lita": "¡A preparar ensalada!",
+			"Duba": "¡A comer churrasco!",
+			"Yvoty": "¡A cargar el celu!",
+			"Manic": "¡A observar el cielo!",
+			"Capy": "¡A cuidar el medio ambiente!",
+			"Chuy": "¡A jugar a la pelota!"
 		}
+	},
+	"editor": {
+		"title": "Título"
 	}
 }
