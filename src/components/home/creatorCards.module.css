@@ -3,12 +3,11 @@
     background-color: #C469FF; 
     border-radius: 50%; 
     text-align: center;
-    width: 50%;
-    height: 50%;
+    width: 65%;
+    height: 80%;
     color: white;
     vertical-align: middle;
     padding: 20px;
-    font-size: x-large;
 }
 
 .creator-card-text {
@@ -16,4 +15,9 @@
     border-radius: 20px;
     border-width: thin;
     margin-top: 15px;
+    padding: 5px;
+}
+
+.icon-size {
+    font-size: 50px;
 }
