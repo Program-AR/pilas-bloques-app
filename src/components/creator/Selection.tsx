@@ -42,10 +42,9 @@ const characters: CharacterCardProps[] = [
 
 export const defaultMaps: SceneMap[] = [[['A', '-', '-', '-'],['-', '-', '-','-'],['-', '-', '-','-'],['-','-','-','-']]]
 
+export const creatorVersion = 1
+
 export const defaultChallenge = (type: SceneType): SerializedChallenge => {
-    if(!process.env.REACT_APP_CREATOR_VERSION) throw new Error("Missing Creator version. ENV not set")
-	const creatorVersion = parseInt(process.env.REACT_APP_CREATOR_VERSION!)
-	
 	return {
 		fileVersion: creatorVersion,
 		title: "",
