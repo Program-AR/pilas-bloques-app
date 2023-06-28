@@ -43,8 +43,11 @@ const characters: CharacterCardProps[] = [
 export const defaultMaps: SceneMap[] = [[['A', '-', '-', '-'],['-', '-', '-','-'],['-', '-', '-','-'],['-','-','-','-']]]
 
 export const defaultChallenge = (type: SceneType): SerializedChallenge => {
+
+	const creatorVersion = parseInt(process.env.REACT_APP_CREATOR_VERSION!)
+	
 	return {
-		fileVersion: 1,
+		fileVersion: creatorVersion,
 		title: "",
 		statement: {
 			description: ""
