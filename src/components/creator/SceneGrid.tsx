@@ -4,13 +4,6 @@ import { LocalStorage } from "../../localStorage"
 import { defaultMaps } from "./Selection"
 import styles from "./grid.module.css"
 
-// these consts are for testing purpose 
-const A = "A"
-const O = "O"
-const E = "E"
-const G = "-"
-
-const mapa = [[A,O,O,O,O,A,O,O,O,O,A,O,O,O,O],[G,O,G,G,G,A,O,O,O,O,A,O,O,O,O],[G,O,O,O,G,A,O,O,O,O,A,O,O,O,O],[E,G,G,G,G,A,O,O,O,O,A,O,O,O,O]]
 
 // the scene has multiple initial scenarios
 export const SceneGrid = () => {
