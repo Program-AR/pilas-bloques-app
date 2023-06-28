@@ -1,5 +1,6 @@
-import { Stack, TextField } from "@mui/material";
+import { Stack } from "@mui/material";
 import { SceneGrid } from "./SceneGrid";
+import { IncDecButtons } from "./IncDecButtons";
 
 
 export const SceneEdition = () => (
@@ -10,9 +11,10 @@ export const SceneEdition = () => (
     </Stack>
 )
 
-const SizeEditor = () => <Stack alignItems="center" style={{padding: "10px"}}>
-    <TextField variant="standard" margin="normal" label="Cantidad de columas" type="number" defaultValue={3}></TextField>
-    <TextField variant="standard" margin="normal" label="Cantidad de filas" type="number" defaultValue={3}></TextField>
+const SizeEditor = () => 
+<Stack sx={{flexDirection:"column", height:"150px", justifyContent:"space-between", padding: "10px"}}>
+    <IncDecButtons min={1} max={12} label="Cantidad de columnas"/>
+    <IncDecButtons min={1} max={10} label="Cantidad de filas"/>
 </Stack>
 
 const SceneTools = () =>
