@@ -1,5 +1,4 @@
 .about{
-    margin-top: var(--header-height);
     text-align: justify;
     flex-wrap: wrap;
 }

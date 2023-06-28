@@ -7,7 +7,7 @@ export const CreatorEditor = () => {
   return (
     <Stack alignItems="center" height="100%">
       <Header />
-      <Stack height="100%" width="100%" style={{marginTop: 48, maxWidth: 1024, maxHeight:650, borderStyle: "solid"}}>
+      <Stack height="100%" width="100%" style={{maxWidth: 1024, maxHeight:650, borderStyle: "solid"}}>
         <EditorHeader />
         <SceneEdition />
         <ChallengeDetailsEdition />
