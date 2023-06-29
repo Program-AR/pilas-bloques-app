@@ -9,7 +9,6 @@ const OBSTACLE = "O"
 const ACTOR = "A"
 const EMPTY = "-"
 
-const MAP_0 = 0
 const COL_0 = 0
 const CEL_0 = 0
 
@@ -24,13 +23,14 @@ export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap)
 }
 
 type SizeProps = {
+    mapIndex: number
     setColumns: (col: number) => void
     setRows: (row: number) => void
 }
 
 const SizeEditor = (props: SizeProps) => {
-    const initialRows = LocalStorage.getCreatorChallenge()!.scene.maps[MAP_0].length
-    const initialColumns = LocalStorage.getCreatorChallenge()!.scene.maps[MAP_0][COL_0].length
+    const initialRows = LocalStorage.getCreatorChallenge()!.scene.maps[props.mapIndex].length
+    const initialColumns = LocalStorage.getCreatorChallenge()!.scene.maps[props.mapIndex][COL_0].length
 
     const [row, setRow] = useState(initialRows || 1)
     const [col, setCol] = useState(initialColumns || 1)
@@ -72,7 +72,7 @@ const SizeEditor = (props: SizeProps) => {
             }
 
             let challenge = LocalStorage.getCreatorChallenge()
-            actualMap = challenge!.scene.maps[MAP_0];
+            actualMap = challenge!.scene.maps[props.mapIndex];
 
             checkRow();
             checkCol();
@@ -114,11 +114,12 @@ const SceneTools = () =>
 export const SceneEdition = () => {
     const [, setCols] = useState(0)
     const [, setRows] = useState(0)
+    const [workingMap, ] = useState(0)
 
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <SizeEditor setColumns={setCols} setRows={setRows} />
-            <SceneGrid />
+            <SizeEditor mapIndex={workingMap} setColumns={setCols} setRows={setRows} />
+            <SceneGrid mapIndex={workingMap}/>
             <SceneTools />
         </Stack>
     )

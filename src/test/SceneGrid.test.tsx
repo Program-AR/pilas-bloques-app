@@ -31,7 +31,7 @@ describe('Creator selection', () => {
         }
 
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid />)
+        render(<SceneGrid mapIndex={0}/>)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(5)
@@ -40,7 +40,7 @@ describe('Creator selection', () => {
 
     test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
-        render(<SceneGrid />)
+        render(<SceneGrid mapIndex={0}/>)
 
         expect((await getGridSize()).rows).toBe(4)
         expect((await getGridSize()).columns).toBe(4)
