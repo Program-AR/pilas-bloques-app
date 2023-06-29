@@ -4,13 +4,13 @@ import { LocalStorage } from "../../localStorage"
 import { defaultMaps } from "./Selection"
 import styles from "./grid.module.css"
 
-export const SceneGrid = () => {
 
+export const SceneGrid = () => {
     const challenge: SerializedChallenge | null = LocalStorage.getCreatorChallenge()
 
     const maps: SceneMap[] = challenge ? challenge.scene.maps : defaultMaps
 
-    return <Stack className={styles.grid + ' ' + styles.border} >
+    return <Stack className={styles.grid + ' ' + styles.border}>
         {maps[0].map((row, i) =>
             <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                 {row.map((cellContent, j) => <Cell key={i * 100 + j + cellContent} testId="challenge-cell">{cellContent}</Cell>)}

@@ -1,38 +1,125 @@
 import { Stack } from "@mui/material";
 import { SceneGrid } from "./SceneGrid";
 import { IncDecButtons } from "./IncDecButtons";
+import { useState, useEffect } from 'react';
+import { LocalStorage } from "../../localStorage";
+import { SceneMap } from "../serializedChallenge";
+
+const OBSTACLE = "O"
+const ACTOR = "A"
+const EMPTY = "-"
+
+const MAP_0 = 0
+const COL_0 = 0
+const CEL_0 = 0
+
+export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap) => {
+    if (row.includes(ACTOR, colSearch)) {
+        if (inMap[COL_0][CEL_0] === EMPTY || inMap[COL_0][CEL_0] === OBSTACLE) {
+            inMap[COL_0][CEL_0] = ""
+        }
+        inMap[COL_0][CEL_0] += ACTOR
+    }
+    return inMap;
+}
+
+type SizeProps = {
+    setColumns: (col: number) => void
+    setRows: (row: number) => void
+}
+
+const SizeEditor = (props: SizeProps) => {
+    const initialRows = LocalStorage.getCreatorChallenge()!.scene.maps[MAP_0].length
+    const initialColumns = LocalStorage.getCreatorChallenge()!.scene.maps[MAP_0][COL_0].length
+
+    const [row, setRow] = useState(initialRows || 1)
+    const [col, setCol] = useState(initialColumns || 1)
 
 
-export const SceneEdition = () => (
-    <Stack direction="row" alignItems="center" justifyContent="space-between">
-        <SizeEditor />
-        <SceneGrid />
-        <SceneTools />
-    </Stack>
-)
+    useEffect(() => {
+        const updateMap = () => {
 
-const SizeEditor = () => 
-<Stack sx={{flexDirection:"column", height:"150px", justifyContent:"space-between", padding: "10px"}}>
-    <IncDecButtons min={1} max={12} label="Cantidad de columnas"/>
-    <IncDecButtons min={1} max={10} label="Cantidad de filas"/>
-</Stack>
+            let actualMap: SceneMap;
+
+            const checkRow = () => {
+                if (row !== actualMap.length) {
+                    if (row < actualMap.length) {
+                        actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
+                        actualMap.pop()
+                    }
+                    else
+                        actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
+
+                    LocalStorage.saveCreatorChallenge(challenge)
+                    props.setRows(row)
+                }
+            }
+
+            const checkCol = () => {
+                if (col !== actualMap[COL_0].length) {
+                    if (col < actualMap[COL_0].length) {
+                        actualMap.map((row) => {
+                            actualMap = relocateActor(row, row.length - 1, actualMap)
+                            return row.pop()
+                        })
+                    }
+                    else
+                        actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
+
+                    LocalStorage.saveCreatorChallenge(challenge)
+                    props.setColumns(col)
+                }
+            }
+
+            let challenge = LocalStorage.getCreatorChallenge()
+            actualMap = challenge!.scene.maps[MAP_0];
+
+            checkRow();
+            checkCol();
+        }
+
+        updateMap();
+
+    }, [col, row, props]);
+
+
+    return (
+        <Stack sx={{ flexDirection: "column", height: "200px", justifyContent: "space-between", padding: "10px" }}>
+            <IncDecButtons returnValue={setCol} initialValue={col} min={1} max={12} label="Cantidad de columnas" />
+            <IncDecButtons returnValue={setRow} initialValue={row} min={1} max={10} label="Cantidad de filas" />
+        </Stack>
+    )
+}
+
+const Tool = () => <div style={{ borderStyle: "solid", width: "50px", height: "50px" }}></div>
 
 const SceneTools = () =>
- <Stack alignItems="center" style={{padding: "10px"}}>
-    <p>Poner obstáculo</p>
-    <Tool />
-    <p>Poner objeto(s)</p>
-    <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
+    <Stack alignItems="center" style={{ padding: "10px" }}>
+        <p>Poner obstáculo</p>
         <Tool />
+        <p>Poner objeto(s)</p>
+        <Stack direction="row" style={{ flexWrap: "wrap", justifyContent: "center" }}>
+            <Tool />
+            <Tool />
+            <Tool />
+            <Tool />
+            <Tool />
+        </Stack>
+        <p>Poner personaje</p>
         <Tool />
-        <Tool />
-        <Tool />
+        <p>Borrar</p>
         <Tool />
     </Stack>
-    <p>Poner personaje</p>
-    <Tool />
-    <p>Borrar</p>
-    <Tool />
-</Stack>
 
-const Tool = () => <div style={{borderStyle:"solid", width:"50px", height:"50px"}}></div>
+export const SceneEdition = () => {
+    const [, setCols] = useState(0)
+    const [, setRows] = useState(0)
+
+    return (
+        <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <SizeEditor setColumns={setCols} setRows={setRows} />
+            <SceneGrid />
+            <SceneTools />
+        </Stack>
+    )
+}
