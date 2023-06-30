@@ -40,6 +40,8 @@ export const defaultScene = (type: SceneType): Scene => {
 	}
 }
 
+export const defaultMaps: SceneMap[] = [[['A', '-', '-', '-'],['-', '-', '-','-'],['-', '-', '-','-'],['-','-','-','-']]]
+
 export const defaultChallenge = (type: SceneType): SerializedChallenge => {
 	return {
 		fileVersion: 1,

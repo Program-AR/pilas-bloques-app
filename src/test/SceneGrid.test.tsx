@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { defaultChallenge } from '../components/creator/Selection';
+import { defaultChallenge } from '../components/serializedChallenge';
 import { LocalStorage } from '../localStorage';
 import { SceneGrid } from '../components/creator/SceneGrid';
 import { SerializedChallenge } from '../components/serializedChallenge';
