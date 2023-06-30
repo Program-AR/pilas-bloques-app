@@ -35,47 +35,54 @@ const SizeEditor = (props: SizeProps) => {
     const [row, setRow] = useState(initialRows || 1)
     const [col, setCol] = useState(initialColumns || 1)
 
+    let actualMap: SceneMap;
+
+    const checkRow = () => {
+        if (row !== actualMap.length) {
+            if (row < actualMap.length) {
+                actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
+                actualMap.pop()
+            }
+            else
+                actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
+
+            return true
+        }
+        else
+            return false
+    }
+
+    const checkCol = () => {
+        if (col !== actualMap[COL_0].length) {
+            if (col < actualMap[COL_0].length) {
+                actualMap.map((row) => {
+                    actualMap = relocateActor(row, row.length - 1, actualMap)
+                    return row.pop()
+                })
+            }
+            else
+                actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
+
+            return true
+        }
+    }
+
 
     useEffect(() => {
         const updateMap = () => {
 
-            let actualMap: SceneMap;
-
-            const checkRow = () => {
-                if (row !== actualMap.length) {
-                    if (row < actualMap.length) {
-                        actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
-                        actualMap.pop()
-                    }
-                    else
-                        actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
-
-                    LocalStorage.saveCreatorChallenge(challenge)
-                    props.setRows(row)
-                }
-            }
-
-            const checkCol = () => {
-                if (col !== actualMap[COL_0].length) {
-                    if (col < actualMap[COL_0].length) {
-                        actualMap.map((row) => {
-                            actualMap = relocateActor(row, row.length - 1, actualMap)
-                            return row.pop()
-                        })
-                    }
-                    else
-                        actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
-
-                    LocalStorage.saveCreatorChallenge(challenge)
-                    props.setColumns(col)
-                }
-            }
-
             let challenge = LocalStorage.getCreatorChallenge()
             actualMap = challenge!.scene.maps[props.mapIndex];
 
-            checkRow();
-            checkCol();
+            if (checkRow()) {
+                LocalStorage.saveCreatorChallenge(challenge)
+                props.setColumns(col)
+            }
+
+            if (checkCol()) {
+                LocalStorage.saveCreatorChallenge(challenge)
+                props.setRows(row)
+            }
         }
 
         updateMap();
@@ -114,12 +121,12 @@ const SceneTools = () =>
 export const SceneEdition = () => {
     const [, setCols] = useState(0)
     const [, setRows] = useState(0)
-    const [workingMap, ] = useState(0)
+    const [workingMap,] = useState(0)
 
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between">
             <SizeEditor mapIndex={workingMap} setColumns={setCols} setRows={setRows} />
-            <SceneGrid mapIndex={workingMap}/>
+            <SceneGrid mapIndex={workingMap} />
             <SceneTools />
         </Stack>
     )
