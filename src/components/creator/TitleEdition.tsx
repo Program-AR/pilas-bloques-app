@@ -1,5 +1,5 @@
 import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LocalStorage } from "../../localStorage";
 import { useTranslation } from "react-i18next";
 
@@ -7,9 +7,8 @@ export const TitleEdition = () => {
 
     const { t } = useTranslation('creator');
 
-    const [titleInProgress, setTitleInProgress] = useState('');
-
     const currentTitle = LocalStorage.getCreatorChallenge()!.title
+    const [titleInProgress, setTitleInProgress] = useState(currentTitle);
 
     const handleOnBlur = () => {
         let challenge = LocalStorage.getCreatorChallenge()
@@ -17,10 +16,6 @@ export const TitleEdition = () => {
         challenge!.title = titleInProgress
         LocalStorage.saveCreatorChallenge(challenge)
     }
-
-    useEffect(() => {
-        setTitleInProgress(currentTitle)
-    }, [])
 
     return <TextField
         sx={{ margin: "6px" }}

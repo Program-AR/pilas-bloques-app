@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Footer } from "../footer/Footer";
 import { Header, HeaderText } from "../header/Header";
 import styles from './home.module.css';
-import { CreatorCards } from "./CreatorCards";
+import { CreatorCards } from "./CreatorCard";
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home");
@@ -38,6 +38,7 @@ export const Home = () => {
         <RegisterButton />
         <BookCards/>
         <Divider style={{ width:'90%', borderColor: 'white' }}/>
+        <Typography className={styles.title} variant="h5">{t("creatorTitle")}</Typography>
         <CreatorCards/>
     </Grid>
     <Footer/>

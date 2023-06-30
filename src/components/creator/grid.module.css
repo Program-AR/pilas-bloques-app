@@ -1,0 +1,19 @@
+.grid {
+    border-left-style: solid;
+    border-top-style: solid;
+    flex: 1;
+    margin: 10px;
+    width: 100%;
+}
+
+.cell {
+    border-bottom-style: solid;
+    border-right-style: solid;
+    aspect-ratio: 1/1;
+    width: 100%;
+}
+
+.border {
+    border-width: thin;
+    border-color: gray;
+}

@@ -40,7 +40,6 @@ const characters: CharacterCardProps[] = [
 	},
 ]
 
-
 const CharacterCard = (props: CharacterCardProps) => {
 	const { t } = useTranslation("creator")
 	const navigate = useNavigate()
