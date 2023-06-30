@@ -21,6 +21,28 @@ export type SerializedChallenge = {
 
 const sceneTypes =  ["Lita", "Duba", "Toto", "Coty", "Manic", "Chuy", "Yvoty", "Capy", "Custom"] as const //Used for file validity checking
 export type SceneType = typeof sceneTypes[number]
+type SceneObject = string
+export type SceneObjects = SceneObject[]
+export const sceneObjects = (type:SceneType): SceneObjects => {
+    switch (type ) {
+        case "Lita": 
+            return ['L','T','E'];
+        case "Duba": 
+            return ['P'];
+        case "Manic": 
+            return ['T','E','P'];
+        case "Chuy": 
+            return ['T','E','U','P','G'];
+        case "Yvoty": 
+            return ['C','K','L','M','T'];
+        case "Capy": 
+            return ['T','L','P'];
+        default: 
+            return []
+    }
+
+}
+
 
 type Cell = string
 

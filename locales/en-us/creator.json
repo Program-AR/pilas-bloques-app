@@ -22,5 +22,11 @@
 		"clue": "Clue",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
 		"includeClue": "Include a clue"	
+	},
+	"tools": {
+		"putObstacle": "Put Obstacle",
+		"putObject": "Put Object",
+		"putActor": "Put Actor",
+		"delete": "Delete"
 	}
 }
