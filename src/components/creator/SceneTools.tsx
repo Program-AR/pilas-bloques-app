@@ -8,7 +8,6 @@ export const SceneTools = () => {
     type ToolProps = {
         id: string
         image?: string
-        onClick?: (event: React.MouseEvent<HTMLElement>) => void
     }
     
     const { t } = useTranslation('creator');
@@ -23,7 +22,7 @@ export const SceneTools = () => {
     const Tool = (props: ToolProps) => 
         <Button variant="outlined" 
                 id={props.id}
-                onClick={props.onClick}
+                onClick={selectTool}
                 style={{backgroundImage: `url("${props.image}")`, 
                         backgroundSize: "contain", backgroundRepeat: "no-repeat",
                         backgroundPositionX: "center",
@@ -36,16 +35,16 @@ export const SceneTools = () => {
     return ( 
         <Stack alignItems="center" style={{padding: "10px"}}>
             <Typography variant="caption">{t('tools.putObstacle')}</Typography>
-            <Tool id="O" onClick={selectTool} image={`imagenes/sceneImages/${challenge?.scene.type}/O.png`} />
+            <Tool id="O" image={`imagenes/sceneImages/${challenge?.scene.type}/O.png`} />
             <Typography variant="caption">{t('tools.putObject')}</Typography>
             <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
                 {sceneObjects(challenge!.scene.type).map((object) => 
-                <Tool id={object} onClick={selectTool} image={`imagenes/sceneImages/${challenge?.scene.type}/${object}.png`}/>)}
+                <Tool id={object} image={`imagenes/sceneImages/${challenge?.scene.type}/${object}.png`}/>)}
             </Stack>
             <Typography variant="caption">{t('tools.putActor')}</Typography>
-            <Tool id="A" onClick={selectTool} image={`imagenes/sceneImages/${challenge?.scene.type}/A.png`}/>
+            <Tool id="A" image={`imagenes/sceneImages/${challenge?.scene.type}/A.png`}/>
             <Typography variant="caption">{t('tools.delete')}</Typography>
-            <Tool id="e" onClick={selectTool} image={`imagenes/sceneImages/eraser.png`}/>
+            <Tool id="e" image={`imagenes/sceneImages/eraser.png`}/>
         </Stack> 
         )
 }
