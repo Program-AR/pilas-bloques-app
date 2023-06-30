@@ -6,7 +6,8 @@ type IncDecButtonsProps = {
     initialValue?: number
     min?: number
     max?: number
-    label?: string
+    label?: string | null
+    testId?: string 
 }
 
 export const IncDecButtons = (props: IncDecButtonsProps) => {
@@ -33,9 +34,9 @@ export const IncDecButtons = (props: IncDecButtonsProps) => {
         <Box sx={{ display:"flex", flexDirection: "column", alignItems: "center"}}>
             {props.label && <Typography variant="caption">{props.label}</Typography>}
             <ButtonGroup variant="contained" size="small" color="inherit" aria-label="small outlined button group">
-                <Button style={{ fontSize: 'large' }} onClick={()=>handleValue(true)}>+</Button>
+                <Button style={{ fontSize: 'large' }} onClick={()=>handleValue(true)} data-testid={`inc-btn-${props.testId}`}>+</Button>
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width:"45px" }} >{value}</Box>
-                <Button style={{ fontSize: 'large' }} onClick={()=>handleValue(false)}>-</Button>
+                <Button style={{ fontSize: 'large' }} onClick={()=>handleValue(false)}data-testid={`dec-btn-${props.testId}`}>-</Button>
             </ButtonGroup>
         </Box>
     );

@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
 import { SceneGrid } from "./SceneGrid";
+import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useEffect } from 'react';
 import { LocalStorage } from "../../localStorage";
@@ -29,6 +30,8 @@ type SizeProps = {
 }
 
 const SizeEditor = (props: SizeProps) => {
+    const { t } = useTranslation("creator")
+
     const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex].length
     const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][COL_0].length
 
@@ -99,8 +102,8 @@ const SizeEditor = (props: SizeProps) => {
 
     return (
         <Stack sx={{ flexDirection: "column", height: "200px", justifyContent: "space-between", padding: "10px" }}>
-            <IncDecButtons returnValue={setCol} initialValue={col} min={1} max={12} label="Cantidad de columnas" />
-            <IncDecButtons returnValue={setRow} initialValue={row} min={1} max={10} label="Cantidad de filas" />
+            <IncDecButtons returnValue={setCol} initialValue={col} min={1} max={12} label={t("scene-numCols")} testId="col" data-testid="map-col"/>
+            <IncDecButtons returnValue={setRow} initialValue={row} min={1} max={10} label={t("scene-numRows")} testId="row" data-testid="map-row"/>
         </Stack>
     )
 }

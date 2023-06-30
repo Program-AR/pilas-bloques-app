@@ -22,5 +22,9 @@
 		"clue": "Clue",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
 		"includeClue": "Include a clue"	
+	},
+	"scene": {
+		"numCols": "Number of Columns",
+		"numRows": "Number of Rows"
 	}
 }
