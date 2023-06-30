@@ -3,7 +3,7 @@ import { SceneGrid } from "./SceneGrid";
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useEffect } from 'react';
 import { LocalStorage } from "../../localStorage";
-import { SceneMap } from "../serializedChallenge";
+import { SceneMap, SerializedChallenge } from "../serializedChallenge";
 
 const OBSTACLE = "O"
 const ACTOR = "A"
@@ -17,7 +17,7 @@ export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap)
         if (inMap[COL_0][CEL_0] === EMPTY || inMap[COL_0][CEL_0] === OBSTACLE) {
             inMap[COL_0][CEL_0] = ""
         }
-        inMap[COL_0][CEL_0] += ACTOR
+        inMap[COL_0][CEL_0] = ACTOR + ( inMap[COL_0][CEL_0].length ? '&' + inMap[COL_0][CEL_0] : '')
     }
     return inMap;
 }
@@ -29,58 +29,65 @@ type SizeProps = {
 }
 
 const SizeEditor = (props: SizeProps) => {
-    const initialRows = LocalStorage.getCreatorChallenge()!.scene.maps[props.mapIndex].length
-    const initialColumns = LocalStorage.getCreatorChallenge()!.scene.maps[props.mapIndex][COL_0].length
+    const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex].length
+    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][COL_0].length
 
     const [row, setRow] = useState(initialRows || 1)
     const [col, setCol] = useState(initialColumns || 1)
 
-    let actualMap: SceneMap;
-
-    const checkRow = () => {
-        if (row !== actualMap.length) {
-            if (row < actualMap.length) {
-                actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
-                actualMap.pop()
-            }
-            else
-                actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
-
-            return true
-        }
-        else
-            return false
-    }
-
-    const checkCol = () => {
-        if (col !== actualMap[COL_0].length) {
-            if (col < actualMap[COL_0].length) {
-                actualMap.map((row) => {
-                    actualMap = relocateActor(row, row.length - 1, actualMap)
-                    return row.pop()
-                })
-            }
-            else
-                actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
-
-            return true
-        }
-    }
-
-
     useEffect(() => {
         const updateMap = () => {
+            let challenge: SerializedChallenge | null;
+            let actualMap: SceneMap;
 
-            let challenge = LocalStorage.getCreatorChallenge()
-            actualMap = challenge!.scene.maps[props.mapIndex];
+            const checkRow = () => {
+                if (row !== actualMap.length) {
+                    if (row < actualMap.length) {
+                        actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
+                        actualMap.pop()
+                    }
+                    else
+                        actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
+                    return true
+                }
+                return false
+            }
 
-            if (checkRow()) {
+            const checkCol = () => {
+                if (col !== actualMap[COL_0].length) {
+                    if (col < actualMap[COL_0].length) {
+                        actualMap.map((row) => {
+                            actualMap = relocateActor(row, row.length - 1, actualMap)
+                            return row.pop()
+                        })
+                    }
+                    else
+                        actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
+                    return true
+                }
+                return false
+            }
+
+            const readMap = () => {
+                challenge = LocalStorage.getCreatorChallenge()
+                actualMap = challenge!.scene.maps[props.mapIndex];
+            }
+
+            const saveMap = () => {
                 LocalStorage.saveCreatorChallenge(challenge)
+            }
+
+            // main process
+
+            readMap();
+
+            if (checkCol()) {
+                saveMap()
                 props.setColumns(col)
             }
 
-            if (checkCol()) {
-                LocalStorage.saveCreatorChallenge(challenge)
+            if (checkRow()) {
+                saveMap()
                 props.setRows(row)
             }
         }
