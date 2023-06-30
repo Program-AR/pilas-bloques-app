@@ -1,8 +1,6 @@
-import { render, fireEvent, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom';
-import { defaultChallenge } from '../components/creator/Selection';
+import { fireEvent, screen } from '@testing-library/react'
+import { defaultChallenge } from "../components/serializedChallenge"
 import { StatementEdition } from '../components/creator/StatementEdition';
-import { SerializedChallenge } from '../components/serializedChallenge';
 import { LocalStorage } from '../localStorage';
 import { renderComponent } from './testUtils';
 
@@ -11,31 +9,9 @@ describe('Statement Edition', () => {
         localStorage.clear()
     })
 
-    const statementChallenge: SerializedChallenge = {
-            fileVersion: 1,
-            title: "desafio",
-            statement: {
-                description: "enunciado",
-                clue: ""
-            },
-            scene:{ 
-                type: "Lita",
-                maps: [[ 
-                    ['L', '-'], 
-                    ['A', '-'],
-                    ['L', '-'], 
-                    ['T', '-']
-                ]]
-                },
-            toolbox: {
-                blocks: ['Uno', 'Otro'],
-            },
-            stepByStep: true
-                }
-
     beforeEach(() => {
         localStorage.clear()
-        localStorage.setItem('PB_CREATOR_CHALLENGE', JSON.stringify(statementChallenge))
+        LocalStorage.saveCreatorChallenge(defaultChallenge("Lita"))
     })
 
     test('renders statement modal dialog', async () => {
@@ -63,10 +39,9 @@ describe('Statement Edition', () => {
         const buttonOk = await screen.findByTestId('generic-ok')
         fireEvent.click(buttonOk);
 
-        const item = localStorage.getItem('PB_CREATOR_CHALLENGE')
-        const newStatementChallenge = item && JSON.parse(item)
+        const newStatementChallenge = LocalStorage.getCreatorChallenge()
         
-        expect(newStatementChallenge.statement.description).toEqual('new statement description')
+        expect(newStatementChallenge?.statement.description).toEqual('new statement description')
   
     })
 })

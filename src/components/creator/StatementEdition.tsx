@@ -1,6 +1,7 @@
-import { Button, Switch, TextField } from "@mui/material";
+import { Button, Box, Switch, TextField, FormControlLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../localStorage";
+import DescriptionIcon from '@mui/icons-material/Description';
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../modalDialog/GenericModalDialog";
 
@@ -13,14 +14,14 @@ export const StatementEdition = () => {
 
     const [statementInProgress, setStatementInProgress] = useState(currentStatement);
     const [clueInProgress, setClueInProgress] = useState(currentClue);
-    const [clueCheck, setClueCheck] = useState(currentClue !== '' && currentClue !== undefined);
+    const [clueCheck, setClueCheck] = useState(!!currentClue);
     const [open, setOpen] = useState(false);
 
     const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
         if(!open) {
             setStatementInProgress(currentStatement)
             setClueInProgress(currentClue)
-            setClueCheck(currentClue !== '' && currentClue !== undefined)
+            setClueCheck(!!currentClue)
             setOpen(true)
         }
     }    
@@ -43,15 +44,22 @@ export const StatementEdition = () => {
     }
 
     return <>
-        <Button data-testid="statement-button" onClick={handleButtonClick}>{t('statement.title')}</Button>
+        <Button 
+            variant="outlined" 
+            size="large"
+            style={{margin:"6px", textTransform:"none"}} 
+            startIcon={<DescriptionIcon />}
+            data-testid="statement-button" 
+            onClick={handleButtonClick}>{t('statement.button')}</Button>
         <GenericModalDialog
                         isOpen={open}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         title={t('statement.title')}>
-            <>
+            <Box style={{justifyContent:'center'}}>
+            <Typography variant="caption">{t('statement.descriptionHint')}</Typography>
             <TextField
-                sx={{ margin: "6px", width: { sm: 200, md: 500 } }}
+                fullWidth
                 size="small"
                 multiline={true}
                 inputProps={{ "data-testid": "statement-input" }}
@@ -60,11 +68,12 @@ export const StatementEdition = () => {
                 onChange={props => setStatementInProgress(props.target.value)}
             />
             <br/>
-            <Switch checked={clueCheck}
-                    onChange={handleClueOnChange}/>
+            <FormControlLabel control={<Switch checked={clueCheck}
+                                        onChange={handleClueOnChange}/>} label={t("statement.includeClue")} />
+            
             <br/>
             <TextField
-                sx={{ margin: "6px", width: { sm: 200, md: 500 }}}
+                fullWidth
                 size="small"
                 multiline={true}
                 disabled={!clueCheck}
@@ -72,7 +81,7 @@ export const StatementEdition = () => {
                 value={clueInProgress}
                 onChange={props => setClueInProgress(props.target.value)}
             />
-            </>
+            </Box>
         </GenericModalDialog>
     </>
 }

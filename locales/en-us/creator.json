@@ -17,6 +17,10 @@
 	},
 	"statement": {
 		"title": "Statement",
+		"button": "¡Write your Statement!",
 		"description": "Description",
-		"clue": "Clue"	}
+		"clue": "Clue",
+		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
+		"includeClue": "Include a clue"	
+	}
 }
