@@ -1,14 +1,18 @@
 import { Stack } from "@mui/material"
-import { LinkCard } from "./HomeCard"
+import { Link } from "react-router-dom";
+import { CreatorCard } from "./CreateChallengeCard"
 import { ImportChallengeCard } from "./ImportChallengeCard"
 import styles from "./home.module.css"
 import { useTranslation } from "react-i18next"
+import PaintbrushIcon from "./PaintBrushIcon";
 
 const CreateChallengeCard = () => {
     const {t} = useTranslation("home")
 
 	return (
-		<LinkCard url="creador/seleccionar" text={t("cards.creator")} color="#ec3efc" image={"placeholder.png"} />
+		<Link to="creador/seleccionar" style={{ textDecoration: 'none' }}>
+        	<CreatorCard text={t("cards.creator")} color="#ffffff" icon={PaintbrushIcon} />
+    	</Link>
 	)
 }
 

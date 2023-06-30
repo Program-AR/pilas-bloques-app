@@ -1,7 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { BrowserRouter } from 'react-router-dom';
-import { CreatorSelection, defaultChallenge } from '../components/creator/Selection';
+import { CreatorSelection } from '../components/creator/Selection';
 import { LocalStorage } from '../localStorage';
+import { defaultChallenge } from "../components/serializedChallenge"
 
 describe('Creator selection', () => {
     afterEach(() => {

@@ -1,0 +1,19 @@
+.creator-card-icon {
+    background-color: #C469FF; 
+    border-radius: 50%; 
+    aspect-ratio: 1/1; /* forces circle and not ellipse */
+    width: 30%;
+    color: white;
+    display: flex; /* to be able to use align and justify */
+    align-items: center; /* centers white svg inside purple circle in one axis */
+    justify-content: center; /* centers white svg inside purple circle in the other axis */
+}
+
+.creator-card-text {
+    border-style: solid;
+    border-radius: 50px;
+    border-width: thin;
+    margin-top: 15px;
+    padding: 15px;
+    text-transform: uppercase;
+}

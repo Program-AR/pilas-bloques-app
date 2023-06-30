@@ -1,7 +1,7 @@
 import { Stack } from "@mui/material"
 import { SceneMap, SerializedChallenge } from "../serializedChallenge"
 import { LocalStorage } from "../../localStorage"
-import { defaultMaps } from "./Selection"
+import { defaultMaps } from "../serializedChallenge"
 import styles from "./grid.module.css"
 
 type SceneGridProps = {
