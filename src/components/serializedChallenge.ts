@@ -36,7 +36,7 @@ export const sceneObjects = (type:SceneType): SceneObjects => {
         case "Yvoty": 
             return ['C','K','L','M','T'];
         case "Capy": 
-            return ['T','L','P'];
+            return ['L','P'];
         default: 
             return []
     }
