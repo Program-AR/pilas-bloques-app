@@ -1,5 +1,7 @@
 import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleSkip } from 'simple-type-guard';
 
+//IMPORTANT: remember to bump this version whenever there are breaking changes in the file format.
+export const creatorVersion = 1
 
 export type SerializedChallenge = {
     fileVersion: number,

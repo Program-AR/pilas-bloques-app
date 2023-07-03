@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
-import { SceneMap, SceneType, SerializedChallenge } from "../serializedChallenge"
+import { SceneMap, SceneType, SerializedChallenge, creatorVersion } from "../serializedChallenge"
 
 type CharacterCardProps = {
 	name: SceneType
@@ -41,8 +41,6 @@ const characters: CharacterCardProps[] = [
 ]
 
 export const defaultMaps: SceneMap[] = [[['A', '-', '-', '-'],['-', '-', '-','-'],['-', '-', '-','-'],['-','-','-','-']]]
-
-export const creatorVersion = 1
 
 export const defaultChallenge = (type: SceneType): SerializedChallenge => {
 	return {
