@@ -1,16 +1,16 @@
 import { Stack } from "@mui/material"
 import { SceneMap, SceneType, SerializedChallenge } from "../serializedChallenge"
 import { LocalStorage } from "../../localStorage"
-import { defaultMaps } from "./Selection"
+import { defaultChallenge } from "./Selection"
 import styles from "./grid.module.css"
 
 export const SceneGrid = () => {
 
-    const challenge: SerializedChallenge | null = LocalStorage.getCreatorChallenge()
+    const storageChallenge = LocalStorage.getCreatorChallenge()
+    const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
-    const maps: SceneMap[] = challenge ? challenge.scene.maps : defaultMaps
-
-    const sceneType: SceneType = challenge!.scene.type
+    const maps: SceneMap[] = challenge.scene.maps
+    const sceneType: SceneType = challenge.scene.type
 
     return <Stack className={styles.grid} >
         {maps[0].map((row, i) =>
@@ -29,7 +29,7 @@ interface CellProps {
     sceneType: SceneType
 }
 
-const SceneCell: React.FC<CellProps> = (props) => {
+export const SceneCell: React.FC<CellProps> = (props) => {
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
@@ -43,6 +43,7 @@ const SceneCell: React.FC<CellProps> = (props) => {
         style={{ backgroundImage: `url(${backgroundCellImage})` }}>
         {objectsInCell.map(obj =>
             <img
+                data-testid="challenge-cell-image"
                 key={'&'+obj}
                 src={`${imagePath}/${obj}.png`}
                 alt={obj}
