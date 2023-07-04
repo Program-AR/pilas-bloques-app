@@ -33,6 +33,29 @@ export type Scene = {
     maps: SceneMap[]
 }
 
+export const defaultScene = (type: SceneType): Scene => {
+	return {
+		type: type,
+		maps: [[['A', '-', '-'],
+		['-', '-', '-'],
+		['-', '-', '-']]]
+	}
+}
+
+export const defaultChallenge = (type: SceneType): SerializedChallenge => {
+	return {
+		fileVersion: 1,
+		title: "",
+		statement: {
+			description: ""
+		},
+		scene: defaultScene(type),
+		toolbox: {
+			blocks: []
+		}
+	}
+}
+
 type Assesments =  {
     itWorks?: boolean, // old "debeFelicitar", default true
     decomposition?: DecompositionAssessment,

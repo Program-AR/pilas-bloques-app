@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { defaultChallenge } from '../components/creator/Selection';
+import { defaultChallenge } from '../components/serializedChallenge';
 import { LocalStorage } from '../localStorage';
 import { SceneCell, SceneGrid } from '../components/creator/SceneGrid';
 import { SerializedChallenge } from '../components/serializedChallenge';
@@ -43,8 +43,8 @@ describe('Scene grid', () => {
         localStorage.clear()
         render(<SceneGrid />)
 
-        expect((await getGridSize()).rows).toBe(4)
-        expect((await getGridSize()).columns).toBe(4)
+        expect((await getGridSize()).rows).toBe(3)
+        expect((await getGridSize()).columns).toBe(3)
 
     })
 

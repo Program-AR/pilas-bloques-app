@@ -1,7 +1,6 @@
 import { Stack } from "@mui/material"
-import { SceneMap, SceneType, SerializedChallenge } from "../serializedChallenge"
+import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../serializedChallenge"
 import { LocalStorage } from "../../localStorage"
-import { defaultChallenge } from "./Selection"
 import styles from "./grid.module.css"
 
 export const SceneGrid = () => {

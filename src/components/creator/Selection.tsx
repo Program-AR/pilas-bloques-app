@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
-import { SceneMap, SceneType, SerializedChallenge, creatorVersion } from "../serializedChallenge"
+import { SceneType, defaultChallenge } from "../serializedChallenge"
 
 type CharacterCardProps = {
 	name: SceneType
@@ -39,25 +39,6 @@ const characters: CharacterCardProps[] = [
 		color: "#e33efc",
 	},
 ]
-
-export const defaultMaps: SceneMap[] = [[['A', '-', '-', '-'],['-', '-', '-','-'],['-', '-', '-','-'],['-','-','-','-']]]
-
-export const defaultChallenge = (type: SceneType): SerializedChallenge => {
-	return {
-		fileVersion: creatorVersion,
-		title: "",
-		statement: {
-			description: ""
-		},
-		scene: {
-			type: type,
-			maps: defaultMaps
-		},
-		toolbox: {
-			blocks: []
-		}
-	}
-}
 
 const CharacterCard = (props: CharacterCardProps) => {
 	const { t } = useTranslation("creator")
@@ -145,3 +126,5 @@ const ChallengeInProgressDialog = () => {
 		</>
 	)
 }
+export { defaultChallenge }
+
