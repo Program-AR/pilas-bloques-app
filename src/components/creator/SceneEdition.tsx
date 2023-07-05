@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { SceneGrid } from "./SceneGrid";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { LocalStorage } from "../../localStorage";
 import { SceneMap, SerializedChallenge } from "../serializedChallenge";
 
@@ -35,75 +35,55 @@ const SizeEditor = (props: SizeProps) => {
     const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex].length
     const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][COL_0].length
 
-    const [row, setRow] = useState(initialRows || 1)
-    const [col, setCol] = useState(initialColumns || 1)
+    const [rows, setRow] = useState(initialRows || 1)
+    const [columns, setCol] = useState(initialColumns || 1)
+
+    const rowsInMap = (actualMap: SceneMap): number => actualMap.length
+
+    const columnsInMap = (actualMap: SceneMap): number => actualMap[COL_0].length
+
+    const updateRowsIfChanged = useCallback((actualMap: SceneMap) => {
+        if (rows < rowsInMap(actualMap)) { //Row was removed
+            actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
+            actualMap.pop()
+        }
+        if (rows > rowsInMap(actualMap)) //Row was added
+            actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
+
+        props.setRows(rows)
+    }, [props, rows])
+
+    const updateColumnsIfChanged = useCallback((actualMap: SceneMap) => {
+        if (columns < columnsInMap(actualMap)) { //Column was removed
+            actualMap.map((row) => {
+                actualMap = relocateActor(row, row.length - 1, actualMap)
+                return row.pop()
+            })
+        }
+        if (columns > columnsInMap(actualMap)) //Column was added
+            actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
+
+        props.setColumns(columns)
+
+    }, [columns, props])
 
     useEffect(() => {
-        const updateMap = () => {
-            let challenge: SerializedChallenge | null;
-            let actualMap: SceneMap;
 
-            const checkRow = () => {
-                if (row !== actualMap.length) {
-                    if (row < actualMap.length) {
-                        actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
-                        actualMap.pop()
-                    }
-                    else
-                        actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
-                    return true
-                }
-                return false
-            }
+        const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
+        const map: SceneMap = challenge.scene.maps[props.mapIndex];
 
-            const checkCol = () => {
-                if (col !== actualMap[COL_0].length) {
-                    if (col < actualMap[COL_0].length) {
-                        actualMap.map((row) => {
-                            actualMap = relocateActor(row, row.length - 1, actualMap)
-                            return row.pop()
-                        })
-                    }
-                    else
-                        actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
-                    return true
-                }
-                return false
-            }
+        updateRowsIfChanged(map)
+        updateColumnsIfChanged(map)
+        
+        LocalStorage.saveCreatorChallenge(challenge)
 
-            const readMap = () => {
-                challenge = LocalStorage.getCreatorChallenge()
-                actualMap = challenge!.scene.maps[props.mapIndex];
-            }
-
-            const saveMap = () => {
-                LocalStorage.saveCreatorChallenge(challenge)
-            }
-
-            // main process
-
-            readMap();
-
-            if (checkCol()) {
-                saveMap()
-                props.setColumns(col)
-            }
-
-            if (checkRow()) {
-                saveMap()
-                props.setRows(row)
-            }
-        }
-
-        updateMap();
-
-    }, [col, row, props]);
+    }, [props, updateColumnsIfChanged, updateRowsIfChanged]);
 
 
     return (
         <Stack sx={{ flexDirection: "column", height: "200px", justifyContent: "space-between", padding: "10px" }}>
-            <IncDecButtons returnValue={setCol} initialValue={col} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col"/>
-            <IncDecButtons returnValue={setRow} initialValue={row} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row"/>
+            <IncDecButtons returnValue={setCol} initialValue={columns} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col"/>
+            <IncDecButtons returnValue={setRow} initialValue={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row"/>
         </Stack>
     )
 }
