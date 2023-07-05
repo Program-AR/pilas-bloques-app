@@ -7,19 +7,18 @@
     aspect-ratio: 1/1;
     flex:1;
     background-size: cover;
-    display: flex;
-    align-items: baseline;
 }
 
 
 .img-A{ 
-    height: max-content;
-    width: 97%;
-    transform: translateY(-35%);
+    width: 50%;
+    transform: scale(1.6) translateY(3%) translateX(20%);
+    z-index: 1;
 }
 
 .img-default{
-    width: 50%;
+    width: 40%;
+    z-index: 0;
 }
 
 .img-O{
