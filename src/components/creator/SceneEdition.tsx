@@ -3,7 +3,7 @@ import { SceneGrid } from "./SceneGrid";
 
 
 export const SceneEdition = () => (
-    <Stack direction="row" alignItems="center" justifyContent="space-between">
+    <Stack direction="row" alignItems="center" justifyContent="space-between" style={{borderStyle: "dotted", maxHeight: 532}}>
         <SizeEditor />
         <SceneGrid />
         <SceneTools />
