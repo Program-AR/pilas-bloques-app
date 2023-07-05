@@ -13,8 +13,9 @@
 
 
 .img-A{ 
-    width: 100%;
-    position: relative;    
+    height: max-content;
+    width: 97%;
+    transform: translateY(-35%);
 }
 
 .img-default{
