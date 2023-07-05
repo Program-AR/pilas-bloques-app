@@ -6,7 +6,7 @@ import styles from "./grid.module.css"
 export const SceneGrid = () => {
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
-    const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
+    const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
     const maps: SceneMap[] = challenge.scene.maps
     const sceneType: SceneType = challenge.scene.type
@@ -43,7 +43,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
         {objectsInCell.map(obj =>
             <img
                 data-testid="challenge-cell-image"
-                key={'&'+obj}
+                key={'&' + obj}
                 src={`${imagePath}/${obj}.png`}
                 alt={obj}
                 className={objectStyle(obj)} />

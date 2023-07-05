@@ -12,13 +12,16 @@
 
 .img-A{ 
     width: 50%;
-    transform: scale(1.6) translateY(3%) translateX(20%);
+    transform: scale(1.6) translateY(3%) translateX(15%);
     z-index: 1;
+    position: relative;
 }
 
 .img-default{
-    width: 40%;
+    width: 50%;
+    transform: translateY(40%);
     z-index: 0;
+    position: relative;
 }
 
 .img-O{
