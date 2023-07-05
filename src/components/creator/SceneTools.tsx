@@ -30,22 +30,41 @@ export const SceneTools = () => {
                         boxShadow: `0 0px calc(10px * ${Number(props.id===selectedTool)})`,
                         borderRadius: "2",  width:"50px", height:"50px"}}/>
     
-    
+    const PutObstacleTool = () => 
+        <>
+           <Typography variant="caption">{t('tools.putObstacle')}</Typography>
+            <Tool id="O" image={`imagenes/sceneImages/${challenge?.scene.type}/O.png`} /> 
+        </>
 
-    return ( 
-        <Stack alignItems="center" style={{padding: "10px"}}>
-            <Typography variant="caption">{t('tools.putObstacle')}</Typography>
-            <Tool id="O" image={`imagenes/sceneImages/${challenge?.scene.type}/O.png`} />
+    const PutObjectTool = () => 
+        <>
             <Typography variant="caption">{t('tools.putObject')}</Typography>
             <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
                 {sceneObjects(challenge!.scene.type).map((object) => 
                 <Tool id={object} image={`imagenes/sceneImages/${challenge?.scene.type}/${object}.png`}/>)}
             </Stack>
+        </>
+
+    const PutActorTool = () => 
+        <>
             <Typography variant="caption">{t('tools.putActor')}</Typography>
             <Tool id="A" image={`imagenes/sceneImages/${challenge?.scene.type}/A.png`}/>
+        </>
+                        
+    const DeleteTool = () => 
+        <>
             <Typography variant="caption">{t('tools.delete')}</Typography>
             <Tool id="e" image={`imagenes/sceneImages/eraser.png`}/>
+        </>     
+
+
+    return ( 
+        <Stack alignItems="center" style={{padding: "10px"}}>
+            <PutObstacleTool/>
+            <PutObjectTool/>
+            <PutActorTool/>
+            <DeleteTool/>
         </Stack> 
-        )
+    )
 }
 
