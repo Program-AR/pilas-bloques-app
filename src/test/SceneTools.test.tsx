@@ -20,7 +20,7 @@ describe('Scene Tools', () => {
 
         const toolButton = await screen.findByTestId('L')
             
-        expect(toolButton).toBeInTheDocumentq()
+        expect(toolButton).toBeInTheDocument()
     })
 
     test('check tool button not belongs to the scene ', async () => {
