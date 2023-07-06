@@ -25,6 +25,7 @@ export const SceneTools = () => {
     const Tool = (props: ToolProps) => 
         <Button variant="outlined" 
                 id={props.id}
+                data-testid={props.id}
                 onClick={selectTool}
                 style={{backgroundImage: `url("${props.image}")`, 
                         backgroundSize: "contain", backgroundRepeat: "no-repeat",
@@ -45,7 +46,7 @@ export const SceneTools = () => {
             <Typography variant="caption">{t('tools.putObject')}</Typography>
             <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
                 {sceneObjectByType(challenge!.scene.type).validCells.map((object) => 
-                <Tool id={object} image={`${imagePathScene}/${object}.png`}/>)}
+                <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`}/>)}
             </Stack>
         </>
 
