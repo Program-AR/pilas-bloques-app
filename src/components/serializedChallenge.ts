@@ -21,28 +21,6 @@ export type SerializedChallenge = {
 
 const sceneTypes =  ["Lita", "Duba", "Toto", "Coty", "Manic", "Chuy", "Yvoty", "Capy", "Custom"] as const //Used for file validity checking
 export type SceneType = typeof sceneTypes[number]
-type SceneObject = string
-export type SceneObjects = SceneObject[]
-export const sceneObjects = (type:SceneType): SceneObjects => {
-    switch (type ) {
-        case "Lita": 
-            return ['L','T','E'];
-        case "Duba": 
-            return ['P'];
-        case "Manic": 
-            return ['T','E','P'];
-        case "Chuy": 
-            return ['T','E','U','P','G'];
-        case "Yvoty": 
-            return ['C','K','L','M','T'];
-        case "Capy": 
-            return ['L','P'];
-        default: 
-            return []
-    }
-
-}
-
 
 type Cell = string
 
@@ -51,6 +29,51 @@ export type SceneMap = Cell[][]
 export type Scene = {
     type: SceneType
     maps: SceneMap[]
+}
+
+type SceneObject = {
+    validCells: Cell[]
+    specificBlocksIds: string[]
+}
+
+export const sceneObjectByType = (type:SceneType): SceneObject => {
+    switch (type ) {
+        case "Lita": 
+            return {
+                validCells: ['L','T','E'],
+                specificBlocksIds: []
+            }
+        case "Duba": 
+            return {
+                validCells: ['P'],
+                specificBlocksIds: []
+            }
+        case "Manic": 
+            return {
+                validCells: ['T','E','P'],
+                specificBlocksIds: []
+            }
+        case "Chuy": 
+            return {
+                validCells: ['T','E','U','P','G'],
+                specificBlocksIds: []
+            }
+        case "Yvoty": 
+            return {
+                validCells: ['C','K','L','M','T'],
+                specificBlocksIds: []
+            }
+        case "Capy": 
+            return {
+                validCells: ['L','P'],
+                specificBlocksIds: []
+            }
+        default: 
+            return {
+                validCells: [],
+                specificBlocksIds: []
+            }
+    }
 }
 
 export const defaultScene = (type: SceneType): Scene => {
@@ -141,17 +164,7 @@ const mapIsValidForType = (map: SceneMap, type: SceneType): map is SceneMap => {
 }
 
 const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
-    switch(type){
-        case 'Lita': return cellIsIncluded(['L','E','T'],cell)
-        case 'Duba': return cellIsIncluded(['P'],cell)
-        case 'Toto': return true
-        case 'Coty': return true
-        case 'Manic': return cellIsIncluded([],cell)
-        case 'Chuy': return cellIsIncluded([],cell)
-        case 'Yvoty': return cellIsIncluded([],cell)
-        case 'Capy': return cellIsIncluded([],cell)
-        case 'Custom': return cellIsIncluded([],cell)
-    }
+    return cellIsIncluded(sceneObjectByType(type).validCells, cell)
 }
     
 const cellIsIncluded = (typeCells: string[], cell: string) =>{

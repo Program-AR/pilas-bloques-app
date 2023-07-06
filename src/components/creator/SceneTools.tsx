@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Stack, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { LocalStorage } from '../../localStorage';
-import { SerializedChallenge, sceneObjects } from '../serializedChallenge';
+import { SerializedChallenge, sceneObjectByType } from '../serializedChallenge';
 
 export const SceneTools = () => {
     type ToolProps = {
@@ -44,7 +44,7 @@ export const SceneTools = () => {
         <>
             <Typography variant="caption">{t('tools.putObject')}</Typography>
             <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
-                {sceneObjects(challenge!.scene.type).map((object) => 
+                {sceneObjectByType(challenge!.scene.type).validCells.map((object) => 
                 <Tool id={object} image={`${imagePathScene}/${object}.png`}/>)}
             </Stack>
         </>
@@ -52,7 +52,7 @@ export const SceneTools = () => {
     const PutActorTool = () => 
         <>
             <Typography variant="caption">{t('tools.putActor')}</Typography>
-            <Tool id="A" image={`${imagePathScene}/A.png`}/>
+            <Tool id="A" image={`${imagePathScene}/A_tool_button.png`}/>
         </>
                         
     const DeleteTool = () => 
