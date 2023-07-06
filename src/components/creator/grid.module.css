@@ -1,19 +1,28 @@
 .grid {
-    border-left-style: solid;
-    border-top-style: solid;
-    flex: 1;
     margin: 10px;
-    width: 100%;
+    flex: 1;
 }
 
 .cell {
-    border-bottom-style: solid;
-    border-right-style: solid;
     aspect-ratio: 1/1;
-    width: 100%;
+    flex:1;
+    background-size: cover;
 }
 
-.border {
-    border-width: thin;
-    border-color: gray;
+
+.img-A{ 
+    width: 50%;
+    transform: scale(1.6) translateY(3%) translateX(20%);
+    z-index: 1;
+}
+
+.img-default{
+    width: 40%;
+    z-index: 0;
+}
+
+.img-O{
+    width: 100%;
+    height: auto;
+    align-self: center;
 }
