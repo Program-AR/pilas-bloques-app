@@ -1,5 +1,6 @@
 import { Stack } from "@mui/material";
 import { SceneGrid } from "./SceneGrid";
+import { SceneTools } from "./SceneTools";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useCallback, useEffect } from 'react';
@@ -87,26 +88,6 @@ const SizeEditor = (props: SizeProps) => {
         </Stack>
     )
 }
-
-const Tool = () => <div style={{ borderStyle: "solid", width: "50px", height: "50px" }}></div>
-
-const SceneTools = () =>
-    <Stack alignItems="center" style={{ padding: "10px" }}>
-        <p>Poner obstáculo</p>
-        <Tool />
-        <p>Poner objeto(s)</p>
-        <Stack direction="row" style={{ flexWrap: "wrap", justifyContent: "center" }}>
-            <Tool />
-            <Tool />
-            <Tool />
-            <Tool />
-            <Tool />
-        </Stack>
-        <p>Poner personaje</p>
-        <Tool />
-        <p>Borrar</p>
-        <Tool />
-    </Stack>
 
 export const SceneEdition = () => {
     const [, setCols] = useState(0)

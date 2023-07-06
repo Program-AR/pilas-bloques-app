@@ -26,8 +26,15 @@
 		"clue": "Pista",
 		"includeClue": "Incluir una pista"
 	},
+	"tools": {
+		"putObstacle": "Poner Obstáculo",
+		"putObject": "Poner Objeto",
+		"putActor": "Poner Personaje",
+		"delete": "Borrar"
+	},
 	"scene": {
 		"numCols": "Cantidad de Columnas",
 		"numRows": "Cantidad de Filas"
+
 	}
 }
