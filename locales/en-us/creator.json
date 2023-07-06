@@ -28,5 +28,9 @@
 		"putObject": "Put Object",
 		"putActor": "Put Actor",
 		"delete": "Delete"
+	},
+	"scene": {
+		"numCols": "Number of Columns",
+		"numRows": "Number of Rows"
 	}
 }

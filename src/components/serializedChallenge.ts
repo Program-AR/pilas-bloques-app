@@ -1,5 +1,7 @@
 import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleSkip } from 'simple-type-guard';
 
+//IMPORTANT: remember to bump this version whenever there are breaking changes in the file format.
+export const creatorVersion = 1
 
 export type SerializedChallenge = {
     fileVersion: number,
@@ -84,8 +86,6 @@ export const defaultScene = (type: SceneType): Scene => {
 		['-', '-', '-']]]
 	}
 }
-
-export const defaultMaps: SceneMap[] = [[['A', '-', '-', '-'],['-', '-', '-','-'],['-', '-', '-','-'],['-','-','-','-']]]
 
 export const defaultChallenge = (type: SceneType): SerializedChallenge => {
 	return {

@@ -31,5 +31,10 @@
 		"putObject": "Poner Objeto",
 		"putActor": "Poner Personaje",
 		"delete": "Borrar"
+	},
+	"scene": {
+		"numCols": "Cantidad de Columnas",
+		"numRows": "Cantidad de Filas"
+
 	}
-	}
+}

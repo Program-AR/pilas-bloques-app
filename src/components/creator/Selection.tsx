@@ -126,3 +126,5 @@ const ChallengeInProgressDialog = () => {
 		</>
 	)
 }
+export { defaultChallenge }
+
