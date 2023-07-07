@@ -3,6 +3,7 @@ import { Header } from "../header/Header";
 import { SceneEdition } from "./SceneEdition";
 import { TitleEdition } from "./TitleEdition";
 import { StatementEdition } from "./StatementEdition";
+import { ToolBoxDialog } from "./ToolBoxDialog";
 
 export const CreatorEditor = () => {
   return (
@@ -31,6 +32,6 @@ const Actions = () => <Stack direction="row">
 
 const ChallengeDetailsEdition = () => <Stack direction="row" style={{maxHeight: 70, justifyContent:"space-between"}}>
   <StatementEdition/>
-  <Button>Panel de instrucciones</Button>
+  <ToolBoxDialog/>
   <Button>Bloques iniciales</Button>
 </Stack>

@@ -1,4 +1,4 @@
-export const categories: String[] = [
+export const categories: string[] = [
     'primitives',
     'myProcedures',
     'repetitions',
@@ -12,10 +12,10 @@ export const categories: String[] = [
     'uncategorized'
 ]
 
-type BlockType = {
-    id: String
-    intlId: String
-    categoryId: String
+export type BlockType = {
+    id: string
+    intlId: string
+    categoryId: string
 }
 
 export const commonBlocks: BlockType[] = [
