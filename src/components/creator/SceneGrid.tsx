@@ -9,11 +9,11 @@ type SceneGridProps = {
 
 export const SceneGrid = (props: SceneGridProps) => {
     const storageChallenge = LocalStorage.getCreatorChallenge()
-    const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
+    const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
     const maps: SceneMap[] = challenge.scene.maps
     const sceneType: SceneType = challenge.scene.type
-
+    
     return <Stack className={styles.grid + ' ' + styles.border}>
         {maps[props.mapIndex].map((row, i) =>
             <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
@@ -39,14 +39,16 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const objectsInCell = props.content.split('&').filter(o => o !== '-')
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
+    const hasMultipleObjects = objectsInCell.length > 1
+
     return <div
         data-testid="challenge-cell"
         className={styles.cell}
-        style={{ backgroundImage: `url(${backgroundCellImage})` }}>
+        style={{ backgroundImage: `url(${backgroundCellImage})`, justifyContent: !hasMultipleObjects ? 'center' : '' }}>
         {objectsInCell.map(obj =>
             <img
                 data-testid="challenge-cell-image"
-                key={'&'+obj}
+                key={'&' + obj}
                 src={`${imagePath}/${obj}.png`}
                 alt={obj}
                 className={objectStyle(obj)} />
