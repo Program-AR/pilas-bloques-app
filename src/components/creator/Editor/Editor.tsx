@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/material";
 import { Header } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
-import { TitleEdition } from "./TitleEdition";
+import { TitleEdition } from "./EditorHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 
