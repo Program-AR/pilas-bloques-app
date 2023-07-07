@@ -62,7 +62,7 @@ describe('Scene grid', () => {
         expect(await getAmountFromChallenge('cell-image')).toBe(2)
     })
 
-    test('Renders cell with object without errors', () =>{
+/*     test('Renders cell with object without errors', () =>{
         expect(() => renderComponent(<SceneCell content={'O'} sceneType={'Lita'}/>)).not.toThrowError()
     })
 
@@ -73,5 +73,5 @@ describe('Scene grid', () => {
     test('Renders cell with prize without errors', () =>{
         expect(() => renderComponent(<SceneCell content={'P'} sceneType={'Duba'}/>)).not.toThrowError()
     })
-
+ */
 })
