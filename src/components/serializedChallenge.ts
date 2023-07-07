@@ -43,32 +43,77 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
         case "Lita": 
             return {
                 validCells: ['L','T','E'],
-                specificBlocksIds: []
+                specificBlocksIds: [ 
+                    'AgarrarTomate', 
+                    'AgarrarLechuga',
+                    'PrepararEnsalada', 
+                    'HayLechuga', 
+                    'HayTomate' 
+                ]
             }
         case "Duba": 
             return {
                 validCells: ['P'],
-                specificBlocksIds: []
+                specificBlocksIds: [
+                    'ComerChurrasco', 
+                    'HayChurrasco'
+                ]
             }
         case "Manic": 
             return {
                 validCells: ['T','E','P'],
-                specificBlocksIds: []
+                specificBlocksIds: [
+                    'TocandoTelescopio', 
+                    'TocandoEstrellaManic', 
+                    'TocandoPlaneta', 
+                    'ObservarEstrella',
+                    'ObservarPlaneta', 
+                    'RepararTelescopio' 
+                ] 
             }
         case "Chuy": 
             return {
                 validCells: ['T','E','U','P','G'],
-                specificBlocksIds: []
+                specificBlocksIds: [
+                    'RecogerTrofeo', 
+                    'UsarPaleta', 
+                    'PatearPulpito', 
+                    'PatearPelotaChuy', 
+                    'TocandoPulpito', 
+                    'TocandoPingPong', 
+                    'TocandoPaleta', 
+                    'TocandoPelotaChuy'
+                ]
             }
         case "Yvoty": 
             return {
                 validCells: ['C','K','L','M','T'],
-                specificBlocksIds: []
+                specificBlocksIds: [
+                    'PrenderComputadora', 
+                    'ApagarComputadora', 
+                    'PasarASiguienteComputadora', 
+                    'InstalarJuego', 
+                    'DespertarLuciernaga', 
+                    'ObservarMariposa', 
+                    'DesbloquearCelular', 
+                    'AgarrarCargador', 
+                    'TocandoMariposa', 
+                    'TocandoCelular', 
+                    'TocandoLuciernaga', 
+                    'CargarCelular'
+                ]
             }
         case "Capy": 
             return {
                 validCells: ['L','P'],
-                specificBlocksIds: []
+                specificBlocksIds: [
+                    'RecogerLata', 
+                    'RecogerPapel', 
+                    /*'SostenerPapel', 
+                    'LlenarTacho', */
+                    'TocandoPapel', 
+                    'TocandoLata'
+                ]
             }
         default: 
             return {
