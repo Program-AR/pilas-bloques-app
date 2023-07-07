@@ -1,8 +1,8 @@
 import { Button, Stack } from "@mui/material";
-import { Header } from "../header/Header";
-import { SceneEdition } from "./SceneEdition";
+import { Header } from "../../header/Header";
+import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { TitleEdition } from "./TitleEdition";
-import { StatementEdition } from "./StatementEdition";
+import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 
 export const CreatorEditor = () => {

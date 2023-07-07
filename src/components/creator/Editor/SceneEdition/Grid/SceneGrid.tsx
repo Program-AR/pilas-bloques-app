@@ -1,9 +1,9 @@
 import { Stack } from "@mui/material"
-import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../serializedChallenge"
-import { LocalStorage } from "../../localStorage"
+import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
+import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
 import { useContext } from "react"
-import { CreatorContext } from "./CreatorContext"
+import { CreatorContext } from "../../CreatorContext"
 
 type SceneGridProps = {
     mapIndex: number

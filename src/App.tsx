@@ -13,7 +13,7 @@ import { About } from './components/about/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { CreatorSelection } from './components/creator/Selection';
-import { CreatorEditor } from './components/creator/Editor';
+import { CreatorEditor } from './components/creator/Editor/Editor';
 
 function App() {
   

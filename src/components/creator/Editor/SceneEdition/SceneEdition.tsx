@@ -1,11 +1,11 @@
 import { Stack } from "@mui/material";
-import { SceneGrid } from "./SceneGrid";
+import { SceneGrid } from "./Grid/SceneGrid";
 import { SceneTools } from "./SceneTools";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useCallback, useEffect } from 'react';
-import { LocalStorage } from "../../localStorage";
-import { SceneMap, SerializedChallenge } from "../serializedChallenge";
+import { LocalStorage } from "../../../../localStorage";
+import { SceneMap, SerializedChallenge } from "../../../serializedChallenge";
 
 const OBSTACLE = "O"
 const ACTOR = "A"

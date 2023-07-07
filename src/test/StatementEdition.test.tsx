@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { defaultChallenge } from "../components/serializedChallenge"
-import { StatementEdition } from '../components/creator/StatementEdition';
+import { StatementEdition } from '../components/creator/Editor/ChallengeDetailsEdition/StatementEdition';
 import { LocalStorage } from '../localStorage';
 import { renderComponent } from './testUtils';
 

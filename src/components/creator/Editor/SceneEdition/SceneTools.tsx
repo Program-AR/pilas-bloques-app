@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
 import { Stack, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { LocalStorage } from '../../localStorage';
-import { SerializedChallenge, sceneObjectByType } from '../serializedChallenge';
-import { CreatorContext } from './CreatorContext';
+import { LocalStorage } from '../../../../localStorage';
+import { SerializedChallenge, sceneObjectByType } from '../../../serializedChallenge';
+import { CreatorContext } from '../CreatorContext';
 
 export const SceneTools = () => {
     type ToolProps = {

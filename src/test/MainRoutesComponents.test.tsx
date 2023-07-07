@@ -1,7 +1,7 @@
 import { About } from "../components/about/About"
 import { BookView } from "../components/book/BookView"
 import { ChallengeById, ChallengeByName } from "../components/ChallengeView"
-import { CreatorEditor } from "../components/creator/Editor"
+import { CreatorEditor } from "../components/creator/Editor/Editor"
 import { CreatorSelection } from "../components/creator/Selection"
 import { Home } from "../components/home/Home"
 import { ImportedChallengeView } from "../components/ImportedChallengeView"
