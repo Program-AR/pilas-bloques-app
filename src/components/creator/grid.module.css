@@ -11,7 +11,6 @@
     align-items: baseline;
 }
 
-
 .img-A{ 
     width: 50%;
     transform: scale(1.6) translateY(3%) translateX(15%);
@@ -23,7 +22,6 @@
     width: 50%;
     transform: translateY(40%);
     z-index: 0;
-    position: relative;
 }
 
 .img-O{
