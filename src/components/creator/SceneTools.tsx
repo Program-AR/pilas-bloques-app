@@ -53,7 +53,7 @@ export const SceneTools = () => {
     const PutActorTool = () => 
         <>
             <Typography variant="caption">{t('tools.putActor')}</Typography>
-            <Tool id="A" image={`${imagePathScene}/A_tool_button.png`}/>
+            <Tool id="A" image={`${imagePathScene}/tool.png`}/>
         </>
                         
     const DeleteTool = () => 
