@@ -32,7 +32,7 @@ describe('Scene grid', () => {
         }
 
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid />)
+        render(<SceneGrid mapIndex={0}/>)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(5)
@@ -41,7 +41,7 @@ describe('Scene grid', () => {
 
     test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
-        render(<SceneGrid />)
+        render(<SceneGrid mapIndex={0}/>)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(3)
@@ -58,7 +58,7 @@ describe('Scene grid', () => {
         }
         
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid />)
+        render(<SceneGrid mapIndex={0}/>)
         expect(await getAmountFromChallenge('cell-image')).toBe(2)
     })
 
