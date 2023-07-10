@@ -4,6 +4,7 @@ import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
 import { useContext } from "react"
 import { CreatorContext } from "../../CreatorContext"
+import { ACTOR, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
 
 type SceneGridProps = {
     mapIndex: number
@@ -21,7 +22,7 @@ export const SceneGrid = (props: SceneGridProps) => {
             <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                 {row.map((cellContent, j) =>
                     <SceneCell
-                        position = {{row: i, column: j}}
+                        position={{mapIndex: props.mapIndex, row: i, column: j }}
                         key={i * 100 + j + cellContent}
                         content={cellContent}
                         sceneType={sceneType} />)}
@@ -36,6 +37,7 @@ type CellProps = {
 }
 
 type Position = {
+    mapIndex: number,
     row: number,
     column: number
 }
@@ -52,13 +54,25 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     const hasMultipleObjects = objectsInCell.length > 1
 
+    const cellHasActor: boolean = objectsInCell.includes(ACTOR)
+
     const handleClick = () => {
         const challenge = LocalStorage.getCreatorChallenge()
-        challenge!.scene.maps[0][props.position.row][props.position.column] = selectedTool
 
+        challenge!.scene.maps[props.position.mapIndex] = newMap(challenge!.scene.maps[0])
         LocalStorage.saveCreatorChallenge(challenge)
     }
 
+    const mapWithNewCellContent = (map: SceneMap, content: string) => {
+        map[props.position.row][props.position.column] = content
+        return map
+    }
+
+    const newMap = (map: SceneMap) => {
+        let content = selectedTool
+        if (selectedTool === OBSTACLE && cellHasActor) map = setActorAtInitialPosition(map)
+        return mapWithNewCellContent(map, content)
+    }
 
     return <div
         data-testid="challenge-cell"

@@ -7,19 +7,26 @@ import { useState, useCallback, useEffect } from 'react';
 import { LocalStorage } from "../../../../localStorage";
 import { SceneMap, SerializedChallenge } from "../../../serializedChallenge";
 
-const OBSTACLE = "O"
-const ACTOR = "A"
-const EMPTY = "-"
+export const OBSTACLE = "O"
+export const ACTOR = "A"
+export const EMPTY = "-"
 
 const COL_0 = 0
 const CEL_0 = 0
 
+export const setActorAtInitialPosition = (inMap: SceneMap) => {
+    if (inMap[COL_0][CEL_0] === EMPTY || inMap[COL_0][CEL_0] === OBSTACLE) {
+        inMap[COL_0][CEL_0] = ""
+    }
+    inMap[COL_0][CEL_0] = ACTOR + (inMap[COL_0][CEL_0].length ? '&' + inMap[COL_0][CEL_0] : '')
+
+    return inMap;
+}
+
+
 export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap) => {
     if (row.includes(ACTOR, colSearch)) {
-        if (inMap[COL_0][CEL_0] === EMPTY || inMap[COL_0][CEL_0] === OBSTACLE) {
-            inMap[COL_0][CEL_0] = ""
-        }
-        inMap[COL_0][CEL_0] = ACTOR + ( inMap[COL_0][CEL_0].length ? '&' + inMap[COL_0][CEL_0] : '')
+        return setActorAtInitialPosition(inMap)
     }
     return inMap;
 }
