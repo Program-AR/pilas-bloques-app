@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 type CreatorContextType = {
     selectedTool: string;
-    changeSelectedTool: (selectedTool: string) => void;
+    setSelectedTool: (selectedTool: string) => void;
 };
 
 export const CreatorContext = React.createContext<CreatorContextType>({
     selectedTool: '',
-    changeSelectedTool: () => { }
+    setSelectedTool: () => { }
 });
 
 type CreatorProviderProps = {
@@ -17,12 +17,8 @@ type CreatorProviderProps = {
 export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children }: CreatorProviderProps) => {
     const [selectedTool, setSelectedTool] = useState('');
 
-    const changeSelectedTool = (value: string) => {
-        setSelectedTool(value);
-    };
-
     return (
-        <CreatorContext.Provider value={{ selectedTool, changeSelectedTool }}>
+        <CreatorContext.Provider value={{ selectedTool, setSelectedTool }}>
             {children}
         </CreatorContext.Provider>
     );

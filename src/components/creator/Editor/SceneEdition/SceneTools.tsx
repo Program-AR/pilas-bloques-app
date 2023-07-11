@@ -12,12 +12,12 @@ export const SceneTools = () => {
     }
     
     const { t } = useTranslation('creator');
-    const {selectedTool, changeSelectedTool} = useContext(CreatorContext)
+    const {selectedTool, setSelectedTool} = useContext(CreatorContext)
 
     const challenge: SerializedChallenge | null = LocalStorage.getCreatorChallenge()
 
     const selectTool = (e: React.MouseEvent<HTMLElement>) => {
-        changeSelectedTool(e.currentTarget.id)
+        setSelectedTool(e.currentTarget.id)
     }
 
     const imagePath = 'imagenes/sceneImages'
