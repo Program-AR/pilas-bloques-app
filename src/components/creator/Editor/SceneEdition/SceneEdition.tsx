@@ -46,30 +46,30 @@ const SizeEditor = (props: SizeProps) => {
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)
 
-    const rowsInMap = (actualMap: SceneMap): number => actualMap.length
+    const rowsInMap = (currentMap: SceneMap): number => currentMap.length
 
-    const columnsInMap = (actualMap: SceneMap): number => actualMap[COL_0].length
+    const columnsInMap = (currentMap: SceneMap): number => currentMap[COL_0].length
 
-    const updateRowsIfChanged = useCallback((actualMap: SceneMap) => {
-        if (rows < rowsInMap(actualMap)) { //Row was removed
-            actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
-            actualMap.pop()
+    const updateRowsIfChanged = useCallback((currentMap: SceneMap) => {
+        if (rows < rowsInMap(currentMap)) { //Row was removed
+            currentMap = relocateActor(currentMap[currentMap.length - 1], COL_0, currentMap)
+            currentMap.pop()
         }
-        if (rows > rowsInMap(actualMap)) //Row was added
-            actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
+        if (rows > rowsInMap(currentMap)) //Row was added
+            currentMap.push(currentMap[COL_0].slice().fill(EMPTY))
 
         props.setRows(rows)
     }, [props, rows])
 
-    const updateColumnsIfChanged = useCallback((actualMap: SceneMap) => {
-        if (columns < columnsInMap(actualMap)) { //Column was removed
-            actualMap.map((row) => {
-                actualMap = relocateActor(row, row.length - 1, actualMap)
+    const updateColumnsIfChanged = useCallback((currentMap: SceneMap) => {
+        if (columns < columnsInMap(currentMap)) { //Column was removed
+            currentMap.map((row) => {
+                currentMap = relocateActor(row, row.length - 1, currentMap)
                 return row.pop()
             })
         }
-        if (columns > columnsInMap(actualMap)) //Column was added
-            actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
+        if (columns > columnsInMap(currentMap)) //Column was added
+            currentMap.map((row, i) => currentMap[i] = row.concat(EMPTY))
 
         props.setColumns(columns)
 

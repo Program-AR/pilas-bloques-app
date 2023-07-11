@@ -4,7 +4,7 @@ import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
 import { useContext, useEffect, useState } from "react"
 import { CreatorContext } from "../../CreatorContext"
-import { ACTOR, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
+import { ACTOR, OBSTACLE, relocateActor, setActorAtInitialPosition } from "../SceneEdition"
 
 type SceneGridProps = {
     mapIndex: number
@@ -58,8 +58,17 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const cellHasActor: boolean = objectsInCell.includes(ACTOR)
 
     const handleClick = () => {
-
+        if(selectedTool === OBSTACLE && cellHasActor) relocateActor()
         setCurrentCell(selectedTool)
+    }
+
+    const relocateActor = () => {
+        //this is going to change in the refactor 
+        const challenge = LocalStorage.getCreatorChallenge()
+        const currentMapIndex = props.position.mapIndex
+
+        challenge!.scene.maps[currentMapIndex] = setActorAtInitialPosition(challenge!.scene.maps[currentMapIndex])
+        LocalStorage.saveCreatorChallenge(challenge)
     }
 
     useEffect(() => {
