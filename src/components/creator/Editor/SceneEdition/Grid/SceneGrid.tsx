@@ -2,7 +2,7 @@ import { Stack } from "@mui/material"
 import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
 import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { CreatorContext } from "../../CreatorContext"
 import { ACTOR, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
 
@@ -22,7 +22,7 @@ export const SceneGrid = (props: SceneGridProps) => {
             <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                 {row.map((cellContent, j) =>
                     <SceneCell
-                        position={{mapIndex: props.mapIndex, row: i, column: j }}
+                        position={{ mapIndex: props.mapIndex, row: i, column: j }}
                         key={i * 100 + j + cellContent}
                         content={cellContent}
                         sceneType={sceneType} />)}
@@ -45,11 +45,12 @@ type Position = {
 export const SceneCell: React.FC<CellProps> = (props) => {
 
     const { selectedTool } = useContext(CreatorContext)
+    const [currentCell, setCurrentCell] = useState(props.content)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
 
-    const objectsInCell = props.content.split('&').filter(o => o !== '-')
+    const objectsInCell = currentCell.split('&').filter(o => o !== '-')
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
     const hasMultipleObjects = objectsInCell.length > 1
@@ -57,21 +58,19 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const cellHasActor: boolean = objectsInCell.includes(ACTOR)
 
     const handleClick = () => {
-        const challenge = LocalStorage.getCreatorChallenge()
 
-        challenge!.scene.maps[props.position.mapIndex] = newMap(challenge!.scene.maps[0])
-        LocalStorage.saveCreatorChallenge(challenge)
+        setCurrentCell(selectedTool)
     }
+
+    useEffect(() => {
+        const challenge = LocalStorage.getCreatorChallenge()
+        challenge!.scene.maps[props.position.mapIndex] = mapWithNewCellContent(challenge!.scene.maps[props.position.mapIndex], currentCell)
+        LocalStorage.saveCreatorChallenge(challenge)
+    }, [currentCell])
 
     const mapWithNewCellContent = (map: SceneMap, content: string) => {
         map[props.position.row][props.position.column] = content
         return map
-    }
-
-    const newMap = (map: SceneMap) => {
-        let content = selectedTool
-        if (selectedTool === OBSTACLE && cellHasActor) map = setActorAtInitialPosition(map)
-        return mapWithNewCellContent(map, content)
     }
 
     return <div
