@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { defaultChallenge } from '../components/serializedChallenge';
 import { LocalStorage } from '../localStorage';
-import { SceneCell, SceneGrid } from '../components/creator/Editor/SceneEdition/Grid/SceneGrid';
+import { SceneGrid } from '../components/creator/Editor/SceneEdition/Grid/SceneGrid';
 import { SerializedChallenge } from '../components/serializedChallenge';
-import { renderComponent } from './testUtils';
 
 describe('Scene grid', () => {
 
