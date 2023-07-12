@@ -1,15 +1,13 @@
 export const categories: string[] = [
     'primitives',
-    'myProcedures',
+    'myprocedures',
     'repetitions',
     'alternatives',
     'variables',
-    'separator',
     'values',
     'sensors',
     'operators',
-    'myFunctions',
-    'uncategorized'
+    'myfunctions'
 ]
 
 export type BlockType = {
@@ -66,7 +64,7 @@ export const commonBlocks: BlockType[] = [
     },
     {
         id: 'SiguienteFilaTotal',
-        intlId: 'nextLine',
+        intlId: 'nextTotalLine',
         categoryId: 'primitives'
     },
     {
@@ -81,12 +79,12 @@ export const commonBlocks: BlockType[] = [
     },
     { 
         id: 'TocandoAbajo', 
-        intlId: 'canMoveDown', 
+        intlId: 'touchMoveDown', 
         categoryId: 'sensors' 
     },
     { 
         id: 'TocandoDerecha', 
-        intlId: 'canMoveRight', 
+        intlId: 'touchMoveRight', 
         categoryId: 'sensors' 
     },
     {
@@ -166,7 +164,7 @@ export const commonBlocks: BlockType[] = [
     },
     { 
         id: 'RepetirVacio', 
-        intlId: 'repeat', 
+        intlId: 'repeatEmpty', 
         categoryId: 'repetitions' 
     },
     { 
@@ -192,7 +190,7 @@ export const commonBlocks: BlockType[] = [
     {
         id: 'param_get', 
         intlId: 'variables_get', 
-        categoryId: 'procedures'
+        categoryId: 'MyProcedures'
     },
     {
         id: 'myProcedures', 
@@ -304,7 +302,7 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'PatearPelotaChuy', 
-        intlId: 'kickBall',
+        intlId: 'kickBallChuy',
         categoryId: 'primitives' 
     },
     { 
@@ -329,12 +327,12 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'TocandoPulpito', 
-        intlId: 'ballHere', 
+        intlId: 'ballHerePulpito', 
         categoryId: 'sensors' 
     },
     { 
         id: 'TocandoPingPong', 
-        intlId: 'ballHere', 
+        intlId: 'ballHerePingPong', 
         categoryId: 'sensors' 
     },
     { 
@@ -344,7 +342,7 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'TocandoPelotaChuy', 
-        intlId: 'ballHere', 
+        intlId: 'ballHereChuy', 
         categoryId: 'sensors' 
     },
     { 
@@ -403,5 +401,4 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'sensors' 
     }
 ]
-
 

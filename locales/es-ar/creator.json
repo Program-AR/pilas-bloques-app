@@ -35,6 +35,9 @@
 	"scene": {
 		"numCols": "Cantidad de Columnas",
 		"numRows": "Cantidad de Filas"
-
+	},
+	"toolbox": {
+		"title": "Selector de Bloques",
+		"button": "Selector de Bloques"
 	}
 }

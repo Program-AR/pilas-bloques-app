@@ -1,7 +1,7 @@
 import { Button, Box, Switch, Icon, FormControlLabel } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LocalStorage } from "../../localStorage";
-import { BlockType, commonBlocks, sceneBlocks } from "../blocks";
+import { BlockType, commonBlocks, sceneBlocks, categories } from "../blocks";
 import { sceneObjectByType, SerializedChallenge, defaultChallenge } from "../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../modalDialog/GenericModalDialog";
@@ -25,32 +25,102 @@ export const ToolBoxDialog = () => {
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
-    const currentToolBox = challenge!.toolbox
-
-    const [toolBoxInProgress, setToolBoxInProgress] = useState(currentToolBox);
-    const [open, setOpen] = useState(false);
-
     const blocks: BlockType[] = [...commonBlocks,
         ...sceneBlocks.filter(block => sceneObjectByType(challenge!.scene.type).specificBlocksIds.includes(block.id))]
     .sort((a, b) => {
-        if (a.categoryId > b.categoryId) {
-            return -1;
-        }
-        if (a.categoryId < b.categoryId) {        
+        const ac = categories.indexOf(a.categoryId.toLowerCase()).toString().padStart(2, '0') + a.categoryId.toLowerCase()
+        const bc = categories.indexOf(b.categoryId.toLowerCase()).toString().padStart(2, '0') + b.categoryId.toLowerCase()
+        if (ac > bc) {
             return 1;
+        }
+        if (ac < bc) {        
+            return -1;
         }
       return 0;
     })
 
-    const handleToolBoxOnChange = () => {
-        /*
-        if( clueCheck ) setClueInProgress('')
-        setClueCheck(!clueCheck )*/
+
+    let currentToolBox = challenge!.toolbox.blocks
+
+    const [toolBoxItems, setToolBoxItems] = useState(currentToolBox);
+    const [toolBoxCategories, setToolBoxCategories] = useState<string[]>([]);
+    const [open, setOpen] = useState(false);
+
+    const dataChanged = ((current:string[], newData: string ) => 
+            current.filter((data: string) => data !== newData))
+    
+    const searchCategory = (searchBlock: string) =>
+            blocks.find((block) => block.id === searchBlock)?.categoryId.toLowerCase() || ''
+
+    const allItemsInCategory = (category: string, checked: boolean) => {
+        let categoryBlocks: string[] = [];
+        if( checked )
+        {
+            blocks.forEach((block)=>
+                block.categoryId.toLowerCase() === category && !toolBoxItems.includes(block.id) &&
+                categoryBlocks.push(block.id) )
+
+            setToolBoxItems([...toolBoxItems, ...categoryBlocks ])
+        }
+        else {
+            categoryBlocks = toolBoxItems.filter((block) => searchCategory(block) !== category)
+            setToolBoxItems([...categoryBlocks ])
+        }
+    }
+    
+    const updateToolBoxCategories = ( actualCategory: string, checked: boolean ) => {
+        if( checked )
+            setToolBoxCategories([...toolBoxCategories, actualCategory ]);    
+        else 
+            setToolBoxCategories(dataChanged(toolBoxCategories, actualCategory ))
     }
 
-    const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
+    const blocksCountByCategory = (catBlock: string): number =>
+        blocks.filter((block) => block.categoryId.toLowerCase() === catBlock).length
+
+    const itemsCountByCategory = ( items: string[], catBlock: string ): number =>
+        items.filter((block) => searchCategory( block ) === catBlock ).length
+
+    const updateToolBoxItems = ( actualBlock: string, checked: boolean ) => {
+        if( checked )
+        {
+            setToolBoxItems([...toolBoxItems, actualBlock])
+            if ( blocksCountByCategory( searchCategory( actualBlock )) -
+                 itemsCountByCategory( toolBoxItems, searchCategory( actualBlock )) === 1 )
+               updateToolBoxCategories( searchCategory(actualBlock), true )
+        }
+        else
+        {
+            setToolBoxItems(dataChanged(toolBoxItems, actualBlock ))
+            updateToolBoxCategories( searchCategory(actualBlock), false )
+        }
+    }
+
+    const handleCatOnChange = (event : { target: { name: string; checked: boolean }  }) => {
+        updateToolBoxCategories( event.target.name, event.target.checked )
+        allItemsInCategory(event.target.name, event.target.checked)
+    }
+
+    const handleToolBoxOnChange = (event : { target: { name: string; checked: boolean }  }) => {
+        updateToolBoxItems( event.target.name, event.target.checked ) 
+    }
+  
+    const setInitialCategories = () => {
+        let initialCategories : string [] = []
+        currentToolBox.forEach((block) => {
+            const categoryBlock = searchCategory( block )
+            if ( !initialCategories.includes( categoryBlock ) &&    
+                    blocksCountByCategory( categoryBlock ) -
+                        itemsCountByCategory( currentToolBox, categoryBlock ) === 0 )
+                    initialCategories.push(categoryBlock)
+        })
+        setToolBoxCategories([...initialCategories])
+    }
+
+    const handleButtonClick = () => {
         if(!open) {
-            setToolBoxInProgress(currentToolBox)
+            setToolBoxItems(currentToolBox)
+            setInitialCategories()
             setOpen(true)
         }
     }    
@@ -59,10 +129,12 @@ export const ToolBoxDialog = () => {
         setOpen(false)
     }
     const handleOnConfirm = () => {
-        challenge!.toolbox = toolBoxInProgress
+        challenge!.toolbox.blocks = toolBoxItems
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
     }
+
+    useEffect(() => {}, [toolBoxItems, toolBoxCategories]);  
 
     return <>
         <Button 
@@ -78,13 +150,23 @@ export const ToolBoxDialog = () => {
                         onCancel={handleOnCancel}
                         title={t('toolbox.title')}>
             <Box style={{justifyContent:'center'}}>
-            {blocks.map((block, j) =>
-                    <>
-                    <FormControlLabel key={block.id} 
-                    control={<Switch checked={false}
-                                     onChange={handleToolBoxOnChange}/>} label={tb(block.intlId)} />
-                    <br/>
-                    </>)}
+                {categories.map((cat, i) => {
+                    return( <div key={cat}>
+                    <FormControlLabel key={cat+i}  
+                    control={<Switch checked={toolBoxCategories.includes(cat)}
+                                     name={cat}
+                                     key={cat+i} 
+                                     onChange={handleCatOnChange}/>} label={tb('categories.' + cat)}/>
+                    {blocks.map((block) => {
+                            return( (cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{paddingLeft: "20px"}}>
+                            <FormControlLabel key={block.id} 
+                            control={<Switch checked={toolBoxItems.includes(block.id)}
+                                            name={block.id}
+                                            key={block.id} 
+                                            onChange={handleToolBoxOnChange}/>} label={tb('blocks.' + block.intlId)} />
+                            <br/>
+                            </div>)})}
+                </div>)})}
             </Box>
         </GenericModalDialog>
     </>
