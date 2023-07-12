@@ -60,7 +60,7 @@ export const SceneTools = () => {
     const DeleteTool = () => 
         <>
             <Typography variant="caption">{t('tools.delete')}</Typography>
-            <Tool id="e" image={`${imagePath}/eraser.png`}/>
+            <Tool id="-" image={`${imagePath}/eraser.png`}/>
         </>     
 
 
