@@ -33,5 +33,5 @@ const Actions = () => <Stack direction="row">
 const ChallengeDetailsEdition = () => <Stack direction="row" style={{maxHeight: 70, justifyContent:"space-between"}}>
   <StatementEdition/>
   <Button>Panel de instrucciones</Button>
-  <Button>Bloques iniciales</Button>
+  {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
 </Stack>
