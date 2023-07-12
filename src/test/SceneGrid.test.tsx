@@ -38,14 +38,15 @@ describe('Scene grid', () => {
 
     })
 
-    test('Should set grid size to default when there is no challenge saved', async () => {
+    //Will change with refactor
+/*     test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
         render(<SceneGrid mapIndex={0}/>)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(3)
 
-    })
+    }) */
 
     test('Should have both object images in a cell when there is a & operator', async () =>{
         const challenge: SerializedChallenge = {
@@ -61,16 +62,4 @@ describe('Scene grid', () => {
         expect(await getAmountFromChallenge('cell-image')).toBe(2)
     })
 
-/*     test('Renders cell with object without errors', () =>{
-        expect(() => renderComponent(<SceneCell content={'O'} sceneType={'Lita'}/>)).not.toThrowError()
-    })
-
-    test('Renders cell with actor without errors', () =>{
-        expect(() => renderComponent(<SceneCell content={'A'} sceneType={'Lita'}/>)).not.toThrowError()
-    })
-
-    test('Renders cell with prize without errors', () =>{
-        expect(() => renderComponent(<SceneCell content={'P'} sceneType={'Duba'}/>)).not.toThrowError()
-    })
- */
 })

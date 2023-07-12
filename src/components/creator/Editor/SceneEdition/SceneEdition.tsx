@@ -11,14 +11,15 @@ export const OBSTACLE = "O"
 export const ACTOR = "A"
 export const EMPTY = "-"
 
-const COL_0 = 0
-const CEL_0 = 0
+//Remeber to change de default scene at serializedChallenge.tsx if the inital position for Actor changes
+export const INITIAL_COL = 0
+export const INITIAL_ROW = 0
 
 export const setActorAtInitialPosition = (inMap: SceneMap) => {
-    if (inMap[COL_0][CEL_0] === EMPTY || inMap[COL_0][CEL_0] === OBSTACLE) {
-        inMap[COL_0][CEL_0] = ""
+    if (inMap[INITIAL_ROW][INITIAL_COL] === EMPTY || inMap[INITIAL_ROW][INITIAL_COL] === OBSTACLE) {
+        inMap[INITIAL_ROW][INITIAL_COL] = ""
     }
-    inMap[COL_0][CEL_0] = ACTOR + (inMap[COL_0][CEL_0].length ? '&' + inMap[COL_0][CEL_0] : '')
+    inMap[INITIAL_ROW][INITIAL_COL] = ACTOR + (inMap[INITIAL_ROW][INITIAL_COL].length ? '&' + inMap[INITIAL_ROW][INITIAL_COL] : '')
 
     return inMap;
 }
@@ -41,22 +42,22 @@ const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
     const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex].length
-    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][COL_0].length
+    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][INITIAL_ROW].length
 
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)
 
     const rowsInMap = (currentMap: SceneMap): number => currentMap.length
 
-    const columnsInMap = (currentMap: SceneMap): number => currentMap[COL_0].length
+    const columnsInMap = (currentMap: SceneMap): number => currentMap[INITIAL_ROW].length
 
     const updateRowsIfChanged = useCallback((currentMap: SceneMap) => {
         if (rows < rowsInMap(currentMap)) { //Row was removed
-            currentMap = relocateActor(currentMap[currentMap.length - 1], COL_0, currentMap)
+            currentMap = relocateActor(currentMap[currentMap.length - 1], INITIAL_COL, currentMap)
             currentMap.pop()
         }
         if (rows > rowsInMap(currentMap)) //Row was added
-            currentMap.push(currentMap[COL_0].slice().fill(EMPTY))
+            currentMap.push(currentMap[INITIAL_ROW].slice().fill(EMPTY))
 
         props.setRows(rows)
     }, [props, rows])

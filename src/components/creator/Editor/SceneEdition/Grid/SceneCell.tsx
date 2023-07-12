@@ -1,7 +1,7 @@
 import styles from "./grid.module.css"
 import { useContext, useEffect, useState } from "react"
 import { CreatorContext } from "../../CreatorContext"
-import { ACTOR, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
+import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
 import { LocalStorage } from "../../../../../localStorage"
 
@@ -11,7 +11,7 @@ type CellProps = {
     sceneType: SceneType
 }
 
-type Position = {
+export type Position = {
     mapIndex: number,
     row: number,
     column: number
@@ -20,21 +20,30 @@ type Position = {
 export const SceneCell: React.FC<CellProps> = (props) => {
 
     const { selectedTool } = useContext(CreatorContext)
-    const [currentCell, setCurrentCell] = useState(props.content)
+    const [currentContent, setCurrentCell] = useState(props.content)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
 
-    const objectsInCell = currentCell.split('&').filter(o => o !== '-')
+    const objectsInCell = currentContent.split('&').filter(o => o !== '-')
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
-    const hasMultipleObjects = objectsInCell.length > 1
+    const hasMultipleObjects: boolean = objectsInCell.length > 1
 
     const cellHasActor: boolean = objectsInCell.includes(ACTOR)
 
+    const isInitialCell: boolean = props.position.row === INITIAL_ROW && props.position.column === INITIAL_COL
+
+
     const handleClick = () => {
-        if(selectedTool === OBSTACLE && cellHasActor) relocateActor()
-        setCurrentCell(selectedTool)
+        if (selectedTool === OBSTACLE && cellHasActor){
+            if(!isInitialCell){
+                setCurrentCell(selectedTool)
+                relocateActor()
+            }
+        }else{
+            setCurrentCell(selectedTool)
+        }
     }
 
     const relocateActor = () => {
@@ -48,9 +57,9 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     useEffect(() => {
         const challenge = LocalStorage.getCreatorChallenge()
-        challenge!.scene.maps[props.position.mapIndex] = mapWithNewCellContent(challenge!.scene.maps[props.position.mapIndex], currentCell)
+        challenge!.scene.maps[props.position.mapIndex] = mapWithNewCellContent(challenge!.scene.maps[props.position.mapIndex], currentContent)
         LocalStorage.saveCreatorChallenge(challenge)
-    }, [currentCell])
+    }, [currentContent])
 
     const mapWithNewCellContent = (map: SceneMap, content: string) => {
         map[props.position.row][props.position.column] = content

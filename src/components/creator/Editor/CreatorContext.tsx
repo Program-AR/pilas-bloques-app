@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-type CreatorContextType = {
+export type CreatorContextType = {
     selectedTool: string;
     setSelectedTool: (selectedTool: string) => void;
 };
@@ -10,7 +10,7 @@ export const CreatorContext = React.createContext<CreatorContextType>({
     setSelectedTool: () => { }
 });
 
-type CreatorProviderProps = {
+export type CreatorProviderProps = {
     children: React.ReactNode;
 };
 
