@@ -24,13 +24,13 @@
 		"includeClue": "Include a clue"	
 	},
 	"tools": {
-		"putObstacle": "Put Obstacle",
-		"putObject": "Put Object",
-		"putActor": "Put Actor",
+		"putObstacle": "Put obstacle",
+		"putObject": "Put object",
+		"putActor": "Put actor",
 		"delete": "Delete"
 	},
 	"scene": {
-		"numCols": "Number of Columns",
-		"numRows": "Number of Rows"
+		"numCols": "Number of columns",
+		"numRows": "Number of rows"
 	}
 }

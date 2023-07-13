@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
-import { LocalStorage } from "../../localStorage";
-import { SerializedChallenge } from "../serializedChallenge";
+import { LocalStorage } from "../../../localStorage";
+import { SerializedChallenge } from "../../serializedChallenge";
 
-export const ShareButton = () => <Button onClick={downloadChallenge}>Descargar</Button>
+export const DownloadButton = () => <Button onClick={downloadChallenge}>Descargar</Button>
 
 const downloadChallenge = () => {
     const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!

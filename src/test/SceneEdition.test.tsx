@@ -1,6 +1,6 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { defaultChallenge, SerializedChallenge } from "../components/serializedChallenge"
-import { SceneEdition } from '../components/creator/SceneEdition';
+import { SceneEdition } from '../components/creator/Editor/SceneEdition/SceneEdition';
 import { LocalStorage } from '../localStorage';
 import { renderComponent } from './testUtils';
 

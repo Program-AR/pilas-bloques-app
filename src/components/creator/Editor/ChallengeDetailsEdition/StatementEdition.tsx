@@ -1,9 +1,9 @@
 import { Button, Box, Switch, TextField, FormControlLabel, Typography } from "@mui/material";
 import { useState } from "react";
-import { LocalStorage } from "../../localStorage";
+import { LocalStorage } from "../../../../localStorage";
 import DescriptionIcon from '@mui/icons-material/Description';
 import { useTranslation } from "react-i18next";
-import { GenericModalDialog } from "../modalDialog/GenericModalDialog";
+import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 
 export const StatementEdition = () => {
 

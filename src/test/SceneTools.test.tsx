@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react'
 import { defaultChallenge } from "../components/serializedChallenge"
-import { SceneTools } from '../components/creator/SceneTools';
+import { SceneTools } from '../components/creator/Editor/SceneEdition/SceneTools';
 import { LocalStorage } from '../localStorage';
 import { renderComponent } from './testUtils';
 
