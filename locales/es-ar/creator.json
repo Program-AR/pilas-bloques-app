@@ -16,7 +16,12 @@
 		}
 	},
 	"editor": {
-		"title": "Título"
+		"title": "Título",
+		"buttons": {
+			"newChallenge": "Nuevo desafio",
+			"download": "Descargar",
+			"try": "Probar"
+		}
 	},
 	"statement": {
 		"title": "Enunciado",
