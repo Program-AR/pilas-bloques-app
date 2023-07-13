@@ -8,13 +8,18 @@ import { DownloadButton } from "./DownloadButton"
 import { SerializedChallenge } from "../../serializedChallenge"
 import { NewChallengeButton } from "./NewChallengeButton"
 import { Link } from "react-router-dom"
+import { useTranslation } from "react-i18next"
 
-const HeaderContent = (challenge: SerializedChallenge) => <>
-        <HeaderText text={challenge.title}/>
-        <NewChallengeButton/>
-        <Link to="/creador/editar"><Button>Seguir editando</Button></Link>
-        <DownloadButton/>
-</>
+const HeaderContent = (challenge: SerializedChallenge) => {
+    const {t} = useTranslation('creator')
+
+    return <>
+            <HeaderText text={challenge.title}/>
+            <NewChallengeButton/>
+            <Link to="/creador/editar"><Button>{t("editor.buttons.keepEditing")}</Button></Link>
+            <DownloadButton/>
+    </>
+}
 
 export const CreatorTryMode = () => {
 
