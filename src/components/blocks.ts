@@ -1,9 +1,10 @@
+import { SceneType, sceneObjectByType } from "./serializedChallenge"
+
 export const categories: string[] = [
     'primitives',
     'myprocedures',
     'repetitions',
     'alternatives',
-    'variables',
     'values',
     'sensors',
     'operators',
@@ -190,17 +191,17 @@ export const commonBlocks: BlockType[] = [
     {
         id: 'param_get', 
         intlId: 'variables_get', 
-        categoryId: 'MyProcedures'
+        categoryId: 'myprocedures'
     },
     {
         id: 'myProcedures', 
         intlId: 'Procedures', 
-        categoryId: 'MyProcedures'
+        categoryId: 'myprocedures'
     },
     {
         id: 'myFunctions', 
         intlId: 'Functions', 
-        categoryId: 'MyFunctions'
+        categoryId: 'myfunctions'
     }    
 ]
 
@@ -402,3 +403,11 @@ export const sceneBlocks: BlockType[] = [
     }
 ]
 
+export const availableBlocksFor = (sceneType: SceneType) : BlockType[] => {
+    return [...commonBlocks,
+        ...sceneBlocks.filter(block => sceneObjectByType(sceneType).specificBlocksIds.includes(block.id))]
+    .sort((a, b) => {
+        const position = (block: BlockType) => categories.indexOf(block.categoryId.toLowerCase())
+        return position(a) - position(b)
+    })
+}

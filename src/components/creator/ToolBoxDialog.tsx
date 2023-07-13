@@ -1,8 +1,8 @@
 import { Button, Box, Switch, Icon, FormControlLabel } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { LocalStorage } from "../../localStorage";
-import { BlockType, commonBlocks, sceneBlocks, categories } from "../blocks";
-import { sceneObjectByType, SerializedChallenge, defaultChallenge } from "../serializedChallenge";
+import { categories, availableBlocksFor } from "../blocks";
+import { SerializedChallenge, defaultChallenge } from "../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../modalDialog/GenericModalDialog";
 
@@ -24,103 +24,25 @@ export const ToolBoxDialog = () => {
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
-
-    const blocks: BlockType[] = [...commonBlocks,
-        ...sceneBlocks.filter(block => sceneObjectByType(challenge!.scene.type).specificBlocksIds.includes(block.id))]
-    .sort((a, b) => {
-        const ac = categories.indexOf(a.categoryId.toLowerCase()).toString().padStart(2, '0') + a.categoryId.toLowerCase()
-        const bc = categories.indexOf(b.categoryId.toLowerCase()).toString().padStart(2, '0') + b.categoryId.toLowerCase()
-        if (ac > bc) {
-            return 1;
-        }
-        if (ac < bc) {        
-            return -1;
-        }
-      return 0;
-    })
-
-
+   
     let currentToolBox = challenge!.toolbox.blocks
-
     const [toolBoxItems, setToolBoxItems] = useState(currentToolBox);
-    const [toolBoxCategories, setToolBoxCategories] = useState<string[]>([]);
+    const toolboxState = new ToolboxState(challenge!, toolBoxItems)
     const [open, setOpen] = useState(false);
 
-    const dataChanged = ((current:string[], newData: string ) => 
-            current.filter((data: string) => data !== newData))
-    
-    const searchCategory = (searchBlock: string) =>
-            blocks.find((block) => block.id === searchBlock)?.categoryId.toLowerCase() || ''
-
-    const allItemsInCategory = (category: string, checked: boolean) => {
-        let categoryBlocks: string[] = [];
-        if( checked )
-        {
-            blocks.forEach((block)=>
-                block.categoryId.toLowerCase() === category && !toolBoxItems.includes(block.id) &&
-                categoryBlocks.push(block.id) )
-
-            setToolBoxItems([...toolBoxItems, ...categoryBlocks ])
-        }
-        else {
-            categoryBlocks = toolBoxItems.filter((block) => searchCategory(block) !== category)
-            setToolBoxItems([...categoryBlocks ])
-        }
-    }
-    
-    const updateToolBoxCategories = ( actualCategory: string, checked: boolean ) => {
-        if( checked )
-            setToolBoxCategories([...toolBoxCategories, actualCategory ]);    
-        else 
-            setToolBoxCategories(dataChanged(toolBoxCategories, actualCategory ))
-    }
-
-    const blocksCountByCategory = (catBlock: string): number =>
-        blocks.filter((block) => block.categoryId.toLowerCase() === catBlock).length
-
-    const itemsCountByCategory = ( items: string[], catBlock: string ): number =>
-        items.filter((block) => searchCategory( block ) === catBlock ).length
-
-    const updateToolBoxItems = ( actualBlock: string, checked: boolean ) => {
-        if( checked )
-        {
-            setToolBoxItems([...toolBoxItems, actualBlock])
-            if ( blocksCountByCategory( searchCategory( actualBlock )) -
-                 itemsCountByCategory( toolBoxItems, searchCategory( actualBlock )) === 1 )
-               updateToolBoxCategories( searchCategory(actualBlock), true )
-        }
-        else
-        {
-            setToolBoxItems(dataChanged(toolBoxItems, actualBlock ))
-            updateToolBoxCategories( searchCategory(actualBlock), false )
-        }
-    }
-
     const handleCatOnChange = (event : { target: { name: string; checked: boolean }  }) => {
-        updateToolBoxCategories( event.target.name, event.target.checked )
-        allItemsInCategory(event.target.name, event.target.checked)
+        toolboxState.categoryChanged(event.target.name, event.target.checked)
+        setToolBoxItems(toolboxState.selectedBlockIds())
     }
 
     const handleToolBoxOnChange = (event : { target: { name: string; checked: boolean }  }) => {
-        updateToolBoxItems( event.target.name, event.target.checked ) 
-    }
-  
-    const setInitialCategories = () => {
-        let initialCategories : string [] = []
-        currentToolBox.forEach((block) => {
-            const categoryBlock = searchCategory( block )
-            if ( !initialCategories.includes( categoryBlock ) &&    
-                    blocksCountByCategory( categoryBlock ) -
-                        itemsCountByCategory( currentToolBox, categoryBlock ) === 0 )
-                    initialCategories.push(categoryBlock)
-        })
-        setToolBoxCategories([...initialCategories])
+        toolboxState.blockChanged(event.target.name, event.target.checked)
+        setToolBoxItems(toolboxState.selectedBlockIds())
     }
 
     const handleButtonClick = () => {
         if(!open) {
             setToolBoxItems(currentToolBox)
-            setInitialCategories()
             setOpen(true)
         }
     }    
@@ -133,8 +55,6 @@ export const ToolBoxDialog = () => {
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
     }
-
-    useEffect(() => {}, [toolBoxItems, toolBoxCategories]);  
 
     return <>
         <Button 
@@ -153,11 +73,11 @@ export const ToolBoxDialog = () => {
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
                     <FormControlLabel key={cat+i}  
-                    control={<Switch checked={toolBoxCategories.includes(cat)}
+                    control={<Switch checked={toolboxState.isCategorySelected(cat)}
                                      name={cat}
                                      key={cat+i} 
                                      onChange={handleCatOnChange}/>} label={tb('categories.' + cat)}/>
-                    {blocks.map((block) => {
+                    {availableBlocksFor(challenge!.scene.type).map((block) => {
                             return( (cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{paddingLeft: "20px"}}>
                             <FormControlLabel key={block.id} 
                             control={<Switch checked={toolBoxItems.includes(block.id)}
@@ -170,4 +90,68 @@ export const ToolBoxDialog = () => {
             </Box>
         </GenericModalDialog>
     </>
+}
+
+class ToolboxState {
+    categories: CategorySelection[] = [];
+
+    // This constructor handles the annoying part of mapping from an id - based model
+    // to a model where each category has its blocks.
+    // If we decide to go for this solution, we can avoid this constructor by modelling differently from a start.
+    constructor( challenge: SerializedChallenge, toolboxBlockIds: string[]) {      
+        this.categories = categories.map( category => new CategorySelection(category))
+        this.categories.forEach(category => {
+            category.blocks = availableBlocksFor(challenge.scene.type)
+                .filter(block => block.categoryId === category.id)
+                .map(block => new BlockSelection(block.id, toolboxBlockIds.includes(block.id)))
+        })
+    }
+    
+    selectedBlockIds() {
+        return this.categories.flatMap( category => category.selectedBlockIds() )
+    }
+    blockChanged(blockId: string, checked: boolean) {
+        this.categories.find( category => category.hasBlock(blockId) )!.blockChanged(blockId, checked)
+    }
+    categoryChanged(categoryId: string, checked: boolean) {
+        this.categories.find( category => category.id === categoryId)!.checked(checked)
+    }
+    isCategorySelected(categoryId: string) {
+        return this.categories.find( category => category.id === categoryId)!.isSelected()
+    }
+}
+
+class CategorySelection {
+    id: string
+    blocks: BlockSelection[] = []
+
+    constructor(id: string){
+        this.id = id
+    }
+
+    selectedBlockIds(){
+        return this.blocks.filter( block => block.isSelected ).map( block => block.id)
+    }
+    hasBlock(blockId: string){
+        return this.blocks.find( block => block.id === blockId )
+    }
+    blockChanged(blockId: string, checked: boolean) {
+        this.blocks.find( block => block.id === blockId )!.isSelected = checked
+    }
+    checked(checked: boolean) {
+        this.blocks.forEach( block => block.isSelected = checked )
+    }
+    isSelected(){
+        return this.blocks.every( block => block.isSelected )
+    }
+}
+
+class BlockSelection {
+    isSelected: boolean
+    id: string
+
+    constructor( id: string, isSelected: boolean) {
+        this.id = id
+        this.isSelected = isSelected
+    }
 }
