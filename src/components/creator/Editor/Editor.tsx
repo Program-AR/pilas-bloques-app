@@ -5,6 +5,7 @@ import { TitleEdition } from "./EditorHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 import { DownloadButton } from "./DownloadButton";
+import { NewChallengeButton } from "./NewChallengeButton";
 
 export const CreatorEditor = () => {
   return (
@@ -27,8 +28,8 @@ const EditorHeader: React.FC = () =>
     <Actions />
   </Stack>
 
-const Actions = () => <Stack direction="row">
-  <Button>Nuevo Desafío</Button>
+const Actions = () => <Stack direction="row" alignItems={"center"}>
+  <NewChallengeButton/>
   <Button>Probar</Button>
   <DownloadButton/>
 </Stack>
