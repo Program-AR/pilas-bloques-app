@@ -3,14 +3,13 @@ import { Position, SceneCell } from "../components/creator/Editor/SceneEdition/G
 import { SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
 import { LocalStorage } from "../localStorage"
 import { renderComponent } from "./testUtils"
-import { CreatorContext, CreatorContextType } from '../components/creator/Editor/CreatorContext'
+import { CreatorContext, CreatorContextType, defaultCreatorContext } from '../components/creator/Editor/CreatorContext'
 
 describe('Scene grid', () => {
 
     let challenge: SerializedChallenge
 
     const position: Position = {
-        mapIndex: 0,
         row: 0,
         column: 0
     }
@@ -47,12 +46,12 @@ describe('Scene grid', () => {
 
     //Tools
 
-    const getContentFromLocalStorage = (row: number, column: number): string => LocalStorage.getCreatorChallenge()!.scene.maps[position.mapIndex][row][column]
+    const getContentFromLocalStorage = (row: number, column: number): string => LocalStorage.getCreatorChallenge()!.scene.maps[0][row][column]
 
     const clickCellWithSelectedTool = (selectedTool: string, row: number, column: number) => {
         let cretorContextProps: CreatorContextType = {
+            ...defaultCreatorContext,
             selectedTool: selectedTool,
-            setSelectedTool: () => { }
         }
 
         const { getByTestId } = render(

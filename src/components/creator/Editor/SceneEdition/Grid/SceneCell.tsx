@@ -12,14 +12,13 @@ type CellProps = {
 }
 
 export type Position = {
-    mapIndex: number,
     row: number,
     column: number
 }
 
 export const SceneCell: React.FC<CellProps> = (props) => {
 
-    const { selectedTool } = useContext(CreatorContext)
+    const { selectedTool, currentMap } = useContext(CreatorContext)
     const [currentContent, setCurrentCell] = useState(props.content)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
@@ -49,15 +48,14 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const relocateActor = () => {
         //this is going to change in the refactor 
         const challenge = LocalStorage.getCreatorChallenge()
-        const currentMapIndex = props.position.mapIndex
 
-        challenge!.scene.maps[currentMapIndex] = setActorAtInitialPosition(challenge!.scene.maps[currentMapIndex])
+        challenge!.scene.maps[currentMap.index] = setActorAtInitialPosition(challenge!.scene.maps[currentMap.index])
         LocalStorage.saveCreatorChallenge(challenge)
     }
 
     useEffect(() => {
         const challenge = LocalStorage.getCreatorChallenge()
-        challenge!.scene.maps[props.position.mapIndex] = mapWithNewCellContent(challenge!.scene.maps[props.position.mapIndex], currentContent)
+        challenge!.scene.maps[currentMap.index] = mapWithNewCellContent(challenge!.scene.maps[currentMap.index], currentContent)
         LocalStorage.saveCreatorChallenge(challenge)
     }, [currentContent])
 

@@ -31,7 +31,7 @@ describe('Scene grid', () => {
         }
 
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid mapIndex={0}/>)
+        render(<SceneGrid />)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(5)
@@ -58,7 +58,7 @@ describe('Scene grid', () => {
         }
         
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid mapIndex={0}/>)
+        render(<SceneGrid />)
         expect(await getAmountFromChallenge('cell-image')).toBe(2)
     })
 
