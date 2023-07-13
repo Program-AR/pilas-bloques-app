@@ -15,6 +15,14 @@
 			"chuy": "Play with the ball!"
 		}
 	},
+	"editor": {
+		"title": "Title",
+		"buttons": {
+			"newChallenge": "New challenge",
+			"download": "Download",
+			"try": "Try"
+		}
+	},
 	"statement": {
 		"title": "Statement",
 		"button": "¡Write your Statement!",
