@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Stack, Button, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { LocalStorage } from '../../localStorage';
-import { SerializedChallenge, sceneObjectByType } from '../serializedChallenge';
+import { LocalStorage } from '../../../../localStorage';
+import { SerializedChallenge, sceneObjectByType } from '../../../serializedChallenge';
+import { CreatorContext } from '../CreatorContext';
 
 export const SceneTools = () => {
     type ToolProps = {
@@ -11,12 +12,12 @@ export const SceneTools = () => {
     }
     
     const { t } = useTranslation('creator');
-    const [selectedTool, setSelectedTool] = useState('')
+    const {selectedTool, setSelectedTool} = useContext(CreatorContext)
 
     const challenge: SerializedChallenge | null = LocalStorage.getCreatorChallenge()
 
     const selectTool = (e: React.MouseEvent<HTMLElement>) => {
-       setSelectedTool(e.currentTarget.id as any)
+        setSelectedTool(e.currentTarget.id)
     }
 
     const imagePath = 'imagenes/sceneImages'
@@ -59,7 +60,7 @@ export const SceneTools = () => {
     const DeleteTool = () => 
         <>
             <Typography variant="caption">{t('tools.delete')}</Typography>
-            <Tool id="e" image={`${imagePath}/eraser.png`}/>
+            <Tool id="-" image={`${imagePath}/eraser.png`}/>
         </>     
 
 

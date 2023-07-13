@@ -1,25 +1,33 @@
 import { Stack } from "@mui/material";
-import { SceneGrid } from "./SceneGrid";
+import { SceneGrid } from "./Grid/SceneGrid";
 import { SceneTools } from "./SceneTools";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useCallback, useEffect } from 'react';
-import { LocalStorage } from "../../localStorage";
-import { SceneMap, SerializedChallenge } from "../serializedChallenge";
+import { LocalStorage } from "../../../../localStorage";
+import { SceneMap, SerializedChallenge } from "../../../serializedChallenge";
 
-const OBSTACLE = "O"
-const ACTOR = "A"
-const EMPTY = "-"
+export const OBSTACLE = "O"
+export const ACTOR = "A"
+export const EMPTY = "-"
 
-const COL_0 = 0
-const CEL_0 = 0
+//Remeber to change de default scene at serializedChallenge.tsx if the inital position for Actor changes
+export const INITIAL_COL = 0
+export const INITIAL_ROW = 0
+
+export const setActorAtInitialPosition = (inMap: SceneMap) => {
+    if (inMap[INITIAL_ROW][INITIAL_COL] === EMPTY || inMap[INITIAL_ROW][INITIAL_COL] === OBSTACLE) {
+        inMap[INITIAL_ROW][INITIAL_COL] = ""
+    }
+    inMap[INITIAL_ROW][INITIAL_COL] = ACTOR + (inMap[INITIAL_ROW][INITIAL_COL].length ? '&' + inMap[INITIAL_ROW][INITIAL_COL] : '')
+
+    return inMap;
+}
+
 
 export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap) => {
     if (row.includes(ACTOR, colSearch)) {
-        if (inMap[COL_0][CEL_0] === EMPTY || inMap[COL_0][CEL_0] === OBSTACLE) {
-            inMap[COL_0][CEL_0] = ""
-        }
-        inMap[COL_0][CEL_0] = ACTOR + ( inMap[COL_0][CEL_0].length ? '&' + inMap[COL_0][CEL_0] : '')
+        return setActorAtInitialPosition(inMap)
     }
     return inMap;
 }
@@ -34,35 +42,35 @@ const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
     const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex].length
-    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][COL_0].length
+    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][INITIAL_ROW].length
 
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)
 
-    const rowsInMap = (actualMap: SceneMap): number => actualMap.length
+    const rowsInMap = (currentMap: SceneMap): number => currentMap.length
 
-    const columnsInMap = (actualMap: SceneMap): number => actualMap[COL_0].length
+    const columnsInMap = (currentMap: SceneMap): number => currentMap[INITIAL_ROW].length
 
-    const updateRowsIfChanged = useCallback((actualMap: SceneMap) => {
-        if (rows < rowsInMap(actualMap)) { //Row was removed
-            actualMap = relocateActor(actualMap[actualMap.length - 1], COL_0, actualMap)
-            actualMap.pop()
+    const updateRowsIfChanged = useCallback((currentMap: SceneMap) => {
+        if (rows < rowsInMap(currentMap)) { //Row was removed
+            currentMap = relocateActor(currentMap[currentMap.length - 1], INITIAL_COL, currentMap)
+            currentMap.pop()
         }
-        if (rows > rowsInMap(actualMap)) //Row was added
-            actualMap.push(actualMap[COL_0].slice().fill(EMPTY))
+        if (rows > rowsInMap(currentMap)) //Row was added
+            currentMap.push(currentMap[INITIAL_ROW].slice().fill(EMPTY))
 
         props.setRows(rows)
     }, [props, rows])
 
-    const updateColumnsIfChanged = useCallback((actualMap: SceneMap) => {
-        if (columns < columnsInMap(actualMap)) { //Column was removed
-            actualMap.map((row) => {
-                actualMap = relocateActor(row, row.length - 1, actualMap)
+    const updateColumnsIfChanged = useCallback((currentMap: SceneMap) => {
+        if (columns < columnsInMap(currentMap)) { //Column was removed
+            currentMap.map((row) => {
+                currentMap = relocateActor(row, row.length - 1, currentMap)
                 return row.pop()
             })
         }
-        if (columns > columnsInMap(actualMap)) //Column was added
-            actualMap.map((row, i) => actualMap[i] = row.concat(EMPTY))
+        if (columns > columnsInMap(currentMap)) //Column was added
+            currentMap.map((row, i) => currentMap[i] = row.concat(EMPTY))
 
         props.setColumns(columns)
 

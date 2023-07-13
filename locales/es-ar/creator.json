@@ -27,14 +27,14 @@
 		"includeClue": "Incluir una pista"
 	},
 	"tools": {
-		"putObstacle": "Poner Obstáculo",
-		"putObject": "Poner Objeto",
-		"putActor": "Poner Personaje",
+		"putObstacle": "Poner obstáculo",
+		"putObject": "Poner objeto",
+		"putActor": "Poner personaje",
 		"delete": "Borrar"
 	},
 	"scene": {
-		"numCols": "Cantidad de Columnas",
-		"numRows": "Cantidad de Filas"
+		"numCols": "Cantidad de columnas",
+		"numRows": "Cantidad de filas"
 
 	}
 }

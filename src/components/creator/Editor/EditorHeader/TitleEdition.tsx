@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 import { useState } from "react";
-import { LocalStorage } from "../../localStorage";
+import { LocalStorage } from "../../../../localStorage";
 import { useTranslation } from "react-i18next";
 
 export const TitleEdition = () => {

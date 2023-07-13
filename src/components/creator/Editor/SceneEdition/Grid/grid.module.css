@@ -9,6 +9,7 @@
     background-size: cover;
     display: flex;
     align-items: baseline;
+    cursor: pointer;
 }
 
 .img-A{ 
