@@ -14,6 +14,7 @@ import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { CreatorSelection } from './components/creator/Selection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
+import { CreatorTryMode } from './components/creator/Editor/CreatorTryMode';
 
 function App() {
   
@@ -62,6 +63,10 @@ function App() {
     {
       path: "/creador/editar",
       element: <CreatorEditor/>
+    },
+    {
+      path: "/creador/probar",
+      element: <CreatorTryMode/>
     }
   ]);
 
