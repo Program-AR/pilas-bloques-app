@@ -24,7 +24,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const backgroundCellImage = `${imagePath}/casilla.png`
 
     const objectsInCell = currentContent.split('&').filter(o => o !== '-')
-    
+
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
     const hasMultipleObjects: boolean = objectsInCell.length > 1
@@ -35,12 +35,20 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
 
     const handleClick = () => {
-        if (selectedTool === OBSTACLE && cellHasActor){
-            if(!isInitialCell){
+        console.log(selectedTool)
+        switch (selectedTool) {
+            case '': break; //by context default
+            case 'O': handleObstacle(); break;
+        }
+    }
+
+    const handleObstacle = () => {
+        if (cellHasActor) {
+            if (!isInitialCell) {
                 setCurrentContent(selectedTool)
                 relocateActor()
             }
-        }else{
+        } else {
             setCurrentContent(selectedTool)
         }
     }
@@ -66,7 +74,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
         {objectsInCell.map(obj =>
             <img
                 data-testid="challenge-cell-image"
-                key={props.position.row * 100 + props.position.column + obj +  '-img'} 
+                key={props.position.row * 100 + props.position.column + obj + '-img'}
                 src={`${imagePath}/${obj}.png`}
                 alt={obj}
                 className={objectStyle(obj)} />
