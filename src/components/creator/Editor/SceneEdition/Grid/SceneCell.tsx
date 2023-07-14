@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react"
 import { CreatorContext } from "../../CreatorContext"
 import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
-import { LocalStorage } from "../../../../../localStorage"
 
 type CellProps = {
     position: Position
@@ -18,13 +17,14 @@ export type Position = {
 
 export const SceneCell: React.FC<CellProps> = (props) => {
 
-    const { selectedTool, currentMap } = useContext(CreatorContext)
-    const [currentContent, setCurrentCell] = useState(props.content)
+    const { selectedTool, currentMap, changeMapAtCurrentIndex } = useContext(CreatorContext)
+    const [currentContent, setCurrentContent] = useState(props.content)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
 
     const objectsInCell = currentContent.split('&').filter(o => o !== '-')
+    
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
     const hasMultipleObjects: boolean = objectsInCell.length > 1
@@ -37,26 +37,20 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const handleClick = () => {
         if (selectedTool === OBSTACLE && cellHasActor){
             if(!isInitialCell){
-                setCurrentCell(selectedTool)
+                setCurrentContent(selectedTool)
                 relocateActor()
             }
         }else{
-            setCurrentCell(selectedTool)
+            setCurrentContent(selectedTool)
         }
     }
 
     const relocateActor = () => {
-        //this is going to change in the refactor 
-        const challenge = LocalStorage.getCreatorChallenge()
-
-        challenge!.scene.maps[currentMap.index] = setActorAtInitialPosition(challenge!.scene.maps[currentMap.index])
-        LocalStorage.saveCreatorChallenge(challenge)
+        changeMapAtCurrentIndex(setActorAtInitialPosition(currentMap.map))
     }
 
     useEffect(() => {
-        const challenge = LocalStorage.getCreatorChallenge()
-        challenge!.scene.maps[currentMap.index] = mapWithNewCellContent(challenge!.scene.maps[currentMap.index], currentContent)
-        LocalStorage.saveCreatorChallenge(challenge)
+        changeMapAtCurrentIndex(mapWithNewCellContent(currentMap.map, currentContent))
     }, [currentContent])
 
     const mapWithNewCellContent = (map: SceneMap, content: string) => {
@@ -72,7 +66,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
         {objectsInCell.map(obj =>
             <img
                 data-testid="challenge-cell-image"
-                key={'&' + obj}
+                key={props.position.row * 100 + props.position.column + obj +  '-img'} 
                 src={`${imagePath}/${obj}.png`}
                 alt={obj}
                 className={objectStyle(obj)} />

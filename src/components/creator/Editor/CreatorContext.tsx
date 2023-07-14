@@ -40,12 +40,13 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     
     const changeIndex = (newIndex: number) => setCurrentMap({...currentMap, index: newIndex})
 
-    const changeMapAtCurrentIndex = (newMap: SceneMap) => setCurrentMap({...currentMap, map: newMap})
+    const changeMapAtCurrentIndex = (newMap: SceneMap) => {
+        setCurrentMap({...currentMap, map: newMap})
+    }
 
     useEffect(()=> {
         const challenge = LocalStorage.getCreatorChallenge()
         challenge!.scene.maps[currentMap.index] = currentMap.map
-
         LocalStorage.saveCreatorChallenge(challenge)
         
     }, [currentMap])
