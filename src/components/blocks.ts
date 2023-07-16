@@ -3,17 +3,15 @@ export const categories: string[] = [
     'myprocedures',
     'repetitions',
     'alternatives',
-    'variables',
     'values',
     'sensors',
-    'operators',
-    'myfunctions'
+    'operators'
 ]
 
 export type BlockType = {
     id: string
     intlId: string
-    categoryId: string
+    categoryId: typeof categories[number]
 }
 
 export const commonBlocks: BlockType[] = [
@@ -158,11 +156,6 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'values' 
     },
     { 
-        id: 'Texto', 
-        intlId: 'text', 
-        categoryId: 'values' 
-    },
-    { 
         id: 'RepetirVacio', 
         intlId: 'repeatEmpty', 
         categoryId: 'repetitions' 
@@ -188,20 +181,10 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'operators'
     },
     {
-        id: 'param_get', 
-        intlId: 'variables_get', 
-        categoryId: 'MyProcedures'
-    },
-    {
         id: 'myProcedures', 
         intlId: 'Procedures', 
         categoryId: 'MyProcedures'
-    },
-    {
-        id: 'myFunctions', 
-        intlId: 'Functions', 
-        categoryId: 'MyFunctions'
-    }    
+    }
 ]
 
 export const sceneBlocks: BlockType[] = [

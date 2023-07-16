@@ -25,18 +25,12 @@ export const ToolBoxDialog = () => {
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
-    const blocks: BlockType[] = [...commonBlocks,
-        ...sceneBlocks.filter(block => sceneObjectByType(challenge!.scene.type).specificBlocksIds.includes(block.id))]
+    const blocks: BlockType[] = [
+        ...sceneBlocks.filter(block => sceneObjectByType(challenge!.scene.type).specificBlocksIds.includes(block.id)),
+        ...commonBlocks]
     .sort((a, b) => {
-        const ac = categories.indexOf(a.categoryId.toLowerCase()).toString().padStart(2, '0') + a.categoryId.toLowerCase()
-        const bc = categories.indexOf(b.categoryId.toLowerCase()).toString().padStart(2, '0') + b.categoryId.toLowerCase()
-        if (ac > bc) {
-            return 1;
-        }
-        if (ac < bc) {        
-            return -1;
-        }
-      return 0;
+        const position = (block: BlockType) => categories.indexOf(block.categoryId.toLowerCase())
+        return position(a) - position(b)
     })
 
 
