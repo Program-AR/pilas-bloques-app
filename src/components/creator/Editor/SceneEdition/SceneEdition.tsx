@@ -3,9 +3,10 @@ import { SceneGrid } from "./Grid/SceneGrid";
 import { SceneTools } from "./SceneTools";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useContext } from 'react';
 import { LocalStorage } from "../../../../localStorage";
 import { SceneMap, SerializedChallenge } from "../../../serializedChallenge";
+import { CreatorContext } from "../CreatorContext";
 
 export const OBSTACLE = "O"
 export const ACTOR = "A"
@@ -33,7 +34,6 @@ export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap)
 }
 
 type SizeProps = {
-    mapIndex: number
     setColumns: (col: number) => void
     setRows: (row: number) => void
 }
@@ -41,8 +41,10 @@ type SizeProps = {
 const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
-    const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex].length
-    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[props.mapIndex][INITIAL_ROW].length
+    const { currentMap } = useContext(CreatorContext)
+
+    const initialRows = currentMap.map.length
+    const initialColumns = currentMap.map[INITIAL_ROW].length
 
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)
@@ -79,11 +81,11 @@ const SizeEditor = (props: SizeProps) => {
     useEffect(() => {
 
         const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
-        const map: SceneMap = challenge.scene.maps[props.mapIndex];
+        const map: SceneMap = challenge.scene.maps[currentMap.index];
 
         updateRowsIfChanged(map)
         updateColumnsIfChanged(map)
-        
+
         LocalStorage.saveCreatorChallenge(challenge)
 
     }, [props, updateColumnsIfChanged, updateRowsIfChanged]);
@@ -91,8 +93,8 @@ const SizeEditor = (props: SizeProps) => {
 
     return (
         <Stack sx={{ flexDirection: "column", height: "200px", justifyContent: "space-between", padding: "10px" }}>
-            <IncDecButtons returnValue={setCol} initialValue={columns} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col"/>
-            <IncDecButtons returnValue={setRow} initialValue={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row"/>
+            <IncDecButtons returnValue={setCol} initialValue={columns} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col" />
+            <IncDecButtons returnValue={setRow} initialValue={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row" />
         </Stack>
     )
 }
@@ -100,12 +102,11 @@ const SizeEditor = (props: SizeProps) => {
 export const SceneEdition = () => {
     const [, setCols] = useState(0)
     const [, setRows] = useState(0)
-    const [workingMap,] = useState(0)
 
     return (
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <SizeEditor mapIndex={workingMap} setColumns={setCols} setRows={setRows} />
-            <SceneGrid mapIndex={workingMap} />
+            <SizeEditor setColumns={setCols} setRows={setRows} />
+            <SceneGrid />
             <SceneTools />
         </Stack>
     )

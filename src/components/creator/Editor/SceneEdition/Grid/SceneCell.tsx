@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react"
 import { CreatorContext } from "../../CreatorContext"
 import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
-import { LocalStorage } from "../../../../../localStorage"
 
 type CellProps = {
     position: Position
@@ -12,20 +11,20 @@ type CellProps = {
 }
 
 export type Position = {
-    mapIndex: number,
     row: number,
     column: number
 }
 
 export const SceneCell: React.FC<CellProps> = (props) => {
 
-    const { selectedTool } = useContext(CreatorContext)
-    const [currentContent, setCurrentCell] = useState(props.content)
+    const { selectedTool, currentMap, changeMapAtCurrentIndex } = useContext(CreatorContext)
+    const [currentContent, setCurrentContent] = useState(props.content)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
 
     const objectsInCell = currentContent.split('&').filter(o => o !== '-')
+
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
     const hasMultipleObjects: boolean = objectsInCell.length > 1
@@ -36,36 +35,30 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
 
     const handleClick = () => {
-        if (selectedTool === OBSTACLE && cellHasActor){
-            if(!isInitialCell){
-                setCurrentCell(selectedTool)
-                relocateActor()
-            }
-        }else{
-            setCurrentCell(selectedTool)
+        switch (selectedTool) {
+            case '': break; //by context default
+            case 'O': handleObstacle(); break;
         }
     }
 
-    const relocateActor = () => {
-        //this is going to change in the refactor 
-        const challenge = LocalStorage.getCreatorChallenge()
-        const currentMapIndex = props.position.mapIndex
+    const handleObstacle = () => {
+        if (cellHasActor && isInitialCell) return; // We can't replace actor on the initial cell
+        if (cellHasActor && !isInitialCell) relocateActor()
+        setCurrentContent(selectedTool) // obstacle replaces everything
+    }
 
-        challenge!.scene.maps[currentMapIndex] = setActorAtInitialPosition(challenge!.scene.maps[currentMapIndex])
-        LocalStorage.saveCreatorChallenge(challenge)
+    const relocateActor = () => {
+        changeMapAtCurrentIndex(setActorAtInitialPosition(currentMap.map))
     }
 
     useEffect(() => {
-        const challenge = LocalStorage.getCreatorChallenge()
-        challenge!.scene.maps[props.position.mapIndex] = mapWithNewCellContent(challenge!.scene.maps[props.position.mapIndex], currentContent)
-        LocalStorage.saveCreatorChallenge(challenge)
+        if(currentContent !== props.content) changeMapAtCurrentIndex(mapWithNewCellContent(currentMap.map, currentContent))
     }, [currentContent])
 
     const mapWithNewCellContent = (map: SceneMap, content: string) => {
         map[props.position.row][props.position.column] = content
         return map
     }
-
     return <div
         data-testid="challenge-cell"
         className={styles.cell}
@@ -74,7 +67,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
         {objectsInCell.map(obj =>
             <img
                 data-testid="challenge-cell-image"
-                key={'&' + obj}
+                key={props.position.row * 100 + props.position.column + obj + '-img'}
                 src={`${imagePath}/${obj}.png`}
                 alt={obj}
                 className={objectStyle(obj)} />

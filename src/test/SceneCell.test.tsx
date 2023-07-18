@@ -1,16 +1,15 @@
-import { fireEvent, getByTestId, render } from '@testing-library/react'
+import { fireEvent, render } from '@testing-library/react'
 import { Position, SceneCell } from "../components/creator/Editor/SceneEdition/Grid/SceneCell"
 import { SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
 import { LocalStorage } from "../localStorage"
 import { renderComponent } from "./testUtils"
-import { CreatorContext, CreatorContextType } from '../components/creator/Editor/CreatorContext'
+import { CreatorContextProvider } from '../components/creator/Editor/CreatorContext'
 
 describe('Scene grid', () => {
 
     let challenge: SerializedChallenge
 
     const position: Position = {
-        mapIndex: 0,
         row: 0,
         column: 0
     }
@@ -47,18 +46,14 @@ describe('Scene grid', () => {
 
     //Tools
 
-    const getContentFromLocalStorage = (row: number, column: number): string => LocalStorage.getCreatorChallenge()!.scene.maps[position.mapIndex][row][column]
+    const getContentFromLocalStorage = (row: number, column: number): string => LocalStorage.getCreatorChallenge()!.scene.maps[0][row][column]
 
     const clickCellWithSelectedTool = (selectedTool: string, row: number, column: number) => {
-        let cretorContextProps: CreatorContextType = {
-            selectedTool: selectedTool,
-            setSelectedTool: () => { }
-        }
 
         const { getByTestId } = render(
-            <CreatorContext.Provider value={cretorContextProps}>
-                <SceneCell content={getContentFromLocalStorage(row, column)} sceneType={'Duba'} position={{ ...position, row, column }} />
-            </CreatorContext.Provider>
+            <CreatorContextProvider defaultSelectedTool={selectedTool}>
+                <SceneCell content={getContentFromLocalStorage(row, column)} sceneType={'Duba'} position={{ row, column }} />
+            </CreatorContextProvider>
         )
 
         fireEvent.click(getByTestId('challenge-cell'))
@@ -73,7 +68,7 @@ describe('Scene grid', () => {
     test('Sets obstacle in empty cell', () => {
         expectContentAfterClick('O', 0, 0, 'O')
     })
-
+ 
     test('Sets obstacle in cell with prize, should replace prize', () => {
         expectContentAfterClick('O', 1, 1, 'O')
     })
@@ -102,10 +97,6 @@ describe('Scene grid', () => {
         expect(getContentFromLocalStorage(0, 0)).toBe('A')
 
     })
-
-
-
-
 
 })
 
