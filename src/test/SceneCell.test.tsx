@@ -144,8 +144,7 @@ describe('Scene grid', () => {
 
     test('Erase cell with actor at initial position, should not erase actor', () => {
         LocalStorage.saveCreatorChallenge(defaultChallenge('Duba')) //Default challenge has actor at initial position
-        clickCellWithSelectedTool(EMPTY, 0, 0)
-        expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
+        expectContentAfterClick(EMPTY, 0, 0, ACTOR)
     })
 
 })
