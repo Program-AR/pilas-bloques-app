@@ -1,7 +1,7 @@
 import styles from "./grid.module.css"
 import { useContext, useEffect, useState } from "react"
 import { CreatorContext } from "../../CreatorContext"
-import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, setActorAtInitialPosition } from "../SceneEdition"
+import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, setActorAtInitialPosition, EMPTY } from "../SceneEdition"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
 
 type CellProps = {
@@ -38,14 +38,23 @@ export const SceneCell: React.FC<CellProps> = (props) => {
         switch (selectedTool) {
             case '': break; //by context default
             case OBSTACLE: handleObstacle(); break;
+            case ACTOR: handleActor(); break;
+            case EMPTY: handleEraser(); break;  //eraser
             default: handlePrize(); break;
         }
     }
 
+    const handleActor = () => {
+    }
+
+    const handleEraser = () => {
+        if(cellHasActor && isInitialCell && !hasMultipleObjects) return; // We can't erase actor on the initial cell
+        if(cellHasActor && !hasMultipleObjects) relocateActor()
+        setCurrentContent(hasMultipleObjects ? ACTOR : EMPTY)
+    }
+
     const handlePrize = () =>{
-        let newContent = selectedTool
-        if(cellHasActor) newContent = 'A&' + selectedTool
-        setCurrentContent(newContent)
+        setCurrentContent(cellHasActor ? ACTOR + '&' + selectedTool : selectedTool)
     }
 
     const handleObstacle = () => {
@@ -57,6 +66,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const relocateActor = () => {
         changeMapAtCurrentIndex(setActorAtInitialPosition(currentMap.map))
     }
+
 
     useEffect(() => {
         if(currentContent !== props.content) changeMapAtCurrentIndex(mapWithNewCellContent(currentMap.map, currentContent))

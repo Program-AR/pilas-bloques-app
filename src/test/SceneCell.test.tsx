@@ -1,30 +1,35 @@
 import { fireEvent, render } from '@testing-library/react'
 import { Position, SceneCell } from "../components/creator/Editor/SceneEdition/Grid/SceneCell"
-import { SceneType, SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
+import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
 import { LocalStorage } from "../localStorage"
 import { renderComponent } from "./testUtils"
 import { CreatorContextProvider } from '../components/creator/Editor/CreatorContext'
+import { ACTOR, EMPTY, OBSTACLE } from '../components/creator/Editor/SceneEdition/SceneEdition'
 
 describe('Scene grid', () => {
 
-    let challenge: SerializedChallenge
+    let defChallange: SerializedChallenge
 
     const position: Position = {
         row: 0,
         column: 0
     }
 
-
-    beforeEach(() => {
-        challenge = {
-            ...defaultChallenge("Duba"),
+    const saveChallange = (sceneType: SceneType, maps: SceneMap[]) => {
+        const challange: SerializedChallenge = {
+            ...defaultChallenge(sceneType),
             scene: {
-                type: "Duba",
-                maps: [[["-", "O", "-"], ["A", "P", "-"]]]
+                type: sceneType,
+                maps: maps
             }
         }
 
-        LocalStorage.saveCreatorChallenge(challenge)
+        LocalStorage.saveCreatorChallenge(challange)
+
+    }
+
+    beforeEach(() => {
+        saveChallange('Duba', [[["-", "O", "-"], ["A", "P", "-"]]])
     })
 
 
@@ -33,11 +38,11 @@ describe('Scene grid', () => {
     })
 
     test('Renders cell with object without errors', () => {
-        expect(() => renderComponent(<SceneCell content={'O'} sceneType={'Duba'} position={position} />)).not.toThrowError()
+        expect(() => renderComponent(<SceneCell content={OBSTACLE} sceneType={'Duba'} position={position} />)).not.toThrowError()
     })
 
     test('Renders cell with actor without errors', () => {
-        expect(() => renderComponent(<SceneCell content={'A'} sceneType={'Duba'} position={position} />)).not.toThrowError()
+        expect(() => renderComponent(<SceneCell content={ACTOR} sceneType={'Duba'} position={position} />)).not.toThrowError()
     })
 
     test('Renders cell with prize without errors', () => {
@@ -68,35 +73,28 @@ describe('Scene grid', () => {
     //OBSTACLE
 
     test('Sets obstacle in empty cell', () => {
-        expectContentAfterClick('O', 0, 0, 'O')
+        expectContentAfterClick(OBSTACLE, 0, 0, OBSTACLE)
     })
  
     test('Sets obstacle in cell with prize, should replace prize', () => {
-        expectContentAfterClick('O', 1, 1, 'O')
+        expectContentAfterClick(OBSTACLE, 1, 1, OBSTACLE)
     })
 
     test('Obstacle in cell with actor at initial position, should not replace actor', () => {
         LocalStorage.saveCreatorChallenge(defaultChallenge('Duba')) //Default challenge has actor at initial position
-        clickCellWithSelectedTool('O', 0, 0)
-        expect(getContentFromLocalStorage(0, 0)).toBe('A')
+        clickCellWithSelectedTool(OBSTACLE, 0, 0)
+        expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
     })
 
     test('Sets obstacle in cell with actor, actor should be relocated', () => {
-        expectContentAfterClick('O', 1, 0, 'O')
-        expect(getContentFromLocalStorage(0, 0)).toBe('A')
+        expectContentAfterClick(OBSTACLE, 1, 0, OBSTACLE)
+        expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
     })
 
     test('Sets obstacle in cell with actor and prize, should replace and actor should be relocated', () => {
-        challenge = {
-            ...defaultChallenge("Duba"),
-            scene: {
-                type: "Duba",
-                maps: [[["-", "O", "-"], ["A&P", "P", "-"]]]
-            }
-        }
-
-        expectContentAfterClick('O', 1, 0, 'O')
-        expect(getContentFromLocalStorage(0, 0)).toBe('A')
+        saveChallange('Duba', [[["-", "O", "-"], ["A&P", "P", "-"]]])
+        expectContentAfterClick(OBSTACLE, 1, 0, OBSTACLE)
+        expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
 
     })
 
@@ -115,27 +113,39 @@ describe('Scene grid', () => {
     })
 
     test('Sets prize in cell with different prize, should replace it', () => {
-        challenge = {
-            ...defaultChallenge("Yvoty"),
-            scene: {
-                type: "Yvoty",
-                maps: [[["T", "O", "-"], ["A", "-", "-"]]]
-            }
-        }
-
+        saveChallange('Yvoty', [[["T", "O", "-"], ["A", "-", "-"]]])
         expectContentAfterClick('M', 0, 0, 'M')
     })
 
     test('Sets prize in cell with different prize and actor, should replace prize', () => {
-        challenge = {
-            ...defaultChallenge("Yvoty"),
-            scene: {
-                type: "Yvoty",
-                maps: [[["-", "-", "-"], ["A&K", "-", "-"]]]
-            }
-        }
-
+        saveChallange('Yvoty', [[["-", "-", "-"], ["A&K", "-", "-"]]])
         expectContentAfterClick('M', 1, 0, 'A&M')
+    })
+
+    //ERASER 
+    test('Erase cell with obstacle', () => {
+        expectContentAfterClick(EMPTY, 0, 1, EMPTY)
+    })
+
+    test('Erase cell with prize', () => {
+        expectContentAfterClick(EMPTY, 1, 1, EMPTY)
+    })
+
+    test('Erase cell with actor, should relocate actor to initial cell', () => {
+        expectContentAfterClick(EMPTY, 1, 0, EMPTY)
+        expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
+
+    })
+
+    test('Erase cell with actor and prize, should only erase prize', () => {
+        saveChallange('Duba', [[["-", "O", "A&P"], ["-", "P", "-"]]])
+        expectContentAfterClick(EMPTY, 0, 2, ACTOR)
+    })
+
+    test('Erase cell with actor at initial position, should not erase actor', () => {
+        LocalStorage.saveCreatorChallenge(defaultChallenge('Duba')) //Default challenge has actor at initial position
+        clickCellWithSelectedTool(EMPTY, 0, 0)
+        expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
     })
 
 })
