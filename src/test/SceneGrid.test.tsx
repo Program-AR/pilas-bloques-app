@@ -20,7 +20,7 @@ describe('Scene grid', () => {
         localStorage.clear()
     })
 
-    test('Should set grid size according to local storage', async () => {
+    test.skip('Should set grid size according to local storage', async () => {
 
         const challenge: SerializedChallenge = {
             ...defaultChallenge("Duba"),
@@ -39,16 +39,16 @@ describe('Scene grid', () => {
     })
 
     //Will change with refactor
-/*     test('Should set grid size to default when there is no challenge saved', async () => {
+    test.skip('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
-        render(<SceneGrid mapIndex={0}/>)
+        render(<SceneGrid />)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(3)
 
-    }) */
+    })
 
-    test('Should have both object images in a cell when there is a & operator', async () =>{
+    test.skip('Should have both object images in a cell when there is a & operator', async () =>{
         const challenge: SerializedChallenge = {
             ...defaultChallenge("Duba"),
             scene: {

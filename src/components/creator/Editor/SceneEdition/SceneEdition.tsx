@@ -43,8 +43,8 @@ const SizeEditor = (props: SizeProps) => {
 
     const { currentMap } = useContext(CreatorContext)
 
-    const initialRows = LocalStorage.getCreatorChallenge()?.scene.maps[currentMap.index].length
-    const initialColumns = LocalStorage.getCreatorChallenge()?.scene.maps[currentMap.index][INITIAL_ROW].length
+    const initialRows = currentMap.map.length
+    const initialColumns = currentMap.map[INITIAL_ROW].length
 
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)

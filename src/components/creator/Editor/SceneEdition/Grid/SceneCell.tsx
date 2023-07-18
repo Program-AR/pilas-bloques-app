@@ -35,7 +35,6 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
 
     const handleClick = () => {
-        console.log(selectedTool)
         switch (selectedTool) {
             case '': break; //by context default
             case 'O': handleObstacle(); break;
