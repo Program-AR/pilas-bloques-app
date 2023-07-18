@@ -37,8 +37,15 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const handleClick = () => {
         switch (selectedTool) {
             case '': break; //by context default
-            case 'O': handleObstacle(); break;
+            case OBSTACLE: handleObstacle(); break;
+            default: handlePrize(); break;
         }
+    }
+
+    const handlePrize = () =>{
+        let newContent = selectedTool
+        if(cellHasActor) newContent = 'A&' + selectedTool
+        setCurrentContent(newContent)
     }
 
     const handleObstacle = () => {

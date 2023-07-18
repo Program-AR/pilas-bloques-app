@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react'
 import { Position, SceneCell } from "../components/creator/Editor/SceneEdition/Grid/SceneCell"
-import { SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
+import { SceneType, SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
 import { LocalStorage } from "../localStorage"
 import { renderComponent } from "./testUtils"
 import { CreatorContextProvider } from '../components/creator/Editor/CreatorContext'
@@ -52,7 +52,7 @@ describe('Scene grid', () => {
 
         const { getByTestId } = render(
             <CreatorContextProvider defaultSelectedTool={selectedTool}>
-                <SceneCell content={getContentFromLocalStorage(row, column)} sceneType={'Duba'} position={{ row, column }} />
+                <SceneCell content={getContentFromLocalStorage(row, column)} sceneType={"Duba"} position={{ row, column }} />
             </CreatorContextProvider>
         )
 
@@ -64,6 +64,8 @@ describe('Scene grid', () => {
         clickCellWithSelectedTool(selectedTool, row, column)
         expect(getContentFromLocalStorage(row, column)).toBe(expected)
     }
+
+    //OBSTACLE
 
     test('Sets obstacle in empty cell', () => {
         expectContentAfterClick('O', 0, 0, 'O')
@@ -96,6 +98,44 @@ describe('Scene grid', () => {
         expectContentAfterClick('O', 1, 0, 'O')
         expect(getContentFromLocalStorage(0, 0)).toBe('A')
 
+    })
+
+    //PRIZES
+
+    test('Sets prize in cell with actor, should have both the actor and the prize', () => {
+        expectContentAfterClick('P', 1, 0, 'A&P')
+    })
+
+    test('Sets prize in cell with obstacle, should replace obstacle', () => {
+        expectContentAfterClick('P', 0, 1, 'P')
+    })
+
+    test('Sets prize in emppty cell', () => {
+        expectContentAfterClick('P', 0, 0, 'P')
+    })
+
+    test('Sets prize in cell with different prize, should replace it', () => {
+        challenge = {
+            ...defaultChallenge("Yvoty"),
+            scene: {
+                type: "Yvoty",
+                maps: [[["T", "O", "-"], ["A", "-", "-"]]]
+            }
+        }
+
+        expectContentAfterClick('M', 0, 0, 'M')
+    })
+
+    test('Sets prize in cell with different prize and actor, should replace prize', () => {
+        challenge = {
+            ...defaultChallenge("Yvoty"),
+            scene: {
+                type: "Yvoty",
+                maps: [[["-", "-", "-"], ["A&K", "-", "-"]]]
+            }
+        }
+
+        expectContentAfterClick('M', 1, 0, 'A&M')
     })
 
 })
