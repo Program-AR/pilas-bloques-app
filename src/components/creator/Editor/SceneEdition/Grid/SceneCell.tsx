@@ -43,14 +43,9 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     }
 
     const handleObstacle = () => {
-        if (cellHasActor) {
-            if (!isInitialCell) {
-                setCurrentContent(selectedTool)
-                relocateActor()
-            }
-        } else {
-            setCurrentContent(selectedTool)
-        }
+        if (cellHasActor && isInitialCell) return; // We can't replace actor on the initial cell
+        if (cellHasActor && !isInitialCell) relocateActor()
+        setCurrentContent(selectedTool) // obstacle replaces everything
     }
 
     const relocateActor = () => {
@@ -58,14 +53,13 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     }
 
     useEffect(() => {
-        changeMapAtCurrentIndex(mapWithNewCellContent(currentMap.map, currentContent))
+        if(currentContent !== props.content) changeMapAtCurrentIndex(mapWithNewCellContent(currentMap.map, currentContent))
     }, [currentContent])
 
     const mapWithNewCellContent = (map: SceneMap, content: string) => {
         map[props.position.row][props.position.column] = content
         return map
     }
-
     return <div
         data-testid="challenge-cell"
         className={styles.cell}
