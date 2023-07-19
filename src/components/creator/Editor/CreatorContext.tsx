@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { SceneMap, defaultChallenge } from '../../serializedChallenge';
 import { LocalStorage } from '../../../localStorage';
+import { Position } from './SceneEdition/Grid/SceneCell';
 
 export type CreatorContextType = {
     selectedTool: string;
     setSelectedTool: (selectedTool: string) => void;
     currentMap: CurrentMap;
-    changeMapAtCurrentIndex: (map: SceneMap) => void;
-    changeIndex: (index: number) => void;
+    setCurrentMap2: (map: SceneMap) => void;
+    setIndex: (index: number) => void;
 };
 
 const defaultCreatorContext = {
@@ -17,8 +18,8 @@ const defaultCreatorContext = {
         map: defaultChallenge("Duba").scene.maps[0],
         index: 0
     },
-    changeMapAtCurrentIndex: () => { },
-    changeIndex: () => { }
+    setCurrentMap2: () => { },
+    setIndex: () => { },
 }
 
 export const CreatorContext = React.createContext<CreatorContextType>(defaultCreatorContext);
@@ -38,10 +39,10 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
 
     const challenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
     const [currentMap, setCurrentMap] = useState({map: challenge!.scene.maps[0] , index: 0})
-    
-    const changeIndex = (newIndex: number) => setCurrentMap({...currentMap, index: newIndex})
 
-    const changeMapAtCurrentIndex = (newMap: SceneMap) => {
+    const setIndex = (newIndex: number) => setCurrentMap({...currentMap, index: newIndex})
+
+    const setCurrentMap2 = (newMap: SceneMap) => {
         setCurrentMap({...currentMap, map: newMap})
     }
 
@@ -52,7 +53,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     }, [currentMap])
 
     return (
-        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, changeMapAtCurrentIndex, changeIndex}}>
+        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap2, setIndex}}>
             {children}
         </CreatorContext.Provider>
     );

@@ -16,11 +16,15 @@ export const EMPTY = "-"
 export const INITIAL_COL = 0
 export const INITIAL_ROW = 0
 
-export const setActorAtInitialPosition = (inMap: SceneMap) => {
-    if (inMap[INITIAL_ROW][INITIAL_COL] === EMPTY || inMap[INITIAL_ROW][INITIAL_COL] === OBSTACLE) {
-        inMap[INITIAL_ROW][INITIAL_COL] = ""
+/**
+ * If no position is given, the actor is set in the initial one (0,0)
+ * @returns a map with the actor in another position.
+ */
+export const setActorAtPosition = (inMap: SceneMap, row = INITIAL_ROW, col = INITIAL_COL) => {
+    if (inMap[row][col] === EMPTY || inMap[row][col] === OBSTACLE) {
+        inMap[row][col] = ""
     }
-    inMap[INITIAL_ROW][INITIAL_COL] = ACTOR + (inMap[INITIAL_ROW][INITIAL_COL].length ? '&' + inMap[INITIAL_ROW][INITIAL_COL] : '')
+    inMap[row][col] = ACTOR + (inMap[row][col].length ? '&' + inMap[row][col] : '')
 
     return inMap;
 }
@@ -28,7 +32,7 @@ export const setActorAtInitialPosition = (inMap: SceneMap) => {
 
 export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap) => {
     if (row.includes(ACTOR, colSearch)) {
-        return setActorAtInitialPosition(inMap)
+        return setActorAtPosition(inMap)
     }
     return inMap;
 }
