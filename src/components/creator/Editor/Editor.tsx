@@ -29,9 +29,9 @@ const EditorHeader: React.FC = () =>
   </Stack>
 
 const Actions = () => <Stack direction="row" alignItems={"center"}>
-  <NewChallengeButton/>
   <TryButton/>
   <DownloadButton/>
+  <NewChallengeButton/>
 </Stack>
 
 const ChallengeDetailsEdition = () => <Stack direction="row" style={{ maxHeight: 70, justifyContent: "space-between" }}>

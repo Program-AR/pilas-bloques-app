@@ -14,12 +14,12 @@ const HeaderContent = (challenge: SerializedChallenge) => {
     const {t} = useTranslation('creator')
 
     return <>
-        <Stack direction="row">
+        <Stack direction="row" sx={{alignItems: 'center'}}>
             <HeaderText text={challenge.title}/>
             <Stack direction="row">
-                <NewChallengeButton />
                 <Link to="/creador/editar"><Button>{t("editor.buttons.keepEditing")}</Button></Link>
                 <DownloadButton />
+                <NewChallengeButton />
             </Stack>
         </Stack>
     </>
