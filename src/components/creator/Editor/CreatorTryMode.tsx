@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+import { Button, Stack } from "@mui/material"
 import { Ember } from "../../../emberCommunication"
 import { LocalStorage } from "../../../localStorage"
 import { EMBER_IMPORTED_CHALLENGE_PATH } from "../../ImportedChallengeView"
@@ -14,10 +14,14 @@ const HeaderContent = (challenge: SerializedChallenge) => {
     const {t} = useTranslation('creator')
 
     return <>
+        <Stack direction="row">
             <HeaderText text={challenge.title}/>
-            <NewChallengeButton/>
-            <Link to="/creador/editar"><Button>{t("editor.buttons.keepEditing")}</Button></Link>
-            <DownloadButton/>
+            <Stack direction="row">
+                <NewChallengeButton />
+                <Link to="/creador/editar"><Button>{t("editor.buttons.keepEditing")}</Button></Link>
+                <DownloadButton />
+            </Stack>
+        </Stack>
     </>
 }
 

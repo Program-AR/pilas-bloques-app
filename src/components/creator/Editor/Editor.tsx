@@ -12,9 +12,8 @@ export const CreatorEditor = () => {
   return (
     <CreatorContextProvider>
       <Stack alignItems="center" height="100%">
-        <Header />
+        <Header CenterComponent={<EditorHeader />}/>
         <Stack height="100%" width="100%" style={{ maxWidth: 1024, maxHeight: 650, borderStyle: "solid" }}>
-          <EditorHeader />
           <SceneEdition />
           <ChallengeDetailsEdition />
         </Stack>
