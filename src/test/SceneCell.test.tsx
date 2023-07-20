@@ -147,6 +147,30 @@ describe('Scene grid', () => {
         expectContentAfterClick(EMPTY, 0, 0, ACTOR)
     })
 
+    //ACTOR
+    test('Sets actor in cell, should delete it from previous position', () => {
+        expectContentAfterClick(ACTOR, 1, 2, ACTOR)
+        expect(getContentFromLocalStorage(1, 0)).toBe(EMPTY)
+    })
+
+    test('Sets actor in cell with prize, should keep both actor and prize', () => {
+        expectContentAfterClick(ACTOR, 1, 1, 'A&P')
+    })
+
+    test('Sets actor in cell with obstacle, should replace it', () => {
+        expectContentAfterClick(ACTOR, 0, 1, ACTOR)
+    })
+
+    test('Sets actor in empty cell', () => {
+        expectContentAfterClick(ACTOR, 0, 0, ACTOR)
+    })  
+
+    test('Sets actor in cell with previous actor in cell with prize, should not erase the prize', () => {
+        saveChallange('Duba', [[["-", "O", "A&P"], ["-", "P", "-"]]])
+        expectContentAfterClick(ACTOR, 0, 0, ACTOR)
+        expect(getContentFromLocalStorage(0, 2)).toBe('P')
+    })
+
 })
 
 
