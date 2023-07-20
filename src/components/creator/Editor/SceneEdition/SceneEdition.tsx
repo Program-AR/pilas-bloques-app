@@ -45,7 +45,7 @@ type SizeProps = {
 const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
-    let { map, index } = useContext(CreatorContext)
+    let { map } = useContext(CreatorContext)
 
     const initialRows = map.length
     const initialColumns = map[INITIAL_ROW].length
