@@ -45,10 +45,10 @@ type SizeProps = {
 const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
-    const { currentMap } = useContext(CreatorContext)
+    const { map, index } = useContext(CreatorContext)
 
-    const initialRows = currentMap.map.length
-    const initialColumns = currentMap.map[INITIAL_ROW].length
+    const initialRows = map.length
+    const initialColumns = map[INITIAL_ROW].length
 
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)
@@ -85,7 +85,7 @@ const SizeEditor = (props: SizeProps) => {
     useEffect(() => {
 
         const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
-        const map: SceneMap = challenge.scene.maps[currentMap.index];
+        const map: SceneMap = challenge.scene.maps[index];
 
         updateRowsIfChanged(map)
         updateColumnsIfChanged(map)

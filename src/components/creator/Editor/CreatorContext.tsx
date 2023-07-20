@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { SceneMap, defaultChallenge } from '../../serializedChallenge';
 import { LocalStorage } from '../../../localStorage';
-import { Position } from './SceneEdition/Grid/SceneCell';
 
 export type CreatorContextType = {
     selectedTool: string;
     setSelectedTool: (selectedTool: string) => void;
-    currentMap: CurrentMap;
-    setCurrentMap2: (map: SceneMap) => void;
+    map: SceneMap;
+    setMap: (map: SceneMap) => void;
+    index: number;
     setIndex: (index: number) => void;
 };
 
 const defaultCreatorContext = {
     selectedTool: '',
     setSelectedTool: () => { },
-    currentMap: {
-        map: defaultChallenge("Duba").scene.maps[0],
-        index: 0
-    },
-    setCurrentMap2: () => { },
+    map: defaultChallenge('Duba').scene.maps[0],
+    setMap: () => { },
+    index: 0, 
     setIndex: () => { },
 }
 
@@ -29,11 +27,6 @@ export type CreatorProviderProps = {
     defaultSelectedTool?: string;
 };
 
-type CurrentMap = {
-    map: SceneMap;
-    index: number;
-}
-
 export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children, defaultSelectedTool = '' }: CreatorProviderProps) => {
     const [selectedTool, setSelectedTool] = useState(defaultSelectedTool);
 
@@ -42,9 +35,10 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
 
     const setIndex = (newIndex: number) => setCurrentMap({...currentMap, index: newIndex})
 
-    const setCurrentMap2 = (newMap: SceneMap) => {
-        setCurrentMap({...currentMap, map: newMap})
-    }
+    const setMap = (newMap: SceneMap) => setCurrentMap({...currentMap, map: newMap})
+
+    const map = currentMap.map
+    const index = currentMap.index
 
     useEffect(()=> {
         const challenge = LocalStorage.getCreatorChallenge()
@@ -53,7 +47,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     }, [currentMap])
 
     return (
-        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap2, setIndex}}>
+        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, map, setMap, index, setIndex}}>
             {children}
         </CreatorContext.Provider>
     );

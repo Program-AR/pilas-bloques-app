@@ -17,7 +17,7 @@ export type Position = {
 
 export const SceneCell: React.FC<CellProps> = (props) => {
 
-    const { selectedTool, currentMap, setCurrentMap2 } = useContext(CreatorContext)
+    let { selectedTool, map, setMap } = useContext(CreatorContext)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
@@ -33,12 +33,12 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const isInitialCell: boolean = props.position.row === INITIAL_ROW && props.position.column === INITIAL_COL
 
     const handleClick = () => {
-        setCurrentMap2(updatedMap())
+        setMap(updatedMap())
     }
 
     const updatedMap = (): SceneMap => {
         switch (selectedTool) {
-            case '': return currentMap.map; //by context default
+            case '': return map; //by context default
             case OBSTACLE: return handleObstacle();
             case EMPTY: return handleEraser();
             case ACTOR: return handleActor();
@@ -52,15 +52,14 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     const deletedActorMap = () => {
         let prevPos = actorPosition()
-        let map = currentMap.map
         let cell = map[prevPos.row][prevPos.column].split('&')
         map[prevPos.row][prevPos.column] = cell.length > 1 ? cell[1] : EMPTY
         return map
     }
 
     const handleEraser = (): SceneMap => {
-        if (cellHasActor && isInitialCell && !hasMultipleObjects) return currentMap.map; // We can't erase actor on the initial cell
-        if (cellHasActor && !hasMultipleObjects) currentMap.map = setActorAtPosition(currentMap.map)
+        if (cellHasActor && isInitialCell && !hasMultipleObjects) return map; // We can't erase actor on the initial cell
+        if (cellHasActor && !hasMultipleObjects) map = setActorAtPosition(map)
         return currentMapWithNewCellContent(hasMultipleObjects ? ACTOR : EMPTY)
     } 
 
@@ -69,21 +68,21 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     }
 
     const handleObstacle = (): SceneMap => {
-        if (cellHasActor && isInitialCell) return currentMap.map; // We can't replace actor on the initial cell
-        if (cellHasActor && !isInitialCell) currentMap.map = setActorAtPosition(currentMap.map)
+        if (cellHasActor && isInitialCell) return map; // We can't replace actor on the initial cell
+        if (cellHasActor && !isInitialCell) map = setActorAtPosition(map)
         return currentMapWithNewCellContent(selectedTool)
     } 
 
     const actorPosition = (): Position => {
         const hasActor = (cell: string) => cell.split('&').includes(ACTOR)
-        let row = currentMap.map.findIndex(row => row.some(hasActor))
-        let column = currentMap.map[row].findIndex(hasActor)
+        let row = map.findIndex(row => row.some(hasActor))
+        let column = map[row].findIndex(hasActor)
         return { row, column }
     }
 
     const currentMapWithNewCellContent = (content: string, position: Position = props.position): SceneMap => {
-        currentMap.map[position.row][position.column] = content
-        return currentMap.map
+        map[position.row][position.column] = content
+        return map
     }
 
     return <div
