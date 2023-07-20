@@ -38,7 +38,6 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     const updatedMap = (): SceneMap => {
         switch (selectedTool) {
-            case '': return map; //by context default
             case OBSTACLE: return handleObstacle();
             case EMPTY: return handleEraser();
             case ACTOR: return handleActor();

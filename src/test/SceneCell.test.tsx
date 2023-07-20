@@ -8,8 +8,6 @@ import { ACTOR, EMPTY, OBSTACLE } from '../components/creator/Editor/SceneEditio
 
 describe('Scene grid', () => {
 
-    let defChallange: SerializedChallenge
-
     const position: Position = {
         row: 0,
         column: 0

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SceneMap, defaultChallenge } from '../../serializedChallenge';
 import { LocalStorage } from '../../../localStorage';
+import { ACTOR } from './SceneEdition/SceneEdition';
 
 export type CreatorContextType = {
     selectedTool: string;
@@ -27,7 +28,7 @@ export type CreatorProviderProps = {
     defaultSelectedTool?: string;
 };
 
-export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children, defaultSelectedTool = '' }: CreatorProviderProps) => {
+export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children, defaultSelectedTool = ACTOR }: CreatorProviderProps) => {
     const [selectedTool, setSelectedTool] = useState(defaultSelectedTool);
 
     const challenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
