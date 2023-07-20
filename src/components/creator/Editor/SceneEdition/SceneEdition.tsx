@@ -29,7 +29,6 @@ export const setActorAtPosition = (inMap: SceneMap, row = INITIAL_ROW, col = INI
     return inMap;
 }
 
-
 export const relocateActor = (row: string[], colSearch: number, inMap: SceneMap) => {
     if (row.includes(ACTOR, colSearch)) {
         return setActorAtPosition(inMap)
@@ -45,17 +44,13 @@ type SizeProps = {
 const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
-    let { map } = useContext(CreatorContext)
-
-    const initialRows = map.length
-    const initialColumns = map[INITIAL_ROW].length
-
-    const [rows, setRow] = useState(initialRows || 1)
-    const [columns, setCol] = useState(initialColumns || 1)
+    let { map, setMap } = useContext(CreatorContext)
 
     const rowsInMap = map.length
-
     const columnsInMap = map[INITIAL_ROW].length
+
+    const [rows, setRow] = useState(rowsInMap || 1)
+    const [columns, setCol] = useState(columnsInMap || 1)
 
     const updateRowsIfChanged = useCallback(() => {
         if (rows < rowsInMap) { //Row was removed
@@ -85,6 +80,7 @@ const SizeEditor = (props: SizeProps) => {
     useEffect(() => {
         updateRowsIfChanged()
         updateColumnsIfChanged()
+        setMap(map)
     }, [props, updateColumnsIfChanged, updateRowsIfChanged]);
 
 
