@@ -45,7 +45,7 @@ type SizeProps = {
 const SizeEditor = (props: SizeProps) => {
     const { t } = useTranslation("creator")
 
-    const { map, index } = useContext(CreatorContext)
+    let { map, index } = useContext(CreatorContext)
 
     const initialRows = map.length
     const initialColumns = map[INITIAL_ROW].length
@@ -53,45 +53,38 @@ const SizeEditor = (props: SizeProps) => {
     const [rows, setRow] = useState(initialRows || 1)
     const [columns, setCol] = useState(initialColumns || 1)
 
-    const rowsInMap = (currentMap: SceneMap): number => currentMap.length
+    const rowsInMap = map.length
 
-    const columnsInMap = (currentMap: SceneMap): number => currentMap[INITIAL_ROW].length
+    const columnsInMap = map[INITIAL_ROW].length
 
-    const updateRowsIfChanged = useCallback((currentMap: SceneMap) => {
-        if (rows < rowsInMap(currentMap)) { //Row was removed
-            currentMap = relocateActor(currentMap[currentMap.length - 1], INITIAL_COL, currentMap)
-            currentMap.pop()
+    const updateRowsIfChanged = useCallback(() => {
+        if (rows < rowsInMap) { //Row was removed
+            map = relocateActor(map[map.length - 1], INITIAL_COL, map)
+            map.pop()
         }
-        if (rows > rowsInMap(currentMap)) //Row was added
-            currentMap.push(currentMap[INITIAL_ROW].slice().fill(EMPTY))
+        if (rows > rowsInMap) //Row was added
+            map.push(map[INITIAL_ROW].slice().fill(EMPTY))
 
         props.setRows(rows)
     }, [props, rows])
 
-    const updateColumnsIfChanged = useCallback((currentMap: SceneMap) => {
-        if (columns < columnsInMap(currentMap)) { //Column was removed
-            currentMap.map((row) => {
-                currentMap = relocateActor(row, row.length - 1, currentMap)
+    const updateColumnsIfChanged = useCallback(() => {
+        if (columns < columnsInMap) { //Column was removed
+            map.map((row) => {
+                map = relocateActor(row, row.length - 1, map)
                 return row.pop()
             })
         }
-        if (columns > columnsInMap(currentMap)) //Column was added
-            currentMap.map((row, i) => currentMap[i] = row.concat(EMPTY))
+        if (columns > columnsInMap) //Column was added
+            map.map((row, i) => map[i] = row.concat(EMPTY))
 
         props.setColumns(columns)
 
     }, [columns, props])
 
     useEffect(() => {
-
-        const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
-        const map: SceneMap = challenge.scene.maps[index];
-
-        updateRowsIfChanged(map)
-        updateColumnsIfChanged(map)
-
-        LocalStorage.saveCreatorChallenge(challenge)
-
+        updateRowsIfChanged()
+        updateColumnsIfChanged()
     }, [props, updateColumnsIfChanged, updateRowsIfChanged]);
 
 
