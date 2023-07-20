@@ -132,7 +132,12 @@ describe('Scene grid', () => {
     test('Erase cell with actor, should relocate actor to initial cell', () => {
         expectContentAfterClick(EMPTY, 1, 0, EMPTY)
         expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
+    })
 
+    test('Erase cell with actor and prize at initial cell, should relocate actor to initial cell and keep prize', () => {
+        saveChallange('Duba', [[["P", "O", "A"], ["-", "P", "-"]]])
+        expectContentAfterClick(EMPTY, 0, 2, EMPTY)
+        expect(getContentFromLocalStorage(0, 0)).toBe('A&P')
     })
 
     test('Erase cell with actor and prize, should only erase prize', () => {

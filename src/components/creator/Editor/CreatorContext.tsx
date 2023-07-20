@@ -43,7 +43,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
 
     useEffect(()=> {
         const challenge = LocalStorage.getCreatorChallenge()
-        challenge!.scene.maps[currentMap.index] = currentMap.map
+        challenge!.scene.maps[index] = map
         LocalStorage.saveCreatorChallenge(challenge)        
     }, [currentMap])
 

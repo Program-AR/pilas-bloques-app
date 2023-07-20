@@ -4,8 +4,7 @@ import { SceneTools } from "./SceneTools";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useCallback, useEffect, useContext } from 'react';
-import { LocalStorage } from "../../../../localStorage";
-import { SceneMap, SerializedChallenge } from "../../../serializedChallenge";
+import { SceneMap } from "../../../serializedChallenge";
 import { CreatorContext } from "../CreatorContext";
 
 export const OBSTACLE = "O"
