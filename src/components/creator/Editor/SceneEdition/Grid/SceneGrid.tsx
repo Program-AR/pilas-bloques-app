@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material"
-import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
+import { SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
 import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
 import { SceneCell } from "./SceneCell"

@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react'
 import { defaultChallenge, SerializedChallenge } from "../components/serializedChallenge"
 import { SceneEdition } from '../components/creator/Editor/SceneEdition/SceneEdition';
 import { LocalStorage } from '../localStorage';
-import { renderComponent } from './testUtils';
+import { renderComponent, renderWithContext } from './testUtils';
 
 describe('Scene Edition', () => {
     afterEach(() => {
@@ -25,9 +25,9 @@ describe('Scene Edition', () => {
     }
 
     //TODO fix with rows and columns context refactor
-    test.skip("increment cols and rows to challenge map", async () => {
+    test("increment cols and rows to challenge map", async () => {
   
-        renderComponent(<SceneEdition />)
+        renderWithContext(<SceneEdition />)
 
         const incCols = await screen.findByTestId('inc-btn-col')
         const incRows = await screen.findByTestId('inc-btn-row')
@@ -39,9 +39,9 @@ describe('Scene Edition', () => {
         expect((await getGridSize()).columns).toBe(4)
     })
  
-    test.skip("decrement cols and rows to challenge map", async () => {
+    test("decrement cols and rows to challenge map", async () => {
   
-        renderComponent(<SceneEdition />)
+        renderWithContext(<SceneEdition />)
 
         const decCols = await screen.findByTestId('dec-btn-col')
         const decRows = await screen.findByTestId('dec-btn-row')
@@ -53,7 +53,7 @@ describe('Scene Edition', () => {
         expect((await getGridSize()).columns).toBe(2)
     })
 
-    test.skip("decrement a col and check if actor changes to [0,0] challenge map cell", async () => {
+    test("decrement a col and check if actor changes to [0,0] challenge map cell", async () => {
 
         let challenge: SerializedChallenge = {
             ...defaultChallenge("Duba"),
@@ -65,7 +65,7 @@ describe('Scene Edition', () => {
     
         LocalStorage.saveCreatorChallenge(challenge)
       
-        renderComponent(<SceneEdition />)
+        renderWithContext(<SceneEdition />)
 
         const decCols = await screen.findByTestId('dec-btn-col')
                 

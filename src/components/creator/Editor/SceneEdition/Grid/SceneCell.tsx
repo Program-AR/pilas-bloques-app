@@ -1,5 +1,5 @@
 import styles from "./grid.module.css"
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { CreatorContext } from "../../CreatorContext"
 import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, EMPTY, setActorAtPosition } from "../SceneEdition"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
@@ -28,7 +28,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     const hasMultipleObjects = (cellObjects = objectsInCell): boolean => cellObjects.length > 1
 
-    const cellHasActor = (cell = props.content): boolean => cell.split('&').includes(ACTOR)
+    const hasActor = (cell = props.content): boolean => cell.split('&').includes(ACTOR)
 
     const isInitialCell: boolean = props.position.row === INITIAL_ROW && props.position.column === INITIAL_COL
 
@@ -57,24 +57,24 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     }
 
     const handleEraser = (): SceneMap => {
-        if (cellHasActor() && isInitialCell && !hasMultipleObjects()) return map; // We can't erase actor on the initial cell
-        if (cellHasActor() && !hasMultipleObjects()) map = setActorAtPosition(map)
+        if (hasActor() && isInitialCell && !hasMultipleObjects()) return map; // We can't erase actor on the initial cell
+        if (hasActor() && !hasMultipleObjects()) map = setActorAtPosition(map)
         return mapWithNewCellContent(hasMultipleObjects() ? ACTOR : EMPTY)
     } 
 
     const handlePrize = (): SceneMap => {
-        return mapWithNewCellContent(cellHasActor() ? ACTOR + '&' + selectedTool : selectedTool)
+        return mapWithNewCellContent(hasActor() ? ACTOR + '&' + selectedTool : selectedTool)
     }
 
     const handleObstacle = (): SceneMap => {
-        if (cellHasActor() && isInitialCell) return map; // We can't replace actor on the initial cell
-        if (cellHasActor() && !isInitialCell) map = setActorAtPosition(map)
+        if (hasActor() && isInitialCell) return map; // We can't replace actor on the initial cell
+        if (hasActor() && !isInitialCell) map = setActorAtPosition(map)
         return mapWithNewCellContent(selectedTool)
     } 
 
     const actorPosition = (): Position => {
-        let row = map.findIndex(row => row.some(cellHasActor))
-        let column = map[row].findIndex(cellHasActor)
+        let row = map.findIndex(row => row.some(hasActor))
+        let column = map[row].findIndex(hasActor)
         return { row, column }
     }
 
