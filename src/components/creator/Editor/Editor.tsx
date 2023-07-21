@@ -1,20 +1,23 @@
 import { Button, Stack } from "@mui/material";
-import { Header } from "../../header/Header";
+import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
-import { TitleEdition } from "./EditorHeader/TitleEdition";
+import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 import { DownloadButton } from "./DownloadButton";
 import { TryButton } from "./TryButton";
 import { NewChallengeButton } from "./NewChallengeButton";
+import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
+import { useTranslation } from "react-i18next";
 
 export const CreatorEditor = () => {
+  const {t} = useTranslation('creator')
+
   return (
     <CreatorContextProvider>
       <Stack alignItems="center" height="100%">
-        <Header />
+        <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
         <Stack height="100%" width="100%" style={{ maxWidth: 1024, maxHeight: 650, borderStyle: "solid" }}>
-          <EditorHeader />
           <SceneEdition />
           <ChallengeDetailsEdition />
         </Stack>
@@ -23,11 +26,11 @@ export const CreatorEditor = () => {
   )
 }
 
-const EditorHeader: React.FC = () =>
-  <Stack direction="row" style={{ maxHeight: 48, justifyContent: "space-between" }}>
-    <TitleEdition />
-    <Actions />
-  </Stack>
+const EditorSubHeader: React.FC = () => 
+  <CreatorSubHeader>
+    <TitleEdition/>
+    <Actions/>
+  </CreatorSubHeader>
 
 const Actions = () => <Stack direction="row" alignItems={"center"}>
   <NewChallengeButton/>
