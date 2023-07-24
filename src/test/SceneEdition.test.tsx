@@ -1,8 +1,8 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { defaultChallenge, SerializedChallenge } from "../components/serializedChallenge"
-import { SceneEdition } from '../components/creator/SceneEdition';
+import { SceneEdition } from '../components/creator/Editor/SceneEdition/SceneEdition';
 import { LocalStorage } from '../localStorage';
-import { renderComponent } from './testUtils';
+import { renderComponent, renderWithContext } from './testUtils';
 
 describe('Scene Edition', () => {
     afterEach(() => {
@@ -24,9 +24,10 @@ describe('Scene Edition', () => {
         return {rows, columns}
     }
 
+    //TODO fix with rows and columns context refactor
     test("increment cols and rows to challenge map", async () => {
   
-        renderComponent(<SceneEdition />)
+        renderWithContext(<SceneEdition />)
 
         const incCols = await screen.findByTestId('inc-btn-col')
         const incRows = await screen.findByTestId('inc-btn-row')
@@ -37,10 +38,10 @@ describe('Scene Edition', () => {
         expect((await getGridSize()).rows).toBe(4)
         expect((await getGridSize()).columns).toBe(4)
     })
-
+ 
     test("decrement cols and rows to challenge map", async () => {
   
-        renderComponent(<SceneEdition />)
+        renderWithContext(<SceneEdition />)
 
         const decCols = await screen.findByTestId('dec-btn-col')
         const decRows = await screen.findByTestId('dec-btn-row')
@@ -64,7 +65,7 @@ describe('Scene Edition', () => {
     
         LocalStorage.saveCreatorChallenge(challenge)
       
-        renderComponent(<SceneEdition />)
+        renderWithContext(<SceneEdition />)
 
         const decCols = await screen.findByTestId('dec-btn-col')
                 

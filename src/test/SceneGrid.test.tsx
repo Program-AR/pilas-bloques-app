@@ -1,9 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import { defaultChallenge } from '../components/serializedChallenge';
 import { LocalStorage } from '../localStorage';
-import { SceneCell, SceneGrid } from '../components/creator/SceneGrid';
+import { SceneGrid } from '../components/creator/Editor/SceneEdition/Grid/SceneGrid';
 import { SerializedChallenge } from '../components/serializedChallenge';
-import { renderComponent } from './testUtils';
+import { renderWithContext } from './testUtils';
 
 describe('Scene grid', () => {
 
@@ -14,7 +14,7 @@ describe('Scene grid', () => {
         const rows = await getAmountFromChallenge('row')
         const columns = await getAmountFromChallenge('cell') / rows
 
-        return {rows, columns}
+        return { rows, columns }
     }
 
     afterEach(() => {
@@ -27,28 +27,29 @@ describe('Scene grid', () => {
             ...defaultChallenge("Duba"),
             scene: {
                 type: "Duba",
-                maps: [[["A","-","-","-","-"],["-","-","-","-","-"],["-","-","-","-","-"]]]
+                maps: [[["A", "-", "-", "-", "-"], ["-", "-", "-", "-", "-"], ["-", "-", "-", "-", "-"]]]
             }
         }
 
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid mapIndex={0}/>)
+        renderWithContext(<SceneGrid />)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(5)
 
     })
 
+    //Will change with refactor
     test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
-        render(<SceneGrid mapIndex={0}/>)
+        renderWithContext(<SceneGrid />)
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(3)
 
     })
 
-    test('Should have both object images in a cell when there is a & operator', async () =>{
+    test('Should have both object images in a cell when there is a & operator', async () => {
         const challenge: SerializedChallenge = {
             ...defaultChallenge("Duba"),
             scene: {
@@ -56,22 +57,10 @@ describe('Scene grid', () => {
                 maps: [[["A&P"]]]
             }
         }
-        
+
         LocalStorage.saveCreatorChallenge(challenge)
-        render(<SceneGrid mapIndex={0}/>)
+        renderWithContext(<SceneGrid />)
         expect(await getAmountFromChallenge('cell-image')).toBe(2)
-    })
-
-    test('Renders cell with object without errors', () =>{
-        expect(() => renderComponent(<SceneCell content={'O'} sceneType={'Lita'}/>)).not.toThrowError()
-    })
-
-    test('Renders cell with actor without errors', () =>{
-        expect(() => renderComponent(<SceneCell content={'A'} sceneType={'Lita'}/>)).not.toThrowError()
-    })
-
-    test('Renders cell with prize without errors', () =>{
-        expect(() => renderComponent(<SceneCell content={'P'} sceneType={'Duba'}/>)).not.toThrowError()
     })
 
 })

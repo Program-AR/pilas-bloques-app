@@ -8,6 +8,9 @@ export type EmberExecutableChallenge = {
     debugging?: boolean,
     estiloToolbox?: "sinCategorias",
     solucionInicial?: string
+    titulo: string,
+    enunciado: string,
+    consignaInicial: string
 }
 
 export namespace Ember{
@@ -35,7 +38,10 @@ export namespace Ember{
             bloques: importedChallenge.toolbox.blocks,
             estiloToolbox: importedChallenge.toolbox.categorized ? undefined :  "sinCategorias",
             debugging: importedChallenge.stepByStep,
-            solucionInicial: importedChallenge.predefinedSolution
+            solucionInicial: importedChallenge.predefinedSolution,
+            titulo: importedChallenge.title,
+            enunciado: importedChallenge.statement.description,
+            consignaInicial: importedChallenge.statement.clue || ""
         }
 
         LocalStorage.saveImportedChallenge(emberChallenge)

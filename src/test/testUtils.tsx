@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { I18nextProvider } from "react-i18next";
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import i18n from "../i18n";
+import { CreatorContextProvider } from "../components/creator/Editor/CreatorContext";
 
 /**
  * Renders a component for testing purposes.
@@ -30,4 +31,12 @@ export const renderComponent = (
             } />
         </Routes>
     </MemoryRouter>)
+}
+
+export const renderWithContext = (component: ReactElement) => {
+  render(
+      <CreatorContextProvider>
+          {component}
+      </CreatorContextProvider>
+  )
 }

@@ -7,14 +7,13 @@ export const categories: string[] = [
     'alternatives',
     'values',
     'sensors',
-    'operators',
-    'myfunctions'
+    'operators'
 ]
 
 export type BlockType = {
     id: string
     intlId: string
-    categoryId: string
+    categoryId: typeof categories[number]
 }
 
 export const commonBlocks: BlockType[] = [
@@ -159,11 +158,6 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'values' 
     },
     { 
-        id: 'Texto', 
-        intlId: 'text', 
-        categoryId: 'values' 
-    },
-    { 
         id: 'RepetirVacio', 
         intlId: 'repeatEmpty', 
         categoryId: 'repetitions' 
@@ -197,11 +191,6 @@ export const commonBlocks: BlockType[] = [
         id: 'myProcedures', 
         intlId: 'Procedures', 
         categoryId: 'myprocedures'
-    },
-    {
-        id: 'myFunctions', 
-        intlId: 'Functions', 
-        categoryId: 'myfunctions'
     }    
 ]
 
@@ -404,8 +393,8 @@ export const sceneBlocks: BlockType[] = [
 ]
 
 export const availableBlocksFor = (sceneType: SceneType) : BlockType[] => {
-    return [...commonBlocks,
-        ...sceneBlocks.filter(block => sceneObjectByType(sceneType).specificBlocksIds.includes(block.id))]
+    return [...sceneBlocks.filter(block => sceneObjectByType(sceneType).specificBlocksIds.includes(block.id)),
+            ...commonBlocks]
     .sort((a, b) => {
         const position = (block: BlockType) => categories.indexOf(block.categoryId.toLowerCase())
         return position(a) - position(b)

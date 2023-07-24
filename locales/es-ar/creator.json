@@ -16,7 +16,13 @@
 		}
 	},
 	"editor": {
-		"title": "Título"
+		"title": "Título",
+		"buttons": {
+			"newChallenge": "Nuevo desafio",
+			"download": "Descargar",
+			"try": "Probar",
+			"keepEditing": "Seguir editando"
+		}
 	},
 	"statement": {
 		"title": "Enunciado",
@@ -27,9 +33,9 @@
 		"includeClue": "Incluir una pista"
 	},
 	"tools": {
-		"putObstacle": "Poner Obstáculo",
-		"putObject": "Poner Objeto",
-		"putActor": "Poner Personaje",
+		"putObstacle": "Poner obstáculo",
+		"putObject": "Poner objeto",
+		"putActor": "Poner personaje",
 		"delete": "Borrar"
 	},
 	"scene": {
