@@ -85,7 +85,7 @@ const SizeEditor = (props: SizeProps) => {
             setWidth(widthValue)
             props.setStyleGrid({width: widthValue})
         }
-    }, [props, width])
+    }, [props, width, columnsInMap, rowsInMap])
 
     useEffect(() => {
         updateRowsIfChanged()

@@ -183,11 +183,6 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'operators'
     },
     {
-        id: 'param_get', 
-        intlId: 'variables_get', 
-        categoryId: 'myprocedures'
-    },
-    {
         id: 'myProcedures', 
         intlId: 'Procedures', 
         categoryId: 'myprocedures'
