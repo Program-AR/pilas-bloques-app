@@ -31,8 +31,8 @@ export type CreatorProviderProps = {
 export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children, defaultSelectedTool = ACTOR }: CreatorProviderProps) => {
     const [selectedTool, setSelectedTool] = useState(defaultSelectedTool);
 
-    const challenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
-    const [currentMap, setCurrentMap] = useState({map: challenge!.scene.maps[0] , index: 0})
+    const initialChallenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
+    const [currentMap, setCurrentMap] = useState({map: initialChallenge!.scene.maps[0] , index: 0})
 
     const setIndex = (newIndex: number) => setCurrentMap({...currentMap, index: newIndex})
 
@@ -42,6 +42,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     const index = currentMap.index
 
     useEffect(()=> {
+        const challenge = LocalStorage.getCreatorChallenge()
         challenge!.scene.maps[currentMap.index] = currentMap.map
         LocalStorage.saveCreatorChallenge(challenge)        
     }, [currentMap])
