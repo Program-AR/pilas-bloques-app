@@ -51,35 +51,35 @@ const SizeEditor = (props: SizeProps) => {
     const [rows, setRow] = useState(rowsInMap || 1)
     const [columns, setCol] = useState(columnsInMap || 1)
 
-    const updateRowsIfChanged = useCallback(() => {
+    const updateRowsIfChanged = useCallback((newMap: SceneMap) => {
         if (rows < rowsInMap) { //Row was removed
-            map = relocateActor(map[map.length - 1], INITIAL_COL, map)
-            map.pop()
+            newMap = relocateActor(newMap[newMap.length - 1], INITIAL_COL, newMap)
+            newMap.pop()
         }
         if (rows > rowsInMap) //Row was added
-            map.push(map[INITIAL_ROW].slice().fill(EMPTY))
+            newMap.push(newMap[INITIAL_ROW].slice().fill(EMPTY))
 
         props.setRows(rows)
-    }, [props, rows])
+    }, [props, rows, rowsInMap])
 
-    const updateColumnsIfChanged = useCallback(() => {
+    const updateColumnsIfChanged = useCallback((newMap: SceneMap) => {
         if (columns < columnsInMap) { //Column was removed
-            map.map((row) => {
-                map = relocateActor(row, row.length - 1, map)
+            newMap.map((row) => {
+                newMap = relocateActor(row, row.length - 1, newMap)
                 return row.pop()
             })
         }
         if (columns > columnsInMap) //Column was added
-            map.map((row, i) => map[i] = row.concat(EMPTY))
+            newMap.map((row, i) => newMap[i] = row.concat(EMPTY))
 
         props.setColumns(columns)
-
-    }, [columns, props])
+    }, [props, columns, columnsInMap])
 
     useEffect(() => {
-        updateRowsIfChanged()
-        updateColumnsIfChanged()
-        setMap(map)
+        let newMap = map
+        updateRowsIfChanged(newMap)
+        updateColumnsIfChanged(newMap)
+        setMap(newMap) //eslint-disable-next-line
     }, [props, updateColumnsIfChanged, updateRowsIfChanged]);
 
 
