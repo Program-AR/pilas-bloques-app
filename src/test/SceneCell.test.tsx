@@ -8,8 +8,6 @@ import { ACTOR, EMPTY, OBSTACLE } from '../components/creator/Editor/SceneEditio
 
 describe('Scene grid', () => {
 
-    let defChallange: SerializedChallenge
-
     const position: Position = {
         row: 0,
         column: 0
@@ -134,7 +132,12 @@ describe('Scene grid', () => {
     test('Erase cell with actor, should relocate actor to initial cell', () => {
         expectContentAfterClick(EMPTY, 1, 0, EMPTY)
         expect(getContentFromLocalStorage(0, 0)).toBe(ACTOR)
+    })
 
+    test('Erase cell with actor and prize at initial cell, should relocate actor to initial cell and keep prize', () => {
+        saveChallange('Duba', [[["P", "O", "A"], ["-", "P", "-"]]])
+        expectContentAfterClick(EMPTY, 0, 2, EMPTY)
+        expect(getContentFromLocalStorage(0, 0)).toBe('A&P')
     })
 
     test('Erase cell with actor and prize, should only erase prize', () => {
@@ -145,6 +148,30 @@ describe('Scene grid', () => {
     test('Erase cell with actor at initial position, should not erase actor', () => {
         LocalStorage.saveCreatorChallenge(defaultChallenge('Duba')) //Default challenge has actor at initial position
         expectContentAfterClick(EMPTY, 0, 0, ACTOR)
+    })
+
+    //ACTOR
+    test('Sets actor in cell, should delete it from previous position', () => {
+        expectContentAfterClick(ACTOR, 1, 2, ACTOR)
+        expect(getContentFromLocalStorage(1, 0)).toBe(EMPTY)
+    })
+
+    test('Sets actor in cell with prize, should keep both actor and prize', () => {
+        expectContentAfterClick(ACTOR, 1, 1, 'A&P')
+    })
+
+    test('Sets actor in cell with obstacle, should replace it', () => {
+        expectContentAfterClick(ACTOR, 0, 1, ACTOR)
+    })
+
+    test('Sets actor in empty cell', () => {
+        expectContentAfterClick(ACTOR, 0, 0, ACTOR)
+    })  
+
+    test('Sets actor in cell with previous actor in cell with prize, should not erase the prize', () => {
+        saveChallange('Duba', [[["-", "O", "A&P"], ["-", "P", "-"]]])
+        expectContentAfterClick(ACTOR, 0, 0, ACTOR)
+        expect(getContentFromLocalStorage(0, 2)).toBe('P')
     })
 
 })

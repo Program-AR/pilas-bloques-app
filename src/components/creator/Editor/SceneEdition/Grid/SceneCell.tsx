@@ -1,7 +1,7 @@
 import styles from "./grid.module.css"
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { CreatorContext } from "../../CreatorContext"
-import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, setActorAtInitialPosition, EMPTY } from "../SceneEdition"
+import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, EMPTY, setActorAtPosition } from "../SceneEdition"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
 
 type CellProps = {
@@ -17,69 +17,76 @@ export type Position = {
 
 export const SceneCell: React.FC<CellProps> = (props) => {
 
-    const { selectedTool, currentMap, changeMapAtCurrentIndex } = useContext(CreatorContext)
-    const [currentContent, setCurrentContent] = useState(props.content)
+    let { selectedTool, map, setMap } = useContext(CreatorContext)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
 
-    const objectsInCell = currentContent.split('&').filter(o => o !== '-')
+    const objectsInCell = props.content.split('&').filter(o => o !== '-')
 
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
-    const hasMultipleObjects: boolean = objectsInCell.length > 1
+    const hasMultipleObjects = (cellObjects = objectsInCell): boolean => cellObjects.length > 1
 
-    const cellHasActor: boolean = objectsInCell.includes(ACTOR)
+    const hasActor = (cell = props.content): boolean => cell.split('&').includes(ACTOR)
 
     const isInitialCell: boolean = props.position.row === INITIAL_ROW && props.position.column === INITIAL_COL
 
-
     const handleClick = () => {
+        setMap(updatedMap())
+    }
+
+    const updatedMap = (): SceneMap => {
         switch (selectedTool) {
-            case '': break; //by context default
-            case OBSTACLE: handleObstacle(); break;
-            case ACTOR: handleActor(); break;
-            case EMPTY: handleEraser(); break;  //eraser
-            default: handlePrize(); break;
+            case OBSTACLE: return handleObstacle();
+            case EMPTY: return handleEraser();
+            case ACTOR: return handleActor();
         }
+        return handlePrize();
     }
 
-    const handleActor = () => {
+    const handleActor = (): SceneMap => {
+        return setActorAtPosition(deletedActorMap(), props.position.row, props.position.column)
     }
 
-    const handleEraser = () => {
-        if(cellHasActor && isInitialCell && !hasMultipleObjects) return; // We can't erase actor on the initial cell
-        if(cellHasActor && !hasMultipleObjects) relocateActor()
-        setCurrentContent(hasMultipleObjects ? ACTOR : EMPTY)
-    }
-
-    const handlePrize = () =>{
-        setCurrentContent(cellHasActor ? ACTOR + '&' + selectedTool : selectedTool)
-    }
-
-    const handleObstacle = () => {
-        if (cellHasActor && isInitialCell) return; // We can't replace actor on the initial cell
-        if (cellHasActor && !isInitialCell) relocateActor()
-        setCurrentContent(selectedTool) // obstacle replaces everything
-    }
-
-    const relocateActor = () => {
-        changeMapAtCurrentIndex(setActorAtInitialPosition(currentMap.map))
-    }
-
-
-    useEffect(() => {
-        if(currentContent !== props.content) changeMapAtCurrentIndex(mapWithNewCellContent(currentMap.map, currentContent))
-    }, [currentContent])
-
-    const mapWithNewCellContent = (map: SceneMap, content: string) => {
-        map[props.position.row][props.position.column] = content
+    const deletedActorMap = () => {
+        let prevPos = actorPosition()
+        let cellObjects = map[prevPos.row][prevPos.column].split('&')
+        map[prevPos.row][prevPos.column] = hasMultipleObjects(cellObjects) ? cellObjects[1] : EMPTY
         return map
     }
+
+    const handleEraser = (): SceneMap => {
+        if (hasActor() && isInitialCell && !hasMultipleObjects()) return map; // We can't erase actor on the initial cell
+        if (hasActor() && !hasMultipleObjects()) map = setActorAtPosition(map)
+        return mapWithNewCellContent(hasMultipleObjects() ? ACTOR : EMPTY)
+    } 
+
+    const handlePrize = (): SceneMap => {
+        return mapWithNewCellContent(hasActor() ? ACTOR + '&' + selectedTool : selectedTool)
+    }
+
+    const handleObstacle = (): SceneMap => {
+        if (hasActor() && isInitialCell) return map; // We can't replace actor on the initial cell
+        if (hasActor() && !isInitialCell) map = setActorAtPosition(map)
+        return mapWithNewCellContent(selectedTool)
+    } 
+
+    const actorPosition = (): Position => {
+        let row = map.findIndex(row => row.some(hasActor))
+        let column = map[row].findIndex(hasActor)
+        return { row, column }
+    }
+
+    const mapWithNewCellContent = (content: string, position: Position = props.position): SceneMap => {
+        map[position.row][position.column] = content
+        return map
+    }
+
     return <div
         data-testid="challenge-cell"
         className={styles.cell}
-        style={{ backgroundImage: `url(${backgroundCellImage})`, justifyContent: !hasMultipleObjects ? 'center' : '' }}
+        style={{ backgroundImage: `url(${backgroundCellImage})`, justifyContent: !hasMultipleObjects() ? 'center' : '' }}
         onClick={handleClick}>
         {objectsInCell.map(obj =>
             <img

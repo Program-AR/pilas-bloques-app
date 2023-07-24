@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material"
-import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
+import { SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
 import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
 import { SceneCell } from "./SceneCell"
@@ -9,7 +9,7 @@ import { CreatorContext } from "../../CreatorContext"
 
 export const SceneGrid = () => {
 
-    const { currentMap } = useContext(CreatorContext)
+    const { map } = useContext(CreatorContext)
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -17,7 +17,7 @@ export const SceneGrid = () => {
     const sceneType: SceneType = challenge.scene.type
 
     return <Stack className={styles.grid + ' ' + styles.border}>
-        {currentMap.map.map((row, i) =>
+        {map.map((row, i) =>
             <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                 {row.map((cellContent, j) =>
                     <SceneCell
