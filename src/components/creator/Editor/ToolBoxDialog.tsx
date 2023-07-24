@@ -5,7 +5,6 @@ import { categories, availableBlocksFor } from "../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../modalDialog/GenericModalDialog";
-import { CreatorContext } from "./CreatorContext";
 
 const BlockIcon = () => 
             <Icon>
@@ -22,8 +21,6 @@ export const ToolBoxDialog = () => {
 
     const { t } = useTranslation('creator');
     const tb = useTranslation('blocks').t;
-
-    let { map, setMap } = useContext(CreatorContext)
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
