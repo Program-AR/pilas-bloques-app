@@ -5,8 +5,8 @@ type IncDecButtonsProps = {
     add: () => void
     remove: () => void
     value: number
-    min?: number
-    max?: number
+    min: number
+    max: number
     label?: string | null
     testId?: string 
 }
@@ -14,15 +14,11 @@ type IncDecButtonsProps = {
 export const IncDecButtons = (props: IncDecButtonsProps) => {
 
     const handleValue = (inc: boolean) => {
-        if(inc)
-        {
-          if (props.max === undefined || props.value < props.max)
+        if(inc && props.value < props.max){
             props.add()
         }
-        else {
-          if (props.min === undefined || props.value > props.min)
+        else if(props.value > props.min){
             props.remove()
-
         }
     }
 
