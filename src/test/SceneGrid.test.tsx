@@ -39,7 +39,6 @@ describe('Scene grid', () => {
 
     })
 
-    //Will change with refactor
     test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
         renderWithContext(<SceneGrid />)
