@@ -1,21 +1,10 @@
-import { Button, Box, Switch, Icon, FormControlLabel } from "@mui/material";
+import { Button, Box, Switch, FormControlLabel } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../localStorage";
 import { categories, availableBlocksFor } from "../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../modalDialog/GenericModalDialog";
-
-const BlockIcon = () => 
-            <Icon>
-                <img src="imagenes/block.png" 
-                    alt="BlockIcon"
-                    style={{width:"100%", 
-                            display: "flex", 
-                            alignItems: "center", 
-                            justifyContent: "center"}}/>
-            </Icon>
-
 
 export const ToolBoxDialog = () => {
 
@@ -68,7 +57,6 @@ export const ToolBoxDialog = () => {
             variant="outlined" 
             size="large"
             style={{margin:"6px", textTransform:"none"}} 
-            startIcon={<BlockIcon/>}
             data-testid="toolbox-button" 
             onClick={handleButtonClick}>{t('toolbox.button')}</Button>
         <GenericModalDialog
