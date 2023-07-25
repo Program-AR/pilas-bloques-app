@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Box, Typography, Button, ButtonGroup } from '@mui/material';
 
 type IncDecButtonsProps = {
