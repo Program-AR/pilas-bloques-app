@@ -26,9 +26,15 @@ export const ToolBoxDialog = () => {
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
    
     let currentToolBox = challenge!.toolbox.blocks
+    let currentIsCategorized = challenge!.toolbox.categorized
     const [toolBoxItems, setToolBoxItems] = useState(currentToolBox);
+    const [isCategorized, setIsCategorized] = useState(currentIsCategorized);
     const toolboxState = new ToolboxState(challenge!, toolBoxItems)
     const [open, setOpen] = useState(false);
+
+    const handleIsCategorizedOnChange = (event : { target: { checked: boolean }  }) => {
+        setIsCategorized(event.target.checked)
+    }
 
     const handleCatOnChange = (event : { target: { name: string; checked: boolean }  }) => {
         toolboxState.categoryChanged(event.target.name, event.target.checked)
@@ -52,6 +58,7 @@ export const ToolBoxDialog = () => {
     }
     const handleOnConfirm = () => {
         challenge!.toolbox.blocks = toolBoxItems
+        challenge!.toolbox.categorized = isCategorized
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
     }
@@ -69,6 +76,13 @@ export const ToolBoxDialog = () => {
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         title={t('toolbox.title')}>
+            <div>
+            <Box style={{textAlign:'right'}}>
+                <FormControlLabel key="isCategorized" labelPlacement="start"
+                    control={<Switch checked={isCategorized}
+                                     key="isCategorized"
+                                     onChange={handleIsCategorizedOnChange}/>} label={tb('categories.categorized')}/>
+            </Box>
             <Box style={{justifyContent:'center'}}>
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
@@ -88,6 +102,7 @@ export const ToolBoxDialog = () => {
                             </div>)})}
                 </div>)})}
             </Box>
+            </div>
         </GenericModalDialog>
     </>
 }

@@ -8,7 +8,8 @@
         "values": "Valores",
         "sensors": "Sensores",
         "operators": "Operadores",
-        "myfunctions": "Minhas funções"
+        "myfunctions": "Minhas funções",
+        "categorized": "Categorizar Blocos"
     },
     "blocks": {
         "advance": "Avançar",
