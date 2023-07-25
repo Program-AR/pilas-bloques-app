@@ -28,7 +28,9 @@ export const setActorAtPosition = (inMap: SceneMap, row = INITIAL_ROW, col = INI
     return inMap
 }
 
-const actorIsInMap = (map: SceneMap): boolean => map.some(row => row.includes(ACTOR))
+const includesActor = (row: string): boolean => row.split('&').includes(ACTOR)
+
+const actorIsInMap = (map: SceneMap): boolean => map.some(row => row.some(includesActor))
 
 const relocateActorIfRemoved = (map: SceneMap) => {
     if(!actorIsInMap(map)) setActorAtPosition(map)
