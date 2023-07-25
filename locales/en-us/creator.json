@@ -43,5 +43,9 @@
 	"scene": {
 		"numCols": "Number of columns",
 		"numRows": "Number of rows"
+	},
+	"toolbox": {
+		"title": "Toolbox Panel",
+		"button": "Blocks Selection"
 	}
 }

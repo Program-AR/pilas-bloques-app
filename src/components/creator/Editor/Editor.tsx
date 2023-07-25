@@ -1,8 +1,9 @@
-import { Button, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
+import { ToolBoxDialog } from "./ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
 import { DownloadButton } from "./DownloadButton";
 import { TryButton } from "./TryButton";
@@ -40,6 +41,6 @@ const Actions = () => <Stack direction="row" alignItems={"center"}>
 
 const ChallengeDetailsEdition = () => <Stack direction="row" style={{ maxHeight: 70, justifyContent: "space-between" }}>
   <StatementEdition />
-  <Button>Panel de instrucciones</Button>
+  <ToolBoxDialog/>
   {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
 </Stack>

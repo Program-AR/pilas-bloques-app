@@ -11,7 +11,6 @@ type IncDecButtonsProps = {
 }
 
 export const IncDecButtons = (props: IncDecButtonsProps) => {
-
     const handleValue = (inc: boolean) => {
         if(inc && props.value < props.max){
             props.add()

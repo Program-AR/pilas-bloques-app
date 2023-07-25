@@ -51,8 +51,11 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     const deletedActorMap = () => {
         let prevPos = actorPosition()
-        let cellObjects = map[prevPos.row][prevPos.column].split('&')
-        map[prevPos.row][prevPos.column] = hasMultipleObjects(cellObjects) ? cellObjects[1] : EMPTY
+        if( prevPos.row > -1 && prevPos.column > -1 )
+            {
+            let cellObjects = map[prevPos.row][prevPos.column].split('&')
+            map[prevPos.row][prevPos.column] = hasMultipleObjects(cellObjects) ? cellObjects[1] : EMPTY
+            }
         return map
     }
 
@@ -74,7 +77,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
     const actorPosition = (): Position => {
         let row = map.findIndex(row => row.some(hasActor))
-        let column = map[row].findIndex(hasActor)
+        let column = (row > -1 ? map[row].findIndex(hasActor):-1)
         return { row, column }
     }
 

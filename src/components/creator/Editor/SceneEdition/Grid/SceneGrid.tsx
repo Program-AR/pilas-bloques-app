@@ -3,12 +3,14 @@ import { SceneType, SerializedChallenge, defaultChallenge } from "../../../../se
 import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
 import { SceneCell } from "./SceneCell"
-import { useContext } from "react"
+import { useContext, CSSProperties } from "react"
 import { CreatorContext } from "../../CreatorContext"
 
+type SceneGridProps = {
+     styling?: CSSProperties
+}
 
-export const SceneGrid = () => {
-
+export const SceneGrid = (props: SceneGridProps) => {
     const { map } = useContext(CreatorContext)
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
@@ -16,7 +18,7 @@ export const SceneGrid = () => {
 
     const sceneType: SceneType = challenge.scene.type
 
-    return <Stack className={styles.grid + ' ' + styles.border}>
+    return <Stack className={styles.grid} style={props.styling}>
         {map.map((row, i) =>
             <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                 {row.map((cellContent, j) =>

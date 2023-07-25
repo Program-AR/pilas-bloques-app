@@ -41,8 +41,11 @@
 		"delete": "Borrar"
 	},
 	"scene": {
-		"numCols": "Cantidad de columnas",
-		"numRows": "Cantidad de filas"
-
+		"numCols": "Cantidad de Columnas",
+		"numRows": "Cantidad de Filas"
+	},
+	"toolbox": {
+		"title": "Selector de Bloques",
+		"button": "Selector de Bloques"
 	}
 }

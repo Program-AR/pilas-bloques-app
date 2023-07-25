@@ -11,7 +11,6 @@ import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
 
-
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
         <HeaderText text={challenge.title}/>

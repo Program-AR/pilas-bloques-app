@@ -65,7 +65,7 @@ export const SceneTools = () => {
 
 
     return ( 
-        <Stack alignItems="center" style={{padding: "10px"}}>
+        <Stack alignItems="center" style={{maxWidth: "200px", padding: "10px"}}>
             <PutObstacleTool/>
             <PutObjectTool/>
             <PutActorTool/>
@@ -73,4 +73,3 @@ export const SceneTools = () => {
         </Stack> 
     )
 }
-
