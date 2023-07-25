@@ -22,7 +22,9 @@
 			"download": "Descargar",
 			"try": "Probar",
 			"keepEditing": "Seguir editando"
-		}
+		},
+		"editorHeader": "Editando desafio",
+		"tryModeHeader": "Probando desafio"
 	},
 	"statement": {
 		"title": "Enunciado",

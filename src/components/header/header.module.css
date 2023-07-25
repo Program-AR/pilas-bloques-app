@@ -13,8 +13,6 @@
 
 .header div{
     display: flex;
-    height: inherit;
-    align-self: flex-start;
 }
 
 .face {

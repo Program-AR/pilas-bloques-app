@@ -22,7 +22,9 @@
 			"download": "Download",
 			"try": "Test it",
 			"keepEditing": "Keep editing"
-		}
+		},
+		"editorHeader": "Editing challenge",
+		"tryModeHeader": "Trying challenge"
 	},
 	"statement": {
 		"title": "Statement",

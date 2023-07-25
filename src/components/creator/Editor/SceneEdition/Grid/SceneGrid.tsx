@@ -11,7 +11,6 @@ type SceneGridProps = {
 }
 
 export const SceneGrid = (props: SceneGridProps) => {
-
     const { map } = useContext(CreatorContext)
 
     const storageChallenge = LocalStorage.getCreatorChallenge()

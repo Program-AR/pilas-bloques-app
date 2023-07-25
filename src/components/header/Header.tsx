@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import theme from '../../theme';
 
 type HeaderProps = {
-    CenterComponent?: React.ReactNode
+    CenterComponent?: React.ReactNode,
+    SubHeader?: React.ReactNode 
 }
 
 type HeaderTextProps = {
@@ -21,7 +22,7 @@ export const HeaderText = (props: HeaderTextProps) => (
 	</Typography>
 )
 
-export const Header = ({CenterComponent= <></>}: HeaderProps) => {
+export const Header = ({CenterComponent= <></>, SubHeader=<></>}: HeaderProps) => {
     
     return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
             <Grid container className={styles['header']} wrap="nowrap">
@@ -32,6 +33,7 @@ export const Header = ({CenterComponent= <></>}: HeaderProps) => {
                     <SessionButton/>
                 </div>
             </Grid>
+            {SubHeader}
         </AppBar>
 }
 
