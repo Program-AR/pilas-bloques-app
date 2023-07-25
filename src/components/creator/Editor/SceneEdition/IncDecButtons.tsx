@@ -16,7 +16,7 @@ export const IncDecButtons = (props: IncDecButtonsProps) => {
         if(inc && props.value < props.max){
             props.add()
         }
-        else if(props.value > props.min){
+        if(!inc && props.value > props.min){
             props.remove()
         }
     }
