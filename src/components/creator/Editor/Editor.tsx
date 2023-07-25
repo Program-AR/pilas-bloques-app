@@ -1,4 +1,4 @@
-import { Button, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { TitleEdition } from "./EditorSubHeader/TitleEdition";

@@ -1,5 +1,5 @@
 import { Button, Box, Switch, Icon, FormControlLabel } from "@mui/material";
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { LocalStorage } from "../../../localStorage";
 import { categories, availableBlocksFor } from "../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../serializedChallenge";
