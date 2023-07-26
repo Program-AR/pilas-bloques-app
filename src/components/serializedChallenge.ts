@@ -127,9 +127,9 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
 export const defaultScene = (type: SceneType): Scene => {
 	return {
 		type: type,
-		maps: [[[ACTOR, '-', '-'],
-		['-', '-', '-'],
-		['-', '-', '-']]]
+		maps: [[[ACTOR, EMPTY, EMPTY],
+		[EMPTY, EMPTY, EMPTY],
+		[EMPTY, EMPTY, EMPTY]]]
 	}
 }
 
