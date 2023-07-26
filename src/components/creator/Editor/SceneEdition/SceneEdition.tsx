@@ -4,36 +4,8 @@ import { SceneTools } from "./SceneTools";
 import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useCallback, useEffect, useContext, CSSProperties } from 'react';
-import { SceneMap } from "../../../serializedChallenge";
 import { CreatorContext } from "../CreatorContext";
-
-export const OBSTACLE = "O"
-export const ACTOR = "A"
-export const EMPTY = "-"
-
-//Remeber to change de default scene at serializedChallenge.tsx if the inital position for Actor changes
-export const INITIAL_COL = 0
-export const INITIAL_ROW = 0
-
-/**
- * If no position is given, the actor is set in the initial one (0,0)
- * @returns a map with the actor in another position.
- */
-export const setActorAtPosition = (inMap: SceneMap, row = INITIAL_ROW, col = INITIAL_COL): SceneMap => {
-    if (inMap[row][col] === EMPTY || inMap[row][col] === OBSTACLE) {
-        inMap[row][col] = ""
-    }
-    inMap[row][col] = ACTOR + (inMap[row][col].length ? '&' + inMap[row][col] : '')
-    return inMap
-}
-
-const includesActor = (cell: string): boolean => cell.split('&').includes(ACTOR)
-
-const actorIsInMap = (map: SceneMap): boolean => map.some(row => row.some(includesActor))
-
-const relocateActorIfRemoved = (map: SceneMap) => {
-    if(!actorIsInMap(map)) setActorAtPosition(map)
-}
+import { INITIAL_ROW, EMPTY, relocateActorIfRemoved } from "./mapUtils";
 
 type SizeProps = {
     setStyleGrid: (style: CSSProperties) => void

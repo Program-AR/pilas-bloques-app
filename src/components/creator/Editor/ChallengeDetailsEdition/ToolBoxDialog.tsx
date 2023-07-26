@@ -1,10 +1,10 @@
 import { Button, Box, Switch, FormControlLabel } from "@mui/material";
 import { useState } from "react";
-import { LocalStorage } from "../../../localStorage";
-import { categories, availableBlocksFor } from "../../blocks";
-import { SerializedChallenge, defaultChallenge } from "../../serializedChallenge";
+import { LocalStorage } from "../../../../localStorage";
+import { categories, availableBlocksFor } from "../../../blocks";
+import { SerializedChallenge, defaultChallenge } from "../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
-import { GenericModalDialog } from "../../modalDialog/GenericModalDialog";
+import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 
 export const ToolBoxDialog = () => {
 
