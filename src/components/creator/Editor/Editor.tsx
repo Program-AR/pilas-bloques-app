@@ -5,11 +5,11 @@ import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { ToolBoxDialog } from "./ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
-import { DownloadButton } from "./DownloadButton";
-import { TryButton } from "./TryButton";
-import { NewChallengeButton } from "./NewChallengeButton";
+import { TryButton } from "./ActionButtons/TryButton";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { useTranslation } from "react-i18next";
+import { NewChallengeButton } from "./ActionButtons/NewChallengeButton";
+import { DownloadButton } from "./ActionButtons/DownloadButton";
 
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')
