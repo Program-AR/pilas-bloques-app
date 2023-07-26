@@ -1,7 +1,7 @@
 import styles from "./grid.module.css"
 import { useContext } from "react"
 import { CreatorContext } from "../../CreatorContext"
-import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, EMPTY, setActorAtPosition, actorPosition, hasActor } from "../gridUtils"
+import { ACTOR, INITIAL_ROW, INITIAL_COL, OBSTACLE, EMPTY, setActorAtPosition, actorPosition, hasActor } from "../mapUtils"
 import { SceneMap, SceneType } from "../../../../serializedChallenge"
 
 type CellProps = {
@@ -22,9 +22,9 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
 
-    const objectsInCell = props.content.split('&').filter(o => o !== '-')
-
     const currentContent = props.content
+
+    const objectsInCell = currentContent.split('&').filter(o => o !== '-')
 
     const objectStyle = (object: string) => styles[`img-${object}`] || styles['img-default']
 
@@ -64,6 +64,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
         if (hasActor(currentContent) && !isInitialCell) map = setActorAtPosition(map)
         return mapWithNewCellContent(selectedTool)
     }
+
     const deletedActorMap = () => {
         let prevPos = actorPosition(map)
         if (!prevPos) return map //if there is no actor in the map
@@ -73,7 +74,6 @@ export const SceneCell: React.FC<CellProps> = (props) => {
 
         return map
     }
-
 
     const mapWithNewCellContent = (content: string, position: Position = props.position): SceneMap => {
         map[position.row][position.column] = content

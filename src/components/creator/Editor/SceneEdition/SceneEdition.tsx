@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next"
 import { IncDecButtons } from "./IncDecButtons";
 import { useState, useCallback, useEffect, useContext, CSSProperties } from 'react';
 import { CreatorContext } from "../CreatorContext";
-import { INITIAL_ROW, EMPTY, relocateActorIfRemoved } from "./gridUtils";
+import { INITIAL_ROW, EMPTY, relocateActorIfRemoved } from "./mapUtils";
 
 type SizeProps = {
     setStyleGrid: (style: CSSProperties) => void
