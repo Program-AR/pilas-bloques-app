@@ -47,5 +47,10 @@
 	"toolbox": {
 		"title": "Toolbox Panel",
 		"button": "Blocks Selection"
+	},
+	"scenarios": {
+		"delete": "Delete scenario",
+		"duplicate": "Duplicate scenario",
+		"add": "Add scenario"
 	}
 }
