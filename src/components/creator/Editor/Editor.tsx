@@ -3,7 +3,7 @@ import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
-import { ToolBoxDialog } from "./ToolBoxDialog";
+import { ToolBoxDialog } from "./ChallengeDetailsEdition/ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
 import { DownloadButton } from "./DownloadButton";
 import { TryButton } from "./TryButton";

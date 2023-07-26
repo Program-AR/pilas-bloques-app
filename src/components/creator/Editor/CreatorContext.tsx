@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SceneMap, defaultChallenge } from '../../serializedChallenge';
 import { LocalStorage } from '../../../localStorage';
-import { ACTOR } from './SceneEdition/SceneEdition';
+import { ACTOR } from './SceneEdition/gridUtils';
 
 export type CreatorContextType = {
     selectedTool: string;

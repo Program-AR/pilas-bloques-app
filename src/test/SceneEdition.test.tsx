@@ -2,7 +2,7 @@ import { fireEvent, screen } from '@testing-library/react'
 import { defaultChallenge, SerializedChallenge } from "../components/serializedChallenge"
 import { SceneEdition } from '../components/creator/Editor/SceneEdition/SceneEdition';
 import { LocalStorage } from '../localStorage';
-import { renderComponent, renderWithContext } from './testUtils';
+import { renderWithContext } from './testUtils';
 
 describe('Scene Edition', () => {
     afterEach(() => {
@@ -24,7 +24,6 @@ describe('Scene Edition', () => {
         return {rows, columns}
     }
 
-    //TODO fix with rows and columns context refactor
     test("increment cols and rows to challenge map", async () => {
   
         renderWithContext(<SceneEdition />)

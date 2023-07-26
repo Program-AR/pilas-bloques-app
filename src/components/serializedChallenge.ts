@@ -1,4 +1,5 @@
 import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleSkip } from 'simple-type-guard';
+import { ACTOR } from './creator/Editor/SceneEdition/gridUtils';
 
 //IMPORTANT: remember to bump this version whenever there are breaking changes in the file format.
 export const creatorVersion = 1
@@ -126,7 +127,7 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
 export const defaultScene = (type: SceneType): Scene => {
 	return {
 		type: type,
-		maps: [[['A', '-', '-'],
+		maps: [[[ACTOR, '-', '-'],
 		['-', '-', '-'],
 		['-', '-', '-']]]
 	}

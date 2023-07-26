@@ -4,7 +4,7 @@ import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../c
 import { LocalStorage } from "../localStorage"
 import { renderComponent } from "./testUtils"
 import { CreatorContextProvider } from '../components/creator/Editor/CreatorContext'
-import { ACTOR, EMPTY, OBSTACLE } from '../components/creator/Editor/SceneEdition/SceneEdition'
+import { ACTOR, EMPTY, OBSTACLE } from '../components/creator/Editor/SceneEdition/gridUtils'
 
 describe('Scene grid', () => {
 
