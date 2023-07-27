@@ -19,7 +19,7 @@ export const CreatorEditor = () => {
     <CreatorContextProvider>
       <Stack alignItems="center" height="100%">
         <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
-        <Stack justifyContent= "center" height="100%" width="100%" style={{ maxWidth: 1024, borderStyle: "solid" }}>
+        <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 1024, maxHeight: 630}}>
           <SceneEdition />
         </Stack>
         <EditorFooter />
@@ -35,8 +35,8 @@ const EditorSubHeader: React.FC = () =>
   </CreatorSubHeader>
 
 const Actions = () => <Stack direction="row" alignItems={"center"}>
-  <NewChallengeButton/>
   <TryButton/>
+  <NewChallengeButton/>
   <DownloadButton/>
 </Stack>
 

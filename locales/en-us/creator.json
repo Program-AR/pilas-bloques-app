@@ -35,9 +35,9 @@
 		"includeClue": "Include a clue"	
 	},
 	"tools": {
-		"putObstacle": "Put obstacle",
-		"putObject": "Put object",
-		"putActor": "Put actor",
+		"putObstacle": "Obstacle",
+		"putObject": "Objects",
+		"putActor": "Character",
 		"delete": "Delete"
 	},
 	"scene": {
