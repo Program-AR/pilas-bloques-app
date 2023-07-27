@@ -9,6 +9,7 @@ import { DownloadButton } from "./DownloadButton";
 import { TryButton } from "./TryButton";
 import { NewChallengeButton } from "./NewChallengeButton";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
+import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
 
 export const CreatorEditor = () => {
@@ -18,10 +19,10 @@ export const CreatorEditor = () => {
     <CreatorContextProvider>
       <Stack alignItems="center" height="100%">
         <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
-        <Stack height="100%" width="100%" style={{ maxWidth: 1024, maxHeight: 650, borderStyle: "solid" }}>
+        <Stack justifyContent= "center" height="100%" width="100%" style={{ maxWidth: 1024, borderStyle: "solid" }}>
           <SceneEdition />
-          <ChallengeDetailsEdition />
         </Stack>
+        <EditorFooter />
       </Stack>
     </CreatorContextProvider>
   )
@@ -39,8 +40,9 @@ const Actions = () => <Stack direction="row" alignItems={"center"}>
   <DownloadButton/>
 </Stack>
 
-const ChallengeDetailsEdition = () => <Stack direction="row" style={{ maxHeight: 70, justifyContent: "space-between" }}>
+const EditorFooter: React.FC = () => 
+  <CreatorFooter>
   <StatementEdition />
   <ToolBoxDialog/>
   {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
-</Stack>
+  </CreatorFooter>

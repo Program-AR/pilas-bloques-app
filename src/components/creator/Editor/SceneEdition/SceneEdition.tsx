@@ -61,7 +61,7 @@ const SizeEditor = (props: SizeProps) => {
 
     
     return (
-        <Stack sx={{ flexDirection: "column", height: "200px", justifyContent: "space-between", padding: "10px" }}>
+        <Stack sx={{ flexDirection: "column", maxWidth: "200px", height: "200px", justifyContent: "space-between", padding: "10px" }}>
             <IncDecButtons add={addColumn} remove={removeColumn} value={columns} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col" />
             <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row" />
         </Stack>
