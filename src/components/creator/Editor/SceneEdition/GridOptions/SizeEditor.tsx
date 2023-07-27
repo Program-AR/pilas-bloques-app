@@ -12,36 +12,36 @@ export type StyleGridProps = {
 export const SizeEditor = (props: StyleGridProps) => {
     const { t } = useTranslation("creator")
 
-    const { map, setMap } = useContext(CreatorContext)
+    const { currentMap, setCurrentMap } = useContext(CreatorContext)
     const [width, setWidth] = useState('')
     
-    const rows = map.length
-    const columns = map[INITIAL_ROW].length
+    const rows = currentMap.length
+    const columns = currentMap[INITIAL_ROW].length
 
     const addColumn = () => {
-        map.forEach((row, i) => map[i] = row.concat(EMPTY))
+        currentMap.forEach((row, i) => currentMap[i] = row.concat(EMPTY))
 
-        setMap(map)
+        setCurrentMap(currentMap)
     }
 
     const removeColumn = () => {
-        map.forEach((row) => {row.pop()})
-        relocateActorIfRemoved(map)
+        currentMap.forEach((row) => {row.pop()})
+        relocateActorIfRemoved(currentMap)
 
-        setMap(map)
+        setCurrentMap(currentMap)
     }
 
     const addRow = () => {
-        map.push(map[INITIAL_ROW].slice().fill(EMPTY))
+        currentMap.push(currentMap[INITIAL_ROW].slice().fill(EMPTY))
 
-        setMap(map)
+        setCurrentMap(currentMap)
     }
 
     const removeRow = () => {
-        map.pop()
-        relocateActorIfRemoved(map)
+        currentMap.pop()
+        relocateActorIfRemoved(currentMap)
 
-        setMap(map)
+        setCurrentMap(currentMap)
     }
 
     const updateStyleGrid = useCallback(()=> {
