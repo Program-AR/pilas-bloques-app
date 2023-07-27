@@ -15,15 +15,17 @@ export const ToolBoxDialog = () => {
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
    
     let currentToolBox = challenge!.toolbox.blocks
-    let currentIsCategorized = challenge!.toolbox.categorized
     const [toolBoxItems, setToolBoxItems] = useState(currentToolBox);
-    const [isCategorized, setIsCategorized] = useState(currentIsCategorized);
     const toolboxState = new ToolboxState(challenge!, toolBoxItems)
     const [open, setOpen] = useState(false);
-
+    
+    /* post MVP 
+    let currentIsCategorized = challenge!.toolbox.categorized
+    const [isCategorized, setIsCategorized] = useState(currentIsCategorized);
     const handleIsCategorizedOnChange = (event : { target: { checked: boolean }  }) => {
         setIsCategorized(event.target.checked)
     }
+    */
 
     const handleCatOnChange = (event : { target: { name: string; checked: boolean }  }) => {
         toolboxState.categoryChanged(event.target.name, event.target.checked)
@@ -47,7 +49,7 @@ export const ToolBoxDialog = () => {
     }
     const handleOnConfirm = () => {
         challenge!.toolbox.blocks = toolBoxItems
-        challenge!.toolbox.categorized = isCategorized
+        challenge!.toolbox.categorized = true // MVP is always true ... isCategorized
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
     }
@@ -65,12 +67,14 @@ export const ToolBoxDialog = () => {
                         onCancel={handleOnCancel}
                         title={t('toolbox.title')}>
             <div>
+            {/* post MVP
             <Box style={{textAlign:'right'}}>
                 <FormControlLabel key="isCategorized" labelPlacement="start"
                     control={<Switch checked={isCategorized}
                                      key="isCategorized"
                                      onChange={handleIsCategorizedOnChange}/>} label={tb('categories.categorized')}/>
             </Box>
+            */}
             <Box style={{justifyContent:'center'}}>
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
