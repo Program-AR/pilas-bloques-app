@@ -22,8 +22,8 @@ const Actions = () => {
     const {t} = useTranslation('creator')
 
     return <Stack direction="row" alignItems={"center"}>
-        <NewChallengeButton/>
         <Link to="/creador/editar"><CreatorActionButton>{t("editor.buttons.keepEditing")}</CreatorActionButton></Link>
+        <NewChallengeButton/>
         <DownloadButton/>
     </Stack>
 }

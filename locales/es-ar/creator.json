@@ -35,9 +35,9 @@
 		"includeClue": "Incluir una pista"
 	},
 	"tools": {
-		"putObstacle": "Poner obstáculo",
-		"putObject": "Poner objeto",
-		"putActor": "Poner personaje",
+		"putObstacle": "Obstáculo",
+		"putObject": "Objetos",
+		"putActor": "Personaje",
 		"delete": "Borrar"
 	},
 	"scene": {
