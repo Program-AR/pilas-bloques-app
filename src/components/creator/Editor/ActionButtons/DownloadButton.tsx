@@ -1,13 +1,13 @@
-import { Button } from "@mui/material";
-import { LocalStorage } from "../../../localStorage";
-import { SerializedChallenge } from "../../serializedChallenge";
 import { useTranslation } from "react-i18next";
+import { SerializedChallenge } from "../../../serializedChallenge";
+import { LocalStorage } from "../../../../localStorage";
+import { CreatorActionButton } from "./CreatorActionButton";
 
 export const DownloadButton = () => {
     
     const { t } = useTranslation('creator');
     
-    return <Button onClick={downloadChallenge}>{t("editor.buttons.download")}</Button>
+    return <CreatorActionButton onClick={downloadChallenge}>{t("editor.buttons.download")}</CreatorActionButton>
 
 }
 

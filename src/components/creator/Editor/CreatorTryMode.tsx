@@ -1,15 +1,16 @@
-import { Button, Stack } from "@mui/material"
+import { Stack } from "@mui/material"
 import { Ember } from "../../../emberCommunication"
 import { LocalStorage } from "../../../localStorage"
 import { EMBER_IMPORTED_CHALLENGE_PATH } from "../../ImportedChallengeView"
 import { EmberView } from "../../emberView/EmberView"
 import { Header, HeaderText } from "../../header/Header"
-import { DownloadButton } from "./DownloadButton"
 import { SerializedChallenge } from "../../serializedChallenge"
-import { NewChallengeButton } from "./NewChallengeButton"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
+import { NewChallengeButton } from "./ActionButtons/NewChallengeButton"
+import { DownloadButton } from "./ActionButtons/DownloadButton"
+import { CreatorActionButton } from "./ActionButtons/CreatorActionButton"
 
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
@@ -22,7 +23,7 @@ const Actions = () => {
 
     return <Stack direction="row" alignItems={"center"}>
         <NewChallengeButton/>
-        <Link to="/creador/editar"><Button>{t("editor.buttons.keepEditing")}</Button></Link>
+        <Link to="/creador/editar"><CreatorActionButton>{t("editor.buttons.keepEditing")}</CreatorActionButton></Link>
         <DownloadButton/>
     </Stack>
 }

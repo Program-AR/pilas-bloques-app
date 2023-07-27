@@ -38,37 +38,37 @@ export const SceneTools = () => {
 
     const PutObstacleTool = () => 
         <>
-           <Typography variant="caption">{t('tools.putObstacle')}</Typography>
             <Tool id="O" image={`${imagePathScene}/O.png`} /> 
+            <Typography variant="caption">{t('tools.putObstacle')}</Typography>
         </>
 
     const PutObjectTool = () => 
         <>
-            <Typography variant="caption">{t('tools.putObject')}</Typography>
             <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
                 {sceneObjectByType(challenge!.scene.type).validCells.map((object) => 
                 <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`}/>)}
             </Stack>
+            <Typography variant="caption">{t('tools.putObject')}</Typography>
         </>
 
     const PutActorTool = () => 
         <>
-            <Typography variant="caption">{t('tools.putActor')}</Typography>
             <Tool id="A" image={`${imagePathScene}/tool.png`}/>
+            <Typography variant="caption">{t('tools.putActor')}</Typography>
         </>
                         
     const DeleteTool = () => 
         <>
-            <Typography variant="caption">{t('tools.delete')}</Typography>
             <Tool id="-" image={`${imagePath}/eraser.png`}/>
+            <Typography variant="caption">{t('tools.delete')}</Typography>
         </>     
 
 
     return ( 
         <Stack alignItems="center" style={{maxWidth: "200px", padding: "10px"}}>
+            <PutActorTool/>
             <PutObstacleTool/>
             <PutObjectTool/>
-            <PutActorTool/>
             <DeleteTool/>
         </Stack> 
     )
