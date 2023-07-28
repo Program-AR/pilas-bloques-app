@@ -1,4 +1,4 @@
-import { Button, Box, Switch, FormControlLabel } from "@mui/material";
+import { Button, Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { categories, availableBlocksFor } from "../../../blocks";
@@ -67,13 +67,14 @@ export const ToolBoxDialog = () => {
                         onCancel={handleOnCancel}
                         title={t('toolbox.title')}>
             <div>
-            <Box style={{textAlign:'right'}}>
+            <Stack alignItems="flex-end">
                 <FormControlLabel key="isCategorized" labelPlacement="start"
                     disabled={toolboxState.shouldDisableCategorization()}
                     control={<Switch checked={isCategorized || toolboxState.shouldDisableCategorization()}
                                      key="isCategorized"
                                      onChange={handleIsCategorizedOnChange}/>} label={tb('categories.categorized')}/>
-            </Box>
+            <Typography width="60%" textAlign="right" lineHeight="1.2" variant="caption">Cuando se desee usar procedimientos siempre deberá haber categorías</Typography>
+            </Stack>
             <Box style={{justifyContent:'center'}}>
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
