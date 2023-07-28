@@ -82,7 +82,8 @@ export const ToolBoxDialog = () => {
                     control={<Switch checked={toolboxState.isCategorySelected(cat)}
                                      name={cat}
                                      key={cat+i} 
-                                     onChange={handleCatOnChange}/>} label={tb('categories.' + cat)}/>
+                                     onChange={handleCatOnChange}/>} 
+                                     label={<Typography variant="h6">{tb('categories.' + cat)}</Typography>}/>
                     {availableBlocksFor(challenge!.scene.type).map((block) => {
                             return( (cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{paddingLeft: "20px"}}>
                             <FormControlLabel key={block.id} 
