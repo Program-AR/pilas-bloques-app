@@ -5,6 +5,7 @@ import { categories, availableBlocksFor } from "../../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
+import { PROCEDURE_BLOCK } from "../SceneEdition/mapUtils";
 
 export const ToolBoxDialog = () => {
 
@@ -19,13 +20,25 @@ export const ToolBoxDialog = () => {
     const toolboxState = new ToolboxState(challenge!, toolBoxItems)
     const [open, setOpen] = useState(false);
     
-    /* post MVP 
     let currentIsCategorized = challenge!.toolbox.categorized
     const [isCategorized, setIsCategorized] = useState(currentIsCategorized);
+    const [disableIsCategorized, setDisableIsCategorized] = useState(false);
+
     const handleIsCategorizedOnChange = (event : { target: { checked: boolean }  }) => {
         setIsCategorized(event.target.checked)
     }
-    */
+    
+    const checkProcedureInBlock = (controlBlocks:string[]) => {
+        console.log('paso por aca ')
+        console.log(controlBlocks)
+        if ( controlBlocks.includes(PROCEDURE_BLOCK) )
+            {
+                console.log('entro por aca')
+                setIsCategorized(true)
+                setDisableIsCategorized(true)
+            }
+        else setDisableIsCategorized(false)
+    }
 
     const handleCatOnChange = (event : { target: { name: string; checked: boolean }  }) => {
         toolboxState.categoryChanged(event.target.name, event.target.checked)
@@ -35,11 +48,13 @@ export const ToolBoxDialog = () => {
     const handleToolBoxOnChange = (event : { target: { name: string; checked: boolean }  }) => {
         toolboxState.blockChanged(event.target.name, event.target.checked)
         setToolBoxItems(toolboxState.selectedBlockIds())
+        checkProcedureInBlock(toolboxState.selectedBlockIds())
     }
 
     const handleButtonClick = () => {
         if(!open) {
             setToolBoxItems(currentToolBox)
+            checkProcedureInBlock(currentToolBox)
             setOpen(true)
         }
     }    
@@ -49,7 +64,7 @@ export const ToolBoxDialog = () => {
     }
     const handleOnConfirm = () => {
         challenge!.toolbox.blocks = toolBoxItems
-        challenge!.toolbox.categorized = true // MVP is always true ... isCategorized
+        challenge!.toolbox.categorized = isCategorized
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
     }
@@ -67,14 +82,13 @@ export const ToolBoxDialog = () => {
                         onCancel={handleOnCancel}
                         title={t('toolbox.title')}>
             <div>
-            {/* post MVP
             <Box style={{textAlign:'right'}}>
                 <FormControlLabel key="isCategorized" labelPlacement="start"
+                    disabled={disableIsCategorized}
                     control={<Switch checked={isCategorized}
                                      key="isCategorized"
                                      onChange={handleIsCategorizedOnChange}/>} label={tb('categories.categorized')}/>
             </Box>
-            */}
             <Box style={{justifyContent:'center'}}>
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
