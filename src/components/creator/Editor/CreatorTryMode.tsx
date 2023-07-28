@@ -11,6 +11,7 @@ import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
 import { NewChallengeButton } from "./ActionButtons/NewChallengeButton"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
 import { CreatorActionButton } from "./ActionButtons/CreatorActionButton"
+import EditIcon from '@mui/icons-material/Edit';
 
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
@@ -23,7 +24,9 @@ const Actions = () => {
 
     return <Stack direction="row" alignItems={"center"}>
         <NewChallengeButton/>
-        <Link to="/creador/editar"><CreatorActionButton>{t("editor.buttons.keepEditing")}</CreatorActionButton></Link>
+        <Link to="/creador/editar">
+            <CreatorActionButton startIcon={<EditIcon/>} backgroundColor="#449d99">{t("editor.buttons.keepEditing")}</CreatorActionButton>
+        </Link>
         <DownloadButton/>
     </Stack>
 }
