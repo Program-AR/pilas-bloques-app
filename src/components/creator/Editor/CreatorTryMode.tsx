@@ -10,8 +10,7 @@ import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
 import { NewChallengeButton } from "./ActionButtons/NewChallengeButton"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
-import { CreatorActionButton } from "./ActionButtons/CreatorActionButton"
-import EditIcon from '@mui/icons-material/Edit';
+import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
 
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
@@ -19,17 +18,13 @@ const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
         <Actions />
     </CreatorSubHeader>
 
-const Actions = () => {
-    const {t} = useTranslation('creator')
-
-    return <Stack direction="row" alignItems={"center"}>
+const Actions = () => <>
+    <ReturnToEditionButtion/>
+    <Stack direction="row" alignItems={"center"}>
         <NewChallengeButton/>
-        <Link to="/creador/editar">
-            <CreatorActionButton startIcon={<EditIcon/>} backgroundColor="#449d99">{t("editor.buttons.keepEditing")}</CreatorActionButton>
-        </Link>
         <DownloadButton/>
     </Stack>
-}
+    </>
 
 export const CreatorTryMode = () => {
     const {t} = useTranslation('creator')

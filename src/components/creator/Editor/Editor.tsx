@@ -29,15 +29,17 @@ export const CreatorEditor = () => {
 
 const EditorSubHeader: React.FC = () => 
   <CreatorSubHeader>
-    <TitleEdition/>
-    <Actions/>
+      <TitleEdition/>
+      <Actions/>
   </CreatorSubHeader>
 
-const Actions = () => <Stack direction="row" alignItems={"center"}>
-  <NewChallengeButton/>
+const Actions = () => <>
   <TryButton/>
-  <DownloadButton/>
-</Stack>
+  <Stack direction="row" alignItems={"center"}>
+    <NewChallengeButton/>
+    <DownloadButton/>
+  </Stack>
+</>
 
 const ChallengeDetailsEdition = () => <Stack direction="row" style={{ maxHeight: 70, justifyContent: "space-between" }}>
   <StatementEdition />
