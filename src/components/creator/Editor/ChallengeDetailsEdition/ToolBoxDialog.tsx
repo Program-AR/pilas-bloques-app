@@ -22,7 +22,7 @@ export const ToolBoxDialog = () => {
     
     let currentIsCategorized = challenge!.toolbox.categorized
     const [isCategorized, setIsCategorized] = useState(currentIsCategorized);
-    const [disableIsCategorized, setDisableIsCategorized] = useState(true);
+    const [disableIsCategorized, setDisableIsCategorized] = useState(false);
 
     const handleIsCategorizedOnChange = (event : { target: { checked: boolean }  }) => {
         setIsCategorized(event.target.checked)
