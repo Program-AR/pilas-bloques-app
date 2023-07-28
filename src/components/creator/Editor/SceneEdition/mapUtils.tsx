@@ -9,7 +9,7 @@ export const EMPTY = "-"
 export const INITIAL_COL = 0
 export const INITIAL_ROW = 0
 
-export const PROCEDURE_BLOCK = 'Procedimiento'
+export const PROCEDURE_CATEGORY = 'myprocedures'
 
 /**
  * If no position is given, the actor is set in the initial one (0,0)
