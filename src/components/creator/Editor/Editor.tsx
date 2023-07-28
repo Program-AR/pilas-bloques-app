@@ -5,11 +5,12 @@ import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { ToolBoxDialog } from "./ChallengeDetailsEdition/ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
-import { DownloadButton } from "./DownloadButton";
-import { TryButton } from "./TryButton";
-import { NewChallengeButton } from "./NewChallengeButton";
+import { TryButton } from "./ActionButtons/TryButton";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
+import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
+import { NewChallengeButton } from "./ActionButtons/NewChallengeButton";
+import { DownloadButton } from "./ActionButtons/DownloadButton";
 
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')
@@ -18,10 +19,10 @@ export const CreatorEditor = () => {
     <CreatorContextProvider>
       <Stack alignItems="center" height="100%">
         <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
-        <Stack height="100%" width="100%" style={{ maxWidth: 1024, maxHeight: 650, borderStyle: "solid" }}>
+        <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 1024, maxHeight: 630}}>
           <SceneEdition />
-          <ChallengeDetailsEdition />
         </Stack>
+        <EditorFooter />
       </Stack>
     </CreatorContextProvider>
   )
@@ -34,13 +35,14 @@ const EditorSubHeader: React.FC = () =>
   </CreatorSubHeader>
 
 const Actions = () => <Stack direction="row" alignItems={"center"}>
-  <NewChallengeButton/>
   <TryButton/>
+  <NewChallengeButton/>
   <DownloadButton/>
 </Stack>
 
-const ChallengeDetailsEdition = () => <Stack direction="row" style={{ maxHeight: 70, justifyContent: "space-between" }}>
+const EditorFooter: React.FC = () => 
+  <CreatorFooter>
   <StatementEdition />
   <ToolBoxDialog/>
   {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
-</Stack>
+  </CreatorFooter>

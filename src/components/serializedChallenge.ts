@@ -1,5 +1,5 @@
 import simpleTypeGuard, { SimpleArray, SimpleStringOptional, SimpleNumber, SimpleString, SimpleBooleanOptional, SimpleObjectOptional, SimpleSkip } from 'simple-type-guard';
-import { ACTOR } from './creator/Editor/SceneEdition/mapUtils';
+import { ACTOR, EMPTY } from './creator/Editor/SceneEdition/mapUtils';
 
 //IMPORTANT: remember to bump this version whenever there are breaking changes in the file format.
 export const creatorVersion = 1
@@ -127,9 +127,9 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
 export const defaultScene = (type: SceneType): Scene => {
 	return {
 		type: type,
-		maps: [[[ACTOR, '-', '-'],
-		['-', '-', '-'],
-		['-', '-', '-']]]
+		maps: [[[ACTOR, EMPTY, EMPTY],
+		[EMPTY, EMPTY, EMPTY],
+		[EMPTY, EMPTY, EMPTY]]]
 	}
 }
 

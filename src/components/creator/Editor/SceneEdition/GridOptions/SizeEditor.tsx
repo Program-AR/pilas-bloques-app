@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next"
 import { CreatorContext } from "../../CreatorContext"
 import { INITIAL_ROW, EMPTY, relocateActorIfRemoved } from "../mapUtils"
 import { IncDecButtons } from "./IncDecButtons"
+import { PBCard } from "../../../../PBCard"
 
 export type StyleGridProps = {
     setStyleGrid: (style: CSSProperties) => void
@@ -59,9 +60,11 @@ export const SizeEditor = (props: StyleGridProps) => {
 
     
     return (
-        <Stack sx={{ flexDirection: "column", height: "200px", justifyContent: "space-between", padding: "10px" }}>
-            <IncDecButtons add={addColumn} remove={removeColumn} value={columns} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col" />
-            <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row" />
-        </Stack>
+        <PBCard>
+            <Stack sx={{ flexDirection: "column", maxWidth: "200px", height: "200px", justifyContent: "space-between", padding: "10px" }}>
+                <IncDecButtons add={addColumn} remove={removeColumn} value={columns} min={1} max={12} label={t("scene.numCols")} testId="col" data-testid="map-col" />
+                <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row" />
+            </Stack>
+        </PBCard>
     )
 }
