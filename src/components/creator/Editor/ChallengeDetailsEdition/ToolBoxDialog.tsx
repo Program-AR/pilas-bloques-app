@@ -29,11 +29,8 @@ export const ToolBoxDialog = () => {
     }
     
     const checkProcedureInBlock = (controlBlocks:string[]) => {
-        console.log('paso por aca ')
-        console.log(controlBlocks)
         if ( controlBlocks.includes(PROCEDURE_BLOCK) )
             {
-                console.log('entro por aca')
                 setIsCategorized(true)
                 setDisableIsCategorized(true)
             }
