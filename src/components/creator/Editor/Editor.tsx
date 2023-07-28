@@ -15,14 +15,10 @@ import { DownloadButton } from "./ActionButtons/DownloadButton";
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')
 
-  // TODO BackGroundColor in Stack
-  // sx={{backgroundColor:'#311C3B'}} violet
-  // sx={{backgroundColor:'var(--theme-background-color)'}}> AppBar Color
-  // no bgcolor = body color
   return (
     <CreatorContextProvider>
       
-      <Stack alignItems="center" height="100%" sx={{backgroundColor:'var(--theme-background-color)'}}>
+      <Stack alignItems="center" sx={{backgroundColor: 'var(--theme-background-secondary-color)'}}>
         <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
         <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 1024, maxHeight: 630}}>
           <SceneEdition />
