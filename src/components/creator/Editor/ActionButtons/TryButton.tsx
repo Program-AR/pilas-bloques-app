@@ -7,7 +7,7 @@ export const TryButton = () => {
     const {t} = useTranslation('creator')
 
     return <Link to="/creador/probar">
-            <CreatorActionButton startIcon={<PlayArrowIcon/>} backgroundColor="#449d99">{t("editor.buttons.try")}</CreatorActionButton>
+            <CreatorActionButton startIcon={<PlayArrowIcon/>} backgroundcolor="#449d99">{t("editor.buttons.try")}</CreatorActionButton>
         </Link>
 
 }
