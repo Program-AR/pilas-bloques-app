@@ -5,22 +5,38 @@ import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import { CreatorContext } from "../../CreatorContext";
 import { LocalStorage } from "../../../../../localStorage";
-import { defaultScene } from "../../../../serializedChallenge";
+import { SceneMap, defaultScene } from "../../../../serializedChallenge";
 
 export const GridOptions = (props: StyleGridProps) => {
 
     const { t } = useTranslation("creator")
 
-    const { setIndex, setMaps } = useContext(CreatorContext)
+    const { setIndex, setMaps, currentMap, index } = useContext(CreatorContext)
 
-    const handleDelete = () => { }
-    const handleDuplicate = () => { }
-    const handleAdd = () => { 
+    
+    const handleDelete = () => {
         const challenge = LocalStorage.getCreatorChallenge()!
-        challenge.scene.maps.push(defaultScene(challenge.scene.type).maps[0])
-        const index = challenge.scene.maps.length -1
+        if (challenge.scene.maps.length === 1) return
+
+        challenge.scene.maps.splice(index, 1)
         setMaps(challenge.scene.maps)
-        setIndex(index)
+        setIndex(index - 1)
+    }
+
+    const handleDuplicate = () => {
+        addMap(currentMap)
+    }
+
+    const handleAdd = () => {
+    const challenge = LocalStorage.getCreatorChallenge()!
+        addMap(defaultScene(challenge.scene.type).maps[0])
+    }
+
+    const addMap = (scene: SceneMap) => {
+    const challenge = LocalStorage.getCreatorChallenge()!
+        challenge.scene.maps.push(scene)
+        setMaps(challenge.scene.maps)
+        setIndex(challenge.scene.maps.length - 1)
     }
 
     return (

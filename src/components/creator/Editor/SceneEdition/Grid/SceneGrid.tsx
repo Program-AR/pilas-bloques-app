@@ -11,7 +11,7 @@ type SceneGridProps = {
 }
 
 export const SceneGrid = (props: SceneGridProps) => {
-    const { currentMap } = useContext(CreatorContext)
+    const { currentMap, index } = useContext(CreatorContext)
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -28,6 +28,7 @@ export const SceneGrid = (props: SceneGridProps) => {
                         content={cellContent}
                         sceneType={sceneType} />)}
             </Stack>)}
+            <p>{index}</p>
     </Stack>
 }
 
