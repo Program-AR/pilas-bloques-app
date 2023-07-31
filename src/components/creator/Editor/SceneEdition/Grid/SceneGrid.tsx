@@ -30,7 +30,7 @@ export const SceneGrid = (props: SceneGridProps) => {
                             content={cellContent}
                             sceneType={sceneType} />)}
                 </Stack>)}
-        </Stack>
         <p>{index}</p>
+        </Stack>
     </PBCard>
 }

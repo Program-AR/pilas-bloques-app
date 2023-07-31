@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SceneMap, defaultChallenge } from '../../serializedChallenge';
+import { SceneMap, SerializedChallenge, defaultChallenge } from '../../serializedChallenge';
 import { LocalStorage } from '../../../localStorage';
 import { ACTOR } from './SceneEdition/mapUtils';
 
@@ -11,6 +11,7 @@ export type CreatorContextType = {
     index: number;
     setIndex: (index: number) => void;
     setMaps: (maps: any) => void;
+    maps: SceneMap[]
 };
 
 const defaultCreatorContext = {
@@ -20,7 +21,8 @@ const defaultCreatorContext = {
     setCurrentMap: () => { },
     index: 0, 
     setIndex: () => { },
-    setMaps: () => { }
+    setMaps: () => { },
+    maps: defaultChallenge('Duba').scene.maps
 }
 
 export const CreatorContext = React.createContext<CreatorContextType>(defaultCreatorContext);
@@ -37,7 +39,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     const [maps, setMaps] = useState(challenge.scene.maps)
     const [index, setIndex] = useState(0)
 
-    const currentMap = maps[index]
+    const currentMap = maps[index] || challenge.scene.maps[index]
 
     const setCurrentMap = (map: SceneMap) => {
         maps[index] = map
@@ -50,7 +52,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     }, [maps, challenge])
 
     return (
-        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap, index, setIndex, setMaps}}>
+        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap, index, setIndex, setMaps, maps}}>
             {children}
         </CreatorContext.Provider>
     );
