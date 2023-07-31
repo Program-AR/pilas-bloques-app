@@ -15,7 +15,7 @@ export const SizeEditor = (props: StyleGridProps) => {
 
     const { currentMap, setCurrentMap } = useContext(CreatorContext)
     const [width, setWidth] = useState('')
-    
+
     const rows = currentMap.length
     const columns = currentMap[INITIAL_ROW].length
 
@@ -45,10 +45,9 @@ export const SizeEditor = (props: StyleGridProps) => {
         setCurrentMap(currentMap)
     }
 
-    const updateStyleGrid = useCallback(()=> {
-        const widthValue = ((columns/rows)*50).toFixed(0) + '%';
-        if ( width !== widthValue )
-        {
+    const updateStyleGrid = useCallback(() => {
+        const widthValue = ((columns / rows) * 75).toFixed(0) + '%';
+        if (width !== widthValue) {
             setWidth(widthValue)
             props.setStyleGrid({width: widthValue})
         }

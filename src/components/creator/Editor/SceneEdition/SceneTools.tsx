@@ -40,8 +40,10 @@ export const SceneTools = () => {
 
     const PutObstacleTool = () => 
         <>
-            <Tool id="O" image={`${imagePathScene}/O.png`} /> 
-            <Typography variant="caption">{t('tools.putObstacle')}</Typography>
+            <Stack alignItems="center">
+                <Tool id="O" image={`${imagePathScene}/O.png`} /> 
+                <Typography variant="caption">{t('tools.putObstacle')}</Typography>
+            </Stack>
         </>
 
     const PutObjectTool = () => 
@@ -55,14 +57,18 @@ export const SceneTools = () => {
 
     const PutActorTool = () => 
         <>
-            <Tool id="A" image={`${imagePathScene}/tool.png`}/>
-            <Typography variant="caption">{t('tools.putActor')}</Typography>
+            <Stack alignItems="center">
+                <Tool id="A" image={`${imagePathScene}/tool.png`}/>
+                <Typography variant="caption">{t('tools.putActor')}</Typography>
+            </Stack>
         </>
                         
     const DeleteTool = () => 
         <>
-            <Tool id="-" image={`${imagePath}/eraser.png`}/>
-            <Typography variant="caption">{t('tools.delete')}</Typography>
+            <Stack alignItems="center">
+                <Tool id="-" image={`${imagePath}/eraser.png`}/>
+                <Typography variant="caption">{t('tools.delete')}</Typography>
+            </Stack>
         </>     
 
 

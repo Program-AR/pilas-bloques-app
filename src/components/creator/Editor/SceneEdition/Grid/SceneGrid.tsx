@@ -19,7 +19,7 @@ export const SceneGrid = (props: SceneGridProps) => {
 
     const sceneType: SceneType = challenge.scene.type
 
-    return <PBCard sx={{flexGrow: 1}}>
+    return <PBCard sx={{flexGrow: 1, justifyContent:"space-evenly"}}>
         <Stack className={styles.grid} style={props.styling}>
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">

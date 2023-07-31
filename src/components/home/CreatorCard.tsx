@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material"
+import { Stack, Typography } from "@mui/material"
 import { Link } from "react-router-dom";
 import { CreatorCard } from "./CreateChallengeCard"
 import { ImportChallengeCard } from "./ImportChallengeCard"
@@ -17,13 +17,17 @@ const CreateChallengeCard = () => {
 }
 
 export const CreatorCards = () => {
+	const {t} = useTranslation("home")
 	const shouldShow = process.env.NODE_ENV !== 'production'
 	
 	return shouldShow ? (
-	<Stack direction="row" className={styles["home-container"]}>
-		<CreateChallengeCard />
-		<ImportChallengeCard />
-	</Stack>)
+		<>
+			<Typography className={styles.title} variant="h5">{t("creatorTitle")}</Typography>
+			<Stack direction="row" className={styles["home-container"]}>
+				<CreateChallengeCard />
+				<ImportChallengeCard />
+			</Stack>
+		</>)
 	:
 	<></>
 	
