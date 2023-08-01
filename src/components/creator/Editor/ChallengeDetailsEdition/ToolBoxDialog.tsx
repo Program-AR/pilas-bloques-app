@@ -1,10 +1,11 @@
-import { Button, Box, Switch, FormControlLabel } from "@mui/material";
+import { Button, Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { categories, availableBlocksFor } from "../../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
+import { PROCEDURE_CATEGORY } from "../SceneEdition/mapUtils";
 
 export const ToolBoxDialog = () => {
 
@@ -15,16 +16,17 @@ export const ToolBoxDialog = () => {
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
    
     let currentToolBox = challenge!.toolbox.blocks
-    let currentIsCategorized = challenge!.toolbox.categorized
     const [toolBoxItems, setToolBoxItems] = useState(currentToolBox);
-    const [isCategorized, setIsCategorized] = useState(currentIsCategorized);
     const toolboxState = new ToolboxState(challenge!, toolBoxItems)
     const [open, setOpen] = useState(false);
+    
+    let currentIsCategorized = challenge!.toolbox.categorized
+    const [isCategorized, setIsCategorized] = useState(currentIsCategorized || toolboxState.shouldDisableCategorization() );
 
     const handleIsCategorizedOnChange = (event : { target: { checked: boolean }  }) => {
         setIsCategorized(event.target.checked)
     }
-
+    
     const handleCatOnChange = (event : { target: { name: string; checked: boolean }  }) => {
         toolboxState.categoryChanged(event.target.name, event.target.checked)
         setToolBoxItems(toolboxState.selectedBlockIds())
@@ -47,7 +49,7 @@ export const ToolBoxDialog = () => {
     }
     const handleOnConfirm = () => {
         challenge!.toolbox.blocks = toolBoxItems
-        challenge!.toolbox.categorized = isCategorized
+        challenge!.toolbox.categorized = isCategorized || toolboxState.shouldDisableCategorization()
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
     }
@@ -65,12 +67,14 @@ export const ToolBoxDialog = () => {
                         onCancel={handleOnCancel}
                         title={t('toolbox.title')}>
             <div>
-            <Box style={{textAlign:'right'}}>
+            <Stack alignItems="flex-end">
                 <FormControlLabel key="isCategorized" labelPlacement="start"
-                    control={<Switch checked={isCategorized}
+                    disabled={toolboxState.shouldDisableCategorization()}
+                    control={<Switch checked={isCategorized || toolboxState.shouldDisableCategorization()}
                                      key="isCategorized"
                                      onChange={handleIsCategorizedOnChange}/>} label={tb('categories.categorized')}/>
-            </Box>
+            <Typography width="60%" textAlign="right" lineHeight="1.2" variant="caption">Cuando se desee usar procedimientos siempre deberá haber categorías</Typography>
+            </Stack>
             <Box style={{justifyContent:'center'}}>
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
@@ -78,7 +82,8 @@ export const ToolBoxDialog = () => {
                     control={<Switch checked={toolboxState.isCategorySelected(cat)}
                                      name={cat}
                                      key={cat+i} 
-                                     onChange={handleCatOnChange}/>} label={tb('categories.' + cat)}/>
+                                     onChange={handleCatOnChange}/>} 
+                                     label={<Typography variant="h6">{tb('categories.' + cat)}</Typography>}/>
                     {availableBlocksFor(challenge!.scene.type).map((block) => {
                             return( (cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{paddingLeft: "20px"}}>
                             <FormControlLabel key={block.id} 
@@ -121,6 +126,10 @@ class ToolboxState {
     }
     isCategorySelected(categoryId: string) {
         return this.categories.find( category => category.id === categoryId)!.isSelected()
+    }
+    
+    shouldDisableCategorization() {
+        return this.isCategorySelected(PROCEDURE_CATEGORY)
     }
 }
 
