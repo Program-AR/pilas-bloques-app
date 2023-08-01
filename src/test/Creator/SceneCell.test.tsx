@@ -1,10 +1,10 @@
 import { fireEvent, render } from '@testing-library/react'
-import { Position, SceneCell } from "../components/creator/Editor/SceneEdition/Grid/SceneCell"
-import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../components/serializedChallenge"
-import { LocalStorage } from "../localStorage"
-import { renderComponent } from "./testUtils"
-import { CreatorContextProvider } from '../components/creator/Editor/CreatorContext'
-import { ACTOR, EMPTY, OBSTACLE } from '../components/creator/Editor/SceneEdition/mapUtils'
+import { Position, SceneCell } from "../../components/creator/Editor/SceneEdition/Grid/SceneCell"
+import { SceneMap, SceneType, SerializedChallenge, defaultChallenge } from "../../components/serializedChallenge"
+import { LocalStorage } from "../../localStorage"
+import { renderComponent } from "../testUtils"
+import { CreatorContextProvider } from '../../components/creator/Editor/CreatorContext'
+import { ACTOR, EMPTY, OBSTACLE } from '../../components/creator/Editor/SceneEdition/mapUtils'
 
 describe('Scene grid', () => {
 
@@ -23,7 +23,6 @@ describe('Scene grid', () => {
         }
 
         LocalStorage.saveCreatorChallenge(challange)
-
     }
 
     beforeEach(() => {

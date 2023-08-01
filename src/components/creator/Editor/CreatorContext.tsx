@@ -30,14 +30,15 @@ export const CreatorContext = React.createContext<CreatorContextType>(defaultCre
 export type CreatorProviderProps = {
     children: React.ReactNode;
     defaultSelectedTool?: string;
+    defaultIndex?: number;
 };
 
-export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children, defaultSelectedTool = ACTOR }: CreatorProviderProps) => {
+export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ children, defaultSelectedTool = ACTOR, defaultIndex = 0 }: CreatorProviderProps) => {
     const [selectedTool, setSelectedTool] = useState(defaultSelectedTool);
 
     const challenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
     const [maps, setMaps] = useState(challenge.scene.maps)
-    const [index, setIndex] = useState(0)
+    const [index, setIndex] = useState(defaultIndex)
 
     const currentMap = maps[index] || challenge.scene.maps[index]
 

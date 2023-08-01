@@ -1,4 +1,4 @@
-import { Button, ButtonProps, IconButton, Stack, Tooltip, useMediaQuery } from "@mui/material";
+import { ButtonProps, IconButton, Stack, Tooltip, useMediaQuery } from "@mui/material";
 import { SizeEditor, StyleGridProps } from "./SizeEditor";
 import { Add, ContentCopy, Delete } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,7 @@ import { CreatorContext } from "../../CreatorContext";
 import { LocalStorage } from "../../../../../localStorage";
 import { SceneMap, defaultScene } from "../../../../serializedChallenge";
 import { PBCard } from "../../../../PBCard";
+import { CreatorActionButton } from "../../ActionButtons/CreatorActionButton";
 
 export const GridOptions = (props: StyleGridProps) => {
 
@@ -14,12 +15,11 @@ export const GridOptions = (props: StyleGridProps) => {
 
     const { setIndex, setMaps, currentMap, index, maps } = useContext(CreatorContext)
 
-
     const handleDelete = () => {
         if (maps.length === 1) return
         maps.splice(index, 1)
-        setMaps(maps)
-        setIndex(index - 1)
+        setMaps([...maps])
+        if(index !== 0) setIndex(index - 1) //in case the index is 0, index should not change
     }
 
     const handleDuplicate = () => {
@@ -41,16 +41,17 @@ export const GridOptions = (props: StyleGridProps) => {
         <PBCard>
             <Stack direction="column" style={{ height: '100%', margin: '5px' }} alignItems="center" justifyContent="space-evenly">
                 <SizeEditor setStyleGrid={props.setStyleGrid} />
-                <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} />
-                <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} />
-                <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} />
+                <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete"/>
+                <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate"/>
+                <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add"/>
             </Stack>
         </PBCard>
     )
 }
 
 type GridOptionButtonProps = {
-    tooltip: string
+    tooltip: string,
+    testid: string
 }
 
 const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
@@ -64,7 +65,7 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
                 </IconButton>
             </Tooltip >
             :
-            <Button startIcon={props.startIcon} onClick={props.onClick}>{isSmallScreen ? "" : props.tooltip}</Button>
+            <CreatorActionButton data-testid={`${props.testid}-map-button`} startIcon={props.startIcon} onClick={props.onClick}>{isSmallScreen ? "" : props.tooltip}</CreatorActionButton>
         }
     </>
 
