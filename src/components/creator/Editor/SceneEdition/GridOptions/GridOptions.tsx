@@ -1,4 +1,4 @@
-import { Button, ButtonProps, IconButton, Stack, Tooltip, useMediaQuery } from "@mui/material";
+import { Button, ButtonProps, IconButton, Stack, Tooltip, Typography, useMediaQuery } from "@mui/material";
 import { SizeEditor, StyleGridProps } from "./SizeEditor";
 import { Add, ContentCopy, Delete } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -51,7 +51,7 @@ export const GridOptions = (props: StyleGridProps) => {
                 
                 <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete" />
                 <GenericModalDialog isOpen={showDeleteDialog} onConfirm={deleteMap} onCancel={() => setShowDeleteDialog(false)} title={t("scenarios.delete")}>
-                    <p>{t("scenarios.areYouSure")}</p>
+                    <Typography>{t("scenarios.areYouSure")}</Typography>
                 </GenericModalDialog>
                 
                 <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
@@ -72,12 +72,18 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
     return <>
         {isSmallScreen ?
             <Tooltip title={props.tooltip}>
-                <IconButton onClick={props.onClick}>
+                <IconButton style={{color: 'var(--theme-font-color'}} onClick={props.onClick}>
                     {props.startIcon}
                 </IconButton>
             </Tooltip >
             :
-            <Button data-testid={`${props.testid}-map-button`} startIcon={props.startIcon} onClick={props.onClick}>{isSmallScreen ? "" : props.tooltip}</Button>
+            <Button 
+            data-testid={`${props.testid}-map-button`}
+            startIcon={props.startIcon}
+            onClick={props.onClick}
+            style={{textTransform: "none", color: 'var(--theme-font-color'}}>
+                {isSmallScreen ? "" : props.tooltip}
+            </Button>
         }
     </>
 
