@@ -12,7 +12,7 @@ type SceneGridProps = {
 }
 
 export const SceneGrid = (props: SceneGridProps) => {
-    const { map } = useContext(CreatorContext)
+    const { currentMap, index } = useContext(CreatorContext)
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -21,7 +21,7 @@ export const SceneGrid = (props: SceneGridProps) => {
 
     return <PBCard sx={{flexGrow: 1, justifyContent:"space-evenly"}}>
         <Stack className={styles.grid} style={props.styling}>
-            {map.map((row, i) =>
+            {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                     {row.map((cellContent, j) =>
                         <SceneCell
@@ -30,6 +30,7 @@ export const SceneGrid = (props: SceneGridProps) => {
                             content={cellContent}
                             sceneType={sceneType} />)}
                 </Stack>)}
+        <p>{index}</p>
         </Stack>
     </PBCard>
 }

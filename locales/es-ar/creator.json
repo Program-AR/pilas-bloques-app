@@ -41,11 +41,17 @@
 		"delete": "Borrar"
 	},
 	"scene": {
-		"numCols": "Cantidad de Columnas",
-		"numRows": "Cantidad de Filas"
+		"numCols": "Columnas",
+		"numRows": "Filas"
 	},
 	"toolbox": {
 		"title": "Selector de Bloques",
 		"button": "Selector de Bloques"
+	},
+	"scenarios": {
+		"delete": "Eliminar escenario",
+		"duplicate": "Duplicar escenario",
+		"add": "Añadir escenario",
+		"areYouSure": "¿Desea eliminar el escenario actual?"
 	}
 }
