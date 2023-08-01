@@ -3,10 +3,11 @@ import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
-import { ToolBoxDialog } from "./ToolBoxDialog";
+import { ToolBoxDialog } from "./ChallengeDetailsEdition/ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
 import { TryButton } from "./ActionButtons/TryButton";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
+import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
 import { NewChallengeButton } from "./ActionButtons/NewChallengeButton";
 import { DownloadButton } from "./ActionButtons/DownloadButton";
@@ -16,12 +17,13 @@ export const CreatorEditor = () => {
 
   return (
     <CreatorContextProvider>
-      <Stack alignItems="center" height="100%">
+      
+      <Stack alignItems="center" sx={{backgroundColor: 'var(--theme-background-secondary-color)'}}>
         <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
-        <Stack height="100%" width="100%" style={{ maxWidth: 1024, maxHeight: 650, borderStyle: "solid" }}>
+        <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 1024, maxHeight: 630}}>
           <SceneEdition />
-          <ChallengeDetailsEdition />
         </Stack>
+        <EditorFooter />
       </Stack>
     </CreatorContextProvider>
   )
@@ -41,8 +43,9 @@ const Actions = () => <>
   </Stack>
 </>
 
-const ChallengeDetailsEdition = () => <Stack direction="row" style={{ maxHeight: 70, justifyContent: "space-between" }}>
+const EditorFooter: React.FC = () => 
+  <CreatorFooter>
   <StatementEdition />
   <ToolBoxDialog/>
   {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
-</Stack>
+  </CreatorFooter>

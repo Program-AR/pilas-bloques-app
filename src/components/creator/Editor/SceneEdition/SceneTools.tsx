@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next";
 import { LocalStorage } from '../../../../localStorage';
 import { SerializedChallenge, sceneObjectByType } from '../../../serializedChallenge';
 import { CreatorContext } from '../CreatorContext';
+import { PBCard } from '../../../PBCard';
+import theme from '../../../../theme';
 
 export const SceneTools = () => {
     type ToolProps = {
@@ -38,38 +40,46 @@ export const SceneTools = () => {
 
     const PutObstacleTool = () => 
         <>
-            <Tool id="O" image={`${imagePathScene}/O.png`} /> 
-            <Typography variant="caption">{t('tools.putObstacle')}</Typography>
+            <Stack alignItems="center">
+                <Tool id="O" image={`${imagePathScene}/O.png`} /> 
+                <Typography variant="caption">{t('tools.putObstacle')}</Typography>
+            </Stack>
         </>
 
     const PutObjectTool = () => 
         <>
-            <Stack direction="row" style={{flexWrap: "wrap", justifyContent: "center"}}>
+            <Stack alignItems="center">
                 {sceneObjectByType(challenge!.scene.type).validCells.map((object) => 
-                <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`}/>)}
+                    <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`}/>)}
+                <Typography variant="caption">{t('tools.putObject')}</Typography>
             </Stack>
-            <Typography variant="caption">{t('tools.putObject')}</Typography>
         </>
 
     const PutActorTool = () => 
         <>
-            <Tool id="A" image={`${imagePathScene}/tool.png`}/>
-            <Typography variant="caption">{t('tools.putActor')}</Typography>
+            <Stack alignItems="center">
+                <Tool id="A" image={`${imagePathScene}/tool.png`}/>
+                <Typography variant="caption">{t('tools.putActor')}</Typography>
+            </Stack>
         </>
                         
     const DeleteTool = () => 
         <>
-            <Tool id="-" image={`${imagePath}/eraser.png`}/>
-            <Typography variant="caption">{t('tools.delete')}</Typography>
+            <Stack alignItems="center">
+                <Tool id="-" image={`${imagePath}/eraser.png`}/>
+                <Typography variant="caption">{t('tools.delete')}</Typography>
+            </Stack>
         </>     
 
 
     return ( 
-        <Stack alignItems="center" style={{maxWidth: "200px", padding: "10px"}}>
-            <PutActorTool/>
-            <PutObstacleTool/>
-            <PutObjectTool/>
-            <DeleteTool/>
-        </Stack> 
+        <PBCard>
+            <Stack alignItems="center" justifyContent="space-around" style={{padding: theme.spacing(1), height: "100%"}}>
+                <PutActorTool/>
+                <PutObstacleTool/>
+                <PutObjectTool/>
+                <DeleteTool/>
+            </Stack> 
+        </PBCard>
     )
 }
