@@ -1,32 +1,31 @@
-import { Stack } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { Ember } from "../../../emberCommunication"
 import { LocalStorage } from "../../../localStorage"
 import { EMBER_IMPORTED_CHALLENGE_PATH } from "../../ImportedChallengeView"
 import { EmberView } from "../../emberView/EmberView"
 import { Header, HeaderText } from "../../header/Header"
 import { SerializedChallenge } from "../../serializedChallenge"
-import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
 import { NewChallengeButton } from "./ActionButtons/NewChallengeButton"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
-import { CreatorActionButton } from "./ActionButtons/CreatorActionButton"
+import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
 
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
-        <HeaderText text={challenge.title}/>
+        <Box sx={{ width: "293px" }}>
+            <HeaderText text={challenge.title}/>
+        </Box>
         <Actions />
     </CreatorSubHeader>
 
-const Actions = () => {
-    const {t} = useTranslation('creator')
-
-    return <Stack direction="row" alignItems={"center"}>
-        <Link to="/creador/editar"><CreatorActionButton>{t("editor.buttons.keepEditing")}</CreatorActionButton></Link>
+const Actions = () => <>
+    <ReturnToEditionButtion/>
+    <Stack direction="row" alignItems={"center"}>
         <NewChallengeButton/>
         <DownloadButton/>
     </Stack>
-}
+    </>
 
 export const CreatorTryMode = () => {
     const {t} = useTranslation('creator')
