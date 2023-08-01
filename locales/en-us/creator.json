@@ -41,8 +41,8 @@
 		"delete": "Delete"
 	},
 	"scene": {
-		"numCols": "Number of columns",
-		"numRows": "Number of rows"
+		"numCols": "Columns",
+		"numRows": "Rows"
 	},
 	"toolbox": {
 		"title": "Toolbox Panel",
