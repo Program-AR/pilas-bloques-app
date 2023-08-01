@@ -17,7 +17,7 @@ export type Position = {
 
 export const SceneCell: React.FC<CellProps> = (props) => {
 
-    let { selectedTool, map, setMap } = useContext(CreatorContext)
+    let { selectedTool, currentMap, setCurrentMap } = useContext(CreatorContext)
 
     const imagePath = `imagenes/sceneImages/${props.sceneType}`
     const backgroundCellImage = `${imagePath}/casilla.png`
@@ -33,7 +33,7 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     const isInitialCell: boolean = props.position.row === INITIAL_ROW && props.position.column === INITIAL_COL
 
     const handleClick = () => {
-        setMap(updatedMap())
+        setCurrentMap(updatedMap())
     }
 
     const updatedMap = (): SceneMap => {
@@ -50,8 +50,8 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     }
     
     const handleEraser = (): SceneMap => {
-        if (hasActor(currentContent) && isInitialCell && !hasMultipleObjects()) return map; // We can't erase actor on the initial cell
-        if (hasActor(currentContent) && !hasMultipleObjects()) map = setActorAtPosition(map)
+        if (hasActor(currentContent) && isInitialCell && !hasMultipleObjects()) return currentMap; // We can't erase actor on the initial cell
+        if (hasActor(currentContent) && !hasMultipleObjects()) currentMap = setActorAtPosition(currentMap)
         return mapWithNewCellContent(hasMultipleObjects() ? ACTOR : EMPTY)
     }
 
@@ -60,24 +60,24 @@ export const SceneCell: React.FC<CellProps> = (props) => {
     }
 
     const handleObstacle = (): SceneMap => {
-        if (hasActor(currentContent) && isInitialCell) return map; // We can't replace actor on the initial cell
-        if (hasActor(currentContent) && !isInitialCell) map = setActorAtPosition(map)
+        if (hasActor(currentContent) && isInitialCell) return currentMap; // We can't replace actor on the initial cell
+        if (hasActor(currentContent) && !isInitialCell) currentMap = setActorAtPosition(currentMap)
         return mapWithNewCellContent(selectedTool)
     }
 
     const deletedActorMap = () => {
-        let prevPos = actorPosition(map)
-        if (!prevPos) return map //if there is no actor in the map
+        let prevPos = actorPosition(currentMap)
+        if (!prevPos) return currentMap //if there is no actor in the map
 
-        let cellObjects = map[prevPos.row][prevPos.column].split('&')
-        map[prevPos.row][prevPos.column] = hasMultipleObjects(cellObjects) ? cellObjects[1] : EMPTY
+        let cellObjects = currentMap[prevPos.row][prevPos.column].split('&')
+        currentMap[prevPos.row][prevPos.column] = hasMultipleObjects(cellObjects) ? cellObjects[1] : EMPTY
 
-        return map
+        return currentMap
     }
 
     const mapWithNewCellContent = (content: string, position: Position = props.position): SceneMap => {
-        map[position.row][position.column] = content
-        return map
+        currentMap[position.row][position.column] = content
+        return currentMap
     }
 
     return <div
