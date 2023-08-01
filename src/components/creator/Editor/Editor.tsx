@@ -31,15 +31,17 @@ export const CreatorEditor = () => {
 
 const EditorSubHeader: React.FC = () => 
   <CreatorSubHeader>
-    <TitleEdition/>
-    <Actions/>
+      <TitleEdition/>
+      <Actions/>
   </CreatorSubHeader>
 
-const Actions = () => <Stack direction="row" alignItems={"center"}>
+const Actions = () => <>
   <TryButton/>
-  <NewChallengeButton/>
-  <DownloadButton/>
-</Stack>
+  <Stack direction="row" alignItems={"center"}>
+    <NewChallengeButton/>
+    <DownloadButton/>
+  </Stack>
+</>
 
 const EditorFooter: React.FC = () => 
   <CreatorFooter>
