@@ -1,4 +1,4 @@
-import { ButtonProps, IconButton, Stack, Tooltip, useMediaQuery } from "@mui/material";
+import { Button, ButtonProps, IconButton, Stack, Tooltip, useMediaQuery } from "@mui/material";
 import { SizeEditor, StyleGridProps } from "./SizeEditor";
 import { Add, ContentCopy, Delete } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,6 @@ import { CreatorContext } from "../../CreatorContext";
 import { LocalStorage } from "../../../../../localStorage";
 import { SceneMap, defaultScene } from "../../../../serializedChallenge";
 import { PBCard } from "../../../../PBCard";
-import { CreatorActionButton } from "../../ActionButtons/CreatorActionButton";
 
 export const GridOptions = (props: StyleGridProps) => {
 
@@ -65,7 +64,7 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
                 </IconButton>
             </Tooltip >
             :
-            <CreatorActionButton data-testid={`${props.testid}-map-button`} startIcon={props.startIcon} onClick={props.onClick}>{isSmallScreen ? "" : props.tooltip}</CreatorActionButton>
+            <Button data-testid={`${props.testid}-map-button`} startIcon={props.startIcon} onClick={props.onClick}>{isSmallScreen ? "" : props.tooltip}</Button>
         }
     </>
 
