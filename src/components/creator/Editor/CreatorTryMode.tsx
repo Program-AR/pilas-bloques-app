@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material"
+import { Box, Stack } from "@mui/material"
 import { Ember } from "../../../emberCommunication"
 import { LocalStorage } from "../../../localStorage"
 import { EMBER_IMPORTED_CHALLENGE_PATH } from "../../ImportedChallengeView"

@@ -18,7 +18,7 @@ export const TitleEdition = () => {
     }
 
     return <TextField
-        sx={{ margin: "6px", width: "350px" }}
+        sx={{ width: "350px" }}
         size="small"
         label={t('editor.title')}
         value={titleInProgress}
