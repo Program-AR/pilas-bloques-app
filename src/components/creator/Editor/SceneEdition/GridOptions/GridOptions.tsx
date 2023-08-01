@@ -2,11 +2,12 @@ import { Button, ButtonProps, IconButton, Stack, Tooltip, useMediaQuery } from "
 import { SizeEditor, StyleGridProps } from "./SizeEditor";
 import { Add, ContentCopy, Delete } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CreatorContext } from "../../CreatorContext";
 import { LocalStorage } from "../../../../../localStorage";
 import { SceneMap, defaultScene } from "../../../../serializedChallenge";
 import { PBCard } from "../../../../PBCard";
+import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 
 export const GridOptions = (props: StyleGridProps) => {
 
@@ -14,11 +15,18 @@ export const GridOptions = (props: StyleGridProps) => {
 
     const { setIndex, setMaps, currentMap, index, maps } = useContext(CreatorContext)
 
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false)
+
     const handleDelete = () => {
-        if (maps.length === 1) return
+        setShowDeleteDialog(true)
+    }
+
+    const deleteMap = () => {
+        setShowDeleteDialog(false)
+        if (maps.length === 1) return //if there is only one map, it can't be deleted
         maps.splice(index, 1)
         setMaps([...maps])
-        if(index !== 0) setIndex(index - 1) //in case the index is 0, index should not change
+        if (index !== 0) setIndex(index - 1) //in case the index is 0, index should not change
     }
 
     const handleDuplicate = () => {
@@ -40,9 +48,14 @@ export const GridOptions = (props: StyleGridProps) => {
         <PBCard>
             <Stack direction="column" style={{ height: '100%', margin: '5px' }} alignItems="center" justifyContent="space-evenly">
                 <SizeEditor setStyleGrid={props.setStyleGrid} />
-                <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete"/>
-                <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate"/>
-                <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add"/>
+                
+                <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete" />
+                <GenericModalDialog isOpen={showDeleteDialog} onConfirm={deleteMap} onCancel={() => setShowDeleteDialog(false)} title={t("scenarios.delete")}>
+                    <p>{t("scenarios.areYouSure")}</p>
+                </GenericModalDialog>
+                
+                <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
+                <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add" />
             </Stack>
         </PBCard>
     )

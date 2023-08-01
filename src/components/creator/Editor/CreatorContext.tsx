@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SceneMap, SerializedChallenge, defaultChallenge } from '../../serializedChallenge';
+import { SceneMap, defaultChallenge } from '../../serializedChallenge';
 import { LocalStorage } from '../../../localStorage';
 import { ACTOR } from './SceneEdition/mapUtils';
 

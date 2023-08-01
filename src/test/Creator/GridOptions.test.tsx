@@ -41,14 +41,24 @@ describe('Scene grid', () => {
         fireEvent.click(button)
     }
 
+    const confirmDelete = async () => {
+        const button = await screen.findByTestId(`generic-ok`)
+        fireEvent.click(button)
+    }
+
+    const clickDeleteAtIndex = async (index: number) => {
+        await clickButtonAtIndex('delete', index)
+        await confirmDelete()
+    }
+
     test('Should not delete map when there is only one', async () =>{
-        await clickButtonAtIndex('delete', 0)
+        await clickDeleteAtIndex(0)
         expect(LocalStorage.getCreatorChallenge()?.scene.maps.length).toBe(1)
     })
 
     test('Should delete map at index', async () =>{
         saveChallange([[[ACTOR, EMPTY]], [[EMPTY, EMPTY]]])
-        await clickButtonAtIndex('delete', 1)
+        await clickDeleteAtIndex(1)
         const maps = LocalStorage.getCreatorChallenge()!.scene.maps
         expect(maps.length).toBe(1)
         expect(maps[0]).toEqual([[ACTOR, EMPTY]])
@@ -56,7 +66,7 @@ describe('Scene grid', () => {
 
     test('Should delete map at index 0 when there are multiple scenarios', async () =>{
         saveChallange([[[ACTOR, EMPTY]], [[EMPTY, EMPTY]]])
-        await clickButtonAtIndex('delete', 0)
+        await clickDeleteAtIndex(0)
         const maps = LocalStorage.getCreatorChallenge()!.scene.maps
         expect(maps.length).toBe(1)
         expect(maps[0]).toEqual([[EMPTY, EMPTY]])

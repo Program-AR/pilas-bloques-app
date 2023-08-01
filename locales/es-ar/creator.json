@@ -51,6 +51,7 @@
 	"scenarios": {
 		"delete": "Eliminar escenario",
 		"duplicate": "Duplicar escenario",
-		"add": "Añadir escenario"
+		"add": "Añadir escenario",
+		"areYouSure": "¿Desea eliminar el escenario actual?"
 	}
 }

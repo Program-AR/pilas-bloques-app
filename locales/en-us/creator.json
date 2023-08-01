@@ -51,6 +51,7 @@
 	"scenarios": {
 		"delete": "Delete scenario",
 		"duplicate": "Duplicate scenario",
-		"add": "Add scenario"
+		"add": "Add scenario",
+		"areYouSure": "Do you want to delete current map?"
 	}
 }
