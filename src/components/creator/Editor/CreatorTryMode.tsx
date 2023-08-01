@@ -13,7 +13,9 @@ import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
 
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
-        <HeaderText text={challenge.title}/>
+        <Box sx={{ width: "293px" }}>
+            <HeaderText text={challenge.title}/>
+        </Box>
         <Actions />
     </CreatorSubHeader>
 
