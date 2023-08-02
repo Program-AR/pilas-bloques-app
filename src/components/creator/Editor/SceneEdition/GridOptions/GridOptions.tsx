@@ -1,4 +1,4 @@
-import { Button, ButtonProps, IconButton, Stack, Tooltip, Typography, useMediaQuery } from "@mui/material";
+import { Button, ButtonProps, Stack, Typography, useMediaQuery } from "@mui/material";
 import { SizeEditor, StyleGridProps } from "./SizeEditor";
 import { Add, ContentCopy, Delete } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -8,6 +8,7 @@ import { LocalStorage } from "../../../../../localStorage";
 import { SceneMap, defaultScene } from "../../../../serializedChallenge";
 import { PBCard } from "../../../../PBCard";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
+import { IconButtonTooltip } from "../IconButtonTooltip";
 
 export const GridOptions = (props: StyleGridProps) => {
 
@@ -71,16 +72,11 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
 
     return <>
         {isSmallScreen ?
-            <Tooltip title={props.tooltip}>
-                <IconButton style={{color: 'var(--theme-font-color'}} onClick={props.onClick}>
-                    {props.startIcon}
-                </IconButton>
-            </Tooltip >
+            <IconButtonTooltip icon={props.startIcon} tooltip={props.tooltip}/>
             :
             <Button 
+            {...props}
             data-testid={`${props.testid}-map-button`}
-            startIcon={props.startIcon}
-            onClick={props.onClick}
             style={{textTransform: "none", color: 'var(--theme-font-color'}}>
                 {isSmallScreen ? "" : props.tooltip}
             </Button>
