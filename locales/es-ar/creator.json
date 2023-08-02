@@ -53,5 +53,9 @@
 		"duplicate": "Duplicar escenario",
 		"add": "Añadir escenario",
 		"areYouSure": "¿Desea eliminar el escenario actual?"
+	},
+	"mapNavigation": {
+		"next": "Siguiente",
+		"prev": "Anterior"
 	}
 }

@@ -8,31 +8,38 @@ import { CreatorContext } from "../../CreatorContext"
 import { PBCard } from "../../../../PBCard"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 import { IconButtonTooltip } from "../IconButtonTooltip"
+import { useTranslation } from "react-i18next"
 
 type SceneGridProps = {
-     styling?: CSSProperties
+    styling?: CSSProperties
 }
 
 export const SceneGrid = (props: SceneGridProps) => {
     const { currentMap, index, maps, setIndex } = useContext(CreatorContext)
+
+    const { t } = useTranslation('creator');
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
     const sceneType: SceneType = challenge.scene.type
 
+    const atFirstMap = index === 0
+    const atLastMap = index === maps.length - 1
+
+
     const handleBack = () => {
-        if(index === 0) return
+        if (atFirstMap) return
         setIndex(index - 1)
     }
 
     const handleNext = () => {
-        if(index === maps.length - 1) return 
+        if (atLastMap) return
         setIndex(index + 1)
     }
 
-    return <PBCard sx={{flexGrow: 1, justifyContent:"space-evenly"}}>
-        <IconButtonTooltip onClick={handleBack} icon={<KeyboardArrowLeft/>} tooltip={'Anterior'}/>
+    return <PBCard sx={{ flexGrow: 1, justifyContent: "space-evenly" }}>
+        <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
         <Stack className={styles.grid} style={props.styling}>
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
@@ -43,14 +50,17 @@ export const SceneGrid = (props: SceneGridProps) => {
                             content={cellContent}
                             sceneType={sceneType} />)}
                 </Stack>)}
-        <MobileStepper 
-            style={{margin: '15px'}}
-            position='static' 
-            backButton={<span/>} 
-            nextButton={<span/>}
-            activeStep={index} 
-            steps={maps.length}/>
+            <MobileStepper
+                variant="dots"
+                classes={{ dotActive: styles['active-dot'] }}
+                style={{ margin: '15px' }}
+                position='static'
+                backButton={<span />}
+                nextButton={<span />}
+                activeStep={index}
+                steps={maps.length} />
+
         </Stack>
-        <IconButtonTooltip disabled={false} onClick={handleNext} icon={<KeyboardArrowRight/>} tooltip={'Anterior'}/>
+        <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
     </PBCard>
 }
