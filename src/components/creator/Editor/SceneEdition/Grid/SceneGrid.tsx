@@ -37,10 +37,10 @@ export const SceneGrid = (props: SceneGridProps) => {
         if (atLastMap) return
         setIndex(index + 1)
     }
-
+    
     return <PBCard sx={{ flexGrow: 1, justifyContent: "space-evenly" }}>
-        <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
-        <Stack className={styles.grid} style={props.styling}>
+        <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} /> 
+        <Stack className={styles.grid} style={props.styling} data-testid="dummy-test-scene-grid">
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                     {row.map((cellContent, j) =>
@@ -61,6 +61,6 @@ export const SceneGrid = (props: SceneGridProps) => {
                 steps={maps.length} />
 
         </Stack>
-        <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
+       <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
     </PBCard>
 }
