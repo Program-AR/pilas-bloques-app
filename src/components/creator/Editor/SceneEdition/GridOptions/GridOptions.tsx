@@ -31,7 +31,11 @@ export const GridOptions = (props: StyleGridProps) => {
     }
 
     const handleDuplicate = () => {
-        addMap(currentMap)
+        let map:SceneMap = []
+        currentMap.forEach(()=> {
+            map.push()
+            map[map.length] = currentMap[map.length].slice()})
+        addMap(map)
     }
 
     const handleAdd = () => {
@@ -40,8 +44,7 @@ export const GridOptions = (props: StyleGridProps) => {
     }
 
     const addMap = (map: SceneMap) => {
-        maps.push(map)
-        setMaps(maps)
+        setMaps(maps.concat([[...map]]))
         setIndex(maps.length - 1)
     }
 
