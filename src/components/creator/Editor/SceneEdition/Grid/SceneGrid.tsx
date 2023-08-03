@@ -1,4 +1,4 @@
-import { MobileStepper, Stack } from "@mui/material"
+import { MobileStepper, Stack, Typography } from "@mui/material"
 import { SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
 import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
@@ -27,6 +27,7 @@ export const SceneGrid = (props: SceneGridProps) => {
     const atFirstMap = index === 0
     const atLastMap = index === maps.length - 1
 
+    const multipleScenarios = maps.length > 1
 
     const handleBack = () => {
         if (atFirstMap) return
@@ -37,10 +38,12 @@ export const SceneGrid = (props: SceneGridProps) => {
         if (atLastMap) return
         setIndex(index + 1)
     }
-    
+
     return <PBCard sx={{ flexGrow: 1, justifyContent: "space-evenly" }}>
-        <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} /> 
+        <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
         <Stack className={styles.grid} style={props.styling} data-testid="dummy-test-scene-grid">
+            <Typography sx={{padding: '20px', alignSelf: 'center'}}>{`${multipleScenarios ? t("mapNavigation.multipleInitialScenarios") : t("mapNavigation.initialScenario")} ${index + 1} / ${maps.length}`}</Typography>
+
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                     {row.map((cellContent, j) =>
@@ -53,13 +56,13 @@ export const SceneGrid = (props: SceneGridProps) => {
             <MobileStepper
                 variant="dots"
                 classes={{ dotActive: styles['active-dot'] }}
-                style={{ margin: '15px', backgroundColor:'var(--theme-background-color)' }}
+                style={{ margin: '15px', backgroundColor: 'var(--theme-background-color)' }}
                 position='static'
                 backButton={<span />}
                 nextButton={<span />}
                 activeStep={index}
                 steps={maps.length} />
         </Stack>
-       <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
+        <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
     </PBCard>
 }

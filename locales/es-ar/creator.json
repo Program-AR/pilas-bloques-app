@@ -56,6 +56,8 @@
 	},
 	"mapNavigation": {
 		"next": "Siguiente",
-		"prev": "Anterior"
+		"prev": "Anterior",
+		"initialScenario": "Escenario inicial",
+		"multipleInitialScenarios": "Escenarios iniciales"
 	}
 }
