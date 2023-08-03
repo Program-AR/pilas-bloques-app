@@ -53,13 +53,12 @@ export const SceneGrid = (props: SceneGridProps) => {
             <MobileStepper
                 variant="dots"
                 classes={{ dotActive: styles['active-dot'] }}
-                style={{ margin: '15px' }}
+                style={{ margin: '15px', backgroundColor:'var(--theme-background-color)' }}
                 position='static'
                 backButton={<span />}
                 nextButton={<span />}
                 activeStep={index}
                 steps={maps.length} />
-
         </Stack>
        <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
     </PBCard>
