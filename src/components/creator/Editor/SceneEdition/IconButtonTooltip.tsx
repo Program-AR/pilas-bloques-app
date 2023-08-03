@@ -8,7 +8,9 @@ type IconButtonTooltipProps = {
 
 export const IconButtonTooltip = (props: IconButtonTooltipProps & IconButtonProps) =>
     <Tooltip title={props.tooltip}>
-        <IconButton {...props} style={{...props.style, color: props.iconColor ? props.iconColor : 'var(--theme-font-color' }} >
-            {props.icon}
-        </IconButton>
+        <span>
+            <IconButton {...props} style={{...props.style, color: props.iconColor ? props.iconColor : 'var(--theme-font-color' }} >
+                {props.icon}
+            </IconButton>
+        </span>
     </Tooltip >
