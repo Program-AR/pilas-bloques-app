@@ -45,7 +45,7 @@ export const GridOptions = (props: StyleGridProps) => {
 
     const addMap = (map: SceneMap) => {
         setMaps(maps.concat([[...map]]))
-        setIndex(maps.length - 1)
+        setIndex(maps.length)
     }
 
     return (
