@@ -53,5 +53,11 @@
 		"duplicate": "Duplicate scenario",
 		"add": "Add scenario",
 		"areYouSure": "Do you want to delete current map?"
+	}, 
+	"mapNavigation": {
+		"next": "Next",
+		"prev": "Previous",
+		"initialScenario": "Initial scenario",
+		"multipleInitialScenarios": "Initial scenarios"
 	}
 }
