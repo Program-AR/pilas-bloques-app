@@ -52,7 +52,8 @@
 		"delete": "Eliminar escenario",
 		"duplicate": "Duplicar escenario",
 		"add": "Añadir escenario",
-		"areYouSure": "¿Desea eliminar el escenario actual?"
+		"areYouSure": "¿Desea eliminar el escenario actual?",
+		"deleteError": "El escenario no pudo ser borrado. Debe haber al menos uno."
 	},
 	"mapNavigation": {
 		"next": "Siguiente",
