@@ -56,7 +56,7 @@ export const GridOptions = (props: StyleGridProps) => {
 
     return (<>
         <PBCard>
-            <Stack direction="column" style={{ height: '100%', margin: '5px' }} alignItems="center" justifyContent="space-evenly">
+            <Stack direction="column" style={{ height: '100%', margin: '5px' }} alignItems="center" justifyContent="flex-start">
                 <SizeEditor setStyleGrid={props.setStyleGrid} />
                 <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add" />
                 <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
@@ -85,7 +85,7 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
 
     return <>
         {isSmallScreen ?
-            <IconButtonTooltip icon={props.startIcon} tooltip={props.tooltip} />
+            <IconButtonTooltip onClick={props.onClick} icon={props.startIcon} tooltip={props.tooltip} />
             :
             <Button
                 {...props}
