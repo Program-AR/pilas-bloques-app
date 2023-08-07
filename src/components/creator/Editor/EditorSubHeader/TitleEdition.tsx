@@ -24,5 +24,6 @@ export const TitleEdition = () => {
         value={titleInProgress}
         onChange={props => setTitleInProgress(props.target.value)}
         onBlur={handleOnBlur}
+        inputProps={{maxLength: 38}}
     />
 }

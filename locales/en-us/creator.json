@@ -20,7 +20,7 @@
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"download": "Download",
-			"try": "Test it",
+			"try": "View challenge",
 			"keepEditing": "Keep editing"
 		},
 		"editorHeader": "Editing challenge",
