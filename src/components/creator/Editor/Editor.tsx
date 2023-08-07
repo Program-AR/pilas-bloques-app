@@ -9,8 +9,8 @@ import { TryButton } from "./ActionButtons/TryButton";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
-import { NewChallengeButton } from "./ActionButtons/NewChallengeButton";
 import { DownloadButton } from "./ActionButtons/DownloadButton";
+import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')
@@ -38,7 +38,7 @@ const EditorSubHeader: React.FC = () =>
 const Actions = () => <>
   <TryButton/>
   <Stack direction="row" alignItems={"center"}>
-    <NewChallengeButton/>
+    <DiscardChallengeButton/>
     <DownloadButton/>
   </Stack>
 </>

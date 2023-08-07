@@ -18,7 +18,7 @@
 	"editor": {
 		"title": "Title",
 		"buttons": {
-			"newChallenge": "New challenge",
+			"discardChallenge": "Discard challenge",
 			"download": "Download",
 			"try": "Test it",
 			"keepEditing": "Keep editing"
@@ -28,7 +28,7 @@
 	},
 	"statement": {
 		"title": "Statement",
-		"button": "¡Write your Statement!",
+		"button": "Write your Statement!",
 		"description": "Description",
 		"clue": "Clue",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
@@ -46,7 +46,7 @@
 	},
 	"toolbox": {
 		"title": "Toolbox Panel",
-		"button": "Blocks Selection"
+		"button": "Select available commands"
 	},
 	"scenarios": {
 		"delete": "Delete scenario",

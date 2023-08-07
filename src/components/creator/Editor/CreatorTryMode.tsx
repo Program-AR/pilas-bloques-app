@@ -7,9 +7,9 @@ import { Header, HeaderText } from "../../header/Header"
 import { SerializedChallenge } from "../../serializedChallenge"
 import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
-import { NewChallengeButton } from "./ActionButtons/NewChallengeButton"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
 import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
+import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton"
 
 const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
@@ -22,7 +22,7 @@ const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
 const Actions = () => <>
     <ReturnToEditionButtion/>
     <Stack direction="row" alignItems={"center"}>
-        <NewChallengeButton/>
+        <DiscardChallengeButton/>
         <DownloadButton/>
     </Stack>
     </>

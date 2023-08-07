@@ -18,7 +18,7 @@
 	"editor": {
 		"title": "Título",
 		"buttons": {
-			"newChallenge": "Nuevo desafio",
+			"discardChallenge": "Descartar desafio",
 			"download": "Descargar",
 			"try": "Probar",
 			"keepEditing": "Seguir editando"
@@ -45,8 +45,8 @@
 		"numRows": "Filas"
 	},
 	"toolbox": {
-		"title": "Selector de Bloques",
-		"button": "Selector de Bloques"
+		"title": "Seleccioná los comandos disponibles",
+		"button": "Seleccioná los comandos disponibles"
 	},
 	"scenarios": {
 		"delete": "Eliminar escenario",
