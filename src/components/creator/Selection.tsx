@@ -45,7 +45,7 @@ const CharacterCard = (props: CharacterCardProps) => {
 	const navigate = useNavigate()
 
 	const goToCreator = () => {
-		LocalStorage.saveCreatorChallenge(defaultChallenge(props.name))
+		LocalStorage.saveCreatorChallenge(defaultChallenge(props.name, t("statement.defaultDescription")!))
 		navigate("/creador/editar")
 	}
 

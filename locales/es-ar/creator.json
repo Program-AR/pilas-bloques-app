@@ -32,7 +32,8 @@
 		"description": "Descripción",
 		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown",
 		"clue": "Pista",
-		"includeClue": "Incluir una pista"
+		"includeClue": "Incluir una pista",
+		"defaultDescription": "Escribí tu **enunciado**..."
 	},
 	"tools": {
 		"putObstacle": "Añadir obstáculo",

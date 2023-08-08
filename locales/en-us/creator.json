@@ -32,7 +32,8 @@
 		"description": "Description",
 		"clue": "Clue",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
-		"includeClue": "Include a clue"	
+		"includeClue": "Include a clue",
+		"defaultDescription": "Write your **statement**..."
 	},
 	"tools": {
 		"putObstacle": "Add obstacle",
