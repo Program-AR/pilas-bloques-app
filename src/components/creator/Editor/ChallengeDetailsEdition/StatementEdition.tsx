@@ -56,7 +56,7 @@ export const StatementEdition = () => {
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         title={t('statement.title')}>
-            <Box style={{justifyContent:'center'}}>
+            <Box style={{ justifyContent:'center'}}>
             <Typography variant="caption">{t('statement.descriptionHint')}</Typography>
             <TextField
                 fullWidth
@@ -66,6 +66,7 @@ export const StatementEdition = () => {
                 label={t('statement.description')}
                 value={statementInProgress}
                 onChange={props => setStatementInProgress(props.target.value)}
+                sx={{marginTop: '10px'}}
             />
             <br/>
             <FormControlLabel control={<Switch checked={clueCheck}

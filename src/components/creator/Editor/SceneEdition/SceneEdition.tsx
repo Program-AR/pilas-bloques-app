@@ -8,7 +8,7 @@ export const SceneEdition = () => {
     const [styleGrid, setStyleGrid] = useState<CSSProperties>({})
 
     return (
-        <Stack direction="row" alignItems="stretch" sx={{ height: "100%" }}>
+        <Stack direction="row" alignItems="stretch" sx={{ height: "100%", padding: '30px' }}>
             <GridOptions setStyleGrid={setStyleGrid} />
             <SceneGrid styling={styleGrid} />
             <SceneTools />

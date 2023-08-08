@@ -52,7 +52,7 @@ describe('Scene grid', () => {
     }
 
     test('Should not delete map when there is only one', async () =>{
-        await clickDeleteAtIndex(0)
+        await clickButtonAtIndex('delete', 0)
         expect(LocalStorage.getCreatorChallenge()?.scene.maps.length).toBe(1)
     })
 

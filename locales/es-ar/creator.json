@@ -18,13 +18,13 @@
 	"editor": {
 		"title": "Título",
 		"buttons": {
-			"newChallenge": "Nuevo desafio",
+			"discardChallenge": "Descartar desafio",
 			"download": "Descargar",
-			"try": "Probar",
+			"view": "Ver desafio",
 			"keepEditing": "Seguir editando"
 		},
-		"editorHeader": "Editando desafio",
-		"tryModeHeader": "Probando desafio"
+		"editorHeader": "Editar desafio",
+		"viewModeHeader": "Probar desafio"
 	},
 	"statement": {
 		"title": "Enunciado",
@@ -45,14 +45,15 @@
 		"numRows": "Filas"
 	},
 	"toolbox": {
-		"title": "Selector de Bloques",
-		"button": "Selector de Bloques"
+		"title": "Seleccioná los comandos disponibles",
+		"button": "Seleccioná los comandos disponibles"
 	},
 	"scenarios": {
 		"delete": "Eliminar escenario",
 		"duplicate": "Duplicar escenario",
 		"add": "Añadir escenario",
-		"areYouSure": "¿Desea eliminar el escenario actual?"
+		"areYouSure": "¿Desea eliminar el escenario actual?",
+		"deleteError": "El escenario no pudo ser borrado. Debe haber al menos uno."
 	},
 	"mapNavigation": {
 		"next": "Siguiente",
