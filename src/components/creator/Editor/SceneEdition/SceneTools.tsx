@@ -47,7 +47,7 @@ export const SceneTools = () => {
     const ToolGroup = (props: ToolGroupProps) =>
         <Stack alignItems="center" sx={{ margin: '10px' }}>
             {props.children}
-            <Typography variant="caption">{t(`tools.${props.type}`)}</Typography>
+            <Typography sx={{marginTop: '3px', textAlign: 'center'}} variant="body1">{t(`tools.${props.type}`)}</Typography>
         </Stack>
 
     const PutObstacleTool = () =>
