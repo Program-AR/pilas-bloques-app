@@ -16,7 +16,7 @@
 		}
 	},
 	"editor": {
-		"title": "Title",
+		"title": "Write your title",
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"download": "Download",
@@ -28,24 +28,24 @@
 	},
 	"statement": {
 		"title": "Statement",
-		"button": "Write your Statement!",
+		"button": "Write your statement",
 		"description": "Description",
 		"clue": "Clue",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
 		"includeClue": "Include a clue"	
 	},
 	"tools": {
-		"putObstacle": "Obstacle",
-		"putObject": "Objects",
-		"putActor": "Character",
+		"putObstacle": "Add obstacle",
+		"putObject": "Add objects",
+		"putActor": "Add character",
 		"delete": "Delete"
 	},
 	"scene": {
-		"numCols": "Columns",
-		"numRows": "Rows"
+		"numCols": "Modify columns",
+		"numRows": "Modify rows"
 	},
 	"toolbox": {
-		"title": "Toolbox Panel",
+		"title": "Select available commands",
 		"button": "Select available commands"
 	},
 	"scenarios": {
@@ -58,7 +58,6 @@
 	"mapNavigation": {
 		"next": "Next",
 		"prev": "Previous",
-		"initialScenario": "Initial scenario",
 		"multipleInitialScenarios": "Initial scenarios"
 	}
 }

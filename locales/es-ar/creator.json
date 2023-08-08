@@ -16,7 +16,7 @@
 		}
 	},
 	"editor": {
-		"title": "Título",
+		"title": "Escribir título",
 		"buttons": {
 			"discardChallenge": "Descartar desafio",
 			"download": "Descargar",
@@ -28,25 +28,25 @@
 	},
 	"statement": {
 		"title": "Enunciado",
-		"button": "¡Escribí tu Enunciado!",
+		"button": "Escribir enunciado",
 		"description": "Descripción",
 		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown",
 		"clue": "Pista",
 		"includeClue": "Incluir una pista"
 	},
 	"tools": {
-		"putObstacle": "Obstáculo",
-		"putObject": "Objetos",
-		"putActor": "Personaje",
+		"putObstacle": "Añadir obstáculo",
+		"putObject": "Añadir objetos",
+		"putActor": "Añadir personaje",
 		"delete": "Borrar"
 	},
 	"scene": {
-		"numCols": "Columnas",
-		"numRows": "Filas"
+		"numCols": "Modificar columnas",
+		"numRows": "Modificar filas"
 	},
 	"toolbox": {
-		"title": "Seleccioná los comandos disponibles",
-		"button": "Seleccioná los comandos disponibles"
+		"title": "Seleccionar comandos disponibles",
+		"button": "Seleccionar comandos disponibles"
 	},
 	"scenarios": {
 		"delete": "Eliminar escenario",
@@ -58,7 +58,6 @@
 	"mapNavigation": {
 		"next": "Siguiente",
 		"prev": "Anterior",
-		"initialScenario": "Escenario inicial",
 		"multipleInitialScenarios": "Escenarios iniciales"
 	}
 }
