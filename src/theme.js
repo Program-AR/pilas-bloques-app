@@ -7,6 +7,11 @@ const theme = createTheme({
             color: 'var(--theme-font-color);'
         }
     },
+    palette: {
+        primary: {
+            main: '#311c3b',
+          },
+    }
 })
 
 export default theme

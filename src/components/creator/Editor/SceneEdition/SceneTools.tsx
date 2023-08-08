@@ -25,8 +25,11 @@ export const SceneTools = () => {
     const imagePath = 'imagenes/sceneImages'
     const imagePathScene = `${imagePath}/${challenge?.scene.type}`
 
-    const Tool = (props: ToolProps) =>
-        <Button variant="outlined"
+
+    const Tool = (props: ToolProps) => {
+        const isSelected = props.id === selectedTool
+
+        return <Button variant='outlined'
             id={props.id}
             data-testid={props.id}
             onClick={selectTool}
@@ -36,18 +39,20 @@ export const SceneTools = () => {
                 backgroundPositionX: "center",
                 backgroundPositionY: "center",
                 boxShadow: `0 0px calc(10px * ${Number(props.id === selectedTool)})`,
-                borderRadius: "2", width: "50px", height: "50px"
+                borderRadius: 'var(--button-border-radius)', width: "50px", height: "50px",                
+                marginTop: theme.spacing(1)
             }} />
+    }
 
     type ToolGroupProps = {
         children: React.ReactNode
         type: string
     }
-    
+
     const ToolGroup = (props: ToolGroupProps) =>
         <Stack alignItems="center" sx={{ margin: '10px' }}>
             {props.children}
-            <Typography sx={{marginTop: '3px', textAlign: 'center'}} variant="body1">{t(`tools.${props.type}`)}</Typography>
+            <Typography sx={{ textAlign: 'center', marginTop: theme.spacing(0.5) }} variant="body1">{t(`tools.${props.type}`)}</Typography>
         </Stack>
 
     const PutObstacleTool = () =>
