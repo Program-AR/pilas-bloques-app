@@ -7,6 +7,7 @@ import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
 import { SceneType, defaultChallenge } from "../serializedChallenge"
+import theme from "../../theme"
 
 type CharacterCardProps = {
 	name: SceneType
@@ -112,14 +113,13 @@ const ChallengeInProgressDialog = () => {
 				<DialogContent>
 					<Stack direction="column">
 						{t("selection.challengeBeingCreated")}
-						<br />
 						<b>{t("selection.discardWarning")}</b>
-						<div>
+						<Stack sx={{marginTop: theme.spacing(1)}} direction='row' gap={theme.spacing(1)} justifyContent='flex-end'>
+							<Button variant="contained" color='error' onClick={onDiscard}>{t("selection.discard")}</Button>
 							<Link to="/creador/editar">
-								<Button>{t("selection.continueEditing")}</Button>
+								<Button variant="contained" color="success" >{t("selection.continueEditing")}</Button>
 							</Link>
-							<Button onClick={onDiscard}>{t("selection.discard")}</Button>
-						</div>
+						</Stack>
 					</Stack>
 				</DialogContent>
 			</Dialog>
