@@ -20,11 +20,11 @@
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"download": "Download",
-			"try": "View challenge",
+			"view": "View challenge",
 			"keepEditing": "Keep editing"
 		},
-		"editorHeader": "Editing challenge",
-		"tryModeHeader": "Trying challenge"
+		"editorHeader": "Edit challenge",
+		"viewModeHeader": "View challenge"
 	},
 	"statement": {
 		"title": "Statement",
