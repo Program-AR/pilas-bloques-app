@@ -20,11 +20,11 @@
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"download": "Download",
-			"view": "View challenge",
+			"preview": "Challenge preview",
 			"keepEditing": "Keep editing"
 		},
 		"editorHeader": "Edit challenge",
-		"viewModeHeader": "View challenge"
+		"previewModeHeader": "Challenge preview"
 	},
 	"statement": {
 		"title": "Statement",

@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"
 import { CreatorActionButton } from "./CreatorActionButton"
 import { Visibility } from "@mui/icons-material";
 
-export const ViewButton = () => {
+export const PreviewButton = () => {
     const {t} = useTranslation('creator')
 
     return <Link to="/creador/ver">
-            <CreatorActionButton startIcon={<Visibility/>} backgroundcolor="#449d99">{t("editor.buttons.view")}</CreatorActionButton>
+            <CreatorActionButton startIcon={<Visibility/>} backgroundcolor="#449d99">{t("editor.buttons.preview")}</CreatorActionButton>
         </Link>
 
 }

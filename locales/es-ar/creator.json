@@ -20,11 +20,11 @@
 		"buttons": {
 			"discardChallenge": "Descartar desafio",
 			"download": "Descargar",
-			"view": "Ver desafio",
+			"preview": "Ver desafio",
 			"keepEditing": "Seguir editando"
 		},
 		"editorHeader": "Editar desafio",
-		"viewModeHeader": "Probar desafio"
+		"previewModeHeader": "Ver desafio"
 	},
 	"statement": {
 		"title": "Enunciado",
