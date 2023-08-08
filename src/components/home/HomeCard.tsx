@@ -20,7 +20,7 @@ export const HomeCard = (props: HomeCardProps) => {
     return (
         <Card className={styles['home-card']} style={{ backgroundColor: props.color}}>
             <CardMedia component="img" alt={props.text} image={`imagenes/${props.image}`} height="120" sx={{objectFit: "contain"}} />
-            <Typography variant="h5" align="center" fontWeight="600" >{props.text}</Typography>
+            <Typography color='black' variant="h5" align="center" fontWeight="600" >{props.text}</Typography>
         </Card>
     )
 }
