@@ -11,7 +11,7 @@ export const DetailsEditionButton = (props: DetailsEditionButtonProps) =>
         variant="outlined" 
         size="large"
         style={{margin:"6px", textTransform:"none"}} 
-        sx={{width:200, height: 110, borderRadius: 'var(--button-border-radius)'}}
+        sx={{width:200, height: 110}}
         {...props}
         >
 
