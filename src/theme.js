@@ -9,8 +9,11 @@ const theme = createTheme({
     },
     palette: {
         primary: {
-            main: '#311c3b',
+            main: '#777777',
           },
+    },
+    shape: {
+        borderRadius: '10px'
     }
 })
 

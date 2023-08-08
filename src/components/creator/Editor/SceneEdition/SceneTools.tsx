@@ -39,7 +39,7 @@ export const SceneTools = () => {
                 backgroundPositionX: "center",
                 backgroundPositionY: "center",
                 boxShadow: `0 0px calc(10px * ${Number(props.id === selectedTool)})`,
-                borderRadius: 'var(--button-border-radius)', width: "50px", height: "50px",                
+                width: "50px", height: "50px",                
                 marginTop: theme.spacing(1)
             }} />
     }
