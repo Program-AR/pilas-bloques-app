@@ -31,7 +31,7 @@ export const IncDecButtons = (props: IncDecButtonsProps) => {
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: flexStyles.flexTextWidth }} >{props.value}</Box>
                 <Button style={{ fontSize: flexStyles.flexFontSize, minWidth: flexStyles.flexMinWidth, borderRight:"0px" }} onClick={()=>handleValue(true)} data-testid={`inc-btn-${props.testId}`}>+</Button>
             </ButtonGroup>
-            {props.label && <Typography sx={{marginTop: '5px'}} textAlign="center" variant="body1">{props.label}</Typography>}
+            {props.label && <Typography sx={{marginTop: '5px'}} textAlign="center" variant="subtitle2">{props.label}</Typography>}
         </Box>
     );
 }
