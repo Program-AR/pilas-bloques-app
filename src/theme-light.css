@@ -20,4 +20,6 @@
   --theme-failed-color: orangered;
   --theme-control-color: #1e21ff;
   --home-background: #311c3b;
+  --creator-max-width: 1024px;
+  --creator-max-height: 630px;
 }  
