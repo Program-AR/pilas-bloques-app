@@ -33,7 +33,7 @@ export const MarkdownResult = () => {
         <Button disabled={!clueCheck} onClick={onclickClue}><WbIncandescent/></Button>
         </Box>
        <ReactMarkdown children={markdownShow} remarkPlugins={[remarkGfm, [remarkemoji, {
-          emoticon: true }]]} />
+       emoticon: true }]]} />
     </Box>
     </PBCard>
   );
