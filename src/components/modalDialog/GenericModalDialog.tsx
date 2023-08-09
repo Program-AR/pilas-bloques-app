@@ -1,12 +1,14 @@
 import { FC } from 'react';
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle } from "@mui/material"
 
 export interface ModalDialogProps {
     isOpen: boolean;
     onConfirm: () => void;
     onCancel: () => void;
     title: string;
+    dialogProps?: DialogProps;
     children?: JSX.Element;
+
   }
 
 export const GenericModalDialog: FC<ModalDialogProps> = ({
@@ -14,6 +16,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
     onConfirm,
     onCancel,
     title,
+    dialogProps,
     children
   }) => {
  
@@ -28,7 +31,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
 
     return (
         <>
-        <Dialog open={isOpen} onClose={handleClose} >
+        <Dialog open={isOpen} {...dialogProps} onClose={handleClose} >
         <DialogTitle>{title}</DialogTitle>
         <DialogContent>
           {children}

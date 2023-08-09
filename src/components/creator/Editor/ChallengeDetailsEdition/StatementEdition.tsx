@@ -1,11 +1,16 @@
-import { Box, Switch, TextField, FormControlLabel, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 import { DetailsEditionButton } from "./DetailsEditionButton";
+import { MarkdownEdition } from "../MarkDownEdition/MarkdownEditor";
 
-export const StatementEdition = () => {
+type StatementEditionType = {
+    dialogImageUrl?: string;
+    };
+
+export const StatementEdition = (props: StatementEditionType) => {
 
     const { t } = useTranslation('creator');
 
@@ -15,6 +20,7 @@ export const StatementEdition = () => {
     const [statementInProgress, setStatementInProgress] = useState(currentStatement);
     const [clueInProgress, setClueInProgress] = useState(currentClue);
     const [clueCheck, setClueCheck] = useState(!!currentClue);
+    const [markdownToShow, setMarkdownToShow] = useState(currentStatement);
     const [open, setOpen] = useState(false);
 
     const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -31,16 +37,11 @@ export const StatementEdition = () => {
     }
     const handleOnConfirm = () => {
         let challenge = LocalStorage.getCreatorChallenge()
-
         challenge!.statement.description = statementInProgress
         challenge!.statement.clue = clueInProgress
+        
         LocalStorage.saveCreatorChallenge(challenge)
         setOpen(false)
-    }
-
-    const handleClueOnChange = () => {
-        if( clueCheck ) setClueInProgress('')
-        setClueCheck(!clueCheck )
     }
 
     return <>
@@ -53,34 +54,20 @@ export const StatementEdition = () => {
 
         <GenericModalDialog
                         isOpen={open}
+                        dialogProps={{open:open, fullWidth:true, maxWidth:"lg"}}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         title={t('statement.title')}>
             <Box style={{ justifyContent:'center'}}>
-            <Typography variant="caption">{t('statement.descriptionHint')}</Typography>
-            <TextField
-                fullWidth
-                size="small"
-                multiline={true}
-                inputProps={{ "data-testid": "statement-input" }}
-                label={t('statement.description')}
-                value={statementInProgress}
-                onChange={props => setStatementInProgress(props.target.value)}
-                sx={{marginTop: '10px'}}
-            />
-            <br/>
-            <FormControlLabel control={<Switch checked={clueCheck}
-                                        onChange={handleClueOnChange}/>} label={t("statement.includeClue")} />
-            
-            <br/>
-            <TextField
-                fullWidth
-                size="small"
-                multiline={true}
-                disabled={!clueCheck}
-                label={t('statement.clue')}
-                value={clueInProgress}
-                onChange={props => setClueInProgress(props.target.value)}
+            <MarkdownEdition urlImage={`imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png`} 
+                             markdownStatement={statementInProgress} 
+                             setMarkdownStatement={(props => setStatementInProgress(props))}
+                             clueCheck={clueCheck}
+                             setMarkdownClueCheck={setClueCheck}
+                             markdownClue={clueInProgress} 
+                             setMarkdownClue={(props => setClueInProgress(props))}
+                             markdownShow={markdownToShow} 
+                             setMarkdownShow={setMarkdownToShow}
             />
             </Box>
         </GenericModalDialog>

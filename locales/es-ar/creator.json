@@ -30,6 +30,7 @@
 		"title": "Enunciado",
 		"button": "¡Escribí tu Enunciado!",
 		"description": "Descripción",
+		"markdownTitle": "Así se va a ver",
 		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown",
 		"clue": "Pista",
 		"includeClue": "Incluir una pista"
