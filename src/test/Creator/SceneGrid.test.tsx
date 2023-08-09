@@ -1,11 +1,13 @@
 import { screen } from '@testing-library/react'
-import { defaultChallenge } from '../../components/serializedChallenge';
+import { defaultChallenge, SerializedChallenge } from '../../components/serializedChallenge';
 import { LocalStorage } from '../../localStorage';
 import { SceneGrid } from '../../components/creator/Editor/SceneEdition/Grid/SceneGrid';
-import { SerializedChallenge } from '../../components/serializedChallenge';
 import { renderWithContext } from '../testUtils';
 
-describe('Scene grid', () => {
+describe('Scene Grid', () => {
+    afterEach(() => {
+        localStorage.clear()
+    })
 
     const getAmountFromChallenge = async (id: string) => await screen.getAllByTestId(`challenge-${id}`).length
 
@@ -14,16 +16,22 @@ describe('Scene grid', () => {
         const rows = await getAmountFromChallenge('row')
         const columns = await getAmountFromChallenge('cell') / rows
 
-        return { rows, columns }
+        return {rows, columns}
     }
 
-    afterEach(() => {
+    test('Should set grid size to default when there is no challenge saved', async () => {
         localStorage.clear()
+        renderWithContext(<SceneGrid />)
+
+        await screen.findByTestId("dummy-test-scene-grid")
+
+        expect((await getGridSize()).rows).toBe(3)
+        expect((await getGridSize()).columns).toBe(3)
+
     })
 
     test('Should set grid size according to local storage', async () => {
-
-        const challenge: SerializedChallenge = {
+        let challenge: SerializedChallenge = {
             ...defaultChallenge("Duba"),
             scene: {
                 type: "Duba",
@@ -32,24 +40,18 @@ describe('Scene grid', () => {
         }
 
         LocalStorage.saveCreatorChallenge(challenge)
+        
         renderWithContext(<SceneGrid />)
+
+        await screen.findByTestId("dummy-test-scene-grid")
 
         expect((await getGridSize()).rows).toBe(3)
         expect((await getGridSize()).columns).toBe(5)
 
     })
 
-    test('Should set grid size to default when there is no challenge saved', async () => {
-        localStorage.clear()
-        renderWithContext(<SceneGrid />)
-
-        expect((await getGridSize()).rows).toBe(3)
-        expect((await getGridSize()).columns).toBe(3)
-
-    })
-
     test('Should have both object images in a cell when there is a & operator', async () => {
-        const challenge: SerializedChallenge = {
+        let challenge: SerializedChallenge = {
             ...defaultChallenge("Duba"),
             scene: {
                 type: "Duba",
@@ -59,6 +61,9 @@ describe('Scene grid', () => {
 
         LocalStorage.saveCreatorChallenge(challenge)
         renderWithContext(<SceneGrid />)
+        
+        await screen.findByTestId("dummy-test-scene-grid")
+
         expect(await getAmountFromChallenge('cell-image')).toBe(2)
     })
 

@@ -1,9 +1,9 @@
-import { Button, Box, Switch, TextField, FormControlLabel, Typography } from "@mui/material";
+import { Box, Switch, TextField, FormControlLabel, Typography } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
-import DescriptionIcon from '@mui/icons-material/Description';
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
+import { DetailsEditionButton } from "./DetailsEditionButton";
 
 export const StatementEdition = () => {
 
@@ -44,19 +44,19 @@ export const StatementEdition = () => {
     }
 
     return <>
-        <Button 
-            variant="outlined" 
-            size="large"
-            style={{margin:"6px", textTransform:"none"}} 
-            startIcon={<DescriptionIcon />}
+        <DetailsEditionButton
+            imageurl="imagenes/boton_enunciado.png"
+            text={t('statement.button')}
+            onClick={handleButtonClick}
             data-testid="statement-button" 
-            onClick={handleButtonClick}>{t('statement.button')}</Button>
+        />
+
         <GenericModalDialog
                         isOpen={open}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         title={t('statement.title')}>
-            <Box style={{justifyContent:'center'}}>
+            <Box style={{ justifyContent:'center'}}>
             <Typography variant="caption">{t('statement.descriptionHint')}</Typography>
             <TextField
                 fullWidth
@@ -66,6 +66,7 @@ export const StatementEdition = () => {
                 label={t('statement.description')}
                 value={statementInProgress}
                 onChange={props => setStatementInProgress(props.target.value)}
+                sx={{marginTop: '10px'}}
             />
             <br/>
             <FormControlLabel control={<Switch checked={clueCheck}

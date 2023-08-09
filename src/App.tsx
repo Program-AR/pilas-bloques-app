@@ -14,9 +14,9 @@ import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { CreatorSelection } from './components/creator/Selection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
-import { CreatorTryMode } from './components/creator/Editor/CreatorTryMode';
 import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
+import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
 
 const AnalyticsComponent = () => {
   const location = useLocation();
@@ -79,8 +79,8 @@ const router = createHashRouter([{
     element: <CreatorEditor/>
   },
   {
-    path: "/creador/probar",
-    element: <CreatorTryMode/>
+    path: "/creador/ver",
+    element: <CreatorViewMode/>
   }
 ]}]);
 

@@ -4,7 +4,6 @@ const theme = createTheme({
     typography: {
         fontFamily: 'Nunito'
     },
-
 })
 
 export default theme

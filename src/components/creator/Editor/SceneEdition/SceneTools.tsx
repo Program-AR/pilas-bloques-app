@@ -12,9 +12,9 @@ export const SceneTools = () => {
         id: string
         image?: string
     }
-    
+
     const { t } = useTranslation('creator');
-    const {selectedTool, setSelectedTool} = useContext(CreatorContext)
+    const { selectedTool, setSelectedTool } = useContext(CreatorContext)
 
     const challenge: SerializedChallenge | null = LocalStorage.getCreatorChallenge()
 
@@ -25,61 +25,62 @@ export const SceneTools = () => {
     const imagePath = 'imagenes/sceneImages'
     const imagePathScene = `${imagePath}/${challenge?.scene.type}`
 
-    const Tool = (props: ToolProps) => 
-        <Button variant="outlined" 
-                id={props.id}
-                data-testid={props.id}
-                onClick={selectTool}
-                style={{backgroundImage: `url("${props.image}")`, 
-                        backgroundSize: "contain", backgroundRepeat: "no-repeat",
-                        backgroundPositionX: "center",
-                        backgroundPositionY: "center",
-                        boxShadow: `0 0px calc(10px * ${Number(props.id===selectedTool)})`,
-                        borderRadius: "2",  width:"50px", height:"50px"}}/>
+    const Tool = (props: ToolProps) =>
+        <Button variant="outlined"
+            id={props.id}
+            data-testid={props.id}
+            onClick={selectTool}
+            style={{
+                backgroundImage: `url("${props.image}")`,
+                backgroundSize: "contain", backgroundRepeat: "no-repeat",
+                backgroundPositionX: "center",
+                backgroundPositionY: "center",
+                boxShadow: `0 0px calc(10px * ${Number(props.id === selectedTool)})`,
+                borderRadius: "2", width: "50px", height: "50px"
+            }} />
+
+    type ToolGroupProps = {
+        children: React.ReactNode
+        type: string
+    }
     
+    const ToolGroup = (props: ToolGroupProps) =>
+        <Stack alignItems="center" sx={{ margin: '10px' }}>
+            {props.children}
+            <Typography variant="caption">{t(`tools.${props.type}`)}</Typography>
+        </Stack>
 
-    const PutObstacleTool = () => 
-        <>
-            <Stack alignItems="center">
-                <Tool id="O" image={`${imagePathScene}/O.png`} /> 
-                <Typography variant="caption">{t('tools.putObstacle')}</Typography>
-            </Stack>
-        </>
+    const PutObstacleTool = () =>
+        <ToolGroup type='putObstacle'>
+            <Tool id="O" image={`${imagePathScene}/O.png`} />
+        </ToolGroup>
 
-    const PutObjectTool = () => 
-        <>
-            <Stack alignItems="center">
-                {sceneObjectByType(challenge!.scene.type).validCells.map((object) => 
-                    <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`}/>)}
-                <Typography variant="caption">{t('tools.putObject')}</Typography>
-            </Stack>
-        </>
+    const PutObjectTool = () =>
+        <ToolGroup type='putObject'>
+            {sceneObjectByType(challenge!.scene.type).validCells.map((object) =>
+                <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`} />)}
+        </ToolGroup>
 
-    const PutActorTool = () => 
-        <>
-            <Stack alignItems="center">
-                <Tool id="A" image={`${imagePathScene}/tool.png`}/>
-                <Typography variant="caption">{t('tools.putActor')}</Typography>
-            </Stack>
-        </>
-                        
-    const DeleteTool = () => 
-        <>
-            <Stack alignItems="center">
-                <Tool id="-" image={`${imagePath}/eraser.png`}/>
-                <Typography variant="caption">{t('tools.delete')}</Typography>
-            </Stack>
-        </>     
+    const PutActorTool = () =>
+        <ToolGroup type='putActor'>
+            <Tool id="A" image={`${imagePathScene}/tool.png`} />
+        </ToolGroup>
 
+    const DeleteTool = () =>
+        <ToolGroup type='delete'>
+            <Tool id="-" image={`${imagePath}/eraser.png`} />
+        </ToolGroup>
 
-    return ( 
+    return (
         <PBCard>
-            <Stack alignItems="center" justifyContent="space-around" style={{padding: theme.spacing(1), height: "100%"}}>
-                <PutActorTool/>
-                <PutObstacleTool/>
-                <PutObjectTool/>
-                <DeleteTool/>
-            </Stack> 
+            <Stack alignItems="center" justifyContent="flex-start" style={{ padding: theme.spacing(1), height: "100%" }}>
+                <PutActorTool />
+                <PutObstacleTool />
+                <PutObjectTool />
+                <DeleteTool />
+            </Stack>
         </PBCard>
     )
 }
+
+

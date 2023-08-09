@@ -18,17 +18,17 @@
 	"editor": {
 		"title": "Title",
 		"buttons": {
-			"newChallenge": "New challenge",
+			"discardChallenge": "Discard challenge",
 			"download": "Download",
-			"try": "Test it",
+			"view": "View challenge",
 			"keepEditing": "Keep editing"
 		},
-		"editorHeader": "Editing challenge",
-		"tryModeHeader": "Trying challenge"
+		"editorHeader": "Edit challenge",
+		"viewModeHeader": "View challenge"
 	},
 	"statement": {
 		"title": "Statement",
-		"button": "¡Write your Statement!",
+		"button": "Write your Statement!",
 		"description": "Description",
 		"clue": "Clue",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
@@ -46,12 +46,19 @@
 	},
 	"toolbox": {
 		"title": "Toolbox Panel",
-		"button": "Blocks Selection"
+		"button": "Select available commands"
 	},
 	"scenarios": {
 		"delete": "Delete scenario",
 		"duplicate": "Duplicate scenario",
 		"add": "Add scenario",
-		"areYouSure": "Do you want to delete current map?"
+		"areYouSure": "Do you want to delete current map?",
+		"deleteError": "The scenario could not be deleted. There must be at least one."
+	}, 
+	"mapNavigation": {
+		"next": "Next",
+		"prev": "Previous",
+		"initialScenario": "Initial scenario",
+		"multipleInitialScenarios": "Initial scenarios"
 	}
 }

@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material"
+import { MobileStepper, Stack, Typography } from "@mui/material"
 import { SceneType, SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge"
 import { LocalStorage } from "../../../../../localStorage"
 import styles from "./grid.module.css"
@@ -6,21 +6,44 @@ import { SceneCell } from "./SceneCell"
 import { useContext, CSSProperties } from "react"
 import { CreatorContext } from "../../CreatorContext"
 import { PBCard } from "../../../../PBCard"
+import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
+import { IconButtonTooltip } from "../IconButtonTooltip"
+import { useTranslation } from "react-i18next"
 
 type SceneGridProps = {
-     styling?: CSSProperties
+    styling?: CSSProperties
 }
 
 export const SceneGrid = (props: SceneGridProps) => {
-    const { currentMap, index } = useContext(CreatorContext)
+    const { currentMap, index, maps, setIndex } = useContext(CreatorContext)
+
+    const { t } = useTranslation('creator');
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
 
     const sceneType: SceneType = challenge.scene.type
 
-    return <PBCard sx={{flexGrow: 1, justifyContent:"space-evenly"}}>
-        <Stack className={styles.grid} style={props.styling}>
+    const atFirstMap = index === 0
+    const atLastMap = index === maps.length - 1
+
+    const multipleScenarios = maps.length > 1
+
+    const handleBack = () => {
+        if (atFirstMap) return
+        setIndex(index - 1)
+    }
+
+    const handleNext = () => {
+        if (atLastMap) return
+        setIndex(index + 1)
+    }
+
+    return <PBCard sx={{ flexGrow: 1, justifyContent: "space-evenly" }}>
+        <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
+        <Stack className={styles.grid} style={props.styling} data-testid="dummy-test-scene-grid">
+            <Typography sx={{padding: '20px', alignSelf: 'center'}}>{`${multipleScenarios ? t("mapNavigation.multipleInitialScenarios") : t("mapNavigation.initialScenario")} ${index + 1} / ${maps.length}`}</Typography>
+
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
                     {row.map((cellContent, j) =>
@@ -30,7 +53,16 @@ export const SceneGrid = (props: SceneGridProps) => {
                             content={cellContent}
                             sceneType={sceneType} />)}
                 </Stack>)}
-        <p>{index}</p>
+            <MobileStepper
+                variant="dots"
+                classes={{ dotActive: styles['active-dot'] }}
+                style={{ margin: '15px', backgroundColor: 'var(--theme-background-color)' }}
+                position='static'
+                backButton={<span />}
+                nextButton={<span />}
+                activeStep={index}
+                steps={maps.length} />
         </Stack>
+        <IconButtonTooltip disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
     </PBCard>
 }

@@ -1,4 +1,4 @@
-import { Button, Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
+import { Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { categories, availableBlocksFor } from "../../../blocks";
@@ -6,6 +6,7 @@ import { SerializedChallenge, defaultChallenge } from "../../../serializedChalle
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 import { PROCEDURE_CATEGORY } from "../SceneEdition/mapUtils";
+import { DetailsEditionButton } from "./DetailsEditionButton";
 
 export const ToolBoxDialog = () => {
 
@@ -55,12 +56,12 @@ export const ToolBoxDialog = () => {
     }
 
     return <>
-        <Button 
-            variant="outlined" 
-            size="large"
-            style={{margin:"6px", textTransform:"none"}} 
+        <DetailsEditionButton
+            imageurl="imagenes/boton_toolbox.png"
+            text={t('toolbox.button')}
+            onClick={handleButtonClick}
             data-testid="toolbox-button" 
-            onClick={handleButtonClick}>{t('toolbox.button')}</Button>
+        />
         <GenericModalDialog
                         isOpen={open}
                         onConfirm={handleOnConfirm}

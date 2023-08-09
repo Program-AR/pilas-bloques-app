@@ -7,11 +7,11 @@ import { Header, HeaderText } from "../../header/Header"
 import { SerializedChallenge } from "../../serializedChallenge"
 import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
-import { NewChallengeButton } from "./ActionButtons/NewChallengeButton"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
 import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
+import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton"
 
-const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
+const ViewModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
         <Box sx={{ width: "293px" }}>
             <HeaderText text={challenge.title}/>
@@ -22,12 +22,12 @@ const TryModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
 const Actions = () => <>
     <ReturnToEditionButtion/>
     <Stack direction="row" alignItems={"center"}>
-        <NewChallengeButton/>
+        <DiscardChallengeButton/>
         <DownloadButton/>
     </Stack>
     </>
 
-export const CreatorTryMode = () => {
+export const CreatorViewMode = () => {
     const {t} = useTranslation('creator')
 
     const challengeBeingEdited: SerializedChallenge = LocalStorage.getCreatorChallenge()!
@@ -35,7 +35,7 @@ export const CreatorTryMode = () => {
     Ember.importChallenge(challengeBeingEdited)
     
     return <>
-        <Header CenterComponent={<HeaderText text={t("editor.tryModeHeader")} />} SubHeader={<TryModeSubHeader challenge={challengeBeingEdited}/>}/>
+        <Header CenterComponent={<HeaderText text={t("editor.viewModeHeader")} />} SubHeader={<ViewModeSubHeader challenge={challengeBeingEdited}/>}/>
         <EmberView path={EMBER_IMPORTED_CHALLENGE_PATH}/>
     </>
 }
