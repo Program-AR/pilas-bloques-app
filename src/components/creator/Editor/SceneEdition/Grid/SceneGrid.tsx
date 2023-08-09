@@ -27,8 +27,6 @@ export const SceneGrid = (props: SceneGridProps) => {
     const atFirstMap = index === 0
     const atLastMap = index === maps.length - 1
 
-    const multipleScenarios = maps.length > 1
-
     const handleBack = () => {
         if (atFirstMap) return
         setIndex(index - 1)

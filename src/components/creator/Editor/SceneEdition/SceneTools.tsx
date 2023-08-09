@@ -27,7 +27,6 @@ export const SceneTools = () => {
 
 
     const Tool = (props: ToolProps) => {
-        const isSelected = props.id === selectedTool
 
         return <Button variant='outlined'
             id={props.id}

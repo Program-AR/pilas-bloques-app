@@ -1,4 +1,4 @@
-import { Button, ButtonProps, styled } from "@mui/material";
+import { Button, ButtonProps } from "@mui/material";
 
 type CreatorActionButtonProps = {
   backgroundcolor: string
