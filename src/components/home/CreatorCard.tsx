@@ -22,7 +22,7 @@ export const CreatorCards = () => {
 	
 	return shouldShow ? (
 		<>
-			<Typography className={styles.title} variant="h5">{t("creatorTitle")}</Typography>
+			<Typography color='white' className={styles.title} variant="h5">{t("creatorTitle")}</Typography>
 			<Stack direction="row" className={styles["home-container"]}>
 				<CreateChallengeCard />
 				<ImportChallengeCard />

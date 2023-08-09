@@ -5,12 +5,12 @@ import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
 import { ToolBoxDialog } from "./ChallengeDetailsEdition/ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
-import { TryButton } from "./ActionButtons/TryButton";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
 import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
+import { PreviewButton } from "./ActionButtons/PreviewButton";
 
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')
@@ -36,7 +36,7 @@ const EditorSubHeader: React.FC = () =>
   </CreatorSubHeader>
 
 const Actions = () => <>
-  <TryButton/>
+  <PreviewButton/>
   <Stack direction="row" alignItems={"center"}>
     <DiscardChallengeButton/>
     <DownloadButton/>

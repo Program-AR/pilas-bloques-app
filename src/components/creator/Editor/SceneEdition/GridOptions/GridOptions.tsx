@@ -10,6 +10,7 @@ import { PBCard } from "../../../../PBCard";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 import { IconButtonTooltip } from "../IconButtonTooltip";
 import { DialogSnackbar } from "../../../../dialogSnackbar/DialogSnackbar";
+import theme from "../../../../../theme";
 
 export const GridOptions = (props: StyleGridProps) => {
 
@@ -56,21 +57,23 @@ export const GridOptions = (props: StyleGridProps) => {
 
     return (<>
         <PBCard>
-            <Stack direction="column" style={{ height: '100%', margin: '5px' }} alignItems="center" justifyContent="flex-start">
+            <Stack style={{ height: '100%', margin: '5px' }} alignItems="center" justifyContent="flex-start">
                 <SizeEditor setStyleGrid={props.setStyleGrid} />
-                <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add" />
-                <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
-                
-                <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete" />
-                <GenericModalDialog isOpen={showDeleteDialog} onConfirm={deleteMap} onCancel={() => setShowDeleteDialog(false)} title={t("scenarios.delete")}>
-                    <Typography>{t("scenarios.areYouSure")}</Typography>
-                </GenericModalDialog>
+                <Stack sx={{ alignItems: 'flex-start', gap: theme.spacing(1) }}>
+                    <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add" />
+                    <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
+
+                    <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete" />
+                    <GenericModalDialog isOpen={showDeleteDialog} onConfirm={deleteMap} onCancel={() => setShowDeleteDialog(false)} title={t("scenarios.delete")}>
+                        <Typography>{t("scenarios.areYouSure")}</Typography>
+                    </GenericModalDialog>
+                </Stack>
             </Stack>
         </PBCard>
         <DialogSnackbar
             open={deleteError}
             onClose={() => setDeleteError(false)}
-            message={t("scenarios.deleteError")}/>
+            message={t("scenarios.deleteError")} />
     </>
     )
 }
@@ -90,7 +93,8 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
             <Button
                 {...props}
                 data-testid={`${props.testid}-map-button`}
-                style={{ textTransform: "none", color: 'var(--theme-font-color' }}>
+                variant="outlined"
+                style={{ width: '100%', textTransform: "none" }}>
                 {isSmallScreen ? "" : props.tooltip}
             </Button>
         }

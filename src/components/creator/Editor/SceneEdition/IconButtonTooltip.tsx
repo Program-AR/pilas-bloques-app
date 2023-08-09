@@ -7,7 +7,7 @@ type IconButtonTooltipProps = {
 }
 
 export const IconButtonTooltip = (props: IconButtonTooltipProps & IconButtonProps) =>
-    <Tooltip title={props.tooltip}>
+    <Tooltip title={props.disabled ? '' : props.tooltip}>
         <span>
             <IconButton {...props} style={{...props.style, color: props.iconColor ? props.iconColor : 'var(--theme-font-color' }} >
                 {props.icon}

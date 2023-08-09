@@ -34,7 +34,7 @@ export const Home = () => {
     
     <Grid className={styles['home-container']} container direction='column'>
         <Container className={styles.logo} maxWidth="sm"><img src="imagenes/pblogo-whiteborder.svg" alt="pilas bloques logo"/></Container>
-        <Typography className={styles.title} variant="h5">{t("title")}</Typography>
+        <Typography color='white' className={styles.title} variant="h5">{t("title")}</Typography>
         <RegisterButton />
         <BookCards/>
         <Divider style={{ width:'90%', borderColor: 'white' }}/>
