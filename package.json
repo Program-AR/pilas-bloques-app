@@ -78,7 +78,10 @@
     "electron-rebuild": "^3.2.9",
     "makensis": "^2.0.5",
     "react-git-info": "^2.0.1",
+    "react-markdown": "^8.0.7",
     "release-it": "^15.6.0",
+    "remark-emoji": "^3.1.2",
+    "remark-gfm": "^3.0.1",
     "simple-type-guard": "^3.3.9"
   },
   "optionalDependencies": {
