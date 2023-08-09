@@ -4,6 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
+import ReactGA from "react-ga4";
+
+if(process.env.REACT_APP_ANALYTICS_KEY){
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_KEY);
+}
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
