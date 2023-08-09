@@ -16,7 +16,7 @@ export const CreatorCard = (props: CreatorCardProps) => {
                 <props.icon style={{fontSize: '2.5em'}} />
             </div>
             <div className={creatorCardsStyles['creator-card-text']}>
-                <Typography align="center" fontWeight="400" >{props.text}</Typography>
+                <Typography color='black' align="center" fontWeight="400" >{props.text}</Typography>
             </div>
         </Card>
     )

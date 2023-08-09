@@ -57,7 +57,7 @@ export const StatementEdition = () => {
                         onCancel={handleOnCancel}
                         title={t('statement.title')}>
             <Box style={{ justifyContent:'center'}}>
-            <Typography variant="caption">{t('statement.descriptionHint')}</Typography>
+            <Typography variant="body1">{t('statement.descriptionHint')}</Typography>
             <TextField
                 fullWidth
                 size="small"

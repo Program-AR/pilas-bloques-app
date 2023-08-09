@@ -10,7 +10,7 @@ import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
 import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
-import { ViewButton } from "./ActionButtons/ViewButton";
+import { PreviewButton } from "./ActionButtons/PreviewButton";
 
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')
@@ -36,7 +36,7 @@ const EditorSubHeader: React.FC = () =>
   </CreatorSubHeader>
 
 const Actions = () => <>
-  <ViewButton/>
+  <PreviewButton/>
   <Stack direction="row" alignItems={"center"}>
     <DiscardChallengeButton/>
     <DownloadButton/>

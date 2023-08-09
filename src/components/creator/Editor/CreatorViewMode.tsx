@@ -35,7 +35,7 @@ export const CreatorViewMode = () => {
     Ember.importChallenge(challengeBeingEdited)
     
     return <>
-        <Header CenterComponent={<HeaderText text={t("editor.viewModeHeader")} />} SubHeader={<ViewModeSubHeader challenge={challengeBeingEdited}/>}/>
+        <Header CenterComponent={<HeaderText text={t("editor.previewModeHeader")} />} SubHeader={<ViewModeSubHeader challenge={challengeBeingEdited}/>}/>
         <EmberView path={EMBER_IMPORTED_CHALLENGE_PATH}/>
     </>
 }

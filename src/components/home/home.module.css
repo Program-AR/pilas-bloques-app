@@ -22,7 +22,7 @@
 }
 
 .home-container {
-    background-color: #311C3B;
+    background-color: var(--home-background);
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;

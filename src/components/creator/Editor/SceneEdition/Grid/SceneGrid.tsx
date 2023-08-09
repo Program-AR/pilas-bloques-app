@@ -42,7 +42,7 @@ export const SceneGrid = (props: SceneGridProps) => {
     return <PBCard sx={{ flexGrow: 1, justifyContent: "space-evenly" }}>
         <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
         <Stack className={styles.grid} style={props.styling} data-testid="dummy-test-scene-grid">
-            <Typography sx={{padding: '20px', alignSelf: 'center'}}>{`${multipleScenarios ? t("mapNavigation.multipleInitialScenarios") : t("mapNavigation.initialScenario")} ${index + 1} / ${maps.length}`}</Typography>
+            <Typography variant="h6" sx={{padding: '20px', alignSelf: 'center'}}>{`${t("mapNavigation.multipleInitialScenarios")}: ${index + 1} / ${maps.length}`}</Typography>
 
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">

@@ -1,14 +1,12 @@
 import { Button, ButtonProps, styled } from "@mui/material";
-import {darken} from "@mui/material";
 
-export const CreatorActionButton = styled(Button)<ButtonProps & {backgroundcolor: string}>((props) => ({
+type CreatorActionButtonProps = {
+  backgroundcolor: string
+} & ButtonProps
+
+export const CreatorActionButton = (props: CreatorActionButtonProps) =>
+  <Button {...props} variant="outlined" sx={{
     textTransform: "none",
-    border: '1px solid',
-    marginRight: '10px',
-    backgroundColor: props.backgroundcolor,
-    borderRadius: '2px',
-    color: "white",
-    '&:hover': {
-      backgroundColor: darken(props.backgroundcolor, 0.2),
-  },
-  }));
+    marginRight: '10px' }}>
+    {props.children}
+  </Button>

@@ -26,12 +26,12 @@ export const IncDecButtons = (props: IncDecButtonsProps) => {
 
     return (
         <Box sx={{ display:"flex", flexDirection: "column", alignItems: "center", padding:"10px" }}>
-            {props.label && <Typography textAlign="center" variant="caption">{props.label}</Typography>}
             <ButtonGroup sx={{ flexDirection: flexStyles.flexDir, width: flexStyles.flexGroupWidth }}  variant="contained" size="small" color="inherit" aria-label="small outlined button group">
                 <Button style={{ fontSize: flexStyles.flexFontSize, minWidth: flexStyles.flexMinWidth, borderRight:"0px" }} onClick={()=>handleValue(false)}data-testid={`dec-btn-${props.testId}`}>-</Button>
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: flexStyles.flexTextWidth }} >{props.value}</Box>
                 <Button style={{ fontSize: flexStyles.flexFontSize, minWidth: flexStyles.flexMinWidth, borderRight:"0px" }} onClick={()=>handleValue(true)} data-testid={`inc-btn-${props.testId}`}>+</Button>
             </ButtonGroup>
+            {props.label && <Typography sx={{marginTop: '5px'}} textAlign="center" variant="body1">{props.label}</Typography>}
         </Box>
     );
 }
