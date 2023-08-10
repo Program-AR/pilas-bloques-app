@@ -1,12 +1,19 @@
-import { Button, ButtonProps } from "@mui/material";
+import { Button, ButtonProps, useMediaQuery } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 type CreatorActionButtonProps = {
-  backgroundcolor: string
+  nametag: string,
+  isshortversion?: boolean
 } & ButtonProps
 
-export const CreatorActionButton = (props: CreatorActionButtonProps) =>
-  <Button {...props} variant="outlined" sx={{
+export const CreatorActionButton = ({ isshortversion = false, ...props} : CreatorActionButtonProps) => {
+  const { t } = useTranslation('creator')
+
+  const isSmallScreen: boolean = useMediaQuery('(max-width:814px)');
+
+  return < Button {...props} variant="outlined" sx={{
     textTransform: "none",
-    marginRight: '10px' }}>
-    {props.children}
-  </Button>
+    marginRight: '10px'}}>
+    {t(`editor.buttons.${props.nametag}${!isshortversion && isSmallScreen ? 'Short' : ''}`)}
+  </Button >
+}

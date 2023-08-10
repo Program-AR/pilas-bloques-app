@@ -38,53 +38,54 @@ export const SceneTools = () => {
                 backgroundPositionX: "center",
                 backgroundPositionY: "center",
                 boxShadow: `0 0px calc(10px * ${Number(props.id === selectedTool)})`,
-                width: "50px", height: "50px",                
-                marginTop: theme.spacing(1)
-            }} />
+                height:'40px',
+                marginTop: theme.spacing(0.8)
+    }
+} />
     }
 
-    type ToolGroupProps = {
-        children: React.ReactNode
-        type: string
-    }
+type ToolGroupProps = {
+    children: React.ReactNode
+    type: string
+}
 
-    const ToolGroup = (props: ToolGroupProps) =>
-        <Stack alignItems="center" sx={{ margin: '10px' }}>
-            {props.children}
-            <Typography sx={{ textAlign: 'center', marginTop: theme.spacing(0.5) }} variant="body1">{t(`tools.${props.type}`)}</Typography>
+const ToolGroup = (props: ToolGroupProps) =>
+    <Stack alignItems="center" sx={{ margin: theme.spacing(0.1) }}>
+        {props.children}
+        <Typography sx={{ textAlign: 'center', marginTop: theme.spacing(0.5) }} variant="subtitle2">{t(`tools.${props.type}`)}</Typography>
+    </Stack>
+
+const PutObstacleTool = () =>
+    <ToolGroup type='putObstacle'>
+        <Tool id="O" image={`${imagePathScene}/O.png`} />
+    </ToolGroup>
+
+const PutObjectTool = () =>
+    <ToolGroup type='putObject'>
+        {sceneObjectByType(challenge!.scene.type).validCells.map((object) =>
+            <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`} />)}
+    </ToolGroup>
+
+const PutActorTool = () =>
+    <ToolGroup type='putActor'>
+        <Tool id="A" image={`${imagePathScene}/tool.png`} />
+    </ToolGroup>
+
+const DeleteTool = () =>
+    <ToolGroup type='delete'>
+        <Tool id="-" image={`${imagePath}/eraser.png`} />
+    </ToolGroup>
+
+return (
+    <PBCard>
+        <Stack alignItems="center" justifyContent="flex-start" style={{ padding: theme.spacing(1), height: "100%" }}>
+            <PutActorTool />
+            <PutObstacleTool />
+            <PutObjectTool />
+            <DeleteTool />
         </Stack>
-
-    const PutObstacleTool = () =>
-        <ToolGroup type='putObstacle'>
-            <Tool id="O" image={`${imagePathScene}/O.png`} />
-        </ToolGroup>
-
-    const PutObjectTool = () =>
-        <ToolGroup type='putObject'>
-            {sceneObjectByType(challenge!.scene.type).validCells.map((object) =>
-                <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`} />)}
-        </ToolGroup>
-
-    const PutActorTool = () =>
-        <ToolGroup type='putActor'>
-            <Tool id="A" image={`${imagePathScene}/tool.png`} />
-        </ToolGroup>
-
-    const DeleteTool = () =>
-        <ToolGroup type='delete'>
-            <Tool id="-" image={`${imagePath}/eraser.png`} />
-        </ToolGroup>
-
-    return (
-        <PBCard>
-            <Stack alignItems="center" justifyContent="flex-start" style={{ padding: theme.spacing(1), height: "100%" }}>
-                <PutActorTool />
-                <PutObstacleTool />
-                <PutObjectTool />
-                <DeleteTool />
-            </Stack>
-        </PBCard>
-    )
+    </PBCard>
+)
 }
 
 

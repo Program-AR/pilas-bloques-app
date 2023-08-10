@@ -36,6 +36,6 @@ export const CreatorViewMode = () => {
     
     return <>
         <Header CenterComponent={<HeaderText text={t("editor.previewModeHeader")} />} SubHeader={<ViewModeSubHeader challenge={challengeBeingEdited}/>}/>
-        <EmberView path={EMBER_IMPORTED_CHALLENGE_PATH}/>
+        <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH}/>
     </>
 }

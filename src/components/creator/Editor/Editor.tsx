@@ -20,7 +20,7 @@ export const CreatorEditor = () => {
       
       <Stack alignItems="center" sx={{backgroundColor: 'var(--theme-background-secondary-color)'}}>
         <Header CenterComponent={<HeaderText text={t("editor.editorHeader")}/>} SubHeader={<EditorSubHeader/>}/>
-        <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 1024, maxHeight: 630}}>
+        <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)'}}>
           <SceneEdition />
         </Stack>
         <EditorFooter />

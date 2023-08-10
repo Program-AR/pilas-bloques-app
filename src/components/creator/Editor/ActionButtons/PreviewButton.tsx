@@ -4,10 +4,9 @@ import { CreatorActionButton } from "./CreatorActionButton"
 import { Visibility } from "@mui/icons-material";
 
 export const PreviewButton = () => {
-    const {t} = useTranslation('creator')
 
     return <Link to="/creador/ver">
-            <CreatorActionButton startIcon={<Visibility/>} backgroundcolor="#449d99">{t("editor.buttons.preview")}</CreatorActionButton>
+            <CreatorActionButton startIcon={<Visibility/>} nametag='preview'/>
         </Link>
 
 }

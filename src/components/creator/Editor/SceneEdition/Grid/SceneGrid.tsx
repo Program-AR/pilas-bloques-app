@@ -9,6 +9,7 @@ import { PBCard } from "../../../../PBCard"
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material"
 import { IconButtonTooltip } from "../IconButtonTooltip"
 import { useTranslation } from "react-i18next"
+import theme from "../../../../../theme"
 
 type SceneGridProps = {
     styling?: CSSProperties
@@ -39,8 +40,8 @@ export const SceneGrid = (props: SceneGridProps) => {
 
     return <PBCard sx={{ flexGrow: 1, justifyContent: "space-evenly" }}>
         <IconButtonTooltip disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
-        <Stack className={styles.grid} style={props.styling} data-testid="dummy-test-scene-grid">
-            <Typography variant="h6" sx={{padding: '20px', alignSelf: 'center'}}>{`${t("mapNavigation.multipleInitialScenarios")}: ${index + 1} / ${maps.length}`}</Typography>
+        <Stack justifyContent='flex-start' className={styles.grid} style={props.styling} data-testid="dummy-test-scene-grid">
+            <Typography variant="h6" sx={{marginBottom: theme.spacing(1), alignSelf: 'center'}}>{`${t("mapNavigation.multipleInitialScenarios")}: ${index + 1} / ${maps.length}`}</Typography>
 
             {currentMap.map((row, i) =>
                 <Stack key={i + row.join(',')} direction="row" data-testid="challenge-row">
@@ -54,7 +55,7 @@ export const SceneGrid = (props: SceneGridProps) => {
             <MobileStepper
                 variant="dots"
                 classes={{ dotActive: styles['active-dot'] }}
-                style={{ margin: '15px', backgroundColor: 'var(--theme-background-color)' }}
+                style={{ marginTop: theme.spacing(1), backgroundColor: 'var(--theme-background-color)' }}
                 position='static'
                 backButton={<span />}
                 nextButton={<span />}
