@@ -9,7 +9,7 @@ type CreatorActionButtonProps = {
 export const CreatorActionButton = ({ isshortversion = false, ...props} : CreatorActionButtonProps) => {
   const { t } = useTranslation('creator')
 
-  const isSmallScreen: boolean = useMediaQuery('(max-width:800px)');
+  const isSmallScreen: boolean = useMediaQuery('(max-width:814px)');
 
   return < Button {...props} variant="outlined" sx={{
     textTransform: "none",
