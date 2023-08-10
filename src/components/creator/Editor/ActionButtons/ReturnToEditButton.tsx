@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 export const ReturnToEditionButtion = () => {
 
     return <Link to="/creador/editar">
-        <CreatorActionButton startIcon={<EditIcon />} nameTag='keepEditing' />
+        <CreatorActionButton startIcon={<EditIcon />} nametag='keepEditing' />
     </Link>
 
 }

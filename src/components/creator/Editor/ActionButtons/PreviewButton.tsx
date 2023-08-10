@@ -6,7 +6,7 @@ import { Visibility } from "@mui/icons-material";
 export const PreviewButton = () => {
 
     return <Link to="/creador/ver">
-            <CreatorActionButton startIcon={<Visibility/>} nameTag='preview'/>
+            <CreatorActionButton startIcon={<Visibility/>} nametag='preview'/>
         </Link>
 
 }
