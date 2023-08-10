@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { SerializedChallenge } from "../../../serializedChallenge";
 import { LocalStorage } from "../../../../localStorage";
 import { CreatorActionButton } from "./CreatorActionButton";
