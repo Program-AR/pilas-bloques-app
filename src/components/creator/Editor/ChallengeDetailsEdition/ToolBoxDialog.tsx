@@ -57,7 +57,7 @@ export const ToolBoxDialog = () => {
 
     return <>
         <DetailsEditionButton
-            imageurl="imagenes/boton_toolbox.png"
+            imageurl="imagenes/selector-bloques.svg"
             text={t('toolbox.button')}
             onClick={handleButtonClick}
             data-testid="toolbox-button" 

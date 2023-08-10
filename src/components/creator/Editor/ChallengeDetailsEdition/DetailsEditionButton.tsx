@@ -1,24 +1,24 @@
-import { Stack, Button, Typography, ButtonProps } from "@mui/material";
+import { Typography, CardMedia, CardContent, CardActionArea, CardActionAreaProps, Stack } from "@mui/material";
+import { PBCard } from "../../../PBCard";
 
 type DetailsEditionButtonProps = {
     imageurl: string,
     text: string
-} & ButtonProps
+} & CardActionAreaProps
 
 export const DetailsEditionButton = (props: DetailsEditionButtonProps) => 
-<Stack alignItems="center">
-    <Button 
-        variant="outlined" 
-        size="large"
-        style={{margin:"6px", textTransform:"none"}} 
-        sx={{width:200, height: 110}}
-        {...props}
-        >
+    <PBCard>
+        <CardActionArea 
+            style={{margin:"6px", textTransform:"none"}} 
+            sx={{width:200, height: 150}}
+            {...props}>
 
-        <img src={props.imageurl} alt={props.text} width={"100%"} height={"80%"}/>
+            <CardMedia component="img" src={props.imageurl} alt={props.text}/>
 
-    </Button>
+            <CardContent>
+                <Typography>{props.text}</Typography>
+            </CardContent>
 
-<Typography variant='h6'>{props.text}</Typography>
+        </CardActionArea>
+    </PBCard>
 
-</Stack>  
