@@ -1,4 +1,3 @@
-import {describe, expect, test} from '@jest/globals';
 import { Book, getBook } from '../staticData/books';
 import { Challenge, getChallengeWithId, getChallengeWithName, getPathToChallenge, PathToChallenge } from '../staticData/challenges';
 
