@@ -35,8 +35,8 @@
 		"button": "Write your statement",
 		"description": "Description",
 		"clue": "Clue",
-		"markdownTitle": "This is what your statement and clue will look like",
-		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax",
+		"markdownTitle": "This is what your statement and clue will look like:",
+		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
 		"includeClue": "Include a clue",
 		"defaultDescription": "Write your **statement**..."
 	},

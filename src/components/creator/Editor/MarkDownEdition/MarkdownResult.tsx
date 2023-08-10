@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import ReactMarkdown from "react-markdown";
-import { Box, Button, lighten } from "@mui/material";
+import { Button, Stack, Typography, lighten } from "@mui/material";
 import { WbIncandescent, MenuBook } from"@mui/icons-material"
 import { PBCard } from "../../../PBCard";
 import remarkGfm from 'remark-gfm';
@@ -23,22 +23,22 @@ export const MarkdownResult = () => {
       setMarkdownShow(markdownClue);
   };
 
-  return (
-    <PBCard sx={{ flexDirection: "row" }}>
-    <Box component="fieldset" sx={{display: "flex", margin: theme.spacing(0.3), width:"100%", flexDirection: "row", boxSizing: "border-box", borderStyle: "solid", borderWidth: "thin", borderRadius: theme.shape.borderRadius.toString()+"px" }}>
-        <legend style={{color: theme.palette.primary.main }}>{t('statement.markdownTitle')}</legend>
-        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center" }}>
-          <img alt="actor" style={{width:"64px", height:"64px"}} src={`${urlImage}`}/>
-        </Box>
-        <Box sx={{display: "flex", flexDirection: "column", justifyContent: "center" }}> 
-          <Box sx={{display: "flex", textAlign: "center", marginRight: theme.spacing(0.6), marginLeft: theme.spacing(0.6), width: "50px", flexDirection: "column", justifyContent: "flex-start", backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
-            <Button onClick={onclickStatement} sx={{"&:hover": {backgroundColor: lighten(theme.palette.primary.main, 0.67)}, color: theme.palette.primary.main, minWidth: "50px"}}><MenuBook/></Button>
-            <Button disabled={!clueCheck} onClick={onclickClue} sx={{"&:hover": {backgroundColor: lighten(theme.palette.primary.main, 0.67)}, color:"#ebca14", minWidth: "50px"}}><WbIncandescent style={{ transform: "rotate(180deg)"}}/></Button>
-          </Box>
-        </Box>
-       <ReactMarkdown children={markdownShow} remarkPlugins={[remarkGfm, [remarkemoji, {
-       emoticon: true }]]} />
-    </Box>
+  return <>
+    <Typography>{t('statement.markdownTitle')}</Typography>
+    <PBCard sx={{height:"80px"}}>
+        <img height="100%" alt="actor" src={urlImage}/>
+        <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
+          <Button onClick={onclickStatement}>
+            <MenuBook/>
+          </Button>
+          <Button disabled={!clueCheck} onClick={onclickClue} sx={{color:"#ebca14"}}>
+            <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
+          </Button>
+        </Stack>
+        <div style={{height:"100%", overflowY: "auto", marginLeft:theme.spacing(2) }}>
+          <ReactMarkdown children={markdownShow} remarkPlugins={[remarkGfm, [remarkemoji, {
+        emoticon: true }]]} />
+        </div>
     </PBCard>
-  );
+  </>
 }
