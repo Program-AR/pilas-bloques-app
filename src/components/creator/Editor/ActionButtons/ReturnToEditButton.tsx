@@ -3,13 +3,10 @@ import { CreatorActionButton } from "./CreatorActionButton";
 import EditIcon from '@mui/icons-material/Edit';
 import { useTranslation } from "react-i18next";
 
-export const ReturnToEditionButtion = () =>{
-    const {t} = useTranslation('creator')
+export const ReturnToEditionButtion = () => {
 
     return <Link to="/creador/editar">
-        <CreatorActionButton startIcon={<EditIcon/>} backgroundcolor="#449d99">
-            {t("editor.buttons.keepEditing")}
-        </CreatorActionButton>
+        <CreatorActionButton startIcon={<EditIcon />} nameTag='keepEditing' />
     </Link>
 
 }

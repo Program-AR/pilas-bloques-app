@@ -19,9 +19,13 @@
 		"title": "Escribir título",
 		"buttons": {
 			"discardChallenge": "Descartar desafio",
+			"discardChallengeShort": "Descartar",
 			"download": "Descargar",
 			"preview": "Ver desafio",
-			"keepEditing": "Seguir editando"
+			"previewShort": "Ver",
+			"keepEditing": "Seguir editando",
+			"keepEditingShort": "Editar"
+
 		},
 		"editorHeader": "Editar desafio",
 		"previewModeHeader": "Ver desafio"

@@ -6,9 +6,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 
 export const DownloadButton = () => {
     
-    const { t } = useTranslation('creator');
-    
-    return <CreatorActionButton onClick={downloadChallenge} startIcon={<DownloadIcon/>} backgroundcolor="#65449d">{t("editor.buttons.download")}</CreatorActionButton>
+    return <CreatorActionButton onClick={downloadChallenge} startIcon={<DownloadIcon/>} nameTag='download' isShortVersion={true}/>
 
 }
 
