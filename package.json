@@ -30,6 +30,7 @@
     "i18next-resources-to-backend": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
     "react-i18next": "^12.1.5",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
@@ -82,7 +83,8 @@
     "release-it": "^15.6.0",
     "remark-emoji": "^3.1.2",
     "remark-gfm": "^3.0.1",
-    "simple-type-guard": "^3.3.9"
+    "simple-type-guard": "^3.3.9",
+    "ts-jest": "^29.1.1"
   },
   "optionalDependencies": {
     "electron-installer-debian": "git+https://github.com/Program-AR/electron-installer-debian.git"
