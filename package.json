@@ -51,7 +51,7 @@
     "pack:osx": "bash ./scripts/package.sh -osx",
     "pack:win32": "bash ./scripts/package.sh -win32",
     "pack:html": "bash ./scripts/package.sh -html",
-    "clean": "rm -rf node_modules dist binaries",
+    "clean": "rm -rf node_modules build binaries",
     "release": "release-it --only-version"
   },
   "eslintConfig": {
