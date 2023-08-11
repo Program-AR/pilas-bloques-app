@@ -15,10 +15,10 @@ type MarkdownEditorProps = {
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
 
-    const [showStatement, setShowStatement] = useState<boolean>(true) 
+    const [showStatement, setShowStatement] = useState<boolean>(true)
 
     return <>
-        <MarkdownResult statement={props.statement} clue={props.clue} showStatement={showStatement}/>
+        <MarkdownResult text={showStatement ? props.statement : props.clue!} setShowStatement={setShowStatement} clueIsEnabled={!!props.clue}/>
         <Typography variant="body1" marginY={theme.spacing(2)}>{t('statement.descriptionHint')}</Typography>
         <MarkdownInput setShowStatement={setShowStatement} {...props}/>
     </>

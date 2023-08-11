@@ -7,6 +7,7 @@ import { DetailsEditionButton } from "./DetailsEditionButton";
 import theme from "../../../../theme";
 import { MarkdownInput } from "../MarkDownEdition/MarkdownInput";
 import { MarkdownResult } from "../MarkDownEdition/MarkdownResult";
+import { MarkdownEditor } from "../MarkDownEdition/MarkdownEditor";
 
 type StatementEditionType = {
     dialogImageUrl?: string;
@@ -23,7 +24,6 @@ export const StatementEdition = (props: StatementEditionType) => {
     const [clue, setClue] = useState<string | undefined>(initialClue)
 
     const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-    const [showStatement, setShowStatement] = useState<boolean>(true)
 
     const handleOnConfirm = () => {
         const challenge = LocalStorage.getCreatorChallenge()
@@ -57,9 +57,7 @@ export const StatementEdition = (props: StatementEditionType) => {
                         title={t('statement.title')}>
             <Box style={{ justifyContent:'center'}}>
             
-            <MarkdownResult statement={statement} clue={clue} showStatement={showStatement}/>
-            <Typography variant="body1" marginY={theme.spacing(2)}>{t('statement.descriptionHint')}</Typography>
-            <MarkdownInput statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} setShowStatement={setShowStatement}/>
+            <MarkdownEditor statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} />
 
             </Box>
         </GenericModalDialog>

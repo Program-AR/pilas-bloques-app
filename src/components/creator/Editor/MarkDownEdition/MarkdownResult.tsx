@@ -7,18 +7,16 @@ import remarkemoji from 'remark-emoji';
 import { useTranslation } from "react-i18next";
 import theme from '../../../../theme';
 import { LocalStorage } from "../../../../localStorage";
-import { useState } from "react";
 
 type MarkdownResultProps = {
-  statement: string
-  showStatement: boolean
-  clue?: string
+  text: string
+  setShowStatement: (show: boolean) => void
+  clueIsEnabled: boolean
 }
 
 export const MarkdownResult = (props: MarkdownResultProps) => {
   const { t } = useTranslation('creator');
   const urlImage = `imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png` 
-  const [showStatement, setShowStatement] = useState<boolean>(props.showStatement)
 
   return <>
     <Typography>{t('statement.markdownTitle')}</Typography>
@@ -26,17 +24,17 @@ export const MarkdownResult = (props: MarkdownResultProps) => {
         <img height="100%" alt="actor" src={urlImage}/>
         <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
           
-          <Button onClick={() => setShowStatement(true)}>
+          <Button onClick={() => props.setShowStatement(true)}>
             <MenuBook/>
           </Button>
 
-          <Button disabled={!props.clue} onClick={() => setShowStatement(false)} sx={{color:"#ebca14"}}>
+          <Button disabled={!props.clueIsEnabled} onClick={() => props.setShowStatement(false)} sx={{color:"#ebca14"}}>
             <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
           </Button>
 
         </Stack>
         <div style={{height:"100%", overflowY: "auto", marginLeft:theme.spacing(2) }}>
-          <ReactMarkdown children={showStatement ? props.statement : props.clue!} remarkPlugins={[remarkGfm, [remarkemoji, {emoticon: true }]]} />
+          <ReactMarkdown children={props.text} remarkPlugins={[remarkGfm, [remarkemoji, {emoticon: true }]]} />
         </div>
     </PBCard>
   </>

@@ -12,8 +12,6 @@ type MarkdownInputProps = {
 
 export const MarkdownInput = (props: MarkdownInputProps) => {
 
-  const [clueEnabled, setClueEnabled] = useState<boolean>(!!props.clue)
-
   const { t } = useTranslation('creator');
   
   const onClueChange = (e: { currentTarget: { value: string; }; }) => {
@@ -41,17 +39,11 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
         sx={{marginTop: '10px'}}
         id="statement-input"
     />
-    <br/>
-    <FormControlLabel control={<Switch checked={clueEnabled}
-                                id="clue-check-switch"
-                                onChange={() => setClueEnabled(true)}/>} label={t("statement.includeClue")} />
-    
-    <br/>
+
     <TextField
         fullWidth
         size="small"
         multiline={true}
-        disabled={!clueEnabled}
         label={t('statement.clue')}
         value={props.clue}
         onChange={onClueChange}
