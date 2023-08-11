@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import ReactMarkdown from "react-markdown";
-import { Box, Button } from "@mui/material";
+import { Button, Stack, Typography, lighten } from "@mui/material";
 import { WbIncandescent, MenuBook } from"@mui/icons-material"
 import { PBCard } from "../../../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
 import { useTranslation } from "react-i18next";
 import { MarkdownContext } from "./MarkdownContext";
+import theme from '../../../../theme';
 
 export const MarkdownResult = () => {
 
@@ -22,19 +23,22 @@ export const MarkdownResult = () => {
       setMarkdownShow(markdownClue);
   };
 
-
-  return (
-    <PBCard sx={{ flexDirection: "row" }}>
-    <Box component="fieldset" sx={{display: "flex", width:"100%", flexDirection: "row", boxSizing: "border-box", borderRadius: '4px' }}>
-        <legend>{t('statement.markdownTitle')}</legend>
-        <img alt="actor" style={{width:"80px", height:"80px"}} src={`${urlImage}`}/>
-        <Box sx={{FlexDirection: "column", width:"100px"}}>
-        <Button onClick={onclickStatement}><MenuBook/></Button>
-        <Button disabled={!clueCheck} onClick={onclickClue}><WbIncandescent/></Button>
-        </Box>
-       <ReactMarkdown children={markdownShow} remarkPlugins={[remarkGfm, [remarkemoji, {
-       emoticon: true }]]} />
-    </Box>
+  return <>
+    <Typography>{t('statement.markdownTitle')}</Typography>
+    <PBCard sx={{height:"80px"}}>
+        <img height="100%" alt="actor" src={urlImage}/>
+        <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
+          <Button onClick={onclickStatement} sx={{minWidth:"50px"}}>
+            <MenuBook/>
+          </Button>
+          <Button disabled={!clueCheck} onClick={onclickClue} sx={{color:"#ebca14", minWidth:"50px"}}>
+            <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
+          </Button>
+        </Stack>
+        <div style={{height:"100%", overflowY: "auto", marginLeft:theme.spacing(2) }}>
+          <ReactMarkdown children={markdownShow} remarkPlugins={[remarkGfm, [remarkemoji, {
+        emoticon: true }]]} />
+        </div>
     </PBCard>
-  );
+  </>
 }
