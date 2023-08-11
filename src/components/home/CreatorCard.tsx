@@ -11,7 +11,7 @@ const CreateChallengeCard = () => {
 
 	return (
 		<Link to="creador/seleccionar" style={{ textDecoration: 'none' }}>
-        	<CreatorCard text={t("cards.creator")} color="#ffffff" icon={PaintbrushIcon} />
+        	<CreatorCard visibleBadge={true} text={t("cards.creator")} color="#ffffff" icon={PaintbrushIcon} />
     	</Link>
 	)
 }

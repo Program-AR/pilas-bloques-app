@@ -8,6 +8,7 @@ import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
 import { SceneType, defaultChallenge } from "../serializedChallenge"
 import theme from "../../theme"
+import { BetaBadge } from "./BetaBadge"
 
 type CharacterCardProps = {
 	name: SceneType
@@ -82,7 +83,9 @@ export const CreatorSelection = () => {
 			<Header />
 			<ChallengeInProgressDialog />
 			<Container className={styles.selection} maxWidth={"xl"}>
-				<Typography variant="h4">{t("selection.title")}</Typography>
+				<BetaBadge sx={{marginTop: 2}}>
+					<Typography variant="h4">{t("selection.title")}</Typography>
+				</BetaBadge>
 				<Typography variant="h5">{t("selection.subtitle")}</Typography>
 
 				<CharacterCards />
@@ -114,7 +117,7 @@ const ChallengeInProgressDialog = () => {
 					<Stack direction="column">
 						{t("selection.challengeBeingCreated")}
 						<b>{t("selection.discardWarning")}</b>
-						<Stack sx={{marginTop: theme.spacing(1)}} direction='row' gap={theme.spacing(1)} justifyContent='flex-end'>
+						<Stack sx={{ marginTop: theme.spacing(1) }} direction='row' gap={theme.spacing(1)} justifyContent='flex-end'>
 							<Button variant="contained" color='error' onClick={onDiscard}>{t("selection.discard")}</Button>
 							<Link to="/creador/editar">
 								<Button variant="contained" color="success" >{t("selection.continueEditing")}</Button>

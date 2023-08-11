@@ -40,7 +40,7 @@ export const ImportChallengeCard = () => {
 
     return <>
     <Button component="label" style={{textTransform: 'none', padding: 0}}>
-        <CreatorCard text={t("cards.import")} color={"#ffffff"} icon={UploadIcon}/>
+        <CreatorCard visibleBadge={true} text={t("cards.import")} color={"#ffffff"} icon={UploadIcon}/>
         <input data-testid="import-input" hidden accept=".pbch,.json" type="file" onChange={readFile}/>
         <DialogSnackbar 
             open={snackbarOpen}
