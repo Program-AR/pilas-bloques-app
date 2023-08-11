@@ -52,7 +52,8 @@
 	},
 	"toolbox": {
 		"title": "Seleccionar comandos disponibles",
-		"button": "Seleccionar comandos disponibles"
+		"button": "Seleccionar comandos disponibles",
+		"categoriesHint": "Cuando se desee usar procedimientos siempre deberá haber categorías"
 	},
 	"scenarios": {
 		"delete": "Eliminar escenario",

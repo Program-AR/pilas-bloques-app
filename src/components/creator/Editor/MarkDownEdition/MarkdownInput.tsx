@@ -1,4 +1,4 @@
-import { Checkbox, FormControlLabel, TextField} from "@mui/material";
+import { Switch, FormControlLabel, TextField} from "@mui/material";
 import { StatementTextToShow } from "./MarkdownEditor";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -52,7 +52,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
         id="statement-input"
     />
 
-    <FormControlLabel control={<Checkbox onChange={toggleClueEnabled} checked={clueIsEnabled}/>} label={t("statement.includeClue")}/>
+    <FormControlLabel control={<Switch color="secondary" onChange={toggleClueEnabled} checked={clueIsEnabled}/>} label={t("statement.includeClue")}/>
 
     {clueIsEnabled ? 
     <TextField
