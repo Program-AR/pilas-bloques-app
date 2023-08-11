@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material"
-import { t } from "i18next"
 import theme from "../../../../theme"
 import { MarkdownInput } from "./MarkdownInput"
 import { MarkdownResult } from "./MarkdownResult"
 import { useState } from "react"
+import { useTranslation } from "react-i18next"
 
 type MarkdownEditorProps = {
     statement: string
@@ -14,7 +14,7 @@ type MarkdownEditorProps = {
 
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
-
+    const { t } = useTranslation('creator')
     const [showStatement, setShowStatement] = useState<boolean>(true)
 
     return <>

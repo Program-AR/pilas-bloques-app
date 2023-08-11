@@ -1,12 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 import { DetailsEditionButton } from "./DetailsEditionButton";
-import theme from "../../../../theme";
-import { MarkdownInput } from "../MarkDownEdition/MarkdownInput";
-import { MarkdownResult } from "../MarkDownEdition/MarkdownResult";
 import { MarkdownEditor } from "../MarkDownEdition/MarkdownEditor";
 
 type StatementEditionType = {
