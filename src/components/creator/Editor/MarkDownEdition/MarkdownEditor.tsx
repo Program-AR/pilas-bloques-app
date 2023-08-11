@@ -9,17 +9,22 @@ type MarkdownEditorProps = {
     statement: string
     clue: string | undefined
     setStatement: (statement: string) => void
-    setClue: (clue: string) => void
+    setClue: (clue?: string) => void
 }
 
+export enum StatementTextToShow {
+    STATEMENT,
+    CLUE
+}
 
 export const MarkdownEditor = (props: MarkdownEditorProps) => {
     const { t } = useTranslation('creator')
-    const [showStatement, setShowStatement] = useState<boolean>(true)
+    const [statementTextToShow, setShowStatement] = useState<StatementTextToShow>(StatementTextToShow.STATEMENT)
+    const textToShow: string = statementTextToShow === StatementTextToShow.STATEMENT ? props.statement : props.clue!
 
     return <>
-        <MarkdownResult text={showStatement ? props.statement : props.clue!} setShowStatement={setShowStatement} clueIsEnabled={!!props.clue}/>
+        <MarkdownResult text={textToShow} setShowStatement={setShowStatement} clueIsEnabled={!!props.clue}/>
         <Typography variant="body1" marginY={theme.spacing(2)}>{t('statement.descriptionHint')}</Typography>
-        <MarkdownInput setShowStatement={setShowStatement} {...props}/>
+        <MarkdownInput setShowStatement={setShowStatement} statement={props.statement} clue={props.clue} setClue={props.setClue} setStatement={props.setStatement}/>
     </>
 }

@@ -7,10 +7,11 @@ import remarkemoji from 'remark-emoji';
 import { useTranslation } from "react-i18next";
 import theme from '../../../../theme';
 import { LocalStorage } from "../../../../localStorage";
+import { StatementTextToShow } from "./MarkdownEditor";
 
 type MarkdownResultProps = {
   text: string
-  setShowStatement: (show: boolean) => void
+  setShowStatement: (show: StatementTextToShow) => void
   clueIsEnabled: boolean
 }
 
@@ -24,11 +25,11 @@ export const MarkdownResult = (props: MarkdownResultProps) => {
         <img height="100%" alt="actor" src={urlImage}/>
         <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
           
-          <Button onClick={() => props.setShowStatement(true)}>
+          <Button onClick={() => props.setShowStatement(StatementTextToShow.STATEMENT)}>
             <MenuBook/>
           </Button>
 
-          <Button disabled={!props.clueIsEnabled} onClick={() => props.setShowStatement(false)} sx={{color:"#ebca14"}}>
+          <Button disabled={!props.clueIsEnabled} onClick={() => props.setShowStatement(StatementTextToShow.CLUE)} sx={{color:"#ebca14"}}>
             <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
           </Button>
 
