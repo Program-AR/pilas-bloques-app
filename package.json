@@ -30,6 +30,7 @@
     "i18next-resources-to-backend": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-ga4": "^2.1.0",
     "react-i18next": "^12.1.5",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
@@ -51,7 +52,7 @@
     "pack:osx": "bash ./scripts/package.sh -osx",
     "pack:win32": "bash ./scripts/package.sh -win32",
     "pack:html": "bash ./scripts/package.sh -html",
-    "clean": "rm -rf node_modules dist binaries",
+    "clean": "rm -rf node_modules build binaries",
     "release": "release-it --only-version"
   },
   "eslintConfig": {

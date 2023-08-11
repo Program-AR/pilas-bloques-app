@@ -1,8 +1,9 @@
-import { Box, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { MarkdownInput } from "./MarkdownInput";
 import { MarkdownContext, MarkdownContextType } from "./MarkdownContext";
 import { MarkdownResult } from "./MarkdownResult";
+import theme from "../../../../theme";
 
 export const MarkdownEdition = (props:MarkdownContextType) => {
 
@@ -10,11 +11,9 @@ export const MarkdownEdition = (props:MarkdownContextType) => {
   
   return (
     <MarkdownContext.Provider value={props}>
-      <Box style={{ justifyContent:'center'}}>
-        <Typography variant="body1">{t('statement.descriptionHint')}</Typography>
         <MarkdownResult />
+        <Typography variant="body1" marginY={theme.spacing(2)}>{t('statement.descriptionHint')}</Typography>
         <MarkdownInput />
-      </Box>
     </MarkdownContext.Provider>
   );
 }

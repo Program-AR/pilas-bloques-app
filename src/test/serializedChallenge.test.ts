@@ -1,4 +1,3 @@
-import {describe, expect, test} from '@jest/globals';
 import { Scene, SerializedChallenge, isValidChallenge, sceneIsValid } from '../components/serializedChallenge';
 import { Ember } from '../emberCommunication';
 

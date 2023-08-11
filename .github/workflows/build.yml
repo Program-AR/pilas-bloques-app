@@ -32,6 +32,7 @@ jobs:
       runs-on: ubuntu-latest
       env:
         REACT_APP_API_URL: ${{ secrets.API_URL }}
+        REACT_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
         REACT_APP_VERSION: ${{github.ref_name}}
       if: startsWith(github.ref, 'refs/tags')
       needs: test
@@ -54,6 +55,7 @@ jobs:
     runs-on: macos-latest
     env:
       REACT_APP_API_URL: ${{ secrets.API_URL }}
+      REACT_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       REACT_APP_VERSION: ${{github.ref_name}}
     if: startsWith(github.ref, 'refs/tags')
     needs: test
@@ -75,6 +77,7 @@ jobs:
     runs-on: windows-latest
     env:
       REACT_APP_API_URL: ${{ secrets.API_URL }}
+      REACT_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       REACT_APP_VERSION: ${{github.ref_name}}
     if: startsWith(github.ref, 'refs/tags')
     needs: test
