@@ -86,7 +86,7 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
                 {...props}
                 data-testid={`${props.testid}-map-button`}
                 variant="outlined"
-                style={{whiteSpace: "nowrap", width: '100%', textTransform: "none" }}>
+                style={{ width: '100%', textTransform: "none" }}>
                 {isSmallScreen ? "" : props.tooltip}
             </Button>
         }

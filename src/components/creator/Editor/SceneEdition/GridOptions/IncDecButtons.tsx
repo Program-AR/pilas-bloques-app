@@ -12,7 +12,7 @@ type IncDecButtonsProps = {
 }
 
 export const IncDecButtons = (props: IncDecButtonsProps) => {
-    const flexStyles = ( useMediaQuery(theme.breakpoints.down('md')) ) 
+    const flexStyles = ( useMediaQuery(theme.breakpoints.down('sm')) ) 
                              ? ( { flexMinWidth: "5px", flexTextWidth: "25px", flexFontSize: "small" } ) 
                              : ( { flexMinWidth: "40px", flexTextWidth: "45px", flexFontSize: "large" } )
     

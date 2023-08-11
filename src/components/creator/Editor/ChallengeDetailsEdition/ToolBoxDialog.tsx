@@ -1,4 +1,4 @@
-import { Box, Checkbox, Icon, FormControlLabel, Typography, Stack } from "@mui/material";
+import { Box, Checkbox, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { categories, availableBlocksFor } from "../../../blocks";
@@ -12,11 +12,6 @@ export const ToolBoxDialog = () => {
 
     const { t } = useTranslation('creator');
     const tb = useTranslation('blocks').t;
-
-    const BlocklyIcon = () => 
-        <Icon>
-        <img alt={t('toolbox.button') || ""} height="100%" src="/imagenes/blockly.svg"/>
-        </Icon>
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -63,7 +58,6 @@ export const ToolBoxDialog = () => {
     return <>
         <DetailsEditionButton
             imageurl="imagenes/selector-bloques.svg"
-            optionalicon={<BlocklyIcon/>} 
             text={t('toolbox.button')}
             onClick={handleButtonClick}
             data-testid="toolbox-button" 

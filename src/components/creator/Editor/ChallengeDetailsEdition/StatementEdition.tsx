@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { MenuBook } from"@mui/icons-material"
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { useTranslation } from "react-i18next";
@@ -48,7 +47,6 @@ export const StatementEdition = (props: StatementEditionType) => {
     return <>
         <DetailsEditionButton
             imageurl="imagenes/boton_enunciado.png"
-            optionalicon={<MenuBook />} 
             text={t('statement.button')}
             onClick={handleButtonClick}
             data-testid="statement-button" 
