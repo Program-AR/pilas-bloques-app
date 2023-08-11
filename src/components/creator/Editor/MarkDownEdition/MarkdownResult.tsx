@@ -28,10 +28,10 @@ export const MarkdownResult = () => {
     <PBCard sx={{height:"80px"}}>
         <img height="100%" alt="actor" src={urlImage}/>
         <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
-          <Button onClick={onclickStatement}>
+          <Button onClick={onclickStatement} sx={{minWidth:"50px"}}>
             <MenuBook/>
           </Button>
-          <Button disabled={!clueCheck} onClick={onclickClue} sx={{color:"#ebca14"}}>
+          <Button disabled={!clueCheck} onClick={onclickClue} sx={{color:"#ebca14", minWidth:"50px"}}>
             <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
           </Button>
         </Stack>
