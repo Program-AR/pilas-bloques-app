@@ -10,6 +10,7 @@ import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
 import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton"
+import { BetaBadge } from "../BetaBadge"
 
 const ViewModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     <CreatorSubHeader>
@@ -35,7 +36,7 @@ export const CreatorViewMode = () => {
     Ember.importChallenge(challengeBeingEdited)
     
     return <>
-        <Header CenterComponent={<HeaderText text={t("editor.previewModeHeader")} />} SubHeader={<ViewModeSubHeader challenge={challengeBeingEdited}/>}/>
+        <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.previewModeHeader")} /></BetaBadge>} SubHeader={<ViewModeSubHeader challenge={challengeBeingEdited}/>}/>
         <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH}/>
     </>
 }

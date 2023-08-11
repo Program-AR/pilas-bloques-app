@@ -83,7 +83,7 @@ export const CreatorSelection = () => {
 			<Header />
 			<ChallengeInProgressDialog />
 			<Container className={styles.selection} maxWidth={"xl"}>
-				<BetaBadge>
+				<BetaBadge sx={{marginTop: 2}}>
 					<Typography variant="h4">{t("selection.title")}</Typography>
 				</BetaBadge>
 				<Typography variant="h5">{t("selection.subtitle")}</Typography>
