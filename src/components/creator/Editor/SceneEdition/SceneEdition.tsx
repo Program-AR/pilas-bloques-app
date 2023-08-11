@@ -1,8 +1,8 @@
 import { Stack } from "@mui/material";
-import { SceneGrid } from "./Grid/SceneGrid";
 import { SceneTools } from "./SceneTools";
 import { useState, CSSProperties } from 'react';
 import { GridOptions } from "./GridOptions/GridOptions";
+import { Scenarios } from "./Grid/Scenarios";
 
 export const SceneEdition = () => {
     const [styleGrid, setStyleGrid] = useState<CSSProperties>({})
@@ -10,7 +10,7 @@ export const SceneEdition = () => {
     return (
         <Stack direction="row" alignItems="stretch" sx={{ height: "100%" }}>
             <GridOptions setStyleGrid={setStyleGrid} />
-            <SceneGrid styling={styleGrid} />
+            <Scenarios styling={styleGrid} />
             <SceneTools />
         </Stack>
     )
