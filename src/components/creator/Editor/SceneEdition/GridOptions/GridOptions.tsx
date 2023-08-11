@@ -8,8 +8,8 @@ import { ScenarioEditionButtons } from "./ScenarioEditionButtons";
 export const GridOptions = (props: StyleGridProps) => {
 
     return <>
-        <Stack>
-            <PBCard>
+        <Stack sx={{justifyContent: "space-between"}}>
+            <PBCard sx={{justifyContent: "center"}}>
                 <Stack style={{ height: '100%', margin: '5px' }}>
                     <SizeEditor setStyleGrid={props.setStyleGrid} />
                     <ScenarioEditionButtons/>

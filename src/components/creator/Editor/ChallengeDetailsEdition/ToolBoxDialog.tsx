@@ -1,4 +1,4 @@
-import { Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
+import { Box, Checkbox, Icon, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
 import { categories, availableBlocksFor } from "../../../blocks";
@@ -12,6 +12,11 @@ export const ToolBoxDialog = () => {
 
     const { t } = useTranslation('creator');
     const tb = useTranslation('blocks').t;
+
+    const BlocklyIcon = () => 
+        <Icon>
+        <img alt={t('toolbox.button') || ""} height="100%" src="/imagenes/blockly.svg"/>
+        </Icon>
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge =  storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -58,6 +63,7 @@ export const ToolBoxDialog = () => {
     return <>
         <DetailsEditionButton
             imageurl="imagenes/selector-bloques.svg"
+            optionalicon={<BlocklyIcon/>} 
             text={t('toolbox.button')}
             onClick={handleButtonClick}
             data-testid="toolbox-button" 
@@ -71,7 +77,7 @@ export const ToolBoxDialog = () => {
             <Stack alignItems="flex-end">
                 <FormControlLabel key="isCategorized" labelPlacement="start"
                     disabled={toolboxState.shouldDisableCategorization()}
-                    control={<Switch checked={isCategorized || toolboxState.shouldDisableCategorization()}
+                    control={<Checkbox checked={isCategorized || toolboxState.shouldDisableCategorization()}
                                      key="isCategorized"
                                      onChange={handleIsCategorizedOnChange}/>} label={tb('categories.categorized')}/>
             <Typography width="60%" textAlign="right" lineHeight="1.2" variant="caption">Cuando se desee usar procedimientos siempre deberá haber categorías</Typography>
@@ -80,7 +86,7 @@ export const ToolBoxDialog = () => {
                 {categories.map((cat, i) => {
                     return( <div key={cat}>
                     <FormControlLabel key={cat+i}  
-                    control={<Switch checked={toolboxState.isCategorySelected(cat)}
+                    control={<Checkbox checked={toolboxState.isCategorySelected(cat)}
                                      name={cat}
                                      key={cat+i} 
                                      onChange={handleCatOnChange}/>} 
@@ -88,7 +94,7 @@ export const ToolBoxDialog = () => {
                     {availableBlocksFor(challenge!.scene.type).map((block) => {
                             return( (cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{paddingLeft: "20px"}}>
                             <FormControlLabel key={block.id} 
-                            control={<Switch checked={toolBoxItems.includes(block.id)}
+                            control={<Checkbox checked={toolBoxItems.includes(block.id)}
                                             name={block.id}
                                             key={block.id} 
                                             onChange={handleToolBoxOnChange}/>} label={tb('blocks.' + block.intlId)} />

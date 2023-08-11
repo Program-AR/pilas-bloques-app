@@ -1,4 +1,5 @@
 import { Box, Typography, Button, ButtonGroup, useMediaQuery } from '@mui/material';
+import theme from '../../../../../theme';
 
 type IncDecButtonsProps = {
     add: () => void
@@ -11,9 +12,9 @@ type IncDecButtonsProps = {
 }
 
 export const IncDecButtons = (props: IncDecButtonsProps) => {
-    const flexStyles = ( useMediaQuery('(max-width:700px)') ) 
-                             ? ( { flexDir: "column", flexMinWidth: "5px", flexGroupWidth: "25px", flexTextWidth: "25px", flexFontSize: "small" } ) 
-                             : ( { flexDir: "row", flexMinWidth: "40px", flexGroupWidth: "inherit", flexTextWidth: "45px", flexFontSize: "large" } )
+    const flexStyles = ( useMediaQuery(theme.breakpoints.down('md')) ) 
+                             ? ( { flexMinWidth: "5px", flexTextWidth: "25px", flexFontSize: "small" } ) 
+                             : ( { flexMinWidth: "40px", flexTextWidth: "45px", flexFontSize: "large" } )
     
     const handleValue = (inc: boolean) => {
         if(inc && props.value < props.max){
@@ -25,8 +26,8 @@ export const IncDecButtons = (props: IncDecButtonsProps) => {
     }
 
     return (
-        <Box sx={{ display:"flex", flexDirection: "column", alignItems: "center", padding:"10px" }}>
-            <ButtonGroup sx={{ flexDirection: flexStyles.flexDir, width: flexStyles.flexGroupWidth }}  variant="contained" size="small" color="inherit" aria-label="small outlined button group">
+        <Box sx={{ display:"flex", flexDirection: "column", alignItems: "center", padding:"5px" }}>
+            <ButtonGroup variant="contained" size="small" color="inherit" aria-label="small outlined button group">
                 <Button style={{ fontSize: flexStyles.flexFontSize, minWidth: flexStyles.flexMinWidth, borderRight:"0px" }} onClick={()=>handleValue(false)}data-testid={`dec-btn-${props.testId}`}>-</Button>
                 <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", width: flexStyles.flexTextWidth }} >{props.value}</Box>
                 <Button style={{ fontSize: flexStyles.flexFontSize, minWidth: flexStyles.flexMinWidth, borderRight:"0px" }} onClick={()=>handleValue(true)} data-testid={`inc-btn-${props.testId}`}>+</Button>

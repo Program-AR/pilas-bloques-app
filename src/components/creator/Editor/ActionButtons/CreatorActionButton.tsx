@@ -1,5 +1,6 @@
 import { Button, ButtonProps, darken, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import theme from '../../../../theme';
 
 type CreatorActionButtonProps = {
   nametag: string,
@@ -9,7 +10,7 @@ type CreatorActionButtonProps = {
 export const CreatorActionButton = ({ isshortversion = false, ...props }: CreatorActionButtonProps) => {
   const { t } = useTranslation('creator')
 
-  const isSmallScreen: boolean = useMediaQuery('(max-width:814px)');
+  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
   return < Button {...props} variant="outlined" sx={{
     ...props.sx,

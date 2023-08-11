@@ -53,7 +53,7 @@ export const ScenarioEditionButtons = () => {
     }
 
     return <>
-        <Stack sx={{ alignItems: 'flex-start', gap: theme.spacing(1) }}>
+        <Stack sx={{ alignItems: 'center', gap: theme.spacing(1) }}>
             <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add" />
             <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
 
@@ -76,7 +76,7 @@ type GridOptionButtonProps = {
 }
 
 const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
-    const isSmallScreen: boolean = useMediaQuery('(max-width:700px)');
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     return <>
         {isSmallScreen ?
@@ -86,7 +86,7 @@ const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
                 {...props}
                 data-testid={`${props.testid}-map-button`}
                 variant="outlined"
-                style={{ width: '100%', textTransform: "none" }}>
+                style={{whiteSpace: "nowrap", width: '100%', textTransform: "none" }}>
                 {isSmallScreen ? "" : props.tooltip}
             </Button>
         }
