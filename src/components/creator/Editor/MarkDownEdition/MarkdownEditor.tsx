@@ -1,19 +1,25 @@
-import { Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
-import { MarkdownInput } from "./MarkdownInput";
-import { MarkdownContext, MarkdownContextType } from "./MarkdownContext";
-import { MarkdownResult } from "./MarkdownResult";
-import theme from "../../../../theme";
+import { Typography } from "@mui/material"
+import { t } from "i18next"
+import theme from "../../../../theme"
+import { MarkdownInput } from "./MarkdownInput"
+import { MarkdownResult } from "./MarkdownResult"
+import { useState } from "react"
 
-export const MarkdownEdition = (props:MarkdownContextType) => {
+type MarkdownEditorProps = {
+    statement: string
+    clue: string | undefined
+    setStatement: (statement: string) => void
+    setClue: (clue: string) => void
+}
 
-  const { t } = useTranslation('creator');
-  
-  return (
-    <MarkdownContext.Provider value={props}>
-        <MarkdownResult />
+
+export const MarkdownEditor = (props: MarkdownEditorProps) => {
+
+    const [showStatement, setShowStatement] = useState<boolean>(true) 
+
+    return <>
+        <MarkdownResult statement={props.statement} clue={props.clue} showStatement={showStatement}/>
         <Typography variant="body1" marginY={theme.spacing(2)}>{t('statement.descriptionHint')}</Typography>
-        <MarkdownInput />
-    </MarkdownContext.Provider>
-  );
+        <MarkdownInput setShowStatement={setShowStatement} {...props}/>
+    </>
 }
