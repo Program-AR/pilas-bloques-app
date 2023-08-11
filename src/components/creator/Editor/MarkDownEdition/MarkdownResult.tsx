@@ -25,11 +25,11 @@ export const MarkdownResult = (props: MarkdownResultProps) => {
         <img height="100%" alt="actor" src={urlImage}/>
         <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
           
-          <Button onClick={() => props.setShowStatement(StatementTextToShow.STATEMENT)}>
+          <Button onClick={() => props.setShowStatement(StatementTextToShow.STATEMENT)} sx={{minWidth:"50px"}}>
             <MenuBook/>
           </Button>
 
-          <Button disabled={!props.clueIsEnabled} onClick={() => props.setShowStatement(StatementTextToShow.CLUE)} sx={{color:"#ebca14"}}>
+          <Button disabled={!props.clueIsEnabled} onClick={() => props.setShowStatement(StatementTextToShow.CLUE)} sx={{color:"#ebca14", minWidth:"50px"}}>
             <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
           </Button>
 
