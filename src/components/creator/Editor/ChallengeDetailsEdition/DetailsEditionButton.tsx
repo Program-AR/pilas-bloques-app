@@ -1,4 +1,4 @@
-import { Typography, CardMedia, CardContent, CardActionArea, CardActionAreaProps, Stack } from "@mui/material";
+import { Typography, CardMedia, CardContent, CardActionArea, CardActionAreaProps } from "@mui/material";
 import { PBCard } from "../../../PBCard";
 
 type DetailsEditionButtonProps = {
