@@ -1,30 +1,41 @@
-import{ useContext } from "react";
-import { TextField, FormControlLabel, Switch } from "@mui/material";
+import { Switch, FormControlLabel, TextField} from "@mui/material";
+import { StatementTextToShow } from "./MarkdownEditor";
 import { useTranslation } from "react-i18next";
-import { MarkdownContext } from "./MarkdownContext";
+import { useState } from "react";
 
-export const MarkdownInput = () => {
-  const { markdownStatement, setMarkdownStatement, clueCheck, setMarkdownClueCheck, 
-          markdownClue, setMarkdownClue, setMarkdownShow} = useContext(MarkdownContext);
-  
+type MarkdownInputProps = {
+  statement: string,
+  setStatement: (statement: string) => void,
+  clue: string | undefined,
+  setClue: (clue?: string) => void
+  setShowStatement: (selected: StatementTextToShow) => void
+}
+
+export const MarkdownInput = (props: MarkdownInputProps) => {
+
+  const [clueIsEnabled, setClueIsEnabled] = useState<boolean>(!!props.clue)
+
   const { t } = useTranslation('creator');
   
-  const onClueInputChange = (e: { currentTarget: { value: string; }; }) => {
+  const onClueChange = (e: { currentTarget: { value: string; }; }) => {
     const newValue = e.currentTarget.value;
-    setMarkdownClue(newValue);
-    setMarkdownShow(newValue);
+    props.setClue(newValue)
   };
 
-  const onInputChange = (e: { currentTarget: { value: string; }; }) => {
+  const onStatementChange = (e: { currentTarget: { value: string; }; }) => {
     const newValue = e.currentTarget.value;
-    setMarkdownStatement(newValue);
-    setMarkdownShow(newValue);
+    props.setStatement(newValue)
   };
 
-  const handleClueOnChange = () => {
-    if( clueCheck ) setMarkdownClue('')
-    setMarkdownClueCheck(!clueCheck )
+  const toggleClueEnabled = (e: { currentTarget: { checked: boolean }; }) => {
+    setClueIsEnabled(e.currentTarget.checked)
+    if(!e.currentTarget.checked) {
+      props.setClue(undefined)
+      props.setShowStatement(StatementTextToShow.STATEMENT)
+    }
+
   }
+
 
   return (
     <>
@@ -34,29 +45,29 @@ export const MarkdownInput = () => {
         multiline={true}
         inputProps={{ "data-testid": "statement-input" }}
         label={t('statement.description')}
-        value={markdownStatement}
-        onChange={onInputChange}
-        onFocus={()=>setMarkdownShow(markdownStatement)}
+        value={props.statement}
+        onChange={onStatementChange}
+        onFocus={() => props.setShowStatement(StatementTextToShow.STATEMENT)}
         sx={{marginTop: '10px'}}
         id="statement-input"
     />
-    <br/>
-    <FormControlLabel control={<Switch checked={clueCheck}
-                                id="clue-check-switch"
-                                onChange={handleClueOnChange}/>} label={t("statement.includeClue")} />
-    
-    <br/>
+
+    <FormControlLabel control={<Switch color="secondary" onChange={toggleClueEnabled} checked={clueIsEnabled}/>} label={t("statement.includeClue")}/>
+
+    {clueIsEnabled ? 
     <TextField
         fullWidth
         size="small"
         multiline={true}
-        disabled={!clueCheck}
         label={t('statement.clue')}
-        value={markdownClue}
-        onChange={onClueInputChange}
-        onFocus={()=>{if(markdownClue)setMarkdownShow(markdownClue)}}
+        value={props.clue}
+        onChange={onClueChange}
+        onFocus={() => props.setShowStatement(StatementTextToShow.CLUE)}
         id="clue-input"
     />
+    :
+    <></>
+  }
 </>
   );
 }

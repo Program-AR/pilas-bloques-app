@@ -52,7 +52,8 @@
 	},
 	"toolbox": {
 		"title": "Select available commands",
-		"button": "Select available commands"
+		"button": "Select available commands",
+		"categoriesHint": "When you want to use procedures there should always be categories"
 	},
 	"scenarios": {
 		"delete": "Delete scenario",
