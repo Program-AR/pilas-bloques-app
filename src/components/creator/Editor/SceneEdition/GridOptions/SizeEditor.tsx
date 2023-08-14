@@ -45,7 +45,7 @@ export const SizeEditor = (props: StyleGridProps) => {
     }
 
     const updateStyleGrid = useCallback(() => {
-        const widthValue = ((columns / rows) * 55).toFixed(0) + '%';
+        const widthValue = ((columns / rows) * 75).toFixed(0) + '%';
         if (width !== widthValue) {
             setWidth(widthValue)
             props.setStyleGrid({width: widthValue})

@@ -2,11 +2,8 @@ import { Stack } from "@mui/material";
 import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { TitleEdition } from "./EditorSubHeader/TitleEdition";
-import { StatementEdition } from "./ChallengeDetailsEdition/StatementEdition";
-import { ToolBoxDialog } from "./ChallengeDetailsEdition/ToolBoxDialog";
 import { CreatorContextProvider } from "./CreatorContext";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
-import { CreatorFooter } from "./EditorFooter/CreatorFooter";
 import { useTranslation } from "react-i18next";
 import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
@@ -24,7 +21,6 @@ export const CreatorEditor = () => {
         <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)'}}>
           <SceneEdition />
         </Stack>
-        <EditorFooter />
       </Stack>
     </CreatorContextProvider>
   )
@@ -43,10 +39,3 @@ const Actions = () => <>
     <DownloadButton/>
   </Stack>
 </>
-
-const EditorFooter: React.FC = () => 
-  <CreatorFooter>
-  <StatementEdition />
-  <ToolBoxDialog/>
-  {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
-  </CreatorFooter>

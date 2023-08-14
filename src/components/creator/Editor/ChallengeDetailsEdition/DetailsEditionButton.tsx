@@ -1,24 +1,29 @@
-import { Stack, Button, Typography, ButtonProps } from "@mui/material";
+import { Typography, useMediaQuery, CardMedia, CardContent, CardActionArea, CardActionAreaProps } from "@mui/material";
+import { PBCard } from "../../../PBCard";
+import theme from '../../../../theme';
 
 type DetailsEditionButtonProps = {
-    imageurl: string,
+    imageurl: string
     text: string
-} & ButtonProps
+} & CardActionAreaProps
 
-export const DetailsEditionButton = (props: DetailsEditionButtonProps) => 
-<Stack alignItems="center">
-    <Button 
-        variant="outlined" 
-        size="large"
-        style={{margin:"6px", textTransform:"none"}} 
-        sx={{width:200, height: 110}}
-        {...props}
-        >
+export const DetailsEditionButton = (props: DetailsEditionButtonProps) => {
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
-        <img src={props.imageurl} alt={props.text} width={"100%"} height={"80%"}/>
+    return (
+        <PBCard sx={{justifyContent: "center", maxWidth:"190px"}}>
+                <CardActionArea 
+                    style={{margin:"6px", textAlign:"center", textTransform:"none"}} 
+                    {...props}>
 
-    </Button>
-
-<Typography variant='h6'>{props.text}</Typography>
-
-</Stack>  
+                    <CardMedia component="img" src={props.imageurl} alt={props.text}/>
+                    { !isSmallScreen ? 
+                    <CardContent>
+                        <Typography variant="body2">{props.text}</Typography>
+                    </CardContent>
+                     : ''}
+                </CardActionArea>
+                
+        </PBCard>
+    )
+}
