@@ -202,7 +202,7 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'PatearPulpito', 
-        intlId: 'kickBall', 
+        intlId: 'bounceRubberBall', 
         categoryId: 'primitives' 
     },
     { 
@@ -287,7 +287,7 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'PatearPelotaChuy', 
-        intlId: 'kickBallChuy',
+        intlId: 'kickFootballBall',
         categoryId: 'primitives' 
     },
     { 
