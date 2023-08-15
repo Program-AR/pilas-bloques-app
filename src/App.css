@@ -4,8 +4,9 @@
     --creator-max-width: 1024px;
     --creator-max-height: 660px;
 }
-  
+
 html, body, #root {
+    background-color: var(--theme-background-secondary-color);
     height: 100%;
 }
 
