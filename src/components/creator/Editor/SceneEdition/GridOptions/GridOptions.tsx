@@ -9,7 +9,7 @@ import theme from "../../../../../theme";
 export const GridOptions = (props: StyleGridProps) => {
 
     return <>
-        <Stack maxWidth="210px">
+        <Stack>
             <PBCard sx={{justifyContent: "center"}}>
                 <Stack sx={{padding: theme.spacing(1)}}>
                     <SizeEditor setStyleGrid={props.setStyleGrid} />

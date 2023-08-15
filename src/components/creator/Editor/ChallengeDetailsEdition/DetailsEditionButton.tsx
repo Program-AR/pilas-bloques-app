@@ -11,17 +11,14 @@ export const DetailsEditionButton = (props: DetailsEditionButtonProps) => {
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <PBCard sx={{flexGrow:"1"}} >
-                < CardActionArea 
-                    style={{margin:"6px", textTransform:"none"}} 
-                    {...props}>
-                    
+        <PBCard sx={{padding: theme.spacing(1), flexGrow:"1"}} >
+                <CardActionArea {...props}>
                     <Stack alignItems="center">
                         <CardMedia
                             component="img" 
                             src={props.imageurl} 
                             alt={props.text} 
-                            style={{maxHeight:"60px", objectFit:"contain"}}
+                            sx={{maxHeight:"50px", objectFit: "contain"}}
                         />
                         
                         { !isSmallScreen ? 
