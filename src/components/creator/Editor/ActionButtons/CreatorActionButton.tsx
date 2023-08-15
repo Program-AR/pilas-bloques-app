@@ -10,12 +10,13 @@ type CreatorActionButtonProps = {
 export const CreatorActionButton = ({ isshortversion = false, ...props }: CreatorActionButtonProps) => {
   const { t } = useTranslation('creator')
 
-  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
+  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
   return < Button {...props} variant="outlined" sx={{
     ...props.sx,
     textTransform: "none",
-    marginRight: '10px'
+    marginRight: '10px',
+    whiteSpace: 'nowrap'
   }}>
     {t(`editor.buttons.${props.nametag}${!isshortversion && isSmallScreen ? 'Short' : ''}`)}
   </Button >

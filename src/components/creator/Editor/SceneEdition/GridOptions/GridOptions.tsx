@@ -4,13 +4,14 @@ import { PBCard } from "../../../../PBCard";
 import { StatementEdition } from "../../ChallengeDetailsEdition/StatementEdition";
 import { ToolBoxDialog } from "../../ChallengeDetailsEdition/ToolBoxDialog";
 import { ScenarioEditionButtons } from "./ScenarioEditionButtons";
+import theme from "../../../../../theme";
 
 export const GridOptions = (props: StyleGridProps) => {
 
     return <>
-        <Stack sx={{justifyContent: "space-between"}}>
+        <Stack maxWidth="210px">
             <PBCard sx={{justifyContent: "center"}}>
-                <Stack style={{ height: '100%', margin: '5px' }}>
+                <Stack sx={{padding: theme.spacing(1)}}>
                     <SizeEditor setStyleGrid={props.setStyleGrid} />
                     <ScenarioEditionButtons/>
                 </Stack>
