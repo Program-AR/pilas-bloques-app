@@ -26,7 +26,7 @@ const characters: CharacterCardProps[] = [
 	},
 	{
 		name: "Chuy",
-		color: "#ABDEDB",
+		color: "#FFB4E0",
 	},
 	{
 		name: "Manic",
@@ -38,7 +38,7 @@ const characters: CharacterCardProps[] = [
 	},
 	{
 		name: "Yvoty",
-		color: "#FFB4E0",
+		color: "#ABDEDB",
 	},
 ]
 
