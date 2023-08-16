@@ -4,7 +4,7 @@
     --creator-max-width: 1024px;
     --creator-max-height: 660px;
 }
-  
+
 html, body, #root {
     height: 100%;
 }
