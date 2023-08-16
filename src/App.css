@@ -6,7 +6,6 @@
 }
 
 html, body, #root {
-    background-color: var(--theme-background-secondary-color);
     height: 100%;
 }
 
