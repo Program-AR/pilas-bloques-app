@@ -18,27 +18,27 @@ type CharacterCardProps = {
 const characters: CharacterCardProps[] = [
 	{
 		name: "Lita",
-		color: "#fc5e3e",
+		color: "#FF9C5D",
 	},
 	{
 		name: "Duba",
-		color: "#fcaa3e",
+		color: "#FED473",
 	},
 	{
 		name: "Chuy",
-		color: "#6e3efc",
+		color: "#FFB4E0",
 	},
 	{
 		name: "Manic",
-		color: "#3ed0fc",
+		color: "#FFFBB1",
 	},
 	{
 		name: "Capy",
-		color: "#3efc6a",
+		color: "#B0E092",
 	},
 	{
 		name: "Yvoty",
-		color: "#e33efc",
+		color: "#ABDEDB",
 	},
 ]
 
@@ -55,7 +55,7 @@ const CharacterCard = (props: CharacterCardProps) => {
 		<Button
 			key={props.name} //Needed to prevent react warning
 			component="label"
-			style={{ margin: "3rem", textTransform: "none" }}
+			style={{ margin: "0.5rem", textTransform: "none" }}
 			onClick={goToCreator}
 		>
 			<HomeCard

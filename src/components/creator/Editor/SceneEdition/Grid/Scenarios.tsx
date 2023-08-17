@@ -13,7 +13,7 @@ export const Scenarios = (props: SceneGridProps) => {
 
     const { t } = useTranslation('creator');
 
-    const isVerySmallScreen: boolean = useMediaQuery('(max-width:700px)');
+    const isVerySmallScreen: boolean = useMediaQuery(theme.breakpoints.down("sm"));
 
     const atFirstMap = index === 0
     const atLastMap = index === maps.length - 1
@@ -32,9 +32,9 @@ export const Scenarios = (props: SceneGridProps) => {
         <Stack width='100%' justifyContent='space-between' alignItems='center'>
             <Typography variant="h6" sx={{ marginTop: theme.spacing(2) }}>{`${isVerySmallScreen ? '' : t("mapNavigation.multipleInitialScenarios") + ':'} ${index + 1} / ${maps.length}`}</Typography>
             <Stack width='100%' direction='row' justifyContent='space-between' alignItems='center'>
-                <IconButtonTooltip sx={{ marginLeft: theme.spacing(2) }} disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
+                <IconButtonTooltip sx={{ marginLeft: theme.spacing(1) }} disabled={atFirstMap} onClick={handleBack} icon={<KeyboardArrowLeft />} tooltip={t("mapNavigation.prev")} />
                 <SceneGrid styling={props.styling} />
-                <IconButtonTooltip sx={{ marginRight: theme.spacing(2) }} disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
+                <IconButtonTooltip sx={{ marginRight: theme.spacing(1) }} disabled={atLastMap} onClick={handleNext} icon={<KeyboardArrowRight />} tooltip={t("mapNavigation.next")} />
             </Stack>
             <MobileStepper
                 variant="dots"

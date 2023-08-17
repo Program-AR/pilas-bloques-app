@@ -7,12 +7,12 @@
 		"continueEditing": "Seguir editando",
 		"discard": "Descartar",
 		"cards": {
-			"Lita": "¡A preparar ensalada con Lita!",
-			"Duba": "¡A comer churrasco con Duba!",
-			"Yvoty": "¡A cargar el celu con Yvoty!",
-			"Manic": "¡A observar el cielo con Mañic!",
-			"Capy": "¡A cuidar el medio ambiente con Capy!",
-			"Chuy": "¡A jugar a la pelota con Chuy!"
+			"Lita": "Lita",
+			"Duba": "Duba",
+			"Yvoty": "Yvoty",
+			"Manic": "Mañic",
+			"Capy": "Capy y Guyrá",
+			"Chuy": "Chuy"
 		}
 	},
 	"editor": {

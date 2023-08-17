@@ -39,7 +39,7 @@ export const SceneTools = () => {
                 backgroundPositionY: "center",
                 boxShadow: `0 0px calc(10px * ${Number(props.id === selectedTool)})`,
                 height:'40px',
-                marginTop: theme.spacing(0.8)
+                marginTop: theme.spacing(0.5)
     }
 } />
     }
@@ -50,9 +50,9 @@ type ToolGroupProps = {
 }
 
 const ToolGroup = (props: ToolGroupProps) =>
-    <Stack alignItems="center" sx={{ margin: theme.spacing(0.1) }}>
+    <Stack alignItems="center" sx={{ marginY: theme.spacing(0.5) }}>
         {props.children}
-        <Typography sx={{ textAlign: 'center', marginTop: theme.spacing(0.5) }} variant="subtitle2">{t(`tools.${props.type}`)}</Typography>
+        <Typography sx={{ textAlign: 'center', lineHeight:"1", marginTop: theme.spacing(0.5) }} variant="subtitle2">{t(`tools.${props.type}`)}</Typography>
     </Stack>
 
 const PutObstacleTool = () =>
