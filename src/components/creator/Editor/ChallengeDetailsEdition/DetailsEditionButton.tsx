@@ -14,12 +14,14 @@ export const DetailsEditionButton = (props: DetailsEditionButtonProps) => {
         <PBCard sx={{padding: theme.spacing(1), flexGrow:"1"}} >
                 <CardActionArea {...props}>
                     <Stack alignItems="center">
+                        <Tooltip title={isSmallScreen ? props.text : ""}>
                         <CardMedia
                             component="img" 
                             src={props.imageurl} 
                             alt={props.text} 
                             sx={{maxHeight:"50px", objectFit: "contain"}}
                         />
+                        </Tooltip>                         
                         
                         { !isSmallScreen ? 
                                 <Typography variant="body2" textAlign="center">{props.text}</Typography>
