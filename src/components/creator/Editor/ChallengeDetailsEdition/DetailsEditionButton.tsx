@@ -1,4 +1,4 @@
-import { Typography, useMediaQuery, CardMedia, Stack, CardActionArea, CardActionAreaProps } from "@mui/material";
+import { Typography, useMediaQuery, CardMedia, Stack, CardActionArea, CardActionAreaProps, Tooltip } from "@mui/material";
 import { PBCard } from "../../../PBCard";
 import theme from '../../../../theme';
 
