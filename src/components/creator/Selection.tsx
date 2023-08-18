@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
+import { CreatorCard } from "../home/CreateChallengeCard"
+import UploadIcon from '../home/UploadIcon';
 import { LocalStorage } from "../../localStorage"
 import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
@@ -103,11 +105,15 @@ const LoadChallengeCard = () => {
 			component="label"
 			style={{ margin: "0.5rem", textTransform: "none" }}
 		>
+			{/*
 			<HomeCard
 				text={t(`selection.loadChallenge`)}
 				image="load-challenge.png"
 				color="#cc7024"
 			/>
+			*/}
+			<CreatorCard text={t("selection.loadChallenge")} color={"#cc7024"} icon={UploadIcon}/>
+
         	<input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile}/>
 			<DialogSnackbar 
             open={snackbarOpen}
