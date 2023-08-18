@@ -45,7 +45,7 @@ export const SizeEditor = (props: StyleGridProps) => {
     }
 
     const updateStyleGrid = useCallback(() => {
-        const widthValue = ((columns / rows) * 75).toFixed(0) + '%';
+        const widthValue = ((columns / rows) * 65).toFixed(0) + '%';
         if (width !== widthValue) {
             setWidth(widthValue)
             props.setStyleGrid({width: widthValue})
@@ -58,9 +58,9 @@ export const SizeEditor = (props: StyleGridProps) => {
 
     
     return (
-            <Stack sx={{ flexDirection: "column", maxWidth: "200px", justifyContent: "space-between", padding: "10px" }}>
-                <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={12} label={t("scene.numRows")} testId="row" data-testid="map-row" />
+            <Stack>
                 <IncDecButtons add={addColumn} remove={removeColumn} value={columns} min={1} max={10} label={t("scene.numCols")} testId="col" data-testid="map-col" />
+                <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={12} label={t("scene.numRows")} testId="row" data-testid="map-row" />
             </Stack>
     )
 }

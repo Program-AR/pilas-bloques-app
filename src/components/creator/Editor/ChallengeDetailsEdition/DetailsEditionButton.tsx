@@ -1,4 +1,4 @@
-import { Typography, useMediaQuery, CardMedia, CardContent, CardActionArea, CardActionAreaProps } from "@mui/material";
+import { Typography, useMediaQuery, CardMedia, Stack, CardActionArea, CardActionAreaProps, Tooltip } from "@mui/material";
 import { PBCard } from "../../../PBCard";
 import theme from '../../../../theme';
 
@@ -11,17 +11,22 @@ export const DetailsEditionButton = (props: DetailsEditionButtonProps) => {
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <PBCard sx={{justifyContent: "center", maxWidth:"190px"}}>
-                <CardActionArea 
-                    style={{margin:"6px", textAlign:"center", textTransform:"none"}} 
-                    {...props}>
-
-                    <CardMedia component="img" src={props.imageurl} alt={props.text}/>
-                    { !isSmallScreen ? 
-                    <CardContent>
-                        <Typography variant="body2">{props.text}</Typography>
-                    </CardContent>
-                     : ''}
+        <PBCard sx={{padding: theme.spacing(1), flexGrow:"1"}} >
+                <CardActionArea {...props}>
+                    <Stack alignItems="center">
+                        <Tooltip title={isSmallScreen ? props.text : ""}>
+                        <CardMedia
+                            component="img" 
+                            src={props.imageurl} 
+                            alt={props.text} 
+                            sx={{maxHeight:"50px", objectFit: "contain"}}
+                        />
+                        </Tooltip>                         
+                        
+                        { !isSmallScreen ? 
+                                <Typography variant="body2" textAlign="center">{props.text}</Typography>
+                        : ''}
+                    </Stack>
                 </CardActionArea>
                 
         </PBCard>

@@ -7,12 +7,12 @@
 		"continueEditing": "Continue editing",
 		"discard": "Discard",
 		"cards": {
-			"lita": "Prepare the salad!",
-			"duba": "Eat the steaks!",
-			"yvoty": "Charge the phones!",
-			"manic": "Stargaze!",
-			"capy": "Protect the environment!",
-			"chuy": "Play with the ball!"
+			"Lita": "Lita",
+			"Duba": "Duba",
+			"Yvoty": "Yvoty",
+			"Manic": "Mañic",
+			"Capy": "Capy y Guyrá",
+			"Chuy": "Chuy"
 		}
 	},
 	"editor": {
