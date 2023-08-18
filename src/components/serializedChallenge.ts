@@ -215,10 +215,10 @@ const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
     
 const cellIsIncluded = (typeCells: string[], cell: string) =>{
     const basicCells: string[] = ['A','O','-']
-    return basicCells.concat(typeCells).includes(cell)
+    return basicCells.concat(typeCells).concat(multipleObjectsCells(typeCells)).includes(cell)
 }
 
-
+const multipleObjectsCells = (typeCells: string[]) => typeCells.map(prize => `A&${prize}`)
 
 const isSceneType = (type: any): type is SceneType => 
     sceneTypes.includes(type)
