@@ -6,7 +6,8 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { HomeCard } from "../home/HomeCard"
 import { LocalStorage } from "../../localStorage"
-import { SceneType, defaultChallenge } from "../serializedChallenge"
+import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
+import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 import theme from "../../theme"
 import { BetaBadge } from "./BetaBadge"
 
@@ -67,6 +68,56 @@ const CharacterCard = (props: CharacterCardProps) => {
 	)
 }
 
+const LoadChallengeCard = () => {
+	const { t } = useTranslation("creator")
+	const navigate = useNavigate()
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+	const goToCreatorChallenge = (challenge: SerializedChallenge) => {
+		LocalStorage.saveCreatorChallenge(challenge)
+		navigate("/creador/editar")
+	}
+
+    const showErrorSnackbar = () => {
+        setSnackbarOpen(true)
+    }
+
+    const readFile = async (event: any) => {
+        const file: File = event.target.files[0]
+        const content: string = await file.text()
+        const challengeJson: unknown = JSON.parse(content)
+
+        event.target.value = null // Without this Chrome seems to cache the file and prevents reruns of this function. 
+
+        if (isValidChallenge(challengeJson)) {
+            goToCreatorChallenge(challengeJson)
+        }
+        else {
+            showErrorSnackbar()
+        }
+    }
+
+	return (
+		<Button
+			key="loadChallenge" //Needed to prevent react warning
+			component="label"
+			style={{ margin: "0.5rem", textTransform: "none" }}
+		>
+			<HomeCard
+				text={t(`selection.loadChallenge`)}
+				image="load-challenge.png"
+				color="#cc7024"
+			/>
+        	<input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile}/>
+			<DialogSnackbar 
+            open={snackbarOpen}
+            onClose={() => setSnackbarOpen(false)} 
+            message={t('selection.importError')}/>
+
+		</Button>
+	)
+}
+
 const CharacterCards = () => {
 	return (
 		<Grid>
@@ -89,6 +140,7 @@ export const CreatorSelection = () => {
 				<Typography variant="h5">{t("selection.subtitle")}</Typography>
 
 				<CharacterCards />
+				<LoadChallengeCard />
 			</Container>
 		</>
 	)
