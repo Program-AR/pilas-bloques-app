@@ -218,7 +218,7 @@ const cellIsIncluded = (typeCells: string[], cell: string) =>{
     return basicCells.concat(typeCells).concat(multipleObjectsCells(typeCells)).includes(cell)
 }
 
-const multipleObjectsCells = (typeCells: string[]) => typeCells.map(prize => `A&${prize}`)
+const multipleObjectsCells = (typeCells: string[]) => typeCells.map(prize => `A&${prize}`).concat(typeCells.map(prize => `${prize}&A`))
 
 const isSceneType = (type: any): type is SceneType => 
     sceneTypes.includes(type)
