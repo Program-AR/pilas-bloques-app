@@ -36,7 +36,7 @@
         "moveDown": "Mover abajo",
         "moveLeft": "Mover a la izquierda",
         "moveRight": "Mover a la derecha",
-        "moveTo": "Mover a ",
+        "moveTo": "Mover a (con parametro)",
         "moveUp": "Mover arriba",      
         "obstacleAtLeft": "¿Hay un obstáculo a la izquierda?",
         "obstacleAtRight": "¿Hay un obstáculo a la derecha?",
@@ -70,6 +70,6 @@
         "watchButterfly": "Observar mariposa",
         "watchPlanet": "Observar planeta",
         "watchStar": "Observar estrella",
-        "while":"Mientras"
+        "while":"Repetir hasta que"
    }
 }

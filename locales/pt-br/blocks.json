@@ -36,7 +36,7 @@
         "moveDown": "Mover para baixo",
         "moveLeft": "Mover para a esquerda",
         "moveRight": "Mover para a direita",
-        "moveTo": "Mover para",
+        "moveTo": "Mover para (com parâmetro)",
         "moveUp": "Mover acima",
         "obstacleAtLeft": "Há um obstáculo à esquerda?",
         "obstacleAtRight": "Há um obstáculo à direita?",
@@ -70,6 +70,6 @@
         "watchButterfly": "Perceber borboleta",
         "watchPlanet": "Perceber planeta",
         "watchStar": "Perceber estrela",
-        "while": "Encuanto"
+        "while": "Repetir até que"
     }
 }

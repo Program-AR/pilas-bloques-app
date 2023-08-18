@@ -36,7 +36,7 @@
         "moveDown": "Move down",
         "moveLeft": "Move left",
         "moveRight": "Move right",
-        "moveTo": "Move %1",
+        "moveTo": "Move (with parameter)",
         "moveUp": "Move up",
         "obstacleAtLeft": "Is there an obstacle on the left?",
         "obstacleAtRight": "Is there an obstacle on the right?",
@@ -70,7 +70,7 @@
         "watchButterfly": "Watch butterfly",
         "watchPlanet": "Watch planet",
         "watchStar": "Watch star",
-        "while": "While"
+        "while": "Repeat until"
     }
 }
 
