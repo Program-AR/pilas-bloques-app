@@ -38,59 +38,9 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'primitives'
     },
     {
-        id: 'Volver',
-        intlId: 'return',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'Avanzar',
-        intlId: 'advance',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'VolverABordeIzquierdo',
-        intlId: 'goToLeftBorder',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'VolverAlBordeIzquierdo',
-        intlId: 'backToLeftBorder',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'SiguienteFila',
-        intlId: 'nextLine',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'SiguienteFilaTotal',
-        intlId: 'nextTotalLine',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'SiguienteColumna',
-        intlId: 'nextColumn',
-        categoryId: 'primitives'
-    },
-    {
         id: 'MoverA',
         intlId: 'moveTo',
         categoryId: 'primitives'
-    },
-    { 
-        id: 'TocandoAbajo', 
-        intlId: 'touchMoveDown', 
-        categoryId: 'sensors' 
-    },
-    { 
-        id: 'TocandoDerecha', 
-        intlId: 'touchMoveRight', 
-        categoryId: 'sensors' 
-    },
-    {
-        id: 'TocandoFinCamino', 
-        intlId: 'reachedGoal', 
-        categoryId: 'sensors' 
     },
     { 
         id: 'HayObstaculoArriba', 
@@ -110,16 +60,6 @@ export const commonBlocks: BlockType[] = [
     { 
         id: 'HayObstaculoDerecha', 
         intlId: 'obstacleAtRight', 
-        categoryId: 'sensors' 
-    },
-    { 
-        id: 'PuedeMoverAbajo', 
-        intlId: 'canMoveDown', 
-        categoryId: 'sensors' 
-    },
-    {  
-        id: 'PuedeMoverDerecha', 
-        intlId: 'canMoveRight', 
         categoryId: 'sensors' 
     },
     { 
@@ -156,11 +96,6 @@ export const commonBlocks: BlockType[] = [
         id: 'Numero', 
         intlId: 'math_number', 
         categoryId: 'values' 
-    },
-    { 
-        id: 'RepetirVacio', 
-        intlId: 'repeatEmpty', 
-        categoryId: 'repetitions' 
     },
     { 
         id: 'Repetir', 
@@ -263,26 +198,6 @@ export const sceneBlocks: BlockType[] = [
     { 
         id: 'LlenarTacho', 
         intlId: 'fillBin', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'PasarASiguienteComputadora', 
-        intlId: 'nextComputer', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'PrenderComputadora', 
-        intlId: 'turnComputerOn', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'ApagarComputadora', 
-        intlId: 'turnComputerOff', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'InstalarJuego', 
-        intlId: 'installGame', 
         categoryId: 'primitives' 
     },
     { 

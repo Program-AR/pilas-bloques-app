@@ -90,10 +90,6 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
             return {
                 validCells: ['C','K','L','M','T'],
                 specificBlocksIds: [
-                    'PrenderComputadora', 
-                    'ApagarComputadora', 
-                    'PasarASiguienteComputadora', 
-                    'InstalarJuego', 
                     'DespertarLuciernaga', 
                     'ObservarMariposa', 
                     'DesbloquearCelular', 
