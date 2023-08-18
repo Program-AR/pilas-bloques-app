@@ -105,13 +105,13 @@ const LoadChallengeCard = () => {
 			component="label"
 			style={{ margin: "0.5rem", textTransform: "none" }}
 		>
-			{/*
+			
 			<HomeCard
 				text={t(`selection.loadChallenge`)}
 				image="load-challenge.png"
 				color="#cc7024"
 			/>
-			*/}
+			
 			<CreatorCard text={t("selection.loadChallenge")} color={"#cc7024"} icon={UploadIcon}/>
 
         	<input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile}/>
