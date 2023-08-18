@@ -7,5 +7,5 @@
 }
 
 .selection-text {
-    color: var(--home-text-color);
+    color: var(--home-text-color) !important;
 }
