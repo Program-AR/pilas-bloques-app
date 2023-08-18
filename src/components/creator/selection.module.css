@@ -3,4 +3,9 @@
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    background-color: var(--home-background);
+}
+
+.selection-text {
+    color: var(--home-text-color);
 }

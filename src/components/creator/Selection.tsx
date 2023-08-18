@@ -1,6 +1,6 @@
 import { Button, Container, Dialog, DialogContent, Grid, Stack, Typography } from "@mui/material"
 import { Header } from "../header/Header"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
@@ -105,14 +105,7 @@ const LoadChallengeCard = () => {
 			component="label"
 			style={{ margin: "0.5rem", textTransform: "none" }}
 		>
-			
-			<HomeCard
-				text={t(`selection.loadChallenge`)}
-				image="load-challenge.png"
-				color="#cc7024"
-			/>
-			
-			<CreatorCard text={t("selection.loadChallenge")} color={"#cc7024"} icon={UploadIcon}/>
+			<CreatorCard text={t("selection.loadChallenge")} color={"#ffffff"} icon={UploadIcon}/>
 
         	<input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile}/>
 			<DialogSnackbar 
@@ -135,15 +128,19 @@ const CharacterCards = () => {
 export const CreatorSelection = () => {
 	const { t } = useTranslation("creator")
 
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
+
 	return (
 		<>
 			<Header />
 			<ChallengeInProgressDialog />
-			<Container className={styles.selection} maxWidth={"xl"}>
+			<Container className={styles['selection']} maxWidth={"xl"}>
 				<BetaBadge sx={{marginTop: 2}}>
-					<Typography variant="h4">{t("selection.title")}</Typography>
+					<Typography className={styles['selection-text']} variant="h4">{t("selection.title")}</Typography>
 				</BetaBadge>
-				<Typography variant="h5">{t("selection.subtitle")}</Typography>
+				<Typography className={styles['selection-text']} variant="h5">{t("selection.subtitle")}</Typography>
 
 				<CharacterCards />
 				<LoadChallengeCard />
