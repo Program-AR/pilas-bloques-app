@@ -38,12 +38,12 @@
 		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown.",
 		"clue": "Pista",
 		"includeClue": "Incluir una pista",
-		"defaultDescription": "Escribí tu **enunciado**..."
+		"defaultDescription": "Así se verá tu **enunciado**..."
 	},
 	"tools": {
 		"putObstacle": "Añadir obstáculo",
 		"putObject": "Añadir objetos",
-		"putActor": "Añadir personaje",
+		"putActor": "Mover personaje",
 		"delete": "Borrar"
 	},
 	"scene": {

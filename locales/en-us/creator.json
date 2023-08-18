@@ -38,12 +38,12 @@
 		"markdownTitle": "This is what your statement and clue will look like:",
 		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
 		"includeClue": "Include a clue",
-		"defaultDescription": "Write your **statement**..."
+		"defaultDescription": "Your **statement** will look like this..."
 	},
 	"tools": {
 		"putObstacle": "Add obstacle",
 		"putObject": "Add objects",
-		"putActor": "Add character",
+		"putActor": "Move character",
 		"delete": "Delete"
 	},
 	"scene": {
