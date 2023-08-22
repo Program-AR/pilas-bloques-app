@@ -22,10 +22,20 @@ const theme = createTheme({
         background: {
             default: '#f8f8f8',
             paper: '#f1f1f1'
-        }
+        },
     },
     shape: {
         borderRadius: 10
+    },
+    components: {
+        MuiButtonGroup: {
+            styleOverrides: {
+               grouped: {
+                backgroundColor: '#e0e0e0',
+                color: '#777777'
+               }
+            }
+        }
     }
 })
 
@@ -55,6 +65,15 @@ const dark = createTheme({
     },
     shape: {
         borderRadius: 10
+    },
+    components: {
+        MuiButtonGroup: {
+            styleOverrides: {
+               grouped: {
+                backgroundColor: '#252424',
+               }
+            }
+        }
     }
 })
 
