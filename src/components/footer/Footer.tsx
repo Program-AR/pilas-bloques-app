@@ -1,4 +1,4 @@
-import { Stack, Grid, styled } from "@mui/material";
+import { Stack, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link, LinkProps } from "react-router-dom";
 import GitInfo from 'react-git-info/macro';
