@@ -17,6 +17,10 @@ const theme = createTheme({
         },
         text: {
             primary: '#777777'
+        },
+        background: {
+            default: '#f8f8f8',
+            paper: '#f1f1f1'
         }
     },
     shape: {
