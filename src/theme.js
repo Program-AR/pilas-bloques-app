@@ -32,7 +32,6 @@ const theme = createTheme({
             styleOverrides: {
                grouped: {
                 backgroundColor: '#e0e0e0',
-                color: '#777777'
                }
             }
         }
