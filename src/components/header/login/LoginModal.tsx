@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, Stack, TextField, Typography, lighten } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, Stack, TextField, Typography } from "@mui/material"
 import { FC, FormEvent, useState } from "react"
 import styles from './loginModal.module.css';
 import CloseIcon from '@mui/icons-material/Close';
@@ -49,7 +49,7 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
             open={open} 
             onClose={handleOnClose}
             >
-            <DialogTitle sx={{backgroundColor: lighten(theme.palette.text.primary, 0.93)}} className={styles['login-header']}>{t('login')}
+            <DialogTitle sx={{backgroundColor: theme.palette.text.secondary}} className={styles['login-header']}>{t('login')}
                 <IconButton onClick={handleOnClose}>
                     <CloseIcon/>
                 </IconButton>
