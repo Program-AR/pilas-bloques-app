@@ -28,7 +28,6 @@
 .login-btn {
     animation: blinker 1s linear infinite;
     height: var(--header-height);
-    color: var(--theme-font-color);
 }
 
 @keyframes blinker {

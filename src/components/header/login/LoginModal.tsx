@@ -49,13 +49,13 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
             open={open} 
             onClose={handleOnClose}
             >
-            <DialogTitle sx={{backgroundColor: lighten(theme.palette.primary.main, 0.93)}} className={styles['login-header']}>{t('login')}
+            <DialogTitle sx={{backgroundColor: lighten(theme.palette.text.primary, 0.93)}} className={styles['login-header']}>{t('login')}
                 <IconButton onClick={handleOnClose}>
                     <CloseIcon/>
                 </IconButton>
             </DialogTitle>
             <DialogContent className={styles['login-content']}>
-                <Stack sx={{borderRight: `solid 1px ${theme.palette.primary.main}`}} className={styles['login-item']}>
+                <Stack sx={{borderRight: `solid 1px ${theme.palette.text.primary}`}} className={styles['login-item']}>
                     <Typography variant="h6" sx={{fontWeight: 'bold'}}>{t('already')}</Typography>
                     <form className={styles['login-form']} onSubmit={handleSubmit}>
                     <TextField 

@@ -4,8 +4,8 @@ const theme = createTheme({
     typography: {
         fontFamily: 'Nunito',
         allVariants: {
-            color: 'var(--theme-font-color);'
-        }
+            color: '#777777'
+        },
     },
     palette: {
         mode: 'light',
@@ -14,6 +14,9 @@ const theme = createTheme({
         },
         secondary: {
             main: '#ffb600'
+        },
+        text: {
+            primary: '#777777'
         }
     },
     shape: {
