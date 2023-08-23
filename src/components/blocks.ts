@@ -196,8 +196,8 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'primitives' 
     },
     { 
-        id: 'UsarPaleta', 
-        intlId: 'usePaddle', 
+        id: 'RebotarPingPong', 
+        intlId: 'bouncePingPong', 
         categoryId: 'primitives' 
     },
     { 
@@ -211,8 +211,8 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'primitives' 
     },
     { 
-        id: 'ObservarMariposa', 
-        intlId: 'watchButterfly', 
+        id: 'FotografiarMariposa', 
+        intlId: 'photographButterfly', 
         categoryId: 'primitives' 
     },
     { 
@@ -384,7 +384,23 @@ export const sceneBlocks: BlockType[] = [
         id: 'HayChurrasco', 
         intlId: 'steakHere', 
         categoryId: 'sensors' 
+    },
+    {
+        id: 'HayCargador',
+        intlId: 'chargerHere',
+        categoryId: 'sensors'
+    },
+    {
+        id: 'HayEnsaladera',
+        intlId: 'saladBowlHere',
+        categoryId: 'sensors'
+    },
+    {
+        id: 'HayTrofeo',
+        intlId: 'trophyHere',
+        categoryId: 'sensors'
     }
+
 ]
 
 export const availableBlocksFor = (sceneType: SceneType) : BlockType[] => {

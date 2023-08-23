@@ -14,7 +14,7 @@
     "blocks": {
         "advance": "Avançar",
         "backToLeftBorder": "Voltar para a margem esquerda",
-        "ballHereChuy": "Há uma bola de Chuy aqui",
+        "ballHereChuy": "Há uma bola de futebol aqui?",
         "ballHerePingPong": "Há uma bola de pingue-pongue aqui?",
         "ballHerePulpito": "Há uma bola pulpito aqui?",
         "butterflyHere": "Há uma borboleta aqui?",
@@ -81,10 +81,9 @@
         "turnComputerOn": "Acender computador",
         "unlockCellphone": "Desbloquear celular",
         "up": "Acima",
-        "usePaddle": "Usar paleta",
         "variables_get": "variables",
         "wakeUpFirefly": "Acordar vaga-lume",
-        "watchButterfly": "Perceber borboleta",
+        "photographButterfly": "Fotografar borboleta",
         "watchPlanet": "Perceber planeta",
         "watchStar": "Perceber estrela",
         "while": "Encuanto"

@@ -49,7 +49,8 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                     'AgarrarLechuga',
                     'PrepararEnsalada', 
                     'HayLechuga', 
-                    'HayTomate' 
+                    'HayTomate',
+                    'HayEnsaladera'
                 ]
             }
         case "Duba": 
@@ -77,31 +78,33 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                 validCells: ['T','E','U','P','G'],
                 specificBlocksIds: [
                     'RecogerTrofeo', 
-                    'UsarPaleta', 
+                    'RebotarPingPong', 
                     'PatearPulpito', 
                     'PatearPelotaChuy', 
                     'TocandoPulpito', 
                     'TocandoPingPong', 
                     'TocandoPaleta', 
-                    'TocandoPelotaChuy'
+                    'TocandoPelotaChuy',
+                    'HayTrofeo'
                 ]
             }
         case "Yvoty": 
             return {
-                validCells: ['C','K','L','M','T'],
+                validCells: ['C','K','L','M'],
                 specificBlocksIds: [
                     'PrenderComputadora', 
                     'ApagarComputadora', 
                     'PasarASiguienteComputadora', 
                     'InstalarJuego', 
                     'DespertarLuciernaga', 
-                    'ObservarMariposa', 
+                    'FotografiarMariposa', 
                     'DesbloquearCelular', 
                     'AgarrarCargador', 
                     'TocandoMariposa', 
                     'TocandoCelular', 
                     'TocandoLuciernaga', 
-                    'CargarCelular'
+                    'CargarCelular',
+                    'HayCargador'
                 ]
             }
         case "Capy": 
