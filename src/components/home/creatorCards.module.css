@@ -11,6 +11,7 @@
 
 .creator-card-text {
     border-style: solid;
+    border-color: black;
     border-radius: 50px;
     border-width: thin;
     margin-top: 15px;

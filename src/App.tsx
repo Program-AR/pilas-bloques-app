@@ -8,7 +8,6 @@ import { ChallengeById, ChallengeByName } from './components/ChallengeView';
 import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import theme from './theme';
-import "./theme-light.css"
 import { About } from './components/about/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';

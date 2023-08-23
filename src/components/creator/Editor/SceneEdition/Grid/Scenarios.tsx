@@ -38,7 +38,7 @@ export const Scenarios = (props: SceneGridProps) => {
             </Stack>
             <MobileStepper
                 variant="dots"
-                style={{ margin: theme.spacing(1), backgroundColor: 'var(--theme-background-color)' }}
+                style={{ margin: theme.spacing(1), backgroundColor: 'transparent' }}
                 position='static'
                 backButton={<span />}
                 nextButton={<span />}

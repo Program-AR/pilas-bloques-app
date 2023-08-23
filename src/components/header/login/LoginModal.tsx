@@ -1,10 +1,11 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, TextField } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, Paper, Stack, TextField, Typography } from "@mui/material"
 import { FC, FormEvent, useState } from "react"
 import styles from './loginModal.module.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
 import { PilasBloquesApi } from "../../../pbApi";
 import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
+import theme from "../../../theme";
 
 export type LoginModalProps = {
     open: boolean
@@ -48,14 +49,14 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
             open={open} 
             onClose={handleOnClose}
             >
-            <DialogTitle className={styles['login-header']}>{t('login')}
+            <DialogTitle sx={{backgroundColor: theme.palette.text.secondary}} className={styles['login-header']}>{t('login')}
                 <IconButton onClick={handleOnClose}>
                     <CloseIcon/>
                 </IconButton>
             </DialogTitle>
             <DialogContent className={styles['login-content']}>
-                <div className={styles['login-item']}>
-                    <h3>{t('already')}</h3>
+                <Stack sx={{borderRight: `solid 1px ${theme.palette.text.primary}`}} className={styles['login-item']}>
+                    <Typography variant="h6" sx={{fontWeight: 'bold'}}>{t('already')}</Typography>
                     <form className={styles['login-form']} onSubmit={handleSubmit}>
                     <TextField 
                         className={styles['input']}
@@ -75,13 +76,13 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
                         open={serverError}
                         onClose={() => setServerError(false)} 
                         message={t('serverError')}/>
-                    <Button type='submit' className={styles['login-btn']}>{t('login')}</Button>
+                    <Button type='submit'>{t('login')}</Button>
                     </form>
                     <a className={styles['link']} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>
-                </div>  
+                </Stack>  
                 <div className={styles['login-item']}>
                     <img alt='login' className={styles['login-img']} src="imagenes/session/login.png"/>
-                    <h3>{t('dontHaveUser')}</h3>
+                    <Typography variant="h6" sx={{fontWeight: 'bold'}}>{t('dontHaveUser')}</Typography>
                     <a className={styles['link']} onClick={handleOnClose} href="#/register" target="">{t('register')}</a>
                 </div>  
                 </DialogContent>
