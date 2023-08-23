@@ -5,6 +5,7 @@
     --creator-max-height: 660px;
     --theme-link-color: #3f9bb3;
     --home-background: #311c3b;
+    --home-text-color: #ffffff;
 }
 
 html, body, #root {

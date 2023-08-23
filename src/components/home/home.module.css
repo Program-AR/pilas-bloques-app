@@ -11,7 +11,7 @@
     text-align: center;
     top: 1.5rem; 
     text-transform: uppercase;
-    color: white;
+    color: var(--home-text-color) !important;
     padding-top: 3rem;
     padding-bottom: 4rem;
 }

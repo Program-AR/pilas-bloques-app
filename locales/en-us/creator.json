@@ -6,6 +6,8 @@
 		"discardWarning": "Careful! If you discard your challenge you won't be able to recover it!",
 		"continueEditing": "Continue editing",
 		"discard": "Discard",
+		"loadChallenge": "Import a created challenge",
+		"importError": "The file is invalid",
 		"cards": {
 			"Lita": "Lita",
 			"Duba": "Duba",
