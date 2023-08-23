@@ -78,16 +78,16 @@ const darkTheme: ThemeOptions = {
 }
 
 export const getDesignTokens = (mode: ThemeMode): ThemeOptions => {
-    const _theme =  mode === 'light' ? lightTheme : darkTheme
+    const modeTheme =  mode === 'light' ? lightTheme : darkTheme
 
     const theme: ThemeOptions = {
         ...commonTheme,
-        palette: _theme.palette,
+        palette: modeTheme.palette,
         typography: {
-            ..._theme.typography,
+            ...modeTheme.typography,
             ...commonTheme.typography
         },
-        components: _theme.components
+        components: modeTheme.components
     }
 
     return theme

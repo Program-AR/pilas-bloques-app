@@ -4,6 +4,7 @@ import styles from './header.module.css';
 import { SessionButton } from "./login/SessionButton";
 import { Link } from "react-router-dom";
 import { theme } from "../../theme/theme";
+import { DarkModeSwitch } from "./DarkModeSwitch";
 
 type HeaderProps = {
     CenterComponent?: React.ReactNode,
@@ -30,6 +31,7 @@ export const Header = ({CenterComponent= <></>, SubHeader=<></>}: HeaderProps) =
                 {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
+                    <DarkModeSwitch/>
                     <SessionButton/>
                 </div>
             </Grid>
