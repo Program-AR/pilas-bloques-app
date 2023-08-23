@@ -6,6 +6,8 @@
 		"discardWarning": "¡Cuidado! ¡Si descartás tu desafío no vas a poder recuperarlo!",
 		"continueEditing": "Seguir editando",
 		"discard": "Descartar",
+		"loadChallenge": "Importar desafío creado",
+		"importError": "El archivo es inválido",
 		"cards": {
 			"Lita": "Lita",
 			"Duba": "Duba",
