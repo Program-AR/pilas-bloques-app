@@ -1,46 +1,27 @@
-import { Switch, styled } from "@mui/material"
 import { DarkMode, LightMode } from "@mui/icons-material";
+import { PBSwitch } from "../PBSwitch";
+import { LocalStorage } from "../../localStorage";
+import { useState } from "react";
 
 export const DarkModeSwitch = () => {
+    const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getDarkModeValue())
 
-
-    return <>
-        <PBSwitch icon={<LightMode
-            sx={{
-                backgroundColor: 'white',
-                borderRadius: 10,
-                padding: '3px',
-                color: 'gray'
-            }} />} checkedIcon={<DarkMode color='primary'
-                sx={{
-                    backgroundColor: 'white',
-                    borderRadius: 10,
-                    padding: '3px',
-                    color: 'gray'
-
-                }} />}></PBSwitch>
-    </>
-}
-
-const PBSwitch = styled(Switch)(() => ({
-    alignSelf: 'center',
-    padding: 0,
-    width: 60,
-    height: 34,
-    marginRight: 5,
-    "& .MuiSwitch-switchBase": {
-        padding: 0,
-        margin: 5,
-        backgroundColor: '#cccccc',
-        opacity: 1,
-        "&.Mui-checked": {
-            transform: "translateX(26px)",
-        },
-    },
-    "& .MuiSwitch-track": {
-        borderRadius: 34,
-        backgroundColor: '#cccccc',
-        opacity: 1,
+    const iconSx = {
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: '3px',
+        color: 'gray'
     }
-    
-}));
+
+    const handleToggle = () => {
+        setDarkModeEnabled(!darkModeEnabled)
+        LocalStorage.toggleDarkMode()
+    }
+
+    return <PBSwitch
+        checked={darkModeEnabled}
+        icon={<LightMode sx={iconSx} />}
+        checkedIcon={<DarkMode sx={iconSx} />}
+        onChange={handleToggle}
+    />
+}
