@@ -4,7 +4,7 @@ import { PBCard } from "../../../../PBCard";
 import { StatementEdition } from "../../ChallengeDetailsEdition/StatementEdition";
 import { ToolBoxDialog } from "../../ChallengeDetailsEdition/ToolBoxDialog";
 import { ScenarioEditionButtons } from "./ScenarioEditionButtons";
-import theme from "../../../../../theme";
+import { theme } from "../../../../../theme/theme";
 
 export const GridOptions = (props: StyleGridProps) => {
 

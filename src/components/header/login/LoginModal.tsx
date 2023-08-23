@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from "react-i18next";
 import { PilasBloquesApi } from "../../../pbApi";
 import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
-import theme from "../../../theme";
+import { theme } from "../../../theme/theme";
 
 export type LoginModalProps = {
     open: boolean

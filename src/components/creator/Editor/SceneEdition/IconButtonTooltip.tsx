@@ -1,5 +1,5 @@
 import { IconButton, IconButtonProps, Tooltip } from "@mui/material";
-import theme from "../../../../theme";
+import { theme } from "../../../../theme/theme";
 
 type IconButtonTooltipProps = {
     icon: React.ReactNode

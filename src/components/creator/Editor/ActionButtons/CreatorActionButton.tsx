@@ -1,6 +1,6 @@
 import { Button, ButtonProps, darken, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import theme from '../../../../theme';
+import { theme } from "../../../../theme/theme";
 
 type CreatorActionButtonProps = {
   nametag: string,

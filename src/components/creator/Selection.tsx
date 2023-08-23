@@ -10,8 +10,8 @@ import UploadIcon from '../home/UploadIcon';
 import { LocalStorage } from "../../localStorage"
 import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
-import theme from "../../theme"
 import { BetaBadge } from "./BetaBadge"
+import { theme } from "../../theme/theme"
 
 type CharacterCardProps = {
 	name: SceneType

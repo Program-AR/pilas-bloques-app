@@ -9,7 +9,7 @@ import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
-import theme from "../../../theme";
+import { theme } from "../../../theme/theme";
 
 export const CreatorEditor = () => {
   const {t} = useTranslation('creator')

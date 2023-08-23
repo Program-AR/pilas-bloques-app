@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import './App.css';
 import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Home } from './components/home/Home';
@@ -7,7 +7,6 @@ import { PBError } from './components/PBError';
 import { ChallengeById, ChallengeByName } from './components/ChallengeView';
 import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
-import theme from './theme';
 import { About } from './components/about/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
@@ -16,6 +15,7 @@ import { CreatorEditor } from './components/creator/Editor/Editor';
 import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
 import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
+import { theme } from './theme/theme';
 
 const AnalyticsComponent = () => {
   const location = useLocation();

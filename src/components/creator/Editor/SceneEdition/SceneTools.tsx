@@ -5,7 +5,7 @@ import { LocalStorage } from '../../../../localStorage';
 import { SerializedChallenge, sceneObjectByType } from '../../../serializedChallenge';
 import { CreatorContext } from '../CreatorContext';
 import { PBCard } from '../../../PBCard';
-import theme from '../../../../theme';
+import { theme } from '../../../../theme/theme';
 
 export const SceneTools = () => {
     type ToolProps = {

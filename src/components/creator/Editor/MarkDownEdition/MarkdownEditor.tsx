@@ -1,9 +1,9 @@
 import { Typography } from "@mui/material"
-import theme from "../../../../theme"
 import { MarkdownInput } from "./MarkdownInput"
 import { MarkdownResult } from "./MarkdownResult"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
+import { theme } from "../../../../theme/theme"
 
 type MarkdownEditorProps = {
     statement: string

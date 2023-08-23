@@ -6,7 +6,7 @@ import { Header } from "../header/Header";
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import theme from '../../theme';
+import { theme } from "../../theme/theme";
 
 const Breadcrumb = (book: Book) => {
     const {t} = useTranslation("books")

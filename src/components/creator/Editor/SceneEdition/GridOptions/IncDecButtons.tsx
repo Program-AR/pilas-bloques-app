@@ -1,5 +1,5 @@
 import { Stack, Typography, Button, ButtonGroup, useMediaQuery } from '@mui/material';
-import theme from '../../../../../theme';
+import { theme } from '../../../../../theme/theme';
 
 type IncDecButtonsProps = {
     add: () => void

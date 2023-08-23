@@ -1,6 +1,5 @@
 import { Paper, PaperProps, useMediaQuery } from "@mui/material";
-import theme from "../theme";
-
+import { theme } from "../theme/theme";
 
 type PBCardProps = {
     children: React.ReactNode

@@ -1,6 +1,6 @@
 import { Typography, useMediaQuery, CardMedia, Stack, CardActionArea, CardActionAreaProps, Tooltip } from "@mui/material";
 import { PBCard } from "../../../PBCard";
-import theme from '../../../../theme';
+import { theme } from "../../../../theme/theme";
 
 type DetailsEditionButtonProps = {
     imageurl: string

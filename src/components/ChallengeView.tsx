@@ -5,7 +5,7 @@ import { EmberView } from "./emberView/EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
-import theme from '../theme';
+import { theme } from "../theme/theme";
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const {t} = useTranslation(["books", "challenges", "chapters", "groups"])

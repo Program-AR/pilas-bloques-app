@@ -5,9 +5,9 @@ import { PBCard } from "../../../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
 import { useTranslation } from "react-i18next";
-import theme from '../../../../theme';
 import { LocalStorage } from "../../../../localStorage";
 import { StatementTextToShow } from "./MarkdownEditor";
+import { theme } from "../../../../theme/theme";
 
 type MarkdownResultProps = {
   text: string

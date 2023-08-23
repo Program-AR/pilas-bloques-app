@@ -1,5 +1,5 @@
 import { Stack } from "@mui/material";
-import theme from "../../../../theme";
+import { theme } from "../../../../theme/theme";
 
 export const CreatorSubHeader = ({ children }: { children: React.ReactNode }) => {
 

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle } from "@mui/material"
-import theme from '../../theme';
+import { theme } from '../../theme/theme';
 
 export interface ModalDialogProps {
     isOpen: boolean;
