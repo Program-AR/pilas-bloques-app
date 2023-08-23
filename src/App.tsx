@@ -13,6 +13,7 @@ import { About } from './components/about/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { CreatorSelection } from './components/creator/Selection';
+import { ActorSelection } from './components/creator/CarouselSelection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
 import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
@@ -72,7 +73,8 @@ const router = createHashRouter([{
   },
   {
     path: "/creador/seleccionar",
-    element: <CreatorSelection/>
+    //element: <CreatorSelection/>
+    element: <ActorSelection/>
   },
   {
     path: "/creador/editar",
