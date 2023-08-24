@@ -142,7 +142,7 @@ export const defaultChallenge = (type: SceneType, defaultDescription = ""): Seri
 		},
 		scene: defaultScene(type),
 		toolbox: {
-			blocks: []
+			blocks: ['MoverACasillaDerecha']
 		},
         stepByStep: true
 	}
