@@ -108,6 +108,8 @@ const LoadChallengeCard = () => {
 	)
 }
 
+const baseUrlImage = 'imagenes/selection/'
+
 type ActorType = {
 	id: SceneType
     image: string
@@ -132,14 +134,14 @@ class ActorState {
         this.actors = actorList.map((actors, index) => 
           new ActorClass(actors.name, (index === 0), 
             (index === 0 ) ?
-                `imagenes/selection/gifs/${actors.name}.gif` :
-                `imagenes/selection/svg/${actors.name}.svg`, actors.color))
+                `${baseUrlImage}gifs/${actors.name}.gif` :
+                `${baseUrlImage}svg/${actors.name}.svg`, actors.color))
         }
 
     actorChanged = (actorId: string) => (
         this.actors.forEach(item => {
             if( item.actor.id === actorId) {
-                item.actor.image = `imagenes/selection/gifs/${item.actor.id}.gif`
+                item.actor.image = `${baseUrlImage}gifs/${item.actor.id}.gif`
                 item.isSelected = true
             }})
     )
@@ -149,7 +151,7 @@ class ActorState {
     getActors = () => this.actors
 
     restoreActorImages = () => 
-        this.actors.forEach(item => { item.actor.image = `imagenes/selection/svg/${item.actor.id}.svg`; item.isSelected = false })
+        this.actors.forEach(item => { item.actor.image = `${baseUrlImage}svg/${item.actor.id}.svg`; item.isSelected = false })
 
 }
 
@@ -205,7 +207,6 @@ export const ActorCards = () => {
         return (<Stack key={item.actor.id} style={style} >
             <CardMedia            
                 component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {opacity: 0.5}} height={item.isSelected ? "300px":"200px"} image={item.actor.image} 
-                //component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {filter:"blur(5px)"}} height={item.isSelected ? "400px":"200px"} image={item.actor.image} 
                 sx={{objectFit: "contain"}}
                 onClick={handleActorOnClick} 
                 />       
