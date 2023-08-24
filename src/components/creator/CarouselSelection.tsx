@@ -1,7 +1,7 @@
 import { Button, Card, CardContent, darken, useMediaQuery, Dialog, DialogContent, CardMedia, Stack, Typography } from "@mui/material"
 import { Header } from "../header/Header"
 import { MouseEvent, useState } from "react"
-import { Interests, Psychology, Place, FactCheck } from '@mui/icons-material'
+import { Interests, Psychology, Place, FactCheck, EmojiEvents } from '@mui/icons-material'
 import { Link, useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
@@ -15,51 +15,114 @@ import PaintbrushIcon from "../home/PaintBrushIcon";
 import theme from "../../theme"
 import { Carousel } from 'react-carousel3';
 
+const baseUrlImage = 'imagenes/selection/'
+const baseObjectUrlImage = 'imagenes/sceneImages/'
 
-const style = {
-  //width: "100%",
-  //height: "100%",
-  cursor: "pointer"
-};
-
-type ActorCardType = {
-	name: SceneType
-    color: string
-    objectives: string
+type ObjectiveDataType = {
+    key: string
+    object: string
 }
 
-const actorsData: ActorCardType[] = [
+type ActorDataType = {
+	name: SceneType
+    color: string
+    objectives: ObjectiveDataType[]
+}
+
+const actorsData: ActorDataType[] = [
 	{
 		name: "Lita",
         color: "#FF9C5D",
-        objectives: "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
-        
+        objectives: [ 
+            { key: "letucce",
+              object: "L.png"
+            },
+            { key: "tomato",
+              object: "T.png"
+            },
+            { key: "salad",
+              object: "E.png"
+            }
+        ]
 	},
 	{
 		name: "Duba",
         color: "#FED473",
-        objectives: "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
+        objectives: [ 
+            { key: "steak",
+              object: "P.png"
+            }
+        ]
     },
 	{
 		name: "Chuy",
         color: "#FFB4E0",
-        objectives: "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
+        objectives: [ 
+            { key: "paddle",
+              object: "E.png"
+            },
+            { key: "trophy",
+              object: "T.png"
+            },
+            { key: "pingpong",
+              object: "P.png"
+            },
+            { key: "pulpito",
+              object: "U.png"
+            },
+            { key: "football",
+              object: "G.png"
+            },
+        ]
     },
 	{
 		name: "Manic",
         color: "#FFFBB1",
-        objectives: "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
+        objectives: [ 
+            { key: "telescope",
+              object: "T.png"
+            },
+            { key: "star",
+              object: "E.png"
+            },
+            { key: "planet",
+              object: "P.png"
+            }
+        ]
     },
 	{
 		name: "Capy",
         color: "#B0E092",
-            objectives: "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
+        objectives: [ 
+            { key: "can",
+              object: "L.png"
+            },
+            { key: "paper",
+              object: "P.png"
+            }
+        ]
     },
 	{
 		name: "Yvoty",
         color: "#ABDEDB",
-        objectives: "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
-    },
+        objectives: [ 
+            { key: "firefly",
+              object: "L.png"
+            },
+            { key: "butterfly",
+              object: "M.png"
+            },
+            { key: "unlockCellphone",
+              object: "C.png"
+            },
+            { key: "charger",
+              object: "K.png"
+            },
+            { key: "chargeCellphone",
+              object: "P.png"
+            }
+        ]
+    }
 ]
 
 const LoadChallengeCard = () => {
@@ -108,34 +171,33 @@ const LoadChallengeCard = () => {
 	)
 }
 
-const baseUrlImage = 'imagenes/selection/'
-
 type ActorType = {
 	id: SceneType
     image: string
     color: string
-    //objectives: string
+    objectives: ObjectiveDataType[]
 }
 
 class ActorClass {
     isSelected: boolean
     actor: ActorType
 
-    constructor(id: SceneType, isSelected: boolean, image: string, color: string) {
+    constructor(id: SceneType, isSelected: boolean, image: string, color: string, objectives: ObjectiveDataType[]) {
         this.isSelected = isSelected
-        this.actor = { id, image, color }
+        this.actor = { id, image, color, objectives }
     }
 }
 
 class ActorState {
     actors: ActorClass[] = []
 
-    constructor(actorList: ActorCardType[]) {
+    constructor(actorList: ActorDataType[]) {
         this.actors = actorList.map((actors, index) => 
           new ActorClass(actors.name, (index === 0), 
-            (index === 0 ) ?
+            ((index === 0 ) ?
                 `${baseUrlImage}gifs/${actors.name}.gif` :
-                `${baseUrlImage}svg/${actors.name}.svg`, actors.color))
+                `${baseUrlImage}svg/${actors.name}.svg`),
+            actors.color, actors.objectives))
         }
 
     actorChanged = (actorId: string) => (
@@ -199,14 +261,27 @@ export const ActorCards = () => {
             <Typography variant="body2" color="text.secondary" display="flex" alignItems="center">
                 {props.icon}&nbsp;{t(`selection.${props.which}`)}
             </Typography>
-            <Typography marginLeft="6px" paragraph color="text.primary">{t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}</Typography>
+            <Typography marginLeft="6px" paragraph style={{textAlign:"start"}} color="text.primary">{t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}</Typography>
+        </>
+
+    const ObjectiveActor = () =>
+        <>
+            <Typography variant="body2" color="text.secondary" display="flex" alignItems="center">
+                <EmojiEvents/>&nbsp;{t('selection.objectives')}
+            </Typography>
+            {actorSelected.actor.objectives.map(objective => (
+                <Typography marginLeft="6px" color="text.primary" display="flex" alignItems="center" style={{textAlign:"start"}}>
+                    <img alt={objective.key} width="30px" src={`${baseObjectUrlImage}${actorSelected.actor.id}/${objective.object}`}></img> 
+                    &nbsp;{t(`selection.cards.${actorSelected.actor.id}.objectives.${objective.key}`)}
+                </Typography>
+            ))}
         </>
 
     const ActorCard = (item: ActorClass ) => {
         console.log(item)
-        return (<Stack key={item.actor.id} style={style} >
+        return (<Stack key={item.actor.id} style={{cursor: "pointer"}} >
             <CardMedia            
-                component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {opacity: 0.5}} height={item.isSelected ? "300px":"200px"} image={item.actor.image} 
+                component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {opacity: 0.5}} height={item.isSelected ? "350px":"200px"} image={item.actor.image} 
                 sx={{objectFit: "contain"}}
                 onClick={handleActorOnClick} 
                 />       
@@ -217,7 +292,7 @@ return (
     <Stack margin="20px" flexDirection={isSmallScreen ? "column":"row"} 
          display="flex" textAlign="justify" justifyContent="space-around" alignItems={isSmallScreen ? "center" : "flex-start"}>
         <Stack component="div" sx={{display: 'flex', justifyContent: 'center', alignItems: "center"}}>
-            <Carousel height={300} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={350} >
+            <Carousel height={360} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={350} >
                 {actors.map(ActorCard)}
             </Carousel>
             <Button
@@ -230,7 +305,7 @@ return (
         </Stack>
         
         <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column", 
-                      maxWidth: "350px", height:"100%", padding: theme.spacing(1), flexGrow:"inherit"}} >
+                      maxWidth: "370px", height:"100%", padding: theme.spacing(1), flexGrow:"inherit"}} >
             <Card sx={{backgroundColor: `${actorSelected.actor.color}`}}>
             <CardContent >
                 <NameActor/>
@@ -238,6 +313,7 @@ return (
                 <CharacteristicActor which='personality' icon={<Psychology/>}/>
                 <CharacteristicActor which='origin' icon={<Place/>}/>
                 <CharacteristicActor which='curiousFact' icon={<FactCheck/>}/>
+                <ObjectiveActor/>
             </CardContent>
             </Card>
         </Card>

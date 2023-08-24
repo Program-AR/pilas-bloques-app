@@ -17,17 +17,78 @@
 		"creator": "create your own challenge",
 		"cards": {
 			"Lita": { 	"name": "Lita",
+						"definition": "la mulita",
+						"interests": "Cultivar la tierra.",
+						"personality": "Risueña (¡siempre la vas a ver sonriendo!).",
+						"origin": "Mesopotamia.",
+						"curiousFact": "Tiene su propia huerta y le gusta enrollarse como una bola.",
+						"objectives": {
+							"letucce": "Agarrar todas las lechugas.",
+								"tomato": "Agarrar todos los tomates.",
+							"salad": "Preparar todas las ensaladas."
+						}
+			},
+			"Duba": { 	"name": "Duba",
+						"definition": "la puma",
+						"interests": "La cocina.",
+						"personality": "Hambrienta (¡todo el tiempo tiene hambre!).",
+						"origin": "Cordillera patagónica",
+						"curiousFact": "Su comida favorita es el churrasco y le encanta hacer asados.",
+						"objectives": {
+							"steak": "Comer todos los churrascos."
+						}
+			},
+			"Yvoty": { 	"name": "Yvoty",
+						"definition": "la yaguareté",
+						"interests": "La tecnología. Las redes sociales.",
+						"personality": "Armónica. Despreocupada (¡no le importa el qué dirán!).",
+						"origin": "Selva misionera.",
+						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
+						"objectives": {
+							"firefly": "Despertar todas las luciérnagas.",
+							"butterfly": "Fotografiar todas las mariposas.",
+							"unlockCellphone": "Desbloquear todos los celulares.",
+							"charger": "Agarrar todos los cargadores.",
+							"chargeCellphone": "Cargar todos los celulares."
+						}
+			},
+			"Manic": {  "name": "Mañic",
+						"definition": "la ñandú",
 						"interests": "La ciencia. La astronomía.",
 						"personality": "Curiosa. Activa. Ágil (¡nunca se olvida sus patines!).",
 						"origin": "Llanura pampeana.",
-						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente 'ñandú' en la lengua Qom.",      
-						"objectives": "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
-		},
-			"Duba": "Duba",
-			"Yvoty": "Yvoty",
-			"Manic": "Mañic",
-			"Capy": "Capy y Guyrá",
-			"Chuy": "Chuy"
+						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
+						"objectives": {
+							"telescope": "Reparar todos los telescopios.",
+							"star": "Observar todas las estrellas. ",
+							"planet": "Observar todos los planetas."
+						}
+			},
+			"Capy": {  "name": "Capy y Guyrá",
+						"definition": "el carpincho y el picabuey",
+						"interests": "El medio ambiente. La ecología.",
+						"personality": "Protectores. Amigos (¡siempre están combinados!).",
+						"origin": "Humedales.",
+						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
+						"objectives": {
+							"can":"Recoger todas las latas. ",
+							"paper":"Recoger todos los papeles."
+						}
+			},
+			"Chuy": {  "name": "Chuy",
+						"definition": "le pingüine de magallanes",
+						"interests": "El trabajo en equipo. Los deportes.",
+						"personality": "Hiperactive. Arriesgade (¡le encanta escalar acantilados!).",
+						"origin": "Playa patagónica.",
+						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
+						"objectives": {
+							"paddle": "Recoger todas las paletas.",					
+							"trophy": "Recoger todos los trofeos.",
+							"pingpong": "Rebotar todas las pelotas de ping pong.",
+							"pulpito": "Rebotar todas las pelotas pulpito.",
+							"football":"Patear todas las pelotas de fútbol."
+						}
+			}
 		}
 	},
 	"editor": {
