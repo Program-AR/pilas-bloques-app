@@ -1,10 +1,10 @@
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { PBSwitch } from "../PBSwitch";
 import { LocalStorage } from "../../localStorage";
-import { useState } from "react";
+import { useThemeContext } from "../../theme/ThemeContext";
 
 export const DarkModeSwitch = () => {
-    const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getDarkModeValue())
+    const { darkModeEnabled, setDarkModeEnabled} = useThemeContext()
 
     const iconSx = {
         backgroundColor: 'white',
@@ -15,7 +15,6 @@ export const DarkModeSwitch = () => {
 
     const handleToggle = () => {
         setDarkModeEnabled(!darkModeEnabled)
-        LocalStorage.toggleDarkMode()
     }
 
     return <PBSwitch

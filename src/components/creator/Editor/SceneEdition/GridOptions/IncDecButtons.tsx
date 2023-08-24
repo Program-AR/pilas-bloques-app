@@ -1,5 +1,5 @@
 import { Stack, Typography, Button, ButtonGroup, useMediaQuery } from '@mui/material';
-import { theme } from '../../../../../theme/theme';
+import { useThemeContext } from '../../../../../theme/ThemeContext';
 
 type IncDecButtonsProps = {
     add: () => void
@@ -12,6 +12,8 @@ type IncDecButtonsProps = {
 }
 
 export const IncDecButtons = (props: IncDecButtonsProps) => {
+    const { theme } = useThemeContext()
+
     const flexStyles = ( useMediaQuery(theme.breakpoints.down('sm')) ) 
                              ? ( { flexMinWidth: "5px", flexTextWidth: "25px", flexFontSize: "small" } ) 
                              : ( { flexMinWidth: "40px", flexTextWidth: "45px", flexFontSize: "large" } )

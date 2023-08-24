@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle } from "@mui/material"
-import { theme } from '../../theme/theme';
+import { useThemeContext } from '../../theme/ThemeContext';
 
 export interface ModalDialogProps {
     isOpen: boolean;
@@ -29,6 +29,8 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
         onCancel();
       }
     };
+    
+    const { theme } = useThemeContext()
 
     return (
         <>

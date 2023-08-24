@@ -1,11 +1,13 @@
 import { Paper, PaperProps, useMediaQuery } from "@mui/material";
-import { theme } from "../theme/theme";
+import { useThemeContext } from "../theme/ThemeContext";
 
 type PBCardProps = {
     children: React.ReactNode
 }
 
 export const PBCard = (props: PBCardProps & PaperProps) => {
+  const { theme } = useThemeContext()
+
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
     
     return <Paper 

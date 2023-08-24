@@ -1,6 +1,6 @@
 import { Typography, useMediaQuery, CardMedia, Stack, CardActionArea, CardActionAreaProps, Tooltip } from "@mui/material";
 import { PBCard } from "../../../PBCard";
-import { theme } from "../../../../theme/theme";
+import { useThemeContext } from "../../../../theme/ThemeContext";
 
 type DetailsEditionButtonProps = {
     imageurl: string
@@ -8,6 +8,8 @@ type DetailsEditionButtonProps = {
 } & CardActionAreaProps
 
 export const DetailsEditionButton = (props: DetailsEditionButtonProps) => {
+    const { theme } = useThemeContext()
+
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (

@@ -15,7 +15,7 @@ import { CreatorEditor } from './components/creator/Editor/Editor';
 import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
 import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
-import { theme } from './theme/theme';
+import { useThemeContext } from './theme/ThemeContext';
 
 const AnalyticsComponent = () => {
   const location = useLocation();
@@ -85,6 +85,8 @@ const router = createHashRouter([{
 
 
 function App() {
+
+  const { theme } = useThemeContext()
 
   return (
     <React.Fragment>

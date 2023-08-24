@@ -11,7 +11,8 @@ import { LocalStorage } from "../../localStorage"
 import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 import { BetaBadge } from "./BetaBadge"
-import { theme } from "../../theme/theme"
+import { useThemeContext } from "../../theme/ThemeContext"
+
 
 type CharacterCardProps = {
 	name: SceneType
@@ -150,6 +151,8 @@ export const CreatorSelection = () => {
 }
 
 const ChallengeInProgressDialog = () => {
+    const { theme } = useThemeContext()
+
 	const thereIsChallengeInCreation: boolean = !!LocalStorage.getCreatorChallenge()
 	const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
 	const { t } = useTranslation("creator")

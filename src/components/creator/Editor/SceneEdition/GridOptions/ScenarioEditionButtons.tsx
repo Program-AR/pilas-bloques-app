@@ -8,9 +8,11 @@ import { SceneMap, defaultScene } from "../../../../serializedChallenge";
 import { CreatorContext } from "../../CreatorContext";
 import { DialogSnackbar } from "../../../../dialogSnackbar/DialogSnackbar";
 import { IconButtonTooltip } from "../IconButtonTooltip";
-import { theme } from "../../../../../theme/theme";
+import { useThemeContext } from "../../../../../theme/ThemeContext";
 
 export const ScenarioEditionButtons = () => {
+    const { theme } = useThemeContext()
+
     const { t } = useTranslation("creator")
 
     const { setIndex, setMaps, currentMap, index, maps } = useContext(CreatorContext)
@@ -76,6 +78,8 @@ type GridOptionButtonProps = {
 }
 
 const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
+    const { theme } = useThemeContext()
+
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     return <>
