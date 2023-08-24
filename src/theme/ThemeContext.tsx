@@ -1,4 +1,4 @@
-import { createTheme, CSSObject, SxProps, Theme } from "@mui/material";
+import { createTheme, Theme } from "@mui/material";
 import { createContext, FC, PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
 import { getDesignTokens } from "./theme";
 import { LocalStorage } from "../localStorage";

@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Home } from './components/home/Home';

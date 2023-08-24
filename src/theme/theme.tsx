@@ -1,5 +1,4 @@
-import { ThemeOptions, createTheme } from "@mui/material";
-import { ThemeMode } from "./ThemeContext";
+import { ThemeOptions } from "@mui/material";
 
 const commonTheme: ThemeOptions = {
     shape: {

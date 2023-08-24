@@ -1,6 +1,5 @@
 import { DarkMode, LightMode } from "@mui/icons-material";
 import { PBSwitch } from "../PBSwitch";
-import { LocalStorage } from "../../localStorage";
 import { useThemeContext } from "../../theme/ThemeContext";
 
 export const DarkModeSwitch = () => {
