@@ -28,7 +28,7 @@ export namespace Ember {
     }
     
     export const toggleDarkMode = () => {
-        LocalStorage.toggleDarkMode()
+        LocalStorage.saveDarkModeValue(!LocalStorage.getDarkModeValue())
         refreshIframe()
     }
 

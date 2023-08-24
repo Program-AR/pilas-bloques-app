@@ -1,4 +1,4 @@
-import { createTheme, CSSObject, SxProps, Theme } from "@mui/material";
+import { createTheme, CSSObject, SxProps, Theme, useMediaQuery } from "@mui/material";
 import { createContext, FC, PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
 import { getDesignTokens } from "./theme";
 import { LocalStorage } from "../localStorage";
@@ -19,8 +19,15 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
+    const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+    let defaultMode = LocalStorage.getDarkModeValue()
 
-    const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getDarkModeValue());
+    if(!defaultMode){
+        defaultMode = prefersDarkMode
+        LocalStorage.saveDarkModeValue(defaultMode)
+    }
+
+    const [darkModeEnabled, setDarkModeEnabled] = useState(defaultMode);
 
     const theme = useMemo(
         () => createTheme(getDesignTokens(darkModeEnabled)),
