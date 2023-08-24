@@ -14,6 +14,7 @@
 		"origin": "Origen",
 		"curiousFact": "Dato curioso",      
 		"objectives": "Objectivos",
+		"creator": "creá tu desafio",
 		"cards": {
 			"Lita": { 	"name": "Lita",
 						"definition": "la mulita",
@@ -36,7 +37,7 @@
 						"interests": "La tecnología. Las redes sociales.",
 						"personality": "Armónica. Despreocupada (¡no le importa el qué dirán!).",
 						"origin": "Selva misionera.",
-						"curiousFact": "Yvoty significa 'flor' en la lengua guaraní y se pronuncia 'ivotí', ¡pero se escribe con dos 'y'!",
+						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
 						"objectives": "RDespertar todas las luciérnagas. Fotografiar todas las mariposas. Desbloquear todos los celulares. Agarrar todos los cargadores. Cargar todos los celulares."
 		},
 			"Manic": {  "name": "Mañic",
@@ -44,7 +45,7 @@
 						"interests": "La ciencia. La astronomía.",
 						"personality": "Curiosa. Activa. Ágil (¡nunca se olvida sus patines!).",
 						"origin": "Llanura pampeana.",
-						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente 'ñandú' en la lengua Qom.",      
+						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
 						"objectives": "Reparar todos los telescopios. Observar todas las estrellas. Observar todos los planetas."
 			},
 			"Capy": {  "name": "Capy y Guyrá",
@@ -52,7 +53,7 @@
 						"interests": "El medio ambiente. La ecología.",
 						"personality": "Protectores. Amigos (¡siempre están combinados!).",
 						"origin": "Humedales.",
-						"curiousFact": "Sus nombres Capy (de 'capybara' que significa 'señor del pasto') y Guyrá (significa 'pájaro'), son de la lengua tupí guaraní.",
+						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
 						"objectives": "Recoger todas las latas. Recoger todos los papeles."
 			},
 			"Chuy": {  "name": "Chuy",
@@ -60,7 +61,7 @@
 						"interests": "El trabajo en equipo. Los deportes.",
 						"personality": "Hiperactive. Arriesgade (¡le encanta escalar acantilados!).",
 						"origin": "Playa patagónica.",
-						"curiousFact": "Su nombre viene de 'chuy chuy' que significa 'frío' en la lengua mapuche.",      
+						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
 						"objectives": "Recoger todas las paletas. Recoger todos los trofeos. Rebotar todas las pelotas de ping pong. Rebotar todas las pelotas pulpito. Patear todas las pelotas de fútbol."
 			}
 		}
