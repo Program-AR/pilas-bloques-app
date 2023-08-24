@@ -2,6 +2,7 @@ import { createTheme, CSSObject, SxProps, Theme } from "@mui/material";
 import { createContext, FC, PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
 import { getDesignTokens } from "./theme";
 import { LocalStorage } from "../localStorage";
+import { Ember } from "../emberCommunication";
 
 export type ThemeMode = 'light' | 'dark'
 
@@ -27,7 +28,7 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
     );
 
     useEffect(() =>{
-        LocalStorage.toggleDarkMode()
+        Ember.toggleDarkMode()
     }, [darkModeEnabled])
 
     return (
