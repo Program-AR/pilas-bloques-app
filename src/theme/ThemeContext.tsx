@@ -20,7 +20,7 @@ export const ThemeContext = createContext<ThemeContextType>({
 
 export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
-    const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getDarkModeValue());
+    const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getIsDarkMode());
 
     const theme = useMemo(
         () => createTheme(getDesignTokens(darkModeEnabled)),
@@ -28,7 +28,8 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
     );
 
     useEffect(() =>{
-        Ember.toggleDarkMode()
+        LocalStorage.toggleDarkMode()
+        Ember.refreshIframe()
     }, [darkModeEnabled])
 
     return (

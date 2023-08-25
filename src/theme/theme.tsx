@@ -1,4 +1,5 @@
 import { ThemeOptions } from "@mui/material";
+import { deepmerge } from '@mui/utils';
 
 const commonTheme: ThemeOptions = {
     shape: {
@@ -76,18 +77,4 @@ const darkTheme: ThemeOptions = {
 
 }
 
-export const getDesignTokens = (setDarkModeEnabled: boolean): ThemeOptions => {
-    const modeTheme =  setDarkModeEnabled ? darkTheme : lightTheme
-
-    const theme: ThemeOptions = {
-        ...commonTheme,
-        palette: modeTheme.palette,
-        typography: {
-            ...modeTheme.typography,
-            ...commonTheme.typography
-        },
-        components: modeTheme.components
-    }
-
-    return theme
-}
+export const getDesignTokens = (darkModeEnabled: boolean): ThemeOptions => deepmerge(darkModeEnabled ? darkTheme : lightTheme,commonTheme)
