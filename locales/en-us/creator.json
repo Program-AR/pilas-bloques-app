@@ -1,6 +1,6 @@
 {
 	"selection": {
-		"title": "Create your own challenge choosing a character. ",
+		"title": "Choose a character",
 		"subtitle": "Each one has their own commands, sensors and goals.",
 		"challengeBeingCreated": "You already have a challenge in progress. You can choose to continue editing or to discard it",
 		"discardWarning": "Careful! If you discard your challenge you won't be able to recover it!",
@@ -100,7 +100,12 @@
 			"preview": "Challenge preview",
 			"previewShort": "Preview",
 			"keepEditing": "Keep editing",
-			"keepEditingShort": "Edit"
+			"keepEditingShort": "Edit",
+			"creator": "Select character",
+			"creatorShort": "Select",
+			"loadChallenge": "Import a created challenge",
+			"loadChallengeShort": "Import"
+
 
 		},
 		"editorHeader": "Edit challenge",

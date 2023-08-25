@@ -25,23 +25,3 @@ export const CreatorCard = (props: CreatorCardProps) => {
         </Card>
     )
 }
-
-export const MiniCreatorCard = (props: CreatorCardProps) => {
-    
-    return (
-        <>
-        
-        <Card className={homeCardStyles['home-card']} style={{ opacity: "0.8", flexDirection:"row", backgroundColor: "var(--home-background)", height:"6rem", width:"20rem"}}>
-            <div className={creatorCardsStyles['creator-card-icon']} style={{width: "25%"}} >
-                <props.icon style={{fontSize: '2.5em'}} />
-            </div>
-            <BetaBadge smaller invisible={!props.visibleBadge}>
-                <div className={creatorCardsStyles['creator-card-text']} style={{margin: "10px"}} >
-                    <Typography color='white' align="center" fontWeight="400" >{props.text}</Typography>
-                </div>
-            </BetaBadge>
-        </Card>
-        
-        </>
-    )
-}

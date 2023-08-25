@@ -1,5 +1,5 @@
 import { Button, Card, CardContent, darken, useMediaQuery, Dialog, DialogContent, CardMedia, Stack, Typography } from "@mui/material"
-import { Header } from "../header/Header"
+import { Header, HeaderText } from "../header/Header"
 import { MouseEvent, useState } from "react"
 import { Interests, Psychology, Place, FactCheck, EmojiEvents } from '@mui/icons-material'
 import { Link, useNavigate } from "react-router-dom"
@@ -7,13 +7,13 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import UploadIcon from '../home/UploadIcon';
 import { LocalStorage } from "../../localStorage"
-import { MiniCreatorCard, CreatorCard } from "../home/CreateChallengeCard"
 import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
 import { BetaBadge } from "./BetaBadge"
 import PaintbrushIcon from "../home/PaintBrushIcon";
 import theme from "../../theme"
 import { Carousel } from 'react-carousel3';
+import { StyledCreatorActionButton } from "./Editor/ActionButtons/CreatorActionButton"
 
 const baseUrlImage = 'imagenes/selection/'
 const baseObjectUrlImage = 'imagenes/sceneImages/'
@@ -127,6 +127,7 @@ const actorsData: ActorDataType[] = [
 
 const LoadChallengeCard = () => {
 	const { t } = useTranslation("creator")
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 	const navigate = useNavigate()
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
@@ -153,21 +154,26 @@ const LoadChallengeCard = () => {
             showErrorSnackbar()
         }
     }
-
 	return (
-		<Button
-			key="loadChallenge" //Needed to prevent react warning
-			component="label"
-			style={{ margin: "0.5rem", textTransform: "none" }}>
-			<CreatorCard text={t("selection.loadChallenge")} color={"#ffffff"} icon={UploadIcon}/>
-
-        	<input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile}/>
-			<DialogSnackbar 
-            open={snackbarOpen}
-            onClose={() => setSnackbarOpen(false)} 
-            message={t('selection.importError')}/>
-
-		</Button>
+        <Button variant="outlined" sx={{
+            textTransform: "none",
+            marginRight: '10px',
+            whiteSpace: 'nowrap',
+            backgroundColor: '#ffffff', 
+            fontWeight: 'bold', 
+            fontSize: 16,
+                '&:hover': {
+                    backgroundColor: darken('#ffffff', 0.2),
+                  } }}
+            component="label"
+            startIcon={<UploadIcon />}>
+            {t(`editor.buttons.loadChallenge${isSmallScreen ? 'Short' : ''}`)}
+            <input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile} />
+            <DialogSnackbar
+                open={snackbarOpen}
+                onClose={() => setSnackbarOpen(false)}
+                message={t('selection.importError')} /> 
+        </Button>            
 	)
 }
 
@@ -250,7 +256,7 @@ export const ActorCards = () => {
     }
 
     const ActorName = () =>
-        <Typography variant="h5" component="div" color="text.primary" flexWrap="wrap" flexDirection="row" display="flex" alignItems="baseline">
+        <Typography className={styles['selection-textAnim']} variant="h5" component="div" color="text.primary" flexWrap="wrap" flexDirection="row" display="flex" alignItems="baseline">
             {t(`selection.cards.${actorSelected.actor.id}.name`)},&nbsp;
             <Typography gutterBottom variant="h6" textAlign="start" color="text.primary" >{t(`selection.cards.${actorSelected.actor.id}.definition`)}
             </Typography>
@@ -258,20 +264,20 @@ export const ActorCards = () => {
 
     const ActorInfo = (props: ActorInfoProps ) =>
         <>
-            <Typography variant="body2" color="text.primary" display="flex" alignItems="center">
+            <Typography className={styles['selection-textAnim']} variant="body2" color="text.primary" display="flex" alignItems="center">
                 {props.icon}&nbsp;{t(`selection.${props.which}`)}
             </Typography>
-            <Typography sx={{transition: "2s"}} marginLeft="6px" paragraph style={{textAlign:"start"}} color="text.primary">{t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}</Typography>
+            <Typography  className={styles['selection-textAnim']} marginLeft="6px" paragraph style={{textAlign:"start"}} color="text.primary">{t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}</Typography>
         </>
 
     const ActorGoal = () =>
         <>
-            <Typography variant="h5" color="text.primary" display="flex" alignItems="center">
+            <Typography className={styles['selection-textAnim']} gutterBottom variant="h5" color="text.primary" display="flex" alignItems="center">
                 <EmojiEvents/>&nbsp;{t('selection.goals')}
             </Typography>
             {actorSelected.actor.goals.map(goal => (
-                <Typography paragraph key={goal.key} color="text.primary" display="flex" justifyContent="" alignItems="center" textAlign="start">
-                    <img alt={goal.key} key={goal.key} width="30px" src={`${baseObjectUrlImage}${actorSelected.actor.id}/${goal.object}`}></img> 
+                <Typography className={styles['selection-textAnim']} paragraph key={goal.key} color="text.primary" display="flex" justifyContent="" alignItems="center" textAlign="start">
+                    <img alt={goal.key} key={goal.key} width="30px" style={{marginRight:"5px"}} src={`${baseObjectUrlImage}${actorSelected.actor.id}/${goal.object}`}></img> 
                     {t(`selection.cards.${actorSelected.actor.id}.goals.${goal.key}`)}
                 </Typography>
             ))}
@@ -281,44 +287,34 @@ export const ActorCards = () => {
         <Stack key={item.actor.id} style={{cursor: "pointer"}} >
             <CardMedia            
                 component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {opacity: 0.7}} height={item.isSelected ? "350px":"200px"} image={item.actor.image} 
-                sx={{transition: "2s", objectFit: "contain"}}
+                sx={{transition: "2s", objectFit: "contain", width: "300px"}}
                 onClick={handleActorOnClick} 
                 />       
         </Stack>
 
 return (
     <>
-    <Stack padding="20px" flexDirection={isSmallScreen ? "column":"row"} 
+    <Stack padding="20px" margin="4px" flexDirection={isSmallScreen ? "column":"row"} 
         sx={{backgroundImage: `url("imagenes/selection/fondos/${actorSelected.actor.id}.png")`,
         transition: "background-image 2s",
         backgroundRepeat: "no-repeat", backgroundSize: "cover"}}
-         display="flex" textAlign="justify" justifyContent="space-around" alignItems={isSmallScreen ? "center" : "flex-start"}>
-        
-        <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column",
-                    transition: "2s",
-                    maxWidth: "250px", height:"100%", padding: theme.spacing(2), flexGrow:"inherit"}} >
-            <Card sx={{backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
-            <CardContent >
-                <ActorGoal/>
-            </CardContent>
-            </Card>
-        </Card>
+        display="flex" textAlign="justify" justifyContent="space-around" 
+        width={isSmallScreen ? "100%" : "inherit"}
+        alignItems="center">
         
         <Stack component="div" sx={{display: 'flex', justifyContent: 'center', alignItems: "center"}}>
             <Carousel height={350} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={350} >
                 {actors.map(ActorCard)}
             </Carousel>
-            <Button
-                key="goToCreator" //Needed to prevent react warning
-                component="label"
-                onClick={goToCreator}>
-                <MiniCreatorCard visibleBadge={true} 
-                    text={t("selection.creator")} color="" icon={PaintbrushIcon}/>
-            </Button>
-        </Stack>
-        
+            <StyledCreatorActionButton style={{marginTop:"50px", marginBottom:"10px"}} onClick={goToCreator} startIcon={<PaintbrushIcon/>} nametag="creator"/>
+            <LoadChallengeCard />
+        </Stack>     
+{/*
+Dos cards 
         <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column",
                     transition: "2s",
+                    zIndex:"998",
+                    margin:"10px",
                     maxWidth: "300px", height:"100%", padding: theme.spacing(2), flexGrow:"inherit"}} >
             <Card sx={{backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
             <CardContent >
@@ -328,32 +324,60 @@ return (
                 <ActorInfo which='origin' icon={<Place/>}/>
                 <ActorInfo which='curiousFact' icon={<FactCheck/>}/>
             </CardContent>
+            </Card>            
+        </Card>
+
+
+        <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column",
+                    transition: "2s",
+                    zIndex:"999",
+                    margin:"10px",
+                    maxWidth: "250px", height:"100%", padding: theme.spacing(2), flexGrow:"inherit"}} >
+            <Card sx={{backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
+            <CardContent >
+                <ActorGoal/>
+            </CardContent>
             </Card>
         </Card>
+*/}
+
+        <Card sx={{ display:"flex", alignItems:"stretch", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), 
+                    flexDirection: `${isSmallScreen ? 'column' : 'row'}`,
+                    transition: "2s",
+                    zIndex:"998",
+                    margin: theme.spacing(1),
+                    padding: theme.spacing(1),
+                    maxWidth: "650px", height:"100%", flexGrow:"inherit"}} >
+            <Card sx={{maxWidth: "300px", minWidth: "200px", margin: theme.spacing(1), backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
+            <CardContent>
+                <ActorName/>
+                <ActorInfo which='interests' icon={<Interests/>}/>
+                <ActorInfo which='personality' icon={<Psychology/>}/>
+                <ActorInfo which='origin' icon={<Place/>}/>
+                <ActorInfo which='curiousFact' icon={<FactCheck/>}/>
+            </CardContent>
+            </Card>            
+            <Card sx={{maxWidth: "300px", minWidth: "200px", margin: theme.spacing(1), backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
+            <CardContent >
+                <ActorGoal/>
+            </CardContent>
+            </Card>
+        </Card>
+
     </Stack>
 </>    
 )};
 
 export const ActorSelection = () => {
 	const { t } = useTranslation("creator")
-
 	return (
         <>
-        <Header />
-        <ChallengeInProgressDialog />
-        
-        <Stack className={styles['selection']}>
-        
-            <BetaBadge sx={{marginTop: 2}}>
-                <Typography className={styles['selection-text']} variant="h4">{t("selection.title")}</Typography>
-            </BetaBadge>
-            {/*
-            <Typography className={styles['selection-text']} variant="h5">{t("selection.subtitle")}</Typography>
-            */}
-            <ActorCards />
-            <LoadChallengeCard />
-        </Stack>
-        
+            <Header CenterComponent={
+                <BetaBadge smaller={true}><HeaderText text={t("selection.title")}/></BetaBadge>}/>
+            <ChallengeInProgressDialog />
+            <Stack className={styles['selection']}>
+                <ActorCards />
+            </Stack>
         </>
 )};
 

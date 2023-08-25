@@ -13,10 +13,10 @@ export const CreatorActionButton = ({ isshortversion = false, ...props }: Creato
   const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
   return < Button {...props} variant="outlined" sx={{
-    ...props.sx,
     textTransform: "none",
     marginRight: '10px',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
+    ...props.sx
   }}>
     {t(`editor.buttons.${props.nametag}${!isshortversion && isSmallScreen ? 'Short' : ''}`)}
   </Button >
@@ -36,7 +36,8 @@ export const StyledCreatorActionButton = (props: CreatorActionButtonProps) => {
       '&:hover': {
         backgroundColor: darken(backgroundColor, 0.2),
         border: 0,
-      }
+      },
+      ...props.sx
     }}
     {...props}>
     {props.children}
