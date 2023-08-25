@@ -49,7 +49,8 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                     'AgarrarLechuga',
                     'PrepararEnsalada', 
                     'HayLechuga', 
-                    'HayTomate' 
+                    'HayTomate',
+                    'HayEnsaladera'
                 ]
             }
         case "Duba": 
@@ -77,27 +78,29 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                 validCells: ['T','E','U','P','G'],
                 specificBlocksIds: [
                     'RecogerTrofeo', 
-                    'UsarPaleta', 
+                    'RebotarPingPong', 
                     'PatearPulpito', 
                     'PatearPelotaChuy', 
                     'TocandoPulpito', 
                     'TocandoPingPong', 
                     'TocandoPaleta', 
-                    'TocandoPelotaChuy'
+                    'TocandoPelotaChuy',
+                    'HayTrofeo'
                 ]
             }
         case "Yvoty": 
             return {
-                validCells: ['C','K','L','M','T'],
+                validCells: ['C','K','L','M'],
                 specificBlocksIds: [
                     'DespertarLuciernaga', 
-                    'ObservarMariposa', 
+                    'FotografiarMariposa', 
                     'DesbloquearCelular', 
                     'AgarrarCargador', 
                     'TocandoMariposa', 
                     'TocandoCelular', 
                     'TocandoLuciernaga', 
-                    'CargarCelular'
+                    'CargarCelular',
+                    'HayCargador'
                 ]
             }
         case "Capy": 
@@ -211,10 +214,10 @@ const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
     
 const cellIsIncluded = (typeCells: string[], cell: string) =>{
     const basicCells: string[] = ['A','O','-']
-    return basicCells.concat(typeCells).includes(cell)
+    return basicCells.concat(typeCells).concat(multipleObjectsCells(typeCells)).includes(cell)
 }
 
-
+const multipleObjectsCells = (typeCells: string[]) => typeCells.map(prize => `A&${prize}`).concat(typeCells.map(prize => `${prize}&A`))
 
 const isSceneType = (type: any): type is SceneType => 
     sceneTypes.includes(type)

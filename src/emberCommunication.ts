@@ -11,7 +11,8 @@ export type EmberExecutableChallenge = {
     titulo: string,
     enunciado: string,
     consignaInicial: string,
-    customCover: string
+    customCover: string,
+    shouldShowMultipleScenarioHelp?: boolean
 }
 
 export namespace Ember {
@@ -50,7 +51,8 @@ export namespace Ember {
             titulo: importedChallenge.title,
             enunciado: importedChallenge.statement.description,
             consignaInicial: importedChallenge.statement.clue || "",
-            customCover: await sceneCover(importedChallenge.scene.type)
+            customCover: await sceneCover(importedChallenge.scene.type),
+            shouldShowMultipleScenarioHelp: importedChallenge.scene.maps.length > 1
         }
 
         LocalStorage.saveImportedChallenge(emberChallenge)

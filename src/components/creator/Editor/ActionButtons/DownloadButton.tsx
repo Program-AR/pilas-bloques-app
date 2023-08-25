@@ -22,7 +22,7 @@ const downloadChallenge = () => {
   
     const challengeName: string = challenge.title ? challenge.title : "pilas-bloques"
   
-    temporaryAnchorElement.download = `${challengeName}.json`
+    temporaryAnchorElement.download = `${challengeName}.dpbq`
   
     temporaryAnchorElement.click();
   

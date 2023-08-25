@@ -3,6 +3,8 @@
     --creator-subheader-height: 60px;
     --creator-max-width: 1024px;
     --creator-max-height: 660px;
+    --home-background: #311c3b;
+    --home-text-color: #ffffff;
 }
 
 html, body, #root {

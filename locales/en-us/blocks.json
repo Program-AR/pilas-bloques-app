@@ -12,7 +12,9 @@
         "categorized": "Categorize Blocks"
     },
     "blocks": {
-        "ballHereChuy":"Is there a ball here?",
+        "advance": "Move forward",
+        "backToLeftBorder": "Get back to the left border",
+        "ballHereChuy":"Is there a football ball here?",
         "ballHerePingPong":"Is there a ping pong ball here?",
         "ballHerePulpito":"Is there a pulpito ball here?",
         "butterflyHere": "Is there a butterfly here?",
@@ -64,10 +66,10 @@
         "tomatoHere": "Is there a tomato here?",
         "unlockCellphone": "Unlock cell phone",
         "up": "Up",
-        "usePaddle": "Use paddle",
+        "bouncePingPong": "Bounce ping pong ball",
         "variables_get":"Variables",
         "wakeUpFirefly": "Wake up firefly",
-        "watchButterfly": "Watch butterfly",
+        "photographButterfly": "Photograph butterfly",
         "watchPlanet": "Watch planet",
         "watchStar": "Watch star",
         "while": "Repeat until"

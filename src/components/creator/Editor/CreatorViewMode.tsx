@@ -8,7 +8,7 @@ import { SerializedChallenge } from "../../serializedChallenge"
 import { useTranslation } from "react-i18next"
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader"
 import { DownloadButton } from "./ActionButtons/DownloadButton"
-import { ReturnToEditionButtion } from "./ActionButtons/ReturnToEditButton"
+import { ReturnToEditionButton } from "./ActionButtons/ReturnToEditButton"
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton"
 import { BetaBadge } from "../BetaBadge"
 
@@ -21,7 +21,7 @@ const ViewModeSubHeader = ({challenge}: {challenge: SerializedChallenge}) =>
     </CreatorSubHeader>
 
 const Actions = () => <>
-    <ReturnToEditionButtion/>
+    <ReturnToEditionButton/>
     <Stack direction="row" alignItems={"center"}>
         <DiscardChallengeButton/>
         <DownloadButton/>
