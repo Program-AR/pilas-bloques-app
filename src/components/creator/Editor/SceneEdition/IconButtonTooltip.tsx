@@ -1,5 +1,5 @@
 import { IconButton, IconButtonProps, Tooltip } from "@mui/material";
-import theme from "../../../../theme";
+import { useThemeContext } from "../../../../theme/ThemeContext";
 
 type IconButtonTooltipProps = {
     icon: React.ReactNode
@@ -7,11 +7,14 @@ type IconButtonTooltipProps = {
     iconColor?: string
 }
 
-export const IconButtonTooltip = (props: IconButtonTooltipProps & IconButtonProps) =>
-    <Tooltip title={props.disabled ? '' : props.tooltip}>
+export const IconButtonTooltip = (props: IconButtonTooltipProps & IconButtonProps) => {
+    const { theme } = useThemeContext()
+
+    return <Tooltip title={props.disabled ? '' : props.tooltip}>
         <span>
-            <IconButton {...props} style={{...props.style, color: props.iconColor ? props.iconColor : theme.palette.text.primary }} >
+            <IconButton {...props} style={{ ...props.style, color: props.iconColor ? props.iconColor : theme.palette.text.primary }} >
                 {props.icon}
             </IconButton>
         </span>
     </Tooltip >
+}

@@ -1,14 +1,22 @@
-import { createTheme } from "@mui/material/styles"
+import { ThemeOptions } from "@mui/material";
+import { deepmerge } from '@mui/utils';
 
-const theme = createTheme({
+const commonTheme: ThemeOptions = {
+    shape: {
+        borderRadius: 10
+    },
     typography: {
         fontFamily: 'Nunito',
+    }
+}
+
+const lightTheme: ThemeOptions = {
+    typography: {
         allVariants: {
             color: '#777777'
         },
     },
     palette: {
-        mode: 'light',
         primary: {
             main: '#777777',
         },
@@ -24,29 +32,24 @@ const theme = createTheme({
             paper: '#f1f1f1'
         },
     },
-    shape: {
-        borderRadius: 10
-    },
     components: {
         MuiButtonGroup: {
             styleOverrides: {
-               grouped: {
-                backgroundColor: '#e0e0e0',
-               }
+                grouped: {
+                    backgroundColor: '#e0e0e0',
+                }
             }
         }
     }
-})
+}
 
-const dark = createTheme({
+const darkTheme: ThemeOptions = {
     typography: {
-        fontFamily: 'Nunito',
         allVariants: {
             color: '#f8f8f8'
         },
     },
     palette: {
-        mode: 'dark',
         primary: {
             main: '#f8f8f8',
         },
@@ -62,18 +65,16 @@ const dark = createTheme({
             paper: '#181818'
         }
     },
-    shape: {
-        borderRadius: 10
-    },
     components: {
         MuiButtonGroup: {
             styleOverrides: {
-               grouped: {
-                backgroundColor: '#252424',
-               }
+                grouped: {
+                    backgroundColor: '#252424',
+                }
             }
         }
     }
-})
 
-export default theme
+}
+
+export const getDesignTokens = (darkModeEnabled: boolean): ThemeOptions => deepmerge(darkModeEnabled ? darkTheme : lightTheme,commonTheme)

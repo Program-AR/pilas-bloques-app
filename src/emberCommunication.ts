@@ -17,9 +17,9 @@ export type EmberExecutableChallenge = {
 
 export namespace Ember {
 
-    const refreshIframe = () => {
+    export const refreshIframe = () => {
         const emberIframe = document.getElementById('ember-iframe')! //Asumo un unico iframe
-        emberIframe.parentElement?.replaceChild(emberIframe, emberIframe)
+        emberIframe && emberIframe.parentElement?.replaceChild(emberIframe, emberIframe)
     }
 
     export const changeLanguage = (newLanguage: InternalizationLanguage) => {

@@ -9,9 +9,11 @@ import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
-import theme from "../../../theme";
+import { useThemeContext } from "../../../theme/ThemeContext";
 
 export const CreatorEditor = () => {
+  const { theme } = useThemeContext()
+
   const {t} = useTranslation('creator')
 
   return (

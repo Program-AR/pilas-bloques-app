@@ -10,8 +10,9 @@ import UploadIcon from '../home/UploadIcon';
 import { LocalStorage } from "../../localStorage"
 import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
-import theme from "../../theme"
 import { BetaBadge } from "./BetaBadge"
+import { useThemeContext } from "../../theme/ThemeContext"
+
 
 type CharacterCardProps = {
 	name: SceneType
@@ -150,6 +151,8 @@ export const CreatorSelection = () => {
 }
 
 const ChallengeInProgressDialog = () => {
+    const { theme } = useThemeContext()
+
 	const thereIsChallengeInCreation: boolean = !!LocalStorage.getCreatorChallenge()
 	const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
 	const { t } = useTranslation("creator")

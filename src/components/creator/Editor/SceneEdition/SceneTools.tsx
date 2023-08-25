@@ -5,13 +5,16 @@ import { LocalStorage } from '../../../../localStorage';
 import { SerializedChallenge, sceneObjectByType } from '../../../serializedChallenge';
 import { CreatorContext } from '../CreatorContext';
 import { PBCard } from '../../../PBCard';
-import theme from '../../../../theme';
+import { useThemeContext } from '../../../../theme/ThemeContext';
+
 
 export const SceneTools = () => {
     type ToolProps = {
         id: string
         image?: string
     }
+    
+    const { theme } = useThemeContext()
 
     const { t } = useTranslation('creator');
     const { selectedTool, setSelectedTool } = useContext(CreatorContext)

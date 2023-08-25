@@ -4,12 +4,14 @@ import { SceneGrid, SceneGridProps } from "./SceneGrid";
 import { useTranslation } from "react-i18next";
 import { KeyboardArrowLeft, KeyboardArrowRight } from "@mui/icons-material";
 import { Stack, Typography, MobileStepper, useMediaQuery } from "@mui/material";
-import theme from "../../../../../theme";
 import { PBCard } from "../../../../PBCard";
 import { IconButtonTooltip } from "../IconButtonTooltip";
+import { useThemeContext } from "../../../../../theme/ThemeContext";
 
 export const Scenarios = (props: SceneGridProps) => {
     const { index, maps, setIndex } = useContext(CreatorContext)
+
+    const { theme } = useThemeContext()
 
     const { t } = useTranslation('creator');
 
