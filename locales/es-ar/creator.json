@@ -13,7 +13,7 @@
 		"personality": "Personalidad",
 		"origin": "Origen",
 		"curiousFact": "Dato curioso",      
-		"objectives": "Objectivos",
+		"goals": "Objetivos",
 		"creator": "creá tu desafio",
 		"cards": {
 			"Lita": { 	"name": "Lita",
@@ -22,7 +22,7 @@
 						"personality": "Risueña (¡siempre la vas a ver sonriendo!).",
 						"origin": "Mesopotamia.",
 						"curiousFact": "Tiene su propia huerta y le gusta enrollarse como una bola.",
-						"objectives": {
+						"goals": {
 							"letucce": "Agarrar todas las lechugas.",
 						 	"tomato": "Agarrar todos los tomates.",
 							"salad": "Preparar todas las ensaladas."
@@ -34,7 +34,7 @@
 						"personality": "Hambrienta (¡todo el tiempo tiene hambre!).",
 						"origin": "Cordillera patagónica",
 						"curiousFact": "Su comida favorita es el churrasco y le encanta hacer asados.",
-						"objectives": {
+						"goals": {
 							"steak": "Comer todos los churrascos."
 						}
 			},
@@ -44,7 +44,7 @@
 						"personality": "Armónica. Despreocupada (¡no le importa el qué dirán!).",
 						"origin": "Selva misionera.",
 						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
-						"objectives": {
+						"goals": {
 							"firefly": "Despertar todas las luciérnagas.",
 							"butterfly": "Fotografiar todas las mariposas.",
 							"unlockCellphone": "Desbloquear todos los celulares.",
@@ -58,7 +58,7 @@
 						"personality": "Curiosa. Activa. Ágil (¡nunca se olvida sus patines!).",
 						"origin": "Llanura pampeana.",
 						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
-						"objectives": {
+						"goals": {
 							"telescope": "Reparar todos los telescopios.",
 							"star": "Observar todas las estrellas. ",
 							"planet": "Observar todos los planetas."
@@ -70,7 +70,7 @@
 						"personality": "Protectores. Amigos (¡siempre están combinados!).",
 						"origin": "Humedales.",
 						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
-						"objectives": {
+						"goals": {
 							"can":"Recoger todas las latas. ",
 							"paper":"Recoger todos los papeles."
 						}
@@ -81,7 +81,7 @@
 						"personality": "Hiperactive. Arriesgade (¡le encanta escalar acantilados!).",
 						"origin": "Playa patagónica.",
 						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
-						"objectives": {
+						"goals": {
 							"paddle": "Recoger todas las paletas.",					
 							"trophy": "Recoger todos los trofeos.",
 							"pingpong": "Rebotar todas las pelotas de ping pong.",

@@ -18,7 +18,7 @@ import { Carousel } from 'react-carousel3';
 const baseUrlImage = 'imagenes/selection/'
 const baseObjectUrlImage = 'imagenes/sceneImages/'
 
-type ObjectiveDataType = {
+type GoalDataType = {
     key: string
     object: string
 }
@@ -26,14 +26,14 @@ type ObjectiveDataType = {
 type ActorDataType = {
 	name: SceneType
     color: string
-    objectives: ObjectiveDataType[]
+    goals: GoalDataType[]
 }
 
 const actorsData: ActorDataType[] = [
 	{
 		name: "Lita",
         color: "#FF9C5D",
-        objectives: [ 
+        goals: [ 
             { key: "letucce",
               object: "L.png"
             },
@@ -48,7 +48,7 @@ const actorsData: ActorDataType[] = [
 	{
 		name: "Duba",
         color: "#FED473",
-        objectives: [ 
+        goals: [ 
             { key: "steak",
               object: "P.png"
             }
@@ -57,7 +57,7 @@ const actorsData: ActorDataType[] = [
 	{
 		name: "Chuy",
         color: "#FFB4E0",
-        objectives: [ 
+        goals: [ 
             { key: "paddle",
               object: "E.png"
             },
@@ -78,7 +78,7 @@ const actorsData: ActorDataType[] = [
 	{
 		name: "Manic",
         color: "#FFFBB1",
-        objectives: [ 
+        goals: [ 
             { key: "telescope",
               object: "T.png"
             },
@@ -93,7 +93,7 @@ const actorsData: ActorDataType[] = [
 	{
 		name: "Capy",
         color: "#B0E092",
-        objectives: [ 
+        goals: [ 
             { key: "can",
               object: "L.png"
             },
@@ -105,7 +105,7 @@ const actorsData: ActorDataType[] = [
 	{
 		name: "Yvoty",
         color: "#ABDEDB",
-        objectives: [ 
+        goals: [ 
             { key: "firefly",
               object: "L.png"
             },
@@ -175,16 +175,16 @@ type ActorType = {
 	id: SceneType
     image: string
     color: string
-    objectives: ObjectiveDataType[]
+    goals: GoalDataType[]
 }
 
 class ActorClass {
     isSelected: boolean
     actor: ActorType
 
-    constructor(id: SceneType, isSelected: boolean, image: string, color: string, objectives: ObjectiveDataType[]) {
+    constructor(id: SceneType, isSelected: boolean, image: string, color: string, goals: GoalDataType[]) {
         this.isSelected = isSelected
-        this.actor = { id, image, color, objectives }
+        this.actor = { id, image, color, goals }
     }
 }
 
@@ -197,7 +197,7 @@ class ActorState {
             ((index === 0 ) ?
                 `${baseUrlImage}gifs/${actors.name}.gif` :
                 `${baseUrlImage}svg/${actors.name}.svg`),
-            actors.color, actors.objectives))
+            actors.color, actors.goals))
         }
 
     actorChanged = (actorId: string) => (
@@ -217,7 +217,7 @@ class ActorState {
 
 }
 
-type CharacteristicActorProps = {
+type ActorInfoProps = {
     which: string
     icon: React.ReactNode
 }
@@ -249,50 +249,63 @@ export const ActorCards = () => {
         setActorSelected(actorState.getActorSelected)
     }
 
-    const NameActor = () =>
+    const ActorName = () =>
         <Typography variant="h5" component="div" color="text.primary" flexWrap="wrap" flexDirection="row" display="flex" alignItems="baseline">
             {t(`selection.cards.${actorSelected.actor.id}.name`)},&nbsp;
-            <Typography gutterBottom variant="h6" color="text.primary" >{t(`selection.cards.${actorSelected.actor.id}.definition`)}
+            <Typography gutterBottom variant="h6" textAlign="start" color="text.primary" >{t(`selection.cards.${actorSelected.actor.id}.definition`)}
             </Typography>
         </Typography>
 
-    const CharacteristicActor = (props: CharacteristicActorProps ) =>
+    const ActorInfo = (props: ActorInfoProps ) =>
         <>
-            <Typography variant="body2" color="text.secondary" display="flex" alignItems="center">
+            <Typography variant="body2" color="text.primary" display="flex" alignItems="center">
                 {props.icon}&nbsp;{t(`selection.${props.which}`)}
             </Typography>
-            <Typography marginLeft="6px" paragraph style={{textAlign:"start"}} color="text.primary">{t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}</Typography>
+            <Typography sx={{transition: "2s"}} marginLeft="6px" paragraph style={{textAlign:"start"}} color="text.primary">{t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}</Typography>
         </>
 
-    const ObjectiveActor = () =>
+    const ActorGoal = () =>
         <>
-            <Typography variant="body2" color="text.secondary" display="flex" alignItems="center">
-                <EmojiEvents/>&nbsp;{t('selection.objectives')}
+            <Typography variant="h5" color="text.primary" display="flex" alignItems="center">
+                <EmojiEvents/>&nbsp;{t('selection.goals')}
             </Typography>
-            {actorSelected.actor.objectives.map(objective => (
-                <Typography marginLeft="6px" color="text.primary" display="flex" alignItems="center" style={{textAlign:"start"}}>
-                    <img alt={objective.key} width="30px" src={`${baseObjectUrlImage}${actorSelected.actor.id}/${objective.object}`}></img> 
-                    &nbsp;{t(`selection.cards.${actorSelected.actor.id}.objectives.${objective.key}`)}
+            {actorSelected.actor.goals.map(goal => (
+                <Typography paragraph key={goal.key} color="text.primary" display="flex" justifyContent="" alignItems="center" textAlign="start">
+                    <img alt={goal.key} key={goal.key} width="30px" src={`${baseObjectUrlImage}${actorSelected.actor.id}/${goal.object}`}></img> 
+                    {t(`selection.cards.${actorSelected.actor.id}.goals.${goal.key}`)}
                 </Typography>
             ))}
         </>
 
-    const ActorCard = (item: ActorClass ) => {
-        console.log(item)
-        return (<Stack key={item.actor.id} style={{cursor: "pointer"}} >
+    const ActorCard = (item: ActorClass ) => 
+        <Stack key={item.actor.id} style={{cursor: "pointer"}} >
             <CardMedia            
-                component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {opacity: 0.5}} height={item.isSelected ? "350px":"200px"} image={item.actor.image} 
-                sx={{objectFit: "contain"}}
+                component="img" id={item.actor.id} alt={item.actor.id} style={item.isSelected ? {} : {opacity: 0.7}} height={item.isSelected ? "350px":"200px"} image={item.actor.image} 
+                sx={{transition: "2s", objectFit: "contain"}}
                 onClick={handleActorOnClick} 
                 />       
-        </Stack>)
-    }
+        </Stack>
+
 return (
     <>
-    <Stack margin="20px" flexDirection={isSmallScreen ? "column":"row"} 
+    <Stack padding="20px" flexDirection={isSmallScreen ? "column":"row"} 
+        sx={{backgroundImage: `url("imagenes/selection/fondos/${actorSelected.actor.id}.png")`,
+        transition: "background-image 2s",
+        backgroundRepeat: "no-repeat", backgroundSize: "cover"}}
          display="flex" textAlign="justify" justifyContent="space-around" alignItems={isSmallScreen ? "center" : "flex-start"}>
+        
+        <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column",
+                    transition: "2s",
+                    maxWidth: "250px", height:"100%", padding: theme.spacing(2), flexGrow:"inherit"}} >
+            <Card sx={{backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
+            <CardContent >
+                <ActorGoal/>
+            </CardContent>
+            </Card>
+        </Card>
+        
         <Stack component="div" sx={{display: 'flex', justifyContent: 'center', alignItems: "center"}}>
-            <Carousel height={360} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={350} >
+            <Carousel height={350} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={350} >
                 {actors.map(ActorCard)}
             </Carousel>
             <Button
@@ -300,24 +313,24 @@ return (
                 component="label"
                 onClick={goToCreator}>
                 <MiniCreatorCard visibleBadge={true} 
-                    text={t("selection.creator")} color="#ffffff" icon={PaintbrushIcon}/>
+                    text={t("selection.creator")} color="" icon={PaintbrushIcon}/>
             </Button>
         </Stack>
         
-        <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column", 
-                      maxWidth: "370px", height:"100%", padding: theme.spacing(1), flexGrow:"inherit"}} >
-            <Card sx={{backgroundColor: `${actorSelected.actor.color}`}}>
+        <Card sx={{ alignItems:"flex-start", backgroundColor: darken(`${actorSelected.actor.color}`, 0.2), flexDirection:"column",
+                    transition: "2s",
+                    maxWidth: "300px", height:"100%", padding: theme.spacing(2), flexGrow:"inherit"}} >
+            <Card sx={{backgroundColor: `${actorSelected.actor.color}`, transition: "2s"}}>
             <CardContent >
-                <NameActor/>
-                <CharacteristicActor which='interests' icon={<Interests/>}/>
-                <CharacteristicActor which='personality' icon={<Psychology/>}/>
-                <CharacteristicActor which='origin' icon={<Place/>}/>
-                <CharacteristicActor which='curiousFact' icon={<FactCheck/>}/>
-                <ObjectiveActor/>
+                <ActorName/>
+                <ActorInfo which='interests' icon={<Interests/>}/>
+                <ActorInfo which='personality' icon={<Psychology/>}/>
+                <ActorInfo which='origin' icon={<Place/>}/>
+                <ActorInfo which='curiousFact' icon={<FactCheck/>}/>
             </CardContent>
             </Card>
         </Card>
-        </Stack>
+    </Stack>
 </>    
 )};
 
@@ -334,8 +347,9 @@ export const ActorSelection = () => {
             <BetaBadge sx={{marginTop: 2}}>
                 <Typography className={styles['selection-text']} variant="h4">{t("selection.title")}</Typography>
             </BetaBadge>
+            {/*
             <Typography className={styles['selection-text']} variant="h5">{t("selection.subtitle")}</Typography>
-        
+            */}
             <ActorCards />
             <LoadChallengeCard />
         </Stack>

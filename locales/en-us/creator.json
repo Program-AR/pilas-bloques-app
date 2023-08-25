@@ -1,7 +1,7 @@
 {
 	"selection": {
 		"title": "Create your own challenge choosing a character. ",
-		"subtitle": "Each one has their own commands, sensors and objectives.",
+		"subtitle": "Each one has their own commands, sensors and goals.",
 		"challengeBeingCreated": "You already have a challenge in progress. You can choose to continue editing or to discard it",
 		"discardWarning": "Careful! If you discard your challenge you won't be able to recover it!",
 		"continueEditing": "Continue editing",
@@ -13,7 +13,7 @@
 		"personality": "Personality",
 		"origin": "Origin",
 		"curiousFact": "Curious fact",      
-		"objectives": "Objectives",
+		"goals": "Goals",
 		"creator": "create your own challenge",
 		"cards": {
 			"Lita": { 	"name": "Lita",
@@ -22,7 +22,7 @@
 						"personality": "Risueña (¡siempre la vas a ver sonriendo!).",
 						"origin": "Mesopotamia.",
 						"curiousFact": "Tiene su propia huerta y le gusta enrollarse como una bola.",
-						"objectives": {
+						"goals": {
 							"letucce": "Agarrar todas las lechugas.",
 								"tomato": "Agarrar todos los tomates.",
 							"salad": "Preparar todas las ensaladas."
@@ -34,7 +34,7 @@
 						"personality": "Hambrienta (¡todo el tiempo tiene hambre!).",
 						"origin": "Cordillera patagónica",
 						"curiousFact": "Su comida favorita es el churrasco y le encanta hacer asados.",
-						"objectives": {
+						"goals": {
 							"steak": "Comer todos los churrascos."
 						}
 			},
@@ -44,7 +44,7 @@
 						"personality": "Armónica. Despreocupada (¡no le importa el qué dirán!).",
 						"origin": "Selva misionera.",
 						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
-						"objectives": {
+						"goals": {
 							"firefly": "Despertar todas las luciérnagas.",
 							"butterfly": "Fotografiar todas las mariposas.",
 							"unlockCellphone": "Desbloquear todos los celulares.",
@@ -58,7 +58,7 @@
 						"personality": "Curiosa. Activa. Ágil (¡nunca se olvida sus patines!).",
 						"origin": "Llanura pampeana.",
 						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
-						"objectives": {
+						"goals": {
 							"telescope": "Reparar todos los telescopios.",
 							"star": "Observar todas las estrellas. ",
 							"planet": "Observar todos los planetas."
@@ -70,7 +70,7 @@
 						"personality": "Protectores. Amigos (¡siempre están combinados!).",
 						"origin": "Humedales.",
 						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
-						"objectives": {
+						"goals": {
 							"can":"Recoger todas las latas. ",
 							"paper":"Recoger todos los papeles."
 						}
@@ -81,7 +81,7 @@
 						"personality": "Hiperactive. Arriesgade (¡le encanta escalar acantilados!).",
 						"origin": "Playa patagónica.",
 						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
-						"objectives": {
+						"goals": {
 							"paddle": "Recoger todas las paletas.",					
 							"trophy": "Recoger todos los trofeos.",
 							"pingpong": "Rebotar todas las pelotas de ping pong.",
@@ -112,7 +112,7 @@
 		"description": "Description",
 		"clue": "Clue",
 		"markdownTitle": "This is what your statement and clue will look like:",
-		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
+		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the goal. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
 		"includeClue": "Include a clue",
 		"defaultDescription": "Your **statement** will look like this..."
 	},
