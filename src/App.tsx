@@ -12,7 +12,7 @@ import "./theme-light.css"
 import { About } from './components/about/About';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
-import { ActorSelection } from './components/creator/ActorSelection';
+import { ActorSelection } from './components/creator/ActorSelection/ActorSelection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
 import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
