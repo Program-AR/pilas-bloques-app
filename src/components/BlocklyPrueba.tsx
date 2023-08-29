@@ -606,18 +606,41 @@ const INITIAL_TOOLBOX_JSON = {
     ],
   };
 
+const PRUEBITA = {
+  kind: "flyoutToolbox",
+    contents: [
+      {
+        kind: 'block',
+        type: 'prueba'
+      }
+    ]
+}
+
 export const BlocklyPrueba = () => {
 
-    return (
-        <>
-        <div style={{ height: "600px", width: "800px"}}>
-            <BlocklyWorkspace
-            toolboxConfiguration={INITIAL_TOOLBOX_JSON}
-            className="fill-height"
-            workspaceConfiguration={{trashcan:false, scrollbars: false}}
-            onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}}
-            />
-        </div>
-        </>
-    );
+  Blockly.Blocks["prueba"] = { //Aca se crea un block
+    init: function () {
+      this.jsonInit({
+        message0: "lalala",
+        colour: '#4a6cd4',
+        previousStatement: true,
+        nextStatement: true,
+        args0: [],
+      });
+
+    }
+  };
+
+  return (
+      <>
+      <div style={{ height: "600px", width: "800px"}}>
+          <BlocklyWorkspace
+          toolboxConfiguration={PRUEBITA}
+          className="fill-height"
+          workspaceConfiguration={{trashcan:false, scrollbars: false}}
+          onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}}
+          />
+      </div>
+      </>
+  );
 };
