@@ -2,7 +2,6 @@
     text-align: center;
     align-items: center;
     align-content: stretch;
-    height: 100%;
     width: 100%;
     display: flex;
     background-color: var(--home-background);
@@ -19,6 +18,18 @@
   justify-content: space-around;
   align-items: center;
 }
+
+.selection-background-actors {
+  transition: background-image 2s;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
 
 .selection-text-info {
     display: flex;

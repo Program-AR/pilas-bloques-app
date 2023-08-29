@@ -1,6 +1,6 @@
 import { Card, CardContent, darken, useMediaQuery, CardMedia, Stack, Typography } from "@mui/material"
 import React, { MouseEvent, useState } from "react"
-import { Interests, Psychology, Place, FactCheck, EmojiEvents } from '@mui/icons-material'
+import { Interests, Psychology, Place, FactCheck, SportsScore } from '@mui/icons-material'
 import { useNavigate } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
@@ -28,7 +28,7 @@ type ActorDataType = {
 
 type ActorCommonCardProps = {
     color: string
-    flexDirection?: string
+    isSmallScreen: boolean
     children: React.ReactNode
 }
 
@@ -181,18 +181,21 @@ class ActorState {
 
 const ActorContentCard = (props: ActorCommonCardProps) => 
     <Card sx={{ display:"flex", alignItems:"stretch", backgroundColor: darken(`${props.color}`, 0.2), 
-                flexDirection: props.flexDirection!,
+                flexDirection: `${props.isSmallScreen ? 'column' : 'row'}`,
                 transition: "2s",
                 zIndex:"998",
-                margin: theme.spacing(1),
-                padding: theme.spacing(1),
-                maxWidth: "650px", height:"100%", flexGrow:"inherit"}} >
+                width: `${props.isSmallScreen ? 'auto' : '600px'}`,
+                height: `${props.isSmallScreen ? 'inherit' : '100%'}`,
+                flexGrow:"inherit"}} >
         {props.children}
     </Card>
 
 
 const ActorSubContentCard = (props: ActorCommonCardProps) => 
-    <Card sx={{maxWidth: "300px", minWidth: "200px", margin: theme.spacing(1), backgroundColor: `${props.color}`, transition: "2s"}}>
+    <Card sx={{ minWidth: "200px", 
+                width: `${props.isSmallScreen ? 'auto' : '300px'}`,
+                margin: theme.spacing(1), backgroundColor: `${props.color}`, transition: "2s"}}
+          >
         <CardContent>
             {props.children}
         </CardContent>
@@ -246,7 +249,7 @@ export const Actors = () => {
     const ActorGoal = () =>
         <>
             <Typography className={styles['selection-text-info']} gutterBottom color="text.primary" variant="h5">
-                <EmojiEvents/>&nbsp;{t('selection.goals')}
+                <SportsScore/>&nbsp;{t('selection.goals')}
             </Typography>
             {actorSelected.actor.goals.map(goal => (
                 <Typography className={styles['selection-text-info']} paragraph key={goal.key} color="text.primary" textAlign="start">
@@ -269,21 +272,22 @@ export const Actors = () => {
         </Stack>
 
     const GoToCreatorButton = () =>
-        <StyledCreatorActionButton style={{marginTop:"50px", 
+        <StyledCreatorActionButton style={{marginTop:"45px", 
                         marginBottom:"10px"}} 
                         onClick={goToCreator} 
                         startIcon={<PaintbrushIcon/>} nametag="creator"/>
 
     const ActorInfoCard = () => 
-        <ActorContentCard color={actorSelected.actor.color} flexDirection={`${isSmallScreen ? 'column' : 'row'}`}>
-            <ActorSubContentCard color={actorSelected.actor.color}>
+        <ActorContentCard isSmallScreen={isSmallScreen} 
+                          color={actorSelected.actor.color}>
+            <ActorSubContentCard isSmallScreen={isSmallScreen} color={actorSelected.actor.color}>
                 <ActorName/>
                 <ActorInfo which='interests' icon={<Interests/>}/>
                 <ActorInfo which='personality' icon={<Psychology/>}/>
                 <ActorInfo which='origin' icon={<Place/>}/>
                 <ActorInfo which='curiousFact' icon={<FactCheck/>}/>
             </ActorSubContentCard>            
-            <ActorSubContentCard color={actorSelected.actor.color}>
+            <ActorSubContentCard isSmallScreen={isSmallScreen} color={actorSelected.actor.color}>
                 <ActorGoal/>
             </ActorSubContentCard>
         </ActorContentCard>
@@ -291,10 +295,13 @@ export const Actors = () => {
 return (
     <Stack className={styles["selection-background"]}
         flexDirection={isSmallScreen ? "column":"row"} 
-        sx={{backgroundImage: `url("${baseUrlImage}fondos/${actorSelected.actor.id}.svg")`}}
+        height={isSmallScreen ? "100%": "inherit"} 
         width={isSmallScreen ? "100%" : "inherit"} >
-        <Stack component="div" sx={{display: 'flex', justifyContent: 'center', alignItems: "center"}}>
-            <Carousel height={350} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={350} >
+        <Stack component="div" 
+            className={styles["selection-background-actors"]}
+            style={isSmallScreen ? {width: "100%"} : {}}
+            sx={{backgroundImage: `url("${baseUrlImage}fondos/${actorSelected.actor.id}.svg")`}}>
+            <Carousel height={350} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={300} >
                 {actors.map(ActorImage)}
             </Carousel>
             <GoToCreatorButton/>        

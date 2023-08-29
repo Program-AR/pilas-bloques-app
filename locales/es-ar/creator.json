@@ -23,9 +23,9 @@
 						"origin": "Mesopotamia.",
 						"curiousFact": "Tiene su propia huerta y le gusta enrollarse como una bola.",
 						"goals": {
-							"letucce": "Agarrar todas las lechugas.",
-						 	"tomato": "Agarrar todos los tomates.",
-							"salad": "Preparar todas las ensaladas."
+							"letucce": "Agarrar las lechugas.",
+						 	"tomato": "Agarrar los tomates.",
+							"salad": "Preparar las ensaladas."
 						}
 			},
 			"Duba": { 	"name": "Duba",
@@ -35,7 +35,7 @@
 						"origin": "Cordillera patagónica",
 						"curiousFact": "Su comida favorita es el churrasco y le encanta hacer asados.",
 						"goals": {
-							"steak": "Comer todos los churrascos."
+							"steak": "Comer los churrascos."
 						}
 			},
 			"Yvoty": { 	"name": "Yvoty",
@@ -45,11 +45,11 @@
 						"origin": "Selva misionera.",
 						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
 						"goals": {
-							"firefly": "Despertar todas las luciérnagas.",
-							"butterfly": "Fotografiar todas las mariposas.",
-							"unlockCellphone": "Desbloquear todos los celulares.",
-							"charger": "Agarrar todos los cargadores.",
-							"chargeCellphone": "Cargar todos los celulares."
+							"firefly": "Despertar las luciérnagas.",
+							"butterfly": "Fotografiar las mariposas.",
+							"unlockCellphone": "Desbloquear los celulares.",
+							"charger": "Agarrar los cargadores.",
+							"chargeCellphone": "Cargar los celulares."
 						}
 			},
 			"Manic": {  "name": "Mañic",
@@ -59,9 +59,9 @@
 						"origin": "Llanura pampeana.",
 						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
 						"goals": {
-							"telescope": "Reparar todos los telescopios.",
-							"star": "Observar todas las estrellas. ",
-							"planet": "Observar todos los planetas."
+							"telescope": "Reparar los telescopios.",
+							"star": "Observar las estrellas. ",
+							"planet": "Observar los planetas."
 						}
 			},
 			"Capy": {  "name": "Capy y Guyrá",
@@ -71,8 +71,8 @@
 						"origin": "Humedales.",
 						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
 						"goals": {
-							"can":"Recoger todas las latas. ",
-							"paper":"Recoger todos los papeles."
+							"can":"Recoger las latas. ",
+							"paper":"Recoger los papeles."
 						}
 			},
 			"Chuy": {  "name": "Chuy",
@@ -82,11 +82,11 @@
 						"origin": "Playa patagónica.",
 						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
 						"goals": {
-							"paddle": "Recoger todas las paletas.",					
-							"trophy": "Recoger todos los trofeos.",
-							"pingpong": "Rebotar todas las pelotas de ping pong.",
-							"pulpito": "Rebotar todas las pelotas pulpito.",
-							"football":"Patear todas las pelotas de fútbol."
+							"paddle": "Recoger las paletas.",					
+							"trophy": "Recoger los trofeos.",
+							"pingpong": "Rebotar las pelotas de ping pong.",
+							"pulpito": "Rebotar las pelotas pulpito.",
+							"football":"Patear las pelotas de fútbol."
 						}
 			}
 		}
@@ -103,8 +103,8 @@
 			"keepEditingShort": "Editar",
 			"creator": "Seleccionar personaje",
 			"creatorShort": "Seleccionar",
-			"loadChallenge": "Importar desafío creado",
-			"loadChallengeShort": "Importar"
+			"loadChallenge": "Abrir desafío creado",
+			"loadChallengeShort": "Abrir"
 		},
 		"editorHeader": "Editar desafio",
 		"previewModeHeader": "Ver desafio"

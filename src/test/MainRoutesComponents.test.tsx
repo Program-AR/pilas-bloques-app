@@ -2,7 +2,7 @@ import { About } from "../components/about/About"
 import { BookView } from "../components/book/BookView"
 import { ChallengeById, ChallengeByName } from "../components/ChallengeView"
 import { CreatorEditor } from "../components/creator/Editor/Editor"
-import { CreatorSelection } from "../components/creator/Selection"
+import { ActorSelection } from "../components/creator/ActorSelection/ActorSelection"
 import { Home } from "../components/home/Home"
 import { ImportedChallengeView } from "../components/ImportedChallengeView"
 import { PasswordRecovery } from "../components/PasswordRecovery"
@@ -41,7 +41,7 @@ test('Renders register without errors', async () => {
 })
 
 test('Renders /creador/seleccionar route without errors', async () => {
-  expect(() => renderComponent(<CreatorSelection/>)).not.toThrowError()
+  expect(() => renderComponent(<ActorSelection/>)).not.toThrowError()
 })
 
 test('Renders /creador/editar route without errors', async () => {
