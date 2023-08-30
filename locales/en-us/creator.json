@@ -92,7 +92,6 @@
 		}
 	},
 	"editor": {
-		"title": "Write your title",
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"discardChallengeShort": "Discard",
@@ -110,6 +109,11 @@
 		},
 		"editorHeader": "Edit challenge",
 		"previewModeHeader": "Challenge preview"
+	},
+	"title": {
+		"title": "Write your challenge title",
+		"button": "Write a title",
+		"input": "Title"	
 	},
 	"statement": {
 		"title": "Statement",

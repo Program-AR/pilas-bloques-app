@@ -2,6 +2,7 @@ import { Stack } from "@mui/material";
 import { SizeEditor, StyleGridProps } from "./SizeEditor";
 import { PBCard } from "../../../../PBCard";
 import { StatementEdition } from "../../ChallengeDetailsEdition/StatementEdition";
+import { TitleEdition } from "../../ChallengeDetailsEdition/TitleEdition";
 import { ToolBoxDialog } from "../../ChallengeDetailsEdition/ToolBoxDialog";
 import { ScenarioEditionButtons } from "./ScenarioEditionButtons";
 import { useThemeContext } from "../../../../../theme/ThemeContext";
@@ -18,6 +19,7 @@ export const GridOptions = (props: StyleGridProps) => {
                     <ScenarioEditionButtons/>
                 </Stack>
             </PBCard>
+            <TitleEdition />
             <StatementEdition />
             <ToolBoxDialog/>
             {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
