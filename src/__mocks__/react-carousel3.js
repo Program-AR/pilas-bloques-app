@@ -1,5 +1,3 @@
-function Carousel(props) {
+export const Carousel = (props) => {
     return <>{props.children}</>
 }
-
-export default Carousel;
