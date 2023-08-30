@@ -7,7 +7,7 @@ import styles from "./selection.module.css"
 import { LocalStorage } from "../../../localStorage"
 import { SceneType, defaultChallenge } from "../../serializedChallenge"
 import PaintbrushIcon from "../../home/PaintBrushIcon";
-import theme from "../../../theme"
+import { useThemeContext } from "../../../theme/ThemeContext"
 import { Carousel } from 'react-carousel3';
 import { StyledCreatorActionButton } from "./../Editor/ActionButtons/CreatorActionButton"
 import { LoadChallengeButton } from "./LoadChallenge"
@@ -191,21 +191,25 @@ const ActorContentCard = (props: ActorCommonCardProps) =>
     </Card>
 
 
-const ActorSubContentCard = (props: ActorCommonCardProps) => 
-    <Card sx={{ minWidth: "200px", 
-                width: `${props.isSmallScreen ? 'auto' : '300px'}`,
-                margin: theme.spacing(1), backgroundColor: `${props.color}`, transition: "2s"}}
-          >
-        <CardContent>
-            {props.children}
-        </CardContent>
-    </Card>
-
+const ActorSubContentCard = (props: ActorCommonCardProps) => {
+        const { theme } = useThemeContext()
+        return (
+            <Card sx={{ minWidth: "200px", 
+                    width: `${props.isSmallScreen ? 'auto' : '300px'}`,
+                    margin: theme.spacing(1), backgroundColor: `${props.color}`, transition: "2s"}}
+            >
+                <CardContent>
+                    {props.children}
+                </CardContent>
+            </Card>
+        )
+}
 
 export const Actors = () => {
     const { t } = useTranslation("creator")
     const navigate = useNavigate()
     const actorState = new ActorState(actorsData)
+    const { theme } = useThemeContext()
     
     const [actors, setActors] = useState(actorState.getActors);
 

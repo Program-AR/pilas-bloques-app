@@ -1,6 +1,6 @@
 import { Button, ButtonProps, darken, Tooltip, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import theme from '../../../../theme';
+import { useThemeContext } from "../../../../theme/ThemeContext";
 
 type CreatorActionButtonProps = {
   nametag: string,
@@ -8,6 +8,8 @@ type CreatorActionButtonProps = {
 } & ButtonProps
 
 export const CreatorActionButton = ({ isshortversion = false, ...props }: CreatorActionButtonProps) => {
+  const { theme } = useThemeContext()
+
   const { t } = useTranslation('creator')
 
   const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));

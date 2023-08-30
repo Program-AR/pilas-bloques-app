@@ -4,11 +4,12 @@ import { useTranslation } from "react-i18next"
 import styles from "./selection.module.css"
 import { BetaBadge } from "./../BetaBadge"
 import { Actors } from "./Actors"
-import theme from "../../../theme"
+import { useThemeContext } from "../../../theme/ThemeContext"
 import { ChallengeInProgressDialog } from "./InProgressDialog"
 
 export const ActorSelection = () => {
 	const { t } = useTranslation("creator")
+    const { theme } = useThemeContext()
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
 	return (

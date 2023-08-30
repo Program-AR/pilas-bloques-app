@@ -16,7 +16,7 @@ export type SerializedChallenge = {
         blocks: string[], // for now, block ids, future: could be objects.
         categorized?: boolean // default true
     },
-    stepByStep?: boolean, // default false
+    stepByStep?: boolean,
     predefinedSolution?: string,
     assesments?: Assesments
 }
@@ -142,8 +142,9 @@ export const defaultChallenge = (type: SceneType, defaultDescription = ""): Seri
 		},
 		scene: defaultScene(type),
 		toolbox: {
-			blocks: []
-		}
+			blocks: ['MoverACasillaDerecha']
+		},
+        stepByStep: true
 	}
 }
 
@@ -215,10 +216,10 @@ const cellIsValidForType = (cell: Cell, type: SceneType): boolean => {
     
 const cellIsIncluded = (typeCells: string[], cell: string) =>{
     const basicCells: string[] = ['A','O','-']
-    return basicCells.concat(typeCells).includes(cell)
+    return basicCells.concat(typeCells).concat(multipleObjectsCells(typeCells)).includes(cell)
 }
 
-
+const multipleObjectsCells = (typeCells: string[]) => typeCells.map(prize => `A&${prize}`).concat(typeCells.map(prize => `${prize}&A`))
 
 const isSceneType = (type: any): type is SceneType => 
     sceneTypes.includes(type)

@@ -9,14 +9,17 @@ import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
+import { useThemeContext } from "../../../theme/ThemeContext";
 
 export const CreatorEditor = () => {
+  const { theme } = useThemeContext()
+
   const {t} = useTranslation('creator')
 
   return (
     <CreatorContextProvider>
       
-      <Stack alignItems="center" height="inherit" sx={{backgroundColor: 'var(--theme-background-secondary-color)'}}>
+      <Stack alignItems="center" height="inherit" sx={{backgroundColor: theme.palette.background.paper}}>
         <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.editorHeader")}/></BetaBadge>} SubHeader={<EditorSubHeader/>}/>
         <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)'}}>
           <SceneEdition />

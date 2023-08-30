@@ -5,8 +5,8 @@ const validScene: Scene = {
     type: "Lita",
     maps: [[ 
         ['L', '-'], 
-        ['A', '-'],
-        ['L', '-'], 
+        ['A&T', '-'],
+        ['L', 'O'], 
         ['T', '-']
      ],
      [ 
@@ -98,6 +98,6 @@ describe('serialized challenge validity', () => {
     })
 
     test('Serialized scene to ember scene', () => {
-        expect(Ember.serializedSceneToEmberScene(validScene)).toBe('new EscenaLita(["[[L,-],[A,-],[L,-],[T,-]]","[[T,-],[A,-],[T,-],[L,-]]"])')
+        expect(Ember.serializedSceneToEmberScene(validScene)).toBe('new EscenaLita(["[[L,-],[A&T,-],[L,O],[T,-]]","[[T,-],[A,-],[T,-],[L,-]]"])')
     })
 })

@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle } from "@mui/material"
+import { useThemeContext } from '../../theme/ThemeContext';
 
 export interface ModalDialogProps {
     isOpen: boolean;
@@ -28,15 +29,17 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
         onCancel();
       }
     };
+    
+    const { theme } = useThemeContext()
 
     return (
         <>
         <Dialog open={isOpen} {...dialogProps} onClose={handleClose} >
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{height: '45px', display: 'flex', alignItems: 'center'}}>{title}</DialogTitle>
+        <DialogContent sx={{backgroundColor: theme.palette.background.default}}>
           {children}
         </DialogContent>
-        <DialogActions>
+        <DialogActions sx={{backgroundColor: theme.palette.background.default}}>
           <Button color="error" variant="contained" onClick={onCancel}>X</Button>
           <Button color="success" variant="contained" data-testid="generic-ok" onClick={onConfirm}>✔</Button>
         </DialogActions>

@@ -29,7 +29,3 @@
     height: auto;
     align-self: center;
 }
-
-.active-dot{
-    background-color: var(--theme-font-color) !important
-}

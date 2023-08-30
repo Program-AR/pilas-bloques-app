@@ -5,11 +5,12 @@ import { SerializedChallenge, isValidChallenge } from "../../serializedChallenge
 import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import theme from "../../../theme"
+import { useThemeContext } from "../../../theme/ThemeContext"
 import { useNavigate } from "react-router-dom"
 
 export const LoadChallengeButton = () => {
 	const { t } = useTranslation("creator")
+    const { theme } = useThemeContext()
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 	const navigate = useNavigate()
     const [snackbarOpen, setSnackbarOpen] = useState(false);

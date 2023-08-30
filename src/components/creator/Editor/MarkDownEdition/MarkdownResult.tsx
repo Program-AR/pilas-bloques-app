@@ -1,13 +1,13 @@
 import ReactMarkdown from "react-markdown";
-import { Button, Stack, Typography, lighten } from "@mui/material";
+import { Button, Stack, Typography, darken } from "@mui/material";
 import { WbIncandescent, MenuBook } from"@mui/icons-material"
 import { PBCard } from "../../../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
 import { useTranslation } from "react-i18next";
-import theme from '../../../../theme';
 import { LocalStorage } from "../../../../localStorage";
 import { StatementTextToShow } from "./MarkdownEditor";
+import { useThemeContext } from "../../../../theme/ThemeContext";
 
 type MarkdownResultProps = {
   text: string
@@ -16,6 +16,8 @@ type MarkdownResultProps = {
 }
 
 export const MarkdownResult = (props: MarkdownResultProps) => {
+  const { theme } = useThemeContext()
+
   const { t } = useTranslation('creator');
   const urlImage = `imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png` 
 
@@ -23,7 +25,7 @@ export const MarkdownResult = (props: MarkdownResultProps) => {
     <Typography>{t('statement.markdownTitle')}</Typography>
     <PBCard sx={{height:"80px"}}>
         <img height="100%" alt="actor" src={urlImage}/>
-        <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: lighten(theme.palette.primary.main, 0.74)}}>
+        <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: darken(theme.palette.text.secondary, 0.13)}}>
           
           <Button onClick={() => props.setShowStatement(StatementTextToShow.STATEMENT)} sx={{minWidth:"50px"}}>
             <MenuBook/>

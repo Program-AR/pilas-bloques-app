@@ -6,9 +6,11 @@ import { Header } from "../header/Header";
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import theme from '../../theme';
+import { useThemeContext } from "../../theme/ThemeContext";
 
 const Breadcrumb = (book: Book) => {
+    const { theme } = useThemeContext()
+    
     const {t} = useTranslation("books")
 
 

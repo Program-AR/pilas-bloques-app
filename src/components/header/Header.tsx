@@ -3,7 +3,8 @@ import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
 import { SessionButton } from "./login/SessionButton";
 import { Link } from "react-router-dom";
-import theme from '../../theme';
+import { DarkModeSwitch } from "./DarkModeSwitch";
+import { useThemeContext } from "../../theme/ThemeContext";
 
 type HeaderProps = {
     CenterComponent?: React.ReactNode,
@@ -14,15 +15,18 @@ type HeaderTextProps = {
     text: string
 }
 
-export const HeaderText = (props: HeaderTextProps) => (
-	<Typography 
+export const HeaderText = (props: HeaderTextProps) => {
+    const { theme } = useThemeContext()
+
+	return <Typography 
 		className={styles["header-text"]}
 		sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>
 		{props.text}
 	</Typography>
-)
+}
 
 export const Header = ({CenterComponent= <></>, SubHeader=<></>}: HeaderProps) => {
+    const { theme } = useThemeContext()
     
     return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
             <Grid container className={styles['header']} wrap="nowrap">
@@ -30,6 +34,7 @@ export const Header = ({CenterComponent= <></>, SubHeader=<></>}: HeaderProps) =
                 {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
+                    <DarkModeSwitch/>
                     <SessionButton/>
                 </div>
             </Grid>

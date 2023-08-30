@@ -2,13 +2,14 @@ import { Button, Dialog, DialogContent, Stack } from "@mui/material"
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
-import theme from "../../../theme"
+import { useThemeContext } from "../../../theme/ThemeContext"
 import { LocalStorage } from "../../../localStorage"
 
 export const ChallengeInProgressDialog = () => {
 	const thereIsChallengeInCreation: boolean = !!LocalStorage.getCreatorChallenge()
 	const [openModal, setOpenModal] = useState(thereIsChallengeInCreation)
 	const { t } = useTranslation("creator")
+	const { theme } = useThemeContext()	
 
 	const onDiscard = () => {
 		setOpenModal(false)
