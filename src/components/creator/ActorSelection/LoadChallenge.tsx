@@ -1,4 +1,4 @@
-import { Button, darken, useMediaQuery } from "@mui/material"
+import { Button, darken, Tooltip, useMediaQuery } from "@mui/material"
 import UploadIcon from '../../home/UploadIcon';
 import { LocalStorage } from "../../../localStorage"
 import { SerializedChallenge, isValidChallenge } from "../../serializedChallenge"
@@ -39,25 +39,27 @@ export const LoadChallengeButton = () => {
     }
     
 	return (
-        <Button variant="outlined" sx={{
-            textTransform: "none",
-            marginRight: '10px',
-            whiteSpace: 'nowrap',
-            backgroundColor: '#ffffff', 
-            fontWeight: 'bold', 
-            fontSize: 16,
-                '&:hover': {
-                    backgroundColor: darken('#ffffff', 0.2),
-                  } }}
-            component="label"
-            startIcon={<UploadIcon />}>
-            {t(`editor.buttons.loadChallenge${isSmallScreen ? 'Short' : ''}`)}
-            <input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile} />
-            <DialogSnackbar
-                open={snackbarOpen}
-                onClose={() => setSnackbarOpen(false)}
-                message={t('selection.importError')} /> 
-        </Button>            
+        <Tooltip title={isSmallScreen ? t(`editor.buttons.loadChallenge`) : ''}>
+            <Button variant="outlined" sx={{
+                textTransform: "none",
+                marginRight: '10px',
+                whiteSpace: 'nowrap',
+                backgroundColor: '#ffffff', 
+                fontWeight: 'bold', 
+                fontSize: 16,
+                    '&:hover': {
+                        backgroundColor: darken('#ffffff', 0.2),
+                    } }}
+                component="label"
+                startIcon={<UploadIcon />}>
+                {t(`editor.buttons.loadChallenge${isSmallScreen ? 'Short' : ''}`)}
+                <input data-testid="import-input" hidden accept=".dpbq" type="file" onChange={readFile} />
+                <DialogSnackbar
+                    open={snackbarOpen}
+                    onClose={() => setSnackbarOpen(false)}
+                    message={t('selection.importError')} /> 
+            </Button>            
+        </Tooltip>
 	)
 }
 

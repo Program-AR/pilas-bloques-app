@@ -9,7 +9,7 @@ import { ChallengeInProgressDialog } from "./InProgressDialog"
 
 export const ActorSelection = () => {
 	const { t } = useTranslation("creator")
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
 	return (
         <Stack alignItems="center" height="inherit" sx={{backgroundColor: 'var(--theme-background-secondary-color)'}}>

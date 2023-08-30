@@ -211,7 +211,7 @@ export const Actors = () => {
 
     const [actorSelected, setActorSelected] = useState(actorState.getActorSelected)
 
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
     const goToCreator = () => {
         LocalStorage.saveCreatorChallenge(defaultChallenge(actorSelected.actor.id, t("statement.defaultDescription")!))
@@ -241,7 +241,7 @@ export const Actors = () => {
             <Typography className={styles['selection-text-info']} color="text.primary" variant="body2">
                 {props.icon}&nbsp;{t(`selection.${props.which}`)}
             </Typography>
-            <Typography  className={styles['selection-text-info']} color="text.primary" marginLeft="6px" paragraph textAlign="start">
+            <Typography className={styles['selection-text-info']} color="text.primary" marginLeft="6px" paragraph textAlign="start">
                 {t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}
             </Typography>
         </>
@@ -294,8 +294,8 @@ export const Actors = () => {
 
 return (
     <Stack className={styles["selection-background"]}
-        flexDirection={isSmallScreen ? "column":"row"} 
-        height={isSmallScreen ? "100%": "inherit"} 
+        flexDirection={isSmallScreen ? "column":"row"}
+        height={isSmallScreen ? "100%": "600px"} 
         width={isSmallScreen ? "100%" : "inherit"} >
         <Stack component="div" 
             className={styles["selection-background-actors"]}
