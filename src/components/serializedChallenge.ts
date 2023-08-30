@@ -133,10 +133,10 @@ export const defaultScene = (type: SceneType): Scene => {
 	}
 }
 
-export const defaultChallenge = (type: SceneType, defaultDescription = ""): SerializedChallenge => {
+export const defaultChallenge = (type: SceneType, defaultDescription = "", defaultTitle=""): SerializedChallenge => {
 	return {
 		fileVersion: 1,
-		title: "",
+		title: defaultTitle,
 		statement: {
 			description: defaultDescription
 		},
