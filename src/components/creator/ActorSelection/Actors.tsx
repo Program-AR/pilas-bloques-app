@@ -234,29 +234,29 @@ export const Actors = () => {
     }
 
     const ActorName = () =>
-        <Typography className={styles['selection-text-info']} color="text.primary" variant="h5" component="div" flexWrap="wrap" flexDirection="row" alignItems="baseline">
+        <Typography className={styles['selection-text-info']} color={theme.palette.common.black} variant="h5" component="div" flexWrap="wrap" flexDirection="row" alignItems="baseline">
             {t(`selection.cards.${actorSelected.actor.id}.name`)},&nbsp;
-            <Typography gutterBottom variant="h6" textAlign="start" color="text.primary" >{t(`selection.cards.${actorSelected.actor.id}.definition`)}
+            <Typography gutterBottom variant="h6" textAlign="start" color={theme.palette.common.black} >{t(`selection.cards.${actorSelected.actor.id}.definition`)}
             </Typography>
         </Typography>
 
     const ActorInfo = (props: ActorInfoProps ) =>
         <>
-            <Typography className={styles['selection-text-info']} color="text.primary" variant="body2">
+            <Typography className={styles['selection-text-info']} color={theme.palette.common.black} variant="body2">
                 {props.icon}&nbsp;{t(`selection.${props.which}`)}
             </Typography>
-            <Typography className={styles['selection-text-info']} color="text.primary" marginLeft="6px" paragraph textAlign="start">
+            <Typography className={styles['selection-text-info']} color={theme.palette.common.black} marginLeft="6px" paragraph textAlign="start">
                 {t(`selection.cards.${actorSelected.actor.id}.${props.which}`)}
             </Typography>
         </>
 
     const ActorGoal = () =>
         <>
-            <Typography className={styles['selection-text-info']} gutterBottom color="text.primary" variant="h5">
+            <Typography className={styles['selection-text-info']} gutterBottom color={theme.palette.common.black} variant="h5">
                 <SportsScore/>&nbsp;{t('selection.goals')}
             </Typography>
             {actorSelected.actor.goals.map(goal => (
-                <Typography className={styles['selection-text-info']} paragraph key={goal.key} color="text.primary" textAlign="start">
+                <Typography className={styles['selection-text-info']} paragraph key={goal.key} color={theme.palette.common.black} textAlign="start">
                     <img alt={goal.key} key={goal.key} width="30px" style={{marginRight:"5px"}} src={`${baseObjectUrlImage}${actorSelected.actor.id}/${goal.object}`}></img> 
                     {t(`selection.cards.${actorSelected.actor.id}.goals.${goal.key}`)}
                 </Typography>

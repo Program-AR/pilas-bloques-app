@@ -45,11 +45,11 @@ export const LoadChallengeButton = () => {
                 textTransform: "none",
                 marginRight: '10px',
                 whiteSpace: 'nowrap',
-                backgroundColor: '#ffffff', 
+                backgroundColor: theme.palette.text.secondary, 
                 fontWeight: 'bold', 
                 fontSize: 16,
                     '&:hover': {
-                        backgroundColor: darken('#ffffff', 0.2),
+                        backgroundColor: darken(theme.palette.text.secondary, 0.2),
                     } }}
                 component="label"
                 startIcon={<UploadIcon />}>
