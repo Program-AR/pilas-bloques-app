@@ -14,14 +14,16 @@ export const GridOptions = (props: StyleGridProps) => {
     return <>
         <Stack>
             <PBCard sx={{justifyContent: "center"}}>
-                <Stack sx={{padding: theme.spacing(1)}}>
+                <Stack sx={{padding: theme.spacing(1), maxWidth: "200px"}}>
                     <SizeEditor setStyleGrid={props.setStyleGrid} />
                     <ScenarioEditionButtons/>
                 </Stack>
             </PBCard>
-            <TitleEdition />
-            <StatementEdition />
-            <ToolBoxDialog/>
+                <Stack sx={{flexDirection: "row"}}>
+                    <TitleEdition />
+                    <StatementEdition />
+                </Stack>
+                <ToolBoxDialog/>
             {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
         </Stack>
     </>
