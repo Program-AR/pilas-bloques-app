@@ -12,8 +12,6 @@
         "categorized": "Categorizar Bloques"
     },
     "blocks": {
-        "advance": "Avanzar",
-        "backToLeftBorder": "Volver al borde izquierdo",
         "ballHereChuy":"¿Hay una pelota de fútbol acá?",
         "ballHerePingPong":"¿Hay una pelota de ping pong acá?",
         "ballHerePulpito":"¿Hay una pelota pulpito acá?",
@@ -72,6 +70,9 @@
         "photographButterfly": "Fotografiar mariposa",
         "watchPlanet": "Observar planeta",
         "watchStar": "Observar estrella",
-        "while":"Repetir hasta que"
+        "while":"Repetir hasta que",
+        "chargerHere": "¿Hay un cargador acá?",
+        "trophyHere": "¿Hay un trofeo acá?",
+        "saladBowlHere": "¿Hay una ensaladera acá?"
    }
 }

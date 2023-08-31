@@ -12,8 +12,6 @@
         "categorized": "Categorize Blocks"
     },
     "blocks": {
-        "advance": "Move forward",
-        "backToLeftBorder": "Get back to the left border",
         "ballHereChuy":"Is there a football ball here?",
         "ballHerePingPong":"Is there a ping pong ball here?",
         "ballHerePulpito":"Is there a pulpito ball here?",
@@ -28,7 +26,7 @@
         "fireflyHere": "Is there a firefly here?",
         "Functions": "Functions",
         "holdPaper": "Hold paper",
-        "kickFootballBall": "Kick the football bal",
+        "kickFootballBall": "Kick the football ball",
         "bounceRubberBall": "Bounce the rubber ball",
         "left": "left",
         "lettuceHere": "Is there lettuce here?",
@@ -72,7 +70,10 @@
         "photographButterfly": "Photograph butterfly",
         "watchPlanet": "Watch planet",
         "watchStar": "Watch star",
-        "while": "Repeat until"
+        "while": "Repeat until",
+        "chargerHere": "Is there a charger here?",
+        "trophyHere": "Is there a trophy here?",
+        "saladBowlHere": "Is there a salad bowl here?"
     }
 }
 
