@@ -241,6 +241,11 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'sensors' 
     },
     { 
+        id: 'RecogerPaleta', 
+        intlId: 'pickPaddle', 
+        categoryId: 'primitives' 
+    },
+    { 
         id: 'TocandoPelotaChuy', 
         intlId: 'ballHereChuy', 
         categoryId: 'sensors' 

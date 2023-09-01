@@ -83,7 +83,8 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                     'PatearPelotaChuy', 
                     'TocandoPulpito', 
                     'TocandoPingPong', 
-                    'TocandoPaleta', 
+                    'TocandoPaleta',
+                    'RecogerPaleta', 
                     'TocandoPelotaChuy',
                     'HayTrofeo'
                 ]
