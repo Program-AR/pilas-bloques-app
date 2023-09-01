@@ -1,4 +1,4 @@
-PB_APP_VERSION="1.14.4"
+PB_APP_VERSION="1.14.5"
 
 echo "==> Downloading Pilas Bloques app online..."
 mkdir -p tmp
