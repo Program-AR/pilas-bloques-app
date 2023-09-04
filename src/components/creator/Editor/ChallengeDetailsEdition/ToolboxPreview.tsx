@@ -3,45 +3,26 @@ import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
 import { useTranslation } from "react-i18next";
 import { BlockType } from "../../../blocks";
-import { categoryToolboxFromBlocks, setupBlocklyBlocks } from "../../../../blockly";
+import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../../../blockly";
 
+type ToolboxPreviewProps = {
+  availableBlocks: BlockType[]
+  categorized: boolean
+}
 
-export const ToolboxPreview = () => {
+export const ToolboxPreview = ({availableBlocks, categorized}: ToolboxPreviewProps) => {
   const {t} = useTranslation()
 
   setupBlocklyBlocks(t)
-
-  const toolboxBlocks: BlockType[] = [
-    {
-      id: 'MoverACasillaDerecha',
-      intlId: 'moveRight',
-      categoryId: 'primitives'
-  },
-  {
-      id: 'MoverACasillaIzquierda',
-      intlId: 'moveLeft',
-      categoryId: 'primitives'
-  },
-  {
-      id: 'MoverACasillaArriba',
-      intlId: 'moveUp',
-      categoryId: 'primitives'
-  },
-  {
-      id: 'MoverACasillaAbajo',
-      intlId: 'moveDown',
-      categoryId: 'primitives'
-  },
-  ]
 
   return (
       <>
       <div style={{ height: "600px", width: "800px"}}>
           <BlocklyWorkspace
-          toolboxConfiguration={categoryToolboxFromBlocks(toolboxBlocks)}
-          className="fill-height"
-          workspaceConfiguration={{trashcan:false, scrollbars: false}}
-          onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}}
+          toolboxConfiguration={categorized ? categorizedToolbox(availableBlocks) : uncategorizedToolbox(availableBlocks)}
+          className="toolbox-preview"
+          workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
+          onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
           />
       </div>
       </>

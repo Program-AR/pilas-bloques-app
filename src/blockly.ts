@@ -47,7 +47,7 @@ const createPrimitiveBlock = (id: string, message: string, icon?: string) => {
   }
   
   
-export const categoryToolboxFromBlocks = (blocks: BlockType[]): Toolbox => ({
+export const categorizedToolbox = (blocks: BlockType[]): Toolbox => ({
     kind: "categoryToolbox",
     contents: [
       {
@@ -58,7 +58,7 @@ export const categoryToolboxFromBlocks = (blocks: BlockType[]): Toolbox => ({
     ]
 })
   
-export const uncategorizedToolboxFromBlocks = (blocks: BlockType[]): Toolbox => ({
+export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
     kind: "flyoutToolbox",
     contents: blocks.map(blockTypeToToolboxBlock)
 })

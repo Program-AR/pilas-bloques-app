@@ -7,11 +7,11 @@ import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 import { PROCEDURE_CATEGORY } from "../SceneEdition/mapUtils";
 import { DetailsEditionButton } from "./DetailsEditionButton";
+import { ToolboxPreview } from "./ToolboxPreview";
 
 export const ToolBoxDialog = () => {
 
     const { t } = useTranslation('creator');
-    const tb = useTranslation('blocks').t;
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -21,22 +21,8 @@ export const ToolBoxDialog = () => {
     const toolboxState = new ToolboxState(challenge!, toolBoxItems)
     const [open, setOpen] = useState(false);
 
-    let currentIsCategorized = challenge!.toolbox.categorized
+    const currentIsCategorized = challenge!.toolbox.categorized
     const [isCategorized, setIsCategorized] = useState(currentIsCategorized || toolboxState.shouldDisableCategorization());
-
-    const handleIsCategorizedOnChange = (event: { target: { checked: boolean } }) => {
-        setIsCategorized(event.target.checked)
-    }
-
-    const handleCatOnChange = (event: { target: { name: string; checked: boolean } }) => {
-        toolboxState.categoryChanged(event.target.name, event.target.checked)
-        setToolBoxItems(toolboxState.selectedBlockIds())
-    }
-
-    const handleToolBoxOnChange = (event: { target: { name: string; checked: boolean } }) => {
-        toolboxState.blockChanged(event.target.name, event.target.checked)
-        setToolBoxItems(toolboxState.selectedBlockIds())
-    }
 
     const handleButtonClick = () => {
         if (!open) {
@@ -67,45 +53,82 @@ export const ToolBoxDialog = () => {
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
             title={t('toolbox.title')}>
-            <div>
-                <Stack alignItems="flex-end">
-                    <FormControlLabel key="isCategorized" labelPlacement="start"
-                        disabled={toolboxState.shouldDisableCategorization()}
-                        control={<Switch color="secondary" checked={isCategorized || toolboxState.shouldDisableCategorization()}
-                                        key="isCategorized"
-                                        onChange={handleIsCategorizedOnChange} />} 
-                        label={tb('categories.categorized')} />
-                    <Typography width="60%" textAlign="right" lineHeight="1.2" variant="caption">{t('toolbox.categoriesHint')}</Typography>
-                </Stack>
-                <Box style={{ justifyContent: 'center' }}>
-                    {categories.map((cat, i) => {
-                        return (<div key={cat}>
-                            <FormControlLabel key={cat + i}
-                                control={<Switch checked={toolboxState.isCategorySelected(cat)}
-                                                color="secondary"
-                                                name={cat}
-                                                key={cat + i}
-                                                onChange={handleCatOnChange} />}
-                                label={<Typography variant="h6">{tb('categories.' + cat)}</Typography>} />
-                            {availableBlocksFor(challenge!.scene.type).map((block) => {
-                                return ((cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{ paddingLeft: "20px" }}>
-                                    <FormControlLabel key={block.id}
-                                        control={<Switch checked={toolBoxItems.includes(block.id)}
-                                                        color="secondary"
-                                                        name={block.id}
-                                                        key={block.id}
-                                                        onChange={handleToolBoxOnChange} />} 
-                                        label={tb('blocks.' + block.intlId)} />
-                                    <br />
-                                </div>)
-                            })}
-                        </div>)
-                    })}
-                </Box>
-            </div>
+            <Stack direction="row">
+                <div>
+                    <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
+                    <BlocksSelection toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
+                </div>
+                <ToolboxPreview availableBlocks={[]} categorized={isCategorized || toolboxState.shouldDisableCategorization()}/>
+            </Stack>
         </GenericModalDialog>
     </>
 }
+
+
+const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized}: any) => {
+    const {t} = useTranslation('blocks')
+
+    const handleIsCategorizedOnChange = (event: { target: { checked: boolean } }) => {
+        setIsCategorized(event.target.checked)
+    }
+
+    return <>
+        <Stack alignItems="flex-end">
+            <FormControlLabel key="isCategorized" labelPlacement="start"
+                disabled={toolboxState.shouldDisableCategorization()}
+                control={<Switch color="secondary" checked={isCategorized || toolboxState.shouldDisableCategorization()}
+                                key="isCategorized"
+                                onChange={handleIsCategorizedOnChange} />} 
+                label={t('categories.categorized')} />
+            <Typography width="60%" textAlign="right" lineHeight="1.2" variant="caption">{t('toolbox.categoriesHint')}</Typography>
+        </Stack>
+</>
+}
+
+const BlocksSelection = ({toolboxState, setToolBoxItems, availableBlocks, toolBoxItems}: any) => {
+    const {t} = useTranslation('blocks')
+
+
+    const handleCatOnChange = (event: { target: { name: string; checked: boolean } }) => {
+        toolboxState.categoryChanged(event.target.name, event.target.checked)
+        setToolBoxItems(toolboxState.selectedBlockIds())
+    }
+
+    const handleToolBoxOnChange = (event: { target: { name: string; checked: boolean } }) => {
+        toolboxState.blockChanged(event.target.name, event.target.checked)
+        setToolBoxItems(toolboxState.selectedBlockIds())
+    }
+
+    return <>
+        <Box style={{ justifyContent: 'center' }}>
+            {categories.map((cat, i) => {
+                return (<div key={cat}>
+                    <FormControlLabel key={cat + i}
+                        control={<Switch checked={toolboxState.isCategorySelected(cat)}
+                                        color="secondary"
+                                        name={cat}
+                                        key={cat + i}
+                                        onChange={handleCatOnChange} />}
+                        label={<Typography variant="h6">{t('categories.' + cat)}</Typography>} />
+                    {availableBlocks.map((block: any) => {
+                        return ((cat === block.categoryId.toLowerCase()) && <div key={block.id} style={{ paddingLeft: "20px" }}>
+                            <FormControlLabel key={block.id}
+                                control={<Switch checked={toolBoxItems.includes(block.id)}
+                                                color="secondary"
+                                                name={block.id}
+                                                key={block.id}
+                                                onChange={handleToolBoxOnChange} />} 
+                                label={t('blocks.' + block.intlId)} />
+                            <br />
+                        </div>)
+                    })}
+                </div>)
+            })}
+        </Box>
+</>
+
+}
+
 
 class ToolboxState {
     categories: CategorySelection[] = [];

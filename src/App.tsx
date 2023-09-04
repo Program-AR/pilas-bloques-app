@@ -16,7 +16,6 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
 import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
 import { useThemeContext } from './theme/ThemeContext';
-import { ToolboxPreview } from './components/creator/Editor/ChallengeDetailsEdition/ToolboxPreview';
 
 const AnalyticsComponent = () => {
   const location = useLocation();
@@ -81,10 +80,6 @@ const router = createHashRouter([{
   {
     path: "/creador/ver",
     element: <CreatorViewMode/>
-  },
-  {
-    path: "/blocklyPrueba",
-    element: <ToolboxPreview/>
   }
 ]}]);
 
