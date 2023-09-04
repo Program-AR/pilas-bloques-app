@@ -2,6 +2,7 @@ import "./prueba.css";
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
 import { useTranslation } from "react-i18next";
+import { BlockType } from "./blocks";
 
 type BlocklyBlockDefinition = {
   message0: string
@@ -10,6 +11,14 @@ type BlocklyBlockDefinition = {
   previousStatement?: boolean
   nextStatement?: boolean
 }
+
+type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[]}
+
+type ToolboxItem = ToolboxBlock | ToolBoxCategory
+
+type ToolboxBlock = {kind: "block", type: string}
+type ToolBoxCategory = {kind: "category", name: string, contents: ToolboxItem[]}
+
 
 const createPrimitiveBlock = (id: string, message: string, icon?: string) => {
   const colour = '#4a6cd4'
@@ -40,54 +49,53 @@ const createPrimitiveBlock = (id: string, message: string, icon?: string) => {
 }
 
 
-const categoryToolboxFromBlocks = (blocks: any[]) => ({
+const categoryToolboxFromBlocks = (blocks: BlockType[]): Toolbox => ({
   kind: "categoryToolbox",
   contents: [
     {
       kind: "category",
       name: "Primitivas",
-      contents: blocks.filter(block => block.categoryId === "primitives")
-    
+      contents: blocks.filter(block => block.categoryId === "primitives").map(blockTypeToToolboxBlock)
     }
   ]
 })
 
-const uncategorizedToolboxFromBlocks = (blocks: any[]) => ({
+const uncategorizedToolboxFromBlocks = (blocks: BlockType[]): Toolbox => ({
   kind: "flyoutToolbox",
-  contents: blocks
+  contents: blocks.map(blockTypeToToolboxBlock)
 })
 
+const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({kind: "block", type: block.id})
 
 export const BlocklyPrueba = () => {
   const {t} = useTranslation("blocks")
 
-  createPrimitiveBlock("moveUp", t("blocks.moveUp"), "icono.arriba.png")
-  createPrimitiveBlock("moveDown", t("blocks.moveDown"), "icono.abajo.png")
-  createPrimitiveBlock("moveLeft", t("blocks.moveLeft"), "icono.izquierda.png")
-  createPrimitiveBlock("moveRight", t("blocks.moveRight"), "icono.derecha.png")
+  createPrimitiveBlock("MoverACasillaArriba", t("blocks.moveUp"), "icono.arriba.png")
+  createPrimitiveBlock("MoverACasillaAbajo", t("blocks.moveDown"), "icono.abajo.png")
+  createPrimitiveBlock("MoverACasillaIzquierda", t("blocks.moveLeft"), "icono.izquierda.png")
+  createPrimitiveBlock("MoverACasillaDerecha", t("blocks.moveRight"), "icono.derecha.png")
 
-  const toolboxBlocks = [
+  const toolboxBlocks: BlockType[] = [
     {
-      kind: "block",
-      type: "moveUp",
+      id: 'MoverACasillaDerecha',
+      intlId: 'moveRight',
       categoryId: 'primitives'
-    },
-    {
-      kind: "block",
-      type: "moveDown",
+  },
+  {
+      id: 'MoverACasillaIzquierda',
+      intlId: 'moveLeft',
       categoryId: 'primitives'
-    },
-    {
-      kind: "block",
-      type: "moveLeft",
+  },
+  {
+      id: 'MoverACasillaArriba',
+      intlId: 'moveUp',
       categoryId: 'primitives'
-    },
-    {
-      kind: "block",
-      type: "moveRight",
+  },
+  {
+      id: 'MoverACasillaAbajo',
+      intlId: 'moveDown',
       categoryId: 'primitives'
-    },
-  
+  },
   ]
 
   return (
