@@ -64,10 +64,9 @@ export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
 })
 
 export const setupBlocklyBlocks = (t: (key: string) => string) => {
-
-    createPrimitiveBlock("MoverACasillaArriba", t("blocks.blocks.moveUp"), "icono.arriba.png")
-    createPrimitiveBlock("MoverACasillaAbajo", t("blocks.blocks.moveDown"), "icono.abajo.png")
-    createPrimitiveBlock("MoverACasillaIzquierda", t("blocks.blocks.moveLeft"), "icono.izquierda.png")
-    createPrimitiveBlock("MoverACasillaDerecha", t("blocks.blocks.moveRight"), "icono.derecha.png")
+  createPrimitiveBlock("MoverACasillaArriba", t("blocks.blocks.moveUp"), "icono.arriba.png")
+  createPrimitiveBlock("MoverACasillaAbajo", t("blocks.blocks.moveDown"), "icono.abajo.png")
+  createPrimitiveBlock("MoverACasillaIzquierda", t("blocks.blocks.moveLeft"), "icono.izquierda.png")
+  createPrimitiveBlock("MoverACasillaDerecha", t("blocks.blocks.moveRight"), "icono.derecha.png")
 
 }

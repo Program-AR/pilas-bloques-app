@@ -35,6 +35,7 @@ export const ToolBoxEditor = () => {
     const handleOnCancel = () => {
         setOpen(false)
     }
+
     const handleOnConfirm = () => {
         challenge!.toolbox.blocks = toolBoxItems
         challenge!.toolbox.categorized = isCategorized || toolboxState.categorizationShouldBeForced()
@@ -59,7 +60,7 @@ export const ToolBoxEditor = () => {
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
                 </div>
-                <ToolboxPreview blocksToPreview={[]} categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>
+                <ToolboxPreview blocksToPreview={toolBoxItems} categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>
             </Stack>
         </GenericModalDialog>
     </>
