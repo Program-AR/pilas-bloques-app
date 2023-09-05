@@ -12,26 +12,16 @@ type BlocksSelectorProps = {
 
 export const BlocksSelector = ({toolboxState, setToolBoxItems, availableBlocks, toolBoxItems}: BlocksSelectorProps) => {
 
-    const handleCatOnChange = (event: { target: { name: string; checked: boolean } }) => {
-        toolboxState.categoryChanged(event.target.name, event.target.checked)
-        setToolBoxItems(toolboxState.selectedBlockIds())
-    }
-
-    const handleToolBoxOnChange = (event: { target: { name: string; checked: boolean } }) => {
-        toolboxState.blockChanged(event.target.name, event.target.checked)
-        setToolBoxItems(toolboxState.selectedBlockIds())
-    }
-
     return <>
         <Box style={{ justifyContent: 'center' }}>
-            {categories.map((cat) => {
+            {categories.map((categoryName) => {
                 return (
-                <div key={cat}>
-                    <CategoryToggle checked={toolboxState.isCategorySelected(cat)} categoryName={cat} handleCatOnChange={handleCatOnChange}/>
+                <div key={categoryName}>
+                    <CategoryToggle checked={toolboxState.isCategorySelected(categoryName)} toolboxState={toolboxState} categoryName={categoryName} setToolBoxItems={setToolBoxItems}/>
                     {availableBlocks.map((block: any) => 
                     {
-                        return (cat === block.categoryId.toLowerCase() && <div key={block.id} style={{ paddingLeft: "20px" }}>
-                                <BlockToggle block={block} handleToolBoxOnChange={handleToolBoxOnChange} checked={toolBoxItems.includes(block.id)}/>
+                        return (categoryName === block.categoryId.toLowerCase() && <div key={block.id} style={{ paddingLeft: "20px" }}>
+                                <BlockToggle block={block} toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} checked={toolBoxItems.includes(block.id)}/>
                             <br />
                         </div>)
                     }
@@ -47,9 +37,21 @@ export const BlocksSelector = ({toolboxState, setToolBoxItems, availableBlocks, 
 
 }
 
-const CategoryToggle = ({categoryName, checked, handleCatOnChange}: any) => {
+type CategoryToggleProps = {
+    categoryName: string
+    checked: boolean
+    setToolBoxItems: (algo: any) => void
+    toolboxState: ToolboxState
+}
+
+const CategoryToggle = ({categoryName, checked, setToolBoxItems, toolboxState}: CategoryToggleProps) => {
     const {t} = useTranslation('blocks')
 
+
+    const handleCategoryToggle = (event: { target: { name: string; checked: boolean } }) => {
+        toolboxState.categoryChanged(event.target.name, event.target.checked)
+        setToolBoxItems(toolboxState.selectedBlockIds())
+    }
 
     return <>
         <FormControlLabel key={categoryName}
@@ -57,15 +59,26 @@ const CategoryToggle = ({categoryName, checked, handleCatOnChange}: any) => {
             color="secondary"
             name={categoryName}
             key={categoryName}
-            onChange={handleCatOnChange} />}
+            onChange={handleCategoryToggle} />}
             label={<Typography variant="h6">{t('categories.' + categoryName)}</Typography>} 
         />
     </>
 }
 
+type BlockToggleProps = {
+    block: any
+    checked: boolean
+    setToolBoxItems: (algo: any) => void
+    toolboxState: ToolboxState
+}
 
-const BlockToggle = ({block, checked, handleToolBoxOnChange}: any) => {
+const BlockToggle = ({block, checked, setToolBoxItems, toolboxState}: BlockToggleProps) => {
     const {t} = useTranslation('blocks')
+
+    const handleBlockToggle = (event: { target: { name: string; checked: boolean } }) => {
+        toolboxState.blockChanged(event.target.name, event.target.checked)
+        setToolBoxItems(toolboxState.selectedBlockIds())
+    }
 
     return <>
         <FormControlLabel key={block.id}
@@ -73,7 +86,7 @@ const BlockToggle = ({block, checked, handleToolBoxOnChange}: any) => {
                             color="secondary"
                             name={block.id}
                             key={block.id}
-                            onChange={handleToolBoxOnChange} />} 
+                            onChange={handleBlockToggle} />} 
             label={t('blocks.' + block.intlId)} />
     </>
 }

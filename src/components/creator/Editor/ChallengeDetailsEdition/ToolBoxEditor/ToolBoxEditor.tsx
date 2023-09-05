@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LocalStorage } from "../../../../../localStorage";
-import { categories, availableBlocksFor, BlockType } from "../../../../blocks";
+import { categories, availableBlocksFor } from "../../../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
