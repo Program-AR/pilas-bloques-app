@@ -1,4 +1,4 @@
-import { Button, ButtonProps, darken, useMediaQuery } from "@mui/material";
+import { Button, ButtonProps, darken, Tooltip, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useThemeContext } from "../../../../theme/ThemeContext";
 
@@ -14,14 +14,18 @@ export const CreatorActionButton = ({ isshortversion = false, ...props }: Creato
 
   const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
-  return < Button {...props} variant="outlined" sx={{
-    ...props.sx,
-    textTransform: "none",
-    marginRight: '10px',
-    whiteSpace: 'nowrap'
-  }}>
-    {t(`editor.buttons.${props.nametag}${!isshortversion && isSmallScreen ? 'Short' : ''}`)}
-  </Button >
+  return (
+    <Tooltip title={isSmallScreen ? t(`editor.buttons.${props.nametag}`) : ''}>
+      <Button {...props} variant="outlined" 
+        sx={{ textTransform: "none",
+              marginRight: '10px',
+              whiteSpace: 'nowrap',
+              ...props.sx
+            }}>
+        {t(`editor.buttons.${props.nametag}${!isshortversion && isSmallScreen ? 'Short' : ''}`)}
+      </Button >
+    </Tooltip>
+  )
 }
 
 export const StyledCreatorActionButton = (props: CreatorActionButtonProps) => {
@@ -38,7 +42,8 @@ export const StyledCreatorActionButton = (props: CreatorActionButtonProps) => {
       '&:hover': {
         backgroundColor: darken(backgroundColor, 0.2),
         border: 0,
-      }
+      },
+      ...props.sx
     }}
     {...props}>
     {props.children}
