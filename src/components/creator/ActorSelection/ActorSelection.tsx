@@ -13,7 +13,7 @@ export const ActorSelection = () => {
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
 	return (
-        <Stack alignItems="center" height="inherit" sx={{backgroundColor: 'var(--theme-background-secondary-color)'}}>
+        <Stack alignItems="center" height="inherit" sx={{backgroundColor: theme.palette.background.paper}}>
             <Header CenterComponent={
                 <BetaBadge smaller={true}><HeaderText text={t("selection.title")}/></BetaBadge>}/>
             <ChallengeInProgressDialog />
