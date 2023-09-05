@@ -6,11 +6,11 @@ import { BlockType } from "../../../blocks";
 import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../../../blockly";
 
 type ToolboxPreviewProps = {
-  availableBlocks: BlockType[]
+  blocksToPreview: BlockType[]
   categorized: boolean
 }
 
-export const ToolboxPreview = ({availableBlocks, categorized}: ToolboxPreviewProps) => {
+export const ToolboxPreview = ({blocksToPreview: availableBlocks, categorized}: ToolboxPreviewProps) => {
   const {t} = useTranslation()
 
   setupBlocklyBlocks(t)
@@ -19,7 +19,7 @@ export const ToolboxPreview = ({availableBlocks, categorized}: ToolboxPreviewPro
       <>
       <div style={{ height: "600px", width: "800px"}}>
           <BlocklyWorkspace
-          toolboxConfiguration={categorized ? categorizedToolbox(availableBlocks) : uncategorizedToolbox(availableBlocks)}
+          toolboxConfiguration={categorized ? categorizedToolbox(availableBlocks) : categorizedToolbox(availableBlocks)}
           className="toolbox-preview"
           workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
           onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
