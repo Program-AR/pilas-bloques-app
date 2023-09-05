@@ -1,9 +1,9 @@
-import "./prueba.css";
+import "./toolboxPreview.css";
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
 import { useTranslation } from "react-i18next";
-import { BlockType } from "../../../blocks";
-import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../../../blockly";
+import { BlockType } from "../../../../blocks";
+import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../../../../blockly";
 
 type ToolboxPreviewProps = {
   blocksToPreview: BlockType[]
