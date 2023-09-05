@@ -19,7 +19,7 @@ export const GridOptions = (props: StyleGridProps) => {
                     <ScenarioEditionButtons/>
                 </Stack>
             </PBCard>
-                <Stack sx={{flexDirection: "row"}}>
+                <Stack direction='row'>
                     <TitleEdition />
                     <StatementEdition />
                 </Stack>
