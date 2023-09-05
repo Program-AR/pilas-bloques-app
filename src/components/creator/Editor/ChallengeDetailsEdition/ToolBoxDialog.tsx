@@ -1,7 +1,7 @@
 import { Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
-import { categories, availableBlocksFor } from "../../../blocks";
+import { categories, availableBlocksFor, BlockType } from "../../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
@@ -64,8 +64,14 @@ export const ToolBoxDialog = () => {
     </>
 }
 
+type CategorizedToggleProps = {
+    toolboxState: ToolboxState
+    isCategorized: boolean
+    setIsCategorized: (categorized: boolean) => void
 
-const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized}: any) => {
+}
+
+const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized}: CategorizedToggleProps) => {
     const {t} = useTranslation('blocks')
 
     const handleIsCategorizedOnChange = (event: { target: { checked: boolean } }) => {
@@ -85,7 +91,14 @@ const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized}: any)
 </>
 }
 
-const BlocksSelection = ({toolboxState, setToolBoxItems, availableBlocks, toolBoxItems}: any) => {
+type BlocksSelectionProps = {
+    toolboxState: ToolboxState
+    availableBlocks: BlockType[]
+    setToolBoxItems: (blocks: string[]) => void
+    toolBoxItems: string[]
+}
+
+const BlocksSelection = ({toolboxState, setToolBoxItems, availableBlocks, toolBoxItems}: BlocksSelectionProps) => {
     const {t} = useTranslation('blocks')
 
 
