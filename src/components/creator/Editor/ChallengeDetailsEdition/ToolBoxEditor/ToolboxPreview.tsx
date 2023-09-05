@@ -11,7 +11,7 @@ type ToolboxPreviewProps = {
 }
 
 export const ToolboxPreview = ({blocksToPreview, categorized}: ToolboxPreviewProps) => {
-  const {t} = useTranslation()
+  const {t} = useTranslation("blocks")
 
   const blocksWithCategories: BlockType[] = blocksToPreview.map(getBlockFromId)
 
