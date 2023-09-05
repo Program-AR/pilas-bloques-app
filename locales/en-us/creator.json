@@ -17,7 +17,6 @@
 		"creator": "create your own challenge"
 	},
 	"editor": {
-		"title": "Write your title",
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"discardChallengeShort": "Discard",
@@ -35,6 +34,11 @@
 		},
 		"editorHeader": "Edit challenge",
 		"previewModeHeader": "Challenge preview"
+	},
+	"title": {
+		"title": "Write your challenge's title",
+		"button": "Write your title",
+		"input": "Title"	
 	},
 	"statement": {
 		"title": "Statement",
