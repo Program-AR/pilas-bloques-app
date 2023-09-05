@@ -111,8 +111,8 @@
 		"previewModeHeader": "Challenge preview"
 	},
 	"title": {
-		"title": "Write your challenge title",
-		"button": "Write a title",
+		"title": "Write your challenge's title",
+		"button": "Write your title",
 		"input": "Title"	
 	},
 	"statement": {
