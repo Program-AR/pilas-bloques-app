@@ -268,9 +268,11 @@ export const Actors = () => {
             <CardMedia            
                 component="img" id={item.actor.id} alt={item.actor.id} 
                 style={item.isSelected ? {} : {opacity: 0.6}} 
-                height={item.isSelected ? "350px" : "200px"} 
+                height={item.isSelected ? "auto" : "250px"} 
                 image={item.actor.image} 
-                sx={{transition: "2s", objectFit: "contain", width: "300px"}}
+                sx={{transition: "2s"}}
+                //objectFit: "contain"}} 
+                //width: "300px"}}
                 onClick={handleActorOnClick} 
                 />       
         </Stack>
