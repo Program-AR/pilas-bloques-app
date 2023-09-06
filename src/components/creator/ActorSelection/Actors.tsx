@@ -299,7 +299,7 @@ export const Actors = () => {
 
 return (
     <Stack className={styles["selection-background"]}
-        flexDirection={isSmallScreen ? "column":"row"}
+        direction={isSmallScreen ? "column":"row"}
         height={isSmallScreen ? "100%": "600px"} 
         width={isSmallScreen ? "100%" : "inherit"} >
         <Stack component="div" 
