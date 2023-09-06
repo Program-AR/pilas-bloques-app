@@ -270,9 +270,7 @@ export const Actors = () => {
                 style={item.isSelected ? {} : {opacity: 0.6}} 
                 height={item.isSelected ? "auto" : "250px"} 
                 image={item.actor.image} 
-                sx={{transition: "2s"}}
-                //objectFit: "contain"}} 
-                //width: "300px"}}
+                sx={{transition: "2s", padding: "0 45px"}} 
                 onClick={handleActorOnClick} 
                 />       
         </Stack>
