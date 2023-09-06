@@ -186,6 +186,7 @@ const ActorContentCard = (props: ActorCommonCardProps) =>
                 zIndex:"998",
                 width: `${props.isSmallScreen ? 'auto' : '600px'}`,
                 height: `${props.isSmallScreen ? 'inherit' : '100%'}`,
+                overflow: "inherit",
                 flexGrow:"inherit"}} >
         {props.children}
     </Card>
