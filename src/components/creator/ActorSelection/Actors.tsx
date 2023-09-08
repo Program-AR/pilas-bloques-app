@@ -186,6 +186,7 @@ const ActorContentCard = (props: ActorCommonCardProps) =>
                 zIndex:"998",
                 width: `${props.isSmallScreen ? 'auto' : '600px'}`,
                 height: `${props.isSmallScreen ? 'inherit' : '100%'}`,
+                overflow: "inherit",
                 flexGrow:"inherit"}} >
         {props.children}
     </Card>
@@ -268,9 +269,9 @@ export const Actors = () => {
             <CardMedia            
                 component="img" id={item.actor.id} alt={item.actor.id} 
                 style={item.isSelected ? {} : {opacity: 0.6}} 
-                height={item.isSelected ? "350px" : "200px"} 
+                height={item.isSelected ? "auto" : "250px"} 
                 image={item.actor.image} 
-                sx={{transition: "2s", objectFit: "contain", width: "300px"}}
+                sx={{transition: "2s", padding: "0 45px"}} 
                 onClick={handleActorOnClick} 
                 />       
         </Stack>
@@ -298,7 +299,7 @@ export const Actors = () => {
 
 return (
     <Stack className={styles["selection-background"]}
-        flexDirection={isSmallScreen ? "column":"row"}
+        direction={isSmallScreen ? "column":"row"}
         height={isSmallScreen ? "100%": "600px"} 
         width={isSmallScreen ? "100%" : "inherit"} >
         <Stack component="div" 
