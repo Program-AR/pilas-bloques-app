@@ -18,7 +18,7 @@ export const CreatorActionButton = ({ isshortversion = false, ...props }: Creato
     <Tooltip title={isSmallScreen ? t(`editor.buttons.${props.nametag}`) : ''}>
       <Button {...props} variant="outlined" 
         sx={{ textTransform: "none",
-              marginRight: '10px',
+              margin: '0 10px',
               whiteSpace: 'nowrap',
               ...props.sx
             }}>
