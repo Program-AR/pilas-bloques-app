@@ -88,7 +88,7 @@
     "ts-jest": "^29.1.1"
   },
   "optionalDependencies": {
-    "electron-installer-debian": "git+https://github.com/Program-AR/electron-installer-debian.git"
+    "electron-installer-debian": "^3.2.0"
   },
   "main": "electron.js",
   "ember-electron": {
