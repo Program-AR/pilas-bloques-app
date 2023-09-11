@@ -32,6 +32,15 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <style>
+      /* This is needed because Electron deals with file:// protocol and needs absolute paths.
+      This way it works with Electron and with npm start and serving the build dir
+      I couldn't find a tidier way to do this. All googling failed. */
+      @font-face { 
+        font-family: 'Nunito';
+        src:  url("Nunito-VariableFont_wght.ttf") format('truetype');
+      }
+    </style>
     <title>Pilas Bloques</title>
   </head>
   <body>
