@@ -1,4 +1,4 @@
-import { LocalStorage } from "./localStorage";
+import { LocalStorage } from "./localStorage"
 
 export interface User{
     id: string,
@@ -23,6 +23,12 @@ export class ApiError extends Error {
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
+declare global { // see public/index.html
+  interface Window {
+    PBRuntime: {apiURL: string}
+  }
+}
+
 export namespace PilasBloquesApi{
 
     export const login = async (credentials: Credentials) => {
@@ -30,7 +36,7 @@ export namespace PilasBloquesApi{
       .then(user => LocalStorage.saveUser(user))
     }
 
-    const baseURL = process.env.REACT_APP_API_URL
+    const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
 
     async function _send<T>(method: HttpMethod, resource: string, body: T) {
         const user = LocalStorage.getUser()
