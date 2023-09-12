@@ -3,7 +3,6 @@ import { EmberView } from "./emberView/EmberView";
 import { Header } from "./header/Header";
 import { SerializedChallenge } from "./serializedChallenge";
 import { Typography } from "@mui/material";
-import { useThemeContext } from "../theme/ThemeContext";
 import { useTranslation } from "react-i18next";
 import { PBreadcrumbs } from "./PBreadcrumbs";
 
@@ -20,8 +19,7 @@ export const ImportedChallengeView = () => {
 
 const ImportedChallengeViewBreadcrumb = () => {
 
-    const { theme } = useThemeContext()
-    const { t } = useTranslation(["books", "challenges", "chapters", "groups"])
+    const { t } = useTranslation("creator")
 
     const location = useLocation();
     const importedChallenge: SerializedChallenge | undefined = location.state;
@@ -31,7 +29,7 @@ const ImportedChallengeViewBreadcrumb = () => {
 
     return <PBreadcrumbs>
         <Link to="/" style={{ textDecoration: 'none' }}>
-            <Typography>Desafío creado por la comuinidad</Typography>
+            <Typography>{t("importedChallengedHeader")}</Typography>
         </Link>
 
         <Typography>{importedChallenge.title}</Typography>
