@@ -1,4 +1,4 @@
-import { Breadcrumbs, Typography, useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Challenge, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./emberView/EmberView";
@@ -6,6 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
 import { useThemeContext } from "../theme/ThemeContext";
+import { PBreadcrumbs } from "./PBreadcrumbs";
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const { theme } = useThemeContext()
@@ -18,7 +19,7 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const shouldShowChapter = !isSmallScreen
 
     return <>
-        <Breadcrumbs separator=">" >
+        <PBreadcrumbs>
 
             <Link to="/">
                 <HomeIcon style={{ display: 'flex', color: '#787878' }} />
@@ -39,7 +40,7 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
             <Typography>{t(`${path.challenge.id}.title`, { ns: "challenges" })}</Typography>
 
-        </Breadcrumbs>
+        </PBreadcrumbs>
     </>
 }
 
