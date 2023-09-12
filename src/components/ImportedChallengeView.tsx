@@ -5,6 +5,7 @@ import { SerializedChallenge } from "./serializedChallenge";
 import { Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { PBreadcrumbs } from "./PBreadcrumbs";
+import { useThemeContext } from "../theme/ThemeContext";
 
 export const EMBER_IMPORTED_CHALLENGE_PATH = "desafio/react-imported-challenge"
 
@@ -20,19 +21,19 @@ export const ImportedChallengeView = () => {
 const ImportedChallengeViewBreadcrumb = () => {
 
     const { t } = useTranslation("creator")
+    const { theme } = useThemeContext()
 
     const location = useLocation();
     const importedChallenge: SerializedChallenge | undefined = location.state;
 
     if (!importedChallenge) throw new Error("No hay desafio importado :(")
 
-
     return <PBreadcrumbs>
         <Link to="/" style={{ textDecoration: 'none' }}>
-            <Typography>{t("importedChallengedHeader")}</Typography>
+            <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t("importedChallengedHeader")}</Typography>
         </Link>
 
-        <Typography>{importedChallenge.title}</Typography>
+        <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" }}}>{importedChallenge.title}</Typography>
 
     </PBreadcrumbs>
 }
