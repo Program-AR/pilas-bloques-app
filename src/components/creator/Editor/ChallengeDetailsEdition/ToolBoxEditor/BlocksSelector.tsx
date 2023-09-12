@@ -121,7 +121,7 @@ type CategorizedToggleProps = {
 }
 
 export const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized}: CategorizedToggleProps) => {
-	const { t } = useTranslation("blocks")
+	const { t } = useTranslation(["blocks", "creator"])
 
 	const handleIsCategorizedOnChange = (event: { target: { checked: boolean } }) => {
 		setIsCategorized(event.target.checked)
@@ -142,10 +142,10 @@ export const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized
 							onChange={handleIsCategorizedOnChange}
 						/>
 					}
-					label={t("categories.categorized")}
+					label={t("categories.categorized", {ns:"blocks"})}
 				/>
 				<Typography width="60%" textAlign="right" lineHeight="1.2" variant="caption">
-					{t("toolbox.categoriesHint")}
+					{t("toolbox.categoriesHint", {ns:"creator"})}
 				</Typography>
 			</Stack>
 		</>

@@ -15,15 +15,13 @@ export const ToolboxPreview = ({blocksToPreview, categorized}: ToolboxPreviewPro
 
   const blocksWithCategories: BlockType[] = blocksToPreview.map(getBlockFromId)
 
-  console.log(categorizedToolbox(blocksWithCategories))
-
   setupBlocklyBlocks(t)
 
   return (
       <>
-      <div style={{ height: "600px", width: "800px"}}>
+      <div style={{ height: "600px", width: "800px"}} key={"blockly" + categorized + blocksToPreview.length}> {/* The key is needed to force a rerender on categorized change an blocks change. Without this it crashes or it doesnt update.*/}
           <BlocklyWorkspace
-          toolboxConfiguration={categorized ? categorizedToolbox(blocksWithCategories) : categorizedToolbox(blocksWithCategories)}
+          toolboxConfiguration={categorized ? categorizedToolbox(blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
           className="fill-height"
           workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
           onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
