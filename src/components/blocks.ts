@@ -38,59 +38,9 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'primitives'
     },
     {
-        id: 'Volver',
-        intlId: 'return',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'Avanzar',
-        intlId: 'advance',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'VolverABordeIzquierdo',
-        intlId: 'goToLeftBorder',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'VolverAlBordeIzquierdo',
-        intlId: 'backToLeftBorder',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'SiguienteFila',
-        intlId: 'nextLine',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'SiguienteFilaTotal',
-        intlId: 'nextTotalLine',
-        categoryId: 'primitives'
-    },
-    {
-        id: 'SiguienteColumna',
-        intlId: 'nextColumn',
-        categoryId: 'primitives'
-    },
-    {
         id: 'MoverA',
         intlId: 'moveTo',
         categoryId: 'primitives'
-    },
-    { 
-        id: 'TocandoAbajo', 
-        intlId: 'touchMoveDown', 
-        categoryId: 'sensors' 
-    },
-    { 
-        id: 'TocandoDerecha', 
-        intlId: 'touchMoveRight', 
-        categoryId: 'sensors' 
-    },
-    {
-        id: 'TocandoFinCamino', 
-        intlId: 'reachedGoal', 
-        categoryId: 'sensors' 
     },
     { 
         id: 'HayObstaculoArriba', 
@@ -110,16 +60,6 @@ export const commonBlocks: BlockType[] = [
     { 
         id: 'HayObstaculoDerecha', 
         intlId: 'obstacleAtRight', 
-        categoryId: 'sensors' 
-    },
-    { 
-        id: 'PuedeMoverAbajo', 
-        intlId: 'canMoveDown', 
-        categoryId: 'sensors' 
-    },
-    {  
-        id: 'PuedeMoverDerecha', 
-        intlId: 'canMoveRight', 
         categoryId: 'sensors' 
     },
     { 
@@ -158,11 +98,6 @@ export const commonBlocks: BlockType[] = [
         categoryId: 'values' 
     },
     { 
-        id: 'RepetirVacio', 
-        intlId: 'repeatEmpty', 
-        categoryId: 'repetitions' 
-    },
-    { 
         id: 'Repetir', 
         intlId: 'repeat', 
         categoryId: 'repetitions'
@@ -196,8 +131,8 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'primitives' 
     },
     { 
-        id: 'UsarPaleta', 
-        intlId: 'usePaddle', 
+        id: 'RebotarPingPong', 
+        intlId: 'bouncePingPong', 
         categoryId: 'primitives' 
     },
     { 
@@ -211,8 +146,8 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'primitives' 
     },
     { 
-        id: 'ObservarMariposa', 
-        intlId: 'watchButterfly', 
+        id: 'FotografiarMariposa', 
+        intlId: 'photographButterfly', 
         categoryId: 'primitives' 
     },
     { 
@@ -266,26 +201,6 @@ export const sceneBlocks: BlockType[] = [
         categoryId: 'primitives' 
     },
     { 
-        id: 'PasarASiguienteComputadora', 
-        intlId: 'nextComputer', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'PrenderComputadora', 
-        intlId: 'turnComputerOn', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'ApagarComputadora', 
-        intlId: 'turnComputerOff', 
-        categoryId: 'primitives' 
-    },
-    { 
-        id: 'InstalarJuego', 
-        intlId: 'installGame', 
-        categoryId: 'primitives' 
-    },
-    { 
         id: 'PatearPelotaChuy', 
         intlId: 'kickFootballBall',
         categoryId: 'primitives' 
@@ -324,6 +239,11 @@ export const sceneBlocks: BlockType[] = [
         id: 'TocandoPaleta', 
         intlId: 'paddleHere', 
         categoryId: 'sensors' 
+    },
+    { 
+        id: 'RecogerPaleta', 
+        intlId: 'pickPaddle', 
+        categoryId: 'primitives' 
     },
     { 
         id: 'TocandoPelotaChuy', 
@@ -384,7 +304,23 @@ export const sceneBlocks: BlockType[] = [
         id: 'HayChurrasco', 
         intlId: 'steakHere', 
         categoryId: 'sensors' 
+    },
+    {
+        id: 'HayCargador',
+        intlId: 'chargerHere',
+        categoryId: 'sensors'
+    },
+    {
+        id: 'HayEnsaladera',
+        intlId: 'saladBowlHere',
+        categoryId: 'sensors'
+    },
+    {
+        id: 'HayTrofeo',
+        intlId: 'trophyHere',
+        categoryId: 'sensors'
     }
+
 ]
 
 const allBlocks: BlockType[] = commonBlocks.concat(sceneBlocks)

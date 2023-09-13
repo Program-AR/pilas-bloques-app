@@ -18,19 +18,14 @@ const CreateChallengeCard = () => {
 
 export const CreatorCards = () => {
 	const {t} = useTranslation("home")
-	const shouldShow = process.env.NODE_ENV !== 'production'
 	
-	return shouldShow ? (
-		<>
+	return <>
 			<Typography className={styles.title} variant="h5">{t("creatorTitle")}</Typography>
 			<Stack direction="row" className={styles["home-container"]}>
 				<CreateChallengeCard />
 				<ImportChallengeCard />
 			</Stack>
-		</>)
-	:
-	<></>
-	
+		</>
 }
 
 

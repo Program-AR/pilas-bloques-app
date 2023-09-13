@@ -1,7 +1,6 @@
 import { Stack } from "@mui/material";
 import { Header, HeaderText } from "../../header/Header";
 import { SceneEdition } from "./SceneEdition/SceneEdition";
-import { TitleEdition } from "./EditorSubHeader/TitleEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { useTranslation } from "react-i18next";
@@ -31,14 +30,13 @@ export const CreatorEditor = () => {
 
 const EditorSubHeader: React.FC = () => 
   <CreatorSubHeader>
-      <TitleEdition/>
-      <Actions/>
+    <DiscardChallengeButton/>
+    <Actions/>
   </CreatorSubHeader>
 
 const Actions = () => <>
   <PreviewButton/>
   <Stack direction="row" alignItems={"center"}>
-    <DiscardChallengeButton/>
     <DownloadButton/>
   </Stack>
 </>

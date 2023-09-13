@@ -1,6 +1,6 @@
 {
 	"selection": {
-		"title": "Creá un nuevo desafio eligiendo un personaje.",
+		"title": "Seleccionar personaje",
 		"subtitle": "Cada uno tiene sus propios comandos, sensores y objetivos.",
 		"challengeBeingCreated": "Ya tenés un desafío en creación. Podes continuar editándolo o descartarlo",
 		"discardWarning": "¡Cuidado! ¡Si descartás tu desafío no vas a poder recuperarlo!",
@@ -8,17 +8,90 @@
 		"discard": "Descartar",
 		"loadChallenge": "Importar desafío creado",
 		"importError": "El archivo es inválido",
+		"name": "Nombre",
+		"interests": "Intereses",
+		"personality": "Personalidad",
+		"origin": "Origen",
+		"curiousFact": "Dato curioso",      
+		"goals": "Objetivos",
+		"creator": "creá tu desafio",
 		"cards": {
-			"Lita": "Lita",
-			"Duba": "Duba",
-			"Yvoty": "Yvoty",
-			"Manic": "Mañic",
-			"Capy": "Capy y Guyrá",
-			"Chuy": "Chuy"
+			"Lita": { 	"name": "Lita",
+						"definition": "la mulita",
+						"interests": "Cultivar la tierra.",
+						"personality": "Risueña (¡siempre la vas a ver sonriendo!).",
+						"origin": "Mesopotamia.",
+						"curiousFact": "Tiene su propia huerta y le gusta enrollarse como una bola.",
+						"goals": {
+							"letucce": "Agarrar las lechugas.",
+						 	"tomato": "Agarrar los tomates.",
+							"salad": "Preparar las ensaladas."
+						}
+			},
+			"Duba": { 	"name": "Duba",
+						"definition": "la puma",
+						"interests": "La cocina.",
+						"personality": "Hambrienta (¡todo el tiempo tiene hambre!).",
+						"origin": "Cordillera patagónica",
+						"curiousFact": "Su comida favorita es el churrasco y le encanta hacer asados.",
+						"goals": {
+							"steak": "Comer los churrascos."
+						}
+			},
+			"Yvoty": { 	"name": "Yvoty",
+						"definition": "la yaguareté",
+						"interests": "La tecnología. Las redes sociales.",
+						"personality": "Armónica. Despreocupada (¡no le importa el qué dirán!).",
+						"origin": "Selva misionera.",
+						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
+						"goals": {
+							"firefly": "Despertar las luciérnagas.",
+							"butterfly": "Fotografiar las mariposas.",
+							"unlockCellphone": "Desbloquear los celulares.",
+							"charger": "Agarrar los cargadores.",
+							"chargeCellphone": "Cargar los celulares."
+						}
+			},
+			"Manic": {  "name": "Mañic",
+						"definition": "la ñandú",
+						"interests": "La ciencia. La astronomía.",
+						"personality": "Curiosa. Activa. Ágil (¡nunca se olvida sus patines!).",
+						"origin": "Llanura pampeana.",
+						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
+						"goals": {
+							"telescope": "Reparar los telescopios.",
+							"star": "Observar las estrellas. ",
+							"planet": "Observar los planetas."
+						}
+			},
+			"Capy": {  "name": "Capy y Guyrá",
+						"definition": "el carpincho y el picabuey",
+						"interests": "El medio ambiente. La ecología.",
+						"personality": "Protectores. Amigos (¡siempre están combinados!).",
+						"origin": "Humedales.",
+						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
+						"goals": {
+							"can":"Recoger las latas. ",
+							"paper":"Recoger los papeles."
+						}
+			},
+			"Chuy": {  "name": "Chuy",
+						"definition": "le pingüine de magallanes",
+						"interests": "El trabajo en equipo. Los deportes.",
+						"personality": "Hiperactive. Arriesgade (¡le encanta escalar acantilados!).",
+						"origin": "Playa patagónica.",
+						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
+						"goals": {
+							"paddle": "Recoger las paletas.",					
+							"trophy": "Recoger los trofeos.",
+							"pingpong": "Rebotar las pelotas de ping pong.",
+							"pulpito": "Rebotar las pelotas pulpito.",
+							"football":"Patear las pelotas de fútbol."
+						}
+			}
 		}
 	},
 	"editor": {
-		"title": "Escribir título",
 		"buttons": {
 			"discardChallenge": "Descartar desafio",
 			"discardChallengeShort": "Descartar",
@@ -26,11 +99,19 @@
 			"preview": "Ver desafio",
 			"previewShort": "Ver",
 			"keepEditing": "Seguir editando",
-			"keepEditingShort": "Editar"
-
+			"keepEditingShort": "Editar",
+			"creator": "Seleccionar personaje",
+			"creatorShort": "Seleccionar",
+			"loadChallenge": "Abrir desafío creado",
+			"loadChallengeShort": "Abrir"
 		},
 		"editorHeader": "Editar desafio",
 		"previewModeHeader": "Ver desafio"
+	},
+	"title": {
+		"title": "Escribí el título del desafío",
+		"button": "Escribir título",
+		"input": "Título"	
 	},
 	"statement": {
 		"title": "Enunciado",
@@ -40,7 +121,8 @@
 		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown.",
 		"clue": "Pista",
 		"includeClue": "Incluir una pista",
-		"defaultDescription": "Así se verá tu **enunciado**..."
+		"defaultDescription": "Así se verá tu **enunciado**...",
+		"defaultTitle": "Escribí tu título..."
 	},
 	"tools": {
 		"putObstacle": "Añadir obstáculo",

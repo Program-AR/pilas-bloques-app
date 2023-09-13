@@ -49,7 +49,8 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                     'AgarrarLechuga',
                     'PrepararEnsalada', 
                     'HayLechuga', 
-                    'HayTomate' 
+                    'HayTomate',
+                    'HayEnsaladera'
                 ]
             }
         case "Duba": 
@@ -77,31 +78,30 @@ export const sceneObjectByType = (type:SceneType): SceneObject => {
                 validCells: ['T','E','U','P','G'],
                 specificBlocksIds: [
                     'RecogerTrofeo', 
-                    'UsarPaleta', 
+                    'RebotarPingPong', 
                     'PatearPulpito', 
                     'PatearPelotaChuy', 
                     'TocandoPulpito', 
                     'TocandoPingPong', 
-                    'TocandoPaleta', 
-                    'TocandoPelotaChuy'
+                    'TocandoPaleta',
+                    'RecogerPaleta', 
+                    'TocandoPelotaChuy',
+                    'HayTrofeo'
                 ]
             }
         case "Yvoty": 
             return {
-                validCells: ['C','K','L','M','T'],
+                validCells: ['C','K','L','M'],
                 specificBlocksIds: [
-                    'PrenderComputadora', 
-                    'ApagarComputadora', 
-                    'PasarASiguienteComputadora', 
-                    'InstalarJuego', 
                     'DespertarLuciernaga', 
-                    'ObservarMariposa', 
+                    'FotografiarMariposa', 
                     'DesbloquearCelular', 
                     'AgarrarCargador', 
                     'TocandoMariposa', 
                     'TocandoCelular', 
                     'TocandoLuciernaga', 
-                    'CargarCelular'
+                    'CargarCelular',
+                    'HayCargador'
                 ]
             }
         case "Capy": 
@@ -133,10 +133,10 @@ export const defaultScene = (type: SceneType): Scene => {
 	}
 }
 
-export const defaultChallenge = (type: SceneType, defaultDescription = ""): SerializedChallenge => {
+export const defaultChallenge = (type: SceneType, defaultDescription = "", defaultTitle=""): SerializedChallenge => {
 	return {
 		fileVersion: 1,
-		title: "",
+		title: defaultTitle,
 		statement: {
 			description: defaultDescription
 		},

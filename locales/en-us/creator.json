@@ -1,24 +1,22 @@
 {
 	"selection": {
-		"title": "Create your own challenge choosing a character. ",
-		"subtitle": "Each one has their own commands, sensors and objectives.",
+		"title": "Choose a character",
+		"subtitle": "Each one has their own commands, sensors and goals.",
 		"challengeBeingCreated": "You already have a challenge in progress. You can choose to continue editing or to discard it",
 		"discardWarning": "Careful! If you discard your challenge you won't be able to recover it!",
 		"continueEditing": "Continue editing",
 		"discard": "Discard",
 		"loadChallenge": "Import a created challenge",
 		"importError": "The file is invalid",
-		"cards": {
-			"Lita": "Lita",
-			"Duba": "Duba",
-			"Yvoty": "Yvoty",
-			"Manic": "Mañic",
-			"Capy": "Capy y Guyrá",
-			"Chuy": "Chuy"
-		}
+		"name": "Name",
+		"interests": "Interests",
+		"personality": "Personality",
+		"origin": "Origin",
+		"curiousFact": "Curious fact",      
+		"goals": "Goals",
+		"creator": "create your own challenge"
 	},
 	"editor": {
-		"title": "Write your title",
 		"buttons": {
 			"discardChallenge": "Discard challenge",
 			"discardChallengeShort": "Discard",
@@ -26,11 +24,21 @@
 			"preview": "Challenge preview",
 			"previewShort": "Preview",
 			"keepEditing": "Keep editing",
-			"keepEditingShort": "Edit"
+			"keepEditingShort": "Edit",
+			"creator": "Select character",
+			"creatorShort": "Select",
+			"loadChallenge": "Open a created challenge",
+			"loadChallengeShort": "Open"
+
 
 		},
 		"editorHeader": "Edit challenge",
 		"previewModeHeader": "Challenge preview"
+	},
+	"title": {
+		"title": "Write your challenge's title",
+		"button": "Write your title",
+		"input": "Title"	
 	},
 	"statement": {
 		"title": "Statement",
@@ -38,9 +46,10 @@
 		"description": "Description",
 		"clue": "Clue",
 		"markdownTitle": "This is what your statement and clue will look like:",
-		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the objective. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
+		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the goal. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
 		"includeClue": "Include a clue",
-		"defaultDescription": "Your **statement** will look like this..."
+		"defaultDescription": "Your **statement** will look like this...",
+		"defaultTitle": "Write your challenge's title..."
 	},
 	"tools": {
 		"putObstacle": "Add obstacle",

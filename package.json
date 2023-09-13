@@ -1,6 +1,6 @@
 {
   "name": "pilasbloques",
-  "version": "2.1.1",
+  "version": "2.1.5",
   "productName": "Pilas Bloques",
   "genericName": "Programacion con bloques",
   "description": "Una herramienta para aprender a programar utilizando bloques",
@@ -31,6 +31,7 @@
     "i18next-resources-to-backend": "^1.1.2",
     "react": "^18.2.0",
     "react-blockly": "^8.0.0",
+    "react-carousel3": "^1.0.0",
     "react-dom": "^18.2.0",
     "react-ga4": "^2.1.0",
     "react-i18next": "^12.1.5",
@@ -89,7 +90,7 @@
     "ts-jest": "^29.1.1"
   },
   "optionalDependencies": {
-    "electron-installer-debian": "git+https://github.com/Program-AR/electron-installer-debian.git"
+    "electron-installer-debian": "^3.2.0"
   },
   "main": "electron.js",
   "ember-electron": {

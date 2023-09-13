@@ -1,0 +1,54 @@
+.selection {
+    text-align: center;
+    align-items: center;
+    align-content: stretch;
+    width: 100%;
+    display: flex;
+    background-color: var(--home-background);
+}
+
+.selection-background {
+  padding: 20px;
+  margin: 4px;
+  transition: background-image 2s;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  text-align: justify;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.selection-background-actors {
+  transition: background-image 2s;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.selection-text-info {
+    display: flex;
+    align-items: center;
+    animation: 1s textAnim;
+}
+
+@keyframes textAnim {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
