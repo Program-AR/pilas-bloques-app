@@ -227,12 +227,12 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'TocandoPulpito', 
-        intlId: 'ballHerePulpito', 
+        intlId: 'pulpitoBallHere', 
         categoryId: 'sensors' 
     },
     { 
         id: 'TocandoPingPong', 
-        intlId: 'ballHerePingPong', 
+        intlId: 'pingPongBallHere', 
         categoryId: 'sensors' 
     },
     { 
@@ -247,7 +247,7 @@ export const sceneBlocks: BlockType[] = [
     },
     { 
         id: 'TocandoPelotaChuy', 
-        intlId: 'ballHereChuy', 
+        intlId: 'footBallHere', 
         categoryId: 'sensors' 
     },
     { 

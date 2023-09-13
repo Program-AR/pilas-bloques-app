@@ -12,9 +12,9 @@
         "categorized": "Categorizar Bloques"
     },
     "blocks": {
-        "ballHereChuy":"¿Hay una pelota de fútbol acá?",
-        "ballHerePingPong":"¿Hay una pelota de ping pong acá?",
-        "ballHerePulpito":"¿Hay una pelota pulpito acá?",
+        "footBallHere":"¿Hay una pelota de fútbol acá?",
+        "pingPongBallHere":"¿Hay una pelota de ping pong acá?",
+        "pulpitoBallHere":"¿Hay una pelota pulpito acá?",
         "butterflyHere": "¿Hay una mariposa acá?",
         "canHere": "¿Hay una lata acá?",
         "cellphoneHere": "¿Hay un celular acá?",
