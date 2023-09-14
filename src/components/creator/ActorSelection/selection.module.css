@@ -15,7 +15,7 @@
   background-size: cover;
   display: flex;
   text-align: justify;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -24,6 +24,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
+  margin: 30px;
   justify-content: center;
   align-items: center;
   height: 100%;

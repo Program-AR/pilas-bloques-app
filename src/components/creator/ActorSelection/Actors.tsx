@@ -271,7 +271,7 @@ export const Actors = () => {
                 style={item.isSelected ? {} : {opacity: 0.6}} 
                 height={item.isSelected ? "auto" : "250px"} 
                 image={item.actor.image} 
-                sx={{transition: "2s", padding: "0 45px"}} 
+                sx={{transition: "2s"}} 
                 onClick={handleActorOnClick} 
                 />       
         </Stack>
@@ -306,7 +306,7 @@ return (
             className={styles["selection-background-actors"]}
             style={isSmallScreen ? {width: "100%"} : {}}
             sx={{backgroundImage: `url("${baseUrlImage}fondos/${actorSelected.actor.id}.svg")`}}>
-            <Carousel height={350} width={isSmallScreen ? 300 : 700} yRadius={10} xRadius={300} >
+            <Carousel height={350} width={isSmallScreen ? 300 : 700} xOrigin={isSmallScreen ? 200 : 390} yRadius={10} xRadius={isSmallScreen ? 150 : 300} >
                 {actors.map(ActorImage)}
             </Carousel>
             <GoToCreatorButton/>        
