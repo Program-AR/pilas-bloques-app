@@ -51,7 +51,7 @@ export const StatementEdition = (props: StatementEditionType) => {
                         dialogProps={{open: dialogOpen, fullWidth:true, maxWidth:"lg"}}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
-                        isDraggable={true}
+                        isDraggable
                         title={t('statement.title')}>
             <Box style={{ justifyContent:'center'}}>
             

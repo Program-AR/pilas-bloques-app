@@ -66,7 +66,7 @@ export const ToolBoxDialog = () => {
             isOpen={open}
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
-            isDraggable={true}
+            isDraggable
             title={t('toolbox.title')}>
             <div>
                 <Stack alignItems="flex-end">
