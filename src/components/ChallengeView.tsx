@@ -20,12 +20,12 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
     return <>
         <Breadcrumbs separator=">" >
 
-            <Link to="/">
+            <Link to="/" style={{textDecoration: "none"}}>
                 <HomeIcon style={{ display: 'flex', color: '#787878' }} />
 
             </Link>
 
-            <Link to={`/libros/${path.book.id}`}>
+            <Link to={`/libros/${path.book.id}`} style={{textDecoration: "none"}}>
                 <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.book.id}.title`, { ns: "books" })}</Typography>
             </Link>
 

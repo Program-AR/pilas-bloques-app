@@ -16,7 +16,7 @@ const Breadcrumb = (book: Book) => {
 
     return <Breadcrumbs separator=">">
 
-        <Link to="/">
+        <Link to="/" style={{textDecoration: "none"}}>
             <HomeIcon style={{ display:'flex', color: '#787878'}}/> 
         </Link>
         

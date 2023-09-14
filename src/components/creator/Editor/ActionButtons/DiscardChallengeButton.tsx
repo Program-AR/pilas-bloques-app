@@ -4,7 +4,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 
 export const DiscardChallengeButton = () => {
 
-    return <Link to="/creador/seleccionar">
+    return <Link to="/creador/seleccionar" style={{textDecoration: "none"}}>
             <CreatorActionButton startIcon={<ClearIcon/>} nametag='discardChallenge'/>
         </Link>
 
