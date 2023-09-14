@@ -12,9 +12,9 @@
         "categorized": "Categorizar Blocos"
     },
     "blocks": {
-        "ballHereChuy": "Há uma bola de futebol aqui?",
-        "ballHerePingPong": "Há uma bola de pingue-pongue aqui?",
-        "ballHerePulpito": "Há uma bola pulpito aqui?",
+        "footBallHere":"Há uma bola de futebol aqui?",
+        "pingPongBallHere": "Há uma bola de pingue-pongue aqui?",
+        "pulpitoBallHere": "Há uma bola pulpito aqui?",
         "butterflyHere": "Há uma borboleta aqui?",
         "canHere": "Há uma lata aqui?",
         "cellphoneHere": "Há um celular aqui?",
@@ -26,8 +26,9 @@
         "fireflyHere": "Há uma vaga-lume aqui?",
         "Functions": "Função",
         "holdPaper": "Segurar papel",
-        "kickFootballBall": "Patear pelota de fútbol",
-        "bounceRubberBall": "Rebotar pelota pulpito",
+        "kickFootballBall": "Chutar bola de futebol",
+        "bounceRubberBall": "Rebotar bola pulpito",
+        "bouncePingPong": "Rebotar bola de pingue-pongue",
         "left": "A esquerda",
         "lettuceHere": "Há alface aqui?",
         "logic_compare": "Comparar",
@@ -48,6 +49,7 @@
         "pickCharger": "Pegar cargador",
         "pickLettuce": "Pegar alface",
         "pickPaper": "Pegar papel",
+        "pickPaddle": "Pegar paleta",
         "pickTomato": "Pegar tomate",
         "pickTrophy": "Pegar trofeo",
         "planetHere": "Há um planeta aqui?",
@@ -69,6 +71,9 @@
         "photographButterfly": "Fotografar borboleta",
         "watchPlanet": "Perceber planeta",
         "watchStar": "Perceber estrela",
-        "while": "Repetir até que"
+        "while": "Repetir até que",
+        "chargerHere": "Há um cargador aqui?",
+        "trophyHere": "Há um trofeo aqui?",
+        "saladBowlHere": "Há uma tigela de salada aqui?"
     }
 }
