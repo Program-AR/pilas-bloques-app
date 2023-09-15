@@ -12,9 +12,9 @@
         "categorized": "Categorize Blocks"
     },
     "blocks": {
-        "ballHereChuy":"Is there a football ball here?",
-        "ballHerePingPong":"Is there a ping pong ball here?",
-        "ballHerePulpito":"Is there a pulpito ball here?",
+        "footBallHere":"Is there a football ball here?",
+        "pingPongBallHere":"Is there a ping pong ball here?",
+        "pulpitoBallHere":"Is there a pulpito ball here?",
         "butterflyHere": "Is there a butterfly here?",
         "canHere": "Is there a can here?",
         "cellphoneHere": "Is there a cell phone here?",
