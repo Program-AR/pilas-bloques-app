@@ -11,7 +11,7 @@ export type HomeCardProps = {
 type LinkCardProps = {url: string} & HomeCardProps
 
 export const LinkCard = (props: LinkCardProps) =>
-    <Link to={props.url} style={{ textDecoration: 'none' }}>
+    <Link to={props.url}>
         {HomeCard(props)}
     </Link>
 

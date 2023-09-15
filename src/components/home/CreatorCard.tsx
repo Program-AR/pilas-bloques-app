@@ -10,7 +10,7 @@ const CreateChallengeCard = () => {
     const {t} = useTranslation("home")
 
 	return (
-		<Link to="creador/seleccionar" style={{ textDecoration: 'none' }}>
+		<Link to="creador/seleccionar">
         	<CreatorCard visibleBadge={true} text={t("cards.creator")} color="#ffffff" icon={PaintbrushIcon} />
     	</Link>
 	)
