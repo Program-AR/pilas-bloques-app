@@ -16,11 +16,9 @@ type HeaderTextProps = {
 }
 
 export const HeaderText = (props: HeaderTextProps) => {
-    const { theme } = useThemeContext()
 
 	return <Typography 
-		className={styles["header-text"]}
-		sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>
+		className={styles["header-text"]}>
 		{props.text}
 	</Typography>
 }
