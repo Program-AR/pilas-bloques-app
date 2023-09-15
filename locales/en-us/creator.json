@@ -77,5 +77,6 @@
 		"next": "Next",
 		"prev": "Previous",
 		"multipleInitialScenarios": "Initial scenarios"
-	}
+	},
+	"importedChallengedHeader": "Challenge created by the community"
 }

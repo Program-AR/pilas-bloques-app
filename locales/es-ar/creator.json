@@ -150,5 +150,6 @@
 		"next": "Siguiente",
 		"prev": "Anterior",
 		"multipleInitialScenarios": "Escenarios iniciales"
-	}
+	},
+	"importedChallengedHeader": "Desafío creado por la comunidad"
 }
