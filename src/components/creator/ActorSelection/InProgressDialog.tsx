@@ -31,7 +31,7 @@ export const ChallengeInProgressDialog = () => {
 						<b>{t("selection.discardWarning")}</b>
 						<Stack sx={{ marginTop: theme.spacing(1) }} direction='row' gap={theme.spacing(1)} justifyContent='flex-end'>
 							<Button variant="contained" color='error' onClick={onDiscard}>{t("selection.discard")}</Button>
-							<Link to="/creador/editar" style={{textDecoration: "none"}}>
+							<Link to="/creador/editar">
 								<Button variant="contained" color="success" >{t("selection.continueEditing")}</Button>
 							</Link>
 						</Stack>

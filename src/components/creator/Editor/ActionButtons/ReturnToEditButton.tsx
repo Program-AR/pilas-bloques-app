@@ -4,7 +4,7 @@ import EditIcon from '@mui/icons-material/Edit';
 
 export const ReturnToEditionButton = () => {
 
-    return <Link to="/creador/editar" style={{textDecoration: "none"}}>
+    return <Link to="/creador/editar">
         <StyledCreatorActionButton startIcon={<EditIcon />} nametag='keepEditing' />
     </Link>
 

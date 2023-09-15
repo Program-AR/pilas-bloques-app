@@ -12,7 +12,7 @@ export const About = () =>{
     <Container className={styles.about}>
         <Typography className={styles.title} variant="h4">{t("title")}</Typography>
         <Typography>{t("text")}
-            <Link to="https://pilasbloques.program.ar/acerca-de-pilas-bloques/" target="_blank" style={{textDecoration: "none"}}>{t("redirect")}</Link>
+            <Link to="https://pilasbloques.program.ar/acerca-de-pilas-bloques/" target="_blank">{t("redirect")}</Link>
         </Typography>
     </Container>
     </>
