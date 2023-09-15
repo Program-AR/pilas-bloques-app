@@ -1,6 +1,18 @@
 import { FC } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogProps, DialogTitle } from "@mui/material"
 import { useThemeContext } from '../../theme/ThemeContext';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Draggable from 'react-draggable';
+
+function PaperComponent(props: PaperProps) {
+  return (
+    <Draggable
+      handle="#draggable-dialog"    
+    >
+      <Paper {...props} />
+    </Draggable>
+  );
+}
 
 export interface ModalDialogProps {
     isOpen: boolean;
@@ -9,7 +21,7 @@ export interface ModalDialogProps {
     title: string;
     dialogProps?: DialogProps;
     children?: JSX.Element;
-
+    isDraggable?: boolean;
   }
 
 export const GenericModalDialog: FC<ModalDialogProps> = ({
@@ -18,6 +30,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
     onCancel,
     title,
     dialogProps,
+    isDraggable,
     children
   }) => {
  
@@ -34,8 +47,14 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
 
     return (
         <>
-        <Dialog open={isOpen} {...dialogProps} onClose={handleClose} >
-        <DialogTitle sx={{height: '45px', display: 'flex', alignItems: 'center'}}>{title}</DialogTitle>
+        <Dialog 
+          open={isOpen} 
+          {...dialogProps} 
+          onClose={handleClose}
+          PaperComponent={isDraggable ? PaperComponent : undefined}
+          aria-labelledby="draggable-dialog" 
+        >          
+        <DialogTitle id="draggable-dialog" sx={{ cursor: `${isDraggable ? 'move':'auto'}`,  height: '45px', display: 'flex', alignItems: 'center'}}>{title}</DialogTitle>
         <DialogContent sx={{backgroundColor: theme.palette.background.default}}>
           {children}
         </DialogContent>
