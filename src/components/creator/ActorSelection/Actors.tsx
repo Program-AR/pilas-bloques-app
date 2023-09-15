@@ -219,7 +219,7 @@ export const Actors = () => {
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
     const goToCreator = () => {
-        LocalStorage.saveCreatorChallenge(defaultChallenge(actorSelected.actor.id, t("statement.defaultDescription")!))
+        LocalStorage.saveCreatorChallenge(defaultChallenge(actorSelected.actor.id, t("statement.defaultDescription")!, t("statement.defaultTitle")!))
         navigate("/creador/editar")
     }
   
