@@ -52,7 +52,7 @@
     "pack:linux_zip": "bash ./scripts/package.sh -linux_zip",
     "pack:linux": "bash ./scripts/package.sh -linux",
     "pack:osx": "bash ./scripts/package.sh -osx",
-    "pack:win32": "bash ./scripts/package.sh -win32",
+    "pack:win": "bash ./scripts/package.sh -win",
     "pack:html": "bash ./scripts/package.sh -html",
     "clean": "rm -rf node_modules build binaries",
     "release": "release-it --only-version"
@@ -76,7 +76,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^23.1.0",
+    "electron": "^22.3.21",
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
     "makensis": "^2.0.5",
