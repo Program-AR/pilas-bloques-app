@@ -23,7 +23,7 @@ export namespace LocalStorage {
     export const saveImportedChallenge = (importedChallenge: EmberExecutableChallenge) => _save(PB_IMPORTED_CHALLENGE, importedChallenge)
     export const saveUser = (user: User | null) => _save(PB_USER, user)
     export const saveCreatorChallenge = (challenge: SerializedChallenge | null) => _save(PB_CREATOR_CHALLENGE, challenge)
-    export const toggleDarkMode = () => _save(PB_USE_NIGHT_THEME, (!getIsDarkMode()))
+    export const saveDarkMode = (darkMode: boolean) => _save(PB_USE_NIGHT_THEME, darkMode)
 
     const _get = (key: string) => _doSafe(key, (storage: Storage) => {
         const value = storage.getItem(key)
