@@ -25,7 +25,6 @@ export const MarkdownEditor = (props: MarkdownEditorProps) => {
     const textToShow: string = statementTextToShow === StatementTextToShow.STATEMENT ? props.statement : props.clue!
 
     return <>
-        <Typography variant="body1" marginY={theme.spacing(2)}>{t('statement.descriptionHint')}</Typography>
         <MarkdownInput setShowStatement={setShowStatement} statement={props.statement} clue={props.clue} setClue={props.setClue} setStatement={props.setStatement}/>
         <MarkdownResult text={textToShow} setShowStatement={setShowStatement} clueIsEnabled={!!props.clue}/>
     </>

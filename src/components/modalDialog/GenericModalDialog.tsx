@@ -55,7 +55,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
           PaperComponent={isDraggable ? PaperComponent : undefined}
           aria-labelledby="draggable-dialog" 
         >          
-        <DialogTitle id="draggable-dialog" sx={{ cursor: `${isDraggable ? 'move':'auto'}`,  height: '45px', display: 'flex', alignItems: 'center'}}>{title}</DialogTitle>
+        <DialogTitle id="draggable-dialog" sx={{ cursor: `${isDraggable ? 'move':'auto'}`, fontWeight: 'bold', height: '50px', display: 'flex', alignItems: 'center'}}>{title}</DialogTitle>
         <DialogContent sx={{backgroundColor: theme.palette.background.default}}>
           {children}
         </DialogContent>
