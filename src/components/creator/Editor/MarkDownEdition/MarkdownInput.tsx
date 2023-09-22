@@ -1,4 +1,4 @@
-import { Switch, FormControlLabel, TextField} from "@mui/material";
+import { Switch, FormControlLabel, TextField } from "@mui/material";
 import { StatementTextToShow } from "./MarkdownEditor";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
@@ -41,6 +41,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
     <>
     <TextField
         fullWidth
+        autoFocus
         size="small"
         multiline={true}
         inputProps={{ "data-testid": "statement-input" }}
@@ -51,7 +52,6 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
         sx={{marginTop: '10px'}}
         id="statement-input"
     />
-
     <FormControlLabel control={<Switch color="secondary" onChange={toggleClueEnabled} checked={clueIsEnabled}/>} label={t("statement.includeClue")}/>
 
     {clueIsEnabled ? 

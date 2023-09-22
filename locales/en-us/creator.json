@@ -43,10 +43,8 @@
 	"statement": {
 		"title": "Write the challenge's statement for ",
 		"button": "Write the statement",
-		"description": "Description",
+		"description": "Statement text",
 		"clue": "Clue",
-		"markdownTitle": "This is what your statement and clue will look like:",
-		"descriptionHint": "Write a sentence for the exercise. Make it concise and clearly express the goal. You can use **bold**, _italics_ and :wink: emojis with Markdown syntax.",
 		"includeClue": "Include a clue",
 		"defaultDescription": "Your **statement** will look like this...",
 		"defaultTitle": "Write your challenge's title..."

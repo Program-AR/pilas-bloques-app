@@ -12,7 +12,7 @@ export const TitleEdition = () => {
 
     const initialTitle = LocalStorage.getCreatorChallenge()!.title
     const actor = LocalStorage.getCreatorChallenge()!.scene.type
-    
+
     const [titleInProgress, setTitleInProgress] = useState<string>(initialTitle);
     
     const [dialogOpen, setDialogOpen] = useState<boolean>(false)
@@ -51,6 +51,7 @@ export const TitleEdition = () => {
                 variant="standard"
                 label={t('title.input')}
                 value={titleInProgress}
+                autoFocus
                 onChange={props => setTitleInProgress(props.target.value)}
                 inputProps={{maxLength: 38}}
             />            

@@ -14,7 +14,7 @@ export const StatementEdition = (props: StatementEditionType) => {
 
     const { t } = useTranslation('creator');
 
-    const initialStatement = LocalStorage.getCreatorChallenge()!.statement.description
+    const initialStatement: string = LocalStorage.getCreatorChallenge()!.statement.description
     const initialClue = LocalStorage.getCreatorChallenge()!.statement.clue
     const actor = LocalStorage.getCreatorChallenge()!.scene.type
 

@@ -116,9 +116,7 @@
 	"statement": {
 		"title": "Escribí el enunciado del desafío para ",
 		"button": "Escribir enunciado",
-		"description": "Descripción",
-		"markdownTitle": "Así se verán tu enunciado y pista:",
-		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown.",
+		"description": "Texto del enunciado",
 		"clue": "Pista",
 		"includeClue": "Incluir una pista",
 		"defaultDescription": "Así se verá tu **enunciado**...",
