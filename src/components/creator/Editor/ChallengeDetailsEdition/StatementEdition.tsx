@@ -16,6 +16,7 @@ export const StatementEdition = (props: StatementEditionType) => {
 
     const initialStatement = LocalStorage.getCreatorChallenge()!.statement.description
     const initialClue = LocalStorage.getCreatorChallenge()!.statement.clue
+    const actor = LocalStorage.getCreatorChallenge()!.scene.type
 
     const [statement, setStatement] = useState<string>(initialStatement)
     const [clue, setClue] = useState<string | undefined>(initialClue)
@@ -52,7 +53,7 @@ export const StatementEdition = (props: StatementEditionType) => {
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         isDraggable
-                        title={t('statement.title')}>
+                        title={`${t('statement.title')}${actor}`}>
             <Box style={{ justifyContent:'center'}}>
             
             <MarkdownEditor statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} />
