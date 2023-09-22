@@ -41,6 +41,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
     <>
     <TextField
         fullWidth
+        autoFocus
         size="small"
         multiline={true}
         inputProps={{ "data-testid": "statement-input" }}

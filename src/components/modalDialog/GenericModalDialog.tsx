@@ -50,6 +50,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
         <Dialog 
           open={isOpen} 
           {...dialogProps} 
+          disableRestoreFocus
           onClose={handleClose}
           PaperComponent={isDraggable ? PaperComponent : undefined}
           aria-labelledby="draggable-dialog" 
