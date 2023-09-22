@@ -9,20 +9,15 @@ export const PageNotFound = () =>{
     const {t} = useTranslation("pageNotFound")
     return <>
     <Header/>
-    <Container className={styles.container}>
+    
+    <Stack direction='column' alignItems='center'>
         <Typography className={styles.title} variant="h4">{t("title")}</Typography>
-        <Stack>
-            <CardMedia            
-                component="img" alt="capy" className={styles.image}
-                height="auto" 
-                image='imagenes/capy_error.png'
-                />       
-        </Stack>
+        <img alt="capy" className={styles.image} src='imagenes/capy_error.png' />
         <Typography className={styles.text} variant="h6">{t("text")}</Typography>
         <Link to="">
             <Button variant="contained" color="success" >{t("home")}</Button>
         </Link>
 
-    </Container>
+    </Stack>
     </>
 }
