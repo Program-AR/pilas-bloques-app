@@ -67,7 +67,7 @@ export const ToolBoxDialog = () => {
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
             isDraggable
-            title={t('toolbox.title')}>
+            title={`${t('toolbox.title')}${challenge.scene.type}`}>
             <div>
                 <Stack alignItems="flex-end">
                     <FormControlLabel key="isCategorized" labelPlacement="start"

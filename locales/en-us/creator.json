@@ -36,13 +36,13 @@
 		"previewModeHeader": "Challenge preview"
 	},
 	"title": {
-		"title": "Write your challenge's title",
-		"button": "Write your title",
+		"title": "Write the challenge's title for ",
+		"button": "Write the title",
 		"input": "Title"	
 	},
 	"statement": {
-		"title": "Statement",
-		"button": "Write your statement",
+		"title": "Write the challenge's statement for ",
+		"button": "Write the statement",
 		"description": "Description",
 		"clue": "Clue",
 		"markdownTitle": "This is what your statement and clue will look like:",
@@ -54,7 +54,7 @@
 	"tools": {
 		"putObstacle": "Add obstacle",
 		"putObject": "Add objects",
-		"putActor": "Move character",
+		"putActor": "Move ",
 		"delete": "Delete"
 	},
 	"scene": {
@@ -62,7 +62,7 @@
 		"numRows": "Modify rows"
 	},
 	"toolbox": {
-		"title": "Select available commands",
+		"title": "Select the challenge's commands for ",
 		"button": "Select available commands",
 		"categoriesHint": "When you want to use procedures there should always be categories"
 	},

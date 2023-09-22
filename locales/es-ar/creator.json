@@ -109,12 +109,12 @@
 		"previewModeHeader": "Ver desafio"
 	},
 	"title": {
-		"title": "Escribí el título del desafío",
+		"title": "Escribí el título del desafío para ",
 		"button": "Escribir título",
 		"input": "Título"	
 	},
 	"statement": {
-		"title": "Enunciado",
+		"title": "Escribí el enunciado del desafío para ",
 		"button": "Escribir enunciado",
 		"description": "Descripción",
 		"markdownTitle": "Así se verán tu enunciado y pista:",
@@ -127,7 +127,7 @@
 	"tools": {
 		"putObstacle": "Añadir obstáculo",
 		"putObject": "Añadir objetos",
-		"putActor": "Mover personaje",
+		"putActor": "Mover a ",
 		"delete": "Borrar"
 	},
 	"scene": {
@@ -135,7 +135,7 @@
 		"numRows": "Modificar filas"
 	},
 	"toolbox": {
-		"title": "Seleccionar comandos disponibles",
+		"title": "Seleccioná los comandos para el desafío de ",
 		"button": "Seleccionar comandos disponibles",
 		"categoriesHint": "Cuando se desee usar procedimientos siempre deberá haber categorías"
 	},
