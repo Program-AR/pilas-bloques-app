@@ -1,17 +1,17 @@
 {
 
     "1": {
-        "title": "Inicial",
+        "title": "Nível Principiante",
         "description": "Desafios do manual para professores \"Informática para a sala de aula, 1º ciclo do ensino básico\""
     },
 
     "2": {
-        "title": "intermédio",
+        "title": "Nível Intermédio",
         "description": "Desafios do caderno para professores \"Programa Atividades para aprender.AR\" A partir do 2º ciclo do ensino básico."
     },
 
     "3": {
-        "title": "Avançado",
+        "title": "Nível Avançado",
         "description": "Desafios Avançados"
     }
     
