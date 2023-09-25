@@ -76,7 +76,7 @@
     ]
   },
   "devDependencies": {
-    "electron": "^22.3.21",
+    "electron": "22.3.24",
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",
     "makensis": "^2.0.5",
