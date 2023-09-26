@@ -4,7 +4,6 @@ import { WbIncandescent, MenuBook } from"@mui/icons-material"
 import { PBCard } from "../../../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
-import { useTranslation } from "react-i18next";
 import { LocalStorage } from "../../../../localStorage";
 import { StatementTextToShow } from "./MarkdownEditor";
 import { useThemeContext } from "../../../../theme/ThemeContext";
@@ -18,7 +17,6 @@ type MarkdownResultProps = {
 export const MarkdownResult = (props: MarkdownResultProps) => {
   const { theme } = useThemeContext()
 
-  const { t } = useTranslation('creator');
   const urlImage = `imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png` 
 
   return <>
