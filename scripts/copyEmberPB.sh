@@ -1,4 +1,4 @@
-PB_APP_VERSION="1.15.1"
+PB_APP_VERSION="1.15.4"
 
 echo "==> Downloading Pilas Bloques app online..."
 mkdir -p tmp
@@ -9,4 +9,9 @@ EMBERPB_FOLDER="public/emberPB"
 rm -rf ${EMBERPB_FOLDER}
 mkdir -p ${EMBERPB_FOLDER}
 tar -xf tmp/pilasbloques-${PB_APP_VERSION}-html.tar.gz -C ${EMBERPB_FOLDER} --strip-components 1
+tarsucceeded=$?
 rm tmp/pilasbloques-${PB_APP_VERSION}-html.tar.gz
+if [ $tarsucceeded -ne 0 ]; then 
+    exit 1 
+fi
+
