@@ -1,9 +1,8 @@
-import { Typography, Button, Stack, CardMedia } from "@mui/material"
+import { Typography, Button, Stack } from "@mui/material"
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Header } from "../header/Header"
 import styles from "./pageNotFound.module.css"
-import { Container } from "@mui/material";
 
 export const PageNotFound = () =>{
     const {t} = useTranslation("pageNotFound")
