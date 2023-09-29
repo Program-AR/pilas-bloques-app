@@ -42,7 +42,7 @@ export const TitleEdition = () => {
                         dialogProps={{open: dialogOpen}}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
-                        title={`${t('title.title')}${actor}`}>
+                        title={`${t('title.title')}${t(`selection.cards.${actor}.name`)}`}>
             <Box style={{ justifyContent:'center'}}>
             
 

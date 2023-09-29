@@ -71,7 +71,7 @@ const PutObjectTool = () =>
     </ToolGroup>
 
 const PutActorTool = () =>
-    <ToolGroup type='putActor' name={challenge?.scene.type}>
+    <ToolGroup type='putActor' name={t(`selection.cards.${challenge?.scene.type}.name`)!}>     
         <Tool id="A" image={`${imagePathScene}/tool.png`} />
     </ToolGroup>
 
