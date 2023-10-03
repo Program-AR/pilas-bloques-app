@@ -53,7 +53,7 @@ export const StatementEdition = (props: StatementEditionType) => {
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
                         isDraggable
-                        title={`${t('statement.title')}${actor}`}>
+                        title={`${t('statement.title')}${t(`selection.cards.${actor}.name`)}`}>
             <Box style={{ justifyContent:'center'}}>
             
             <MarkdownEditor statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} />

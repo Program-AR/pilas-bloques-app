@@ -1,7 +1,9 @@
 import { Box } from "@mui/material"
+import { useState } from 'react'
 import styles from './ember-view.module.css';
 import { useNavigate } from "react-router-dom";
 import { useCallback, useEffect, useRef } from "react";
+import { PBProgress } from "../PBProgress";
 
 type EmberViewProps = {
     path: string,
@@ -11,6 +13,8 @@ type EmberViewProps = {
 export const EmberView = (props: EmberViewProps) => {
 
     const navigate = useNavigate()
+    
+    const [loaded, setLoaded] = useState(false)
 
     const iframeRef = useRef<HTMLIFrameElement | null>(null)
 
@@ -27,7 +31,11 @@ export const EmberView = (props: EmberViewProps) => {
         }
     }, [handleMessage])
 
-    return <Box height={props.height ? props.height : '100%'} className={styles['ember-box']}>
-        <iframe ref={iframeRef} className={styles['ember-iframe']} id="ember-iframe" title='ember-view' src={`emberPB/index.html#/${props.path}`} />
-    </Box>
+    return <Box height={props.height ? props.height : '100%'} className={styles['ember-box']}>         
+            <iframe ref={iframeRef} className={styles['ember-iframe']} loading="lazy" id="ember-iframe" onLoad={() => setLoaded(true)} title='ember-view' src={`emberPB/index.html#/${props.path}`}/>
+            {!loaded ? <PBProgress/> : <></> }
+        </Box> 
 }
+    
+    
+
