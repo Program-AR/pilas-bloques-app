@@ -36,6 +36,3 @@ export const EmberView = (props: EmberViewProps) => {
             {!loaded ? <PBProgress/> : <></> }
         </Box> 
 }
-    
-    
-
