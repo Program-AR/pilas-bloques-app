@@ -42,6 +42,7 @@
   "scripts": {
     "prestart": "node scripts/setEmberRoot.js public/emberPB ''",
     "start": "react-scripts start",
+    "start:emberDev": "sh ./scripts/localEmber.sh",
     "prebuild": "node scripts/setEmberRoot.js public/emberPB emberPB/",
     "build": "react-scripts build",
     "test": "react-scripts test",
