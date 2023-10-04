@@ -20,7 +20,7 @@ export const EmberView = (props: EmberViewProps) => {
 
     const handleMessage = useCallback((event: MessageEvent)=>{
         if (event.source === iframeRef.current?.contentWindow && event.data && event.data.route) {
-            navigate(event.data.route.slice(1))
+            navigate(event.data.route.slice(1)) //routes always start with #, the slice is to remove it
         }
     },[navigate])
     
