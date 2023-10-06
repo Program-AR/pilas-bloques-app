@@ -539,6 +539,12 @@
       "description": "In this activity you’ll be able to draw whatever you like.",
       "clue": "We’ve included all blocks possible, so that you can unleash your creativity."
     },
+    "1001": {
+      "title": "Capy and Guyrá"
+    },
+    "1046": {
+      "title": "New Commands"
+    },
     "202101": {
       "title": "Introduction",
       "description": "Help Duba pick all beefsteaks up.",
