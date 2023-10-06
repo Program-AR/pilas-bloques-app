@@ -44,7 +44,7 @@ export const rawChapterData: RawChapterData[] = [
     },
     {
         id: 'Autómatas, comandos, procedimientos y repetición',
-        groupIds: ['AlienTocaBoton', 'NuevosComandos', 'ElGatoEnLaCalle', 'NoMeCansoDeSaltar', 'ElMarcianoEnElDesierto', 'TitoEnciendeLuces', 'ElAlienYLasTuercas', 'ElRecolectorDeEstrellas', 'MariaLaComeSandias', 'AlimentandoALosPeces', 'InstalandoJuegos', 'LaGranAventuraDelMarEncantado', 'ReparandoLaNave'],
+        groupIds: ['CapyYGuyra', 'NuevosComandosCapy', 'ElGatoEnLaCalle', 'NoMeCansoDeSaltar', 'ElMarcianoEnElDesierto', 'TitoEnciendeLuces', 'ElAlienYLasTuercas', 'ElRecolectorDeEstrellas', 'MariaLaComeSandias', 'AlimentandoALosPeces', 'InstalandoJuegos', 'LaGranAventuraDelMarEncantado', 'ReparandoLaNave'],
         expectations: {
             simpleRepetition: true
         }

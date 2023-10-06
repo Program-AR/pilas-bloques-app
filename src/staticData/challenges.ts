@@ -2003,6 +2003,33 @@ const challenges: Challenge[] = [
     toolboxBlockIds: [
       'MoverArribaDibujando', 'MoverAbajoDibujando', 'MoverDerechaDibujando', 'MoverIzquierdaDibujando', 'SaltarAbajo', 'SaltarArriba', 'SaltarDerecha', 'SaltarIzquierda', 'Repetir', 'DibujarLado', 'GirarGrados', 'Numero', 'OpAritmetica']
   },
+  // New challenges with new characters
+  {
+    id: 1001,
+    name: 'CapyYGuyra',
+    scene: `new EscenaCapySolo("[A,-,-,G]")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'SubirPajarito'],
+    expectations: {
+        decomposition: false,
+        simpleRepetition: false
+      }
+  },
+  {
+    id: 1046,
+    name: 'NuevosComandosCapy',
+    scene: `new EscenaCapy("\
+      [A,-,L],\
+      [-,_,L],\
+      [-,_,_],\
+      [-,-,L],\
+      [L,_,L],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaAbajo', 'MoverACasillaArriba', 'RecogerLata', 'Procedimiento'],
+    expectations: {
+      simpleRepetition: false,
+      decomposition: false,
+      decomposition9: true
+    }
+  },
   //Tecnopolis
   {
     id: 202101,

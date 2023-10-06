@@ -262,6 +262,14 @@ const rawGroupData: RawGroupData[] = [
     challengeIds: [255]
   },
   {
+    id: 'CapyYGuyra',
+    challengeIds: [1001]
+  },
+  {
+    id: 'NuevosComandosCapy',
+    challengeIds: [1046]
+  },
+  {
     id: 'tecnopolis2021EjercicioModelo',
     challengeIds: [202101, 202102]
   },
