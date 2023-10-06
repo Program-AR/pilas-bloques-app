@@ -13,7 +13,7 @@ test('Renders home without errors', async () => {
   expect(() => renderComponent(<Home />)).not.toThrowError()
 })
 test('Renders a challenge without errors', async () => {
-  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '1')).not.toThrowError()
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '1001')).not.toThrowError()
 })
 
 test('Renders the book challenge list without errors', async () => {
