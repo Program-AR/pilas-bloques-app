@@ -77,7 +77,7 @@ export const getChallengeWithId = (id: number): Challenge => {
 
   return challenge
 }
-
+  
 /**
   @throws Error
  **/
@@ -2841,5 +2841,442 @@ const challenges: Challenge[] = [
     </block>
   </xml>`
   },
+  {
+    id: 1002,
+    name: 'ChuyHaciendoJueguito', 
+    scene: 'ChuyHaciendoJueguito',
+    toolboxBlockIds: ['Avanzar', 'Volver', 'Retroceder', 'RecogerPulpito', 'RebotarPiePulpito', 'RevolearPulpito', 'Repetir', 'Procedimiento'],
+    expectations: {
+      simpleRepetition: false
+    }
+  },  
+  {
+    id: 1003,
+    name: 'NoMeCansoDeRebotar',
+    scene: 'NoMeCansoDeRebotar',
+    toolboxBlockIds: ['RebotarUnaVezPingPong', 'Procedimiento', 'Repetir'],
+    expectations: {
+      decomposition: false
+    }
+  },
+  {
+    id: 1004,
+    name: 'ManicEnElCielo',
+    scene: `new EscenaManic("\
+                    [E,-,E,-,E],\
+                    [-,-,-,-,E],\
+                    [-,-,-,-,E],\
+                    [A,E,E,-,-],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'ObservarEstrella', 'Procedimiento', 'Repetir']
+  },
+  {
+    id: 1005,
+    name: 'YvotyDespiertaLuciernagas',
+    scene: `new EscenaYvoty("\
+    [-,-,-,L,-,-],\
+    [-,-,L,-,-,L],\
+    [-,L,-,-,L,-],\
+    [L,-,-,L,-,-],\
+    [A,-,L,-,-,-],\
+    ")`,
+    toolboxBlockIds: ['DespertarLuciernaga', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'Procedimiento', 'Repetir']
+  },
+  {
+    id: 1006,
+    name: 'LosTrofeosDeChuy',
+    scene: `new EscenaChuy("\
+      [T,-,-,-,-,-],\
+      [-,T,-,-,-,-],\
+      [-,-,T,-,-,-],\
+      [-,-,-,T,-,-],\
+      [A,-,-,-,T,-],\
+      ")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'RecogerTrofeo', 'Procedimiento', 'Repetir']
+  },
+  {
+    id: 1007,
+    name: 'LaReparadoraDeTelescopios',
+    scene: `new EscenaManic("\
+        [-,T,T,T,T],\
+        [-,T,T,T,T],\
+        [-,T,T,T,T],\
+        [A,T,T,T,T],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'VolverABordeIzquierdo', 'RepararTelescopio', 'Procedimiento', 'Repetir']
+  },  
+  {
+    id: 1008,
+    name: 'ManicYLosPlanetas',
+    scene: `new EscenaManic("\
+    [P,P,P,P,P,P],\
+    [P,-,-,-,-,-],\
+    [P,P,P,P,P,P],\
+    [P,-,-,-,-,-],\
+    [A&P,P,P,P,P,P],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'ObservarPlaneta', 'Procedimiento', 'Repetir']
+  },
+  {
+    id: 1009,
+    name: 'CargandoCelus',
+    scene: `new EscenaYvoty("\
+      [C,C,C,C,-],\
+      [-,-,-,-,K],\
+      [-,-,-,-,-],\
+      [A,C,C,C,-],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'CargarCelular', 'AgarrarCargador', 'Procedimiento', 'Repetir']
+  },
+  {
+    id: 1010,
+    name: 'InstalandoJuegosYvoty',
+    scene: 'InstalandoJuegosYvoty',
+    toolboxBlockIds: ['PasarASiguienteComputadora', 'PrenderComputadora', 'ApagarComputadora', 'EscribirC', 'EscribirB', 'EscribirA', 'InstalarJuego', 'Repetir', 'Procedimiento'],
+  },
+  {
+    id: 1013,
+    name: 'PateandoAVeces',
+    scene: `new EscenaChuy("[A,G?]",{},[1,0])`,
+    toolboxBlockIds: ['PatearPelotaChuy', 'MoverACasillaDerecha', 'TocandoPelotaChuy', 'Repetir', 'Procedimiento', 'Si'],
+    expectations: {
+      conditionalAlternative: true,
+      decomposition: false
+    },
+    shouldShowMultipleScenarioHelp: true
+  },
+  {
+    id: 1014,
+    name: 'PelotaPaleta',
+    scene: `new EscenaChuy(["[A,P]", "[A,G]"],{},[1,0])`,
+    toolboxBlockIds: ['PatearPelotaChuy', 'RebotarPingPong', 'MoverACasillaDerecha', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoPelotaChuy', 'TocandoPingPong'],
+    expectations: {
+      conditionalAlternative: true,
+      decomposition: false
+    },
+    shouldShowMultipleScenarioHelp: true
+  },
+  {
+    id: 1015,
+    name: 'LaberintoCortoChuy',
+    scene: `new EscenaChuy(['[A,-]', '[A],[-]'],{}, [-1,0])`,
+    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha',
+      'MoverACasillaAbajo', 'TocandoAbajo', 'TocandoDerecha'],
+    expectations: {
+      conditionalAlternative: true,
+      decomposition: false
+    }
+  },
+  {
+    id: 1016,
+    name: 'TresTelescopios',
+    scene: `new EscenaManic("[A,T?,T?,T?]",{},[3,0])`,
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'RepararTelescopio', 'Repetir', 'Si', 'SiNo', 'TocandoTelescopio'],
+  },
+  {
+    id: 1017,
+    name: 'YvotyDespiertaMasLuciernagas',
+    scene: `new EscenaYvoty("\
+        [A&(*>L?)],\
+        [*>L?],\
+        [*>L?],\
+        [*>L?],\
+        [*>L?],\
+        [*>L?],\
+        [-],",
+        { coleccion: ["L"] }, [0,6])`,
+    toolboxBlockIds: ['DespertarLuciernaga', 'MoverACasillaAbajo', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoLuciernaga']
+  },
+  {
+    id: 1018,
+    name: 'LaberintoLargoChuy',
+    scene: `new EscenaChuy([
+      '[A,_,_,_,_,_,_,_],[-,-,-,_,_,_,_,_],[_,_,-,_,_,_,_,_],[_,_,-,_,_,_,_,_],[_,_,-,-,-,-,-,_],[_,_,_,_,_,_,-,_],[_,_,_,_,_,_,-,-],[_,_,_,_,_,_,_,-]',
+      '[A,-,-,_,_,_,_,_],[_,_,-,-,-,_,_,_],[_,_,_,_,-,-,_,_],[_,_,_,_,_,-,_,_],[_,_,_,_,_,-,-,_],[_,_,_,_,_,_,-,-],[_,_,_,_,_,_,_,-],[_,_,_,_,_,_,_,-]',
+      '[A,_,_,_,_,_,_,_],[-,_,_,_,_,_,_,_],[-,-,_,_,_,_,_,_],[_,-,_,_,_,_,_,_],[_,-,-,_,_,_,_,_],[_,_,-,-,_,_,_,_],[_,_,_,-,_,_,_,_],[_,_,_,-,-,-,-,-]',
+      '[A,_,_,_,_,_,_,_],[-,_,_,_,_,_,_,_],[-,_,_,_,_,_,_,_],[-,_,_,_,_,_,_,_],[-,-,-,-,_,_,_,_],[_,_,_,-,-,_,_,_],[_,_,_,_,-,_,_,_],[_,_,_,_,-,-,-,-]',
+      '[A,-,-,-,-,_,_,_],[_,_,_,_,-,_,_,_],[_,_,_,_,-,_,_,_],[_,_,_,_,-,_,_,_],[_,_,_,_,-,-,_,_],[_,_,_,_,_,-,-,_],[_,_,_,_,_,_,-,_],[_,_,_,_,_,_,-,-]']
+      ,{},[7,7])`,
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaAbajo',
+      'Repetir', 'Si', 'SiNo', 'PuedeMoverAbajo', 'PuedeMoverDerecha'],
+  },
+  {
+    id: 1019,
+    name: 'SuperYvoty1',
+    scene: `new EscenaYvoty(["[A&L],[L],[-]","[A&L],[L],[L],[-]","[A&L],[L],[L],[L],[-]", "[A&L],[L],[L],[L],[L],[-]", "[A&L],[L],[L],[L],[L],[L],[-]"])`,
+    toolboxBlockIds: ['Procedimiento', 'DespertarLuciernaga', 'MoverACasillaAbajo',
+      'TocandoFinal', 'Repetir', 'Si', 'SiNo', 'Hasta'],
+    expectations: {
+      conditionalRepetition: true,
+    }
+  },
+  {
+    id: 1020,
+    name: 'SuperYvoty2',
+    scene: `new EscenaYvoty(["[A&(#L)],[#L],[-]","[A&(#L)],[#L],[#L],[-]","[A&(#L)],[#L],[#L],[#L],[-]", "[A&(#L)],[#L],[#L],[#L],[#L],[-]", "[A&(#L)],[#L],[#L],[#L],[#L],[#L],[-]"],
+      { macros: { "L": "*>L?" }, coleccion: ["L"] })`,
+    toolboxBlockIds: ['Procedimiento', 'TocandoFinal', 'TocandoLuciernaga', 'DespertarLuciernaga',
+      'MoverACasillaAbajo', 'Repetir', 'Si', 'SiNo', 'Hasta'],
+    expectations: {
+      conditionalRepetition: true,
+    }
+  },
+  {
+    id: 1021,
+    name: 'LaberintoConPelotas',
+    scene: `new EscenaChuy([
+      '[A&(U?),_,_,_,_],[U?,U?,_,_,_],[_,U?,U?,_,_],[_,_,U?,_,_],[_,_,U?,U?,-]',
+      '[A&(U?),_],[U?,-]',
+      '[A&(U?),_,_],[U?,_,_],[U?,_,_],[U?,U?,_],[_,U?,U?],[_,_,-]',
+      '[A&(U?),U?,U?,_,_],[_,_,U?,_,_],[_,_,U?,U?,-]',
+      '[A&(U?),U?,U?,U?,U?,_,_,_],[_,_,_,_,U?,_,_,_],[_,_,_,_,U?,_,_,_],[_,_,_,_,U?,_,_,_],[_,_,_,_,U?,U?,_,_],[_,_,_,_,_,U?,U?,_],[_,_,_,_,_,_,U?,_],[_,_,_,_,_,_,U?,-]'
+     ],{},[-1,0])`,
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaAbajo',
+      'PatearPulpito', 'Repetir', 'Si', 'SiNo', 'Hasta', 'PuedeMoverAbajo',
+      'PuedeMoverDerecha', 'TocandoFinCamino', 'TocandoPulpito'],
+    expectations: {
+      conditionalRepetition: true,
+    }
+  },
+  {
+    id: 1023,
+    name: 'FutbolAlSur',
+    scene: 'FutbolAlSur',
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'SiguienteFila',
+      'PatearPelotaChuy', 'TocandoInicio', 'TocandoPelotaChuy', 'Repetir', 'Si',
+      'SiNo', 'Hasta'],
+    expectations: {
+      conditionalRepetition: true,
+    }
+  },
+  {
+    id: 1024,
+    name: 'PrendiendoLasCompusYvoty',
+    scene: `new EscenaYvoty([
+      '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
+      '[A,T,T,T,T,-], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [-,T,T,T,T,-]',
+      '[A,T,T,T,T,T,-], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [-,T,T,T,T,T,-]',
+      '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
+      '[A,T,T,T,T,T,-], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [-,T,T,T,T,T,-]',
+      '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
+      '[A,T,T,T,T,-], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [-,T,T,T,T,-]',
+      '[A,T,T,T,T,T,-], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [-,T,T,T,T,T,-]'
+    ])`,
+    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'Hasta',
+      'MoverACasillaDerecha', 'MoverACasillaArriba',
+      'MoverACasillaAbajo', 'MoverACasillaIzquierda',
+      'PrenderComputadora', 'EstoyEnEsquina'],
+    expectations: {
+      conditionalRepetition: true,
+    }
+  },
+  {
+    id: 1025,
+    name: 'ContandoPlanetasYEstrellas',    
+    scene: 'ContandoPlanetasYEstrellas',
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaArriba', 'MoverACasillaAbajo',
+      'SiguienteColumna', 'ContarPlaneta', 'ContarEstrella',
+      'TocandoPlaneta', 'TocandoEstrellaManic', 'Repetir', 'Si', 'SiNo',
+      'Hasta', 'EstoySobreElInicioManic', 'EstoySobreElFinalManic'],
+    expectations: {
+      conditionalRepetition: true,
+    }
+  },
+  {
+    id:  1026,
+    name: 'LaSupermaraton',
+    scene: 'SuperMaraton',
+    toolboxBlockIds: ['Procedimiento', 'KmsTotales', 'Avanzar1kmChuy', 'RepetirVacio',
+      'Repetir', 'Si', 'SiNo', 'Hasta'],
+    expectations: {
+      decomposition: false
+    }
+  },  
+  {
+    id: 1027,
+    name: 'ContandoDeNuevoManic',
+    scene: 'ContandoDeNuevoManic',
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaArriba', 'MoverACasillaAbajo',
+      'SiguienteColumna',
+      'ContarPlaneta', 'ContarEstrella', 'TocandoPlaneta',
+      'TocandoEstrellaManic', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
+      'EstoySobreElInicioManic', 'LargoColumnaActual']
+  },  
+  {
+    id: 1028,
+    name: 'ElPlanetaDeCapyYGuyra',
+    scene: `new EscenaCapy("\
+        [-,L,L,-,-],\
+        [-,L,L,L,L],\
+        [-,L,-,-,-],\
+        [A,L,L,L,-],")`,
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba',
+      'VolverAlBordeIzquierdo', 'RecogerLata', 'RepetirVacio', 'Repetir', 'Si',
+      'SiNo', 'Hasta', 'Numero'],
+    expectations: {
+      decomposition: false,
+      decomposition9: true
+    }
+  },
+  {
+    id: 1038,
+    name: 'LasEstrellasDeManic',
+    scene: `new EscenaManic([
+      '[A,_,_,_,_],[-,O,-,-,-],[-,_,_,_,-],[E,-,-,-,-]',
+      '[A,_,_,_,_],[-,-,-,-,-],[O,_,_,_,-],[E,-,-,-,-]'])`,
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MoverACasillaIzquierda',
+      'ObservarEstrella', 'Repetir', 'Si', 'SiNo', 
+      'HayObstaculoArriba', 'HayObstaculoAbajo', 'HayObstaculoIzquierda', 'HayObstaculoDerecha']
+  },
+  {
+    id: 1039,
+    name: 'LosCaminosDeManic',
+    scene: `new EscenaManic([
+      '[A,_,_,_,_,_],[-,O,-,-,-,_],[-,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,O,-,-,-],[_,-,_,_,_,-],[_,E,-,-,-,-]',
+      '[A,_,_,_,_,_],[-,O,-,-,-,_],[-,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,-,-,-,-],[_,O,_,_,_,-],[_,E,-,-,-,-]',
+      '[A,_,_,_,_,_],[-,-,-,-,-,_],[O,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,O,-,-,-],[_,-,_,_,_,-],[_,E,-,-,-,-]',
+      '[A,_,_,_,_,_],[-,-,-,-,-,_],[O,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,-,-,-,-],[_,O,_,_,_,-],[_,E,-,-,-,-]'])`,
 
+    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MoverACasillaIzquierda',
+      'ObservarEstrella', 'Repetir', 'Si', 'SiNo', 
+      'HayObstaculoArriba', 'HayObstaculoAbajo', 'HayObstaculoIzquierda', 'HayObstaculoDerecha'],
+    expectations: {
+      decomposition: false,
+      decomposition9: true
+    }
+  },
+  {
+    id: 1040,
+    name: 'HileraDeLatas',
+    scene: `new EscenaCapy([
+      '[L,-,-,-,A],[_,_,-,_,_],[_,_,-,_,_],[_,_,-,_,_]',
+      '[L,-,L,-,A],[_,_,L,_,_],[_,_,L,_,_],[_,_,L,_,_]'])`,
+    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaAbajo', 'MoverACasillaArriba', 'RecogerLata', 'TocandoLata']
+  },
+  {
+    id: 1041,
+    name: 'MuchasHilerasDeLatas',
+    scene: `new EscenaCapy([
+      '[_,_,_,-,-,L,A],[L,-,-,L,_,L,_],[L,_,_,L,_,L,_],[L,_,_,L,_,L,_],[L,_,_,L,_,_,_]',
+      '[_,_,_,-,-,L,A],[-,-,-,L,_,L,_],[-,_,_,L,_,L,_],[-,_,_,L,_,L,_],[-,_,_,L,_,_,_]',
+      '[_,_,_,-,-,L,A],[L,-,-,-,_,L,_],[L,_,_,-,_,L,_],[L,_,_,-,_,L,_],[L,_,_,-,_,_,_]',
+      '[_,_,_,-,-,-,A],[L,-,-,L,_,-,_],[L,_,_,L,_,-,_],[L,_,_,L,_,-,_],[L,_,_,L,_,_,_]'])`,
+    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaAbajo', 'MoverACasillaArriba', 'RecogerLata', 'TocandoLata'],
+    expectations: {
+      decomposition: false,
+      decomposition9: true
+    }
+  },
+  {
+    id: 1042,
+    name: 'AVecesLatasAVecesPapeles',
+    scene: `new EscenaCapy("\
+      [A,L|P|-,L|P|-,L|P|-,L|P|-],\
+      [-,_,_,_,_],\
+      [-,L|P|-,L|P|-,L|P|-,L|P|-],\
+      [-,_,_,_,_],\
+      [-,_,_,_,_],\
+      [-,L|P|-,L|P|-,L|P|-,L|P|-],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'RecogerLata', 'RecogerPapel', 'Procedimiento', 'Repetir', 'TocandoLata', 'TocandoPapel', 'Si', 'SiNo'],
+    expectations: {
+      decomposition: false,
+      decomposition9: true
+    }
+  },
+  {
+    id: 1043,
+    name: 'ElPasilloCurvoDeCelus',
+    scene: `new EscenaYvoty("\
+    [_,P,P?,P?],\
+      [_,_,_,P?],\
+      [-,P,P?,P?],\
+      [-,_,_,_],\
+      [P,P?,P?,_],\
+      [_,_,P?,_],\
+      [P,P?,P?,_],\
+      [A,_,_,_],",{})`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'DesbloquearCelular', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoCelular'],
+    expectations: {
+      decomposition: false,
+      decomposition9: true
+    }
+  },
+  {
+    id: 1044,
+    name: 'ElFestinAstronomico',
+    scene: `new EscenaManic("\
+    [A,-,-,-,-],\
+    [E|P,_,E|P,E|P,E|P],\
+    [E|P,_,E|P,E|P,E|P],\
+    [E|P,_,E|P,E|P,E|P],\
+    [E|P,_,E|P,E|P,E|P],\
+    [E|P,_,E|P,E|P,E|P],\
+    [E|P,_,E|P,E|P,E|P],")`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'ObservarEstrella', 'ObservarPlaneta', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoEstrellaManic', 'TocandoPlaneta']
+  },
+  {
+    id: 1045,
+    name: 'ObservadoraDeMariposas',
+    scene: `new EscenaYvoty("\
+      [-,*a>M?,*a>M?,*a>M?,*a>M?],\
+      [-,*b>M?,*b>M?,*b>M?,*b>M?],\
+      [-,*c>M?,*c>M?,*c>M?,*c>M?],\
+      [-,-,-,-,-],\
+      [-,*d>M?,*d>M?,*d>M?,*d>M?],\
+      [-,*e>M?,*e>M?,*e>M?,*e>M?],\
+      [A,*f>M?,*f>M?,*f>M?,*f>M?],",
+      { colecciones: {
+          a: ["M", "M"],
+          b: ["M", "M"],
+          c: ["M", "M"],
+          d: ["M", "M"],
+          e: ["M", "M"],
+          f: ["M", "M"]
+      }})`,
+    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaArriba', 'VolverABordeIzquierdo', 'FotografiarMariposa', 'TocandoMariposa', 'Procedimiento', 'Repetir', 'Si', 'SiNo']
+  },
+  {
+    id: 1132,
+    name: 'PrendiendoLasCompusParametrizadoYvoty',
+    scene: `new EscenaYvoty([
+      '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
+      '[A,T,T,T,T,-], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [-,T,T,T,T,-]',
+      '[A,T,T,T,T,T,-], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [-,T,T,T,T,T,-]',
+      '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
+      '[A,T,T,T,T,T,-], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [-,T,T,T,T,T,-]',
+      '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
+      '[A,T,T,T,T,-], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [-,T,T,T,T,-]',
+      '[A,T,T,T,T,T,-], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [T,-,-,-,-,-,T], [-,T,T,T,T,T,-]'
+    ])`,
+    toolboxBlockIds: ['ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo',
+      'MoverA', 'Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
+      'PrenderComputadora', 'EstoyEnEsquina', 'Numero',
+      'OpAritmetica'],
+  },
+  {
+    id: 1133,
+    name: 'MariposasEncuadradas',
+    scene: `new EscenaYvoty("\
+    [A,#M,#M,#M,#M,#M,-],\
+    [#M,O,O,O,O,O,#M],\
+    [#M,O,_,_,_,O,#M],\
+    [#M,O,_,_,_,O,#M],\
+    [#M,O,_,_,_,O,#M],\
+    [#M,O,O,O,O,O,#M],\
+    [-,#M,#M,#M,#M,#M,-],",
+    { macros: { "M": "*>M?" }, coleccion: ["M"] })`,
+    toolboxBlockIds: ['ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo',
+      'MoverA', 'Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
+      'TocandoMariposa', 'FotografiarMariposa', 'Numero', 'OpAritmetica'],
+  },
+   {
+    id: 1134,
+    name: 'InfinitosTrofeos',
+    scene: `new EscenaChuy("\
+    [A,T,T,T,T,-],\
+    [T,_,_,_,_,T],\
+    [T,T,T,T,T,T],\
+    [T,_,_,_,_,T],\
+    [-,T,T,T,T,-],\
+    ")`,
+    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
+      'ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo', 'MoverA',
+      'RecogerTrofeo', 'Numero', 'OpAritmetica']
+  },
 ];

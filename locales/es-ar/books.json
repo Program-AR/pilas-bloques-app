@@ -13,6 +13,10 @@
     "3" : {
         "title": "Nivel Avanzado",
         "description": "Desafios avanzados"
+    },
+    "1000" : {
+        "title": "Nuevos Desafíos",
+        "description": "Desafíos para los nuevos personajes - TEMPORAL - SE BORRARÁ"
     }
 
 }

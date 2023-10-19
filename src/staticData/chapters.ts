@@ -71,5 +71,9 @@ export const rawChapterData: RawChapterData[] = [
     {
         id: 'Desafios complementarios',
         groupIds: ['tecnopolis2021EjercicioModelo', 'tecnopolis2021ConDuba', 'tecnopolis2021ConLita', 'tecnopolis2021ConCoty', 'tecnopolis2021ConToto']
+    },
+    {
+        id: 'Nuevos Desafios',
+        groupIds: ['Nuevos Desafios']
     }
 ];

@@ -45,6 +45,7 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
 type ChallengeViewProps = {
     challengeId: number
+    textChallengeId?: string
 }
 
 const ChallengeView = (props: ChallengeViewProps) => {
@@ -57,15 +58,19 @@ const ChallengeView = (props: ChallengeViewProps) => {
 
     return <>
         <Header CenterComponent={ChallengeBreadcrumb(path)} />
-        <EmberView path={`desafio/${props.challengeId}${solutionParam}`} />
+        <EmberView path={`desafio/${props.textChallengeId ? props.textChallengeId : props.challengeId}${solutionParam}`} />
     </>
 }
 
 
 export const ChallengeById = () => {
     const { id } = useParams()
-
-    return <ChallengeView challengeId={Number(id)} />
+    /* TEMPORAL hasta cambiar ids en PB Ember a numeros 100x ? */
+    let textId = id
+    let numId = Number(id)
+    if( id?.includes('nuevo'))
+       numId = Number(id.replace('nuevo','')) + 1000
+    return <ChallengeView challengeId={numId} textChallengeId={textId} />
 }
 
 export const ChallengeByName = () => {
