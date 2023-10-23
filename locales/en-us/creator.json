@@ -53,40 +53,40 @@
 						}
 			},
 			"Manic": {  "name": "Mañic",
-						"definition": "la ñandú",
-						"interests": "La ciencia. La astronomía.",
-						"personality": "Curiosa. Activa. Ágil (¡nunca se olvida sus patines!).",
-						"origin": "Llanura pampeana.",
-						"curiousFact": "Su abuela formoseña le puso el nombre, que significa literalmente \"ñandú\" en la lengua Qom.",
+						"definition": "the ñandú (South American ostrich)",
+						"interests": "Science. Astronomy.",
+						"personality": "Curious. Active. Agile (she never forgets her inline skates!).",
+						"origin": "Argentine Pampas plains.",
+						"curiousFact": "Her grandmother from Formosa (Argentina) gave her the name, which literally means \"ñandú\" in the Qom language.",
 						"goals": {
-							"telescope": "Reparar los telescopios.",
-							"star": "Observar las estrellas. ",
-							"planet": "Observar los planetas."
+							"telescope": "Repair the telescopes.",
+							"star": "Watch the stars. ",
+							"planet": "Watch the planets."
 						}
 			},
 			"Capy": {  "name": "Capy y Guyrá",
-						"definition": "el carpincho y el picabuey",
-						"interests": "El medio ambiente. La ecología.",
-						"personality": "Cuidadores. Amigos (¡siempre están juntos!).",
-						"origin": "Humedales.",
-						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
+						"definition": "the capybara and the cattle tyrant",
+						"interests": "The environment. Ecology.",
+						"personality": "Caregivers. Friends (they are always together!).",
+						"origin": "Argentine wetlands.",
+						"curiousFact": "Their names Capy (from \"capybara\" which means \"lord of the grass\") and Guyrá (means \"bird\"), are from the Tupi Guaraní language.",
 						"goals": {
-							"can":"Recoger las latas. ",
-							"paper":"Recoger los papeles."
+							"can":"Pick the cans.",
+							"paper":"Pick the papers."
 						}
 			},
 			"Chuy": {  "name": "Chuy",
-						"definition": "le pingüine de magallanes",
-						"interests": "El trabajo en equipo. Divertirse.",
-						"personality": "Generose. Deportista (¡le encanta escalar acantilados!).",
-						"origin": "Playa patagónica.",
-						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
+						"definition": "the magellanic penguin",
+						"interests": "Team work. Have fun.",
+						"personality": "Generose. Sportsperson (they love to climb sea cliffs!).",
+						"origin": "Argentine Patagonian beach.",
+						"curiousFact": "Their name comes from \"chuy chuy\" which means \"cold\" in the Mapuche language.",      
 						"goals": {
-							"paddle": "Recoger las paletas.",					
-							"trophy": "Recoger los trofeos.",
-							"pingpong": "Rebotar las pelotas de ping pong.",
-							"pulpito": "Rebotar las pelotas pulpito.",
-							"football":"Patear las pelotas de fútbol."
+							"paddle": "Pick the paddles.",					
+							"trophy": "Pick the trophies.",
+							"pingpong": "Bounce ping pong balls.",
+							"pulpito": "Bounce the rubber balls.",
+							"football":"Kick the football balls."
 						}
 			}
 		}
