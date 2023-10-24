@@ -102,9 +102,22 @@ jobs:
       REACT_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       REACT_APP_VERSION: ${{github.ref_name}}
     if: github.event_name == 'push' && github.ref == 'refs/heads/surge-action'
+    needs: test
     steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - run: npm install
+      - run: npm run build:surge
       - run: |
-          echo "The GitHub Action Secret will be masked:  "
           echo ${{secrets.SURGE_LOGIN}} | sed 's/./& /g'
           echo "Trick to echo GitHub Actions Secret:  "
           echo ${{secrets.SURGE_TOKEN}} | sed 's/./& /g'
+      - name: Deploy to pbdevelop.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'horrible-goose.surge.sh'
+          project: 'build/'
+          login: ${{ secrets.SURGE_LOGIN }}
+          token: ${{ secrets.SURGE_TOKEN }}
