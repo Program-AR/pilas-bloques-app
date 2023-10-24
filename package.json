@@ -45,6 +45,7 @@
     "start:emberDev": "sh ./scripts/localEmber.sh",
     "prebuild": "node scripts/setEmberRoot.js public/emberPB emberPB/",
     "build": "react-scripts build",
+    "build:surge": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron-start": "electron ./build",
