@@ -110,14 +110,10 @@ jobs:
           node-version-file: ".nvmrc"
       - run: npm install
       - run: npm run build:surge
-      - run: |
-          echo ${{secrets.SURGE_LOGIN}} | sed 's/./& /g'
-          echo "Trick to echo GitHub Actions Secret:  "
-          echo ${{secrets.SURGE_TOKEN}} | sed 's/./& /g'
       - name: Deploy to pbdevelop.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: 'horrible-goose.surge.sh'
+          domain: 'pbdevelop.surge.sh'
           project: 'build/'
           login: ${{ secrets.SURGE_LOGIN }}
           token: ${{ secrets.SURGE_TOKEN }}
