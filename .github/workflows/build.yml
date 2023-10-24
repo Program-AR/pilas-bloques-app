@@ -108,7 +108,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: ".nvmrc"
-      - run: npm install
       - run: |
           MY_SECRET=${{ secrets.SURGE_LOGIN }}
-          echo "$MY_SECRET"
+          echo $MY_SECRET
