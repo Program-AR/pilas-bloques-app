@@ -109,4 +109,6 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm install
-      - run: echo ${{ secrets.SURGE_LOGIN }}
+      - run: |
+          MY_SECRET=${{ secrets.SURGE_LOGIN }}
+          echo "$MY_SECRET"
