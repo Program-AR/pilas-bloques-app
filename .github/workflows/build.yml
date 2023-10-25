@@ -94,3 +94,26 @@ jobs:
           allowUpdates: true
           artifacts: "binaries/*.exe"
           token: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-surge: # When there is a push in develop, publish on surge
+    runs-on: ubuntu-latest
+    env:
+      REACT_APP_API_URL: ${{ secrets.API_URL }}
+      REACT_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+      REACT_APP_VERSION: ${{github.ref_name}}
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    needs: test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: ".nvmrc"
+      - run: npm install
+      - run: npm run build:surge
+      - name: Deploy to pbdevelop.surge.sh
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'pbdevelop.surge.sh'
+          project: 'build/'
+          login: ${{ secrets.SURGE_LOGIN }}
+          token: ${{ secrets.SURGE_TOKEN }}
