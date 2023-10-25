@@ -101,7 +101,7 @@ jobs:
       REACT_APP_API_URL: ${{ secrets.API_URL }}
       REACT_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       REACT_APP_VERSION: ${{github.ref_name}}
-    if: github.event_name == 'push' && github.ref == 'refs/heads/surge-action'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
     needs: test
     steps:
       - uses: actions/checkout@v3

@@ -3,7 +3,8 @@ import { LinkCard } from "./HomeCard"
 import { useTranslation } from "react-i18next"
 import styles from './home.module.css';
 
-const shouldShow = process.env.NODE_ENV !== 'production'
+const SURGE_HOST = 'pbdevelop.surge.sh' //This is needed to show the new exercises in surge
+const shouldShow = process.env.NODE_ENV !== 'production' || window.location.host === SURGE_HOST
 
 const InitialBookCard = () => {
 	const {t} = useTranslation("home")
