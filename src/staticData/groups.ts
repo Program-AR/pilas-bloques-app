@@ -1,26 +1,37 @@
 import { Challenge, getChallengeWithId } from "./challenges"
 
-type RawGroupData = {
+type RawGroup = {
   id: string,
-  challengeIds: number[]
+  challengeIds: number[],
+  cover?: string
 }
 
-export type Group = {
-  id: string,
+export class Group {
+  id!: string
   challenges: Challenge[]
+  cover?: string
+
+  constructor(rawGroup: RawGroup, _challenges: Challenge[]){
+    Object.assign(this, rawGroup)
+    this.challenges = _challenges
+  }
+
+  hasOnlyOneChallenge() {
+    return this.challenges.length === 1
+  }
+
+  includes(challenge: Challenge) {
+    return this.challenges.some(otherChallenge => otherChallenge.id === challenge.id)
+  }
 }
 
 export const getGroup = (id: string): Group => {
-  const groupData: RawGroupData = rawGroupData.find(group => group.id === id)!
+  const groupData: RawGroup = rawGroup.find(group => group.id === id)!
   const challenges: Challenge[] = groupData.challengeIds.map(getChallengeWithId)
-  return {id, challenges}
+  return new Group(groupData, challenges)
 }
 
-export const groupIncludesChallenge = (group: Group, challenge: Challenge): boolean => {
-  return group.challenges.some(otherChallenge => otherChallenge.id === challenge.id)
-}
-
-const rawGroupData: RawGroupData[] = [
+const rawGroup: RawGroup[] = [
   {
     id: 'AlienTocaBoton',
     challengeIds: [1]
