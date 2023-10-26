@@ -1,6 +1,6 @@
 import { Book, bookIncludesChallenge, getAllBooks } from "./books"
 import { Chapter, chapterIncludesChallenge } from "./chapters"
-import { Group, groupIncludesChallenge } from "./groups"
+import { Group } from "./groups"
 
 export type Challenge = {
   /**
@@ -100,7 +100,7 @@ export const getPathToChallenge = (challengeId: number): PathToChallenge => {
   const challenge: Challenge = getChallengeWithId(challengeId)
   const book: Book = getAllBooks().find(book => bookIncludesChallenge(book, challenge))!
   const chapter: Chapter = book.chapters.find(chapter => chapterIncludesChallenge(chapter, challenge))!
-  const group: Group = chapter.groups.find(group => groupIncludesChallenge(group, challenge))!
+  const group: Group = chapter.groups.find(group => group.includes(challenge))!
 
   return {book, chapter, group, challenge}
 }

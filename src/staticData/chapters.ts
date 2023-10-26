@@ -1,5 +1,5 @@
 import { Challenge, ExpectationConfig } from "./challenges"
-import { getGroup, Group, groupIncludesChallenge } from "./groups"
+import { getGroup, Group } from "./groups"
 
 type RawChapterData = {
     id: string,
@@ -20,7 +20,7 @@ export const getChapter = (id: string): Chapter => {
 }
 
 export const chapterIncludesChallenge = (chapter: Chapter, challenge: Challenge): boolean => {
-    return chapter.groups.some(group => groupIncludesChallenge(group, challenge))
+    return chapter.groups.some(group => group.includes(challenge))
 }
 
 export const rawChapterData: RawChapterData[] = [

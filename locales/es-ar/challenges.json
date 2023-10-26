@@ -539,12 +539,6 @@
       "description": "En esta actividad vas a poder realizar el dibujo que más te guste",
       "clue": "Incluímos todos los bloques posibles, para que puedas dar rienda suelta a tus conocimientos."
     },
-    "1001": {
-      "title": "Capy y Guyrá"
-    },
-    "1046": {
-      "title": "Nuevos Comandos"
-    },
     "202101": {
       "title": "Introducción",
       "description": "Ayudá a Duba a recoger todos los churrascos. \nAcá tenes un video que explica como: <https://youtu.be/bc43ZyJrfSo>\n",
@@ -715,6 +709,9 @@
       "description": "Tenemos un programa ya hecho para que toto lea la provincia que está al sur de rio negro.\nFijate si funciona o qué hay que arreglar.\n",
       "clue": "Con el botón 'PASO' Toto puede ir realizando las instrucciones una por una"
     },
+    "1001": {
+      "title": "Capy y Guyrá"
+    },
     "1002": {
       "title": "Chuy haciendo jueguito",
       "description": "Hacé que Chuy avance un paso, entre en calor avanzando y retrocediendo, recoja la pelota pulpito, haga jueguito revoleando la pelota y rebotandola con el pie y por ultimo vuelva a su lugar.",
@@ -879,6 +876,9 @@
       "title": "Fotografiando mariposas",
       "description": "Yvoty se descargó una nueva aplicación para fotografiar objetos cercanos. Nada mejor que probarla sacando fotos a las coloridas mariposas de la selva misionera. Las mariposas aparecen por todos lados, a veces más y a veces menos. Ayudá a Yvoty a fotografiar a todas las mariposas. ",
       "clue": "Parece haber unos sectores por los que las mariposas no vuelan. Ese dato puede servirte para armar una secuencia de recorrido. Pensá una estrategia que vaya de lo más simple a lo más complejo: primero una casilla, luego una fila o columna, y finalmente un grupo de mariposas."
+    },
+    "1046": {
+      "title": "Nuevos Comandos"
     },
     "1131": {
       "title": "Reciclando papeles",
