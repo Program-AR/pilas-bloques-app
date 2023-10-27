@@ -12,9 +12,84 @@
 		"interests": "Interests",
 		"personality": "Personality",
 		"origin": "Origin",
-		"curiousFact": "Curious fact",      
+		"curiousFact": "Fun fact",      
 		"goals": "Goals",
-		"creator": "create your own challenge"
+		"creator": "create your own challenge",
+		"cards": {
+			"Lita": { 	"name": "Lita",
+						"definition": "the mulita",
+						"interests": "Cultivation. Orchards.",
+						"personality": "Cheerful (you will always see her smiling!).",
+						"origin": "Argentine Mesopotamia.",
+						"curiousFact": "She has her own orchard and likes to encase herself in her shell, like a ball.",
+						"goals": {
+							"letucce": "Pick the lettuces.",
+						 	"tomato": "Pick the tomatoes.",
+							"salad": "Prepare the salads."
+						}
+			},
+			"Duba": { 	"name": "Duba",
+						"definition": "the puma",
+						"interests": "Food.",
+						"personality": "Hungry (it's always a great time to eat!).",
+						"origin": "Argentine Patagonian mountain range.",
+						"curiousFact": "Her favorite dish is beefsteak and she loves to make \"asados\".",
+						"goals": {
+							"steak": "Eat the beefsteaks."
+						}
+			},
+			"Yvoty": { 	"name": "Yvoty",
+						"definition": "the yaguareté",
+						"interests": "Technology. Computing. Social networks.",
+						"personality": "Creative. Unprejudiced (she doesn't mind what people think!).",
+						"origin": "Argentine Misiones's rainforest.",
+						"curiousFact": "Yvoty means \"flower\" in the Guaraní language and is pronounced \"ivotí\", with the stress on the last \"i\". But it is written with two \"y\"!",
+						"goals": {
+							"firefly": "Wake up the fireflies.",
+							"butterfly": "Photograph the butterflies.",
+							"unlockCellphone": "Unlock the cell phones.",
+							"charger": "Pick the cell phone chargers.",
+							"chargeCellphone": "Charge the cell phones."
+						}
+			},
+			"Manic": {  "name": "Mañic",
+						"definition": "the ñandú (South American ostrich)",
+						"interests": "Science. Astronomy.",
+						"personality": "Curious. Active. Agile (she never forgets her inline skates!).",
+						"origin": "Argentine Pampas plains.",
+						"curiousFact": "Her grandmother from Formosa (Argentina) gave her the name, which literally means \"ñandú\" in the Qom language.",
+						"goals": {
+							"telescope": "Repair the telescopes.",
+							"star": "Watch the stars. ",
+							"planet": "Watch the planets."
+						}
+			},
+			"Capy": {  "name": "Capy y Guyrá",
+						"definition": "the capybara and the cattle tyrant",
+						"interests": "The environment. Ecology.",
+						"personality": "Caregivers. Friends (they are always together!).",
+						"origin": "Argentine wetlands.",
+						"curiousFact": "Their names Capy (from \"capybara\" which means \"lord of the grass\") and Guyrá (means \"bird\"), are from the Tupi Guaraní language.",
+						"goals": {
+							"can":"Pick the cans.",
+							"paper":"Pick the papers."
+						}
+			},
+			"Chuy": {  "name": "Chuy",
+						"definition": "the magellanic penguin",
+						"interests": "Team work. Have fun.",
+						"personality": "Generose. Sportsperson (they love to climb sea cliffs!).",
+						"origin": "Argentine Patagonian beach.",
+						"curiousFact": "Their name comes from \"chuy chuy\" which means \"cold\" in the Mapuche language.",      
+						"goals": {
+							"paddle": "Pick the paddles.",					
+							"trophy": "Pick the trophies.",
+							"pingpong": "Bounce ping pong balls.",
+							"pulpito": "Bounce the rubber balls.",
+							"football":"Kick the football balls."
+						}
+			}
+		}
 	},
 	"editor": {
 		"buttons": {

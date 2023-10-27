@@ -93,10 +93,10 @@
 	},
 	"editor": {
 		"buttons": {
-			"discardChallenge": "Descartar desafio",
+			"discardChallenge": "Descartar desafío",
 			"discardChallengeShort": "Descartar",
 			"download": "Descargar",
-			"preview": "Ver desafio",
+			"preview": "Ver desafío",
 			"previewShort": "Ver",
 			"keepEditing": "Seguir editando",
 			"keepEditingShort": "Editar",
@@ -105,8 +105,8 @@
 			"loadChallenge": "Abrir desafío creado",
 			"loadChallengeShort": "Abrir"
 		},
-		"editorHeader": "Editar desafio",
-		"previewModeHeader": "Ver desafio"
+		"editorHeader": "Editar desafío",
+		"previewModeHeader": "Ver desafío"
 	},
 	"title": {
 		"title": "Escribí el título del desafío para ",
