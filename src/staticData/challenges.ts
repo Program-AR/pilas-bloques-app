@@ -13,7 +13,7 @@ export type Challenge = {
    * Used for images and checks when importing solutions.
    * DON'T use this. Soon to be deprecated.
    */
-  name: string,
+  name?: string,
   /**
    * The pilasweb framework's scene for the challenge.
    * Scene class name or scene string initializer e.g. "new Scene..."
@@ -559,7 +559,6 @@ const challenges: Challenge[] = [
 
   {
     id: 201,
-    name: '3.1.2a',
     scene: `new EscenaDuba("\
       [O,O,O,O,O,O],\
       [O,-,-,-,O,-],\
@@ -578,7 +577,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 202,
-    name: '3.1.2b',
     scene: `new EscenaDuba("\
         [O,O,O,O,O,O],\
         [O,O,O,O,O,O],\
@@ -598,7 +596,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 203,
-    name: '3.1.2c',
     scene: `new EscenaDuba("\
       [O,O,O,O,O,O],\
       [O,O,O,O,O,O],\
@@ -618,7 +615,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 204,
-    name: '3.1.2d',
     scene: `new EscenaDuba("\
       [O,O,O,O,O,O],\
       [O,-,A,O,O,O],\
@@ -638,7 +634,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 205,
-    name: '3.1.2e',
     scene: `new EscenaDuba("\
       [O,O,O,O,O,O],\
       [O,O,-,O,-,O],\
@@ -658,7 +653,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 206,
-    name: '3.1.2f',
     scene: `new EscenaDuba("\
       [O,O,O,O,O,O],\
       [O,-,-,-,-,O],\
@@ -678,7 +672,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 207,
-    name: '3.1.3a',
     scene: `new EscenaCoty(
       [{x:125,y:75},{x:125,y:-175},{x:-25,y:-175},{x:-25,y:-75},{x:25,y:-75},{x:25,y:-175},{x:-125,y:-175},{x:-125,y:125},{x:-75,y:125},{x:-75,y:75},{x:-25,y:75},{x:-25,y:125},{x:25,y:125},{x:25,y:75}],
       [{x:25,y:75},{x:75,y:75},{x:75,y:125},{x:125,y:125},{x:125,y:75}],
@@ -689,7 +682,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 208,
-    name: '3.1.3b',
     scene: `new EscenaCoty(
       [{x:-50,y:25},{x:0,y:100},{x:50,y:25}],
       [{x:-50,y:25},{x:0,y:25},{x:50,y:25},{x:50,y:-25},{x:50,y:-75},{x:0,y:-75},{x:-50,y:-75},{x:-50,y:-25},{x:-50,y:25}],
@@ -700,7 +692,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 209,
-    name: '3.1.3c',
     scene: `new EscenaCoty(
       [],
       [[ {x:-125,y:0}, {x:-75,y:0}],[ {x:-25,y:0}, {x:25,y:0}],[ {x:75,y:0}, {x:125,y:0}]],
@@ -711,7 +702,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 210,
-    name: '3.1.3d',
     scene: `new EscenaCotySonrisa()`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -727,7 +717,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 211,
-    name: '3.1.3e',
     scene: `new EscenaCoty(
       [[{x:-55,y:50},{x:-150,y:50},{x:-150,y:0},{x:-50,y:0}],[{x:-75,y:0},{x:-75,y:-100},{x:-125,y:-100},{x:-125,y:0}],[{x:-25,y:0},{x:25,y:0},{x:25,y:-100},{x:-25,y:-100},{x:-25,y:0}],[{x:125,y:0},{x:125,y:-100},{x:75,y:-100},{x:75,y:0}],[{x:50,y:0},{x:150,y:0},{x:150,y:50},{x:50,y:50}]],
       [{x:-50,y:0},{x:0,y:0},{x:50,y:0},{x:50,y:50},{x:0,y:50},{x:-50,y:50},{x:-50,y:0}],
@@ -747,21 +736,18 @@ const challenges: Challenge[] = [
   },
   {
     id: 212,
-    name: '3.1.3f',
     scene: `new EscenaCotyCactus()`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: ['MoverArribaDibujando', 'MoverAbajoDibujando', 'MoverDerechaDibujando', 'MoverIzquierdaDibujando', 'SaltarAbajo', 'SaltarArriba', 'SaltarDerecha', 'SaltarIzquierda']
   },
   {
     id: 213,
-    name: '3.1.3g',
     scene: `new EscenaCotyMate()`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: ['MoverArribaDibujando', 'MoverAbajoDibujando', 'MoverDerechaDibujando', 'MoverIzquierdaDibujando', 'SaltarAbajo', 'SaltarArriba', 'SaltarDerecha', 'SaltarIzquierda']
   },
   {
     id: 214,
-    name: '3.1.4a',
     scene: `new EscenaLita("\
       [O,O,O,O,O,O],\
       [O,O,O,O,O,O],\
@@ -783,7 +769,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 215,
-    name: '3.1.4b',
     scene: `new EscenaLita("\
       [O,O,O,O,O],\
       [O,O,O,O,O],\
@@ -805,7 +790,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 216,
-    name: '3.2.2a',
     scene: `new EscenaLita("\
       [-,-,-],\
       [-,L,-],\
@@ -825,7 +809,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 217,
-    name: '3.2.2b',
     scene: `new EscenaLita("\
       [-,-,-,-],\
       [-,L,T,-],\
@@ -845,7 +828,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 218,
-    name: '3.2.2c',
     scene: `new EscenaLita("\
       [-,A,-],\
       [L,E,T],\
@@ -865,7 +847,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 219,
-    name: '3.2.2d',
     scene: `new EscenaLita("\
       [-,-,A],\
       [-,L,T],\
@@ -884,7 +865,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 220,
-    name: '3.2.3a',
     scene: `new EscenaDuba("\
       [O,O,O,O,O,O],\
       [O,P,O,-,-,O],\
@@ -941,7 +921,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 221,
-    name: '3.2.3b',
     scene: `new EscenaDuba("\
         [O,O,O,O,O,O],\
         [O,-,-,O,O,O],\
@@ -982,7 +961,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 222,
-    name: '3.2.3c',
     scene: `new EscenaDuba("\
         [O,O,O,O,O,O],\
         [O,P,O,A,O,O],\
@@ -1027,7 +1005,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 223,
-    name: '3.2.3d',
     scene: `new EscenaDuba("\
         [O,O,O,O,O,O],\
         [O,O,-,-,-,O],\
@@ -1080,7 +1057,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 224,
-    name: '3.2.3e',
     scene: `new EscenaLita("\
       [O,O,O,O,O,O,O],\
       [O,O,O,O,O,O,O],\
@@ -1139,7 +1115,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 225,
-    name: '3.I1a',
     scene: `new EscenaTotoLector([
         ['A', 'r', 'e'],
         ['t', 'o', 'j'],
@@ -1155,7 +1130,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 226,
-    name: '3.I1b',
     scene: `new EscenaTotoLector([
         ['r', 'h', 'j', 'a'],
         ['z', 'A', 'a', 'm'],
@@ -1171,7 +1145,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 227,
-    name: '3.I1c',
     scene: `new EscenaTotoLector([
         ['a', 'm', 'A'],
         ['f', 'u', 'p'],
@@ -1187,7 +1160,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 228,
-    name: '3.I1d',
     scene: `new EscenaTotoLector([
         ['A', 'c', 'a', 'b'],
         ['o', 'l', 'l', 'e'],
@@ -1235,7 +1207,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 229,
-    name: '3.I1e',
     scene: `new EscenaTotoLector([
         ['w', 'a', 'r'],
         ['u', 'n', 'e'],
@@ -1284,7 +1255,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 230,
-    name: '4.1.3a',
     scene: `new EscenaDuba("\
         [-,O,O,O,-,-,-,-],\
         [-,O,O,O,O,-,-,-],\
@@ -1307,7 +1277,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 231,
-    name: '4.1.3b',
     scene: `new EscenaDuba("\
         [O,O,-,O,O,-,-,-],\
         [O,P,-,O,O,-,-,-],\
@@ -1330,7 +1299,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 232,
-    name: '4.1.3c',
     scene: `new EscenaDuba("\
       [-,-,-,O,O,-,-,O],\
       [O,O,-,O,-,-,-,O],\
@@ -1353,7 +1321,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 233,
-    name: '4.1.4a',
     scene: `new EscenaCoty(
       [],
       [[{x:-130,y:20},{x:-90,y:20}], [{x:-50,y:20},{x:-10,y:20}], [{x:30,y:20},{x:70,y:20}], [{x:110,y:20},{x:150,y:20}]],
@@ -1374,7 +1341,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 234,
-    name: '4.1.4b',
     scene: `new EscenaCoty(
       [],
       [[{x:-130,y:20},{x:-90,y:20}], [{x:-50,y:20},{x:-10,y:20}], [{x:30,y:20},{x:70,y:20}], [{x:110,y:20},{x:150,y:20},{x:150,y:-20}]],
@@ -1395,7 +1361,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 235,
-    name: '4.1.4c',
     scene: `new EscenaCoty(
       [],
       [[{x:-120,y:-60},{x:-120,y:-20},{x:-80,y:-20},{x:-40,y:-20},{x:-40,y:20},{x:0,y:20},{x:40,y:20},{x:40,y:60},{x:80,y:60},{x:120,y:60}]],
@@ -1416,7 +1381,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 236,
-    name: '4.2.3a',
     scene: `new EscenaDuba("\
       [-,-,-,-,O,O,O,O],\
       [-,-,-,-,-,-,-,O],\
@@ -1465,7 +1429,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 237,
-    name: '4.2.3b',
     scene: `new EscenaDuba("\
       [O,-,-,-,O,O,O,O],\
       [-,A,-,-,-,-,O,-],\
@@ -1514,7 +1477,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 238,
-    name: '4.2.3c',
     scene: `new EscenaCoty(
       [],
       [[{x:-100,y:-100},{x:-100,y:-50},{x:-50,y:-50},{x:-50,y:0},{x:0,y:0},{x:0,y:50},{x:50,y:50},{x:50,y:100},{x:100,y:100}]],
@@ -1564,7 +1526,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 239,
-    name: '4.2.3d',
     scene: `new EscenaCoty(
       [],
       [[{x:-120,y:-60},{x:-120,y:-20},{x:-80,y:-20},{x:-80,y:20},{x:-40,y:20},{x:-40,y:60},{x:0,y:60},{x:40,y:60},{x:40,y:20},{x:80,y:20},{x:80,y:-20},{x:120,y:-20},{x:120,y:-60}]],
@@ -1630,7 +1591,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 240,
-    name: '4.I1a',
     scene: `new EscenaLita("\
       [O,-,-,-,O,-,A],\
       [-,-,-,O,O,-,O],\
@@ -1654,7 +1614,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 241,
-    name: '4.I1b',
     scene: `new EscenaLita("\
       [L,-,-,-,-,T,E],\
       [-,O,-,-,O,-,O],\
@@ -1725,7 +1684,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 242,
-    name: '5.1.3a',
     scene: `new EscenaDuba("[A,P?(0.6)]", {}, [0,1])`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1744,7 +1702,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 243,
-    name: '5.1.3b',
     scene: `new EscenaDuba(["[A,-,-]","[A,P,-]","[A,-,P]","[A,P,P]"], {}, [0,2])`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1763,7 +1720,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 244,
-    name: '5.1.3c',
     scene: `new EscenaCoty(
       [],
       [{x:-120,y:50},{x:20,y:50},{x:20,y:-90},{x:-120,y:-90},{x:-120,y:50}],
@@ -1788,7 +1744,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 245,
-    name: '5.1.4a',
     scene: `new EscenaLita("[A,-,L|T]")`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1808,7 +1763,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 246,
-    name: '5.1.4b',
     scene: `new EscenaDuba(["\
       [O,O,O,O,O],\
       [O,A,-,P,O],\
@@ -1840,7 +1794,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 247,
-    name: '5.1.4c',
     scene: `new EscenaDuba("\
       [O,O,O,O,O],\
       [-,-,*,-,-],\
@@ -1865,7 +1818,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 248,
-    name: '5.2.1a',
     scene: `new EscenaDuba("[A,-,-,-,-,-,-,P?]", {}, [0,7])`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1883,7 +1835,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 249,
-    name: '5.2.1b',
     scene: `new EscenaDuba("[A,#P,#P,#P,#P,#P,#P,#P]", { macros: { "P": "*>P?" }, coleccion: ["P"] }, [0,7])`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1901,7 +1852,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 250,
-    name: '5.2.1c',
     scene: `new EscenaLita("[A],[*>L|T],[*>L|T],[*>L|T],[*>L|T],[*>L|T],[*>L|T],[E]", { coleccion: ["T", "L"] })`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1922,7 +1872,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 251,
-    name: '5.I1a',
     scene: `new EscenaTotoEscritor(new ObjetivoCopiar())`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1939,7 +1888,6 @@ const challenges: Challenge[] = [
 
   {
     id: 252,
-    name: '5.I1b',
     scene: `new EscenaTotoEscritor(new ObjetivoX())`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1957,7 +1905,6 @@ const challenges: Challenge[] = [
 
   {
     id: 253,
-    name: '5.I1c',
     scene: `new EscenaTotoEscritor(new ObjetivoMicha())`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1976,7 +1923,6 @@ const challenges: Challenge[] = [
 
   {
     id: 254,
-    name: '5.I1d',
     scene: `new EscenaTotoEscritor(new ObjetivoJeringozo())`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: [
@@ -1995,7 +1941,6 @@ const challenges: Challenge[] = [
 
   {
     id: 255,
-    name: 'CotyDibujoLibre',
     image: 'Coty',
     scene: `new EscenaCoty([],[],{xCoty: -50, yCoty: 50})`,
     hasAutomaticGrading: false,
@@ -2006,7 +1951,6 @@ const challenges: Challenge[] = [
   // New challenges with new characters
   {
     id: 1001,
-    name: 'CapyYGuyra',
     scene: `new EscenaCapySolo("[A,-,-,G]")`,
     toolboxBlockIds: ['MoverACasillaDerecha', 'SubirPajarito'],
     expectations: {
@@ -2016,7 +1960,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1046,
-    name: 'NuevosComandosCapy',
     scene: `new EscenaCapy("\
       [A,-,L],\
       [-,_,L],\
@@ -2033,7 +1976,6 @@ const challenges: Challenge[] = [
   //Tecnopolis
   {
     id: 202101,
-    name: 'tecnopolis2021Modelo',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2079,7 +2021,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 202102,
-    name: 'tecnopolis2021ModeloRepeticion',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2129,7 +2070,6 @@ const challenges: Challenge[] = [
   //Duba
   {
     id: 2021001,
-    name: 'tecnopolis2021DubaNivel1',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2151,7 +2091,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021002,
-    name: 'tecnopolis2021DubaNivel2',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2173,7 +2112,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021003,
-    name: 'tecnopolis2021DubaNivel3',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2195,7 +2133,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021004,
-    name: 'tecnopolis2021DubaNivel4',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2217,7 +2154,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021005,
-    name: 'tecnopolis2021DubaNivel5',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2239,7 +2175,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021006,
-    name: 'tecnopolis2021DubaNivel6',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2261,7 +2196,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021007,
-    name: 'tecnopolis2021DubaNivel7',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2283,7 +2217,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021008,
-    name: 'tecnopolis2021DubaNivel8',
     image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2306,7 +2239,6 @@ const challenges: Challenge[] = [
   //Lita
   {
     id: 2021101,
-    name: 'tecnopolis2021LitaNivel1',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2330,7 +2262,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021102,
-    name: 'tecnopolis2021LitaNivel2',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2354,7 +2285,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021103,
-    name: 'tecnopolis2021LitaNivel3',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2378,7 +2308,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021104,
-    name: 'tecnopolis2021LitaNivel4',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2402,7 +2331,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021105,
-    name: 'tecnopolis2021LitaNivel5',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2426,7 +2354,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021106,
-    name: 'tecnopolis2021LitaNivel6',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2450,7 +2377,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021107,
-    name: 'tecnopolis2021LitaNivel7',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2474,7 +2400,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021108,
-    name: 'tecnopolis2021LitaNivel8',
     image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
@@ -2575,7 +2500,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021206,
-    name: 'tecnopolis2021CotyNivel6',
     image: 'Coty',
     scene: `new EscenaCoty(
       [[{x:-104,y:12},{x:-78,y:12}],[{x:-104,y:12},{x:-104,y:-30}],[{x:-104,y:-9},{x:-78,y:-9}],[{x:-104,y:-30},{x:-78,y:-30}],[{x:-70,y:12},{x:-44,y:12}],[{x:-70,y:12},{x:-70,y:-30},{x:-44,y:-30}],[{x:-36,y:12},{x:-36,y:-30}],[{x:-36,y:12},{x:-30,y:4},{x:-28,y:0},{x:-19,y:-12},{x:-17,y:-16},{x:-14,y:-19},{x:-8,y:-27}],[{x:-10,y:12},{x:-10,y:-30}],[{x:-2,y:12},{x:24,y:12}],[{x:-2,y:12},{x:-2,y:-30}],[{x:24,y:12},{x:24,y:-30}],[{x:-2,y:-30},{x:24,y:-30}],[{x:32,y:12},{x:58,y:12}],[{x:32,y:12},{x:32,y:-30}],[{x:32,y:-9},{x:58,y:-9}],[{x:58,y:12},{x:58,y:-12}],[{x:66,y:12},{x:92,y:12}],[{x:66,y:12},{x:66,y:-30}],[{x:92,y:12},{x:92,y:-30}],[{x:66,y:-30},{x:92,y:-30}],[{x:100,y:12},{x:100,y:-30},{x:126,y:-30}],[{x:142,y:12},{x:142,y:-30}],[{x:150,y:12},{x:176,y:12}],[{x:150,y:12},{x:150,y:-12}],[{x:150,y:-9},{x:176,y:-9},{x:176,y:-33}],[{x:150,y:-30},{x:176,y:-30}]],
@@ -2597,7 +2521,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021207,
-    name: 'tecnopolis2021CotyNivel7',
     image: 'Coty',
     scene: `new EscenaCoty(
       [],
@@ -2721,7 +2644,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021305,
-    name: 'tecnopolis2021TotoNivel5',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['A','t', 'e', 'l', 'j'],
@@ -2738,7 +2660,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021306,
-    name: 'tecnopolis2021TotoNivel6',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['d','A','o'],
@@ -2761,7 +2682,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021307,
-    name: 'tecnopolis2021TotoNivel7',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['d','A','o'],
@@ -2781,7 +2701,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021308,
-    name: 'tecnopolis2021TotoNivel8',
     image: 'Toto',
     scene: `new EscenaTotoLector([
       ['t','a','q','m','e','v','o','g','r','a','u'],
@@ -2799,7 +2718,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021309,
-    name: 'tecnopolis2021TotoNivel9',
     image: 'Toto',
     scene: `new EscenaTotoLector([
       ['f','d','h','w','t'],
@@ -2842,8 +2760,7 @@ const challenges: Challenge[] = [
   </xml>`
   },
   {
-    id: 1002,
-    name: 'ChuyHaciendoJueguito', 
+    id: 1002, 
     scene: 'ChuyHaciendoJueguito',
     toolboxBlockIds: ['Avanzar', 'Volver', 'Retroceder', 'RecogerPulpito', 'RebotarPiePulpito', 'RevolearPulpito', 'Repetir', 'Procedimiento'],
     expectations: {
@@ -2852,7 +2769,6 @@ const challenges: Challenge[] = [
   },  
   {
     id: 1003,
-    name: 'NoMeCansoDeRebotar',
     scene: 'NoMeCansoDeRebotar',
     toolboxBlockIds: ['RebotarUnaVezPingPong', 'Procedimiento', 'Repetir'],
     expectations: {
@@ -2861,7 +2777,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1004,
-    name: 'ManicEnElCielo',
     scene: `new EscenaManic("\
                     [E,-,E,-,E],\
                     [-,-,-,-,E],\
@@ -2871,7 +2786,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1005,
-    name: 'YvotyDespiertaLuciernagas',
     scene: `new EscenaYvoty("\
     [-,-,-,L,-,-],\
     [-,-,L,-,-,L],\
@@ -2883,7 +2797,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1006,
-    name: 'LosTrofeosDeChuy',
     scene: `new EscenaChuy("\
       [T,-,-,-,-,-],\
       [-,T,-,-,-,-],\
@@ -2895,7 +2808,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1007,
-    name: 'LaReparadoraDeTelescopios',
     scene: `new EscenaManic("\
         [-,T,T,T,T],\
         [-,T,T,T,T],\
@@ -2905,7 +2817,6 @@ const challenges: Challenge[] = [
   },  
   {
     id: 1008,
-    name: 'ManicYLosPlanetas',
     scene: `new EscenaManic("\
     [P,P,P,P,P,P],\
     [P,-,-,-,-,-],\
@@ -2916,7 +2827,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1009,
-    name: 'CargandoCelus',
     scene: `new EscenaYvoty("\
       [C,C,C,C,-],\
       [-,-,-,-,K],\
@@ -2926,25 +2836,21 @@ const challenges: Challenge[] = [
   },
   {
     id: 1010,
-    name: 'InstalandoJuegosYvoty',
     scene: 'InstalandoJuegosYvoty',
     toolboxBlockIds: ['PasarASiguienteComputadora', 'PrenderComputadora', 'ApagarComputadora', 'EscribirC', 'EscribirB', 'EscribirA', 'InstalarJuego', 'Repetir', 'Procedimiento'],
   },
   {
     id: 1011,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1012,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1013,
-    name: 'PateandoAVeces',
     scene: `new EscenaChuy("[A,G?]",{},[1,0])`,
     toolboxBlockIds: ['PatearPelotaChuy', 'MoverACasillaDerecha', 'TocandoPelotaChuy', 'Repetir', 'Procedimiento', 'Si'],
     expectations: {
@@ -2955,7 +2861,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1014,
-    name: 'PelotaPaleta',
     scene: `new EscenaChuy(["[A,P]", "[A,G]"],{},[1,0])`,
     toolboxBlockIds: ['PatearPelotaChuy', 'RebotarPingPong', 'MoverACasillaDerecha', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoPelotaChuy', 'TocandoPingPong'],
     expectations: {
@@ -2966,7 +2871,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1015,
-    name: 'LaberintoCortoChuy',
     scene: `new EscenaChuy(['[A,-]', '[A],[-]'],{}, [-1,0])`,
     toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha',
       'MoverACasillaAbajo', 'TocandoAbajo', 'TocandoDerecha'],
@@ -2977,13 +2881,11 @@ const challenges: Challenge[] = [
   },
   {
     id: 1016,
-    name: 'TresTelescopios',
     scene: `new EscenaManic("[A,T?,T?,T?]",{},[3,0])`,
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'RepararTelescopio', 'Repetir', 'Si', 'SiNo', 'TocandoTelescopio'],
   },
   {
     id: 1017,
-    name: 'YvotyDespiertaMasLuciernagas',
     scene: `new EscenaYvoty("\
         [A&(*>L?)],\
         [*>L?],\
@@ -2997,7 +2899,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1018,
-    name: 'LaberintoLargoChuy',
     scene: `new EscenaChuy([
       '[A,_,_,_,_,_,_,_],[-,-,-,_,_,_,_,_],[_,_,-,_,_,_,_,_],[_,_,-,_,_,_,_,_],[_,_,-,-,-,-,-,_],[_,_,_,_,_,_,-,_],[_,_,_,_,_,_,-,-],[_,_,_,_,_,_,_,-]',
       '[A,-,-,_,_,_,_,_],[_,_,-,-,-,_,_,_],[_,_,_,_,-,-,_,_],[_,_,_,_,_,-,_,_],[_,_,_,_,_,-,-,_],[_,_,_,_,_,_,-,-],[_,_,_,_,_,_,_,-],[_,_,_,_,_,_,_,-]',
@@ -3010,7 +2911,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1019,
-    name: 'SuperYvoty1',
     scene: `new EscenaYvoty(["[A&L],[L],[-]","[A&L],[L],[L],[-]","[A&L],[L],[L],[L],[-]", "[A&L],[L],[L],[L],[L],[-]", "[A&L],[L],[L],[L],[L],[L],[-]"])`,
     toolboxBlockIds: ['Procedimiento', 'DespertarLuciernaga', 'MoverACasillaAbajo',
       'TocandoFinal', 'Repetir', 'Si', 'SiNo', 'Hasta'],
@@ -3020,7 +2920,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1020,
-    name: 'SuperYvoty2',
     scene: `new EscenaYvoty(["[A&(#L)],[#L],[-]","[A&(#L)],[#L],[#L],[-]","[A&(#L)],[#L],[#L],[#L],[-]", "[A&(#L)],[#L],[#L],[#L],[#L],[-]", "[A&(#L)],[#L],[#L],[#L],[#L],[#L],[-]"],
       { macros: { "L": "*>L?" }, coleccion: ["L"] })`,
     toolboxBlockIds: ['Procedimiento', 'TocandoFinal', 'TocandoLuciernaga', 'DespertarLuciernaga',
@@ -3031,7 +2930,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1021,
-    name: 'LaberintoConPelotas',
     scene: `new EscenaChuy([
       '[A&(U?),_,_,_,_],[U?,U?,_,_,_],[_,U?,U?,_,_],[_,_,U?,_,_],[_,_,U?,U?,-]',
       '[A&(U?),_],[U?,-]',
@@ -3048,13 +2946,11 @@ const challenges: Challenge[] = [
   },
   {
     id: 1022,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1023,
-    name: 'FutbolAlSur',
     scene: 'FutbolAlSur',
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'SiguienteFila',
       'PatearPelotaChuy', 'TocandoInicio', 'TocandoPelotaChuy', 'Repetir', 'Si',
@@ -3065,7 +2961,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1024,
-    name: 'PrendiendoLasCompusYvoty',
     scene: `new EscenaYvoty([
       '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
       '[A,T,T,T,T,-], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [-,T,T,T,T,-]',
@@ -3085,8 +2980,7 @@ const challenges: Challenge[] = [
     }
   },
   {
-    id: 1025,
-    name: 'ContandoPlanetasYEstrellas',    
+    id: 1025,    
     scene: 'ContandoPlanetasYEstrellas',
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaArriba', 'MoverACasillaAbajo',
       'SiguienteColumna', 'ContarPlaneta', 'ContarEstrella',
@@ -3098,7 +2992,6 @@ const challenges: Challenge[] = [
   },
   {
     id:  1026,
-    name: 'LaSupermaraton',
     scene: 'SuperMaraton',
     toolboxBlockIds: ['Procedimiento', 'KmsTotales', 'Avanzar1kmChuy', 'RepetirVacio',
       'Repetir', 'Si', 'SiNo', 'Hasta'],
@@ -3108,7 +3001,6 @@ const challenges: Challenge[] = [
   },  
   {
     id: 1027,
-    name: 'ContandoDeNuevoManic',
     scene: 'ContandoDeNuevoManic',
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaArriba', 'MoverACasillaAbajo',
       'SiguienteColumna',
@@ -3118,7 +3010,6 @@ const challenges: Challenge[] = [
   },  
   {
     id: 1028,
-    name: 'ElPlanetaDeCapyYGuyra',
     scene: `new EscenaCapy("\
         [-,L,L,-,-],\
         [-,L,L,L,L],\
@@ -3134,61 +3025,51 @@ const challenges: Challenge[] = [
   },
   {
     id: 1029,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1030,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1031,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1032,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1033,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1034,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1035,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1036,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1037,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1038,
-    name: 'LasEstrellasDeManic',
     scene: `new EscenaManic([
       '[A,_,_,_,_],[-,O,-,-,-],[-,_,_,_,-],[E,-,-,-,-]',
       '[A,_,_,_,_],[-,-,-,-,-],[O,_,_,_,-],[E,-,-,-,-]'])`,
@@ -3198,7 +3079,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1039,
-    name: 'LosCaminosDeManic',
     scene: `new EscenaManic([
       '[A,_,_,_,_,_],[-,O,-,-,-,_],[-,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,O,-,-,-],[_,-,_,_,_,-],[_,E,-,-,-,-]',
       '[A,_,_,_,_,_],[-,O,-,-,-,_],[-,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,-,-,-,-],[_,O,_,_,_,-],[_,E,-,-,-,-]',
@@ -3215,7 +3095,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1040,
-    name: 'HileraDeLatas',
     scene: `new EscenaCapy([
       '[L,-,-,-,A],[_,_,-,_,_],[_,_,-,_,_],[_,_,-,_,_]',
       '[L,-,L,-,A],[_,_,L,_,_],[_,_,L,_,_],[_,_,L,_,_]'])`,
@@ -3223,7 +3102,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1041,
-    name: 'MuchasHilerasDeLatas',
     scene: `new EscenaCapy([
       '[_,_,_,-,-,L,A],[L,-,-,L,_,L,_],[L,_,_,L,_,L,_],[L,_,_,L,_,L,_],[L,_,_,L,_,_,_]',
       '[_,_,_,-,-,L,A],[-,-,-,L,_,L,_],[-,_,_,L,_,L,_],[-,_,_,L,_,L,_],[-,_,_,L,_,_,_]',
@@ -3237,7 +3115,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1042,
-    name: 'AVecesLatasAVecesPapeles',
     scene: `new EscenaCapy("\
       [A,L|P|-,L|P|-,L|P|-,L|P|-],\
       [-,_,_,_,_],\
@@ -3253,7 +3130,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1043,
-    name: 'ElPasilloCurvoDeCelus',
     scene: `new EscenaYvoty("\
     [_,P,P?,P?],\
       [_,_,_,P?],\
@@ -3271,7 +3147,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1044,
-    name: 'ElFestinAstronomico',
     scene: `new EscenaManic("\
     [A,-,-,-,-],\
     [E|P,_,E|P,E|P,E|P],\
@@ -3284,7 +3159,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1045,
-    name: 'ObservadoraDeMariposas',
     scene: `new EscenaYvoty("\
       [-,*a>M?,*a>M?,*a>M?,*a>M?],\
       [-,*b>M?,*b>M?,*b>M?,*b>M?],\
@@ -3305,19 +3179,16 @@ const challenges: Challenge[] = [
   },
   {
     id: 1130,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1131,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1132,
-    name: 'PrendiendoLasCompusParametrizadoYvoty',
     scene: `new EscenaYvoty([
       '[A,T,T,T,-], [T,-,-,-,T], [T,-,-,-,T], [T,-,-,-,T], [-,T,T,T,-]',
       '[A,T,T,T,T,-], [T,-,-,-,-,T], [T,-,-,-,-,T], [T,-,-,-,-,T], [-,T,T,T,T,-]',
@@ -3335,7 +3206,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 1133,
-    name: 'MariposasEncuadradas',
     scene: `new EscenaYvoty("\
     [A,#M,#M,#M,#M,#M,-],\
     [#M,O,O,O,O,O,#M],\
@@ -3351,7 +3221,6 @@ const challenges: Challenge[] = [
   },
    {
     id: 1134,
-    name: 'InfinitosTrofeos',
     scene: `new EscenaChuy("\
     [A,T,T,T,T,-],\
     [T,_,_,_,_,T],\
@@ -3365,13 +3234,11 @@ const challenges: Challenge[] = [
   },
   {
     id: 1135,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
   {
     id: 1136,
-    name: '',
     scene: '',
     toolboxBlockIds: [],
   },
