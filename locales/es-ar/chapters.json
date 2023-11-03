@@ -25,5 +25,20 @@
     },
     "Desafios complementarios": {
       "title": "Desafíos complementarios"
+    },
+    "1": {
+      "title": "Autómatas, comandos, procedimientos y repetición"
+    },
+    "2": {
+      "title": "Alternativa condicional"
+    },
+    "3": {
+      "title": "Repetición condicional"
+    },
+    "4": {
+      "title": "Sensores Numéricos"
+    },
+    "5": {
+      "title": "Parametrización de soluciones"
     }
   }

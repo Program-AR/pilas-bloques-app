@@ -71,11 +71,11 @@ export type ExpectationConfig = {
   @throws Error
  **/
 export const getChallengeWithId = (id: number): Challenge => {
-  const challenge: Challenge | undefined = challenges.find(challenge => challenge.id === id)
+  const challenge: Challenge[] = challenges.filter(challenge => challenge.id === id)
+  if (challenge.length > 1) throw new Error(`There are multiple challenges with id "${id}"`)
+  if (challenge.length === 0) throw new Error(`Challenge with id "${id}" does not exist`)
 
-  if (!challenge) throw new Error("Challenge with that id does not exist")
-
-  return challenge
+  return challenge[0]
 }
   
 /**
@@ -84,7 +84,7 @@ export const getChallengeWithId = (id: number): Challenge => {
   export const getChallengeWithName = (challengeName: string): Challenge => {
     const challenge: Challenge | undefined = challenges.find(challenge => challenge.name === challengeName)
     
-    if (!challenge) throw new Error("Challenge with that name does not exist")
+    if (!challenge) throw new Error(`Challenge with name "${challengeName}" does not exist`)
   
     return challenge
   }
@@ -2931,6 +2931,18 @@ const challenges: Challenge[] = [
     toolboxBlockIds: ['PasarASiguienteComputadora', 'PrenderComputadora', 'ApagarComputadora', 'EscribirC', 'EscribirB', 'EscribirA', 'InstalarJuego', 'Repetir', 'Procedimiento'],
   },
   {
+    id: 1011,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1012,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
     id: 1013,
     name: 'PateandoAVeces',
     scene: `new EscenaChuy("[A,G?]",{},[1,0])`,
@@ -3035,6 +3047,12 @@ const challenges: Challenge[] = [
     }
   },
   {
+    id: 1022,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
     id: 1023,
     name: 'FutbolAlSur',
     scene: 'FutbolAlSur',
@@ -3113,6 +3131,60 @@ const challenges: Challenge[] = [
       decomposition: false,
       decomposition9: true
     }
+  },
+  {
+    id: 1029,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1030,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1031,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1032,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1033,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1034,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1035,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1036,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1037,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
   },
   {
     id: 1038,
@@ -3232,6 +3304,18 @@ const challenges: Challenge[] = [
     toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaArriba', 'VolverABordeIzquierdo', 'FotografiarMariposa', 'TocandoMariposa', 'Procedimiento', 'Repetir', 'Si', 'SiNo']
   },
   {
+    id: 1130,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1131,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
     id: 1132,
     name: 'PrendiendoLasCompusParametrizadoYvoty',
     scene: `new EscenaYvoty([
@@ -3278,5 +3362,17 @@ const challenges: Challenge[] = [
     toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
       'ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo', 'MoverA',
       'RecogerTrofeo', 'Numero', 'OpAritmetica']
+  },
+  {
+    id: 1135,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
+  },
+  {
+    id: 1136,
+    name: '',
+    scene: '',
+    toolboxBlockIds: [],
   },
 ];

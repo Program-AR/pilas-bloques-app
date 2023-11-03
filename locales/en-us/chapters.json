@@ -25,5 +25,20 @@
     },
     "Desafios complementarios": {
       "title": "Complementary challenges"
+    },
+    "1": {
+      "title": "Automatons, commands, procedures, and repetition"
+    },
+    "2": {
+      "title": "Conditional alternative"
+    },
+    "3": {
+      "title": "Conditional repetition"
+    },
+    "4": {
+      "title": "Numerical sensors"
+    },
+    "5": {
+      "title": "Solutions parameterizing"
     }
   }
