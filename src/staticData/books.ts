@@ -59,7 +59,7 @@ const rawBooksData: RawBookData[] = [
   },
   {
     id: 1000,
-    chapterIds: ['Nuevos Desafios'],
+    chapterIds: ['1','2','3','4','5'],
     simpleReadMode: true
   },  
 ];
