@@ -1,4 +1,4 @@
-import "./toolboxPreview.css";
+import styles from "./ToolboxPreview.module.css";
 import { BlocklyWorkspace } from "react-blockly";
 import { useTranslation } from "react-i18next";
 import { BlockType, getBlockFromId } from "../../../../blocks";
@@ -22,7 +22,7 @@ export const ToolboxPreview = ({blocksToPreview, categorized}: ToolboxPreviewPro
       <div style={{ height: "600px", width: "800px"}} key={"blockly" + categorized + blocksToPreview.length}> {/* The key is needed to force a rerender on categorized change an blocks change. Without this it crashes or it doesnt update.*/}
           <BlocklyWorkspace
           toolboxConfiguration={categorized ? categorizedToolbox(blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
-          className="fill-height"
+          className={styles.fillHeight}
           workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
           onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
           />
