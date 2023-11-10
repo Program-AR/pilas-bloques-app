@@ -195,7 +195,9 @@ module.exports = function (webpackEnv) {
     bail: isEnvProduction,
     // Ignore spurious warnings from source-map-loader
     // It can't find source maps for some Closure modules and that is expected
+    // TODO: revert when resolved https://github.com/google/blockly/issues/7124 
     ignoreWarnings: [/Failed to parse source map/],
+    //
     devtool: isEnvProduction
       ? shouldUseSourceMap
         ? 'source-map'
@@ -564,11 +566,13 @@ module.exports = function (webpackEnv) {
           ],
         },
         // Include the source maps for Blockly for easier debugging Blockly code.
+        // TODO: revert when resolved https://github.com/google/blockly/issues/7124 
         {
           test: /(blockly\/.*\.js)$/,
           use: [require.resolve('source-map-loader')],
           enforce: 'pre',
         },
+        //
       ].filter(Boolean),
     },
     plugins: [
