@@ -1,5 +1,6 @@
 import Blockly from "blockly"
 import { BlockType } from "./components/blocks"
+import Es from 'blockly/msg/es';
 
 type BlocklyBlockDefinition = {
     message0: string
@@ -64,6 +65,7 @@ export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
 })
 
 export const setupBlocklyBlocks = (t: (key: string) => string) => {
+  Blockly.setLocale(Es);
   createPrimitiveBlock("MoverACasillaArriba", t("blocks.moveUp"), "icono.arriba.png")
   createPrimitiveBlock("MoverACasillaAbajo", t("blocks.moveDown"), "icono.abajo.png")
   createPrimitiveBlock("MoverACasillaIzquierda", t("blocks.moveLeft"), "icono.izquierda.png")

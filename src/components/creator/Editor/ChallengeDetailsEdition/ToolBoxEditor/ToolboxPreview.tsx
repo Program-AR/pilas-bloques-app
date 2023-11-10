@@ -1,6 +1,7 @@
 import "./toolboxPreview.css";
 import { BlocklyWorkspace } from "react-blockly";
 import Blockly from "blockly";
+import Es from 'blockly/msg/es';
 import { useTranslation } from "react-i18next";
 import { BlockType, getBlockFromId } from "../../../../blocks";
 import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../../../../blockly";
@@ -12,7 +13,9 @@ type ToolboxPreviewProps = {
 
 export const ToolboxPreview = ({blocksToPreview, categorized}: ToolboxPreviewProps) => {
   const {t} = useTranslation("blocks")
-
+  
+  Blockly.setLocale(Es);
+  
   const blocksWithCategories: BlockType[] = blocksToPreview.map(getBlockFromId)
 
   setupBlocklyBlocks(t)
