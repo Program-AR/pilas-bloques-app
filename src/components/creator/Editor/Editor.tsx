@@ -24,7 +24,7 @@ export const CreatorEditor = () => {
 
   useEffect(() => {
     if (!challengeExists) navigate('/creador/seleccionar')
-  }, [])
+  }, [challengeExists, navigate])
 
   return (
     <>   

@@ -25,7 +25,7 @@ export const CreatorViewMode = () => {
 
     useEffect(() => {
         if (!challengeExists) navigate('/creador/seleccionar')
-    }, [])
+    }, [challengeExists, navigate])
 
     return (<>
         {challengeExists ? (
