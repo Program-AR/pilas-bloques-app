@@ -23,9 +23,7 @@ export const CreatorEditor = () => {
   const challengeExists = LocalStorage.getCreatorChallenge()
 
   useEffect(() => {
-    if (!challengeExists) {
-      navigate('/creador/seleccionar')
-    }
+    if (!challengeExists) navigate('/creador/seleccionar')
   }, [])
 
   return (
