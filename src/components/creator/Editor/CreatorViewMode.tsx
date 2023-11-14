@@ -10,6 +10,8 @@ import { ReturnToEditionButton } from "./ActionButtons/ReturnToEditButton"
 import { BetaBadge } from "../BetaBadge"
 import { PBreadcrumbs } from "../../PBreadcrumbs"
 import { EditorSubHeader } from "./Editor"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
 export const CreatorViewMode = () => {
 
@@ -17,15 +19,29 @@ export const CreatorViewMode = () => {
 
     Ember.importChallenge(challengeBeingEdited)
 
-    return <>
-        <Header CenterComponent={<CreatorViewHeader challenge={challengeBeingEdited}/>} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton/>}/>} />
-        <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
-    </>
+    const navigate = useNavigate()
+
+    const challengeExists = LocalStorage.getCreatorChallenge()
+
+    useEffect(() => {
+        if (!challengeExists) {
+            navigate('/creador/seleccionar')
+        }
+    }, [])
+
+    return (<>
+        {challengeExists ? (
+            <>
+                <Header CenterComponent={<CreatorViewHeader challenge={challengeBeingEdited} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
+                <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+            </>
+        ) : <></>}
+    </>)
 }
 
 const CreatorViewHeader = ({ challenge }: { challenge: SerializedChallenge }) => {
     const { t } = useTranslation('creator')
-    
+
     return <BetaBadge smaller={true}>
         <PBreadcrumbs>
             <HeaderText text={t("editor.previewModeHeader")} />
