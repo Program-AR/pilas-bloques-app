@@ -1,10 +1,9 @@
-import { Add, ContentCopy, Delete } from "@mui/icons-material";
+import { ContentCopy, Delete } from "@mui/icons-material";
 import { Button, ButtonProps, Stack, Typography, useMediaQuery } from "@mui/material";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { LocalStorage } from "../../../../../localStorage";
-import { SceneMap, defaultScene } from "../../../../serializedChallenge";
+import { SceneMap } from "../../../../serializedChallenge";
 import { CreatorContext } from "../../CreatorContext";
 import { DialogSnackbar } from "../../../../dialogSnackbar/DialogSnackbar";
 import { IconButtonTooltip } from "../IconButtonTooltip";
