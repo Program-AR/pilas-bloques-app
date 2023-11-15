@@ -323,6 +323,10 @@ export const sceneBlocks: BlockType[] = [
 
 ]
 
+const allBlocks: BlockType[] = commonBlocks.concat(sceneBlocks)
+
+export const getBlockFromId = (id: string): BlockType  => allBlocks.find(block => block.id === id)!
+
 export const availableBlocksFor = (sceneType: SceneType) : BlockType[] => {
     return [...sceneBlocks.filter(block => sceneObjectByType(sceneType).specificBlocksIds.includes(block.id)),
             ...commonBlocks]
