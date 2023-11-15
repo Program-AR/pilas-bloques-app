@@ -12,6 +12,8 @@ import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
 
 export const ToolBoxEditor = () => {
 
+    const shouldShow = process.env.NODE_ENV !== 'production'
+
     const { t } = useTranslation('creator');
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
@@ -60,7 +62,7 @@ export const ToolBoxEditor = () => {
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
                 </div>
-                <ToolboxPreview blocksToPreview={toolBoxItems} categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>
+                {shouldShow ? <ToolboxPreview blocksToPreview={toolBoxItems} categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>:<></>}
             </Stack>
         </GenericModalDialog>
     </>
