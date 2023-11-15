@@ -96,7 +96,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "start:emberDev": "sh ./scripts/localEmber.sh",
-    "build:surge": "node scripts/setEmberRoot.js public/emberPB '' && react-scripts build",
+    "build:surge": "node scripts/setEmberRoot.js public/emberPB '' &&  node scripts/build.js",
     "electron-start": "electron ./build",
     "postinstall": "sh scripts/copyEmberPB.sh",
     "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
