@@ -1,5 +1,6 @@
 {
 	"title": "Página no encontrada",
 	"text": "La página a la que intentás acceder no existe.",
-	"home": "Ir al inicio"
+	"home": "Ir al inicio",
+	"errorOcurred": "Ocurrió un error (✖╭╮✖)"
 }
