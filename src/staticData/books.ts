@@ -57,4 +57,9 @@ const rawBooksData: RawBookData[] = [
     chapterIds: ['Parametrización de soluciones'],
     simpleReadMode: true
   },
+  {
+    id: 1000,
+    chapterIds: ['1','2','3','4','5'],
+    simpleReadMode: true
+  },  
 ];

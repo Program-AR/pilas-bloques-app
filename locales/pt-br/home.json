@@ -1,3 +1,14 @@
 {
+	"title": "Escolha seu nível e comece a programar",
+	"creatorTitle": "Você também pode criar ou importar seu próprio desafio",
+	"signUp": "Inscrever-se",
+	"importError": "O arquivo é inválido",
+	"cards": {
+		"initial": "Principiante",
+		"intermediate": "Intermédio",
+		"advanced": "Avançado",
+		"import": "Importe seu desafio",
+		"creator": "Crie seu desafio"
+	},
     "header": "Uma ferramenta para aprender a programar"
 }

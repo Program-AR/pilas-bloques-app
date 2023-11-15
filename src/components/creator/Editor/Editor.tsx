@@ -13,14 +13,13 @@ import { useThemeContext } from "../../../theme/ThemeContext";
 export const CreatorEditor = () => {
   const { theme } = useThemeContext()
 
-  const {t} = useTranslation('creator')
+  const { t } = useTranslation('creator')
 
   return (
     <CreatorContextProvider>
-      
-      <Stack alignItems="center" height="inherit" sx={{backgroundColor: theme.palette.background.paper}}>
-        <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.editorHeader")}/></BetaBadge>} SubHeader={<EditorSubHeader/>}/>
-        <Stack justifyContent= "center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)'}}>
+      <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
+        <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.editorHeader")} /></BetaBadge>} SubHeader={<EditorSubHeader viewButton={<PreviewButton/>}/>} />
+        <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
           <SceneEdition />
         </Stack>
       </Stack>
@@ -28,15 +27,13 @@ export const CreatorEditor = () => {
   )
 }
 
-const EditorSubHeader: React.FC = () => 
-  <CreatorSubHeader>
-    <DiscardChallengeButton/>
-    <Actions/>
-  </CreatorSubHeader>
+type EditorSubHeaderProps = {
+  viewButton: React.ReactNode
+}
 
-const Actions = () => <>
-  <PreviewButton/>
-  <Stack direction="row" alignItems={"center"}>
-    <DownloadButton/>
-  </Stack>
-</>
+export const EditorSubHeader = (props: EditorSubHeaderProps) =>
+  <CreatorSubHeader>
+    <DiscardChallengeButton />
+    {props.viewButton}
+    <DownloadButton />
+  </CreatorSubHeader>

@@ -11,6 +11,8 @@ export const TitleEdition = () => {
     const { t } = useTranslation('creator');
 
     const initialTitle = LocalStorage.getCreatorChallenge()!.title
+    const actor = LocalStorage.getCreatorChallenge()!.scene.type
+
     const [titleInProgress, setTitleInProgress] = useState<string>(initialTitle);
     
     const [dialogOpen, setDialogOpen] = useState<boolean>(false)
@@ -40,7 +42,7 @@ export const TitleEdition = () => {
                         dialogProps={{open: dialogOpen}}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
-                        title={t('title.title')}>
+                        title={`${t('title.title')}${t(`selection.cards.${actor}.name`)}`}>
             <Box style={{ justifyContent:'center'}}>
             
 
@@ -49,6 +51,7 @@ export const TitleEdition = () => {
                 variant="standard"
                 label={t('title.input')}
                 value={titleInProgress}
+                autoFocus
                 onChange={props => setTitleInProgress(props.target.value)}
                 inputProps={{maxLength: 38}}
             />            

@@ -28,7 +28,7 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
     );
 
     useEffect(() =>{
-        LocalStorage.toggleDarkMode()
+        LocalStorage.saveDarkMode(darkModeEnabled)
         Ember.refreshIframe()
     }, [darkModeEnabled])
 

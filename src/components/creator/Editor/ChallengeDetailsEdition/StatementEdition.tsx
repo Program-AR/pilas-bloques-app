@@ -14,8 +14,9 @@ export const StatementEdition = (props: StatementEditionType) => {
 
     const { t } = useTranslation('creator');
 
-    const initialStatement = LocalStorage.getCreatorChallenge()!.statement.description
+    const initialStatement: string = LocalStorage.getCreatorChallenge()!.statement.description
     const initialClue = LocalStorage.getCreatorChallenge()!.statement.clue
+    const actor = LocalStorage.getCreatorChallenge()!.scene.type
 
     const [statement, setStatement] = useState<string>(initialStatement)
     const [clue, setClue] = useState<string | undefined>(initialClue)
@@ -51,7 +52,8 @@ export const StatementEdition = (props: StatementEditionType) => {
                         dialogProps={{open: dialogOpen, fullWidth:true, maxWidth:"lg"}}
                         onConfirm={handleOnConfirm}
                         onCancel={handleOnCancel}
-                        title={t('statement.title')}>
+                        isDraggable
+                        title={`${t('statement.title')}${t(`selection.cards.${actor}.name`)}`}>
             <Box style={{ justifyContent:'center'}}>
             
             <MarkdownEditor statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} />

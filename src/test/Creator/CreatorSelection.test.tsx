@@ -1,8 +1,8 @@
-import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react'
 import { ActorSelection } from '../../components/creator/ActorSelection/ActorSelection';
 import { LocalStorage } from '../../localStorage';
 import { defaultChallenge } from "../../components/serializedChallenge"
+import { renderComponent } from '../testUtils';
 
 describe('Creator selection', () => {
     afterEach(() => {
@@ -11,7 +11,7 @@ describe('Creator selection', () => {
 
     test('Shows warning modal if there is a challenge in progress', async () => {
         LocalStorage.saveCreatorChallenge(defaultChallenge("Duba"))
-        render(<BrowserRouter><ActorSelection /></BrowserRouter>)
+        renderComponent(<ActorSelection />)
     
         const dialog = await screen.findByTestId("challenge-progress-warning")
     
@@ -20,7 +20,7 @@ describe('Creator selection', () => {
     })
     
     test('Should not show warning modal if there is no challenge in progress', async () => {
-        render(<BrowserRouter><ActorSelection /></BrowserRouter>)
+        renderComponent(<ActorSelection />)
     
         const find: Promise<HTMLElement> = screen.findByTestId("challenge-progress-warning")
     

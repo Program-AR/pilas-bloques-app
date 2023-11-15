@@ -1,14 +1,13 @@
-import { Breadcrumbs, Typography, useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Challenge, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./emberView/EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
-import { useThemeContext } from "../theme/ThemeContext";
+import { PBreadcrumbs } from "./PBreadcrumbs";
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
-    const { theme } = useThemeContext()
 
     const { t } = useTranslation(["books", "challenges", "chapters", "groups"])
     const isSmallScreen: boolean = useMediaQuery('(max-width:1100px)');
@@ -18,7 +17,7 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const shouldShowChapter = !isSmallScreen
 
     return <>
-        <Breadcrumbs separator=">" >
+        <PBreadcrumbs>
 
             <Link to="/">
                 <HomeIcon style={{ display: 'flex', color: '#787878' }} />
@@ -26,20 +25,20 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
             </Link>
 
             <Link to={`/libros/${path.book.id}`}>
-                <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.book.id}.title`, { ns: "books" })}</Typography>
+                <Typography>{t(`${path.book.id}.title`, { ns: "books" })}</Typography>
             </Link>
 
             {shouldShowChapter &&
-                <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.chapter.id}.title`, { ns: "chapters" })}</Typography>
+                <Typography>{t(`${path.chapter.id}.title`, { ns: "chapters" })}</Typography>
             }
 
             {shouldShowGroup &&
-                <Typography sx={{ [theme.breakpoints.down("sm")]: { display: "none" } }}>{t(`${path.group.id}.title`, { ns: "groups" })}</Typography>
+                <Typography>{t(`${path.group.id}.title`, { ns: "groups" })}</Typography>
             }
 
             <Typography>{t(`${path.challenge.id}.title`, { ns: "challenges" })}</Typography>
 
-        </Breadcrumbs>
+        </PBreadcrumbs>
     </>
 }
 
@@ -65,8 +64,7 @@ const ChallengeView = (props: ChallengeViewProps) => {
 
 export const ChallengeById = () => {
     const { id } = useParams()
-
-    return <ChallengeView challengeId={Number(id)} />
+    return <ChallengeView challengeId={Number(id)}/>
 }
 
 export const ChallengeByName = () => {

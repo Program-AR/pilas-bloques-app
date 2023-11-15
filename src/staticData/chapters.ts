@@ -1,5 +1,5 @@
 import { Challenge, ExpectationConfig } from "./challenges"
-import { getGroup, Group, groupIncludesChallenge } from "./groups"
+import { getGroup, Group } from "./groups"
 
 type RawChapterData = {
     id: string,
@@ -20,7 +20,7 @@ export const getChapter = (id: string): Chapter => {
 }
 
 export const chapterIncludesChallenge = (chapter: Chapter, challenge: Challenge): boolean => {
-    return chapter.groups.some(group => groupIncludesChallenge(group, challenge))
+    return chapter.groups.some(group => group.includes(challenge))
 }
 
 export const rawChapterData: RawChapterData[] = [
@@ -44,7 +44,7 @@ export const rawChapterData: RawChapterData[] = [
     },
     {
         id: 'Autómatas, comandos, procedimientos y repetición',
-        groupIds: ['AlienTocaBoton', 'NuevosComandos', 'ElGatoEnLaCalle', 'NoMeCansoDeSaltar', 'ElMarcianoEnElDesierto', 'TitoEnciendeLuces', 'ElAlienYLasTuercas', 'ElRecolectorDeEstrellas', 'MariaLaComeSandias', 'AlimentandoALosPeces', 'InstalandoJuegos', 'LaGranAventuraDelMarEncantado', 'ReparandoLaNave'],
+        groupIds: ['CapyYGuyra', 'NuevosComandosCapy', 'ElGatoEnLaCalle', 'NoMeCansoDeSaltar', 'ElMarcianoEnElDesierto', 'TitoEnciendeLuces', 'ElAlienYLasTuercas', 'ElRecolectorDeEstrellas', 'MariaLaComeSandias', 'AlimentandoALosPeces', 'InstalandoJuegos', 'LaGranAventuraDelMarEncantado', 'ReparandoLaNave'],
         expectations: {
             simpleRepetition: true
         }
@@ -71,5 +71,25 @@ export const rawChapterData: RawChapterData[] = [
     {
         id: 'Desafios complementarios',
         groupIds: ['tecnopolis2021EjercicioModelo', 'tecnopolis2021ConDuba', 'tecnopolis2021ConLita', 'tecnopolis2021ConCoty', 'tecnopolis2021ConToto']
+    },
+    {
+        id: '1',
+        groupIds: ['1001', '1046', '1002', '1003', '1004', '1005', '1006', '1007', '1008', '1009', '1010', '1011', '1012']
+    },
+    {
+        id: '2',
+        groupIds: ['1013', '1014', '1038', '1039', '1040', '1041', '1015', '1018', '1016', '1017', '1042', '1043', '1044', '1045']
+    },
+    {
+        id: '3',
+        groupIds: ['1019', '1020', '1021', '1022', '1023', '1024', '1025']
+    },
+    {
+        id: '4',
+        groupIds: ['1026', '1027']
+    },
+    {
+        id: '5',
+        groupIds: ['1028', 'dibujando', '1130', '1131', '1132', '1133', '1134', '1135', '1136']
     }
 ];

@@ -18,7 +18,7 @@
 		"cards": {
 			"Lita": { 	"name": "Lita",
 						"definition": "la mulita",
-						"interests": "Cultivar la tierra.",
+						"interests": "El cultivo. Las huertas.",
 						"personality": "Risueña (¡siempre la vas a ver sonriendo!).",
 						"origin": "Mesopotamia.",
 						"curiousFact": "Tiene su propia huerta y le gusta enrollarse como una bola.",
@@ -30,18 +30,18 @@
 			},
 			"Duba": { 	"name": "Duba",
 						"definition": "la puma",
-						"interests": "La cocina.",
-						"personality": "Hambrienta (¡todo el tiempo tiene hambre!).",
+						"interests": "La comida.",
+						"personality": "Hambrienta (¡siempre es buen momento para comer!).",
 						"origin": "Cordillera patagónica",
-						"curiousFact": "Su comida favorita es el churrasco y le encanta hacer asados.",
+						"curiousFact": "Su plato favorito es el churrasco y le encanta hacer asados.",
 						"goals": {
 							"steak": "Comer los churrascos."
 						}
 			},
 			"Yvoty": { 	"name": "Yvoty",
 						"definition": "la yaguareté",
-						"interests": "La tecnología. Las redes sociales.",
-						"personality": "Armónica. Despreocupada (¡no le importa el qué dirán!).",
+						"interests": "La tecnología. La informática. Las redes sociales.",
+						"personality": "Creativa. Sin prejuicios (¡no le importa el qué dirán!).",
 						"origin": "Selva misionera.",
 						"curiousFact": "Yvoty significa \"flor\" en la lengua guaraní y se pronuncia \"ivotí\", ¡pero se escribe con dos \"y\"!",
 						"goals": {
@@ -67,7 +67,7 @@
 			"Capy": {  "name": "Capy y Guyrá",
 						"definition": "el carpincho y el picabuey",
 						"interests": "El medio ambiente. La ecología.",
-						"personality": "Protectores. Amigos (¡siempre están combinados!).",
+						"personality": "Cuidadores. Amigos (¡siempre están juntos!).",
 						"origin": "Humedales.",
 						"curiousFact": "Sus nombres Capy (de \"capybara\" que significa \"señor del pasto\") y Guyrá (significa \"pájaro\"), son de la lengua tupí guaraní.",
 						"goals": {
@@ -77,8 +77,8 @@
 			},
 			"Chuy": {  "name": "Chuy",
 						"definition": "le pingüine de magallanes",
-						"interests": "El trabajo en equipo. Los deportes.",
-						"personality": "Hiperactive. Arriesgade (¡le encanta escalar acantilados!).",
+						"interests": "El trabajo en equipo. Divertirse.",
+						"personality": "Generose. Deportista (¡le encanta escalar acantilados!).",
 						"origin": "Playa patagónica.",
 						"curiousFact": "Su nombre viene de \"chuy chuy\" que significa \"frío\" en la lengua mapuche.",      
 						"goals": {
@@ -93,10 +93,10 @@
 	},
 	"editor": {
 		"buttons": {
-			"discardChallenge": "Descartar desafio",
+			"discardChallenge": "Descartar desafío",
 			"discardChallengeShort": "Descartar",
 			"download": "Descargar",
-			"preview": "Ver desafio",
+			"preview": "Ver desafío",
 			"previewShort": "Ver",
 			"keepEditing": "Seguir editando",
 			"keepEditingShort": "Editar",
@@ -105,20 +105,18 @@
 			"loadChallenge": "Abrir desafío creado",
 			"loadChallengeShort": "Abrir"
 		},
-		"editorHeader": "Editar desafio",
-		"previewModeHeader": "Ver desafio"
+		"editorHeader": "Editar desafío",
+		"previewModeHeader": "Ver desafío"
 	},
 	"title": {
-		"title": "Escribí el título del desafío",
+		"title": "Escribí el título del desafío para ",
 		"button": "Escribir título",
 		"input": "Título"	
 	},
 	"statement": {
-		"title": "Enunciado",
+		"title": "Escribí el enunciado del desafío para ",
 		"button": "Escribir enunciado",
-		"description": "Descripción",
-		"markdownTitle": "Así se verán tu enunciado y pista:",
-		"descriptionHint": "Escribí un enunciado para el ejercicio. Que sea conciso y diga claramente el objetivo. Podés usar **negritas**, _cursivas_ y emojis :wink: con la sintaxis de Markdown.",
+		"description": "Texto del enunciado",
 		"clue": "Pista",
 		"includeClue": "Incluir una pista",
 		"defaultDescription": "Así se verá tu **enunciado**...",
@@ -127,7 +125,7 @@
 	"tools": {
 		"putObstacle": "Añadir obstáculo",
 		"putObject": "Añadir objetos",
-		"putActor": "Mover personaje",
+		"putActor": "Mover a ",
 		"delete": "Borrar"
 	},
 	"scene": {
@@ -135,7 +133,7 @@
 		"numRows": "Modificar filas"
 	},
 	"toolbox": {
-		"title": "Seleccionar comandos disponibles",
+		"title": "Seleccioná los comandos para el desafío de ",
 		"button": "Seleccionar comandos disponibles",
 		"categoriesHint": "Cuando se desee usar procedimientos siempre deberá haber categorías"
 	},
@@ -150,5 +148,6 @@
 		"next": "Siguiente",
 		"prev": "Anterior",
 		"multipleInitialScenarios": "Escenarios iniciales"
-	}
+	},
+	"importedChallengedHeader": "Desafío creado por la comunidad"
 }

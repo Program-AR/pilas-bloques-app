@@ -8,6 +8,7 @@ import { ChallengeById, ChallengeByName } from './components/ChallengeView';
 import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import { About } from './components/about/About';
+import { PageNotFound } from './components/pageNotFound/PageNotFound';
 import { PasswordRecovery } from './components/PasswordRecovery';
 import { Register } from './components/Register';
 import { ActorSelection } from './components/creator/ActorSelection/ActorSelection';
@@ -80,6 +81,10 @@ const router = createHashRouter([{
   {
     path: "/creador/ver",
     element: <CreatorViewMode/>
+  },
+  {
+    path: "*",
+    element: <PageNotFound/>
   }
 ]}]);
 

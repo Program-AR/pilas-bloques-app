@@ -4,9 +4,10 @@
 	"signUp": "Registrate",
 	"importError": "El archivo es inválido",
 	"cards": {
-		"initial": "Inicial",
+		"initial": "Principiante",
 		"intermediate": "Intermedio",
 		"advanced": "Avanzado",
+		"newChallenges": "Nuevos Desafíos TEMPORAL",
 		"import": "Importá tu desafío",
 		"creator": "Creá tu desafío"
 	},

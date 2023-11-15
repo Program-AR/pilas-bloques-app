@@ -59,8 +59,8 @@ export const SizeEditor = (props: StyleGridProps) => {
     
     return (
             <Stack>
-                <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={12} label={t("scene.numRows")} testId="row" data-testid="map-row" />
-                <IncDecButtons add={addColumn} remove={removeColumn} value={columns} min={1} max={10} label={t("scene.numCols")} testId="col" data-testid="map-col" />
+                <IncDecButtons add={addRow} remove={removeRow} value={rows} min={1} max={10} label={t("scene.numRows")} testId="row" data-testid="map-row" />
+                <IncDecButtons add={addColumn} remove={removeColumn} value={columns} min={1} max={8} label={t("scene.numCols")} testId="col" data-testid="map-col" />
             </Stack>
     )
 }

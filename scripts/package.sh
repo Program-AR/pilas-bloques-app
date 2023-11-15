@@ -24,7 +24,7 @@ help() {
 	echo "    -linux_deb   Packs w/ Electron and makes a Debian deb x64 installer."
 	echo "    -linux_zip   Packs w/ Electron and makes a zipfile linux x64 executable."
 	echo "    -linux       linux_deb + linux_zip"
-	echo "    -win32       Packs w/ Electron and makes a Win32 installer."
+	echo "    -win       Packs w/ Electron and makes a Windows installer."
     echo "    -html        Makes zipfile with html to serve."
 	echo ""
 	echo "  NOTE: every version generates a binary automatically in CI."
@@ -74,7 +74,7 @@ osx() {
     hdiutil create binaries/$NAME-$VERSION.dmg -srcfolder ./binaries/$NAME-darwin-x64/$NAME.app -size 1g
 }
 
-win32() {
+windows() {
     eco "Generating installer for windows..."
     pack "win32" "ia32" "ico"
 	cp packaging/instalador.nsi binaries/$NAME-win32-ia32/
@@ -94,7 +94,7 @@ case "$1" in
     (-linux_zip)   linux_zip;;
     (-linux)       linux;;
     (-osx)         osx;;
-    (-win32)       win32;;
+    (-win)         windows;;
     (-html)        html;;
     (*)            help;;
 esac 
