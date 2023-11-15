@@ -72,13 +72,6 @@ describe('Scene grid', () => {
         expect(maps[0]).toEqual([[EMPTY, EMPTY]])
     })
 
-    test('Should add default map', async () =>{
-        const defaultMap = defaultScene('Duba').maps[0]
-        await clickButtonAtIndex('add', 0)
-        expect(LocalStorage.getCreatorChallenge()?.scene.maps[1]).toEqual(defaultMap)
-    })
-
-
     test('Should duplicate map at index', async () =>{
         const map = [[ACTOR, EMPTY, OBSTACLE], [OBSTACLE, EMPTY, OBSTACLE]]
         saveChallange([map])

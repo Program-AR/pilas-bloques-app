@@ -14,7 +14,7 @@ export const GridOptions = (props: StyleGridProps) => {
     return <>
         <Stack>
             <PBCard sx={{justifyContent: "center"}}>
-                <Stack sx={{padding: theme.spacing(1), maxWidth: "200px"}}>
+                <Stack sx={{padding: theme.spacing(1), maxWidth: "200px", paddingBottom: 5, paddingTop: 4}}>
                     <SizeEditor setStyleGrid={props.setStyleGrid} />
                     <ScenarioEditionButtons/>
                 </Stack>

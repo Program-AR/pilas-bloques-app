@@ -1,10 +1,9 @@
-import { Add, ContentCopy, Delete } from "@mui/icons-material";
+import { ContentCopy, Delete } from "@mui/icons-material";
 import { Button, ButtonProps, Stack, Typography, useMediaQuery } from "@mui/material";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { LocalStorage } from "../../../../../localStorage";
-import { SceneMap, defaultScene } from "../../../../serializedChallenge";
+import { SceneMap } from "../../../../serializedChallenge";
 import { CreatorContext } from "../../CreatorContext";
 import { DialogSnackbar } from "../../../../dialogSnackbar/DialogSnackbar";
 import { IconButtonTooltip } from "../IconButtonTooltip";
@@ -44,11 +43,6 @@ export const ScenarioEditionButtons = () => {
         addMap(map)
     }
 
-    const handleAdd = () => {
-        const type = LocalStorage.getCreatorChallenge()!.scene.type
-        addMap(defaultScene(type).maps[0])
-    }
-
     const addMap = (map: SceneMap) => {
         setMaps(maps.concat([[...map]]))
         setIndex(maps.length)
@@ -56,9 +50,7 @@ export const ScenarioEditionButtons = () => {
 
     return <>
         <Stack sx={{ alignItems: 'center', gap: theme.spacing(1) }}>
-            <GridOptionButton startIcon={<Add />} onClick={handleAdd} tooltip={t("scenarios.add")} testid="add" />
             <GridOptionButton startIcon={<ContentCopy />} onClick={handleDuplicate} tooltip={t("scenarios.duplicate")} testid="duplicate" />
-
             <GridOptionButton startIcon={<Delete />} onClick={handleDelete} tooltip={t("scenarios.delete")} testid="delete" />
             <GenericModalDialog isOpen={showDeleteDialog} onConfirm={deleteMap} onCancel={() => setShowDeleteDialog(false)} title={t("scenarios.delete")}>
                 <Typography>{t("scenarios.areYouSure")}</Typography>
