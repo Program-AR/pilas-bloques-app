@@ -9,21 +9,37 @@ import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
 import { useThemeContext } from "../../../theme/ThemeContext";
+import { useNavigate } from "react-router-dom";
+import { LocalStorage } from "../../../localStorage";
+import { useEffect } from "react";
 
 export const CreatorEditor = () => {
   const { theme } = useThemeContext()
 
   const { t } = useTranslation('creator')
 
+  const navigate = useNavigate()
+
+  const challengeExists = LocalStorage.getCreatorChallenge()
+
+  useEffect(() => {
+    if (!challengeExists) navigate('/creador/seleccionar')
+  }, [challengeExists, navigate])
+
   return (
-    <CreatorContextProvider>
-      <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
-        <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.editorHeader")} /></BetaBadge>} SubHeader={<EditorSubHeader viewButton={<PreviewButton/>}/>} />
-        <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
-          <SceneEdition />
+    <>   
+    { challengeExists ?
+      (<CreatorContextProvider>
+        <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
+          <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.editorHeader")} /></BetaBadge>} SubHeader={<EditorSubHeader viewButton={<PreviewButton />} />} />
+          <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
+            <SceneEdition />
+          </Stack>
         </Stack>
-      </Stack>
-    </CreatorContextProvider>
+      </CreatorContextProvider>
+      ) : <></>}
+    </>
+
   )
 }
 
