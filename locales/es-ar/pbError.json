@@ -1,0 +1,8 @@
+{
+	"home": "Ir al inicio",
+	"errorOcurred": "Ocurrió un error (✖╭╮✖)",
+	"pageNotFound": {
+		"title": "Página no encontrada",
+		"text": "La página a la que intentás acceder no existe."
+	}
+}

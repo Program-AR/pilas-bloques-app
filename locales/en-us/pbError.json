@@ -1,0 +1,8 @@
+{
+	"home": "Go to home page",
+	"errorOcurred": "An error occurred (✖╭╮✖)",
+	"pageNotFound": {
+		"title": "Page not found",
+		"text": "The page you are trying to access does not exist."
+	}
+}
