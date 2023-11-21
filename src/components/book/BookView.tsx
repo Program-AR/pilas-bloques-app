@@ -76,11 +76,12 @@ const GroupView = ({group}: {group: Group}) => {
 const ChallengeCard = ({challenge}:{challenge: Challenge}) => {
     const {t} = useTranslation("challenges")
     const {theme} = useThemeContext()
+    const space: number = 1 //8px
     return <Link to={"/desafio/" + challenge.id}>
-        <Stack>
+        <Stack width={100 + space * 2 * 8}>
             <PBCard><ChallengeCover challenge={challenge}/></PBCard>
-            <Typography align="center" 
-                style={{ marginLeft: theme.spacing(0.5), marginRight: theme.spacing(0.5), marginBottom: theme.spacing(2)}}>
+            <Typography align="center" lineHeight={1}
+                style={{ marginLeft: theme.spacing(space), marginRight: theme.spacing(space), marginBottom: theme.spacing(2)}}>
                     {t(`${challenge.id}.title`)}
             </Typography>
         </Stack>
