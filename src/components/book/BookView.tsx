@@ -77,7 +77,7 @@ const ChallengeCard = ({challenge}:{challenge: Challenge}) => {
     const {t} = useTranslation("challenges")
     const {theme} = useThemeContext()
     return <Link to={"/desafio/" + challenge.id}>
-        <Stack width="120px">
+        <Stack>
             <PBCard><ChallengeCover challenge={challenge}/></PBCard>
             <Typography align="center" 
                 style={{ marginLeft: theme.spacing(0.5), marginRight: theme.spacing(0.5), marginBottom: theme.spacing(2)}}>
@@ -90,7 +90,7 @@ const ChallengeCard = ({challenge}:{challenge: Challenge}) => {
 const ChallengeCover = ({challenge}: {challenge: Challenge}) => {
     const {theme} = useThemeContext()
     return <img 
-        width="100%"
+        width="100px"
         style={{borderRadius: theme.shape.borderRadius}}
         alt="challenge" 
         src={`imagenes/challengeCovers/${challenge.id}.png`} 
