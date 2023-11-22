@@ -1,4 +1,4 @@
-import { Typography, useMediaQuery } from "@mui/material";
+import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { Link, useParams, useSearchParams } from "react-router-dom";
 import { Challenge, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./emberView/EmberView";
@@ -6,6 +6,9 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
 import { PBreadcrumbs } from "./PBreadcrumbs";
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import { IconButtonTooltip } from "./creator/Editor/SceneEdition/IconButtonTooltip";
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
@@ -16,7 +19,7 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
     const shouldShowGroup = path.book.id === 1 && !isVerySmallScreen
     const shouldShowChapter = !isSmallScreen
 
-    return <>
+    return <Stack direction="row" alignItems="center">
         <PBreadcrumbs>
 
             <Link to="/">
@@ -39,7 +42,9 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
             <Typography>{t(`${path.challenge.id}.title`, { ns: "challenges" })}</Typography>
 
         </PBreadcrumbs>
-    </>
+        <IconButtonTooltip onClick={() => {}} icon={<SkipPreviousIcon />} tooltip={"Desafío anterior"} />
+        <IconButtonTooltip onClick={() => {}} icon={<SkipNextIcon />} tooltip={"Desafío siguiente"} />
+    </Stack>
 }
 
 
