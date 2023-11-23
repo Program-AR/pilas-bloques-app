@@ -14,7 +14,7 @@
     "blocks": {
         "footBallHere":"¿Hay una pelota de fútbol acá?",
         "pingPongBallHere":"¿Hay una pelota de ping pong acá?",
-        "pulpitoBallHere":"¿Hay una pelota pulpito acá?",
+        "pulpitoBallHere":"¿Hay una pelota de goma acá?",
         "butterflyHere": "¿Hay una mariposa acá?",
         "canHere": "¿Hay una lata acá?",
         "cellphoneHere": "¿Hay un celular acá?",
@@ -27,7 +27,7 @@
         "Functions":"Funciones",
         "holdPaper": "Sostener papel",
         "kickFootballBall": "Patear pelota de fútbol",
-        "bounceRubberBall": "Rebotar pelota pulpito",
+        "bounceRubberBall": "Rebotar pelota de goma",
         "left": "Izquierda",
         "lettuceHere": "¿Hay lechuga acá?",
         "logic_compare":"Comparar",
