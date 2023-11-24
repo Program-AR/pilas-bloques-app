@@ -9,6 +9,7 @@ export type EmberExecutableChallenge = {
     estiloToolbox?: "sinCategorias",
     solucionInicial?: string
     titulo: string,
+    nombre: string,
     enunciado: string,
     consignaInicial: string,
     customCover: string,
@@ -39,6 +40,10 @@ export namespace Ember {
         const blob = await content.blob()
         return URL.createObjectURL(blob)
     }
+    function textToCamelCase(texto: string) {
+        return texto.replace(/\b\w/g, (match) => match.toUpperCase()).replace(/\s+/g, '');
+      }
+
 
     export const importChallenge = async (importedChallenge: SerializedChallenge) => {
 
@@ -49,6 +54,7 @@ export namespace Ember {
             debugging: importedChallenge.stepByStep,
             solucionInicial: importedChallenge.predefinedSolution,
             titulo: importedChallenge.title,
+            nombre: textToCamelCase(importedChallenge.title),
             enunciado: importedChallenge.statement.description,
             consignaInicial: importedChallenge.statement.clue || "",
             customCover: await sceneCover(importedChallenge.scene.type),
