@@ -12,6 +12,7 @@ import { useThemeContext } from "../../../theme/ThemeContext";
 import { useNavigate } from "react-router-dom";
 import { LocalStorage } from "../../../localStorage";
 import { useEffect } from "react";
+import { ShareButton } from "./ActionButtons/ShareButton";
 
 export const CreatorEditor = () => {
   const { theme } = useThemeContext()
@@ -52,4 +53,5 @@ export const EditorSubHeader = (props: EditorSubHeaderProps) =>
     <DiscardChallengeButton />
     {props.viewButton}
     <DownloadButton />
+    <ShareButton/>
   </CreatorSubHeader>

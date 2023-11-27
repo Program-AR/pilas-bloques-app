@@ -1,3 +1,4 @@
+import { SerializedChallenge } from "./components/serializedChallenge";
 import { LocalStorage } from "./localStorage"
 
 export interface User{
@@ -34,6 +35,10 @@ export namespace PilasBloquesApi{
     export const login = async (credentials: Credentials) => {
       await _send<Credentials>('POST', 'login', credentials)
       .then(user => LocalStorage.saveUser(user))
+    }
+
+    export const shareChallenge = async (challenge: SerializedChallenge) => {
+      await _send<SerializedChallenge>('POST', 'share', challenge)
     }
 
     const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
