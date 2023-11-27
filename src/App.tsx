@@ -43,7 +43,7 @@ const router = createHashRouter([{
   },
   {
     path: "/sharedChallenge/:id",
-    element: <SharedChallengeView/>,
+    element: <CreatorViewMode/>,
     errorElement: <PBError />,
     loader: async ({ params }) => {
       const challenge = await PilasBloquesApi.getSharedChallenge(params.id!);
