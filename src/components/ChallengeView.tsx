@@ -6,13 +6,16 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
 import { useTranslation } from "react-i18next";
 import { PBreadcrumbs } from "./PBreadcrumbs";
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { IconButtonTooltip } from "./creator/Editor/SceneEdition/IconButtonTooltip";
+import { useThemeContext } from "../theme/ThemeContext";
+
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
     const { t } = useTranslation(["books", "challenges", "chapters", "groups"])
+    const {theme} = useThemeContext()
     const isSmallScreen: boolean = useMediaQuery('(max-width:1100px)');
     const isVerySmallScreen: boolean = useMediaQuery('(max-width:700px)');
 
@@ -42,11 +45,20 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
             <Typography>{t(`${path.challenge.id}.title`, { ns: "challenges" })}</Typography>
 
         </PBreadcrumbs>
-        <IconButtonTooltip onClick={() => {}} icon={<SkipPreviousIcon />} tooltip={"Desafío anterior"} />
-        <IconButtonTooltip onClick={() => {}} icon={<SkipNextIcon />} tooltip={"Desafío siguiente"} />
+        <Stack marginLeft={theme.spacing(5)} direction='row' justifyContent='flex-end'>
+        {path.group.previousChallenge(path.challenge) && 
+            <Link to={`/desafio/${path.group.previousChallenge(path.challenge)!.id}`}>
+                <IconButtonTooltip icon={<KeyboardDoubleArrowLeftIcon />} tooltip={"Desafío anterior"} />
+            </Link>
+        }
+        {path.group.nextChallenge(path.challenge) && 
+            <Link to={`/desafio/${path.group.nextChallenge(path.challenge)!.id}`}>
+                <IconButtonTooltip icon={<KeyboardDoubleArrowRightIcon />} tooltip={"Desafío siguiente"} />
+            </Link>
+        }
+        </Stack>
     </Stack>
 }
-
 
 type ChallengeViewProps = {
     challengeId: number
