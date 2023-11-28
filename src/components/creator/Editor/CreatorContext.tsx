@@ -54,8 +54,9 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
 
     useEffect(() => {
         challenge.scene.maps = maps
+        challenge.shareId = shareId
         LocalStorage.saveCreatorChallenge(challenge)
-    }, [maps, challenge])
+    }, [maps, challenge, shareId])
 
     return (
         <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap, shareId, setShareId, index, setIndex, setMaps, maps}}>
