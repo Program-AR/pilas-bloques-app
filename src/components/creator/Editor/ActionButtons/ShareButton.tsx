@@ -2,9 +2,11 @@ import { SerializedChallenge } from "../../../serializedChallenge";
 import { LocalStorage } from "../../../../localStorage";
 import { CreatorActionButton } from "./CreatorActionButton";
 import DownloadIcon from '@mui/icons-material/Download';
+import ShareIcon from '@mui/icons-material/Share';
 import { PilasBloquesApi } from "../../../../pbApi";
 import { useState } from "react";
-import { Button, CircularProgress, Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
+import { DownloadButton } from "./DownloadButton";
 
 export const ShareButton = () => {
 
@@ -32,13 +34,22 @@ const ShareDialog = ({open, setDialogOpen} : {open: boolean, setDialogOpen: (ope
         <DialogTitle>Compartir desafio</DialogTitle>
         <DialogContent>
             <Stack>
-                {url || <CircularProgress/>}
-                <Button onClick={handleShareClick} variant='contained'>Compartir</Button>
+                {url}
+                <Buttons handleShareClick={handleShareClick}/>
             </Stack>
         </DialogContent>
     </Dialog>
 </>
 }
+
+const Buttons = ({handleShareClick}: {handleShareClick: () => void}) => <>
+    <Stack direction="row" justifyContent="space-between">
+        <CreatorActionButton onClick={handleShareClick} startIcon={<ShareIcon/>} variant='contained' nametag="shareUrl"/>
+        <DownloadButton/>
+    </Stack>
+
+
+</>
 
 const shareChallenge = () => {
     const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!

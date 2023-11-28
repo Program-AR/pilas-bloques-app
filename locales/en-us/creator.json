@@ -96,6 +96,8 @@
 			"discardChallenge": "Discard challenge",
 			"discardChallengeShort": "Discard",
 			"download": "Download",
+			"share": "Share challenge",
+			"shareUrl": "Share with url",
 			"preview": "Challenge preview",
 			"previewShort": "Preview",
 			"keepEditing": "Keep editing",

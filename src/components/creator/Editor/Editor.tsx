@@ -4,7 +4,6 @@ import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { useTranslation } from "react-i18next";
-import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
@@ -52,6 +51,5 @@ export const EditorSubHeader = (props: EditorSubHeaderProps) =>
   <CreatorSubHeader>
     <DiscardChallengeButton />
     {props.viewButton}
-    <DownloadButton />
     <ShareButton/>
   </CreatorSubHeader>
