@@ -47,7 +47,7 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
             <Typography>{t(`${path.challenge.id}.title`, { ns: "challenges" })}</Typography>
 
         </PBreadcrumbs>
-        <Stack marginLeft={theme.spacing(5)} direction='row' justifyContent='flex-end'>
+        <Stack marginLeft={theme.spacing(5)} direction='row'>
             {hasPrevChallenge && 
                 <Link to={`/desafio/${hasPrevChallenge!.id}`}>
                     <IconButtonTooltip icon={<KeyboardDoubleArrowLeftIcon />} tooltip={t('previousChallenge', { ns: "others" })} />
