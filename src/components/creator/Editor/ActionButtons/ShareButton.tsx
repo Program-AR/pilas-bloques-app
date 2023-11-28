@@ -3,9 +3,8 @@ import { LocalStorage } from "../../../../localStorage";
 import { CreatorActionButton } from "./CreatorActionButton";
 import DownloadIcon from '@mui/icons-material/Download';
 import { PilasBloquesApi } from "../../../../pbApi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button, CircularProgress, Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
-import { useLocation } from "react-router-dom";
 
 export const ShareButton = () => {
 
