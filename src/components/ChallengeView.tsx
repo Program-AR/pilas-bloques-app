@@ -14,13 +14,15 @@ import { useThemeContext } from "../theme/ThemeContext";
 
 const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
-    const { t } = useTranslation(["books", "challenges", "chapters", "groups"])
+    const { t } = useTranslation(["books", "challenges", "chapters", "groups", "others"])
     const {theme} = useThemeContext()
     const isSmallScreen: boolean = useMediaQuery('(max-width:1100px)');
     const isVerySmallScreen: boolean = useMediaQuery('(max-width:700px)');
 
     const shouldShowGroup = path.book.id === 1 && !isVerySmallScreen
     const shouldShowChapter = !isSmallScreen
+    const hasPrevChallenge = path.group.previousChallenge(path.challenge) 
+    const hasNextChallenge = path.group.nextChallenge(path.challenge) 
 
     return <Stack direction="row" alignItems="center">
         <PBreadcrumbs>
@@ -46,16 +48,16 @@ const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
         </PBreadcrumbs>
         <Stack marginLeft={theme.spacing(5)} direction='row' justifyContent='flex-end'>
-        {path.group.previousChallenge(path.challenge) && 
-            <Link to={`/desafio/${path.group.previousChallenge(path.challenge)!.id}`}>
-                <IconButtonTooltip icon={<KeyboardDoubleArrowLeftIcon />} tooltip={"Desafío anterior"} />
-            </Link>
-        }
-        {path.group.nextChallenge(path.challenge) && 
-            <Link to={`/desafio/${path.group.nextChallenge(path.challenge)!.id}`}>
-                <IconButtonTooltip icon={<KeyboardDoubleArrowRightIcon />} tooltip={"Desafío siguiente"} />
-            </Link>
-        }
+            {hasPrevChallenge && 
+                <Link to={`/desafio/${hasPrevChallenge!.id}`}>
+                    <IconButtonTooltip icon={<KeyboardDoubleArrowLeftIcon />} tooltip={t('previousChallenge', { ns: "others" })} />
+                </Link>
+            }
+            {hasNextChallenge && 
+                <Link to={`/desafio/${hasNextChallenge!.id}`}>
+                    <IconButtonTooltip icon={<KeyboardDoubleArrowRightIcon />} tooltip={t('nextChallenge', { ns: "others" })} />
+                </Link>
+            }
         </Stack>
     </Stack>
 }
