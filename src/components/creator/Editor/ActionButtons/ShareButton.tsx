@@ -45,24 +45,26 @@ const ShareDialog = ({open, setDialogOpen} : {open: boolean, setDialogOpen: (ope
 </>
 }
 
-const Buttons = ({handleShareClick}: {handleShareClick: () => void}) => <>
+const Buttons = ({handleShareClick}: {handleShareClick: () => void}) => {
+    const { shareId } = useContext(CreatorContext)
+
+    return <>
     <Stack direction="row" justifyContent="space-between">
-        <CreatorActionButton onClick={handleShareClick} startIcon={<ShareIcon/>} variant='contained' nametag="shareUrl"/>
-        <SaveButton/>
+        {shareId ? <SaveButton/> : <ShareUrlButton handleShareClick={handleShareClick}/>}
         <DownloadButton/>
     </Stack>
-
-
 </>
+}
+
+const ShareUrlButton = ({handleShareClick}: {handleShareClick: () => void}) => 
+    <CreatorActionButton onClick={handleShareClick} startIcon={<ShareIcon/>} variant='contained' nametag="shareUrl"/>
 
 const SaveButton = () => {
-    const { shareId } = useContext(CreatorContext)
-    
     const handleClick = async () => {
         PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
     }
 
-    return <CreatorActionButton disabled={!!!!!shareId} onClick={handleClick} startIcon={<SaveIcon/>} variant='contained' nametag="save"/>
+    return <CreatorActionButton onClick={handleClick} startIcon={<SaveIcon/>} variant='contained' nametag="save"/>
 }
 
 const shareChallenge = () => {
