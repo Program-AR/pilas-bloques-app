@@ -38,7 +38,7 @@ export namespace PilasBloquesApi{
     }
 
     export const shareChallenge = async (challenge: SerializedChallenge) => {
-      await _send<SerializedChallenge>('POST', 'share', challenge)
+      return await _send<SerializedChallenge>('POST', 'share', challenge)
     }
 
     export const getSharedChallenge = async (id: string) => {
