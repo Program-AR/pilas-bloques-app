@@ -3,10 +3,12 @@ import { LocalStorage } from "../../../../localStorage";
 import { CreatorActionButton } from "./CreatorActionButton";
 import DownloadIcon from '@mui/icons-material/Download';
 import ShareIcon from '@mui/icons-material/Share';
+import SaveIcon from '@mui/icons-material/Save';
 import { PilasBloquesApi } from "../../../../pbApi";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, Stack } from "@mui/material";
 import { DownloadButton } from "./DownloadButton";
+import { CreatorContext } from "../CreatorContext";
 
 export const ShareButton = () => {
 
@@ -20,11 +22,12 @@ export const ShareButton = () => {
 }
 
 const ShareDialog = ({open, setDialogOpen} : {open: boolean, setDialogOpen: (open: boolean) => void}) => {
-
-    const [url, setUrl] = useState<any>()
+    const { setShareId } = useContext(CreatorContext)
+    const [url, setUrl] = useState<string>()
 
     const handleShareClick = async () => {
-        const challengeId = (await shareChallenge())._id
+        const challengeId: string = (await shareChallenge())._id
+        setShareId(challengeId)
 
         setUrl(`https://${window.location.hostname}/#/sharedChallenge/${challengeId}`)
     }
@@ -45,11 +48,22 @@ const ShareDialog = ({open, setDialogOpen} : {open: boolean, setDialogOpen: (ope
 const Buttons = ({handleShareClick}: {handleShareClick: () => void}) => <>
     <Stack direction="row" justifyContent="space-between">
         <CreatorActionButton onClick={handleShareClick} startIcon={<ShareIcon/>} variant='contained' nametag="shareUrl"/>
+        <SaveButton/>
         <DownloadButton/>
     </Stack>
 
 
 </>
+
+const SaveButton = () => {
+    const { shareId } = useContext(CreatorContext)
+    
+    const handleClick = async () => {
+        PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
+    }
+
+    return <CreatorActionButton disabled={!!!!!shareId} onClick={handleClick} startIcon={<SaveIcon/>} variant='contained' nametag="save"/>
+}
 
 const shareChallenge = () => {
     const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!

@@ -11,7 +11,9 @@ export type CreatorContextType = {
     index: number;
     setIndex: (index: number) => void;
     setMaps: (maps: any) => void;
-    maps: SceneMap[]
+    maps: SceneMap[];
+    shareId: string
+    setShareId: (id: string) => void
 };
 
 const defaultCreatorContext = {
@@ -22,7 +24,9 @@ const defaultCreatorContext = {
     index: 0, 
     setIndex: () => { },
     setMaps: () => { },
-    maps: defaultChallenge('Duba').scene.maps
+    maps: defaultChallenge('Duba').scene.maps,
+    shareId: "",
+    setShareId: (id: string) => {}
 }
 
 export const CreatorContext = React.createContext<CreatorContextType>(defaultCreatorContext);
@@ -39,6 +43,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     const challenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
     const [maps, setMaps] = useState(challenge.scene.maps)
     const [index, setIndex] = useState(defaultIndex)
+    const [shareId, setShareId] = useState(challenge.shareId || "")
 
     const currentMap = maps[index] || challenge.scene.maps[index]
 
@@ -53,7 +58,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     }, [maps, challenge])
 
     return (
-        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap, index, setIndex, setMaps, maps}}>
+        <CreatorContext.Provider value={{ selectedTool, setSelectedTool, currentMap, setCurrentMap, shareId, setShareId, index, setIndex, setMaps, maps}}>
             {children}
         </CreatorContext.Provider>
     );

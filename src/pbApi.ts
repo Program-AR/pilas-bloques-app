@@ -45,6 +45,10 @@ export namespace PilasBloquesApi{
       return await _send('GET', `sharedChallenge/${id}`)
     }
 
+    export const saveChallenge = async (challenge: SerializedChallenge) => {
+      await _send<SerializedChallenge>('PUT', `share/${challenge.shareId}`, challenge)
+    }
+
     export const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
 
     async function _send<T>(method: HttpMethod, resource: string, body?: T) {
