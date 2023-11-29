@@ -42,7 +42,7 @@ const router = createHashRouter([{
     errorElement: <PBError />
   },
   {
-    path: "/sharedChallenge/:id",
+    path: "/desafio/guardado/:id",
     element: <SharedChallengeView/>,
     errorElement: <PBError />,
     loader: async ({ params }) => {
@@ -117,9 +117,3 @@ function App() {
 }
 
 export default App;
-
-
-
-//{"escena":"new EscenaManic([\"[[-,-,-],[-,-,-],[-,-,A]]\"])","bloques":["MoverACasillaDerecha"],"estiloToolbox":"sinCategorias","debugging":true,"titulo":"Escribí tu título...","enunciado":"Así se verá tu **enunciado**...","consignaInicial":"","customCover":"blob:http://localhost:3000/f7988f0f-27e3-4e2c-88f0-dd5a20fafb38","shouldShowMultipleScenarioHelp":false}
-
-//{"_id":"6564e082bc8a2e429cab11cc","fileVersion":1,"title":"Escribí tu título...","statement":{"description":"Así se verá tu **enunciado**..."},"scene":{"type":"Duba","maps":[[["-","-","-"],["-","-","A"],["-","-","-"]]]},"toolbox":{"blocks":["MoverACasillaDerecha"]},"stepByStep":true,"user":"65158e7ccb667d2909c9c0d0","__v":0}
