@@ -22,14 +22,11 @@ export const ShareButton = () => {
 }
 
 const ShareDialog = ({open, setDialogOpen} : {open: boolean, setDialogOpen: (open: boolean) => void}) => {
-    const { setShareId } = useContext(CreatorContext)
-    const [url, setUrl] = useState<string>()
+    const { shareId, setShareId } = useContext(CreatorContext)
 
     const handleShareClick = async () => {
         const challengeId: string = (await shareChallenge())._id
         setShareId(challengeId)
-
-        setUrl(`https://${window.location.hostname}/#/sharedChallenge/${challengeId}`)
     }
 
     return <>
@@ -37,7 +34,7 @@ const ShareDialog = ({open, setDialogOpen} : {open: boolean, setDialogOpen: (ope
         <DialogTitle>Compartir desafio</DialogTitle>
         <DialogContent>
             <Stack>
-                {url}
+                {`https://${window.location.hostname}/#/sharedChallenge/${shareId}`}
                 <Buttons handleShareClick={handleShareClick}/>
             </Stack>
         </DialogContent>
@@ -60,8 +57,11 @@ const ShareUrlButton = ({handleShareClick}: {handleShareClick: () => void}) =>
     <CreatorActionButton onClick={handleShareClick} startIcon={<ShareIcon/>} variant='contained' nametag="shareUrl"/>
 
 const SaveButton = () => {
+    const { setShareId } = useContext(CreatorContext)
+
     const handleClick = async () => {
-        PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
+        const challenge = await PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
+        setShareId(challenge._id)   
     }
 
     return <CreatorActionButton onClick={handleClick} startIcon={<SaveIcon/>} variant='contained' nametag="save"/>
