@@ -17,18 +17,20 @@ export const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) =>
 
     const [open, setOpen] = useState(false)
 
+    const { t } = useTranslation('creator');
+
     const handleClick = () => {
         setOpen(true)
         navigator.clipboard.writeText(textToCopy)
     }
 
     return <>
-        <IconButtonTooltip icon={<ContentCopyIcon />} onClick={handleClick} tooltip={"Copiar al portapapeles"}/>
+        <IconButtonTooltip icon={<ContentCopyIcon />} onClick={handleClick} tooltip={t('editor.buttons.copyToClipboard')}/>
         <Snackbar
             open={open}
             onClose={() => setOpen(false)}
             autoHideDuration={2000}
-            message="Copied to clipboard"
+            message={t('editor.buttons.copiedToClipboard')}
         />
     </>
 }
