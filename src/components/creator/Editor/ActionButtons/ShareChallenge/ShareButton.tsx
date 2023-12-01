@@ -20,7 +20,7 @@ const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (o
     return <>
         <Dialog open={open} onClose={() => { setDialogOpen(false) }}>
             <DialogTitle>Compartir desafio</DialogTitle>
-            <DialogContent sx={{ minWidth: '500px' }}>
+            <DialogContent sx={{ minWidth: 540 }}>
                 <ShareModal />
             </DialogContent>
         </Dialog >
@@ -34,14 +34,14 @@ const ShareModal = () => {
 
     return <Stack>
         {shareId ?
-            <Stack direction='row' justifyContent='space-between' sx={{ margin: 1 }}>
+            <Stack direction='row'>
                 <TextField
-                    sx={{ width: '100%' }}
+                    sx={{ width: '100%', margin: 1}}
                     defaultValue={link}
                     InputProps={{
                         readOnly: true,
                         endAdornment: (
-                            <InputAdornment position="start">
+                            <InputAdornment position="end">
                                 <CopyToClipboardButton textToCopy={link} />
                             </InputAdornment>
                         )
