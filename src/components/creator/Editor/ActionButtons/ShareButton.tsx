@@ -5,7 +5,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import ShareIcon from '@mui/icons-material/Share';
 import SaveIcon from '@mui/icons-material/Save';
 import { PilasBloquesApi } from "../../../../pbApi";
-import { useContext, useState } from "react";
+import { ReactNode, useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, Stack, Tooltip } from "@mui/material";
 import { DownloadButton } from "./DownloadButton";
 import { CreatorContext } from "../CreatorContext";
@@ -22,58 +22,65 @@ export const ShareButton = () => {
 }
 
 const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (open: boolean) => void }) => {
-    const { shareId, setShareId } = useContext(CreatorContext)
-
-    const handleShareClick = async () => {
-        const challengeId: string = (await shareChallenge()).sharedId
-        setShareId(challengeId)
-    }
+    const { shareId } = useContext(CreatorContext)
 
     return <>
         <Dialog open={open} onClose={() => { setDialogOpen(false) }}>
             <DialogTitle>Compartir desafio</DialogTitle>
             <DialogContent>
                 <Stack>
-                    {`https://${window.location.hostname}/online/#/desafio/guardado/${shareId}`}
-                    <Buttons handleShareClick={handleShareClick} />
+                    { `http://localhost:3000/#/desafio/guardado/${shareId}`
+                }
+                    <Buttons/>
                 </Stack>
             </DialogContent>
         </Dialog>
     </>
 }
 
-const Buttons = ({ handleShareClick }: { handleShareClick: () => void }) => {
+const Buttons = () => {
     const { shareId } = useContext(CreatorContext)
 
     return <>
         <Stack direction="row" justifyContent="space-between">
-            {shareId ? <SaveButton /> : <ShareUrlButton handleShareClick={handleShareClick} />}
+            {shareId ? <SaveButton /> : <ShareUrlButton/>}
             <DownloadButton />
         </Stack>
     </>
 }
 
-const ShareUrlButton = ({ handleShareClick }: { handleShareClick: () => void }) => {
+const ShareUrlButton = () => {
 
-    const userLoggedIn = !!LocalStorage.getUser()
-
-    return <CreatorActionButton onClick={handleShareClick} disabled={!userLoggedIn} startIcon={<ShareIcon />} variant='contained' nametag="shareUrl"/>
-}
-
-const SaveButton = () => {
-    const { setShareId } = useContext(CreatorContext)
-
-    const handleClick = async () => {
-        const challenge = await PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
-        setShareId(challenge.sharedId)
+    const shareChallenge = async (): Promise<string> => {
+        const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
+        const sharedChallenge = await PilasBloquesApi.shareChallenge(challenge)
+        
+        return sharedChallenge.sharedId
     }
 
-    return <CreatorActionButton onClick={handleClick} startIcon={<SaveIcon />} variant='contained' nametag="save" />
+    return <ChallengeUpsertButton Icon={<ShareIcon />} nametag="shareUrl" challengeUpsert={shareChallenge}/>
+}
+const SaveButton = () => {
+
+    const saveChallenge = async (): Promise<string> => {
+        const savedChallenge = await PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
+        return savedChallenge.sharedId
+    }
+
+    return <ChallengeUpsertButton Icon={<SaveIcon />} nametag="save" challengeUpsert={saveChallenge}/>
 }
 
-const shareChallenge = () => {
-    const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
+const ChallengeUpsertButton = ({Icon, challengeUpsert, nametag}: {Icon: ReactNode, nametag: string, challengeUpsert: () => Promise<string>}) => {
 
-    return PilasBloquesApi.shareChallenge(challenge)
+    const { setShareId } = useContext(CreatorContext)
+    const userLoggedIn = !!LocalStorage.getUser()
 
+    const handleClick = async () => {
+        setShareId(await challengeUpsert())
+    }
+
+    return <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
 }
+
+
+
