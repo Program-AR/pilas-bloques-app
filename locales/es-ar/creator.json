@@ -110,7 +110,8 @@
 		},
 		"editorHeader": "Editar desafío",
 		"previewModeHeader": "Ver desafío",
-		"serverError": "Problema con el servidor, intente más tarde"
+		"serverError": "Problema con el servidor, intente más tarde",
+		"loginWarning": "Para compartir un desafío por URL es necesario estar loggeado."
 	},
 	"title": {
 		"title": "Escribí el título del desafío para ",

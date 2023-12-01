@@ -97,7 +97,7 @@
 			"discardChallengeShort": "Discard",
 			"download": "Download",
 			"share": "Share challenge",
-			"shareUrl": "Share with url",
+			"shareUrl": "Share via url",
 			"save": "Save challenge",
 			"preview": "Challenge preview",
 			"previewShort": "Preview",
@@ -112,7 +112,8 @@
 		},
 		"editorHeader": "Edit challenge",
 		"previewModeHeader": "Challenge preview",
-		"serverError": "There's a problem with the server, try again later"
+		"serverError": "There's a problem with the server, try again later",
+		"loginWarning": "You need to be logged in to share a challenge via url."
 	},
 	"title": {
 		"title": "Write the challenge's title for ",

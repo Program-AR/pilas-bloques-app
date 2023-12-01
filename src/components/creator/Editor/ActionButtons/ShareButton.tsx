@@ -88,7 +88,11 @@ const ChallengeUpsertButton = ({Icon, challengeUpsert, nametag}: {Icon: ReactNod
     }
 
     return <>
-        <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+        <Tooltip title={!userLoggedIn ? t('editor.loginWarning') : '' } followCursor>
+            <div>
+                <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+            </div>
+        </Tooltip>
         <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')}/>
     </>
 }
