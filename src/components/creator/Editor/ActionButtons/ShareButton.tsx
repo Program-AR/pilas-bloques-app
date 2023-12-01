@@ -7,10 +7,12 @@ import SaveIcon from '@mui/icons-material/Save';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { PilasBloquesApi } from "../../../../pbApi";
 import { ReactNode, useContext, useState } from "react";
-import { Dialog, DialogContent, DialogTitle, Snackbar, Stack, TextField } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, Snackbar, Stack, TextField, Tooltip } from "@mui/material";
 import { DownloadButton } from "./DownloadButton";
 import { CreatorContext } from "../CreatorContext";
 import { IconButtonTooltip } from "../SceneEdition/IconButtonTooltip";
+import { DialogSnackbar } from "../../../dialogSnackbar/DialogSnackbar";
+import { useTranslation } from "react-i18next";
 
 export const ShareButton = () => {
 
@@ -110,12 +112,26 @@ const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: React
 
     const { setShareId } = useContext(CreatorContext)
     const userLoggedIn = !!LocalStorage.getUser()
+    const [serverError, setServerError] = useState<boolean>(false)
+    const { t } = useTranslation('creator');
 
     const handleClick = async () => {
-        setShareId(await challengeUpsert())
+        try{
+            setShareId(await challengeUpsert())
+        }
+        catch(error){
+            setServerError(true)
+        }
     }
 
-    return <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+    return <>
+        <Tooltip title={!userLoggedIn ? t('editor.loginWarning') : '' } followCursor>
+            <div>
+                <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+            </div>
+        </Tooltip>
+        <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')}/>
+    </>
 }
 
 
