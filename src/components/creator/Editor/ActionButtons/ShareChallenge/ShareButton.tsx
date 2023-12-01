@@ -37,7 +37,7 @@ const ShareModal = () => {
     const APP_URL = 'https://pilasbloques.program.ar/online'
     const DEV_URL = 'localhost:3000'
     
-    const sharedLink =  process.env.NODE_ENV === 'production' ? APP_URL : DEV_URL  + `/#/desafio/guardado/${shareId}`
+    const sharedLink = (process.env.NODE_ENV === 'production' ? APP_URL : DEV_URL)  + `/#/desafio/guardado/${shareId}`
 
     //const link: string = `http://localhost:3000/#/desafio/guardado/${shareId}`
 
