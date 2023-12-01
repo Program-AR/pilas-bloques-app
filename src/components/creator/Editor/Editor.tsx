@@ -11,7 +11,7 @@ import { useThemeContext } from "../../../theme/ThemeContext";
 import { useNavigate } from "react-router-dom";
 import { LocalStorage } from "../../../localStorage";
 import { useEffect } from "react";
-import { ShareButton } from "./ActionButtons/ShareButton";
+import { ShareButton } from "./ActionButtons/ShareChallenge/ShareButton";
 
 export const CreatorEditor = () => {
   const { theme } = useThemeContext()

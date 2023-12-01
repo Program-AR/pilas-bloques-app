@@ -1,60 +1,19 @@
-import { SerializedChallenge } from "../../../serializedChallenge";
-import { LocalStorage } from "../../../../localStorage";
-import { CreatorActionButton } from "./CreatorActionButton";
-import DownloadIcon from '@mui/icons-material/Download';
 import ShareIcon from '@mui/icons-material/Share';
 import SaveIcon from '@mui/icons-material/Save';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import { PilasBloquesApi } from "../../../../pbApi";
-import { ReactNode, useContext, useState } from "react";
-import { Dialog, DialogContent, DialogTitle, Snackbar, Stack, TextField, Tooltip } from "@mui/material";
-import { DownloadButton } from "./DownloadButton";
-import { CreatorContext } from "../CreatorContext";
-import { IconButtonTooltip } from "../SceneEdition/IconButtonTooltip";
-import { DialogSnackbar } from "../../../dialogSnackbar/DialogSnackbar";
-import { useTranslation } from "react-i18next";
+import { ReactNode, useContext, useState } from "react"
+import { IconButtonTooltip } from "../../SceneEdition/IconButtonTooltip"
+import { Snackbar, Stack, Tooltip } from "@mui/material"
+import { CreatorContext } from '../../CreatorContext';
+import { LocalStorage } from '../../../../../localStorage';
+import { PilasBloquesApi } from '../../../../../pbApi';
+import { CreatorActionButton } from '../CreatorActionButton';
+import { DialogSnackbar } from '../../../../dialogSnackbar/DialogSnackbar';
+import { useTranslation } from 'react-i18next';
+import { SerializedChallenge } from '../../../../serializedChallenge';
+import { DownloadButton } from '../DownloadButton';
 
-export const ShareButton = () => {
-
-    const [dialogOpen, setDialogOpen] = useState<boolean>(false)
-
-    return <>
-        <ShareDialog open={dialogOpen} setDialogOpen={setDialogOpen} />
-        <CreatorActionButton onClick={() => { setDialogOpen(true) }} startIcon={<DownloadIcon />} nametag='share' isshortversion={true} />
-    </>
-
-}
-
-const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (open: boolean) => void }) => {
-    return <>
-        <Dialog open={open} onClose={() => { setDialogOpen(false) }}>
-            <DialogTitle>Compartir desafio</DialogTitle>
-            <DialogContent>
-                <ShareModal />
-            </DialogContent>
-        </Dialog >
-    </>
-}
-
-const ShareModal = () => {
-    const { shareId } = useContext(CreatorContext)
-
-    const link: string = `http://localhost:3000/#/desafio/guardado/${shareId}`
-
-    return <Stack>
-        <Stack direction='row' justifyContent='space-around' sx={{margin: 1}}>
-            <TextField
-                defaultValue={link}
-                InputProps={{ readOnly: true }}
-            />
-            <CopyToClipboardButton textToCopy={link} />
-        </Stack>
-        <Buttons />
-    </Stack>
-
-}
-
-const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) => {
+export const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) => {
 
     const [open, setOpen] = useState(false)
 
@@ -64,7 +23,7 @@ const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) => {
     }
 
     return <>
-        <IconButtonTooltip sx={{}} icon={<ContentCopyIcon />} onClick={handleClick} tooltip={"Copiar al portapapeles"}/>
+        <IconButtonTooltip icon={<ContentCopyIcon />} onClick={handleClick} tooltip={"Copiar al portapapeles"}/>
         <Snackbar
             open={open}
             onClose={() => setOpen(false)}
@@ -74,9 +33,7 @@ const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) => {
     </>
 }
 
-export default CopyToClipboardButton
-
-const Buttons = () => {
+export const Buttons = () => {
     const { shareId } = useContext(CreatorContext)
 
     return <>
@@ -133,6 +90,3 @@ const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: React
         <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')}/>
     </>
 }
-
-
-
