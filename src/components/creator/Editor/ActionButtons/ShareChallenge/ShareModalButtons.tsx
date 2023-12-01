@@ -15,20 +15,20 @@ import { DownloadButton } from '../DownloadButton';
 
 export const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) => {
 
-    const [open, setOpen] = useState(false)
+    const [openSnackbar, setOpenSnackbar] = useState(false)
 
     const { t } = useTranslation('creator');
 
     const handleClick = () => {
-        setOpen(true)
+        setOpenSnackbar(true)
         navigator.clipboard.writeText(textToCopy)
     }
 
     return <>
-        <IconButtonTooltip icon={<ContentCopyIcon />} onClick={handleClick} tooltip={t('editor.buttons.copyToClipboard')}/>
+        <IconButtonTooltip icon={<ContentCopyIcon />} onClick={handleClick} tooltip={t('editor.buttons.copyToClipboard')} />
         <Snackbar
-            open={open}
-            onClose={() => setOpen(false)}
+            open={openSnackbar}
+            onClose={() => setOpenSnackbar(false)}
             autoHideDuration={2000}
             message={t('editor.buttons.copiedToClipboard')}
         />
@@ -58,13 +58,25 @@ const ShareUrlButton = () => {
     return <ChallengeUpsertButton Icon={<ShareIcon />} nametag="shareUrl" challengeUpsert={shareChallenge} />
 }
 const SaveButton = () => {
+    const [openSnackbar, setOpenSnackbar] = useState(false)
+
+    const { t } = useTranslation('creator');
 
     const saveChallenge = async (): Promise<string> => {
         const savedChallenge = await PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
+        setOpenSnackbar(true)
         return savedChallenge.sharedId
     }
 
-    return <ChallengeUpsertButton Icon={<SaveIcon />} nametag="save" challengeUpsert={saveChallenge} />
+    return <>
+        <ChallengeUpsertButton Icon={<SaveIcon />} nametag="save" challengeUpsert={saveChallenge} />
+        <Snackbar
+            open={openSnackbar}
+            onClose={() => setOpenSnackbar(false)}
+            autoHideDuration={2000}
+            message={t('editor.buttons.savedCorrectly')}
+        />
+    </>
 }
 
 const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: ReactNode, nametag: string, challengeUpsert: () => Promise<string> }) => {
@@ -75,20 +87,20 @@ const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: React
     const { t } = useTranslation('creator');
 
     const handleClick = async () => {
-        try{
+        try {
             setShareId(await challengeUpsert())
         }
-        catch(error){
+        catch (error) {
             setServerError(true)
         }
     }
 
     return <>
-        <Tooltip title={!userLoggedIn ? t('editor.loginWarning') : '' } followCursor>
+        <Tooltip title={!userLoggedIn ? t('editor.loginWarning') : ''} followCursor>
             <div>
                 <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
             </div>
         </Tooltip>
-        <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')}/>
+        <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')} />
     </>
 }
