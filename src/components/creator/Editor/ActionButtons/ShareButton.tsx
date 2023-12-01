@@ -9,6 +9,8 @@ import { ReactNode, useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, Stack, Tooltip } from "@mui/material";
 import { DownloadButton } from "./DownloadButton";
 import { CreatorContext } from "../CreatorContext";
+import { DialogSnackbar } from "../../../dialogSnackbar/DialogSnackbar";
+import { useTranslation } from "react-i18next";
 
 export const ShareButton = () => {
 
@@ -29,8 +31,7 @@ const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (o
             <DialogTitle>Compartir desafio</DialogTitle>
             <DialogContent>
                 <Stack>
-                    { `http://localhost:3000/#/desafio/guardado/${shareId}`
-                }
+                    { `http://localhost:3000/#/desafio/guardado/${shareId}` }
                     <Buttons/>
                 </Stack>
             </DialogContent>
@@ -74,12 +75,22 @@ const ChallengeUpsertButton = ({Icon, challengeUpsert, nametag}: {Icon: ReactNod
 
     const { setShareId } = useContext(CreatorContext)
     const userLoggedIn = !!LocalStorage.getUser()
+    const [serverError, setServerError] = useState<boolean>(false)
+    const { t } = useTranslation('login');
 
     const handleClick = async () => {
-        setShareId(await challengeUpsert())
+        try{
+            setShareId(await challengeUpsert())
+        }
+        catch(error){
+            setServerError(true)
+        }
     }
 
-    return <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+    return <>
+        <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+        <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('serverError')}/>
+    </>
 }
 
 

@@ -111,7 +111,8 @@
 
 		},
 		"editorHeader": "Edit challenge",
-		"previewModeHeader": "Challenge preview"
+		"previewModeHeader": "Challenge preview",
+		"serverError": "There's a problem with the server, try again later"
 	},
 	"title": {
 		"title": "Write the challenge's title for ",
