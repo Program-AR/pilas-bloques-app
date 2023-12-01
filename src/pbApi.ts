@@ -42,7 +42,7 @@ export namespace PilasBloquesApi{
     }
 
     export const getSharedChallenge = async (id: string) => {
-      return await _send('GET', `sharedChallenge/${id}`)
+      return await _send('GET', `userChallenge/${id}`)
     }
 
     export const saveChallenge = async (challenge: SerializedChallenge) => {
