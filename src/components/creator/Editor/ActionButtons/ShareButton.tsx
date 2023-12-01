@@ -76,7 +76,7 @@ const ChallengeUpsertButton = ({Icon, challengeUpsert, nametag}: {Icon: ReactNod
     const { setShareId } = useContext(CreatorContext)
     const userLoggedIn = !!LocalStorage.getUser()
     const [serverError, setServerError] = useState<boolean>(false)
-    const { t } = useTranslation('login');
+    const { t } = useTranslation('creator');
 
     const handleClick = async () => {
         try{
@@ -89,7 +89,7 @@ const ChallengeUpsertButton = ({Icon, challengeUpsert, nametag}: {Icon: ReactNod
 
     return <>
         <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
-        <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('serverError')}/>
+        <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')}/>
     </>
 }
 
