@@ -14,7 +14,7 @@
     "blocks": {
         "footBallHere":"Há uma bola de futebol aqui?",
         "pingPongBallHere": "Há uma bola de pingue-pongue aqui?",
-        "pulpitoBallHere": "Há uma bola pulpito aqui?",
+        "pulpitoBallHere": "Há uma bola de borracha aqui?",
         "butterflyHere": "Há uma borboleta aqui?",
         "canHere": "Há uma lata aqui?",
         "cellphoneHere": "Há um celular aqui?",
@@ -27,7 +27,7 @@
         "Functions": "Função",
         "holdPaper": "Segurar papel",
         "kickFootballBall": "Chutar bola de futebol",
-        "bounceRubberBall": "Rebotar bola pulpito",
+        "bounceRubberBall": "Rebotar bola de borracha",
         "bouncePingPong": "Rebotar bola de pingue-pongue",
         "left": "A esquerda",
         "lettuceHere": "Há alface aqui?",

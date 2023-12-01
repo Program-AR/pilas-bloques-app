@@ -2762,7 +2762,7 @@ const challenges: Challenge[] = [
   {
     id: 1002, 
     scene: 'ChuyHaciendoJueguito',
-    toolboxBlockIds: ['Avanzar', 'Volver', 'Retroceder', 'RecogerPulpito', 'RebotarPiePulpito', 'RevolearPulpito', 'Repetir', 'Procedimiento'],
+    toolboxBlockIds: ['Avanzar', 'Volver', 'Retroceder', 'RecogerPulpito', 'RebotarPiePulpito', 'RevolearPulpito', 'Procedimiento'],
     expectations: {
       simpleRepetition: false
     }
