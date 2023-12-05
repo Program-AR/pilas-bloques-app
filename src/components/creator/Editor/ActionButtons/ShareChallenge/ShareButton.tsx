@@ -31,7 +31,7 @@ const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (o
     </>
 }
 
-const ShareModal = () => {
+export const ShareModal = () => {
     const { shareId } = useContext(CreatorContext)
 
     const APP_URL = 'https://pilasbloques.program.ar/online'

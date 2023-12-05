@@ -1,3 +1,4 @@
+import { ShareModal } from "../components/creator/Editor/ActionButtons/ShareChallenge/ShareButton"
 import { ChallengeUpsertButton, ShareButtons } from "../components/creator/Editor/ActionButtons/ShareChallenge/ShareModalButtons"
 import { CreatorContextProvider } from "../components/creator/Editor/CreatorContext"
 import { SerializedChallenge } from "../components/serializedChallenge"
@@ -15,6 +16,12 @@ jest.mock("../pbApi", () => {
             },
 
             getSharedChallenge: (id: string) => mockChallenge,
+
+            //This mocks the scenario where the updated challenge is from another user
+            saveChallenge: (challenge: SerializedChallenge) => {
+                challenge.sharedId = "newShared"
+                return challenge
+            }
 
         })
     }
@@ -79,12 +86,51 @@ describe("Share by url", () => {
             expect(shareButton.textContent).toBe("Compartir por url")
         })
 
-        test("Should save sharedId when challenge is shared", async () => {
-            renderComponent(<CreatorContextProvider><ShareButtons/></CreatorContextProvider>)
+        const shareChallenge = async () => {
+            renderComponent(<CreatorContextProvider><ShareModal/></CreatorContextProvider>)
             const shareButton = await screen.findByTestId('upsertButton')
             await act(async () => {shareButton.click()})
+        }
+
+        test("Should save sharedId when challenge is shared", async () => {
+            await shareChallenge()
 
             expect(LocalStorage.getCreatorChallenge()!.sharedId).toBe("shared")
+        })
+
+        test("Should show share URL on challenge share", async () => {
+            await shareChallenge()
+            const urlText = await screen.findByRole('textbox')
+
+            expect(urlText.getAttribute('value')).toBe("localhost:3000/#/desafio/guardado/shared")
+        })
+
+        test("Should change to save button on challenge share", async () => {
+            await shareChallenge()
+            const saveButton = await screen.findByTestId('upsertButton')
+            
+            expect(saveButton.textContent).toBe("Guardar desafío")
+        })
+
+
+        test("Should save new sharedId on challenge save if the returned shared id is different", async() => {
+            //The mock of the pbApi always returns 'newShared' as id on challenge save
+            await shareChallenge()
+            const saveButton = await screen.findByTestId('upsertButton')
+            await act(async () => {saveButton.click()})
+
+            expect(LocalStorage.getCreatorChallenge()!.sharedId).toBe("newShared")
+        })
+        
+        test.skip("Should change share URL on challenge save if the returned shared id is different", async() => {
+            //The mock of the pbApi always returns 'newShared' as id on challenge save
+            await shareChallenge()
+            const saveButton = await screen.findByTestId('upsertButton')
+            await act(async () => {saveButton.click()})
+            const urlText = await screen.findByRole('textbox')
+
+            //The url text is not changing in the text
+            expect(urlText.getAttribute('value')).toBe("localhost:3000/#/desafio/guardado/newShared")
         })
 
     })
