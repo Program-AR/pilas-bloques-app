@@ -30,20 +30,20 @@ export const CreatorViewMode = () => {
     return (<>
         {challengeExists ? (
             <>
-                <Header CenterComponent={<CreatorViewHeader challenge={challengeBeingEdited} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
+                <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
                 <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
             </>
         ) : <></>}
     </>)
 }
 
-const CreatorViewHeader = ({ challenge }: { challenge: SerializedChallenge }) => {
+export const CreatorViewHeader = ({ title }: { title: string }) => {
     const { t } = useTranslation('creator')
 
     return <BetaBadge smaller={true}>
         <PBreadcrumbs>
             <HeaderText text={t("editor.previewModeHeader")} />
-            <Typography>{challenge.title}</Typography>
+            <Typography>{title}</Typography>
         </PBreadcrumbs>
     </BetaBadge>
 
