@@ -3,7 +3,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import { useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, InputAdornment, Stack, TextField } from "@mui/material";
 import { CreatorContext } from "../../CreatorContext";
-import { Buttons, CopyToClipboardButton } from "./ShareModalButtons";
+import { ShareButtons, CopyToClipboardButton } from "./ShareModalButtons";
 import { useTranslation } from "react-i18next";
 
 export const ShareButton = () => {
@@ -59,7 +59,7 @@ const ShareModal = () => {
             </Stack>
             : <></>
         }
-        <Buttons />
+        <ShareButtons />
     </Stack>
 }
 

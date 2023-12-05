@@ -43,7 +43,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
     const challenge = LocalStorage.getCreatorChallenge() || defaultChallenge("Duba")
     const [maps, setMaps] = useState(challenge.scene.maps)
     const [index, setIndex] = useState(defaultIndex)
-    const [shareId, setShareId] = useState(challenge.shareId || "")
+    const [shareId, setShareId] = useState(challenge.sharedId || "")
 
     const currentMap = maps[index] || challenge.scene.maps[index]
 
@@ -54,7 +54,7 @@ export const CreatorContextProvider: React.FC<CreatorProviderProps> = ({ childre
 
     useEffect(() => {
         challenge.scene.maps = maps
-        challenge.shareId = shareId
+        challenge.sharedId = shareId
         LocalStorage.saveCreatorChallenge(challenge)
     }, [maps, challenge, shareId])
 

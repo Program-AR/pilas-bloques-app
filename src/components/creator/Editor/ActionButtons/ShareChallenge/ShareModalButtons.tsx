@@ -35,7 +35,7 @@ export const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) =>
     </>
 }
 
-export const Buttons = () => {
+export const ShareButtons = () => {
     const { shareId } = useContext(CreatorContext)
 
     return <>
@@ -51,7 +51,6 @@ const ShareUrlButton = () => {
     const shareChallenge = async (): Promise<string> => {
         const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
         const sharedChallenge = await PilasBloquesApi.shareChallenge(challenge)
-
         return sharedChallenge.sharedId
     }
 
@@ -79,7 +78,7 @@ const SaveButton = () => {
     </>
 }
 
-const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: ReactNode, nametag: string, challengeUpsert: () => Promise<string> }) => {
+export const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: ReactNode, nametag: string, challengeUpsert: () => Promise<string> }) => {
 
     const { setShareId } = useContext(CreatorContext)
     const userLoggedIn = !!LocalStorage.getUser()
@@ -98,7 +97,7 @@ const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: React
     return <>
         <Tooltip title={!userLoggedIn ? t('editor.loginWarning') : ''} followCursor>
             <div>
-                <CreatorActionButton onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
+                <CreatorActionButton data-testid="upsertButton" onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
             </div>
         </Tooltip>
         <DialogSnackbar open={serverError} onClose={() => setServerError(false)} message={t('editor.serverError')} />

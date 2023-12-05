@@ -19,7 +19,7 @@ export type SerializedChallenge = {
     stepByStep?: boolean,
     predefinedSolution?: string,
     assesments?: Assesments,
-    shareId?: string
+    sharedId?: string
 }
 
 
@@ -178,7 +178,7 @@ export const isValidChallenge = (json: unknown): json is SerializedChallenge => 
                 maxProgramLength: SimpleNumber
             })
         }),
-        shareId: SimpleStringOptional
+        sharedId: SimpleStringOptional
     })
 
     return structureIsValid && sceneIsValid((json as any).scene)
