@@ -102,7 +102,7 @@ describe("Share by url", () => {
             await shareChallenge()
             const urlText = await screen.findByRole('textbox')
 
-            expect(urlText.getAttribute('value')).toBe("localhost:3000/#/desafio/guardado/shared")
+            expect(urlText.getAttribute('value')).toBe(`${process.env.REACT_APP_PB_APP_URL}/#/desafio/guardado/shared`)
         })
 
         test("Should change to save button on challenge share", async () => {
