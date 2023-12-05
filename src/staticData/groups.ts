@@ -20,6 +20,20 @@ export class Group {
     return this.challenges.length === 1
   }
 
+  indexInGroup(challenge: Challenge) {
+    return this.challenges.findIndex(findChallenge => findChallenge.id === challenge.id)
+  }
+
+  nextChallenge(challenge: Challenge) {
+    const index = this.indexInGroup(challenge)
+    return (index === this.challenges.length - 1 ? undefined : this.challenges[index + 1])
+  }
+
+  previousChallenge(challenge: Challenge) {
+    const index = this.indexInGroup(challenge)
+    return (index === 0 ? undefined : this.challenges[index - 1])
+  }
+
   includes(challenge: Challenge) {
     return this.challenges.some(otherChallenge => otherChallenge.id === challenge.id)
   }
