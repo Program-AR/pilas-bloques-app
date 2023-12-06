@@ -11,6 +11,7 @@ import { Chapter } from "../../staticData/chapters";
 import { Group } from "../../staticData/groups";
 import { PBCard } from "../PBCard";
 import { useThemeContext } from "../../theme/ThemeContext";
+import { useEffect } from "react";
 
 const Breadcrumb = (book: Book) => {    
     const {t} = useTranslation("books")
@@ -31,10 +32,16 @@ export const BookView = () => {
     const {id} = useParams()
     const book: Book = getBook(Number(id))
     const {t} = useTranslation("books")
-    const {theme} = useThemeContext()
-
+    const {theme, setSimpleReadModeEnabled} = useThemeContext()
+    
+    useEffect(() => {
+        if ( book.simpleReadMode ) 
+          setSimpleReadModeEnabled(true)
+    }, [book, setSimpleReadModeEnabled ])
+   
+    
     return <>
-        <Header CenterComponent={Breadcrumb(book)}/>
+        <Header CenterComponent={Breadcrumb(book)} ShouldShowSimpleReadSwitch={!book.simpleReadMode} />
         <Stack alignItems="center" style={{backgroundImage: "url(imagenes/book-background.svg)"}}>
             <PBCard style={{maxWidth: 'var(--creator-max-width)', padding: theme.spacing(2)}}>
                 <Stack>

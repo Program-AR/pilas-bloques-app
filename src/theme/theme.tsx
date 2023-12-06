@@ -2,13 +2,13 @@ import { ThemeOptions } from "@mui/material";
 import { deepmerge } from '@mui/utils';
 
 const commonTheme: ThemeOptions = {
-    shape: {
-        borderRadius: 10
-    },
-    typography: {
-        fontFamily: 'Nunito',
+        shape: {
+            borderRadius: 10
+        },
+        typography: {
+            fontFamily: 'Nunito'
+        }
     }
-}
 
 const lightTheme: ThemeOptions = {
     typography: {

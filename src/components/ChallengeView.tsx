@@ -75,7 +75,7 @@ const ChallengeView = (props: ChallengeViewProps) => {
     const solutionParam: string = solution ? `?codigo=${solution}` : ""
 
     return <>
-        <Header CenterComponent={ChallengeBreadcrumb(path)} />
+        <Header CenterComponent={ChallengeBreadcrumb(path)} ShouldShowSimpleReadSwitch={!path.book.simpleReadMode} />
         <EmberView path={`desafio/${props.challengeId}${solutionParam}`} />
     </>
 }
