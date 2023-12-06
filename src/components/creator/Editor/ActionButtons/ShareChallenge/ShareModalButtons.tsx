@@ -36,11 +36,11 @@ export const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) =>
 }
 
 export const ShareButtons = () => {
-    const { shareId } = useContext(CreatorContext)
+    const { sharedId } = useContext(CreatorContext)
 
     return <>
         <Stack direction="row" justifyContent="space-between" alignItems='center'>
-            {shareId ? <SaveButton /> : <ShareUrlButton />}
+            {sharedId ? <SaveButton /> : <ShareUrlButton />}
             <DownloadButton />
         </Stack>
     </>
@@ -80,14 +80,14 @@ const SaveButton = () => {
 
 export const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: ReactNode, nametag: string, challengeUpsert: () => Promise<string> }) => {
 
-    const { setShareId } = useContext(CreatorContext)
+    const { setSharedId } = useContext(CreatorContext)
     const userLoggedIn = !!LocalStorage.getUser()
     const [serverError, setServerError] = useState<boolean>(false)
     const { t } = useTranslation('creator');
 
     const handleClick = async () => {
         try {
-            setShareId(await challengeUpsert())
+            setSharedId(await challengeUpsert())
         }
         catch (error) {
             setServerError(true)

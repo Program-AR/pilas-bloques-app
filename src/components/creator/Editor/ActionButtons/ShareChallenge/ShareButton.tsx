@@ -32,12 +32,12 @@ const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (o
 }
 
 export const ShareModal = () => {
-    const { shareId } = useContext(CreatorContext)
+    const { sharedId } = useContext(CreatorContext)
     
-    const sharedLink = process.env.REACT_APP_PB_APP_URL  + `/#/desafio/guardado/${shareId}`
+    const sharedLink = process.env.REACT_APP_PB_APP_URL  + `/#/desafio/guardado/${sharedId}`
 
     return <Stack>
-        {shareId ?
+        {sharedId ?
             <Stack direction='row'>
                 <TextField
                     sx={{ width: '100%', margin: 1}}
