@@ -1,4 +1,16 @@
-import { Switch, styled } from "@mui/material";
+import { Switch, Theme, styled } from "@mui/material";
+
+export const pbIconStyle = ( theme: Theme ) => {  
+    return {
+        backgroundColor: theme.palette.background.default, 
+        borderRadius: 10,
+        padding: '3px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: theme.palette.primary.main 
+    }
+}
 
 export const PBSwitch = styled(Switch)(() => ({
     alignSelf: 'center',

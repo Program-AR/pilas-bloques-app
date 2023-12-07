@@ -1,4 +1,8 @@
 {
     "previousChallenge": "Previous challenge",
-    "nextChallenge": "Next challenge"
+    "nextChallenge": "Next challenge",
+    "lightThemeMode": "Light theme mode on",
+    "darkThemeMode": "Dark theme mode on",
+    "simpleReadModeOn": "Simple read mode on",
+    "simpleReadModeOff": "Simple read mode off"
 }

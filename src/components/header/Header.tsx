@@ -10,7 +10,7 @@ import { useThemeContext } from "../../theme/ThemeContext";
 type HeaderProps = {
     CenterComponent?: React.ReactNode,
     SubHeader?: React.ReactNode,
-    ShouldShowSimpleReadSwitch?: boolean
+    shouldShowSimpleReadSwitch?: boolean
 }
 
 type HeaderTextProps = {
@@ -25,7 +25,7 @@ export const HeaderText = (props: HeaderTextProps) => {
 	</Typography>
 }
 
-export const Header = ({CenterComponent= <></>, SubHeader=<></>, ShouldShowSimpleReadSwitch=true}: HeaderProps) => {
+export const Header = ({CenterComponent= <></>, SubHeader=<></>, shouldShowSimpleReadSwitch=true}: HeaderProps) => {
     const { theme } = useThemeContext()
     
     return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
@@ -34,7 +34,7 @@ export const Header = ({CenterComponent= <></>, SubHeader=<></>, ShouldShowSimpl
                 {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
-                    {ShouldShowSimpleReadSwitch && <SimpleReadSwitch/>}
+                    {shouldShowSimpleReadSwitch && <SimpleReadSwitch/>}
                     <DarkModeSwitch/>
                     <SessionButton/>
                 </div>

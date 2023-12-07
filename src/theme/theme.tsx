@@ -77,4 +77,5 @@ const darkTheme: ThemeOptions = {
 
 }
 
-export const getDesignTokens = (darkModeEnabled: boolean): ThemeOptions => deepmerge(darkModeEnabled ? darkTheme : lightTheme,commonTheme)
+export const getDesignTokens = (darkModeEnabled: boolean, simpleReadModeEnabled: boolean): ThemeOptions => 
+      deepmerge( {typography: { allVariants: { textTransform: simpleReadModeEnabled ? 'uppercase': 'initial'}}}, deepmerge(darkModeEnabled ? darkTheme : lightTheme,commonTheme))

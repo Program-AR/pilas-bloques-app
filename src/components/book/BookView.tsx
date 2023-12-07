@@ -41,7 +41,7 @@ export const BookView = () => {
    
     
     return <>
-        <Header CenterComponent={Breadcrumb(book)} ShouldShowSimpleReadSwitch={!book.simpleReadMode} />
+        <Header CenterComponent={Breadcrumb(book)} shouldShowSimpleReadSwitch={!book.simpleReadMode} />
         <Stack alignItems="center" style={{backgroundImage: "url(imagenes/book-background.svg)"}}>
             <PBCard style={{maxWidth: 'var(--creator-max-width)', padding: theme.spacing(2)}}>
                 <Stack>

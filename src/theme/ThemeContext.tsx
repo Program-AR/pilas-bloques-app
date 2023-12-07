@@ -3,7 +3,6 @@ import { createContext, FC, PropsWithChildren, useContext, useEffect, useMemo, u
 import { getDesignTokens } from "./theme";
 import { LocalStorage } from "../localStorage";
 import { Ember } from "../emberCommunication";
-import { deepmerge } from '@mui/utils';
 
 export type ThemeMode = 'light' | 'dark'
 
@@ -28,8 +27,8 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
     const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getIsDarkMode());
     const [simpleReadModeEnabled, setSimpleReadModeEnabled] = useState(LocalStorage.getIsSimpleReadMode());
 
-    const theme = useMemo(
-        () => createTheme( deepmerge(getDesignTokens(darkModeEnabled), {typography: { allVariants: { textTransform: simpleReadModeEnabled ? 'uppercase': 'initial'}}})),
+    const theme = useMemo(     
+        () => createTheme( getDesignTokens(darkModeEnabled, simpleReadModeEnabled)),
         [darkModeEnabled, simpleReadModeEnabled]
     );
 
@@ -45,7 +44,6 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
         </ThemeContext.Provider>
     );
 };
-
 
 export const useThemeContext = () => {
     return useContext(ThemeContext);

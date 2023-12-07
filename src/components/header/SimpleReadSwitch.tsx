@@ -1,27 +1,21 @@
-import { Icon } from "@mui/material";
-import { PBSwitch } from "../PBSwitch";
+import { Icon, Tooltip } from "@mui/material";
+import { PBSwitch, pbIconStyle } from "../PBSwitch";
+import { useTranslation } from "react-i18next"
 import { useThemeContext } from "../../theme/ThemeContext";
 
 export const SimpleReadSwitch = () => {
-    const { simpleReadModeEnabled, setSimpleReadModeEnabled} = useThemeContext()
-
-    const iconSx = {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'gray'
-    }
+    const { theme, simpleReadModeEnabled, setSimpleReadModeEnabled} = useThemeContext()
+    const { t } = useTranslation("others")
 
     const handleToggle = () => {
         setSimpleReadModeEnabled(!simpleReadModeEnabled)
     }
 
-    return <PBSwitch
-        checked={simpleReadModeEnabled}
-        icon={<Icon sx={iconSx}>a</Icon>}
-        checkedIcon={<Icon sx={iconSx}>A</Icon>}
-        onChange={handleToggle}
-    />
+    return <Tooltip title={simpleReadModeEnabled ? t(`simpleReadModeOff`) : t(`simpleReadModeOn`)}>
+        <PBSwitch
+            checked={simpleReadModeEnabled}
+            icon={<Icon sx={pbIconStyle(theme)}>a</Icon>}
+            checkedIcon={<Icon sx={pbIconStyle(theme)}>A</Icon>}
+            onChange={handleToggle}/>
+        </Tooltip>
 }
