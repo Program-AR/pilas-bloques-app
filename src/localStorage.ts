@@ -10,6 +10,7 @@ export namespace LocalStorage {
     const PB_USER = 'PB_USER'
     const PB_CREATOR_CHALLENGE = 'PB_CREATOR_CHALLENGE'
     const PB_USE_NIGHT_THEME = 'PB_USE_NIGHT_THEME'
+    const PB_USE_SIMPLE_READ = 'PB_USE_SIMPLE_READ'
 
     const remove = (key: string) => { localStorage.removeItem(key) }
 
@@ -18,12 +19,14 @@ export namespace LocalStorage {
     export const getUser = (): User | null => _get(PB_USER)
     export const getCreatorChallenge = (): SerializedChallenge | null => _get(PB_CREATOR_CHALLENGE)
     export const getIsDarkMode = (): boolean => _get(PB_USE_NIGHT_THEME) || false
+    export const getIsSimpleReadMode = (): boolean => _get(PB_USE_SIMPLE_READ) || false
 
     export const saveSelectedLocale = (selectedLocale: LanguageCode) => _save(PB_SELECTED_LOCALE, selectedLocale)
     export const saveImportedChallenge = (importedChallenge: EmberExecutableChallenge) => _save(PB_IMPORTED_CHALLENGE, importedChallenge)
     export const saveUser = (user: User | null) => _save(PB_USER, user)
     export const saveCreatorChallenge = (challenge: SerializedChallenge | null) => _save(PB_CREATOR_CHALLENGE, challenge)
     export const saveDarkMode = (darkMode: boolean) => _save(PB_USE_NIGHT_THEME, darkMode)
+    export const saveSimpleReadMode = (simpleReadMode: boolean) => _save(PB_USE_SIMPLE_READ, simpleReadMode)
 
     const _get = (key: string) => _doSafe(key, (storage: Storage) => {
         const value = storage.getItem(key)

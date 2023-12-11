@@ -9,36 +9,41 @@ export type ThemeMode = 'light' | 'dark'
 type ThemeContextType = {
     darkModeEnabled: boolean;
     setDarkModeEnabled: (mode: boolean) => void;
+    simpleReadModeEnabled: boolean;
+    setSimpleReadModeEnabled: (mode: boolean) => void;
     theme: Theme
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
     darkModeEnabled: false,
     setDarkModeEnabled: () => { },
+    simpleReadModeEnabled: false,
+    setSimpleReadModeEnabled: () => { },
     theme: createTheme({})
 });
 
 export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
     const [darkModeEnabled, setDarkModeEnabled] = useState(LocalStorage.getIsDarkMode());
+    const [simpleReadModeEnabled, setSimpleReadModeEnabled] = useState(LocalStorage.getIsSimpleReadMode());
 
-    const theme = useMemo(
-        () => createTheme(getDesignTokens(darkModeEnabled)),
-        [darkModeEnabled]
+    const theme = useMemo(     
+        () => createTheme( getDesignTokens(darkModeEnabled, simpleReadModeEnabled)),
+        [darkModeEnabled, simpleReadModeEnabled]
     );
 
     useEffect(() =>{
         LocalStorage.saveDarkMode(darkModeEnabled)
+        LocalStorage.saveSimpleReadMode(simpleReadModeEnabled)
         Ember.refreshIframe()
-    }, [darkModeEnabled])
+    }, [darkModeEnabled, simpleReadModeEnabled])
 
     return (
-        <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, theme }}>
+        <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, simpleReadModeEnabled, setSimpleReadModeEnabled, theme }}>
             {children}
         </ThemeContext.Provider>
     );
 };
-
 
 export const useThemeContext = () => {
     return useContext(ThemeContext);

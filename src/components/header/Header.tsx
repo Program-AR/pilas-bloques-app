@@ -4,11 +4,13 @@ import styles from './header.module.css';
 import { SessionButton } from "./login/SessionButton";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "./DarkModeSwitch";
+import { SimpleReadSwitch } from "./SimpleReadSwitch";
 import { useThemeContext } from "../../theme/ThemeContext";
 
 type HeaderProps = {
     CenterComponent?: React.ReactNode,
-    SubHeader?: React.ReactNode 
+    SubHeader?: React.ReactNode,
+    shouldShowSimpleReadSwitch?: boolean
 }
 
 type HeaderTextProps = {
@@ -23,7 +25,7 @@ export const HeaderText = (props: HeaderTextProps) => {
 	</Typography>
 }
 
-export const Header = ({CenterComponent= <></>, SubHeader=<></>}: HeaderProps) => {
+export const Header = ({CenterComponent= <></>, SubHeader=<></>, shouldShowSimpleReadSwitch=true}: HeaderProps) => {
     const { theme } = useThemeContext()
     
     return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
@@ -32,6 +34,7 @@ export const Header = ({CenterComponent= <></>, SubHeader=<></>}: HeaderProps) =
                 {CenterComponent}
                 <div>
                     <ChangeLanguageButton/>
+                    {shouldShowSimpleReadSwitch && <SimpleReadSwitch/>}
                     <DarkModeSwitch/>
                     <SessionButton/>
                 </div>

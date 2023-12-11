@@ -2,13 +2,13 @@ import { ThemeOptions } from "@mui/material";
 import { deepmerge } from '@mui/utils';
 
 const commonTheme: ThemeOptions = {
-    shape: {
-        borderRadius: 10
-    },
-    typography: {
-        fontFamily: 'Nunito',
+        shape: {
+            borderRadius: 10
+        },
+        typography: {
+            fontFamily: 'Nunito'
+        }
     }
-}
 
 const lightTheme: ThemeOptions = {
     typography: {
@@ -77,4 +77,5 @@ const darkTheme: ThemeOptions = {
 
 }
 
-export const getDesignTokens = (darkModeEnabled: boolean): ThemeOptions => deepmerge(darkModeEnabled ? darkTheme : lightTheme,commonTheme)
+export const getDesignTokens = (darkModeEnabled: boolean, simpleReadModeEnabled: boolean): ThemeOptions => 
+      deepmerge( {typography: { allVariants: { textTransform: simpleReadModeEnabled ? 'uppercase': 'initial'}}}, deepmerge(darkModeEnabled ? darkTheme : lightTheme,commonTheme))

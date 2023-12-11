@@ -1,4 +1,8 @@
 {
     "previousChallenge": "Desafío anterior",
-    "nextChallenge": "Desafío siguiente"
+    "nextChallenge": "Desafío siguiente",
+    "lightThemeMode": "Activar modo claro",
+    "darkThemeMode": "Activar modo oscuro",
+    "simpleReadModeOn": "Activar modo de lectura simple",
+    "simpleReadModeOff": "Desactivar modo de lectura simple"
 }
