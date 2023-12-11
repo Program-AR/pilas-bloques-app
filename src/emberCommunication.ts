@@ -2,6 +2,10 @@ import { Scene, SceneMap, SceneType, SerializedChallenge } from "./components/se
 import { InternalizationLanguage } from "./language"
 import { LocalStorage } from "./localStorage"
 
+
+/**
+ * Used only to communicate with ember to show the challenge. For all other cases, SerializedChallenge is used.
+ */
 export type EmberExecutableChallenge = {
     escena: string,
     bloques: string[],

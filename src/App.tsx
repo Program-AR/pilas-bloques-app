@@ -17,6 +17,9 @@ import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
 import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
 import { useThemeContext } from './theme/ThemeContext';
+import { SharedChallengeView } from './components/creator/SharedChallengeView';
+import { PilasBloquesApi } from './pbApi';
+import { Ember } from './emberCommunication';
 
 const AnalyticsComponent = () => {
   const location = useLocation();
@@ -37,6 +40,16 @@ const router = createHashRouter([{
     path: "",
     element: <Home/>,
     errorElement: <PBError />
+  },
+  {
+    path: "/desafio/guardado/:id",
+    element: <SharedChallengeView/>,
+    errorElement: <PBError />,
+    loader: async ({ params }) => {
+      const challenge = await PilasBloquesApi.getSharedChallenge(params.id!);
+      Ember.importChallenge(challenge)
+      return challenge
+    },
   },
   {
     path: "/libros/:id",
@@ -104,4 +117,3 @@ function App() {
 }
 
 export default App;
-

@@ -4,7 +4,6 @@ import { SceneEdition } from "./SceneEdition/SceneEdition";
 import { CreatorContextProvider } from "./CreatorContext";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { useTranslation } from "react-i18next";
-import { DownloadButton } from "./ActionButtons/DownloadButton";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
@@ -12,6 +11,7 @@ import { useThemeContext } from "../../../theme/ThemeContext";
 import { useNavigate } from "react-router-dom";
 import { LocalStorage } from "../../../localStorage";
 import { useEffect } from "react";
+import { ShareButton } from "./ActionButtons/ShareChallenge/ShareButton";
 
 export const CreatorEditor = () => {
   const { theme } = useThemeContext()
@@ -51,5 +51,5 @@ export const EditorSubHeader = (props: EditorSubHeaderProps) =>
   <CreatorSubHeader>
     <DiscardChallengeButton />
     {props.viewButton}
-    <DownloadButton />
+    <ShareButton/>
   </CreatorSubHeader>

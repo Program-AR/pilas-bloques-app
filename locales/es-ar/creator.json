@@ -95,7 +95,16 @@
 		"buttons": {
 			"discardChallenge": "Descartar desafío",
 			"discardChallengeShort": "Descartar",
-			"download": "Descargar",
+			"download": "Descargar desafío",
+			"downloadShort": "Descargar",
+			"share": "Compartir desafío",
+			"shareUrl": "Compartir por url",
+			"shareUrlShort": "Compartir",
+			"copyToClipboard": "Copiar al portapapeles",
+			"copiedToClipboard": "Copiado al portapapeles",
+			"save": "Guardar desafío",
+			"saveShort": "Guardar",
+			"savedCorrectly": "El desafío fue guardado correctamente",
 			"preview": "Ver desafío",
 			"previewShort": "Ver",
 			"keepEditing": "Seguir editando",
@@ -106,7 +115,9 @@
 			"loadChallengeShort": "Abrir"
 		},
 		"editorHeader": "Editar desafío",
-		"previewModeHeader": "Ver desafío"
+		"previewModeHeader": "Ver desafío",
+		"serverError": "Problema con el servidor, intente más tarde",
+		"loginWarning": "Para compartir un desafío por URL es necesario estar loggeado."
 	},
 	"title": {
 		"title": "Escribí el título del desafío para ",
