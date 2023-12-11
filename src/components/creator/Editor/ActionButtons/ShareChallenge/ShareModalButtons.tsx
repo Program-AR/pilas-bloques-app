@@ -40,7 +40,9 @@ export const ShareButtons = () => {
 
     return <>
         <Stack direction="row" justifyContent="space-between" alignItems='center'>
-            {sharedId ? <SaveButton /> : <ShareUrlButton />}
+            {// If the challenge has already been saved, show Save, else show Share, which saves for the first time.
+                sharedId ? <SaveButton /> : <ShareUrlButton />
+            }
             <DownloadButton />
         </Stack>
     </>
