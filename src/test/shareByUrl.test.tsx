@@ -130,7 +130,7 @@ describe("Share by url", () => {
             const urlText = await screen.findByRole('textbox')
 
             //The url text is not changing in the text
-            expect(urlText.getAttribute('value')).toBe("localhost:3000/#/desafio/guardado/newShared")
+            expect(urlText.getAttribute('value')).toBe(`${process.env.REACT_APP_PB_APP_URL}/#/desafio/guardado/newShared`)
         })
 
     })
