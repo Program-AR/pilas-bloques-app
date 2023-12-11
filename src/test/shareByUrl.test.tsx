@@ -54,7 +54,7 @@ describe("Share by url", () => {
     
     describe("Upsert button", () => {
 
-        const UpsertButton = <ChallengeUpsertButton Icon={<></>} nametag="" challengeUpsert={async () => ""}/>
+        const UpsertButton = <ChallengeUpsertButton Icon={<></>} nametag="" challengeUpsert={async () => mockChallenge}/>
 
         test('Should not be able to share challenge if not logged in', async () => {
             renderComponent(UpsertButton)

@@ -46,48 +46,25 @@ export const ShareButtons = () => {
     </>
 }
 
-const ShareUrlButton = () => {
+const ShareUrlButton = () => 
+    <ChallengeUpsertButton Icon={<ShareIcon />} nametag="shareUrl" challengeUpsert={PilasBloquesApi.shareChallenge} />
 
-    const shareChallenge = async (): Promise<string> => {
-        const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
-        const sharedChallenge = await PilasBloquesApi.shareChallenge(challenge)
-        return sharedChallenge.sharedId
-    }
+const SaveButton = () => 
+    <ChallengeUpsertButton Icon={<SaveIcon />} nametag="save" challengeUpsert={PilasBloquesApi.saveChallenge} />
 
-    return <ChallengeUpsertButton Icon={<ShareIcon />} nametag="shareUrl" challengeUpsert={shareChallenge} />
-}
-const SaveButton = () => {
-    const [openSnackbar, setOpenSnackbar] = useState(false)
-
-    const { t } = useTranslation('creator');
-
-    const saveChallenge = async (): Promise<string> => {
-        const savedChallenge = await PilasBloquesApi.saveChallenge(LocalStorage.getCreatorChallenge()!)
-        setOpenSnackbar(true)
-        return savedChallenge.sharedId
-    }
-
-    return <>
-        <ChallengeUpsertButton Icon={<SaveIcon />} nametag="save" challengeUpsert={saveChallenge} />
-        <Snackbar
-            open={openSnackbar}
-            onClose={() => setOpenSnackbar(false)}
-            autoHideDuration={2000}
-            message={t('editor.buttons.savedCorrectly')}
-        />
-    </>
-}
-
-export const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: ReactNode, nametag: string, challengeUpsert: () => Promise<string> }) => {
+export const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon: ReactNode, nametag: string, challengeUpsert: (challenge: SerializedChallenge) => Promise<SerializedChallenge> }) => {
 
     const { setSharedId } = useContext(CreatorContext)
     const userLoggedIn = !!LocalStorage.getUser()
     const [serverError, setServerError] = useState<boolean>(false)
     const { t } = useTranslation('creator');
+    const [savedSnackbar, setSavedSnackbarOpen] = useState(false)
 
     const handleClick = async () => {
         try {
-            setSharedId(await challengeUpsert())
+            const savedChallenge = await challengeUpsert(LocalStorage.getCreatorChallenge()!)
+            setSharedId(savedChallenge.sharedId!)
+            setSavedSnackbarOpen(true)
         }
         catch (error) {
             setServerError(true)
@@ -95,6 +72,12 @@ export const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon
     }
 
     return <>
+        <Snackbar
+            open={savedSnackbar}
+            onClose={() => setSavedSnackbarOpen(false)}
+            autoHideDuration={2000}
+            message={t('editor.buttons.savedCorrectly')}
+        />
         <Tooltip title={!userLoggedIn ? t('editor.loginWarning') : ''} followCursor>
             <div>
                 <CreatorActionButton data-testid="upsertButton" onClick={handleClick} disabled={!userLoggedIn} startIcon={Icon} variant='contained' nametag={nametag} />
