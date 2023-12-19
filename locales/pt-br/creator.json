@@ -1,0 +1,160 @@
+{
+	"selection": {
+		"title": "Selecionar personagem",  
+		"subtitle": "Cada um tem seus próprios comandos, sensores e objetivos.", 
+		"challengeBeingCreated": "Já tem um desafio em criação. Pode continuar editando ou descartando-o", 
+		"discardWarning": "Cuidado! Se descartares o teu desafio, não vais conseguir recuperá-lo!", 
+		"continueEditing": "Continuar a editar", 
+		"discard": "Descartar",
+		"loadChallenge": "Importar desafios criados", 
+		"importError": "O arquivo é inválido", 
+		"name": "Nome",
+		"interests": "Interesses",
+		"personality": "Personalidade", 
+		"origin": "Origem", 
+		"curiousFact": "Fato curioso",     
+		"goals": "Objetivos", 
+		"creator": "cria desafios", 
+		"cards": {
+			"Lita": { 	"name": "Lita",
+						"definition": "a tatú", 
+						"interests": "O cultivo. Os pomares.", 
+						"personality": "Sorridente (vais sempre vê-la a sorrir!).", 
+						"origin": "Mesopotâmia argentina.",
+						"curiousFact": "Tem seu próprio pomar e gosta de enrolar-se como uma bola.", 
+						"goals": {
+							"letucce": "Pegar as alfaces.", 
+						 	"tomato": "Pegar os tomates.", 
+							"salad": "Fazer as saladas." 
+						}
+			},
+			"Duba": { 	"name": "Duba",
+						"definition": "a puma",
+						"interests": "A comida.",
+						"personality": "Faminta (sempre é bom momento para comer!).", 
+						"origin": "Cordilheira patagônica argentina",  
+						"curiousFact": "Seu prato favorito é o churrasco e ela adora fazer assados.",
+						"goals": {
+							"steak": "Comer os churrascos." 
+						}
+			},
+			"Yvoty": { 	"name": "Yvoty",
+						"definition": "a onça", 
+						"interests": "A tecnologia. A informática. As redes sociais.", 
+						"personality": "Criativa. Sem preconceitos (não importa o que dirão!).", 
+						"origin": "Floresta missionária argentina.", 
+						"curiousFact": "Yvoty significa \"flor\" na língua guarani e se pronuncia \"ivotí\", mas se escreve com dois \"y\"!",
+						"goals": {
+							"firefly": "Acordar os vaga-lumes.", 
+							"butterfly": "Fotografar as borboletas.", 
+							"unlockCellphone": "Desbloquear os celulares.", 
+							"charger": "Pegar os carregadores",  
+							"chargeCellphone": "Carregar os celulares." 
+						}
+			},
+			"Manic": {  "name": "Mañic",
+						"definition": "a nandu",						"interests": "A ciência. A astronomia.", 
+						"personality": "Curiosa. Ativa. Ágil (nunca esquece seus patins!).", 
+						"origin": "Planície pampeana argentina.",  
+						"curiousFact": "Sua avó da formosa lhe deu o nome, que significa literalmente \"nandu\" na língua Qom.",
+						"goals": {
+							"telescope": "Reparar os telescópios", 
+							"star": "Observar as estrelas.", 
+							"planet": "Observar os planetas." 
+						}
+			},
+			"Capy": {  "name": "Capy y Guyrá",
+						"definition": "oa capivara e o pica-boi", 						"interests": "O meio ambiente. Ecologia.", 
+						"personality": "Cuidadores. Amigos (estão sempre juntos!).", 
+						"origin": "Zonas húmidas argentinas.", 
+						"curiousFact": "Seus nomes Capy (de \"capybara\" que significa \"senhor da grama\") e Guyrá (significa \"pássaro\"), são da língua Tupí guarani.", 
+						"goals": {
+							"can":"Pegar as latas. ", 							"paper":"Pegar os papéis." 
+						}
+			},
+			"Chuy": {  "name": "Chuy",
+						"definition": "u pinguim de magalhães", 
+						"interests": "O trabalho em equipe. Divertir-se.", 
+						"personality": "Generose. Desportista (adora escalar penhascos!).", 
+						"origin": "Praia patagônica argentina.", 
+						"curiousFact": "O seu nome vem de \"chuy chuy\" que significa \"frio\" na língua mapuche.",     
+						"goals": {
+							"paddle": "Pegar as paletas.",				
+							"trophy": "Pegar os troféus.", 
+							"pingpong": "Rebotar bolas de pingue pongue.", 
+							"pulpito": "Rebotar as bolas polvo pequeno.",
+							"football":"Chutar as bolas de futebol." 
+						}
+			}
+		}
+	},
+	"editor": {
+		"buttons": {
+			"discardChallenge": "Descartar desafio", 
+			"discardChallengeShort": "Descartar", 
+			"download": "Baixar desafio",
+			"downloadShort": "Baixar",
+			"share": "Compartilhar desafío",
+			"shareUrl": "Compartilhar por url",
+			"shareUrlShort": "Compartilhar",
+			"copyToClipboard": "Copiar para área de transferência",
+			"copiedToClipboard": "Copiado para a área de transferência",
+			"save": "Salvar desafio",
+			"saveShort": "Salvar",
+			"savedCorrectly": "O desafio foi salvo com sucesso", 
+			"preview": "Ver desafio",
+			"previewShort": "Ver", 
+			"keepEditing": "Continuar editando",  
+			"keepEditingShort": "Editar", 
+			"creator": "Selecionar personagem", 
+			"creatorShort": "Seleccionar", 
+			"loadChallenge": "Abrir desafio criado", 
+			"loadChallengeShort": "Abrir"
+		},
+		"editorHeader": "Editar desafio", 
+		"previewModeHeader": "Ver desafio",
+		"serverError": "problema com o servidor, tente mais tarde.",
+		"loginWarning": "Para compartilhar um desafio por URL você precisa fazer login." 
+	},
+	"title": {
+		"title": "Escrevi o título do desafio para ", 
+		"button": "Escrever título", 
+		"input": "Título"
+	},
+	"statement": {
+		"title": "Escreva o enunciado do desafio para ", 
+		"button": "Escrever enunciado", 
+		"description": "Texto do enunciado",
+		"clue": "Pista",
+		"includeClue": "Incluir uma pista", 
+		"defaultDescription": "Assim se verá teu **enunciado**...", 
+		"defaultTitle": "Escreva teu título..." 
+	},
+	"tools": {
+		"putObstacle": "Adicionar obstáculos", 
+		"putObject": "Adicionar objetos ",  
+		"putActor": "Mover para ", 
+		"delete": "Excluir" 
+	},
+	"scene": {
+		"numCols": "Modificar colunas", 
+		"numRows": "Modificar linhas" 
+	},
+	"toolbox": {
+		"title": "Selecione os comandos para o desafio de ", 
+		"button": "Selecione os comandos disponíveis",  
+		"categoriesHint": "Quando se pretende utilizar procedimentos, deve haver sempre categorias" 
+	},
+	"scenarios": {
+		"delete": "Eliminar cenário", 
+		"duplicate": "Duplicar cenário", 
+		"add": "Adicionar ao cenário", 
+		"areYouSure": "Deseja remover o cenário atual?",
+		"deleteError": "O cenário não pôde ser apagado. Deve haver pelo menos um."	},
+	"mapNavigation": {
+		"next": "Seguinte", 
+		"prev": "Anterior",
+		"multipleInitialScenarios": "Cenários iniciais" 
+	}, 
+	"importedChallengedHeader": "Desafio criado pela comunidade"
+}
