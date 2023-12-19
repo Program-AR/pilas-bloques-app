@@ -92,7 +92,16 @@
 		"buttons": {
 			"discardChallenge": "Descartar desafio", 
 			"discardChallengeShort": "Descartar", 
-			"download": "Baixar", 
+			"download": "Baixar desafio",
+			"downloadShort": "Baixar",
+			"share": "Compartilhar desafío",
+			"shareUrl": "Compartilhar por url",
+			"shareUrlShort": "Compartilhar",
+			"copyToClipboard": "Copiar para área de transferência",
+			"copiedToClipboard": "Copiado para a área de transferência",
+			"save": "Salvar desafio",
+			"saveShort": "Salvar",
+			"savedCorrectly": "O desafio foi salvo com sucesso", 
 			"preview": "Ver desafio",
 			"previewShort": "Ver", 
 			"keepEditing": "Continuar editando",  
@@ -127,7 +136,7 @@
 	},
 	"scene": {
 		"numCols": "Modificar colunas", 
-		"numRows": "modificar linhas" 
+		"numRows": "Modificar linhas" 
 	},
 	"toolbox": {
 		"title": "Selecione os comandos para o desafio de ", 
