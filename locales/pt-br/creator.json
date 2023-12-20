@@ -53,36 +53,39 @@
 						}
 			},
 			"Manic": {  "name": "Mañic",
-						"definition": "a nandu",						"interests": "A ciência. A astronomia.", 
+						"definition": "a nandu",						
+						"interests": "A ciência. A astronomia.", 
 						"personality": "Curiosa. Ativa. Ágil (nunca esquece seus patins!).", 
 						"origin": "Planície pampeana argentina.",  
 						"curiousFact": "Sua avó da formosa lhe deu o nome, que significa literalmente \"nandu\" na língua Qom.",
 						"goals": {
-							"telescope": "Reparar os telescópios", 
+							"telescope": "Reparar os telescópios.", 
 							"star": "Observar as estrelas.", 
 							"planet": "Observar os planetas." 
 						}
 			},
 			"Capy": {  "name": "Capy y Guyrá",
-						"definition": "oa capivara e o pica-boi", 						"interests": "O meio ambiente. Ecologia.", 
+						"definition": "oa capivara e o pica-boi", 						
+						"interests": "O meio ambiente. Ecologia.", 
 						"personality": "Cuidadores. Amigos (estão sempre juntos!).", 
 						"origin": "Zonas húmidas argentinas.", 
 						"curiousFact": "Seus nomes Capy (de \"capybara\" que significa \"senhor da grama\") e Guyrá (significa \"pássaro\"), são da língua Tupí guarani.", 
 						"goals": {
-							"can":"Pegar as latas. ", 							"paper":"Pegar os papéis." 
+							"can":"Pegar as latas. ", 							
+							"paper":"Pegar os papéis." 
 						}
 			},
 			"Chuy": {  "name": "Chuy",
-						"definition": "u pinguim de magalhães", 
+						"definition": "pinguim de magalhães", 
 						"interests": "O trabalho em equipe. Divertir-se.", 
-						"personality": "Generose. Desportista (adora escalar penhascos!).", 
+						"personality": "Generosu. Esportista (adora escalar penhascos!).", 
 						"origin": "Praia patagônica argentina.", 
 						"curiousFact": "O seu nome vem de \"chuy chuy\" que significa \"frio\" na língua mapuche.",     
 						"goals": {
-							"paddle": "Pegar as paletas.",				
+							"paddle": "Pegar as raquetes.",				
 							"trophy": "Pegar os troféus.", 
-							"pingpong": "Rebotar bolas de pingue pongue.", 
-							"pulpito": "Rebotar as bolas polvo pequeno.",
+							"pingpong": "Rebater bolinhas de ping pong.", 
+							"pulpito": "Rebater bolas de plástico.",
 							"football":"Chutar as bolas de futebol." 
 						}
 			}
@@ -150,7 +153,8 @@
 		"duplicate": "Duplicar cenário", 
 		"add": "Adicionar ao cenário", 
 		"areYouSure": "Deseja remover o cenário atual?",
-		"deleteError": "O cenário não pôde ser apagado. Deve haver pelo menos um."	},
+		"deleteError": "O cenário não pôde ser apagado. Deve haver pelo menos um."	
+	},
 	"mapNavigation": {
 		"next": "Seguinte", 
 		"prev": "Anterior",
