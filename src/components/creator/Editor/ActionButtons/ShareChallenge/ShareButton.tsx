@@ -1,10 +1,10 @@
 import { CreatorActionButton } from "../CreatorActionButton";
-import DownloadIcon from '@mui/icons-material/Download';
 import { useContext, useState } from "react";
 import { Dialog, DialogContent, DialogTitle, InputAdornment, Stack, TextField } from "@mui/material";
 import { CreatorContext } from "../../CreatorContext";
 import { ShareButtons, CopyToClipboardButton } from "./ShareModalButtons";
 import { useTranslation } from "react-i18next";
+import ShareIcon from '@mui/icons-material/Share';
 
 export const ShareButton = () => {
 
@@ -12,7 +12,7 @@ export const ShareButton = () => {
 
     return <>
         <ShareDialog open={dialogOpen} setDialogOpen={setDialogOpen} />
-        <CreatorActionButton onClick={() => { setDialogOpen(true) }} startIcon={<DownloadIcon />} nametag='share' isshortversion={true} />
+        <CreatorActionButton onClick={() => { setDialogOpen(true) }} startIcon={<ShareIcon />} nametag='share' isshortversion={true} />
     </>
 
 }
