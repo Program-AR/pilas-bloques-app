@@ -120,7 +120,7 @@
 		"editorHeader": "Edit challenge",
 		"previewModeHeader": "Challenge preview",
 		"serverError": "There's a problem with the server, try again later",
-		"loginWarning": "You need to be logged in to share a challenge via url."
+		"loginWarning": "You need to be logged in to get the challenge link."
 	},
 	"title": {
 		"title": "Write the challenge's title for ",
