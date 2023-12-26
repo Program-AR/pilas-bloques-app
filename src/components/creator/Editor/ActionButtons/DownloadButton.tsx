@@ -5,7 +5,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 
 export const DownloadButton = () => {
     
-    return <CreatorActionButton onClick={downloadChallenge} startIcon={<DownloadIcon/>} nametag='download' isshortversion={true}/>
+    return <CreatorActionButton onClick={downloadChallenge} startIcon={<DownloadIcon/>} nametag='download'/>
 
 }
 
