@@ -83,7 +83,7 @@ describe("Share by url", () => {
 
             const shareButton = await screen.findByTestId('upsertButton')
 
-            expect(shareButton.textContent).toBe("Obtener link del desafío")
+            expect(shareButton.textContent).toBe("Obtener enlace del desafío")
         })
 
         const shareChallenge = async () => {
