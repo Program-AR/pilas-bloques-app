@@ -1,4 +1,4 @@
-import ShareIcon from '@mui/icons-material/Share';
+import LinkIcon from '@mui/icons-material/Link';
 import SaveIcon from '@mui/icons-material/Save';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { ReactNode, useContext, useState } from "react"
@@ -49,7 +49,7 @@ export const ShareButtons = () => {
 }
 
 const ShareUrlButton = () => 
-    <ChallengeUpsertButton Icon={<ShareIcon />} nametag="shareUrl" challengeUpsert={PilasBloquesApi.shareChallenge} />
+    <ChallengeUpsertButton Icon={<LinkIcon />} nametag="shareUrl" challengeUpsert={PilasBloquesApi.shareChallenge} />
 
 const SaveButton = () => 
     <ChallengeUpsertButton Icon={<SaveIcon />} nametag="save" challengeUpsert={PilasBloquesApi.saveChallenge} />

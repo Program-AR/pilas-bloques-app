@@ -98,8 +98,9 @@
 			"download": "Baixar desafio",
 			"downloadShort": "Baixar",
 			"share": "Compartilhar desafío",
-			"shareUrl": "Compartilhar por url",
-			"shareUrlShort": "Compartilhar",
+			"shareShort": "Compartilhar",
+			"shareUrl": "Obter o link do desafio",
+			"shareUrlShort": "Obter o link",
 			"copyToClipboard": "Copiar para área de transferência",
 			"copiedToClipboard": "Copiado para a área de transferência",
 			"save": "Salvar desafio",
@@ -117,7 +118,7 @@
 		"editorHeader": "Editar desafio", 
 		"previewModeHeader": "Ver desafio",
 		"serverError": "problema com o servidor, tente mais tarde.",
-		"loginWarning": "Para compartilhar um desafio por URL você precisa fazer login." 
+		"loginWarning": "Para obter o link do desafio você precisa fazer login." 
 	},
 	"title": {
 		"title": "Escrevi o título do desafio para ", 
