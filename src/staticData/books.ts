@@ -55,7 +55,10 @@ const rawBooksData: RawBookData[] = [
   {
     id: 3,
     chapterIds: ['Parametrización de soluciones'],
-    simpleReadMode: false
+    simpleReadMode: false,
+    expectations: {
+      decomposition: true
+    }
   },
   {
     id: 1000,
