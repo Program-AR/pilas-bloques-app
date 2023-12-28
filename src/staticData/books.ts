@@ -46,7 +46,7 @@ const rawBooksData: RawBookData[] = [
   },
   {
     id: 2,
-    chapterIds: ['1','2','3','4'],
+    chapterIds: ['Autómatas, comandos, procedimientos y repetición', 'Alternativa condicional', 'Repetición condicional', 'Sensores Numéricos'],
     simpleReadMode: false,
     expectations: {
       decomposition: true
@@ -54,10 +54,15 @@ const rawBooksData: RawBookData[] = [
   },
   {
     id: 3,
-    chapterIds: ['5'],
+    chapterIds: ['Parametrización de soluciones'],
     simpleReadMode: false,
     expectations: {
       decomposition: true
     }
-  }
+  },
+  {
+    id: 1000,
+    chapterIds: ['1','2','3','4','5'],
+    simpleReadMode: false
+  },  
 ];
