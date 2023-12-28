@@ -59,5 +59,13 @@ const rawBooksData: RawBookData[] = [
     expectations: {
       decomposition: true
     }
-  }
+  },
+  {
+    id: 1000, // Phantom book for testing purposes until we remove all old challenges
+    chapterIds: ['Autómatas, comandos, procedimientos y repetición', 'Alternativa condicional', 'Repetición condicional', 'Sensores Numéricos', 'Parametrización de soluciones'],
+    simpleReadMode: false,
+    expectations: {
+      decomposition: true
+    }
+  },  
 ];
