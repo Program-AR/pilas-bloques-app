@@ -14,7 +14,7 @@ const Version = () => {
     if(!process.env.REACT_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
     const {t} = useTranslation("footer")
     const gitInfo = GitInfo()
-    const repoUrl = `https://github.com/Program-AR/pilas-bloques-react/tree/${gitInfo.commit.hash}`
+    const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${gitInfo.commit.hash}`
     return <Stack direction="row">
       {t("version")} {process.env.REACT_APP_VERSION}
       <Code/>

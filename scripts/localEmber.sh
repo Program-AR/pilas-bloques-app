@@ -1,6 +1,6 @@
 cd ../pilas-bloques
 npm run build
-cd ../pilas-bloques-react/public
+cd ../pilas-bloques-app/public
 rm -r emberPB/*
 rsync -av ../../pilas-bloques/dist/ emberPB/
 cd .. 
