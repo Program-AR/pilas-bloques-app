@@ -1,8 +1,8 @@
-PB_APP_VERSION="1.16.7"
+PB_APP_VERSION="1.17.0"
 
 echo "==> Downloading Pilas Bloques app online..."
 mkdir -p tmp
-curl -o tmp/pilasbloques-${PB_APP_VERSION}-html.tar.gz -kLSs https://github.com/Program-AR/pilas-bloques/releases/download/${PB_APP_VERSION}/pilasbloques-${PB_APP_VERSION}a-html.tar.gz
+curl -o tmp/pilasbloques-${PB_APP_VERSION}-html.tar.gz -kLSs https://github.com/Program-AR/pilas-bloques-ember/releases/download/${PB_APP_VERSION}/pilasbloques-${PB_APP_VERSION}a-html.tar.gz
 
 echo "==> Extracting, deleting, renaming Pilas Bloques app online..."
 EMBERPB_FOLDER="public/emberPB"
