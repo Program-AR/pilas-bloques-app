@@ -82,8 +82,10 @@ const ChallengeView = (props: ChallengeViewProps) => {
 
 
 export const ChallengeById = () => {
-    const { id } = useParams()
-    return <ChallengeView challengeId={Number(id)}/>
+    var { id } = useParams()
+    var challengeId = Number(id)
+    if(challengeId < 200) challengeId += 1000 // Old challenge ids URLs should be redirected.
+    return <ChallengeView challengeId={challengeId} />
 }
 
 export const ChallengeByName = () => {
