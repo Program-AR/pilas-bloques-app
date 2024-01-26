@@ -25,7 +25,7 @@ describe('Static data fetching', () => {
   test("Should get challenge by name if it exists", () => {
     const challenge: Challenge = getChallengeWithName("NoMeCansoDeSaltar")
 
-    expect(challenge.id).toEqual(3)
+    expect(challenge.id).toEqual(1003)
   })
 
   test("Should throw error on getting challenge by name if it doesnt exist", () => {
