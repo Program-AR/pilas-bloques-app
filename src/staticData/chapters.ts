@@ -43,32 +43,6 @@ export const rawChapterData: RawChapterData[] = [
         }
     },
     {
-        id: 'Autómatas, comandos, procedimientos y repetición',
-        groupIds: ['CapyYGuyra', 'NuevosComandosCapy', 'ElGatoEnLaCalle', 'NoMeCansoDeSaltar', 'ElMarcianoEnElDesierto', 'TitoEnciendeLuces', 'ElAlienYLasTuercas', 'ElRecolectorDeEstrellas', 'MariaLaComeSandias', 'AlimentandoALosPeces', 'InstalandoJuegos', 'LaGranAventuraDelMarEncantado', 'ReparandoLaNave'],
-        expectations: {
-            simpleRepetition: true
-        }
-    },
-    {
-        id: 'Alternativa condicional',
-        groupIds: ['ElMonoYLasBananas', 'LaEleccionDelMono', 'LaberintoCorto', 'LasRocasDeNano', 'LosCaminosDeNano', 'UnaFiestaArruinada', 'RedecorandoFiestas', 'TresNaranjas', 'TitoRecargado', 'LaberintoLargo', 'ElPasilloCurvoDeSandias', 'ElFestinFrutal', 'RecolectorDeGalaxias', 'ElDesiertoMultiFrutal']
-    },
-    {
-        id: 'Repetición condicional',
-        groupIds: ['SuperTito1', 'SuperTito2', 'LaberintoConQueso', 'ElDetectiveChaparro', 'FutbolRobots', 'PrendiendoLasCompus', 'ElMonoQueSabeContar']
-    },
-    {
-        id: 'Sensores Numéricos',
-        groupIds: ['ElSuperviaje', 'ElMonoCuentaDeNuevo']
-    },
-    {
-        id: 'Parametrización de soluciones',
-        groupIds: ['ElPlanetaDeNano', 'Dibujando Figuras', 'LaFiestaDeDracula', 'SalvandoLaNavidad', 'PrendiendoLasCompusParametrizado', 'TitoCuadrado', 'ElCangrejoAguafiestas', 'PrendiendoLasFogatas', 'DibujoLibre'],
-        expectations: {
-            simpleRepetition: true
-        }
-    },
-    {
         id: 'Desafios complementarios',
         groupIds: ['tecnopolis2021EjercicioModelo', 'tecnopolis2021ConDuba', 'tecnopolis2021ConLita', 'tecnopolis2021ConCoty', 'tecnopolis2021ConToto']
     },

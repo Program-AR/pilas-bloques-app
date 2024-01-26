@@ -9,12 +9,6 @@ export type Challenge = {
    */
   id: number,
   /**
-   * Unique string identifier.
-   * Used for images and checks when importing solutions.
-   * DON'T use this. Soon to be deprecated.
-   */
-  name?: string,
-  /**
    * The pilasweb framework's scene for the challenge.
    * Scene class name or scene string initializer e.g. "new Scene..."
    * Parsed as js, defined in pilas-bloques-exercises.
@@ -82,11 +76,12 @@ export const getChallengeWithId = (id: number): Challenge => {
   @throws Error
  **/
   export const getChallengeWithName = (challengeName: string): Challenge => {
-    const challenge: Challenge | undefined = challenges.find(challenge => challenge.name === challengeName)
+    const legacyNames = [{legacyName:"AlienTocaBoton",id:1001},{legacyName:"NuevosComandos",id:1046},{legacyName:"ElGatoEnLaCalle",id:1002},{legacyName:"NoMeCansoDeSaltar",id:1003},{legacyName:"ElMarcianoEnElDesierto",id:1004},{legacyName:"TitoEnciendeLuces",id:1005},{legacyName:"ElAlienYLasTuercas",id:1006},{legacyName:"ElRecolectorDeEstrellas",id:1007},{legacyName:"MariaLaComeSandias",id:1008},{legacyName:"AlimentandoALosPeces",id:1009},{legacyName:"InstalandoJuegos",id:1010},{legacyName:"LaGranAventuraDelMarEncantado",id:1011},{legacyName:"ReparandoLaNave",id:1012},{legacyName:"ElMonoYLasBananas",id:1013},{legacyName:"LaEleccionDelMono",id:1014},{legacyName:"LaberintoCorto",id:1015},{legacyName:"TresNaranjas",id:1016},{legacyName:"TitoRecargado",id:1017},{legacyName:"LaberintoLargo",id:1018},{legacyName:"SuperTito1",id:1019},{legacyName:"SuperTito2",id:1020},{legacyName:"LaberintoConQueso",id:1021},{legacyName:"ElDetectiveChaparro",id:1022},{legacyName:"FutbolRobots",id:1023},{legacyName:"PrendiendoLasCompus",id:1024},{legacyName:"ElMonoQueSabeContar",id:1025},{legacyName:"ElSuperviaje",id:1026},{legacyName:"ElMonoCuentaDeNuevo",id:1027},{legacyName:"ElPlanetaDeNano",id:1028},{legacyName:"DibujandoAlCuadrado",id:1029},{legacyName:"DibujandoRayuelaRobotica",id:1030},{legacyName:"DibujandoCortoPorLaDiagonal",id:1031},{legacyName:"DibujandoMamushkaCuadrada",id:1032},{legacyName:"DibujandoEscaleraCuadrada",id:1033},{legacyName:"DibujandoHexagono",id:1034},{legacyName:"DibujandoPiramideInvertida",id:1035},{legacyName:"DibujandoFigurasDentroDeFiguras",id:1036},{legacyName:"DibujandoLaCuevaDeEstalagtitas",id:1037},{legacyName:"LasRocasDeNano",id:1038},{legacyName:"LosCaminosDeNano",id:1039},{legacyName:"UnaFiestaArruinada",id:1040},{legacyName:"RedecorandoFiestas",id:1041},{legacyName:"ElDesiertoMultiFrutal",id:1042},{legacyName:"ElPasilloCurvoDeSandias",id:1043},{legacyName:"ElFestinFrutal",id:1044},{legacyName:"RecolectorDeGalaxias",id:1045},{legacyName:"LaFiestaDeDracula",id:1130},{legacyName:"SalvandoLaNavidad",id:1131},{legacyName:"PrendiendoLasCompusParametrizado",id:1132},{legacyName:"TitoCuadrado",id:1133},{legacyName:"ElCangrejoAguafiestas",id:1134},{legacyName:"PrendiendoLasFogatas",id:1135},{legacyName:"DibujoLibre",id:1136}]
+    const challenge = legacyNames.find(challenge => challenge.legacyName === challengeName)
     
     if (!challenge) throw new Error(`Challenge with name "${challengeName}" does not exist`)
   
-    return challenge
+    return getChallengeWithId(challenge.id)
   }
 
 export type PathToChallenge = {
@@ -108,455 +103,6 @@ export const getPathToChallenge = (challengeId: number): PathToChallenge => {
 
 
 const challenges: Challenge[] = [
-  {
-    id: 1,
-    name: 'AlienTocaBoton',
-    scene: 'AlienInicial',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'ApretarBoton'],
-    expectations: {
-      decomposition: false,
-      simpleRepetition: false
-    }
-  },
-  {
-    id: 46,
-    name: 'NuevosComandos',
-    scene: 'NuevosComandos',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaAbajo', 'MoverACasillaArriba', 'ApretarBoton', 'Procedimiento'],
-    expectations: {
-      simpleRepetition: false,
-      decomposition: false,
-      decomposition9: true
-    }
-  },
-  {
-    id: 2,
-    name: 'ElGatoEnLaCalle',
-    scene: 'ElGatoEnLaCalle',
-    toolboxBlockIds: ['Saludar', 'Avanzar', 'Volver', 'AbrirOjos', 'CerrarOjos', 'Acostarse', 'Pararse', 'Soniar', 'Procedimiento'],
-    expectations: {
-      simpleRepetition: false
-    }
-  },
-  {
-    id: 3,
-    name: 'NoMeCansoDeSaltar',
-    scene: 'NoMeCansoDeSaltar',
-    toolboxBlockIds: ['SaltarHablando', 'Procedimiento', 'Repetir'],
-    expectations: {
-      decomposition: false
-    }
-  },
-  {
-    id: 4,
-    name: 'ElMarcianoEnElDesierto',
-    scene: 'ElMarcianoEnElDesierto',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'ComerManzana', 'Procedimiento', 'Repetir']
-  },
-  {
-    id: 5,
-    name: 'TitoEnciendeLuces',
-    scene: 'TitoEnciendeLuces',
-    toolboxBlockIds: ['EncenderLuz', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'Procedimiento', 'Repetir']
-  },
-  {
-    id: 6,
-    name: 'ElAlienYLasTuercas',
-    scene: 'AlienLevantaTuercas',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'LevantaTuerca', 'Procedimiento', 'Repetir']
-  },
-  {
-    id: 7,
-    name: 'ElRecolectorDeEstrellas',
-    scene: 'ElRecolectorDeEstrellas',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaArriba', 'VolverABordeIzquierdo', 'TomarEstrella', 'Procedimiento', 'Repetir']
-  },
-  {
-    id: 8,
-    name: 'MariaLaComeSandias',
-    scene: 'MariaLaComeSandias',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MorderSandia', 'Procedimiento', 'Repetir']
-  },
-  {
-    id: 9,
-    name: 'AlimentandoALosPeces',
-    scene: 'AlimentandoALosPeces',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'AlimentarPez', 'AgarrarComida', 'Procedimiento', 'Repetir']
-  },
-  {
-    id: 10,
-    name: 'InstalandoJuegos',
-    scene: 'InstalandoJuegos',
-    toolboxBlockIds: ['PasarASiguienteComputadora', 'PrenderComputadora', 'ApagarComputadora', 'EscribirC', 'EscribirB', 'EscribirA', 'InstalarJuego', 'Repetir', 'Procedimiento'],
-  },
-  {
-    id: 11,
-    name: 'LaGranAventuraDelMarEncantado',
-    scene: 'LaGranAventuraDelMarEncantado',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'AgarrarLlave', 'AbrirCofre', 'DarSombrero', 'AtacarConEspada', 'EscaparEnUnicornio', 'Repetir', 'Procedimiento'],
-    expectations: {
-      decomposition: true,
-    },
-  },
-  {
-    id: 12,
-    name: 'ReparandoLaNave',
-    scene: 'ReparandoLaNave',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'TomarHierro', 'TomarCarbon', 'Depositar', 'Escapar', 'Repetir', 'Procedimiento'],
-  },
-  {
-    id: 13,
-    name: 'ElMonoYLasBananas',
-    scene: 'ElMonoYLasBananas',
-    toolboxBlockIds: ['ComerBanana', 'AvanzarMono', 'TocandoBanana', 'Repetir', 'Procedimiento', 'Si'],
-    expectations: {
-      conditionalAlternative: true,
-      decomposition: false
-    },
-    shouldShowMultipleScenarioHelp: true
-  },
-  {
-    id: 14,
-    name: 'LaEleccionDelMono',
-    scene: 'LaEleccionDelMono',
-    toolboxBlockIds: ['ComerBanana', 'ComerManzana', 'AvanzarMono', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoManzana', 'TocandoBanana'],
-    expectations: {
-      conditionalAlternative: true,
-      decomposition: false
-    },
-    shouldShowMultipleScenarioHelp: true
-  },
-  {
-    id: 15,
-    name: 'LaberintoCorto',
-    scene: 'LaberintoCorto',
-    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha',
-      'MoverACasillaAbajo', 'TocandoAbajo', 'TocandoDerecha'],
-    expectations: {
-      conditionalAlternative: true,
-      decomposition: false
-    }
-  },
-  {
-    id: 16,
-    name: 'TresNaranjas',
-    scene: 'TresNaranjas',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'ComerNaranja', 'Repetir', 'Si', 'SiNo', 'TocandoNaranja']
-  },
-  {
-    id: 17,
-    name: 'TitoRecargado',
-    scene: 'TitoRecargado',
-    toolboxBlockIds: ['EncenderLuz', 'MoverACasillaAbajo', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoLuz']
-  },
-  {
-    id: 18,
-    name: 'LaberintoLargo',
-    scene: 'LaberintoLargo',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaAbajo',
-      'Repetir', 'Si', 'SiNo', 'TocandoAbajo', 'TocandoDerecha'],
-  },
-  {
-    id: 19,
-    name: 'SuperTito1',
-    scene: 'SuperTito1',
-    toolboxBlockIds: ['Procedimiento', 'EncenderLuz', 'MoverACasillaAbajo',
-      'TocandoFinal', 'Repetir', 'Si', 'SiNo', 'Hasta'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 20,
-    name: 'SuperTito2',
-    scene: 'SuperTito2',
-    toolboxBlockIds: ['Procedimiento', 'TocandoFinal', 'TocandoLuz', 'EncenderLuz',
-      'MoverACasillaAbajo', 'Repetir', 'Si', 'SiNo', 'Hasta'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 21,
-    name: 'LaberintoConQueso',
-    scene: 'LaberintoConQueso',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaAbajo',
-      'ComerQueso', 'Repetir', 'Si', 'SiNo', 'Hasta', 'TocandoAbajo',
-      'TocandoDerecha', 'TocandoFinCamino', 'TocandoQueso'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 22,
-    name: 'ElDetectiveChaparro',
-    scene: 'ElDetectiveChaparro',
-    toolboxBlockIds: ['Repetir', 'Si', 'SiNo', 'Hasta', 'Procedimiento',
-      'IrAlPrimerSospechoso', 'IrAlSiguienteSospechoso', 'InterrogarSospechoso',
-      'EsCulpable'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 23,
-    name: 'FutbolRobots',
-    scene: 'FutbolRobots',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'SiguienteFila',
-      'PatearPelota', 'TocandoInicio', 'TocandoPelota', 'Repetir', 'Si',
-      'SiNo', 'Hasta'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 24,
-    name: 'PrendiendoLasCompus',
-    scene: 'PrendiendoLasCompus',
-    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'Hasta',
-      'MoverACasillaDerecha', 'MoverACasillaArriba',
-      'MoverACasillaAbajo', 'MoverACasillaIzquierda',
-      'PrenderComputadora', 'EstoyEnEsquina'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 25,
-    name: 'ElMonoQueSabeContar',
-    scene: 'ElMonoQueSabeContar',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaArriba', 'MoverACasillaAbajo',
-      'SiguienteColumna', 'ContarBanana', 'ContarManzana',
-      'TocandoBanana', 'TocandoManzana', 'Repetir', 'Si', 'SiNo',
-      'Hasta', 'EstoySobreElInicio', 'EstoySobreElFinal'],
-    expectations: {
-      conditionalRepetition: true,
-    }
-  },
-  {
-    id: 26,
-    name: 'ElSuperviaje',
-    scene: 'SuperViaje',
-    toolboxBlockIds: ['Procedimiento', 'KmsTotales', 'Avanzar1km', 'RepetirVacio',
-      'Repetir', 'Si', 'SiNo', 'Hasta'],
-    expectations: {
-      decomposition: false
-    }
-  },
-  {
-    id: 27,
-    name: 'ElMonoCuentaDeNuevo',
-    scene: 'ElMonoCuentaDeNuevo',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaArriba', 'MoverACasillaAbajo',
-      'SiguienteColumna',
-      'ContarBanana', 'ContarManzana', 'TocandoBanana',
-      'TocandoManzana', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
-      'EstoySobreElInicio', 'LargoColumnaActual']
-  },
-  {
-    id: 28,
-    name: 'ElPlanetaDeNano',
-    scene: 'ElPlanetaDeNano',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba',
-      'VolverAlBordeIzquierdo', 'ComerBanana', 'RepetirVacio', 'Repetir', 'Si',
-      'SiNo', 'Hasta', 'Numero'],
-    expectations: {
-      decomposition: false,
-      decomposition9: true
-    }
-  },
-  {
-    id: 29,
-    name: 'DibujandoAlCuadrado',
-    scene: 'DibujandoCuadrado',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero']
-  },
-  {
-    id: 30,
-    name: 'DibujandoRayuelaRobotica',
-    scene: 'Dibujando5CuadradosHorizontal',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 31,
-    name: 'DibujandoCortoPorLaDiagonal',
-    scene: 'Dibujando5CuadradosDiagonal',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 32,
-    name: 'DibujandoMamushkaCuadrada',
-    scene: 'Dibujando4CuadradosInteriores',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 33,
-    name: 'DibujandoEscaleraCuadrada',
-    scene: 'DibujandoCabezaElefante',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 34,
-    name: 'DibujandoHexagono',
-    scene: 'DibujandoHexagono',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'OpAritmetica', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 35,
-    name: 'DibujandoPiramideInvertida',
-    scene: 'DibujandoTrianguloEquilatero',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'OpAritmetica', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 36,
-    name: 'DibujandoFigurasDentroDeFiguras',
-    scene: 'DibujandoPoligonosInteriores',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'OpAritmetica', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 37,
-    name: 'DibujandoLaCuevaDeEstalagtitas',
-    scene: 'DibujandoCuevaEstalagtitas',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'DibujarLado',
-      'GirarGrados', 'Numero', 'OpAritmetica', 'SaltarHaciaAdelante']
-  },
-  {
-    id: 38,
-    name: 'LasRocasDeNano',
-    scene: 'LasRocasDeNano',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MoverACasillaIzquierda',
-      'ComerBanana', 'Repetir', 'Si', 'SiNo', 'HayObstaculoArriba', 'HayObstaculoAbajo', 'HayObstaculoIzquierda', 'HayObstaculoDerecha']
-  },
-  {
-    id: 39,
-    name: 'LosCaminosDeNano',
-    scene: 'LosCaminosDeNano',
-    toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MoverACasillaIzquierda',
-      'ComerBanana', 'Repetir', 'Si', 'SiNo', 'HayObstaculoArriba', 'HayObstaculoAbajo', 'HayObstaculoIzquierda', 'HayObstaculoDerecha'],
-    expectations: {
-      decomposition: false,
-      decomposition9: true
-    }
-  },
-  {
-    id: 40,
-    name: 'UnaFiestaArruinada',
-    scene: 'UnaFiestaArruinada',
-    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaAbajo', 'MoverACasillaArriba', 'ExplotarGlobo', 'TocandoGlobo']
-  },
-  {
-    id: 41,
-    name: 'RedecorandoFiestas',
-    scene: 'RedecorandoFiestas',
-    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaAbajo', 'MoverACasillaArriba', 'ExplotarGlobo', 'TocandoGlobo'],
-    expectations: {
-      decomposition: false,
-      decomposition9: true
-    }
-  },
-  {
-    id: 42,
-    name: 'ElDesiertoMultiFrutal',
-    scene: 'ElDesiertoMultiFrutal',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'ComerNaranja', 'ComerManzana', 'Procedimiento', 'Repetir', 'TocandoNaranja', 'TocandoManzana', 'Si', 'SiNo'],
-    expectations: {
-      decomposition: false,
-      decomposition9: true
-    }
-  },
-  {
-    id: 43,
-    name: 'ElPasilloCurvoDeSandias',
-    scene: 'ElPasilloCurvoDeSandias',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MorderSandia', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoSandia'],
-    expectations: {
-      decomposition: false,
-      decomposition9: true
-    }
-  },
-  {
-    id: 44,
-    name: 'ElFestinFrutal',
-    scene: 'ElFestinFrutal',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaIzquierda', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'ComerBanana', 'ComerManzana', 'Procedimiento', 'Repetir', 'Si', 'SiNo', 'TocandoManzana', 'TocandoBanana']
-  },
-  {
-    id: 45,
-    name: 'RecolectorDeGalaxias',
-    scene: 'RecolectorDeGalaxias',
-    toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaArriba', 'VolverABordeIzquierdo', 'TomarEstrella', 'TocandoEstrella', 'Procedimiento', 'Repetir', 'Si', 'SiNo']
-  },
-  {
-    id: 130,
-    name: 'LaFiestaDeDracula',
-    scene: 'LaFiestaDeDracula',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'Numero',
-      'OpAritmetica', 'CambiarColor', 'SiguienteFoco', 'EmpezarFiesta'],
-  },
-  {
-    id: 131,
-    name: 'SalvandoLaNavidad',
-    scene: 'SalvandoLaNavidad',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta', 'MoverACasillaDerecha', 'DejarRegalo', 'SiguienteFilaTotal', 'Numero', 'OpAritmetica'],
-  },
-  {
-    id: 132,
-    name: 'PrendiendoLasCompusParametrizado',
-    scene: 'PrendiendoLasCompus',
-    toolboxBlockIds: ['ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo',
-      'MoverA', 'Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
-      'PrenderComputadora', 'EstoyEnEsquina', 'Numero',
-      'OpAritmetica'],
-  },
-  {
-    id: 133,
-    name: 'TitoCuadrado',
-    scene: 'TitoCuadrado',
-    toolboxBlockIds: ['ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo',
-      'MoverA', 'Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
-      'TocandoLuz', 'EncenderLuz', 'Numero', 'OpAritmetica'],
-  },
-  {
-    id: 134,
-    name: 'ElCangrejoAguafiestas',
-    scene: 'ElCangrejoAguafiestas',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
-      'ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo', 'MoverA',
-      'ExplotarGlobo', 'Numero', 'OpAritmetica']
-  },
-  {
-    id: 135,
-    name: 'PrendiendoLasFogatas',
-    scene: 'PrendiendoLasFogatas',
-    toolboxBlockIds: ['Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
-      'TocandoFogata', 'PrenderFogata',
-      'MoverACasillaAbajo', 'MoverACasillaArriba', 'MoverACasillaIzquierda', 'MoverACasillaDerecha',
-      'Numero', 'OpComparacion', 'OpAritmetica',
-      'ParaLaDerecha', 'ParaLaIzquierda', 'ParaArriba', 'ParaAbajo'
-    ]
-  },
-  {
-    id: 136,
-    name: 'DibujoLibre',
-    image: 'DibujoLibre',
-    scene: `new DibujandoLibremente()`,
-    hasAutomaticGrading: false,
-    toolboxBlockIds: ['Procedimiento', 'Repetir', 'DibujarLado',
-      'GirarGrados', 'Numero', 'OpAritmetica', 'SaltarHaciaAdelante'],
-    expectations: {
-      decomposition: false,
-      simpleRepetition: false
-    }
-  },
-
   {
     id: 201,
     scene: `new EscenaDuba("\
@@ -2424,7 +1970,6 @@ const challenges: Challenge[] = [
   //Coty
   {
     id: 2021201, //Copy of 207
-    name: 'tecnopolis2021CotyNivel1',
     image: 'Coty',
     scene: `new EscenaCoty(
       [{x:125,y:75},{x:125,y:-175},{x:-25,y:-175},{x:-25,y:-75},{x:25,y:-75},{x:25,y:-175},{x:-125,y:-175},{x:-125,y:125},{x:-75,y:125},{x:-75,y:75},{x:-25,y:75},{x:-25,y:125},{x:25,y:125},{x:25,y:75}],
@@ -2436,7 +1981,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021202, //Copy of 209
-    name: 'tecnopolis2021CotyNivel2',
     image: 'Coty',
     scene: `new EscenaCoty(
       [],
@@ -2448,7 +1992,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021203, //Copy of 213
-    name: 'tecnopolis2021CotyNivel3',
     image: 'Coty',
     scene: `new EscenaCotyMate()`,
     toolboxStyle:  'noCategories',
@@ -2456,7 +1999,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021204, //Copy of 233
-    name: 'tecnopolis2021CotyNivel4',
     image: 'Coty',
     scene: `new EscenaCoty(
       [],
@@ -2478,7 +2020,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021205, //Copy of 235
-    name: 'tecnopolis2021CotyNivel5',
     image: 'Coty',
     scene: `new EscenaCoty(
       [],
@@ -2543,7 +2084,6 @@ const challenges: Challenge[] = [
   //Toto
   {
     id: 2021301, //Copy of 225
-    name: 'tecnopolis2021TotoNivel1',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['A', 'r', 'e'],
@@ -2560,7 +2100,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021302, //Copy of 226
-    name: 'tecnopolis2021TotoNivel2',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['r', 'h', 'j', 'a'],
@@ -2577,7 +2116,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021303, //Copy of 227
-    name: 'tecnopolis2021TotoNivel3',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['a', 'm', 'A'],
@@ -2594,7 +2132,6 @@ const challenges: Challenge[] = [
   },
   {
     id: 2021304, //Copy of 229
-    name: 'tecnopolis2021TotoNivel4',
     image: 'Toto',
     scene: `new EscenaTotoLector([
         ['w', 'a', 'r'],
