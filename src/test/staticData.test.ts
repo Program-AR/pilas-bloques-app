@@ -9,7 +9,7 @@ describe('Static data fetching', () => {
   });
 
   test("Should throw error on getting book if it doesnt exist", () => {
-    expect(() => getBook(1337)).toThrowError()
+    expect(() => getBook(1337)).toThrow()
   })
 
   test("Should get challenge by id if it exists", () => {
@@ -19,7 +19,7 @@ describe('Static data fetching', () => {
   })
 
   test("Should throw error on getting challenge by id if it doesnt exist", () => {
-    expect(() => getChallengeWithId(1337)).toThrowError()
+    expect(() => getChallengeWithId(1337)).toThrow()
   })
 
   test("Should get challenge by name if it exists", () => {
@@ -29,7 +29,7 @@ describe('Static data fetching', () => {
   })
 
   test("Should throw error on getting challenge by name if it doesnt exist", () => {
-    expect(() => getChallengeWithName("MeCanseDeSaltar")).toThrowError()
+    expect(() => getChallengeWithName("MeCanseDeSaltar")).toThrow()
   })
 
   test("Path to a challenge", () => {
