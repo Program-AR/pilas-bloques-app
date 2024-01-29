@@ -13,12 +13,12 @@ const InitialBookCard = () => {
 
 const IntermediateBookCard = () => {
 	const {t} = useTranslation("home")
-	return <LinkCard url="/libros/2" text={t("cards.intermediate")} color="#53BF24" image={"toto-intermediate-level.svg"} />
+	return <LinkCard url="/libros/2" text={t("cards.intermediate")} color="#97EA6C" image={"chuy-intermediate-level.svg"} />
 }
 
 const AdvancedBookCard = () => {
 	const {t} = useTranslation("home")
-	return <LinkCard url="/libros/3" text={t("cards.advanced")} color="#32CFC1" image={"toto-advanced-level.svg"} />
+	return <LinkCard url="/libros/3" text={t("cards.advanced")} color="#A0EAE8" image={"manic-advanced-level.svg"} />
 }
 
 const NewChallengesBookCard = () => {
