@@ -24,6 +24,19 @@ test('Renders challenge by name without errors', async () => {
   expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'NoMeCansoDeSaltar')).not.toThrow()
 })
 
+test('Throws error on render challenge by unknown name', async () => {
+  expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'JuanSalvoContraLosManos'))
+    .toThrow("Challenge with name \"JuanSalvoContraLosManos\" does not exist")
+})
+
+test('Renders legacy challenges without errors', async () => {
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '3')).not.toThrow()
+})
+
+test('Throws error on non existing challenge Id', async () => {
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '99')).toThrow("Challenge with id \"99\" does not exist")
+})
+
 test('Renders imported challenge without errors', async () => {
   expect(() => renderComponent(<ImportedChallengeView/>, '', '', [{state: validChallenge}])).not.toThrow()
 })
