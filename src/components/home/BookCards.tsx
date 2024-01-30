@@ -8,7 +8,7 @@ const shouldShow = process.env.NODE_ENV !== 'production' || window.location.host
 
 const InitialBookCard = () => {
 	const {t} = useTranslation("home")
-	return <LinkCard url="/libros/1" text={t("cards.initial")} color="#FCE43E" image={"toto-initial-level.svg"} />
+	return <LinkCard url="/libros/1" text={t("cards.initial")} color="#fce965" image={"toto-initial-level.svg"} />
 }
 
 const IntermediateBookCard = () => {
@@ -18,7 +18,7 @@ const IntermediateBookCard = () => {
 
 const AdvancedBookCard = () => {
 	const {t} = useTranslation("home")
-	return <LinkCard url="/libros/3" text={t("cards.advanced")} color="#A0EAE8" image={"manic-advanced-level.svg"} />
+	return <LinkCard url="/libros/3" text={t("cards.advanced")} color="#A0EAE8" image={"manic-nivel-avanzado.svg"} />
 }
 
 const NewChallengesBookCard = () => {
