@@ -15,7 +15,7 @@ const IntermediateBookCard = () => {
 
 const AdvancedBookCard = () => {
 	const {t} = useTranslation("home")
-	return <LinkCard url="/libros/3" text={t("cards.advanced")} color="#A0EAE8" image={"manic-nivel-avanzado.svg"} />
+	return <LinkCard url="/libros/3" text={t("cards.advanced")} color="#A0EAE8" image={"manic-advanced-level.svg"} />
 }
 
 export const BookCards = () => (
