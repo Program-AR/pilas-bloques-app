@@ -10,40 +10,53 @@ import { Register } from "../components/Register"
 import { renderComponent } from "./testUtils"
 import { validChallenge } from "./serializedChallenge.test"
 test('Renders home without errors', async () => {
-  expect(() => renderComponent(<Home />)).not.toThrowError()
+  expect(() => renderComponent(<Home />)).not.toThrow()
 })
 test('Renders a challenge without errors', async () => {
-  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '1001')).not.toThrowError()
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '1001')).not.toThrow()
 })
 
 test('Renders the book challenge list without errors', async () => {
-  expect(() => renderComponent(<BookView/>, '/libros/:id', '1')).not.toThrowError()
+  expect(() => renderComponent(<BookView/>, '/libros/:id', '1')).not.toThrow()
 })
 
 test('Renders challenge by name without errors', async () => {
-  expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'NoMeCansoDeSaltar')).not.toThrowError()
+  expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'NoMeCansoDeSaltar')).not.toThrow()
+})
+
+test('Throws error on render challenge by unknown name', async () => {
+  expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'JuanSalvoContraLosManos'))
+    .toThrow("Challenge with name \"JuanSalvoContraLosManos\" does not exist")
+})
+
+test('Renders legacy challenges without errors', async () => {
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '3')).not.toThrow()
+})
+
+test('Throws error on non existing challenge Id', async () => {
+  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '99')).toThrow("Challenge with id \"99\" does not exist")
 })
 
 test('Renders imported challenge without errors', async () => {
-  expect(() => renderComponent(<ImportedChallengeView/>, '', '', [{state: validChallenge}])).not.toThrowError()
+  expect(() => renderComponent(<ImportedChallengeView/>, '', '', [{state: validChallenge}])).not.toThrow()
 })
 
 test('Renders about without errors', async () => {
-  expect(() => renderComponent(<About/>)).not.toThrowError()
+  expect(() => renderComponent(<About/>)).not.toThrow()
 })
 
 test('Renders password-recovery without errors', async () => {
-  expect(() => renderComponent(<PasswordRecovery/>)).not.toThrowError()
+  expect(() => renderComponent(<PasswordRecovery/>)).not.toThrow()
 })
 
 test('Renders register without errors', async () => {
-  expect(() => renderComponent(<Register/>)).not.toThrowError()
+  expect(() => renderComponent(<Register/>)).not.toThrow()
 })
 
 test('Renders /creador/seleccionar route without errors', async () => {
-  expect(() => renderComponent(<ActorSelection/>)).not.toThrowError()
+  expect(() => renderComponent(<ActorSelection/>)).not.toThrow()
 })
 
 test('Renders /creador/editar route without errors', async () => {
-  expect(() => renderComponent(<CreatorEditor/>)).not.toThrowError()
+  expect(() => renderComponent(<CreatorEditor/>)).not.toThrow()
 })

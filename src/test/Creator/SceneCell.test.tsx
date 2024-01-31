@@ -35,15 +35,15 @@ describe('Scene grid', () => {
     })
 
     test('Renders cell with object without errors', () => {
-        expect(() => renderComponent(<SceneCell content={OBSTACLE} sceneType={'Duba'} position={position} />)).not.toThrowError()
+        expect(() => renderComponent(<SceneCell content={OBSTACLE} sceneType={'Duba'} position={position} />)).not.toThrow()
     })
 
     test('Renders cell with actor without errors', () => {
-        expect(() => renderComponent(<SceneCell content={ACTOR} sceneType={'Duba'} position={position} />)).not.toThrowError()
+        expect(() => renderComponent(<SceneCell content={ACTOR} sceneType={'Duba'} position={position} />)).not.toThrow()
     })
 
     test('Renders cell with prize without errors', () => {
-        expect(() => renderComponent(<SceneCell content={'P'} sceneType={'Duba'} position={position} />)).not.toThrowError()
+        expect(() => renderComponent(<SceneCell content={'P'} sceneType={'Duba'} position={position} />)).not.toThrow()
     })
 
     //Tools

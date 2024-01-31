@@ -1,6 +1,6 @@
 import { Stack, Typography, useMediaQuery } from "@mui/material";
 import { Link, useParams, useSearchParams } from "react-router-dom";
-import { Challenge, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
+import { Challenge, currentIdFor, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./emberView/EmberView";
 import HomeIcon from '@mui/icons-material/Home';
 import { Header } from "./header/Header";
@@ -82,8 +82,8 @@ const ChallengeView = (props: ChallengeViewProps) => {
 
 
 export const ChallengeById = () => {
-    const { id } = useParams()
-    return <ChallengeView challengeId={Number(id)}/>
+    var { id } = useParams()
+    return <ChallengeView challengeId={currentIdFor(Number(id))} />
 }
 
 export const ChallengeByName = () => {
