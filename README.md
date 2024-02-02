@@ -1,54 +1,89 @@
-¡Hola! :vulcan_salute: Este es un proyecto relacionado a [Pilas Bloques](https://pilasbloques.program.ar) :heart:. En el repositorio de ese proyecto encontrarás las guías sobre [cómo contribuir](https://github.com/Program-AR/pilas-bloques/blob/develop/CONTRIBUTING.md) y el [código de conducta](https://github.com/Program-AR/pilas-bloques/blob/develop/CODE_OF_CONDUCT.md), que son guías que aplican también a este proyecto.
+![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white) 	
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Program-AR/pilas-bloques-app/issues)
+[![open issues](https://badgen.net/github/open-issues/Program-AR/pilas-bloques-app)](https://github.com/Program-AR/pilas-bloques-app/issues)
+![downloads](https://img.shields.io/github/downloads/Program-AR/pilas-bloques-app/total.svg)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 
-Hi! :vulcan_salute: This is a project related to [Pilas Bloques](https://pilasbloques.program.ar) :heart:. In that project's repository you'll find the [contribution guidelines](https://github.com/Program-AR/pilas-bloques/blob/develop/CONTRIBUTING_en.md) and the [code of conduct](https://github.com/Program-AR/pilas-bloques/blob/develop/CODE_OF_CONDUCT_en.md) which also apply to this project.
+[:gb: Read in English](https://github.com/Program-AR/pilas-bloques-app/blob/develop/README_en.md)
 
+# Pilas Bloques - Una herramienta para aprender a programar
 
-## Config project
-- Checkout this repository.
-- Create `.env` file with the required enviroments variables. You can copy from [`sample.env`](sample.env)
-- Make sure you are using the correct node version running `nvm use`
-- Run `npm install`
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/5421992/216465215-be8ae60c-5498-42ef-acc2-1d57fa38b349.svg" width="70%" />
+</p>
 
+## Sobre la aplicación
 
-## Available Scripts (from Create React App)
+Pilas Bloques es una aplicación para enseñar y aprender a programar, desarrollada especialmente para el aula. Se proponen desafíos con diversos niveles de dificultad para acercar a las y los estudiantes al mundo de la programación por medio de bloques. Para más información, ver el [Acerca De](https://pilasbloques.program.ar/acerca-de-pilas-bloques/) de Pilas Bloques.
 
-In the project directory, you can run:
+## Cómo contribuír
 
-### `npm start`
+¡En la guia de [CONTRIBUTING](https://github.com/Program-AR/pilas-bloques-app/blob/develop/CONTRIBUTING.md) tenés toda la informacion necesaria para contribuir al proyecto!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Preparar entorno de desarrollo
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Pre-requisitos
+* Instalar [Git](https://git-scm.com/) y clonar el repositorio de [Pilas Bloques](https://github.com/Program-AR/pilas-bloques-app)
 
-### `npm test`
+```
+git clone https://github.com/Program-AR/pilas-bloques-app.git
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Node. La version requerida para el proyecto está en el archivo `.nvmrc`.
 
-### `npm run build`
+  Debian/Ubuntu:
+  ```
+  git clone https://github.com/nvm-sh/nvm.git ~/.nvm
+  source ~/.nvm/nvm.sh
+  source ~/.nvm/install.sh
+  nvm install .
+  ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Dependencias y configuración
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* Instalar dependencias
+```
+nvm use
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* Crear un archivo `.env` con las variables de entorno requeridas. El archivo [`sample.env`](sample.env) puede copiarse para tal efecto.
 
-### `npm run eject`
+## Comandos comunes de desarrollo
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+La aplicación fue desarrollada con Create React App, y luego realizado el "eject". Estos scripts siguen siendo los de CRA:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `npm test` - Corre los tests para desarrollo.
+- `npm start` - Levanta la aplicación para desarrollo.
+- `npm run build` - Prepara la aplicación para producción (minifica, etc.).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Otros:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `npm run start:electron` - Empaqueta la aplicación con Electron y la ejecuta (para desarrollo)
+- `npm run start:emberDev` - Levanta la aplicación compilando Ember en una carpeta paralela. Para ser usada cuando se desarrolla en esa subaplicación.
+- `npm run pack:linux` (y `pack:osx`, `pack:win`) - Genera los instaladores para cada sistema operativo. Antes hacer un `build`. Ver `npm run release`.
+- `npm run release` - Versiona y taggea la aplicación. Al hacerlo, el CI se encarga de generar todos los instaladores y los sube a Github.
 
-## Learn More
+### Empaquetando instaladores
+- Si se desea empaquetar (`npm run pack...`) para otro SO (que no sea el tuyo) hay que tener en cuenta que solamente se puede hacer desde linux. Además, hay que tener instaladas ciertas dependencias:
+  - **Windows:** se necesita tener instalado `nsis`, `wine` y `wine-mono`.
+    - Debian/Ubuntu:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+      ```
+      sudo apt install nsis
+      ```
+    - Arch:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+      ```
+      yay -S nsis
+      ```
+  - **macOS:** no disponible.
+
+### Preparar el backend (opcional)
+
+Para tener un backend para probar funcionalidades relacionadas a usuarios y a guardar desafíos es necesario tener levantado los proyectos de Pilas Bloques API, Pilas Bloques Analytics, (ambos disponibles en el proyecto [backend](https://github.com/Program-AR/pilas-bloques-backend)) y una base de datos [MongoDB](https://www.mongodb.com/). Las instrucciones para hacerlo están en ese repositorio.
+_____________
+
+### Release & deploy (Solo para el equipo de Pilas Bloques)
+https://github.com/Program-AR/pilas-bloques-ember/wiki/Release-y-Deploy
