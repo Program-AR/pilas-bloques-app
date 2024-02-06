@@ -20,7 +20,7 @@ Pilas Bloques is an application to learn computer programming, specially develop
 
 ## Contributing
 
-You can find all the information you need to start contributing in Pilas Bloques in the [CONTRIBUTING](https://github.com/Program-AR/pilas-bloques-app/blob/guidelines/CONTRIBUTING_en.md) guidelines!
+You can find all the information you need to start contributing in Pilas Bloques in the [CONTRIBUTING](https://github.com/Program-AR/pilas-bloques-app/blob/develop/CONTRIBUTING_en.md) guidelines!
 
 ## Getting Started
 
