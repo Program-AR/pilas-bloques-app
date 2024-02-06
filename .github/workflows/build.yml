@@ -95,7 +95,7 @@ jobs:
       - uses: ncipollo/release-action@v1
         with:
           allowUpdates: true
-          artifacts: "binaries/*.exe"
+          artifacts: "binaries/*.zip,binaries/*.exe"
           token: ${{ secrets.GITHUB_TOKEN }}
 
   publish-surge: # When there is a push in develop, publish on surge

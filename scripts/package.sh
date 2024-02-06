@@ -74,12 +74,24 @@ osx() {
     hdiutil create binaries/$NAME-$VERSION.dmg -srcfolder ./binaries/$NAME-darwin-x64/$NAME.app -size 1g
 }
 
-windows() {
+windows_exe() {
     eco "Generating installer for windows..."
     pack "win32" "ia32" "ico"
 	cp packaging/instalador.nsi binaries/$NAME-win32-ia32/
 	cd binaries/$NAME-win32-ia32/; makensis instalador.nsi; cd ../..
 	mv binaries/$NAME-win32-ia32/$NAME.exe binaries/$NAME-$VERSION.exe
+}
+
+windows_zip() {
+    eco "Generating windows portable zip..."
+    rm -f ./binaries/$NAME-$VERSION-win-portable.zip
+    pack "win32" "ia32" "ico"
+    cd binaries; zip -r $NAME-$VERSION-win-portable.zip $NAME-win32-ia32/; cd ..
+}
+
+windows() {
+    windows_exe
+    windows_zip
 }
 
 html() {
@@ -95,6 +107,8 @@ case "$1" in
     (-linux)       linux;;
     (-osx)         osx;;
     (-win)         windows;;
+    (-win_zip)     windows_zip;;
+    (-win_exe)     windows_exe;;
     (-html)        html;;
     (*)            help;;
 esac 

@@ -104,6 +104,7 @@
     "pack:linux": "bash ./scripts/package.sh -linux",
     "pack:osx": "bash ./scripts/package.sh -osx",
     "pack:win": "bash ./scripts/package.sh -win",
+    "pack:win_zip": "bash ./scripts/package.sh -win_zip",
     "pack:html": "bash ./scripts/package.sh -html",
     "clean": "rm -rf node_modules build binaries",
     "release": "release-it --only-version"
