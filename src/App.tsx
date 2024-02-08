@@ -20,6 +20,7 @@ import { useThemeContext } from './theme/ThemeContext';
 import { SharedChallengeView } from './components/creator/SharedChallengeView';
 import { PilasBloquesApi } from './pbApi';
 import { Ember } from './emberCommunication';
+import { Footer } from './components/footer/Footer';
 
 const AnalyticsComponent = () => {
   const location = useLocation();
@@ -112,6 +113,7 @@ function App() {
         <CssBaseline />
         <RouterProvider router={router}/>
       </ThemeProvider>
+      <Footer/>
     </React.Fragment>
   );
 }
