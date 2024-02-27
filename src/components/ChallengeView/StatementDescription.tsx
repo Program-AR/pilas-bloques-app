@@ -1,12 +1,12 @@
 import ReactMarkdown from "react-markdown";
 import { Button, Stack, darken } from "@mui/material";
 import { WbIncandescent, MenuBook } from"@mui/icons-material"
-import { PBCard } from "../../../PBCard";
+import { PBCard } from "../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
-import { LocalStorage } from "../../../../localStorage";
-import { StatementTextToShow } from "./MarkdownEditor";
-import { useThemeContext } from "../../../../theme/ThemeContext";
+import { LocalStorage } from "../../localStorage";
+import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
+import { useThemeContext } from "../../theme/ThemeContext";
 
 type MarkdownResultProps = {
   text: string
@@ -14,7 +14,7 @@ type MarkdownResultProps = {
   clueIsEnabled: boolean
 }
 
-export const MarkdownResult = (props: MarkdownResultProps) => {
+export const StatementDescription = (props: MarkdownResultProps) => {
   const { theme } = useThemeContext()
 
   const urlImage = `imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png` 

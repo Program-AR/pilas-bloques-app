@@ -17,16 +17,12 @@ export const ToolboxPreview = ({blocksToPreview, categorized}: ToolboxPreviewPro
 
   setupBlocklyBlocks(t)
 
-  return (
-      <>
-      <div style={{ height: "600px", width: "800px"}} key={"blockly" + categorized + blocksToPreview.length}> {/* The key is needed to force a rerender on categorized change an blocks change. Without this it crashes or it doesnt update.*/}
+  return <div style={{ height: "400px", flexGrow: 1}} key={"blockly" + categorized + blocksToPreview.length}> {/* The key is needed to force a rerender on categorized change an blocks change. Without this it crashes or it doesnt update.*/}
           <BlocklyWorkspace
           toolboxConfiguration={categorized ? categorizedToolbox(blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
-          className={styles.fillHeight}
+          className={styles.fill}
           workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
           onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
           />
       </div>
-      </>
-  );
-};
+}
