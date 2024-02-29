@@ -30,7 +30,7 @@ const ChallengeWorkspace = ({challengeId}: {challengeId: number}) => {
         <StatementDescription  text={"enunciado"} setShowStatement={() => {}} clueIsEnabled={true} />
         <Stack direction="row" flexWrap={"wrap"}>
             <BlocksWorkspace/>
-            <Stack sx={{flexGrow:"1"}}>
+            <Stack>
                 <SceneButtons/>
                 <Scene/>
             </Stack>
