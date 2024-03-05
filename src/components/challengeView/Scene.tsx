@@ -1,6 +1,12 @@
+import { Challenge } from "../../staticData/challenges"
 import { PBCard } from "../PBCard"
-export const Scene = () => {
+
+type SceneProps = { descriptor: Challenge["scene"] }
+
+// It should react and rerender only on changes to the scene descriptor.
+export const Scene = ({ descriptor }: SceneProps) => {
     return <PBCard sx={{width: "400px"}}>
-        LA ESCENA
+        {descriptor}
+        <iframe title='iframePilas' src='pilas.html' />
     </PBCard>
 }
