@@ -1,5 +1,5 @@
 import { MarkdownInput } from "./MarkdownInput"
-import { StatementDescription } from "../../../ChallengeView/StatementDescription"
+import { StatementDescription } from "../../../challengeView/StatementDescription"
 import { useState } from "react"
 
 type MarkdownEditorProps = {
