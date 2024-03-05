@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
+import { PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
 import { Header } from "../header/Header";
 import { ChallengeBreadcrumb } from "../ChallengeView";
 import { Stack } from "@mui/material";
@@ -26,8 +26,13 @@ export const ChallengeView = () => {
 }
 
 const ChallengeWorkspace = ({challengeId}: {challengeId: number}) => {
+    const challenge = getChallengeWithId(challengeId)
     return <Stack>
-        <StatementDescription  text={"enunciado"} setShowStatement={() => {}} clueIsEnabled={true} />
+        <StatementDescription
+            text={"enunciado"}
+            setShowStatement={() => {}}
+            clueIsEnabled={true}
+            urlImage={challenge.imageURL()} />
         <Stack direction="row" flexWrap={"wrap"}>
             <BlocksWorkspace/>
             <Stack>

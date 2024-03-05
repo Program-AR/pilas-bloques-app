@@ -4,24 +4,22 @@ import { WbIncandescent, MenuBook } from"@mui/icons-material"
 import { PBCard } from "../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
-import { LocalStorage } from "../../localStorage";
 import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
 import { useThemeContext } from "../../theme/ThemeContext";
 
-type MarkdownResultProps = {
+type StatementDescriptionProps = {
   text: string
   setShowStatement: (show: StatementTextToShow) => void
   clueIsEnabled: boolean
+  urlImage: string
 }
 
-export const StatementDescription = (props: MarkdownResultProps) => {
+export const StatementDescription = (props: StatementDescriptionProps) => {
   const { theme } = useThemeContext()
-
-  const urlImage = `imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png` 
 
   return <>
     <PBCard sx={{height:"80px"}}>
-        <img height="100%" alt="actor" src={urlImage}/>
+        <img height="100%" alt="actor" src={props.urlImage}/>
         <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: darken(theme.palette.text.secondary, 0.13)}}>
           
           <Button onClick={() => props.setShowStatement(StatementTextToShow.STATEMENT)} sx={{minWidth:"50px"}}>

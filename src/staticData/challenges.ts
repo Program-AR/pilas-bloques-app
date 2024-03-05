@@ -1,56 +1,66 @@
+import { ExcludeMethods } from "../typeHelpers"
 import { Book, bookIncludesChallenge, getAllBooks } from "./books"
 import { Chapter, chapterIncludesChallenge } from "./chapters"
 import { Group } from "./groups"
 
-export type Challenge = {
+export class Challenge {
   /**
    * Unique numerical identifier.
    * Used to access the challenge by URL.
    */
-  id: number,
+  id!: number
   /**
    * The pilasweb framework's scene for the challenge.
    * Scene class name or scene string initializer e.g. "new Scene..."
    * Parsed as js, defined in pilas-bloques-exercises.
    */
-  scene: string,
+  scene!: string
   /**
    * Blockly toolbox block ids available in this challenge.
    */
-  toolboxBlockIds: string[],
+  toolboxBlockIds!: string[]
   /**
    * When true, challenge has "step" button.
    */
-  debugging?: boolean,
+  debugging?: boolean
   /**
    * When present, overrides default challenge image.
    */
-  image?: string,
+  image?: string
   /**
    * Json object with expectation configuration for this challenge.
    * See https://github.com/Program-AR/pilas-bloques/blob/develop/app/services/challenge-expectations.js
    */
-  expectations?: ExpectationConfig,
+  expectations?: ExpectationConfig
   /**
    * When true, shows yelow arrow that remembers the user there are multiple scenarios.
    */
-  shouldShowMultipleScenarioHelp?: boolean,
+  shouldShowMultipleScenarioHelp?: boolean
   /**
    * 'categorized' shows the toolbox with titles and flyout menu. (e.g for "Intermediate" challenges)
    * 'noCategories' just shows the toolbox blocks with no titles and no flyout menu. (e.g. "Initial" challenges)
    */
-  toolboxStyle?: 'categorized' | 'noCategories',
+  toolboxStyle?: 'categorized' | 'noCategories'
   /**
    * Default to true. When false, we don't check if the solution solves the challenge i.e. no congratulations modal.
    * E.g. The "free draw" challenges will be false.
    **/
-  hasAutomaticGrading?: boolean,
+  hasAutomaticGrading?: boolean
   /**
    * Predefined solution (in XML format) to appear in challenge.
    * Usually used together with debugging in true 
    * (i.e. when you want the student to fix a bug in the provided solution).
-   */
-  predefinedSolution?: string,
+  */
+ predefinedSolution?: string
+
+ constructor(b: BasicChallenge){
+   Object.assign(this, b)
+ }
+ 
+ imageURL(): string {
+   return this.image ? `imagenes/sceneImages/${this.image}/tool.png` :
+   `imagenes/challengeCovers/${this.id}.png`
+ }
 }
 
 export type ExpectationConfig = {
@@ -65,11 +75,11 @@ export type ExpectationConfig = {
   @throws Error
  **/
 export const getChallengeWithId = (id: number): Challenge => {
-  const challenge: Challenge[] = challenges.filter(challenge => challenge.id === id)
+  const challenge: BasicChallenge[] = challenges.filter(challenge => challenge.id === id)
   if (challenge.length > 1) throw new Error(`There are multiple challenges with id "${id}"`)
   if (challenge.length === 0) throw new Error(`Challenge with id "${id}" does not exist`)
 
-  return challenge[0]
+  return new Challenge(challenge[0])
 }
   
 const legacyChallenges = [{id:1, name:"AlienTocaBoton"}, {id:46, name:"NuevosComandos"}, {id:2, name:"ElGatoEnLaCalle"}, {id:3, name:"NoMeCansoDeSaltar"}, {id:4, name:"ElMarcianoEnElDesierto"}, {id:5, name:"TitoEnciendeLuces"}, {id:6, name:"ElAlienYLasTuercas"}, {id:7, name:"ElRecolectorDeEstrellas"}, {id:8, name:"MariaLaComeSandias"}, {id:9, name:"AlimentandoALosPeces"}, {id:10, name:"InstalandoJuegos"}, {id:11, name:"LaGranAventuraDelMarEncantado"}, {id:12, name:"ReparandoLaNave"}, {id:13, name:"ElMonoYLasBananas"}, {id:14, name:"LaEleccionDelMono"}, {id:15, name:"LaberintoCorto"}, {id:16, name:"TresNaranjas"}, {id:17, name:"TitoRecargado"}, {id:18, name:"LaberintoLargo"}, {id:19, name:"SuperTito1"}, {id:20, name:"SuperTito2"}, {id:21, name:"LaberintoConQueso"}, {id:22, name:"ElDetectiveChaparro"}, {id:23, name:"FutbolRobots"}, {id:24, name:"PrendiendoLasCompus"}, {id:25, name:"ElMonoQueSabeContar"}, {id:26, name:"ElSuperviaje"}, {id:27, name:"ElMonoCuentaDeNuevo"}, {id:28, name:"ElPlanetaDeNano"}, {id:29, name:"DibujandoAlCuadrado"}, {id:30, name:"DibujandoRayuelaRobotica"}, {id:31, name:"DibujandoCortoPorLaDiagonal"}, {id:32, name:"DibujandoMamushkaCuadrada"}, {id:33, name:"DibujandoEscaleraCuadrada"}, {id:34, name:"DibujandoHexagono"}, {id:35, name:"DibujandoPiramideInvertida"}, {id:36, name:"DibujandoFigurasDentroDeFiguras"}, {id:37, name:"DibujandoLaCuevaDeEstalagtitas"}, {id:38, name:"LasRocasDeNano"}, {id:39, name:"LosCaminosDeNano"}, {id:40, name:"UnaFiestaArruinada"}, {id:41, name:"RedecorandoFiestas"}, {id:42, name:"ElDesiertoMultiFrutal"}, {id:43, name:"ElPasilloCurvoDeSandias"}, {id:44, name:"ElFestinFrutal"}, {id:45, name:"RecolectorDeGalaxias"}, {id:130, name:"LaFiestaDeDracula"}, {id:131, name:"SalvandoLaNavidad"}, {id:132, name:"PrendiendoLasCompusParametrizado"}, {id:133, name:"TitoCuadrado"}, {id:134, name:"ElCangrejoAguafiestas"}, {id:135, name:"PrendiendoLasFogatas"}, {id:136, name:"DibujoLibre"}]
@@ -103,9 +113,11 @@ export const getPathToChallenge = (challengeId: number): PathToChallenge => {
   return {book, chapter, group, challenge}
 }
 
-
-
-const challenges: Challenge[] = [
+// This type allows to define a challenge in JSON
+// Shouldn't be used outside this file, instead call getChallengeById to get a complete Challenge
+// Not to be confused with SerializedChallenge, that is a CreatorChallenge.
+type BasicChallenge = ExcludeMethods<Challenge>
+const challenges: BasicChallenge[] = [
   {
     id: 201,
     scene: `new EscenaDuba("\
