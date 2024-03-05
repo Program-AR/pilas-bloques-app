@@ -24,10 +24,6 @@ export class Challenge {
    */
   debugging?: boolean
   /**
-   * When present, overrides default challenge image.
-   */
-  image?: string
-  /**
    * Json object with expectation configuration for this challenge.
    * See https://github.com/Program-AR/pilas-bloques/blob/develop/app/services/challenge-expectations.js
    */
@@ -51,16 +47,15 @@ export class Challenge {
    * Usually used together with debugging in true 
    * (i.e. when you want the student to fix a bug in the provided solution).
   */
- predefinedSolution?: string
+  predefinedSolution?: string
 
- constructor(b: BasicChallenge){
-   Object.assign(this, b)
- }
- 
- imageURL(): string {
-   return this.image ? `imagenes/sceneImages/${this.image}/tool.png` :
-   `imagenes/challengeCovers/${this.id}.png`
- }
+  constructor(b: BasicChallenge){
+    Object.assign(this, b)
+  }
+
+  imageURL(): string {
+    return `imagenes/challengeCovers/${this.id}.png`
+  }
 }
 
 export type ExpectationConfig = {
@@ -1502,7 +1497,6 @@ const challenges: BasicChallenge[] = [
 
   {
     id: 255,
-    image: 'Coty',
     scene: `new EscenaCoty([],[],{xCoty: -50, yCoty: 50})`,
     hasAutomaticGrading: false,
     toolboxStyle:  'noCategories',
@@ -1537,7 +1531,6 @@ const challenges: BasicChallenge[] = [
   //Tecnopolis
   {
     id: 202101,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1582,7 +1575,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 202102,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1631,7 +1623,6 @@ const challenges: BasicChallenge[] = [
   //Duba
   {
     id: 2021001,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1652,7 +1643,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021002,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1673,7 +1663,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021003,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1694,7 +1683,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021004,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1715,7 +1703,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021005,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1736,7 +1723,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021006,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1757,7 +1743,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021007,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1778,7 +1763,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021008,
-    image: 'Duba',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1800,7 +1784,6 @@ const challenges: BasicChallenge[] = [
   //Lita
   {
     id: 2021101,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1823,7 +1806,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021102,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1846,7 +1828,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021103,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1869,7 +1850,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021104,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1892,7 +1872,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021105,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1915,7 +1894,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021106,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1938,7 +1916,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021107,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1961,7 +1938,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021108,
-    image: 'Lita',
     toolboxBlockIds: [
       'MoverACasillaAbajo',
       'MoverACasillaArriba',
@@ -1985,7 +1961,6 @@ const challenges: BasicChallenge[] = [
   //Coty
   {
     id: 2021201, //Copy of 207
-    image: 'Coty',
     scene: `new EscenaCoty(
       [{x:125,y:75},{x:125,y:-175},{x:-25,y:-175},{x:-25,y:-75},{x:25,y:-75},{x:25,y:-175},{x:-125,y:-175},{x:-125,y:125},{x:-75,y:125},{x:-75,y:75},{x:-25,y:75},{x:-25,y:125},{x:25,y:125},{x:25,y:75}],
       [{x:25,y:75},{x:75,y:75},{x:75,y:125},{x:125,y:125},{x:125,y:75}],
@@ -1996,7 +1971,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021202, //Copy of 209
-    image: 'Coty',
     scene: `new EscenaCoty(
       [],
       [[ {x:-125,y:0}, {x:-75,y:0}],[ {x:-25,y:0}, {x:25,y:0}],[ {x:75,y:0}, {x:125,y:0}]],
@@ -2007,14 +1981,12 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021203, //Copy of 213
-    image: 'Coty',
     scene: `new EscenaCotyMate()`,
     toolboxStyle:  'noCategories',
     toolboxBlockIds: ['MoverArribaDibujando', 'MoverAbajoDibujando', 'MoverDerechaDibujando', 'MoverIzquierdaDibujando', 'SaltarAbajo', 'SaltarArriba', 'SaltarDerecha', 'SaltarIzquierda']
   },
   {
     id: 2021204, //Copy of 233
-    image: 'Coty',
     scene: `new EscenaCoty(
       [],
       [[{x:-130,y:20},{x:-90,y:20}], [{x:-50,y:20},{x:-10,y:20}], [{x:30,y:20},{x:70,y:20}], [{x:110,y:20},{x:150,y:20}]],
@@ -2035,7 +2007,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021205, //Copy of 235
-    image: 'Coty',
     scene: `new EscenaCoty(
       [],
       [[{x:-120,y:-60},{x:-120,y:-20},{x:-80,y:-20},{x:-40,y:-20},{x:-40,y:20},{x:0,y:20},{x:40,y:20},{x:40,y:60},{x:80,y:60},{x:120,y:60}]],
@@ -2056,7 +2027,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021206,
-    image: 'Coty',
     scene: `new EscenaCoty(
       [[{x:-104,y:12},{x:-78,y:12}],[{x:-104,y:12},{x:-104,y:-30}],[{x:-104,y:-9},{x:-78,y:-9}],[{x:-104,y:-30},{x:-78,y:-30}],[{x:-70,y:12},{x:-44,y:12}],[{x:-70,y:12},{x:-70,y:-30},{x:-44,y:-30}],[{x:-36,y:12},{x:-36,y:-30}],[{x:-36,y:12},{x:-30,y:4},{x:-28,y:0},{x:-19,y:-12},{x:-17,y:-16},{x:-14,y:-19},{x:-8,y:-27}],[{x:-10,y:12},{x:-10,y:-30}],[{x:-2,y:12},{x:24,y:12}],[{x:-2,y:12},{x:-2,y:-30}],[{x:24,y:12},{x:24,y:-30}],[{x:-2,y:-30},{x:24,y:-30}],[{x:32,y:12},{x:58,y:12}],[{x:32,y:12},{x:32,y:-30}],[{x:32,y:-9},{x:58,y:-9}],[{x:58,y:12},{x:58,y:-12}],[{x:66,y:12},{x:92,y:12}],[{x:66,y:12},{x:66,y:-30}],[{x:92,y:12},{x:92,y:-30}],[{x:66,y:-30},{x:92,y:-30}],[{x:100,y:12},{x:100,y:-30},{x:126,y:-30}],[{x:142,y:12},{x:142,y:-30}],[{x:150,y:12},{x:176,y:12}],[{x:150,y:12},{x:150,y:-12}],[{x:150,y:-9},{x:176,y:-9},{x:176,y:-33}],[{x:150,y:-30},{x:176,y:-30}]],
       [[{x:-180,y:70},{x:-80,y:70}],[{x:-130,y:70},{x:-130,y:-30}]],
@@ -2077,7 +2047,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021207,
-    image: 'Coty',
     scene: `new EscenaCoty(
       [],
       [[{x:-150,y:0},{x:-150,y:50},{x:-100,y:50},{x:-100,y:0}],[{x:-100,y:-50},{x:-50,y:-50}],[{x:-50,y:0},{x:-50,y:50},{x:0,y:50},{x:0,y:0}],[{x:0,y:-50},{x:50,y:-50}],[{x:50,y:0},{x:50,y:50},{x:100,y:50},{x:100,y:0}],[{x:100,y:-50},{x:150,y:-50}]],
@@ -2099,7 +2068,6 @@ const challenges: BasicChallenge[] = [
   //Toto
   {
     id: 2021301, //Copy of 225
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['A', 'r', 'e'],
         ['t', 'o', 'j'],
@@ -2115,7 +2083,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021302, //Copy of 226
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['r', 'h', 'j', 'a'],
         ['z', 'A', 'a', 'm'],
@@ -2131,7 +2098,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021303, //Copy of 227
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['a', 'm', 'A'],
         ['f', 'u', 'p'],
@@ -2147,7 +2113,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021304, //Copy of 229
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['w', 'a', 'r'],
         ['u', 'n', 'e'],
@@ -2196,7 +2161,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021305,
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['A','t', 'e', 'l', 'j'],
         ['i','s', 'c', 'n', 'o'],
@@ -2212,7 +2176,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021306,
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['d','A','o'],
         ['z','n','a'],
@@ -2234,7 +2197,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021307,
-    image: 'Toto',
     scene: `new EscenaTotoLector([
         ['d','A','o'],
         ['z','n','a'],
@@ -2253,7 +2215,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021308,
-    image: 'Toto',
     scene: `new EscenaTotoLector([
       ['t','a','q','m','e','v','o','g','r','a','u'],
       ['n','A','s','a','n','t','a','c','r','u','a'],
@@ -2270,7 +2231,6 @@ const challenges: BasicChallenge[] = [
   },
   {
     id: 2021309,
-    image: 'Toto',
     scene: `new EscenaTotoLector([
       ['f','d','h','w','t'],
       ['e','a','z','b','u'],
