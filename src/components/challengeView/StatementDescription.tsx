@@ -14,6 +14,9 @@ type StatementDescriptionProps = {
   urlImage: string
 }
 
+// TODO: This component should have state of its own to know when to show the clue.
+// TODO: StatementTextToShow should be on this file.
+
 export const StatementDescription = (props: StatementDescriptionProps) => {
   const { theme } = useThemeContext()
 
