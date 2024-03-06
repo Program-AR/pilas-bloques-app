@@ -7,7 +7,7 @@ import { StatementDescription } from "./StatementDescription";
 import { Footer } from "../footer/Footer";
 import { BlocksWorkspace } from "./BlocksWorkspace";
 import { SceneButtons } from "./SceneButtons";
-import { Scene } from "./Scene";
+import { SceneView } from "./SceneView";
 
 // Repeats code with components/ChallengeView.ts, should replace it eventually.
 export const ChallengeView = () => {
@@ -38,7 +38,7 @@ const ChallengeWorkspace = ({challengeId}: {challengeId: number}) => {
             <BlocksWorkspace/>
             <Stack>
                 <SceneButtons/>
-                <Scene descriptor={challenge.scene}/>
+                <SceneView descriptor={challenge.scene}/>
             </Stack>
         </Stack>
         <Footer />
