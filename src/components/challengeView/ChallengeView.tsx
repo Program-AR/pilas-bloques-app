@@ -20,25 +20,26 @@ export const ChallengeView = () => {
     //const solution: string | null = searchParams.get("codigo")
     //const solutionParam: string = solution ? `?codigo=${solution}` : ""
 
-    return <>
+    return <Stack height="100%">
         <Header CenterComponent={ChallengeBreadcrumb(path)} shouldShowSimpleReadSwitch={!path.book.simpleReadMode} />
         <ChallengeWorkspace challengeId={challengeId} />
-    </>
+    </Stack>
 }
 
 const ChallengeWorkspace = ({challengeId}: {challengeId: number}) => {
     const challenge = getChallengeWithId(challengeId)
-    return <Stack>
+
+    return <Stack flexGrow={1}>
         <StatementDescription
             text={"enunciado"}
             setShowStatement={() => {}}
             clueIsEnabled={true}
             urlImage={challenge.imageURL()} />
-        <Stack direction="row" flexWrap={"wrap"}>
+        <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
             <BlocksWorkspace/>
             <Stack>
                 <SceneButtons/>
-                <SceneView descriptor={challenge.scene}/>
+                <SceneView descriptor={challenge.sceneDescriptor}/>
             </Stack>
         </Stack>
         <Footer />

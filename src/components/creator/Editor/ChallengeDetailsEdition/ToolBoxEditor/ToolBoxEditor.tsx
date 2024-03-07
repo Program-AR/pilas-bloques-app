@@ -57,16 +57,16 @@ export const ToolBoxEditor = () => {
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
             title={t('toolbox.title')}
-            dialogProps={{ fullWidth: true}} >
+            dialogProps={{ maxWidth: "md"}} >
             <Stack direction="row">
-                <Stack flexGrow={1}>
+                <Stack>
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
                 </Stack>
                 {shouldShow ? <ToolboxPreview 
+                    sx={{minWidth: "300px"}}
                     blocksToPreview={toolBoxItems} 
                     categorized={isCategorized || toolboxState.categorizationShouldBeForced()}
-                    
                     />:<></>}
             </Stack>
         </GenericModalDialog>
