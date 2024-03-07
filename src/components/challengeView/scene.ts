@@ -9,14 +9,15 @@ class Scene {
      * Sets up messaging events from iframe. Iframe should exist before calling this method.
      * @param descriptor The scene descriptor
      */
-    async load(descriptor: Challenge["scene"]) {
+    async load(descriptor: Challenge["sceneDescriptor"]) {
         this.iframe = document.getElementById("sceneIframe") as HTMLIFrameElement
         await this.initializePilasWeb(descriptor)
         await this.setChallenge(descriptor)
     }
 
-    setChallenge(descriptor: Challenge["scene"]) {
-        this.eval(`pilas.mundo.gestor_escenas.cambiar_escena(${descriptor})`)
+    setChallenge(descriptor: Challenge["sceneDescriptor"]) {
+        const initializer = descriptor === this.sceneName(descriptor) ? `new ${descriptor}()` : descriptor
+        this.eval(`pilas.mundo.gestor_escenas.cambiar_escena(${initializer})`)
     }
 
     initializePilasWeb(descriptor: string) {
@@ -49,23 +50,21 @@ class Scene {
         return (this.iframe?.contentWindow as any).eval(code)
     }
 
-    private imagesToPreload(descriptor: Challenge["scene"]) {
-        //Responsibiliy of the exercise's scene
-        var imagenes = this.eval(`${this.sceneName(descriptor)}.imagenesPreCarga()`);
-        if (!imagenes.length) throw new Error(`The challenge ${this.sceneName(descriptor)} doesn't have images to preload`)
+    private imagesToPreload(descriptor: Challenge["sceneDescriptor"]) {
+        //Responsibiliy of the exercise's scene class
+        var images = this.eval(`${this.sceneName(descriptor)}.imagenesPreCarga()`)
+        //TODO: Some scenes (like EscapeEnYacare) don't have images to preload. They should.
+        images = images.length ? images : this.eval(`imageList`)
 
-        return JSON.stringify(imagenes)
+        return JSON.stringify(images)
     }
 
       
     sceneName(sceneDescriptor: string): string {
-        // descriptor is of the form new ClassName(...). The regex (\w+) captures the classname.
+        // if descriptor is of the form new ClassName(...). The regex (\w+) captures the classname.
         // The [1] access the first capture group
         const name = sceneDescriptor.match(/new\s+(\w+)\s*\(/)
-        if (!name) {
-            throw new Error(`Wrong scene descriptor: ${sceneDescriptor}`)
-        } 
-        return name[1]
+        return name ? name[1] : sceneDescriptor
     }
 }
 
