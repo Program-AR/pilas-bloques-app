@@ -20,7 +20,7 @@ export const renderComponent = (
     param: string = '',
     otherEntries: any[] = []) => {
   const basePath = routePath.split(":")[0]
-  render(
+  return render(
     <MemoryRouter initialEntries={[basePath + param].concat(otherEntries)}>
         <Routes>
           <Route path={routePath}
@@ -39,4 +39,18 @@ export const renderWithContext = (component: ReactElement) => {
           {component}
       </CreatorContextProvider>
   )
+}
+
+/**
+ * Identical to performing expect(expr).toThrow(description) 
+ * but with console.error mocked not to saturate test ouptut
+ * @param description Error expected
+ * @param expr Function that causes the error
+ */
+export const expectToThrow = ( expr: () => any, description?: string ) => {
+  const errorFn = console.error
+  console.error = (_) => {}
+  const returnValue = expect(expr).toThrow(description)
+  console.error = errorFn
+  return returnValue
 }
