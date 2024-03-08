@@ -108,6 +108,13 @@ export const getPathToChallenge = (challengeId: number): PathToChallenge => {
   return {book, chapter, group, challenge}
 }
 
+/**
+ * For testing purposes.
+ * @returns all sceneDescriptors from existing challenges.
+ */
+export const allDescriptors = (): Challenge["sceneDescriptor"][] =>
+  challenges.map( c => c.sceneDescriptor )
+
 // This type allows to define a challenge in JSON
 // Shouldn't be used outside this file, instead call getChallengeById to get a complete Challenge
 // Not to be confused with SerializedChallenge, that is a CreatorChallenge.
