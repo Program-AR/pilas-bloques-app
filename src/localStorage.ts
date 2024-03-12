@@ -11,6 +11,7 @@ export namespace LocalStorage {
     const PB_CREATOR_CHALLENGE = 'PB_CREATOR_CHALLENGE'
     const PB_USE_NIGHT_THEME = 'PB_USE_NIGHT_THEME'
     const PB_USE_SIMPLE_READ = 'PB_USE_SIMPLE_READ'
+    const PB_USER_IP = 'PB_USER_IP'
 
     const remove = (key: string) => { localStorage.removeItem(key) }
 
@@ -20,6 +21,7 @@ export namespace LocalStorage {
     export const getCreatorChallenge = (): SerializedChallenge | null => _get(PB_CREATOR_CHALLENGE)
     export const getIsDarkMode = (): boolean => _get(PB_USE_NIGHT_THEME) || false
     export const getIsSimpleReadMode = (): boolean => _get(PB_USE_SIMPLE_READ) || false
+    export const getUserIp = (): string | null => _get(PB_USER_IP)
 
     export const saveSelectedLocale = (selectedLocale: LanguageCode) => _save(PB_SELECTED_LOCALE, selectedLocale)
     export const saveImportedChallenge = (importedChallenge: EmberExecutableChallenge) => _save(PB_IMPORTED_CHALLENGE, importedChallenge)
@@ -27,6 +29,7 @@ export namespace LocalStorage {
     export const saveCreatorChallenge = (challenge: SerializedChallenge | null) => _save(PB_CREATOR_CHALLENGE, challenge)
     export const saveDarkMode = (darkMode: boolean) => _save(PB_USE_NIGHT_THEME, darkMode)
     export const saveSimpleReadMode = (simpleReadMode: boolean) => _save(PB_USE_SIMPLE_READ, simpleReadMode)
+    export const saveUserIp = (userIp: string) => _save(PB_USER_IP, userIp)
 
     const _get = (key: string) => _doSafe(key, (storage: Storage) => {
         const value = storage.getItem(key)
