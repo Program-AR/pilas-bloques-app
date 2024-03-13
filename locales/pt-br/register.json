@@ -1,0 +1,30 @@
+{
+   "wrong": "Alguns dados estão incorretos, tente novamente",
+   "register": "Registro",
+   "login": "Login",
+   "username": "Nome de usuário",
+   "errorUsername": "O usuário já existe",
+   "validUsername": "Só pode conter letras, números e hifens",
+   "password": "Senha",
+   "confirmPassword": "Confirmar senha",
+   "errorPassword": "As senhas não coincidem",
+   "email": "E-mail",
+   "parentalConsent": "Consentimento dos pais",
+   "avatar": "Escolha seu avatar",
+   "adult": "Se você for maior de idade, insira suas próprias informações.",
+   "parentName": "Nome completo da mãe, pai ou responsável",
+   "parentId": "Identidade da mãe, pai ou responsável",
+   "errorParentId": "Deve conter pelo menos 6 dígitos",
+   "terms": "Li e aceito os ",
+   "linkTerms": "termos e condições de uso",
+   "registerMe": "Registrar-me",
+   "cancel":"Cancelar",
+   "whyData": {
+     "title": "Por que solicitamos esses dados?",
+     "privacy": "Para a FUNDACIÓN SADOSKY, a sua privacidade e a dos seus filhos é muito importante.",
+     "dataProtectionLaw": "Identificamos a conta com os dados da mãe, pai ou responsável para poder saber quem é caso queiram fazer uso dos direitos emergentes da Lei de Proteção de Dados Pessoais do menor tutelado. Você pode ver mais no ponto 8.4 do",
+     "parentalContact": "Mães, pais ou responsáveis ​​poderão comunicar por email para",
+     "whyContact": "para saber quais dados são armazenados sobre os menores sob seus cuidados e solicitar que sejam feitas modificações nos dados fornecidos."
+   },
+   "serverError": "Problema com o servidor, tente novamente mais tarde"
+}
