@@ -2,7 +2,9 @@ import { adaptURL } from "../../scriptLoader";
 import { Challenge } from "../../staticData/challenges";
 
 class Scene {
-    iframe?: HTMLIFrameElement;
+    iframe(): HTMLIFrameElement {
+        return document.getElementById("sceneIframe") as HTMLIFrameElement
+    }
 
     /**
      * Instantiates and runs pilas-engine (pilasweb) main framework.
@@ -11,7 +13,6 @@ class Scene {
      * @param descriptor The scene descriptor
      */
     async load(descriptor: Challenge["sceneDescriptor"]) {
-        this.iframe = document.getElementById("sceneIframe") as HTMLIFrameElement
         await this.initializePilasWeb(descriptor)
         await this.setChallenge(descriptor)
     }
@@ -56,7 +57,7 @@ class Scene {
      * @param code string with js code to run on the iframe
      */
     private eval(code: string): any {
-        return (this.iframe?.contentWindow as any).eval(code)
+        return (this.iframe().contentWindow as any).eval(code)
     }
 
     private imagesToPreload(descriptor: Challenge["sceneDescriptor"]) {
