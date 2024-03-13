@@ -36,6 +36,17 @@ class Scene {
             pilasweb.ejecutar()
             pilasweb.setFPS(100)
             pilasweb.onready = resolve
+
+            this.listenToIframeMessages()
+        })
+    }
+
+    listenToIframeMessages() {      
+        window.addEventListener("message", (event) => {
+            // exercises post error messages in the form  { tipo: "error", error: object }
+            // where object can be any error or { name: "ActividadError", message: "description"}
+            if(event.data.tipo === "error")
+                console.log(`Pilasweb execution ended with error: ${JSON.stringify(event.data.error)}`)
         })
     }
 

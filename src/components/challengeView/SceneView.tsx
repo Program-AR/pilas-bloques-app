@@ -21,12 +21,6 @@ export const SceneView = ({ descriptor, onLoad }: SceneViewProps) => {
     
     const [isLoading, setIsLoading] = useState(true)
 
-    window.addEventListener("message", (event) => {
-        // exercises post error messages in the form { tipo: "error", error: "description..." }
-        if(event.data.tipo === "error")
-            console.log(`Pilasweb execution ended with error: ${event.data.error}`)
-    })
-
     const loadPilasWebScene = async (event: any) => {
         await scene.load(descriptor)
         // Now that both the iframe and the pilasweb scene have been loaded, this component has finished loading.
