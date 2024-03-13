@@ -1,3 +1,4 @@
+import { adaptURL } from "../../scriptLoader";
 import { Challenge } from "../../staticData/challenges";
 
 class Scene {
@@ -21,23 +22,20 @@ class Scene {
     }
 
     initializePilasWeb(descriptor: string) {
-        return new Promise<void>((success) => {
+        return new Promise<void>((resolve) => {
             const pilasweb = this.eval(`
             pilasengine.iniciar({
                     ancho: 420,
                     alto: 480,
                     canvas: document.getElementById('canvas'),
-                    data_path: 'libs/data',
+                    data_path: '${adaptURL('libs/data')}',
                     imagenesExtra: ${this.imagesToPreload(descriptor)},
                     cargar_imagenes_estandar: false,
                     silenciar_advertencia_de_multiples_ejecutar: true
             });`)
             pilasweb.ejecutar()
             pilasweb.setFPS(100)
-            pilasweb.onready = () => {
-                success();
-                // TODO: ver si es necesario frenar la ruedita de cargar.
-            };
+            pilasweb.onready = resolve
         })
     }
 
@@ -59,7 +57,7 @@ class Scene {
         return JSON.stringify(images)
     }
 
-      
+
     sceneName(sceneDescriptor: string): string {
         // if descriptor is of the form new ClassName(...). The regex (\w+) captures the classname.
         // The [1] access the first capture group

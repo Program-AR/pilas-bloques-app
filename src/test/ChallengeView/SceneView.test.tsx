@@ -9,16 +9,16 @@ import { screen } from '@testing-library/react'
 import { renderComponent } from "../testUtils"
 describe('SceneView renders all challenges', () => {
 
-    test(`Scene new Falopa loads ok`, () => {
+    test(`Scene LimpiandoElHumedal loads ok`, () => {
         
         return new Promise<void>(resolve => {
             const onLoad = () => {
-                console.log((screen.getByTestId("scene-iframe") as any).contentWindow.eval("pilas.escena_actual().automata"))
+                expect((screen.getByTestId("scene-iframe") as any).contentWindow.eval("pilas.escena_actual().automata")).toBeTruthy()
                 resolve()
             }
 
             renderComponent(<SceneView 
-                descriptor={"new EscenaFalopa()"}
+                descriptor={"new LimpiandoElHumedal()"}
                 onLoad={onLoad}
             />)
         })        
