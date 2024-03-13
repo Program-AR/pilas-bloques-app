@@ -94,13 +94,13 @@ export const Register: FC = () => {
 
   return <>
     <Header />
-    <Stack alignItems="center" style={{ backgroundImage: "url(imagenes/book-background.svg)" }}>
+    <Stack style={{alignItems: "center", backgroundImage:"url(imagenes/book-background.svg)"}}>
       <PBCard style={{ maxWidth: 'calc(var(--creator-max-width)*0.75', padding: theme.spacing(2) }}>
         <Stack alignItems="center">
           <Typography variant="h3">{t('register')}</Typography>
           <img alt="register" width="40%" src="imagenes/session/register.png"></img>
           <Divider sx={{ width: "100%", margin: theme.spacing(1) }} variant="middle" />
-          <form style={{ alignItems: "center" }} onSubmit={handleSubmit} className={styles['register-form']}>
+          <form onSubmit={handleSubmit} className={styles['register-form']}>
             <TextField
               className={styles['input']}
               label={t('username')}
@@ -133,7 +133,7 @@ export const Register: FC = () => {
               onChange={props => setRegisterUser({ ...registerUser!, email: props.target.value })}
               required />
             <Typography variant="h5">{t('avatar')}</Typography>
-            <Stack maxWidth="50%" flexDirection="row" justifyContent="center" flexWrap="wrap">
+            <Stack className={styles['register-avatars']}>
               {avatars.map(avatar =>
                 <Button onClick={() => setRegisterUser({ ...registerUser!, avatarURL: avatar })} >
                   <img alt="avatar" src={avatar} style={{ filter: registerUser?.avatarURL !== null && registerUser?.avatarURL === avatar ? "" : "grayscale(100%)" }} />
@@ -159,12 +159,12 @@ export const Register: FC = () => {
               onChange={props => handleParentId(props.target.value )}
               helperText={!validParentId ? t('errorParentId') : ''}
               required />
-            <Stack sx={{ cursor: "pointer", flexDirection: "column", textAlign: "justify" }} onClick={() => setWhyReqData(!whyReqData)}>
+            <Stack className={styles['register-whyData']} onClick={() => setWhyReqData(!whyReqData)}>
               <Typography align="center">{t("whyData.title")}</Typography>
               <Collapse style={{ padding: "10px" }} in={whyReqData}>
                 <Typography>{t("whyData.privacy")}</Typography>
                 <Typography>{t("whyData.dataProtectionLaw")}&nbsp;
-                  <PBLink to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>
+                  <PBLink target="_blank" to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>
                 <Typography>{t("whyData.parentalContact")}&nbsp;
                   <Link href="mailto:pilasbloques@program.ar">pilasbloques@program.ar</Link>&nbsp;
                   {t("whyData.whyContact")}</Typography>
@@ -172,7 +172,7 @@ export const Register: FC = () => {
             </Stack>
 
             <FormControlLabel
-              label={<Typography>{t('terms')}<PBLink to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>}
+              label={<Typography>{t('terms')}<PBLink target="_blank" to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>}
               control={<Checkbox sx={{ color: theme.palette.primary.main }}
                 onChange={() => setTermAndConditions(!termsAndConditions)}
                 required />
@@ -182,7 +182,7 @@ export const Register: FC = () => {
               open={serverError}
               onClose={() => setServerError(false)}
               message={t('serverError')} />
-            <Stack sx={{ width: "100%", flexDirection: "row", justifyContent: "space-evenly" }}>
+            <Stack className={styles['register-buttons']}>
               <Button variant="contained" color="success" type='submit' disabled={!validateRegister()}>{t('registerMe')}</Button>
               <Button variant="contained" color="error" onClick={handleOnClose} href="#" target="">{t('cancel')}</Button>
             </Stack>

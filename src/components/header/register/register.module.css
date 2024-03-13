@@ -1,31 +1,9 @@
-.register-header {
-    display: flex;
-    justify-content: space-between;
-    height: 45px;
-    align-items: center;
-}
-
-.register-content {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 24px !important;
-}
-
 .register-form{
   display: flex;
   flex-direction: column;
   gap: 22px;
   margin-bottom: 10px;
-}
-
-.register-item {
-    flex: auto;
-    text-align: center;
-    padding: 0 10%;
-} 
-
-.register-img {
-  height: 8rem;
+  align-items: center;
 }
 
 .input{
@@ -34,20 +12,29 @@
   margin: 18px 0;
   vertical-align: middle;
   width: 50%;
-  /*display: inline-block;*/
 }
-
-.link {
-    color: var(--theme-link-color);
-    text-decoration: none;
-} 
 
 .paper{
   padding: 24px 16px 16px;
   margin: 0 -30%;
 }
 
-.serverError{
-  background-color: #f3e4a8 !important;
-  color: black !important;
+.register-avatars{
+  max-width: 50%;
+  flex-direction: row !important;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.register-whyData{
+  cursor: pointer;
+  flex-direction: column !important; 
+  text-align: justify;
+}
+
+.register-buttons{
+   width: 100%;
+   display: flex;
+   flex-direction: row !important;
+   justify-content: space-evenly;
 }
