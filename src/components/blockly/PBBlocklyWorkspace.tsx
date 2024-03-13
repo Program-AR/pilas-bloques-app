@@ -3,30 +3,29 @@ import { BlocklyWorkspace } from "react-blockly";
 import { useTranslation } from "react-i18next";
 import { BlockType, getBlockFromId } from "./blocks";
 import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "./blockly";
-import Blockly from "blockly";
 import { PBCard } from "../PBCard";
 import { PaperProps } from "@mui/material";
+import { BlocklyWorkspaceProps } from "react-blockly/dist/BlocklyWorkspaceProps";
 
 type PBBlocklyWorkspaceProps = {
-  blocksToPreview: string[]
+  blockIds: string[]
   categorized: boolean
   sx?: PaperProps["sx"]
-}
+} & Partial<BlocklyWorkspaceProps>
 
-export const PBBlocklyWorkspace = ({blocksToPreview, categorized, sx}: PBBlocklyWorkspaceProps) => {
+export const PBBlocklyWorkspace = ({blockIds, categorized, sx, ...props}: PBBlocklyWorkspaceProps) => {
   const {t} = useTranslation("blocks")
     
-  const blocksWithCategories: BlockType[] = blocksToPreview.map(getBlockFromId)
+  const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
 
   setupBlocklyBlocks(t)
 
   return <PBCard sx={{...sx}}>
         <BlocklyWorkspace
-          key={blocksToPreview.join("") + categorized} //rerenders on toolbox or categorization changes
+          key={blockIds.join("") + categorized} //rerenders on toolbox or categorization changes
           toolboxConfiguration={categorized ? categorizedToolbox(blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
           className={styles.fill}
-          workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
-          onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
+          {...props}
         />
       </PBCard>
 }
