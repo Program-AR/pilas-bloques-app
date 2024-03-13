@@ -84,7 +84,7 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
                 <div className={styles['login-item']}>
                     <img alt='login' className={styles['login-img']} src="imagenes/session/login.png"/>
                     <Typography variant="h6" sx={{fontWeight: 'bold'}}>{t('dontHaveUser')}</Typography>
-                    <a className={styles['link']} onClick={handleOnClose} href="#/register" target="">{t('register')}</a>
+                    <a className={styles['link']} onClick={handleOnClose} href="#/registrar" target="">{t('register')}</a>
                 </div>  
                 </DialogContent>
         </Dialog>

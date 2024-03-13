@@ -1,0 +1,53 @@
+.register-header {
+    display: flex;
+    justify-content: space-between;
+    height: 45px;
+    align-items: center;
+}
+
+.register-content {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 24px !important;
+}
+
+.register-form{
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 10px;
+}
+
+.register-item {
+    flex: auto;
+    text-align: center;
+    padding: 0 10%;
+} 
+
+.register-img {
+  height: 8rem;
+}
+
+.input{
+  position: relative;
+  padding: 2px;
+  margin: 18px 0;
+  vertical-align: middle;
+  width: 50%;
+  /*display: inline-block;*/
+}
+
+.link {
+    color: var(--theme-link-color);
+    text-decoration: none;
+} 
+
+.paper{
+  padding: 24px 16px 16px;
+  margin: 0 -30%;
+}
+
+.serverError{
+  background-color: #f3e4a8 !important;
+  color: black !important;
+}

@@ -1,0 +1,30 @@
+{
+  "register": "Registration",
+  "wrong": "Some data are not correct; try it again",
+  "username": "Username",
+  "errorUsername": "User already exists",
+  "validUsername": "Just letters, numbers and dashes",
+  "password": "Password",
+  "confirmPassword": "Confirm password", 
+  "errorPassword": "Passwords do not match",
+  "email": "Email",
+  "chooseAvatar": "Choose your avatar",
+  "parentalConsent": "Parental consent",
+  "avatar": "Choose your avatar",
+  "adult": "If you are of legal age, write your own data.",
+  "parentName": "Full name of mother, father or guardian",
+  "parentId": "Id of mother, father or guardian",
+  "errorParentId": "Must be at least 6 digits",
+  "terms": "I have read and accept the ",
+  "linkTerms": "terms and conditions of use",
+  "registerMe": "Register",
+  "cancel":"Cancel",
+  "whyData": {
+    "title": "Why do we request this data?",
+    "privacy": "For the FUNDACIÓN SADOSKY your privacy and that of your children is very important.",
+    "dataProtectionLaw": "We identify the account with the data of the mother, father or guardian in order to know who it is in case you want to make use of the rights arising from the Personal Data Protection Law of the minor under guardianship. You can see more in point 8.4 of the",
+    "parentalContact": "Mothers, fathers or guardians may communicate by email to",
+    "whyContact": "to find out what the stored data of the minors in your care are and request that modifications be made to the data provided."
+  },
+  "serverError": "Problema con el servidor, intente más tarde"
+}

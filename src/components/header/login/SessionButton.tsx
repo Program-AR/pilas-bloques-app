@@ -8,6 +8,7 @@ import { LocalStorage } from "../../../localStorage";
 const AVATAR_COUNT = 16
 const AVATAR_PATH = "imagenes/avatars/"
 
+export const avatars = Array.from(Array(AVATAR_COUNT).keys()).map((n) => `${AVATAR_PATH}avatar-${n + 1}.png`)
 
 export const SessionButton = () => {
 
@@ -43,8 +44,6 @@ export const SessionButton = () => {
     }
 
     const getUser = () => LocalStorage.getUser()
-
-    const avatars = Array.from(Array(AVATAR_COUNT).keys()).map((n) => `${AVATAR_PATH}avatar-${n + 1}.png`)
 
     const getRandomAvatar = () => avatars[Math.floor(Math.random() * avatars.length)]
 
