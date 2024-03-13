@@ -1,4 +1,4 @@
-import { BlockType } from "./components/blocks"
+import { BlockType } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
 

@@ -5,7 +5,7 @@ import { ChallengeBreadcrumb } from "../ChallengeView";
 import { Stack } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { Footer } from "../footer/Footer";
-import { BlocksWorkspace } from "./BlocksWorkspace";
+import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { SceneButtons } from "./SceneButtons";
 import { SceneView } from "./SceneView";
 
@@ -36,7 +36,7 @@ const ChallengeWorkspace = ({challengeId}: {challengeId: number}) => {
             clueIsEnabled={true}
             urlImage={challenge.imageURL()} />
         <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-            <BlocksWorkspace/>
+            <EditableBlocklyWorkspace/>
             <Stack>
                 <SceneButtons/>
                 <SceneView descriptor={challenge.sceneDescriptor}/>

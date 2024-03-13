@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { LocalStorage } from "../../../../../localStorage";
-import { categories, availableBlocksFor } from "../../../../blocks";
+import { categories, availableBlocksFor } from "../../../../blockly/blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 import { PROCEDURE_CATEGORY } from "../../SceneEdition/mapUtils";
 import { DetailsEditionButton } from "../DetailsEditionButton";
-import { ToolboxPreview } from "../../../../blockly/ToolboxPreview";
+import { PBBlocklyWorkspace } from "../../../../blockly/PBBlocklyWorkspace";
 import { Stack } from "@mui/material";
 import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
 
@@ -63,7 +63,7 @@ export const ToolBoxEditor = () => {
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
                 </Stack>
-                {shouldShow ? <><p>Así se verán tus comandos disponibles</p><ToolboxPreview 
+                {shouldShow ? <><p>Así se verán tus comandos disponibles</p><PBBlocklyWorkspace 
                     sx={{minWidth: "300px"}}
                     blocksToPreview={toolBoxItems} 
                     categorized={isCategorized || toolboxState.categorizationShouldBeForced()}

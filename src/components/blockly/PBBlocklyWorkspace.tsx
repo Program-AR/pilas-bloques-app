@@ -1,19 +1,19 @@
-import styles from "./ToolboxPreview.module.css";
+import styles from "./PBBlocklyWorkspace.module.css";
 import { BlocklyWorkspace } from "react-blockly";
 import { useTranslation } from "react-i18next";
-import { BlockType, getBlockFromId } from "../blocks";
-import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../blockly";
+import { BlockType, getBlockFromId } from "./blocks";
+import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "./blockly";
 import Blockly from "blockly";
 import { PBCard } from "../PBCard";
 import { PaperProps } from "@mui/material";
 
-type ToolboxPreviewProps = {
+type PBBlocklyWorkspaceProps = {
   blocksToPreview: string[]
   categorized: boolean
   sx?: PaperProps["sx"]
 }
 
-export const ToolboxPreview = ({blocksToPreview, categorized, sx}: ToolboxPreviewProps) => {
+export const PBBlocklyWorkspace = ({blocksToPreview, categorized, sx}: PBBlocklyWorkspaceProps) => {
   const {t} = useTranslation("blocks")
     
   const blocksWithCategories: BlockType[] = blocksToPreview.map(getBlockFromId)
