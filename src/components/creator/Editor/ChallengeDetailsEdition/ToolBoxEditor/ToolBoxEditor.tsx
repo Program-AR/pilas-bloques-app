@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 import { PROCEDURE_CATEGORY } from "../../SceneEdition/mapUtils";
 import { DetailsEditionButton } from "../DetailsEditionButton";
-import { ToolboxPreview } from "./ToolboxPreview";
+import { ToolboxPreview } from "../../../../blockly/ToolboxPreview";
 import { Stack } from "@mui/material";
 import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
 
@@ -63,11 +63,11 @@ export const ToolBoxEditor = () => {
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
                 </Stack>
-                {shouldShow ? <ToolboxPreview 
+                {shouldShow ? <><p>Así se verán tus comandos disponibles</p><ToolboxPreview 
                     sx={{minWidth: "300px"}}
                     blocksToPreview={toolBoxItems} 
                     categorized={isCategorized || toolboxState.categorizationShouldBeForced()}
-                    />:<></>}
+                    /></>:<></>}
             </Stack>
         </GenericModalDialog>
     </>

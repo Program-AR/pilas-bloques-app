@@ -1,10 +1,10 @@
 import styles from "./ToolboxPreview.module.css";
 import { BlocklyWorkspace } from "react-blockly";
 import { useTranslation } from "react-i18next";
-import { BlockType, getBlockFromId } from "../../../../blocks";
-import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../../../../blockly";
+import { BlockType, getBlockFromId } from "../blocks";
+import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "../../blockly";
 import Blockly from "blockly";
-import { PBCard } from "../../../../PBCard";
+import { PBCard } from "../PBCard";
 import { PaperProps } from "@mui/material";
 
 type ToolboxPreviewProps = {

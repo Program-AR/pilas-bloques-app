@@ -1,4 +1,4 @@
-import { ToolboxPreview } from "../creator/Editor/ChallengeDetailsEdition/ToolBoxEditor/ToolboxPreview"
+import { ToolboxPreview } from "../blockly/ToolboxPreview"
 
 export const BlocksWorkspace = () => {
     return <ToolboxPreview
