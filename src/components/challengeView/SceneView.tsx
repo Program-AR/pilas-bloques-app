@@ -29,7 +29,7 @@ export const SceneView = ({ descriptor, onLoad }: SceneViewProps) => {
     }
     
     return <PBCard>
-            {isLoading ? <PBProgress /> : <></>}
+            {isLoading ? <PBProgress sx={{...size, position:"absolute"}} /> : <></>}
             <iframe
                 style={{border: "inherit", borderRadius: "inherit", ...size}}
                 id="sceneIframe"
