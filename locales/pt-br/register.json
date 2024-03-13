@@ -8,6 +8,8 @@
    "password": "Senha",
    "confirmPassword": "Confirmar senha",
    "errorPassword": "As senhas não coincidem",
+   "passwordRequirements": "Mínimo 8 caracteres e deve conter letras minúsculas, maiúsculas, números e caracteres especiais",
+   "passwordOk": "Excelente!",
    "email": "E-mail",
    "parentalConsent": "Consentimento dos pais",
    "avatar": "Escolha seu avatar",

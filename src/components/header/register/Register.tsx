@@ -10,6 +10,7 @@ import { PBCard } from "../../PBCard";
 import { Header } from "../Header";
 import { avatars } from "../login/SessionButton";
 import { useNavigate } from "react-router-dom";
+import { PasswordStrength, testingPasswordStrength } from "./StrengthPassword";
 
 export const Register: FC = () => {
   const { theme } = useThemeContext()
@@ -21,6 +22,7 @@ export const Register: FC = () => {
   const [userExists, setUserExists] = useState<boolean>(false)
   const [validUsername, setValidUsername] = useState<boolean>(true)
   const [validParentId, setValidParentId] = useState<boolean>(true)
+  const [validPassword, setValidPassword] = useState<PasswordStrength>(PasswordStrength.WEAK)
   const [confirmPasswordOk, setConfirmPasswordOk] = useState<boolean>(false)
   const [termsAndConditions, setTermAndConditions] = useState<boolean>(false)
   const [wrongRegister, setWrongRegister] = useState<boolean>(false)
@@ -80,6 +82,11 @@ export const Register: FC = () => {
     else setValidParentId(true)
   }
 
+  const handlePassword = (password: string) => {
+     setValidPassword(testingPasswordStrength(password))
+     setRegisterUser({ ...registerUser!, password: password })
+  }
+
   const handleUser = async (username: string) => {
     const validChars = new RegExp("[^a-zA-Z0-9-]");
     if ( username !== '' && username !== undefined )
@@ -118,7 +125,12 @@ export const Register: FC = () => {
               label={t('password')}
               variant="standard"
               type="password"
-              onChange={props => setRegisterUser({ ...registerUser!, password: props.target.value })}
+              onChange={props => handlePassword(props.target.value)}
+              helperText={registerUser?.password && (validPassword !== PasswordStrength.STRONG ? t('passwordRequirements'): t('passwordOk'))}
+              FormHelperTextProps={{style: 
+                    {color: (validPassword === PasswordStrength.WEAK ? theme.palette.error.main : 
+                            (validPassword === PasswordStrength.MEDIUM ? theme.palette.warning.main :
+                             theme.palette.success.main))}}}
               required />
             <TextField
               className={styles['input']}

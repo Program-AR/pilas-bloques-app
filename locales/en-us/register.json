@@ -7,6 +7,8 @@
   "password": "Password",
   "confirmPassword": "Confirm password", 
   "errorPassword": "Passwords do not match",
+  "passwordRequirements": "At least 8 characters and must contain lowercase, uppercase, numbers and special characters",
+  "passwordOk": "Excellent!",
   "email": "Email",
   "chooseAvatar": "Choose your avatar",
   "parentalConsent": "Parental consent",
