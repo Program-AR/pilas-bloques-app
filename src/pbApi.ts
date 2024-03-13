@@ -1,5 +1,6 @@
 import { SerializedChallenge } from "./components/serializedChallenge";
 import { LocalStorage } from "./localStorage"
+import { PBSession } from "./pbSession";
 
 export interface User{
     id: string,
@@ -72,7 +73,19 @@ export namespace PilasBloquesApi{
       return await _send<SerializedChallenge>('PUT', `userChallenge/${challenge.sharedId}`, challenge)
     }
 
+    export const getUserIp = async () => {
+      return await _send('GET', `user-ip`)
+    }
+
     export const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
+
+    async function bodyWithContext<T>(body?: T) {
+      return body ? {
+        ...body,
+        timestamp: new Date(),
+        context: await PBSession.context()
+      } : undefined
+    }
 
     async function _send<T>(method: HttpMethod, resource: string, body?: T) {
         const user = LocalStorage.getUser()
@@ -84,7 +97,7 @@ export namespace PilasBloquesApi{
 
         return _doFetch(url, {
           method,
-          body: JSON.stringify(body),
+          body: JSON.stringify(await bodyWithContext<T>(body)),
           headers
         })  
           .catch(connectionErr => {
