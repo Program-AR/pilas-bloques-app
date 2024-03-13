@@ -9,9 +9,11 @@ import { PBLink, termsAndConditionsLink } from "../../footer/Footer"
 import { PBCard } from "../../PBCard";
 import { Header } from "../Header";
 import { avatars } from "../login/SessionButton";
+import { useNavigate } from "react-router-dom";
 
 export const Register: FC = () => {
   const { theme } = useThemeContext()
+  const navigate = useNavigate()
 
   const { t } = useTranslation('register');
 
@@ -54,11 +56,12 @@ export const Register: FC = () => {
 
   const handleOnClose = () => {
     setWrongRegister(false)
+		navigate("/#")
   }
 
   const checkUsername = async (username: string ) => {
     try {
-      return await PilasBloquesApi.userExists(username) === 'true'
+      return await PilasBloquesApi.userExists(username) === true
     } catch (error: any) {
       if (error.status === 400) {
         setWrongRegister(true)
@@ -77,11 +80,12 @@ export const Register: FC = () => {
     else setValidParentId(true)
   }
 
-  const handleUser = (username: string) => {
+  const handleUser = async (username: string) => {
     const validChars = new RegExp("[^a-zA-Z0-9-]");
     if ( username !== '' && username !== undefined )
     {
-      if ( !checkUsername(username) )
+      const check = await checkUsername(username) 
+      if ( !check )
       {
         setValidUsername(!validChars.test(username))
         setRegisterUser({ ...registerUser!, username: username })
@@ -135,7 +139,7 @@ export const Register: FC = () => {
             <Typography variant="h5">{t('avatar')}</Typography>
             <Stack className={styles['register-avatars']}>
               {avatars.map(avatar =>
-                <Button onClick={() => setRegisterUser({ ...registerUser!, avatarURL: avatar })} >
+                <Button key={avatar} onClick={() => setRegisterUser({ ...registerUser!, avatarURL: avatar })} >
                   <img alt="avatar" src={avatar} style={{ filter: registerUser?.avatarURL !== null && registerUser?.avatarURL === avatar ? "" : "grayscale(100%)" }} />
                 </Button>
               )}
