@@ -15,8 +15,8 @@ export interface RegisterUser{
   password: string,
   avatarURL: string,
   email: string,
-  parentName?: string,
-  parentDNI?: string
+  parentName: string,
+  parentDNI: string
 }
 
 export interface Credentials{
