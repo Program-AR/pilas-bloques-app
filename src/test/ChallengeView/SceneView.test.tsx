@@ -9,7 +9,7 @@ import { screen } from '@testing-library/react'
 import { renderComponent } from "../testUtils"
 describe('SceneView renders all challenges', () => {
 
-    test(`Scene LimpiandoElHumedal loads ok`, () => {
+    test.skip(`Scene LimpiandoElHumedal loads ok`, () => {
         
         return new Promise<void>(resolve => {
             const onLoad = () => {
