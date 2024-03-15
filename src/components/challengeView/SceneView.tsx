@@ -5,7 +5,8 @@ import { useMediaQuery } from "@mui/material"
 import { useThemeContext } from "../../theme/ThemeContext"
 import { useState } from "react"
 import { PBProgress } from "../PBProgress"
-import { adaptURL } from "../../scriptLoader"
+import { IFrame } from "./IFrame"
+import { useScript } from "../../scriptLoader"
 
 type SceneViewProps = {
     descriptor: Challenge["sceneDescriptor"]
@@ -30,14 +31,21 @@ export const SceneView = ({ descriptor, onLoad }: SceneViewProps) => {
     
     return <PBCard>
             {isLoading ? <PBProgress sx={{...size, position:"absolute"}} /> : <></>}
-            <iframe
+            <IFrame
                 style={{border: "inherit", borderRadius: "inherit", ...size}}
                 id="sceneIframe"
                 data-testid="scene-iframe"
                 key={descriptor} // rerenders on descriptor changes
                 title='iframePilas'
-                src={adaptURL(`pilas.html`)}
-                onLoad={loadPilasWebScene}/>
+            >
+                <PBScripts onLoad={loadPilasWebScene}/>
+                <canvas id="canvas"></canvas>
+            </IFrame>
     </PBCard>
 }
 
+
+const PBScripts = ( {onLoad} : {onLoad: (e: any) => {}}) => {
+    useScript("libs/pb.js", onLoad)
+    return <></>
+}
