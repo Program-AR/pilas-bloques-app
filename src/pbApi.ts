@@ -10,6 +10,15 @@ export interface User{
     answeredQuestionIds: number[]
 }
 
+export interface RegisterUser{
+  username: string,
+  password: string,
+  avatarURL: string,
+  email: string,
+  parentName: string,
+  parentDNI: string
+}
+
 export interface Credentials{
   username: string | null,
   password: string | null
@@ -38,6 +47,20 @@ export namespace PilasBloquesApi{
       .then(user => LocalStorage.saveUser(user))
     }
 
+    export const register = async (data: RegisterUser) => {
+      const { username, avatarURL } = data
+      const profile = {
+        nickName: username,
+        avatarURL
+      }
+      await _send('POST', 'register', { ...data, profile })
+        .then(user => LocalStorage.saveUser(user))
+    }
+
+    export const userExists = async(username:string) => {
+      return await _send('GET', `users/exists?username=${username}`)
+    }
+  
     export const shareChallenge = async (challenge: SerializedChallenge) => {
       return await _send<SerializedChallenge>('POST', 'userChallenge', challenge)
     }
