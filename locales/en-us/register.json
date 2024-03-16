@@ -1,6 +1,6 @@
 {
   "register": "Registration",
-  "wrong": "Some data are not correct; try it again",
+  "wrong": "Some data may be incorrect; try it again",
   "username": "Username",
   "errorUsername": "User already exists",
   "validUsername": "Just letters, numbers and dashes",
@@ -28,5 +28,5 @@
     "parentalContact": "Mothers, fathers or guardians may communicate by email to",
     "whyContact": "to find out what the stored data of the minors in your care are and request that modifications be made to the data provided."
   },
-  "serverError": "Problema con el servidor, intente más tarde"
+  "serverError": "There's a problem with the server, try again later"
 }

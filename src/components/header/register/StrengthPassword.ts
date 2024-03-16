@@ -2,12 +2,12 @@ const atLeastMinimumLength = (password: string) => new RegExp(/(?=.{8,})/).test(
 const atLeastOneUppercaseLetter = (password: string) => new RegExp(/(?=.*?[A-Z])/).test(password);
 const atLeastOneLowercaseLetter = (password: string) => new RegExp(/(?=.*?[a-z])/).test(password);
 const atLeastOneNumber = (password: string) => new RegExp(/(?=.*?[0-9])/).test(password);
-const atLeastOneSpecialChar = (password: string) => new RegExp(/(?=.*?[#?!@$ %^&*-])/).test(password);
+const atLeastOneSpecialChar = (password: string) => new RegExp(/(?=.*?[\s!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])/).test(password);
 
 export enum PasswordStrength {
-  STRONG = 'Buena',
-  MEDIUM = 'Media',
-  WEAK = 'Mala'
+  STRONG = 'STRONG',
+  MEDIUM = 'MEDIUM',
+  WEAK = 'WEAK'
 }
 
 export const testingPasswordStrength = (password?: string) => {

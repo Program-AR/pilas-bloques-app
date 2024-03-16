@@ -63,7 +63,7 @@ export const Register: FC = () => {
 
   const checkUsername = async (username: string ) => {
     try {
-      return await PilasBloquesApi.userExists(username) === true
+      return await PilasBloquesApi.userExists(username)
     } catch (error: any) {
       if (error.status === 400) {
         setWrongRegister(true)
@@ -74,7 +74,7 @@ export const Register: FC = () => {
   }
 
   const handleParentId = (parentId: string) => {
-    if ( parentId !== undefined && parentId !== '' )
+    if ( parentId )
     {
       setRegisterUser({ ...registerUser!, parentDNI: parentId })
       setValidParentId(parentId.length > 5)
