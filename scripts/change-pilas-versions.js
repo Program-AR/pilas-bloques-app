@@ -3,8 +3,10 @@ const pilasBloquesExercises = require('pilas-bloques-exercises/package.json');
 const shell = require('shelljs');
 
 function copyToPublic(dependency){
-  console.log(`Copying ${dependency} files to public/libs`)
-  shell.cp("-rf", `node_modules/${dependency}/dist/*`, `public/libs/` )
+  const LIBS_PATH = `public/libs/`
+  console.log(`Copying ${dependency} files to ${LIBS_PATH}`)
+  shell.mkdir('-p', LIBS_PATH)
+  shell.cp("-rf", `node_modules/${dependency}/dist/*`, LIBS_PATH )
 }
 
 function changeVersion(dependency, version){
