@@ -10,6 +10,7 @@
     "email": "info@program.ar",
     "url": "http://program.ar"
   },
+  "type": "module",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/babel-plugin": "^11.11.0",
@@ -98,9 +99,8 @@
     "start": "vite",
     "start:emberDev": "sh ./scripts/localEmber.sh",
     "start:electron": "electron ./build",
-    "prebuild": "node scripts/setEmberRoot.js public/emberPB emberPB/",
+    "prebuild": "node scripts/setEmberRoot.js public/emberPB ''",
     "build": "tsc && vite build",
-    "build:surge": "node scripts/setEmberRoot.js public/emberPB '' && tsc && vite build",
     "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
     "pack:linux_zip": "bash ./scripts/package.sh -linux_zip",
     "pack:linux": "bash ./scripts/package.sh -linux",
