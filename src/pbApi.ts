@@ -77,7 +77,7 @@ export namespace PilasBloquesApi{
       return await _send('GET', `user-ip`)
     }
 
-    export const baseURL = window.PBRuntime?.apiURL || import.meta.env.VITE_APP_API_URL
+    export const baseURL = window.PBRuntime?.apiURL || process.env.VITE_APP_API_URL
 
     async function bodyWithContext<T>(body?: T) {
       return body ? {

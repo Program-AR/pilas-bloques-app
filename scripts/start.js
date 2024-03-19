@@ -1,8 +1,8 @@
 'use strict';
 
 // Do this as the first thing so that any code reading it knows the right env.
-import.meta.env.BABEL_ENV = 'development';
-import.meta.env.NODE_ENV = 'development';
+process.env.BABEL_ENV = 'development';
+process.env.NODE_ENV = 'development';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -44,14 +44,14 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // Tools like Cloud9 rely on this.
-const DEFAULT_PORT = parseInt(import.meta.env.PORT, 10) || 3000;
-const HOST = import.meta.env.HOST || '0.0.0.0';
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
 
-if (import.meta.env.HOST) {
+if (process.env.HOST) {
   console.log(
     chalk.cyan(
       `Attempting to bind to HOST environment variable: ${chalk.yellow(
-        chalk.bold(import.meta.env.HOST)
+        chalk.bold(process.env.HOST)
       )}`
     )
   );
@@ -80,7 +80,7 @@ checkBrowsers(paths.appPath, isInteractive)
     }
 
     const config = configFactory('development');
-    const protocol = import.meta.env.HTTPS === 'true' ? 'https' : 'http';
+    const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
 
     const useTypeScript = fs.existsSync(paths.appTsConfig);
@@ -138,7 +138,7 @@ checkBrowsers(paths.appPath, isInteractive)
       });
     });
 
-    if (import.meta.env.CI !== 'true') {
+    if (process.env.CI !== 'true') {
       // Gracefully exit when stdin ends
       process.stdin.on('end', function () {
         devServer.close();

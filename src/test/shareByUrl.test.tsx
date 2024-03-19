@@ -102,7 +102,7 @@ describe("Share by url", () => {
             await shareChallenge()
             const urlText = await screen.findByRole('textbox')
 
-            expect(urlText.getAttribute('value')).toBe(`${import.meta.env.VITE_APP_PB_APP_URL}/#/desafio/guardado/shared`)
+            expect(urlText.getAttribute('value')).toBe(`${process.env.VITE_APP_PB_APP_URL}/#/desafio/guardado/shared`)
         })
 
         test("Should change to save button on challenge share", async () => {
@@ -130,7 +130,7 @@ describe("Share by url", () => {
             const urlText = await screen.findByRole('textbox')
 
             //The url text is not changing in the text
-            expect(urlText.getAttribute('value')).toBe(`${import.meta.env.VITE_APP_PB_APP_URL}/#/desafio/guardado/newShared`)
+            expect(urlText.getAttribute('value')).toBe(`${process.env.VITE_APP_PB_APP_URL}/#/desafio/guardado/newShared`)
         })
 
     })

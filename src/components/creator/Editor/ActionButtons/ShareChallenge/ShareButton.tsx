@@ -34,7 +34,7 @@ const ShareDialog = ({ open, setDialogOpen }: { open: boolean, setDialogOpen: (o
 export const ShareModal = () => {
     const { sharedId } = useContext(CreatorContext)
     
-    const sharedLink = import.meta.env.VITE_APP_PB_APP_URL  + `/#/desafio/guardado/${sharedId}`
+    const sharedLink = process.env.VITE_APP_PB_APP_URL  + `/#/desafio/guardado/${sharedId}`
 
     return <Stack>
         {sharedId ?

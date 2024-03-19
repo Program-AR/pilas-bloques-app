@@ -1,8 +1,8 @@
 'use strict';
 
 // Do this as the first thing so that any code reading it knows the right env.
-import.meta.env.BABEL_ENV = 'production';
-import.meta.env.NODE_ENV = 'production';
+process.env.BABEL_ENV = 'production';
+process.env.NODE_ENV = 'production';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -109,7 +109,7 @@ checkBrowsers(paths.appPath, isInteractive)
       );
     },
     err => {
-      const tscCompileOnError = import.meta.env.TSC_COMPILE_ON_ERROR === 'true';
+      const tscCompileOnError = process.env.TSC_COMPILE_ON_ERROR === 'true';
       if (tscCompileOnError) {
         console.log(
           chalk.yellow(
@@ -171,9 +171,9 @@ function build(previousFileSizes) {
         return reject(new Error(messages.errors.join('\n\n')));
       }
       if (
-        import.meta.env.CI &&
-        (typeof import.meta.env.CI !== 'string' ||
-          import.meta.env.CI.toLowerCase() !== 'false') &&
+        process.env.CI &&
+        (typeof process.env.CI !== 'string' ||
+          process.env.CI.toLowerCase() !== 'false') &&
         messages.warnings.length
       ) {
         // Ignore sourcemap warnings in CI builds. See #8227 for more info.
@@ -183,7 +183,7 @@ function build(previousFileSizes) {
         if (filteredWarnings.length) {
           console.log(
             chalk.yellow(
-              '\nTreating warnings as errors because import.meta.env.CI = true.\n' +
+              '\nTreating warnings as errors because process.env.CI = true.\n' +
                 'Most CI servers set it automatically.\n'
             )
           );

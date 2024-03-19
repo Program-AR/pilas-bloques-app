@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import viteTsconfigPaths from 'vite-tsconfig-paths'
 import { execSync } from 'child_process';
+import EnvironmentPlugin from "vite-plugin-environment"
 
 const commitHash = execSync('git rev-parse HEAD').toString().trimEnd();
 const shortCommitHash = execSync('git rev-parse --short HEAD').toString().trimEnd();
@@ -20,12 +21,13 @@ export default defineConfig({
           plugins: ['@emotion/babel-plugin'],
         },
       }),
-      viteTsconfigPaths()
+      viteTsconfigPaths(),
+      EnvironmentPlugin("all")
     ],
     define: {
       'process.platform': JSON.stringify(process.platform),
-      "import.meta.env.VITE_GIT_COMMIT_HASH": JSON.stringify(commitHash),
-      "import.meta.env.VITE_GIT_SHORT_COMMIT_HASH": JSON.stringify(shortCommitHash),
+      "process.env.VITE_GIT_COMMIT_HASH": JSON.stringify(commitHash),
+      "process.env.VITE_GIT_SHORT_COMMIT_HASH": JSON.stringify(shortCommitHash),
     },
     server: {    
         // this ensures that the browser opens upon server start

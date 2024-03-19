@@ -10,13 +10,13 @@ type PBLinkProps = {
 export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
 
 const Version = () => {
-    if(!import.meta.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
+    if(!process.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
     const {t} = useTranslation("footer")
-    const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${import.meta.env.VITE_GIT_COMMIT_HASH}`
+    const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${process.env.VITE_GIT_COMMIT_HASH}`
     return <Stack direction="row">
-      {t("version")} {import.meta.env.VITE_APP_VERSION}
+      {t("version")} {process.env.VITE_APP_VERSION}
       <Code/>
-      <PBLink to={repoUrl} target="_blank">{import.meta.env.VITE_GIT_SHORT_COMMIT_HASH}</PBLink>
+      <PBLink to={repoUrl} target="_blank">{process.env.VITE_GIT_SHORT_COMMIT_HASH}</PBLink>
     </Stack>
 }
 
