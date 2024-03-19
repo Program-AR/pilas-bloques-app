@@ -12,7 +12,7 @@ import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
 
 export const ToolBoxEditor = () => {
 
-    const shouldShow = process.env.NODE_ENV !== 'production'
+    const shouldShow = import.meta.env.NODE_ENV !== 'production'
 
     const { t } = useTranslation('creator');
 

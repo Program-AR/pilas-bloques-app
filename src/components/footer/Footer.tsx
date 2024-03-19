@@ -1,7 +1,6 @@
 import { Stack, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link, LinkProps } from "react-router-dom";
-import GitInfo from 'react-git-info/macro';
 import { Code } from "@mui/icons-material";
 
 type PBLinkProps = {
@@ -11,14 +10,13 @@ type PBLinkProps = {
 export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
 
 const Version = () => {
-    if(!process.env.REACT_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
+    if(!import.meta.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
     const {t} = useTranslation("footer")
-    const gitInfo = GitInfo()
-    const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${gitInfo.commit.hash}`
+    const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${import.meta.env.VITE_GIT_COMMIT_HASH}`
     return <Stack direction="row">
-      {t("version")} {process.env.REACT_APP_VERSION}
+      {t("version")} {import.meta.env.VITE_APP_VERSION}
       <Code/>
-      <PBLink to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</PBLink>
+      <PBLink to={repoUrl} target="_blank">{import.meta.env.VITE_GIT_SHORT_COMMIT_HASH}</PBLink>
     </Stack>
 }
 
