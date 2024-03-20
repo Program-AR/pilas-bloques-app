@@ -56,6 +56,7 @@
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^2.2.2",
     "mini-css-extract-plugin": "^2.4.5",
+    "pilas-bloques-exercises": "^1.4.31",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
@@ -90,7 +91,7 @@
     "workbox-webpack-plugin": "^6.4.1"
   },
   "scripts": {
-    "postinstall": "sh scripts/copyEmberPB.sh",
+    "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
     "test": "node scripts/test.js",
     "prestart": "node scripts/setEmberRoot.js public/emberPB ''",
     "start": "node scripts/start.js",
@@ -128,6 +129,7 @@
     ]
   },
   "devDependencies": {
+    "canvas": "^2.11.2",
     "electron": "22.3.25",
     "electron-packager": "^17.1.1",
     "electron-rebuild": "^3.2.9",

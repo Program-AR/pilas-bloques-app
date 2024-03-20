@@ -1,8 +1,8 @@
-import { BlockType } from "./components/blocks"
+import { BlockType } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
 
-Blockly.setLocale(Es);
+Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
 type BlocklyBlockDefinition = {
     message0: string

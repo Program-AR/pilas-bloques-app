@@ -20,6 +20,7 @@ import { useThemeContext } from './theme/ThemeContext';
 import { SharedChallengeView } from './components/creator/SharedChallengeView';
 import { PilasBloquesApi } from './pbApi';
 import { Ember } from './emberCommunication';
+import { ChallengeView } from './components/challengeView/ChallengeView';
 import { PBSession } from './pbSession';
 
 const AnalyticsComponent = () => {
@@ -65,6 +66,11 @@ const router = createHashRouter([{
       await PBSession.saveUserIP()
       return null
     }
+  },
+  {
+    path: "/desafioNuevo/:id",
+    element: <ChallengeView/>,
+    errorElement: <PBError />
   },
   {
     path: "/desafios/:challengeName",

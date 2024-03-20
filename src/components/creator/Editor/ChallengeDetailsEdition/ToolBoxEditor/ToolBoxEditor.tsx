@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { LocalStorage } from "../../../../../localStorage";
-import { categories, availableBlocksFor } from "../../../../blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../../modalDialog/GenericModalDialog";
 import { PROCEDURE_CATEGORY } from "../../SceneEdition/mapUtils";
 import { DetailsEditionButton } from "../DetailsEditionButton";
-import { ToolboxPreview } from "./ToolboxPreview";
 import { Stack } from "@mui/material";
 import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
+import { ToolboxPreview } from "./ToolboxPreview";
+import { availableBlocksFor, categories } from "../../../../blockly/blocks";
 
 export const ToolBoxEditor = () => {
 
@@ -56,13 +56,18 @@ export const ToolBoxEditor = () => {
             isOpen={open}
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
-            title={t('toolbox.title')}>
+            title={t('toolbox.title')}
+            dialogProps={{ maxWidth: "md"}} >
             <Stack direction="row">
-                <div>
+                <Stack>
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
-                </div>
-                {shouldShow ? <ToolboxPreview blocksToPreview={toolBoxItems} categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>:<></>}
+                </Stack>
+                {shouldShow ? <ToolboxPreview 
+                    blockIds={toolBoxItems}
+                    categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>
+                    :<></>
+                }
             </Stack>
         </GenericModalDialog>
     </>

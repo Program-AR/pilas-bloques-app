@@ -1,6 +1,6 @@
 import { Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material"
 import { useTranslation } from "react-i18next"
-import { BlockType, categories } from "../../../../blocks"
+import { BlockType, categories } from "../../../../blockly/blocks"
 import { ToolboxState } from "./ToolBoxEditor"
 
 type BlocksSelectorProps = {

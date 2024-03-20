@@ -19,7 +19,7 @@ export interface ModalDialogProps {
     onConfirm: () => void;
     onCancel: () => void;
     title: string;
-    dialogProps?: DialogProps;
+    dialogProps?: Partial<DialogProps>;
     children?: JSX.Element;
     isDraggable?: boolean;
   }

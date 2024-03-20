@@ -1,6 +1,7 @@
 import { MarkdownInput } from "./MarkdownInput"
-import { MarkdownResult } from "./MarkdownResult"
+import { StatementDescription } from "../../../challengeView/StatementDescription"
 import { useState } from "react"
+import { LocalStorage } from "../../../../localStorage"
 
 type MarkdownEditorProps = {
     statement: string
@@ -26,6 +27,10 @@ export const MarkdownEditor = (props: MarkdownEditorProps) => {
     // Se aplica esta solucion https://stackoverflow.com/questions/12238396/how-to-disable-google-translate-from-html-in-chrome/12238414#12238414
     return <span translate="no">
         <MarkdownInput setShowStatement={setShowStatement} statement={props.statement} clue={props.clue} setClue={props.setClue} setStatement={props.setStatement}/>
-        <MarkdownResult text={textToShow} setShowStatement={setShowStatement} clueIsEnabled={!!props.clue}/>
+        <StatementDescription 
+            text={textToShow}
+            setShowStatement={setShowStatement}
+            clueIsEnabled={!!props.clue}
+            urlImage={`imagenes/sceneImages/${LocalStorage.getCreatorChallenge()!.scene.type}/tool.png`} />
     </span>
 }

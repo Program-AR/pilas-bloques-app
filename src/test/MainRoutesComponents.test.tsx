@@ -7,7 +7,7 @@ import { Home } from "../components/home/Home"
 import { ImportedChallengeView } from "../components/ImportedChallengeView"
 import { PasswordRecovery } from "../components/PasswordRecovery"
 import { Register } from "../components/header/register/Register"
-import { renderComponent } from "./testUtils"
+import { expectToThrow, renderComponent } from "./testUtils"
 import { validChallenge } from "./serializedChallenge.test"
 test('Renders home without errors', async () => {
   expect(() => renderComponent(<Home />)).not.toThrow()
@@ -25,8 +25,10 @@ test('Renders challenge by name without errors', async () => {
 })
 
 test('Throws error on render challenge by unknown name', async () => {
-  expect(() => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'JuanSalvoContraLosManos'))
-    .toThrow("Challenge with name \"JuanSalvoContraLosManos\" does not exist")
+  expectToThrow(
+    () => renderComponent(<ChallengeByName />, '/desafios/:challengeName', 'JuanSalvoContraLosManos'),
+    "Challenge with name \"JuanSalvoContraLosManos\" does not exist"
+  )
 })
 
 test('Renders legacy challenges without errors', async () => {
@@ -34,7 +36,10 @@ test('Renders legacy challenges without errors', async () => {
 })
 
 test('Throws error on non existing challenge Id', async () => {
-  expect(() => renderComponent(<ChallengeById/>, '/desafio/:id', '99')).toThrow("Challenge with id \"99\" does not exist")
+  expectToThrow(
+    () => renderComponent(<ChallengeById/>, '/desafio/:id', '99'),
+    "Challenge with id \"99\" does not exist"
+  )
 })
 
 test('Renders imported challenge without errors', async () => {

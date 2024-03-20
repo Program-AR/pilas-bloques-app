@@ -12,7 +12,7 @@ import { IconButtonTooltip } from "./creator/Editor/SceneEdition/IconButtonToolt
 import { useThemeContext } from "../theme/ThemeContext";
 
 
-const ChallengeBreadcrumb = (path: PathToChallenge) => {
+export const ChallengeBreadcrumb = (path: PathToChallenge) => {
 
     const { t } = useTranslation(["books", "challenges", "chapters", "groups", "others"])
     const {theme} = useThemeContext()

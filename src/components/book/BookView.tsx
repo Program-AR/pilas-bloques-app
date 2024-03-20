@@ -109,6 +109,6 @@ const ChallengeCover = ({challenge}: {challenge: Challenge}) => {
         width="100px"
         style={{borderRadius: theme.shape.borderRadius}}
         alt="challenge" 
-        src={`imagenes/challengeCovers/${challenge.id}.png`} 
+        src={challenge.imageURL()} 
     />
 }
