@@ -9,8 +9,8 @@ import { ThemeContextProvider } from './theme/ThemeContext';
 import { PBProgress } from "./components/PBProgress";
 
 
-if (process.env.REACT_APP_GOOGLE_ANALYTICS_KEY) {
-  ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_KEY);
+if (process.env.VITE_APP_GOOGLE_ANALYTICS_KEY) {
+  ReactGA.initialize(process.env.VITE_APP_GOOGLE_ANALYTICS_KEY);
 }
 
 const root = ReactDOM.createRoot(

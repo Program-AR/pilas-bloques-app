@@ -1,6 +1,10 @@
-const pilasweb = require('pilasweb/package.json');
-const pilasBloquesExercises = require('pilas-bloques-exercises/package.json');
-const shell = require('shelljs');
+import shell from 'shelljs'
+import fs from 'fs'
+
+function version(packageName) {
+  const pack = fs.readFileSync('node_modules/'+packageName+'/package.json')
+  return JSON.parse(pack).version
+}
 
 function copyToPublic(dependency){
   const LIBS_PATH = `public/libs/`
@@ -9,13 +13,13 @@ function copyToPublic(dependency){
   shell.cp("-rf", `node_modules/${dependency}/dist/*`, LIBS_PATH )
 }
 
-function changeVersion(dependency, version){
+function changeVersion(dependency){
   copyToPublic(dependency)
   console.log(`Changing ${dependency} version in pilas.html`)
   const regex = new RegExp(`${dependency}.js\\?v=[0-9]*.[0-9]*.[0-9]*`)
-  const replacement = `${dependency}.js?v=${version}`
+  const replacement = `${dependency}.js?v=${version(dependency)}`
   shell.sed('-i', regex, replacement, 'public/pilas.html')
 }
 
-changeVersion('pilasweb', pilasweb.version)
-changeVersion('pilas-bloques-exercises', pilasBloquesExercises.version)
+changeVersion('pilasweb')
+changeVersion('pilas-bloques-exercises')

@@ -12,6 +12,7 @@
 /build
 /public/emberPB
 /binaries
+/dist
 
 # misc
 /tmp

@@ -7,7 +7,7 @@ let rootURL = process.argv[3]
 if(rootURL === undefined) throw "You must pass the root URL of the ember project to this script"
 
 console.log(`Replacing Ember ENV. Index: ${indexPath}. rootURL: ${rootURL}`)
-const fs = require("fs")
+import fs from "fs"
 // Getting index contents
 const oldIndex = fs.readFileSync(indexPath).toString()
 // Getting Ember environment current configuration as a string
