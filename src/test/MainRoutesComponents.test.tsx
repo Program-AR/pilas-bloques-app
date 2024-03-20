@@ -6,7 +6,7 @@ import { ActorSelection } from "../components/creator/ActorSelection/ActorSelect
 import { Home } from "../components/home/Home"
 import { ImportedChallengeView } from "../components/ImportedChallengeView"
 import { PasswordRecovery } from "../components/PasswordRecovery"
-import { Register } from "../components/Register"
+import { Register } from "../components/header/register/Register"
 import { expectToThrow, renderComponent } from "./testUtils"
 import { validChallenge } from "./serializedChallenge.test"
 test('Renders home without errors', async () => {

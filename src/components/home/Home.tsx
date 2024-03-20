@@ -14,7 +14,7 @@ const RegisterButton: React.FC = () => {
     return <>
         <Button 
             component={Link} 
-            to="register" 
+            to="registrar" 
             variant="outlined" 
             size="large"
             style={{color: "white", borderColor: "white", borderRadius:"20px", textTransform:"none"}} 

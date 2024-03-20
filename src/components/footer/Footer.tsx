@@ -8,7 +8,7 @@ type PBLinkProps = {
   children: React.ReactNode
 }
 
-const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
+export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
 
 const Version = () => {
     if(!process.env.REACT_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
@@ -21,6 +21,8 @@ const Version = () => {
       <PBLink to={repoUrl} target="_blank">{gitInfo.commit.shortHash}</PBLink>
     </Stack>
 }
+
+export const termsAndConditionsLink = "https://docs.google.com/document/u/1/d/e/2PACX-1vTNX9zl8txZmuINNz2qODrodoQhvr0o2-r3T_6yFp6quEpidmPz6ORx1HSjo2KNUg6MnyHPN-Ti44z1/pub"
 
 const Links = () =>{
     const {t} = useTranslation("footer")
