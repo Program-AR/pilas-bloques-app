@@ -113,7 +113,7 @@ jobs:
         with:
           node-version-file: ".nvmrc"
       - run: npm install
-      - run: npm run build:surge
+      - run: npm run build
       - name: Deploy to pbdevelop.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
