@@ -118,6 +118,6 @@ jobs:
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: 'pbdevelop.surge.sh'
-          project: 'build/'
+          project: 'dist/'
           login: ${{ secrets.SURGE_LOGIN }}
           token: ${{ secrets.SURGE_TOKEN }}
