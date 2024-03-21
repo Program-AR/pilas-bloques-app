@@ -105,7 +105,7 @@ jobs:
       VITE_APP_PB_APP_URL: ${{ secrets.APP_URL }}
       VITE_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       VITE_APP_VERSION: ${{github.ref_name}}
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    if: github.event_name == 'push'
     needs: test
     steps:
       - uses: actions/checkout@v3
