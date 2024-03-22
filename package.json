@@ -109,7 +109,7 @@
     "pack:win": "bash ./scripts/package.sh -win",
     "pack:win_zip": "bash ./scripts/package.sh -win_zip",
     "pack:html": "bash ./scripts/package.sh -html",
-    "clean": "rm -rf node_modules build binaries",
+    "clean": "rm -rf node_modules dist binaries",
     "release": "release-it --only-version",
     "preview": "vite preview"
   },
