@@ -2,6 +2,14 @@
 
 const { app, BrowserWindow } = require('electron')
 
+/* ECM Module needed
+const path = require('path');
+const { fileURLToPath } = require('url');
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+*/
+
 function createWindow() {
 
   // Create the browser window.
@@ -15,7 +23,7 @@ function createWindow() {
 
   // and load the index.html of the app. 
   win.loadURL('file://' + __dirname + '/index.html')
-  //win.webContents.openDevTools({ mode: 'detach' })
+  // win.webContents.openDevTools({ mode: 'detach' })
 }
 
 // This method will be called when Electron has finished

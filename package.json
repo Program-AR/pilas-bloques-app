@@ -10,7 +10,6 @@
     "email": "info@program.ar",
     "url": "http://program.ar"
   },
-  "type": "module",
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/babel-plugin": "^11.11.0",
@@ -98,8 +97,9 @@
     "test": "jest",
     "prestart": "node scripts/setEmberRoot.js public/emberPB ''",
     "start": "vite",
+    "start:host": "vite --host",
     "start:emberDev": "sh ./scripts/localEmber.sh",
-    "start:electron": "electron ./build",
+    "start:electron": "electron ./dist",
     "prebuild": "node scripts/setEmberRoot.js public/emberPB ''",
     "build": "tsc && vite build",
     "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
@@ -132,10 +132,10 @@
     ]
   },
   "devDependencies": {
-    "canvas": "^2.11.2",
     "@types/jest": "^29.5.12",
-    "electron": "22.3.25",
-    "electron-packager": "^17.1.1",
+    "canvas": "^2.11.2",
+    "electron": "^22.3.25",
+    "electron-packager": "^17.1.2",
     "electron-rebuild": "^3.2.9",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
