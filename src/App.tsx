@@ -9,8 +9,8 @@ import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import { About } from './components/about/About';
 import { PageNotFound } from './components/pageNotFound/PageNotFound';
-import { PasswordRecovery } from './components/PasswordRecovery';
-import { Register } from './components/header/register/Register';
+import { PasswordRecovery, PasswordRecovery2 } from './components/users/passwordRecovery/PasswordRecovery';
+import { Register } from './components/users/register/Register';
 import { ActorSelection } from './components/creator/ActorSelection/ActorSelection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
 import { useLocation } from 'react-router-dom';
@@ -81,8 +81,12 @@ const router = createHashRouter([{
     element: <About/>
   },
   {
-    path: "/password-recovery",
+    path: "/password-recovery2",
     element: <PasswordRecovery/>
+  },
+  {
+    path: "/password-recovery",
+    element: <PasswordRecovery2/>
   },
   {
     path: "/registrar",
