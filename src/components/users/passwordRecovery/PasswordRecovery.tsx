@@ -65,7 +65,7 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
                     required
                 />
                 <Typography sx={{ width: '70%', textAlign: 'center' }}>{t("instructions")} <PBMailLink /></Typography>
-                {loading ? <CircularProgress/> : <Button variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>}
+                {loading ? <CircularProgress /> : <Button variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>}
             </>
         }
     </UserCard>
@@ -78,6 +78,7 @@ type NewPasswordProps = {
 
 const NewPassword = ({ setServerError, token }: NewPasswordProps) => {
     const { t } = useTranslation('passwordRecovery');
+    const navigate = useNavigate()
 
     const [validPassword, setValidPassword] = useState<boolean>(false)
     const [newPassword, setNewPassword] = useState<string>('')
@@ -92,6 +93,7 @@ const NewPassword = ({ setServerError, token }: NewPasswordProps) => {
         event.preventDefault()
         try {
             await PilasBloquesApi.changePassword(newPassword, token)
+            navigate('/#')
         } catch (error: any) {
             setServerError(true)
         }
@@ -113,6 +115,7 @@ const NewPassword = ({ setServerError, token }: NewPasswordProps) => {
 export const ChangePassword = () => {
 
     const navigate = useNavigate()
+    const { t } = useTranslation('passwordRecovery');
     const [searchParams] = useSearchParams();
     const token: string | null = searchParams.get("token")
 
@@ -122,10 +125,12 @@ export const ChangePassword = () => {
         navigate(`/recuperar-contrasenia?token=${token}`)
     }
 
-    const { t } = useTranslation('passwordRecovery');
-    return <UserCard title={isTokenValid ? t("passwordRecovery") : t("expiredTokenTitle")} handleSubmit={handleSubmit}>
-        {isTokenValid ? <></>
-            : <Typography>{t("expiredTokenMessage")}<Link href='/#/recuperar-contrasenia'>{t("expiredTokenLink")}</Link></Typography>}
-        <Button disabled={!isTokenValid} variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
-    </UserCard>
+    return <>
+        <Header />
+        <UserCard title={isTokenValid ? t("stablishPassword") : t("expiredTokenTitle")} handleSubmit={handleSubmit}>
+            {isTokenValid ? <></>
+                : <Typography>{t("expiredTokenMessage")}<Link href='/#/recuperar-contrasenia'>{t("expiredTokenLink")}</Link></Typography>}
+            <Button disabled={!isTokenValid} variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
+        </UserCard>
+    </>
 }
