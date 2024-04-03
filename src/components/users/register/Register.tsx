@@ -1,5 +1,5 @@
 import { Button, Collapse, Paper, Stack, Typography, Checkbox, FormControlLabel } from "@mui/material"
-import { FC, FormEvent, useState } from "react"
+import { FC, FormEvent, useEffect, useState } from "react"
 import styles from './register.module.css';
 import { useTranslation } from "react-i18next";
 import { RegisterUser, PilasBloquesApi } from "../../../pbApi";
@@ -22,7 +22,7 @@ export const Register: FC = () => {
   const [userExists, setUserExists] = useState<boolean>(false)
   const [validUsername, setValidUsername] = useState<boolean>(true)
   const [validParentId, setValidParentId] = useState<boolean>(true)
-  const [validPassword, setValidPassword] = useState<PasswordStrength>(PasswordStrength.WEAK)
+  const [validPassword, setValidPassword] = useState<boolean>(false)
   const [confirmPasswordOk, setConfirmPasswordOk] = useState<boolean>(false)
   const [termsAndConditions, setTermAndConditions] = useState<boolean>(false)
   const [wrongRegister, setWrongRegister] = useState<boolean>(false)
@@ -54,6 +54,7 @@ export const Register: FC = () => {
     validUsername &&
     !userExists &&
     confirmPasswordOk &&
+    validPassword &&
     termsAndConditions
 
   const handleOnClose = () => {
@@ -82,7 +83,6 @@ export const Register: FC = () => {
   }
 
   const handlePassword = (password: string) => {
-    setValidPassword(testingPasswordStrength(password))
     setRegisterUser({ ...registerUser!, password: password })
   }
 
@@ -109,27 +109,13 @@ export const Register: FC = () => {
         onChange={props => handleUser(props.target.value)}
         helperText={userExists ? t('errorUsername') : !validUsername ? t('validUsername') : ''}
         required />
-      <UserTextField
-        label={t('password')}
-        type="password"
-        onChange={props => handlePassword(props.target.value)}
-        helperText={registerUser?.password && (validPassword !== PasswordStrength.STRONG ? t('passwordRequirements') : t('passwordOk'))}
-        FormHelperTextProps={{
-          style:
-          {
-            color: (validPassword === PasswordStrength.WEAK ? theme.palette.error.main :
-              (validPassword === PasswordStrength.MEDIUM ? theme.palette.warning.main :
-                theme.palette.success.main))
-          }
-        }}
-        required />
-      <UserTextField
-        label={t('confirmPassword')}
-        type="password"
-        error={(registerUser?.password ? !confirmPasswordOk : false)}
-        onChange={props => setConfirmPasswordOk(registerUser?.password === props.target.value)}
-        helperText={registerUser?.password && !confirmPasswordOk ? t('errorPassword') : ''}
-        required />
+      <PasswordInput
+        password={registerUser?.password}
+        handlePassword={handlePassword}
+        setValidPassword={setValidPassword}
+        confirmPasswordOk={confirmPasswordOk}
+        setConfirmPasswordOk={setConfirmPasswordOk}
+      />
       <UserTextField
         label={t('email')}
         type="email"
@@ -165,7 +151,7 @@ export const Register: FC = () => {
           <Typography>{t("whyData.dataProtectionLaw")}&nbsp;
             <PBLink target="_blank" to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>
           <Typography>{t("whyData.parentalContact")}&nbsp;
-            <PBMailLink/>&nbsp;
+            <PBMailLink />&nbsp;
             {t("whyData.whyContact")}</Typography>
         </Collapse>
       </Stack>
@@ -186,5 +172,54 @@ export const Register: FC = () => {
         <Button variant="contained" color="error" onClick={handleOnClose} href="#" target="">{t('cancel')}</Button>
       </Stack>
     </UserCard>
+  </>
+}
+
+type PasswordInputProps = {
+  password: string | undefined,
+  handlePassword: (password: string) => void,
+  setValidPassword: (isValid: boolean) => void,
+  confirmPasswordOk: boolean,
+  setConfirmPasswordOk: (confirmPassword: boolean) => void
+}
+
+export const PasswordInput = ({ password, setValidPassword, handlePassword, confirmPasswordOk, setConfirmPasswordOk }: PasswordInputProps) => {
+  const { t } = useTranslation('register');
+  const { theme } = useThemeContext()
+
+  const [passwordStrength, setPasswordStrength] = useState<PasswordStrength>(PasswordStrength.WEAK)
+
+  const handlePasswordInput = (password: string) => {
+    setPasswordStrength(testingPasswordStrength(password))
+    handlePassword(password)
+  }
+
+  useEffect( () => {
+    if(passwordStrength === PasswordStrength.STRONG) setValidPassword(true)
+  }, [passwordStrength])
+
+  return <>
+    <UserTextField
+      label={t('password')}
+      type="password"
+      onChange={props => handlePasswordInput(props.target.value)}
+      helperText={password && (passwordStrength !== PasswordStrength.STRONG ? t('passwordRequirements') : t('passwordOk'))}
+      FormHelperTextProps={{
+        style:
+        {
+          color: (passwordStrength === PasswordStrength.WEAK ? theme.palette.error.main :
+            (passwordStrength === PasswordStrength.MEDIUM ? theme.palette.warning.main :
+              theme.palette.success.main))
+        }
+      }}
+      required />
+
+    <UserTextField
+      label={t('confirmPassword')}
+      type="password"
+      error={(password ? !confirmPasswordOk : false)}
+      onChange={props => setConfirmPasswordOk(password === props.target.value)}
+      helperText={password && !confirmPasswordOk ? t('errorPassword') : ''}
+      required />
   </>
 }
