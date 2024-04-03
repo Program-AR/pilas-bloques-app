@@ -9,7 +9,7 @@ import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import { About } from './components/about/About';
 import { PageNotFound } from './components/pageNotFound/PageNotFound';
-import { PasswordRecovery, PasswordRecovery2 } from './components/users/passwordRecovery/PasswordRecovery';
+import { PasswordRecovery } from './components/users/passwordRecovery/PasswordRecovery';
 import { Register } from './components/users/register/Register';
 import { ActorSelection } from './components/creator/ActorSelection/ActorSelection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
@@ -81,12 +81,8 @@ const router = createHashRouter([{
     element: <About/>
   },
   {
-    path: "/password-recovery2",
-    element: <PasswordRecovery/>
-  },
-  {
     path: "/password-recovery",
-    element: <PasswordRecovery2/>
+    element: <PasswordRecovery/>
   },
   {
     path: "/registrar",

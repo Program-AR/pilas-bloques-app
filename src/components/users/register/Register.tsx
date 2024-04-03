@@ -1,4 +1,4 @@
-import { Button, Collapse, Paper, Stack, TextField, Typography, Checkbox, FormControlLabel } from "@mui/material"
+import { Button, Collapse, Paper, Stack, Typography, Checkbox, FormControlLabel } from "@mui/material"
 import { FC, FormEvent, useState } from "react"
 import styles from './register.module.css';
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,7 @@ import { Header } from "../../header/Header";
 import { avatars } from "../login/SessionButton";
 import { useNavigate } from "react-router-dom";
 import { PasswordStrength, testingPasswordStrength } from "./StrengthPassword";
-import { PBMailLink, UserCard } from "../passwordRecovery/PasswordRecovery";
+import { PBMailLink, UserCard, UserTextField } from "../userForm";
 
 export const Register: FC = () => {
   const { theme } = useThemeContext()
@@ -103,18 +103,14 @@ export const Register: FC = () => {
   return <>
     <Header />
     <UserCard title={t('register')} handleSubmit={handleSubmit}>
-      <TextField
-        className={styles['input']}
+      <UserTextField
         label={t('username')}
-        variant="standard"
         error={userExists || !validUsername}
         onChange={props => handleUser(props.target.value)}
         helperText={userExists ? t('errorUsername') : !validUsername ? t('validUsername') : ''}
         required />
-      <TextField
-        className={styles['input']}
+      <UserTextField
         label={t('password')}
-        variant="standard"
         type="password"
         onChange={props => handlePassword(props.target.value)}
         helperText={registerUser?.password && (validPassword !== PasswordStrength.STRONG ? t('passwordRequirements') : t('passwordOk'))}
@@ -127,19 +123,15 @@ export const Register: FC = () => {
           }
         }}
         required />
-      <TextField
-        className={styles['input']}
+      <UserTextField
         label={t('confirmPassword')}
-        variant="standard"
         type="password"
         error={(registerUser?.password ? !confirmPasswordOk : false)}
         onChange={props => setConfirmPasswordOk(registerUser?.password === props.target.value)}
         helperText={registerUser?.password && !confirmPasswordOk ? t('errorPassword') : ''}
         required />
-      <TextField
-        className={styles['input']}
+      <UserTextField
         label={t('email')}
-        variant="standard"
         type="email"
         onChange={props => setRegisterUser({ ...registerUser!, email: props.target.value })}
         required />
@@ -155,16 +147,12 @@ export const Register: FC = () => {
         <Typography variant="h5">{t('parentalConsent')}</Typography>
         <Typography variant="caption">{t('adult')}</Typography>
       </Stack>
-      <TextField
-        className={styles['input']}
+      <UserTextField
         label={t('parentName')}
-        variant="standard"
         onChange={props => setRegisterUser({ ...registerUser!, parentName: props.target.value })}
         required />
-      <TextField
-        className={styles['input']}
+      <UserTextField
         label={t('parentId')}
-        variant="standard"
         type="number"
         error={!validParentId}
         onChange={props => handleParentId(props.target.value)}
