@@ -1,12 +1,11 @@
-import { useSearchParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
 import { Header } from "../../header/Header"
-import { Button, Typography } from "@mui/material";
+import { Button, Link, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
 import { PilasBloquesApi } from "../../../pbApi";
 import { useTranslation } from "react-i18next";
 import { PBMailLink, UserCard, UserTextField } from "../userForm";
-import { useThemeContext } from "../../../theme/ThemeContext";
 import { PasswordInput } from "../register/Register";
 
 export const PasswordRecovery = () => {
@@ -21,7 +20,7 @@ export const PasswordRecovery = () => {
         <Header />
         {!token ?
             <SendEmail setServerError={setServerError} />
-            : <NewPassword setServerError={setServerError}/>}
+            : <NewPassword setServerError={setServerError} token={token} />}
         <DialogSnackbar
             open={serverError}
             onClose={() => setServerError(false)}
@@ -29,11 +28,11 @@ export const PasswordRecovery = () => {
     </>
 }
 
-type PasswordRecoveryProps = {
+type SendEmailProps = {
     setServerError: (serverError: boolean) => void,
 }
 
-const SendEmail = ({ setServerError }: PasswordRecoveryProps) => {
+const SendEmail = ({ setServerError }: SendEmailProps) => {
 
     const { t } = useTranslation('passwordRecovery');
     const [userIdentifier, setUserIdentifier] = useState<string>('')
@@ -68,7 +67,12 @@ const SendEmail = ({ setServerError }: PasswordRecoveryProps) => {
     </UserCard>
 }
 
-const NewPassword = ({ setServerError }: PasswordRecoveryProps) => {
+type NewPasswordProps = {
+    setServerError: (serverError: boolean) => void,
+    token: string
+}
+
+const NewPassword = ({ setServerError, token }: NewPasswordProps) => {
     const { t } = useTranslation('passwordRecovery');
 
     const [validPassword, setValidPassword] = useState<boolean>(false)
@@ -83,7 +87,7 @@ const NewPassword = ({ setServerError }: PasswordRecoveryProps) => {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         try {
-            await PilasBloquesApi.changePassword(newPassword)
+            await PilasBloquesApi.changePassword(newPassword, token)
         } catch (error: any) {
             setServerError(true)
         }
@@ -99,5 +103,25 @@ const NewPassword = ({ setServerError }: PasswordRecoveryProps) => {
         />
         <Button disabled={!(validPassword && confirmPasswordOk)} variant="contained" color="success" type='submit'>{t("changePassword")}</Button>
 
+    </UserCard>
+}
+
+export const ChangePassword = () => {
+
+    const navigate = useNavigate()
+    const [searchParams] = useSearchParams();
+    const token: string | null = searchParams.get("token")
+
+    const isTokenValid = useLoaderData()
+
+    const handleSubmit = () => {
+        navigate(`/recuperar-contrasenia?token=${token}`)
+    }
+
+    const { t } = useTranslation('passwordRecovery');
+    return <UserCard title={isTokenValid ? t("passwordRecovery") : t("expiredTokenTitle")} handleSubmit={handleSubmit}>
+        {isTokenValid ? <></>
+            : <Typography>{t("expiredTokenMessage")}<Link href='/#/recuperar-contrasenia'>{t("expiredTokenLink")}</Link></Typography>}
+        <Button disabled={!isTokenValid} variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
     </UserCard>
 }
