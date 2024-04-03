@@ -1,11 +1,14 @@
 import { useSearchParams } from "react-router-dom";
 import { EmberView } from "../../emberView/EmberView"
 import { Header } from "../../header/Header"
-import { Divider, Stack, TextField, TextFieldProps, Typography } from "@mui/material";
+import { Button, Divider, Link, Stack, TextField, TextFieldProps, Typography } from "@mui/material";
 import { PBCard } from "../../PBCard";
 import { useThemeContext } from "../../../theme/ThemeContext";
 import styles from './userForm.module.css';
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
+import { PilasBloquesApi } from "../../../pbApi";
+import { useTranslation } from "react-i18next";
 
 export const PasswordRecovery = () => {
     const [searchParams] = useSearchParams();
@@ -23,18 +26,52 @@ export const PasswordRecovery2 = () => {
     const [searchParams] = useSearchParams();
     const token: string | null = searchParams.get("token")
 
-    const tokenParam: string = token ? `?token=${token}` : ""
-    const { theme } = useThemeContext()
+    const { t } = useTranslation('passwordRecovery');
 
+
+    const [serverError, setServerError] = useState<boolean>(false)
+    const [mailSent, setMailSent] = useState<boolean>(false)
+    const [userIdentifier, setUserIdentifier] = useState<string>('')
+
+
+
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        try {
+            console.log(token)
+            await PilasBloquesApi.passwordRecovery(userIdentifier)
+            setMailSent(true)
+        } catch (error: any) {
+            setServerError(true)
+        }
+    }
 
     return <>
         <Header />
-        <UserCard title="Recuperar contraseña" handleSubmit={() => { }}>
-            <UserTextField label='Usuario o email' required />
-            <Typography sx={{width: '70%'}}>"Escribí el usuario o el correo electrónico, y te enviaremos a tu casilla las instrucciones para reestablecer tu contraseña. Cualquier problema podés comunicarte a pilasbloques@program.ar"</Typography>
+        <UserCard title={t("passwordRecovery")} handleSubmit={handleSubmit}>
+            {!mailSent ? <>
+                <UserTextField 
+                    label={t("userIdentifier")}
+                    required
+                    onChange={props => setUserIdentifier(props.target.value)}
+                    />
+                <Typography sx={{ width: '70%', textAlign: 'center' }}>{t("instructions")} <PBMailLink/></Typography>
+                <Button variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
+            </>
+                : <>
+                    <Typography><b>{t('mailSent')} <PBMailLink/></b></Typography>
+                    <Button variant="contained" color="success" href="/#">Regresar al inicio</Button>
+                </>}
         </UserCard>
+        <DialogSnackbar
+            open={serverError}
+            onClose={() => setServerError(false)}
+            message={t('serverError')} />
     </>
 }
+
+export const PBMailLink = () => <Link href="mailto:pilasbloques@program.ar">pilasbloques@program.ar</Link>
 
 type UserCardProps = {
     title: string,
@@ -47,7 +84,7 @@ export const UserCard = (props: UserCardProps) => {
     const { theme } = useThemeContext()
 
     return <>
-        <Stack style={{ justifyContent: 'center', minHeight: '90vh', alignItems: "center", backgroundImage: "url(imagenes/book-background.svg)" }}>
+        <Stack style={{ justifyContent: 'center', minHeight: '100vh', alignItems: "center", backgroundImage: "url(imagenes/book-background.svg)" }}>
             <PBCard style={{ maxWidth: 'calc(var(--creator-max-width)*0.75', padding: theme.spacing(2) }}>
                 <Stack alignItems="center">
                     <Typography variant="h4">{props.title}</Typography>

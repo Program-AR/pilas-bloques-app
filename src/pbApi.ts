@@ -77,6 +77,10 @@ export namespace PilasBloquesApi{
       return await _send('GET', `user-ip`)
     }
 
+    export const passwordRecovery = async (userIdentifier: string) => {
+      return await _send('POST', `password-recovery?username=${userIdentifier}`)
+    }
+
     export const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
 
     async function bodyWithContext<T>(body?: T) {

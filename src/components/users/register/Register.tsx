@@ -1,4 +1,4 @@
-import { Button, Collapse, Link, Paper, Stack, TextField, Typography, Checkbox, FormControlLabel } from "@mui/material"
+import { Button, Collapse, Paper, Stack, TextField, Typography, Checkbox, FormControlLabel } from "@mui/material"
 import { FC, FormEvent, useState } from "react"
 import styles from './register.module.css';
 import { useTranslation } from "react-i18next";
@@ -10,7 +10,7 @@ import { Header } from "../../header/Header";
 import { avatars } from "../login/SessionButton";
 import { useNavigate } from "react-router-dom";
 import { PasswordStrength, testingPasswordStrength } from "./StrengthPassword";
-import { UserCard } from "../passwordRecovery/PasswordRecovery";
+import { PBMailLink, UserCard } from "../passwordRecovery/PasswordRecovery";
 
 export const Register: FC = () => {
   const { theme } = useThemeContext()
@@ -177,7 +177,7 @@ export const Register: FC = () => {
           <Typography>{t("whyData.dataProtectionLaw")}&nbsp;
             <PBLink target="_blank" to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>
           <Typography>{t("whyData.parentalContact")}&nbsp;
-            <Link href="mailto:pilasbloques@program.ar">pilasbloques@program.ar</Link>&nbsp;
+            <PBMailLink/>&nbsp;
             {t("whyData.whyContact")}</Typography>
         </Collapse>
       </Stack>
