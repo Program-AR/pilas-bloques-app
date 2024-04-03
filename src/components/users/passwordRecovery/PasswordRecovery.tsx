@@ -70,7 +70,6 @@ const SendEmail = ({ setServerError }: PasswordRecoveryProps) => {
 
 const NewPassword = ({ setServerError }: PasswordRecoveryProps) => {
     const { t } = useTranslation('passwordRecovery');
-    const { theme } = useThemeContext()
 
     const [validPassword, setValidPassword] = useState<boolean>(false)
     const [newPassword, setNewPassword] = useState<string>('')
@@ -84,7 +83,7 @@ const NewPassword = ({ setServerError }: PasswordRecoveryProps) => {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         try {
-            //await PilasBloquesApi.changePassword(userIdentifier)
+            await PilasBloquesApi.changePassword(newPassword)
         } catch (error: any) {
             setServerError(true)
         }
