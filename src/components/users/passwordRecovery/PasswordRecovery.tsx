@@ -1,6 +1,6 @@
 import { useLoaderData, useNavigate, useSearchParams } from "react-router-dom";
 import { Header } from "../../header/Header"
-import { Button, Link, Typography } from "@mui/material";
+import { Button, CircularProgress, Link, Typography } from "@mui/material";
 import { FormEvent, useState } from "react";
 import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
 import { PilasBloquesApi } from "../../../pbApi";
@@ -37,11 +37,15 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
     const { t } = useTranslation('passwordRecovery');
     const [userIdentifier, setUserIdentifier] = useState<string>('')
     const [mailSent, setMailSent] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         try {
+            setLoading(true)
             await PilasBloquesApi.passwordRecovery(userIdentifier)
+            setLoading(false)
             setMailSent(true)
         } catch (error: any) {
             setServerError(true)
@@ -61,7 +65,7 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
                     required
                 />
                 <Typography sx={{ width: '70%', textAlign: 'center' }}>{t("instructions")} <PBMailLink /></Typography>
-                <Button variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
+                {loading ? <CircularProgress/> : <Button variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>}
             </>
         }
     </UserCard>

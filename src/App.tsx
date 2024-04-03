@@ -1,7 +1,7 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import React, { useEffect } from 'react';
 import './App.css';
-import { createHashRouter, RouterProvider, Outlet, useSearchParams } from "react-router-dom";
+import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Home } from './components/home/Home';
 import { PBError } from './components/pageNotFound/PBError';
 import { ChallengeById, ChallengeByName } from './components/ChallengeView';

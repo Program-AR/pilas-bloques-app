@@ -196,7 +196,7 @@ export const PasswordInput = ({ password, setValidPassword, handlePassword, conf
 
   useEffect( () => {
     if(passwordStrength === PasswordStrength.STRONG) setValidPassword(true)
-  }, [passwordStrength])
+  }, [passwordStrength, setValidPassword])
 
   return <>
     <UserTextField

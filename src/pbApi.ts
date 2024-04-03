@@ -78,7 +78,7 @@ export namespace PilasBloquesApi{
     }
 
     export const passwordRecovery = async (userIdentifier: string) => {
-      return await _send('POST', `password-recovery?username=${userIdentifier}`)
+      return await _send('POST', `password-recovery?userIdentifier=${userIdentifier}`)
     }
 
     export const changePassword = async (password: string, token: string) => {
