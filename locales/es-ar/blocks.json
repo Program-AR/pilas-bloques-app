@@ -1,4 +1,5 @@
 {
+    "preview": "Así se verán tus comandos disponibles",
     "categories": {
         "primitives": "Primitivas",
         "myprocedures": "Mis Procedimientos",
@@ -19,7 +20,7 @@
         "canHere": "¿Hay una lata acá?",
         "cellphoneHere": "¿Hay un celular acá?",
         "chargeCellphone": "Cargar celular",
-        "completeAlternative": "Sino",
+        "completeAlternative": "Si no",
         "down": "Abajo",
         "eatSteak": "Comer churrasco",
         "fillBin": "Llenar tacho",
@@ -56,6 +57,7 @@
         "Procedures": "Usar procedimientos",
         "repairTelescope": "Reparar telescopio",
         "repeat":"Repetir",
+        "times": "veces",
         "right": "Derecha",
         "simpleAlternative": "Si",
         "starHere": "¿Hay una estrella acá?",

@@ -1,4 +1,5 @@
 {
+    "preview": "This is what your available commands will look like",
     "categories": {
         "primitives": "Primitives",
         "myprocedures": "My Procedures",
@@ -56,6 +57,7 @@
         "Procedures": "Use procedures",
         "repairTelescope": "Repair telescope",
         "repeat": "Repeat",
+        "times": "times",
         "right": "Right",
         "simpleAlternative": "If",
         "starHere": "Is there a star here?",

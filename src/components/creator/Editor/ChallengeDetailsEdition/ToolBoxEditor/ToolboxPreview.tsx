@@ -8,9 +8,8 @@ type ToolboxPreviewProps = {
 
 export const ToolboxPreview = ( {categorized, blockIds} : ToolboxPreviewProps ) => {
     return <>
-        <p>Así se verán tus comandos disponibles</p>
         <PBBlocklyWorkspace 
-            sx={{minWidth: "300px"}}
+            sx={{display: "flex", flexDirection:"column", minWidth: "300px", padding:"5px"}}
             blockIds={blockIds} 
             categorized={categorized}
             workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
