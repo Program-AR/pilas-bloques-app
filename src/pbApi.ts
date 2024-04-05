@@ -77,7 +77,26 @@ export namespace PilasBloquesApi{
       return await _send('GET', `user-ip`)
     }
 
-    export const baseURL = window.PBRuntime?.apiURL || process.env.VITE_APP_API_URL
+    export const passwordRecovery = async (userIdentifier: string) => {
+      return await _send('POST', `password-recovery?userIdentifier=${userIdentifier}`)
+    }
+
+    export const changePassword = async (password: string, token: string) => {
+      return await _send('PUT', 'credentials', {password, token})
+        .then(user => LocalStorage.saveUser(user))
+    }
+
+    export const isValidToken = async (token: string) => {
+      let isValid
+      try {
+        isValid = await _send('POST', `valid-token?token=${token}`)
+      }catch(error: any){
+        isValid = false //UNAUTHORIZED 
+      }
+      return isValid
+    }
+
+    export const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
 
     async function bodyWithContext<T>(body?: T) {
       return body ? {

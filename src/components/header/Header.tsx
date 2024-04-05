@@ -1,7 +1,7 @@
 import { AppBar, Grid, Typography } from "@mui/material";
 import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
-import { SessionButton } from "./login/SessionButton";
+import { SessionButton } from "../users/login/SessionButton";
 import { Link } from "react-router-dom";
 import { DarkModeSwitch } from "./DarkModeSwitch";
 import { SimpleReadSwitch } from "./SimpleReadSwitch";
