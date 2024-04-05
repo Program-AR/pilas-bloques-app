@@ -1,12 +1,18 @@
 'use strict';
 
+/* ECM module needed
 import path from 'path';
 import camelcase  from 'camelcase';
+*/
+
+const path = require('path');
+const camelcase = require('camelcase');
+
 
 // This is a custom Jest transformer turning file imports into filenames.
 // http://facebook.github.io/jest/docs/en/webpack.html
 
-const fileTransform = {
+module.exports = {
   process(src, filename) {
     const assetFilename = JSON.stringify(path.basename(filename));
 
@@ -39,4 +45,4 @@ const fileTransform = {
   },
 };
 
-export default fileTransform
+// export default fileTransform // ECM needed

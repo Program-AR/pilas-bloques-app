@@ -1,5 +1,10 @@
+/* ECM module needed
 import shell from 'shelljs'
 import fs from 'fs'
+*/
+
+const shell = require('shelljs')
+const fs = require('fs')
 
 function version(packageName) {
   const pack = fs.readFileSync('node_modules/'+packageName+'/package.json')

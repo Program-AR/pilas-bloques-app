@@ -3,7 +3,7 @@ if(!distPath) throw "You must pass the dist folder path as a parameter to this s
 
 // replaciong the absolute /static/... path to relative static/... path
 // resolves absolute path problems in electron packages 
-let indexContents = require("fs").readFileSync(distPath + "/index.html").toString()
+const fs = require('fs')
+let indexContents = fs.readFileSync(distPath + "/index.html").toString()
 indexContents = indexContents.replaceAll("/static/", "static/") // css and js
-import fs from 'fs'
 fs.writeFileSync(distPath + "/index.html", indexContents)
