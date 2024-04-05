@@ -11,9 +11,10 @@ type PBBlocklyWorkspaceProps = {
   blockIds: string[]
   categorized: boolean
   sx?: PaperProps["sx"]
+  title?: boolean
 } & Partial<BlocklyWorkspaceProps>
 
-export const PBBlocklyWorkspace = ({blockIds, categorized, sx, ...props}: PBBlocklyWorkspaceProps) => {
+export const PBBlocklyWorkspace = ({blockIds, categorized, sx, title, ...props}: PBBlocklyWorkspaceProps) => {
   const {t} = useTranslation("blocks")
     
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
@@ -21,7 +22,7 @@ export const PBBlocklyWorkspace = ({blockIds, categorized, sx, ...props}: PBBloc
   setupBlocklyBlocks(t)
 
   return <PBCard sx={{...sx}}>
-        <Typography>{t('preview')}</Typography>
+        {title && <Typography>{t('preview')}</Typography>}
         <BlocklyWorkspace
           key={blockIds.join("") + categorized} //rerenders on toolbox or categorization changes
           toolboxConfiguration={categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}

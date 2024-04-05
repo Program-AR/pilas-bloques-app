@@ -9,8 +9,9 @@ type ToolboxPreviewProps = {
 export const ToolboxPreview = ( {categorized, blockIds} : ToolboxPreviewProps ) => {
     return <>
         <PBBlocklyWorkspace 
-            sx={{display: "flex", flexDirection:"column", minWidth: "300px", padding:"5px"}}
-            blockIds={blockIds} 
+            sx={{display: "flex", flexDirection:"column", minWidth: "400px", padding:"5px"}}
+            title
+            blockIds={blockIds}
             categorized={categorized}
             workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
             onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox

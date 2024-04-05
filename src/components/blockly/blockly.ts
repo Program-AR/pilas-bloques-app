@@ -60,7 +60,7 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
     colour: primitivesColor,
     previousStatement: '',
     nextStatement: '',
-  args0: [],
+    args0: [],
   })
 
   if (icon) {
@@ -87,7 +87,7 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
   const jsonInit: BlocklyBlockDefinition = (blockDefinition ? blockDefinition : {
     message0: `${message}`,
     colour: sensorsColor,
-    inputsInline: '',
+    inputsInline: true,
     args0: [],
     output: null,
     code: `evaluar(${JSON.stringify(options.funcionSensor)})`
@@ -147,142 +147,8 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
 
 }
 
-const createRepeatBlocks = (t: (key: string) => string) => {
+const createPrimitiveBlocks = (t: (key: string) => string) => {
 
-  Blockly.Blocks['RepetirVacio'] = {
-    init: function () {
-      this.setColour(controlColor);
-      this.setInputsInline(true);
-      this.setPreviousStatement(true);
-      this.setNextStatement(true);
-      this.appendValueInput('count')
-        .setCheck('Number')
-        .appendField(t('blocks.repeat'));
-      this.appendDummyInput()
-        .appendField(t('blocks.times'));
-      this.appendStatementInput('block');
-    },
-    categoryId: 'repetitions',
-  };
-
-  // revisar que los bloques de numero x 10 van a tener que ir con appendField o algo asi... el toolbox no sirve.
-
-  Blockly.Blocks['Repetir'] = {
-    init: Blockly.Blocks['RepetirVacio'].init,
-    categoryId: Blockly.Blocks['RepetirVacio'].categoryId,
-    toolbox: `
-  <block type="repetir">
-    <value name="count">
-      <block type="math_number"><field name="NUM">10</field></block>
-    </value>
-  </block>
-  `
-  };
-
-  Blockly.Blocks['Hasta'] = {
-    init: function () {
-      this.setColour(controlColor);
-      this.setInputsInline(true);
-      this.appendValueInput('condition')
-        .setCheck('Boolean')
-        .appendField(t('blocks.while'));
-      this.appendStatementInput('block');
-      this.setPreviousStatement(true);
-      this.setNextStatement(true);
-    },
-    categoryId: 'repetitions',
-  };
-
-
-  Blockly.Blocks['Si'] = {
-    init: function () {
-      this.setColour(controlColor);
-      this.appendValueInput('condition')
-        .setCheck('Boolean')
-        .appendField(t('blocks.simpleAlternative'));
-      this.setInputsInline(true);
-      this.appendStatementInput('block');
-      this.setPreviousStatement(true);
-      this.setNextStatement(true);
-    },
-    categoryId: 'alternatives',
-  };
-
-  Blockly.Blocks['SiNo'] = {
-    init: function () {
-      this.setColour(controlColor);
-      this.appendValueInput('condition')
-        .setCheck('Boolean')
-        .appendField(t('blocks.simpleAlternative'));
-      this.appendStatementInput('block1');
-      this.setInputsInline(true);
-      this.appendDummyInput()
-        .appendField(t('blocks.completeAlternative'));
-      this.appendStatementInput('block2');
-      this.setPreviousStatement(true);
-      this.setNextStatement(true);
-    },
-    categoryId: 'alternatives',
-  };
-
-}
-
-const createOperatorBlocks = (t: (key: string) => string ) => {
-
-  Blockly.Blocks['OpComparacion'] = {
-    init: Blockly.Blocks['logic_compare'].init,
-    categoryId: 'operators',
-  };
-
-  Blockly.Blocks['OpAritmetica'] = {
-    init: Blockly.Blocks['math_arithmetic'].init,
-    categoryId: 'operators',
-  };
-
-  Blockly.Blocks['param_get'] = {
-    init: Blockly.Blocks['variables_get'].init,
-    categoryId: 'variables',
-  };
-  
-}
-
-export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => ({
-  kind: "categoryToolbox",
-  contents: [
-    {
-      kind: "category",
-      name: `${t('categories.primitives')}`,
-      contents: blocks.filter(block => block.categoryId === "primitives").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.repetitions')}`,
-      contents: blocks.filter(block => block.categoryId === "repetitions").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.alternatives')}`,
-      contents: blocks.filter(block => block.categoryId === "alternatives").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.values')}`,
-      contents: blocks.filter(block => block.categoryId === "values").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.sensors')}`,
-      contents: blocks.filter(block => block.categoryId === "sensors").map(blockTypeToToolboxBlock)
-    }
-  ]
-})
-
-export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
-  kind: "flyoutToolbox",
-  contents: blocks.map(blockTypeToToolboxBlock)
-})
-
-export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createPrimitiveBlock("MoverACasillaArriba", t("blocks.moveUp"), {
     'comportamiento': 'MoverACasillaArriba',
     'argumentos': '{}'
@@ -778,16 +644,16 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
 
   createPrimitiveBlock('MoverA', t(`blocks.moveTo`), { 'comportamiento': '', 'argumentos': '{}' }, '',
     {
-      message0: `%1 ${t(`blocks.moveTo`)}`,
+      message0: `${t(`blocks.moveTo`)} %1`,
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
-      inputsInline: '',
+      inputsInline: true,
       args0: [
         {
           "type": "input_value",
           "name": "direccion",
-            }
+        }
       ],
       code: 'hacer(actor_id, "MovimientoEnCuadricula", {direccionCasilla: $direccion});'
     });
@@ -798,7 +664,7 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
-      inputsInline: '',
+      inputsInline: true,
       args0: [
         {
           "type": "input_value",
@@ -814,7 +680,7 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
-      inputsInline: '',
+      inputsInline: true,
       args0: [
         {
           "type": "input_value",
@@ -830,7 +696,7 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
-      inputsInline: '',
+      inputsInline: true,
       args0: [
         {
           "type": "input_value",
@@ -839,7 +705,9 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
       ],
       code: 'hacer(actor_id, "SaltarHaciaAdelante", {distancia: $longitud, alturaDeseada: 50, velocidad_inicial: 20, nombreAnimacion: "saltar", voltearAlIrAIzquierda: false});'
     });
+}
 
+const createSensorBlocks = (t: (key: string) => string) => {
   createSensorBlock('TocandoPulpito', t('blocks.pulpitoBallHere'), {
     'funcionSensor': 'tocando("Pulpito")',
   }, 'icono.pelota-pulpo.png');
@@ -1058,6 +926,9 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
     'funcionSensor': 'tocando("Trofeo")',
   }, 'icono.trofeo.png'
   );
+}
+
+const createValueBlocks = (t: (key: string) => string) => {
 
   createValueBlock("ParaLaDerecha", t('blocks.right'), {
     valor: 'derecha',
@@ -1079,48 +950,242 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   }, 'icono.abajo.png',
   );
 
-  createValueBlock('Booleano', t('blocks.boolean'), {valor: ''}, '', 
-   {
-    message0: t('blocks.boolean'),
-    colour: directionsColor,
-    type: 'logic_boolean',
-    args0: [],
-//    output: options.valor
-  })
+  createValueBlock('Booleano', t('blocks.boolean'), { valor: '' }, '',
+    {
+      message0: t('blocks.boolean'),
+      colour: directionsColor,
+      type: 'logic_boolean',
+      args0: [],
+      //    output: options.valor
+    })
 
-  createValueBlock('Numero', t('blocks.number'), {valor: ''}, '', 
-  {
-   message0: `%1`,
-   colour: directionsColor,
-   inputsInline: true,
-   args0: [
-   {
-      "type": "field_number",
-      "name": t('blocks.number'),
-      "value": 0,
-     }
-    ],
-    output: 'Number'
- })
+  createValueBlock('Numero', t('blocks.number'), { valor: '' }, '',
+    {
+      message0: `%1`,
+      colour: directionsColor,
+      inputsInline: true,
+      args0: [
+        {
+          "type": "field_number",
+          "name": t('blocks.number'),
+          "value": 0,
+        }
+      ],
+      output: 'Number'
+    })
 
- createValueBlock('Texto', t('blocks.text'), {valor: ''}, '', 
- {
-  message0: `%1`,
-  colour: directionsColor,
-  inputsInline: true,
-  args0: [
-  {
-     "type": "field_input",
-     "name": t('blocks.text'),
-     "text": ''
+  createValueBlock('Texto', t('blocks.text'), { valor: '' }, '',
+    {
+      message0: `%1`,
+      colour: directionsColor,
+      inputsInline: true,
+      args0: [
+        {
+          "type": "field_input",
+          "name": t('blocks.text'),
+          "text": ''
+        }
+      ],
+      output: 'String'
+    })
+}
+
+const createRepeatBlocks = (t: (key: string) => string) => {
+
+  Blockly.Blocks['Repetir'] = {
+    init: function () {
+      this.setColour(controlColor);
+      this.setInputsInline(true);
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.appendDummyInput()
+        .appendField(t('blocks.repeat'))
+      this.jsonInit({message0: `%1`,
+      args0: [
+        {
+          "type": "field_number",
+          "name": 'count',
+          "value": 10,
+        }
+      ]})
+      this.appendDummyInput()
+        .appendField(t('blocks.times'));
+      this.appendStatementInput('block');
+    },
+    categoryId: 'repetitions',
+  };
+
+  Blockly.Blocks['Hasta'] = {
+    init: function () {
+      this.setColour(controlColor);
+      this.setInputsInline(true);
+      this.appendValueInput('condition')
+        .setCheck('Boolean')
+        .appendField(t('blocks.while'));
+      this.appendStatementInput('block');
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+    },
+    categoryId: 'repetitions',
+  };
+
+
+  Blockly.Blocks['Si'] = {
+    init: function () {
+      this.setColour(controlColor);
+      this.appendValueInput('condition')
+        .setCheck('Boolean')
+        .appendField(t('blocks.simpleAlternative'));
+      this.setInputsInline(true);
+      this.appendStatementInput('block');
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+    },
+    categoryId: 'alternatives',
+  };
+
+  Blockly.Blocks['SiNo'] = {
+    init: function () {
+      this.setColour(controlColor);
+      this.appendValueInput('condition')
+        .setCheck('Boolean')
+        .appendField(t('blocks.simpleAlternative'));
+      this.appendStatementInput('block1');
+      this.setInputsInline(true);
+      this.appendDummyInput()
+        .appendField(t('blocks.completeAlternative'));
+      this.appendStatementInput('block2');
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+    },
+    categoryId: 'alternatives',
+  };
+
+}
+
+const createOthersBlocks = (t: (key: string) => string) => {
+
+  Blockly.Blocks['OpComparacion'] = {
+    init: Blockly.Blocks['logic_compare'].init,
+    categoryId: 'operators',
+  };
+
+  Blockly.Blocks['OpAritmetica'] = {
+    init: Blockly.Blocks['math_arithmetic'].init,
+    categoryId: 'operators',
+  };
+
+  Blockly.Blocks['param_get'] = {
+    init: Blockly.Blocks['variables_get'].init,
+    categoryId: 'variables',
+  };
+
+  let init_base_procedimiento = Blockly.Blocks['procedures_defnoreturn'].init;
+
+  Blockly.Blocks['Procedimiento'] = {
+    init: function () {
+      init_base_procedimiento.call(this)
+    },
+    categoryId: 'myprocedures',
+  };
+}
+
+const defineBlocklyTranslations = (t: (key: string) => string) => {
+  Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = t("procedures.name")
+  Blockly.Msg.PROCEDURES_DEFNORETURN_TITLE = t("procedures.definition")
+  Blockly.Msg.PROCEDURES_BEFORE_PARAMS = t("procedures.paramWith")
+  Blockly.Msg.PROCEDURES_PARAMETER = t("procedures.paramName")
+  Blockly.Msg.PROCEDURES_CALL_BEFORE_PARAMS = t("procedures.paramWith")
+  Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP = t("procedures.create")
+  Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT = t("procedures.comment")
+  Blockly.Msg.PROCEDURES_DEFNORETURN_NOPARAMS = t("procedures.noParams")
+  Blockly.Msg.PROCEDURES_ADD_PARAMETER = t("procedures.addParam")
+  Blockly.Msg.PROCEDURES_ADD_PARAMETER_PROMPT = t("procedures.addParamPrompt")
+  Blockly.Msg.PROCEDURES_REMOVE_PARAMETER = t("procedures.removeParam")
+  Blockly.Msg.PROCEDURES_CREATE_DO = t("contextMenu.createProcedure")
+  Blockly.Msg.ADD_COMMENT = t("contextMenu.addComment")
+  Blockly.Msg.REMOVE_COMMENT = t("contextMenu.removeComment")
+  Blockly.Msg.DUPLICATE_BLOCK = t("contextMenu.duplicate")
+  Blockly.Msg.HELP = t("contextMenu.help")
+  Blockly.Msg.DELETE_BLOCK = t("contextMenu.deleteOne")
+  Blockly.Msg.DELETE_X_BLOCKS = t("contextMenu.deleteMany")
+  Blockly.Msg.DISABLE_BLOCK = t("contextMenu.disable")
+  Blockly.Msg.ENABLE_BLOCK = t("contextMenu.enable")
+  Blockly.Msg.UNDO = t("contextMenu.undo")
+  Blockly.Msg.REDO = t("contextMenu.redo")
+  Blockly.Msg.CLEAN_UP = t("contextMenu.cleanUp")
+  Blockly.Msg.EXTERNAL_INPUTS = t("contextMenu.externalInputs")
+}
+
+export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => ({
+  kind: "categoryToolbox",
+  contents: [
+    {
+      kind: "category",
+      name: `${t('categories.primitives')}`,
+      contents: blocks.filter(block => block.categoryId === "primitives").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.myprocedures')}`,
+      contents: blocks.filter(block => block.categoryId === "myprocedures").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.repetitions')}`,
+      contents: blocks.filter(block => block.categoryId === "repetitions").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.alternatives')}`,
+      contents: blocks.filter(block => block.categoryId === "alternatives").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.variables')}`,
+      contents: blocks.filter(block => block.categoryId === "variables").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.values')}`,
+      contents: blocks.filter(block => block.categoryId === "values").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.sensors')}`,
+      contents: blocks.filter(block => block.categoryId === "sensors").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.operators')}`,
+      contents: blocks.filter(block => block.categoryId === "operators").map(blockTypeToToolboxBlock)
+    },
+    {
+      kind: "category",
+      name: `${t('categories.myfunctions')}`,
+      contents: blocks.filter(block => block.categoryId === "myfunctions").map(blockTypeToToolboxBlock)
     }
-   ],
-   output: 'String'
+  ]
 })
 
-  createRepeatBlocks(t);
+export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
+  kind: "flyoutToolbox",
+  contents: blocks.map(blockTypeToToolboxBlock)
+})
 
-  createOperatorBlocks(t);
+export const setupBlocklyBlocks = (t: (key: string) => string) => {
+
+  defineBlocklyTranslations(t)
+
+  createPrimitiveBlocks(t)
+
+  createSensorBlocks(t)
+
+  createValueBlocks(t)
+
+  createRepeatBlocks(t)
+
+  createOthersBlocks(t)
 
 }
 
