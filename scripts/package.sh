@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # The folder with all the publishable webapp
-DIST=build
+DIST=dist
 [[ -d $DIST ]] || { echo "ERROR: The folder $DIST doesn't exist. You have to build Pilas Bloques before packaging." ; exit 1; }
 
 #The project name, used by electron-packager in order to create files and folders for the app binaries.

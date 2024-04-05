@@ -1,6 +1,12 @@
 'use strict';
 
-const babelJest = require('babel-jest').default;
+/* ECM module needed
+import babelJest from 'babel-jest'
+import jsxRuntime from 'react/jsx-runtime'
+import babelPreset from 'babel-preset-react-app'
+*/
+
+const babelJest = require('babel-jest')
 
 const hasJsxRuntime = (() => {
   if (process.env.DISABLE_NEW_JSX_TRANSFORM === 'true') {
@@ -8,7 +14,8 @@ const hasJsxRuntime = (() => {
   }
 
   try {
-    require.resolve('react/jsx-runtime');
+    //jsxRuntime; // ECM module needed
+    require.resolve('react/jsx-runtime')
     return true;
   } catch (e) {
     return false;
@@ -18,6 +25,7 @@ const hasJsxRuntime = (() => {
 module.exports = babelJest.createTransformer({
   presets: [
     [
+      //babelPreset, // ECM module needed
       require.resolve('babel-preset-react-app'),
       {
         runtime: hasJsxRuntime ? 'automatic' : 'classic',
@@ -27,3 +35,5 @@ module.exports = babelJest.createTransformer({
   babelrc: false,
   configFile: false,
 });
+
+// export default createTransformer // ECM needed

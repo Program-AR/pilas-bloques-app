@@ -1,5 +1,6 @@
 import { Book, getBook } from '../staticData/books';
 import { Challenge, getChallengeWithId, getChallengeWithName, getPathToChallenge, PathToChallenge } from '../staticData/challenges';
+import { expectToThrow } from './testUtils';
 
 describe('Static data fetching', () => {
   test('Should get book if it exists', () => {
@@ -9,7 +10,7 @@ describe('Static data fetching', () => {
   });
 
   test("Should throw error on getting book if it doesnt exist", () => {
-    expect(() => getBook(1337)).toThrow()
+    expectToThrow(() => getBook(1337))
   })
 
   test("Should get challenge by id if it exists", () => {
@@ -19,7 +20,7 @@ describe('Static data fetching', () => {
   })
 
   test("Should throw error on getting challenge by id if it doesnt exist", () => {
-    expect(() => getChallengeWithId(1337)).toThrow()
+    expectToThrow(() => getChallengeWithId(1337))
   })
 
   test("Should get challenge by name if it exists", () => {
@@ -29,7 +30,7 @@ describe('Static data fetching', () => {
   })
 
   test("Should throw error on getting challenge by name if it doesnt exist", () => {
-    expect(() => getChallengeWithName("MeCanseDeSaltar")).toThrow()
+    expectToThrow(() => getChallengeWithName("MeCanseDeSaltar"))
   })
 
   test("Path to a challenge", () => {

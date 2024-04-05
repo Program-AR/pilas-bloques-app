@@ -1,4 +1,4 @@
-import { SceneType, sceneObjectByType } from "./serializedChallenge"
+import { SceneType, sceneObjectByType } from "../serializedChallenge"
 
 export const categories: string[] = [
     'primitives',

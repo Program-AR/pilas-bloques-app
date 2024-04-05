@@ -1,7 +1,7 @@
 import { Box, Switch, FormControlLabel, Typography, Stack } from "@mui/material";
 import { useState } from "react";
 import { LocalStorage } from "../../../../localStorage";
-import { categories, availableBlocksFor } from "../../../blocks";
+import { categories, availableBlocksFor } from "../../../blockly/blocks";
 import { SerializedChallenge, defaultChallenge } from "../../../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
