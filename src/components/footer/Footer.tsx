@@ -1,7 +1,13 @@
-import { Stack, Grid } from "@mui/material";
+import { Code } from "@mui/icons-material";
+import { Grid, Stack } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link, LinkProps } from "react-router-dom";
-import { Code } from "@mui/icons-material";
+
+
+// TODO: extract links to a config file
+const siteUrl = "https://pilasbloques.program.ar"
+export const termsAndConditionsLink =
+  "https://docs.google.com/document/u/1/d/e/2PACX-1vTNX9zl8txZmuINNz2qODrodoQhvr0o2-r3T_6yFp6quEpidmPz6ORx1HSjo2KNUg6MnyHPN-Ti44z1/pub";
 
 type PBLinkProps = {
   children: React.ReactNode
@@ -9,29 +15,44 @@ type PBLinkProps = {
 
 export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
 
+
 const Version = () => {
-    if(!process.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
-    const {t} = useTranslation("footer")
-    const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${process.env.VITE_GIT_COMMIT_HASH}`
-    return <Stack direction="row">
-      {t("version")} {process.env.VITE_APP_VERSION}
-      <Code/>
-      <PBLink to={repoUrl} target="_blank">{process.env.VITE_GIT_SHORT_COMMIT_HASH}</PBLink>
+  if(!process.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
+  const {t} = useTranslation("footer")
+
+  const appVersion = process.env.VITE_APP_VERSION
+  const newsUrl = new URL(`/novedades`, siteUrl).toString()
+  const lastCommitHash = process.env.VITE_GIT_SHORT_COMMIT_HASH
+  const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${process.env.VITE_GIT_COMMIT_HASH}`
+
+  return (
+    <Stack direction="row" gap={0.5}>
+      {t("version")}
+      <PBLink to={newsUrl} target="_blank">
+        {appVersion}
+      </PBLink>
+      <Code />
+      <PBLink to={repoUrl} target="_blank">
+        {lastCommitHash}
+      </PBLink>
     </Stack>
-}
+  );
+};
 
-export const termsAndConditionsLink = "https://docs.google.com/document/u/1/d/e/2PACX-1vTNX9zl8txZmuINNz2qODrodoQhvr0o2-r3T_6yFp6quEpidmPz6ORx1HSjo2KNUg6MnyHPN-Ti44z1/pub"
 
-const Links = () =>{
-    const {t} = useTranslation("footer")
-    const termsAndConditionsLink = "https://docs.google.com/document/u/1/d/e/2PACX-1vTNX9zl8txZmuINNz2qODrodoQhvr0o2-r3T_6yFp6quEpidmPz6ORx1HSjo2KNUg6MnyHPN-Ti44z1/pub"
-    
-    return <>
-        <PBLink to="acercade">{t("aboutPilasBloques")}</PBLink> |
-        <PBLink to="https://pilasbloques.program.ar/docentes"> {t("toTeachersSite")}</PBLink> |
-        <PBLink to={termsAndConditionsLink}> {t("terms")}</PBLink>
-    </>
-}
+const Links = () => {
+  const {t} = useTranslation("footer")
+  const teachersSiteUrl = new URL(`/docentes`, siteUrl).toString()
+
+  return (
+    <Stack direction="row" gap={1}>
+      <PBLink to="acercade">{t("aboutPilasBloques")}</PBLink>|
+      <PBLink to={teachersSiteUrl}>{t("toTeachersSite")}</PBLink>|
+      <PBLink to={termsAndConditionsLink}>{t("terms")}</PBLink>
+    </Stack>
+  )
+};
+
 export const Footer = () =>
   <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ padding: '10px' }} justifyContent="space-evenly">
     <Grid>
