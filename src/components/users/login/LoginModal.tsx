@@ -79,7 +79,7 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
                         message={t('serverError')}/>
                     <Button type='submit'>{t('login')}</Button>
                     </form>
-                    <a className={styles['link']} onClick={handleOnClose} href="#/password-recovery" target="">{t('forgot')}</a>
+                    <a className={styles['link']} onClick={handleOnClose} href="#/recuperar-contrasenia" target="">{t('forgot')}</a>
                 </Stack>  
                 <div className={styles['login-item']}>
                     <img alt='login' className={styles['login-img']} src="imagenes/session/login.png"/>

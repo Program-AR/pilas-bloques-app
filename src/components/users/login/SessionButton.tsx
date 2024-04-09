@@ -1,7 +1,7 @@
 import { Button, Menu, MenuItem } from "@mui/material"
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import styles from '../header.module.css';
+import styles from '../../header/header.module.css';
 import { LoginModal } from "./LoginModal";
 import { LocalStorage } from "../../../localStorage";
 
