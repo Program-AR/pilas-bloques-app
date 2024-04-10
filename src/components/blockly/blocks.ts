@@ -7,7 +7,9 @@ export const categories: string[] = [
     'alternatives',
     'values',
     'sensors',
-    'operators'
+    'variables',
+    'operators',
+    'myfunctions'
 ]
 
 export type BlockType = {
@@ -116,6 +118,11 @@ export const commonBlocks: BlockType[] = [
         id:'OpAritmetica', 
         intlId: 'math_arithmetic', 
         categoryId: 'operators'
+    },
+    {
+        id: 'param_get', 
+        intlId: 'variables_get', 
+        categoryId: 'variables'
     },
     {
         id: 'Procedimiento', 
@@ -320,7 +327,6 @@ export const sceneBlocks: BlockType[] = [
         intlId: 'trophyHere',
         categoryId: 'sensors'
     }
-
 ]
 
 const allBlocks: BlockType[] = commonBlocks.concat(sceneBlocks)

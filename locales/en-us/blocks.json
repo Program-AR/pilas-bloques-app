@@ -104,5 +104,13 @@
       "redo": "Redo",
       "cleanUp": "Clean up blocks",
       "externalInputs": "External Inputs"
+    },
+    "errors": {
+      "missingCommandBlock": "There are no command blocks here!",
+      "missingExpressionBlock": "There is no expression block here!",
+      "nonAvailableBlock": "This block is not available in this activity.",
+      "wrongParameter": "This block can''t be used here. It''s a parameter that can only be used inside the procedure ${procedure}.",
+      "deletedParameter": "This block can no longer be used, the parameter has been deleted.",
+      "missingTextInput": "You have to choose a letter!"
     }
 }

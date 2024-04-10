@@ -104,5 +104,13 @@
     "redo": "Rehacer",
     "cleanUp": "Limpiar los bloques",
     "externalInputs": "Entradas externas"
+  },
+  "errors":{
+    "missingCommandBlock": "¡Acá faltan bloques comandos!",
+    "missingExpressionBlock": "¡Acá falta un bloque expresión!",
+    "nonAvailableBlock": "Este bloque no está disponible en esta actividad.",
+    "wrongParameter": "Este bloque no puede usarse aquí. Es un parámetro que sólo puede usarse en el procedimiento",
+    "deletedParameter": "Este bloque ya no puede usarse, el parámetro ha sido eliminado.",
+    "missingTextInput": "¡Tenés que elegir una letra!"
   }
 }
