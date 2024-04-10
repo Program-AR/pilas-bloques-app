@@ -68,7 +68,8 @@
     "tomatoHere": "Há tomate aqui?",
     "unlockCellphone": "Desbloquear celular",
     "up": "Acima",
-    "variables_get": "variables",
+    "variables_get": "Usar variáveis",
+    "variables_set": "Atribuir variáveis",
     "wakeUpFirefly": "Acordar vaga-lume",
     "photographButterfly": "Fotografar borboleta",
     "watchPlanet": "Perceber planeta",
@@ -89,7 +90,7 @@
     "noParams": "",
     "addParam": "Adicionar parâmetro",
     "addParamPrompt": "Insira o nome do parâmetro",
-    "variableName": "Nome de variable"
+    "variableName": "Nome variável"
   },
   "contextMenu": {
     "createProcedure": "Usar procedimento '%1'",

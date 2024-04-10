@@ -1,7 +1,7 @@
 import { BlockType } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
-import {  optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
+import { optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
@@ -1078,20 +1078,20 @@ const createOthersBlocks = (t: (key: string) => string) => {
   };
 
   Blockly.Blocks['Procedimiento'] = {
-    init: Blockly.Blocks['procedures_callnoreturn'].init,
-    setStatements_: Blockly.Blocks['procedures_callnoreturn'].setStatements_,
-    updateParams_: Blockly.Blocks['procedures_callnoreturn'].updateParams_,
-    mutationToDom: Blockly.Blocks['procedures_callnoreturn'].mutationToDom,
-    domToMutation: Blockly.Blocks['procedures_callnoreturn'].domToMutation,
-    decompose: Blockly.Blocks['procedures_callnoreturn'].decompose,
-    compose: Blockly.Blocks['procedures_callnoreturn'].compose,
-    getProcedureDef: Blockly.Blocks['procedures_callnoreturn'].getProcedureDef, 
-    getVars: Blockly.Blocks['procedures_callnoreturn'].getVars,
-    getVarModels: Blockly.Blocks['procedures_callnoreturn'].getVarModels,
-    renameVarById: Blockly.Blocks['procedures_callnoreturn'].renameVarById,
-    updateVarName: Blockly.Blocks['procedures_callnoreturn'].updateVarName,
-    displayRenamedVar_: Blockly.Blocks['procedures_callnoreturn'].displayRenamedVar_,
-    customContextMenu: Blockly.Blocks['procedures_callnoreturn'].customContextMenu, 
+    init: Blockly.Blocks['procedures_defnoreturn'].init,
+    setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
+    updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
+    mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
+    domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
+    decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
+    compose: Blockly.Blocks['procedures_defnoreturn'].compose,
+    getProcedureDef: Blockly.Blocks['procedures_defnoreturn'].getProcedureDef, 
+    getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
+    getVarModels: Blockly.Blocks['procedures_defnoreturn'].getVarModels,
+    renameVarById: Blockly.Blocks['procedures_defnoreturn'].renameVarById,
+    updateVarName: Blockly.Blocks['procedures_defnoreturn'].updateVarName,
+    displayRenamedVar_: Blockly.Blocks['procedures_defnoreturn'].displayRenamedVar_,
+    customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu, 
     categoryId: 'myprocedures'
   };
 }
@@ -1170,11 +1170,6 @@ export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType
       kind: "category",
       name: `${t('categories.operators')}`,
       contents: blocks.filter(block => block.categoryId === "operators").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.myfunctions')}`,
-      contents: blocks.filter(block => block.categoryId === "myfunctions").map(blockTypeToToolboxBlock)
     }
   ]
 })

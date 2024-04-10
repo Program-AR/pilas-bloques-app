@@ -8,8 +8,7 @@ export const categories: string[] = [
   'values',
   'sensors',
   'variables',
-  'operators',
-  'myfunctions'
+  'operators'
 ]
 
 export type BlockType = {
