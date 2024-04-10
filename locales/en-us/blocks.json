@@ -88,7 +88,8 @@
       "comment": "Describe the procedure...",
       "noParams": "",
       "addParam": "Add parameter",
-      "addParamPrompt": "Enter the parameter's name"
+      "addParamPrompt": "Enter the parameter's name",
+      "variableName": "Variable name"
     },
     "contextMenu": {
       "createProcedure": "Use procedure '%1'",
