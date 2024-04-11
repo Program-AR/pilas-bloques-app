@@ -96,7 +96,7 @@ export namespace PilasBloquesApi{
       return isValid
     }
 
-    export const baseURL = window.PBRuntime?.apiURL || process.env.REACT_APP_API_URL
+    export const baseURL = window.PBRuntime?.apiURL || process.env.VITE_APP_API_URL
 
     async function bodyWithContext<T>(body?: T) {
       return body ? {
