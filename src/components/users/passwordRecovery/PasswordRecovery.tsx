@@ -45,11 +45,11 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
         try {
             setLoading(true)
             await PilasBloquesApi.passwordRecovery(userIdentifier)
-            setLoading(false)
             setMailSent(true)
         } catch (error: any) {
             setServerError(true)
         }
+        setLoading(false)
     }
 
     return <UserCard title={t("passwordRecovery")} handleSubmit={handleSubmit}>
@@ -60,6 +60,7 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
             :
             <>
                 <UserTextField
+                    data-testid="userIdentifierInput"
                     label={t("userIdentifier")}
                     onChange={props => setUserIdentifier(props.target.value)}
                     required
@@ -84,7 +85,6 @@ const NewPassword = ({ setServerError, token }: NewPasswordProps) => {
     const [newPassword, setNewPassword] = useState<string>('')
     const [confirmPasswordOk, setConfirmPasswordOk] = useState<boolean>(false)
 
-
     const handlePassword = (password: string) => {
         setNewPassword(password)
     }
@@ -107,19 +107,26 @@ const NewPassword = ({ setServerError, token }: NewPasswordProps) => {
             confirmPasswordOk={confirmPasswordOk}
             setConfirmPasswordOk={setConfirmPasswordOk}
         />
-        <Button disabled={!(validPassword && confirmPasswordOk)} variant="contained" color="success" type='submit'>{t("changePassword")}</Button>
+        <Button data-testid="changePasswordButton" disabled={!(validPassword && confirmPasswordOk)} variant="contained" color="success" type='submit'>{t("changePassword")}</Button>
 
     </UserCard>
 }
 
-export const ChangePassword = () => {
+export const ChangePasswordLoader = () => {
+    const isTokenValid = useLoaderData()
+    return <ChangePassword isTokenValid={isTokenValid as boolean} />
+}
+
+type ChangePasswordProps = {
+    isTokenValid: boolean
+}
+
+export const ChangePassword = ({ isTokenValid }: ChangePasswordProps) => {
 
     const navigate = useNavigate()
     const { t } = useTranslation('passwordRecovery');
     const [searchParams] = useSearchParams();
     const token: string | null = searchParams.get("token")
-
-    const isTokenValid = useLoaderData()
 
     const handleSubmit = () => {
         navigate(`/recuperar-contrasenia?token=${token}`)
@@ -129,8 +136,8 @@ export const ChangePassword = () => {
         <Header />
         <UserCard title={isTokenValid ? t("stablishPassword") : t("expiredTokenTitle")} handleSubmit={handleSubmit}>
             {isTokenValid ? <></>
-                : <Typography>{t("expiredTokenMessage")}<Link href='/#/recuperar-contrasenia'>{t("expiredTokenLink")}</Link></Typography>}
-            <Button disabled={!isTokenValid} variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
+                : <Typography data-testid="expiredTokenMessage">{t("expiredTokenMessage")}<Link href='/#/recuperar-contrasenia'>{t("expiredTokenLink")}</Link></Typography>}
+            <Button data-testid="passwordRecoveryButton" disabled={!isTokenValid} variant="contained" color="success" type='submit'>{t("passwordRecovery")}</Button>
         </UserCard>
     </>
 }

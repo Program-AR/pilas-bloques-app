@@ -57,6 +57,7 @@ export const expectToThrow = (expr: () => any, description?: string) => {
   console.error = errorFn
   return returnValue
 }
+
 export const mockApiPath = (path: string, response: MockResponse, options?: MockOptions | undefined) => {
   fetchMock.mock(`${PilasBloquesApi.baseURL}/${path}`, response, options)
 }
