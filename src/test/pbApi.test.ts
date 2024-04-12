@@ -1,36 +1,11 @@
 import fetchMock from 'fetch-mock-jest';
 import { PilasBloquesApi } from '../pbApi';
 import { LocalStorage } from '../localStorage';
-import { MockResponse, MockOptions } from 'fetch-mock';
+import { expectToThrow, fakeUser, mockApi, mockApiPath } from './testUtils';
 
 describe('PB Api', () => {
 
-    const url = PilasBloquesApi.baseURL
-    const fakeUser = { username: "TEST", token: "TOKEN", answeredQuestionIds: [] }
     const credentials = { username: "TEST", password: "TEST" }
-
-    const mockApiPath = (path: string, response: MockResponse, options?: MockOptions | undefined) => {
-        fetchMock.mock(`${url}/${path}`, response, options)
-    }
-
-    const mockApi = () => {
-        fetchMock.reset()
-        fetchMock.config.overwriteRoutes = true
-        mockApiPath('login', fakeUser)
-        mockApiPath('register', fakeUser)
-        mockApiPath('credentials', fakeUser)
-        mockApiPath('answers', fakeUser)
-        mockApiPath('challenges', 200)
-        mockApiPath('solutions', 200)
-        mockApiPath('ping', 200)
-        mockApiPath('error', { throws: 'ERROR' })
-        mockApiPath('user-ip', { ip: "123.123.123" })
-    }
-
-    const failAllApiFetchs = () => {
-        fetchMock.reset()
-        mockApiPath("", { throws: 'ERROR' })
-    }
 
     const fetchCallBody = () => {
         const body = fetchMock.lastCall()![1]?.body
@@ -94,6 +69,11 @@ describe('PB Api', () => {
         await PilasBloquesApi.login(credentials)
         const headers = fetchMock.lastCall()![1]?.headers
         expect((headers as Headers).get('authorization')).toEqual('Bearer TOKEN')
+    })
+
+    test('Should handle server error', async () => {
+        mockApiPath('login', { body: "SERVER ERROR", status: 400 })
+        expect(async () => {await PilasBloquesApi.login(credentials)}).rejects.toThrow("SERVER ERROR")
     })
 })
 
