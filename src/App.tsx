@@ -9,7 +9,7 @@ import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import { About } from './components/about/About';
 import { PageNotFound } from './components/pageNotFound/PageNotFound';
-import { ChangePassword, PasswordRecovery } from './components/users/passwordRecovery/PasswordRecovery';
+import { ChangePasswordLoader, PasswordRecovery } from './components/users/passwordRecovery/PasswordRecovery';
 import { Register } from './components/users/register/Register';
 import { ActorSelection } from './components/creator/ActorSelection/ActorSelection';
 import { CreatorEditor } from './components/creator/Editor/Editor';
@@ -88,7 +88,7 @@ const router = createHashRouter([{
   },
   {
     path: "/establecer-contrasenia",
-    element: <ChangePassword/>,
+    element: <ChangePasswordLoader/>,
     loader: async ({ request }) => {
       const url = new URL(request.url);
       const token = url.searchParams.get("token");
