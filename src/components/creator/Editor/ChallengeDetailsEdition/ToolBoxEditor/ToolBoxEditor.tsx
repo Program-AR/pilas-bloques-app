@@ -56,7 +56,7 @@ export const ToolBoxEditor = () => {
             isOpen={open}
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
-            title={t('toolbox.title')}
+            title={`${t('toolbox.title')}${t(`selection.cards.${challenge.scene.type}.name`)}`}
             dialogProps={{ maxWidth: "md"}} >
             <Stack direction="row">
                 <Stack>
