@@ -1,7 +1,7 @@
 import { BlockType } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
-import { optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
+import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
@@ -1126,6 +1126,13 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   Blockly.Msg.REDO = t("contextMenu.redo")
   Blockly.Msg.CLEAN_UP = t("contextMenu.cleanUp")
   Blockly.Msg.EXTERNAL_INPUTS = t("contextMenu.externalInputs")
+
+
+  // ProcedsBlockly.init() needs all procedure blocks to work, so we need to put them back
+  // After calling init(), we disable unwanted toolbox blocks again
+  enableUnwantedProcedureBlocks()
+  //ProcedsBlockly.init()
+  disableUnwantedProcedureBlocks()  
 }
 
 export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => ({
