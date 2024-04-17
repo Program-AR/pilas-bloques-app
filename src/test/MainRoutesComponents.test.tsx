@@ -55,7 +55,7 @@ test('Renders password-recovery without errors', async () => {
 })
 
 test('Renders password-recovery without errors', async () => {
-  expect(() => renderComponent(<ChangePassword/>)).not.toThrow()
+  expect(() => renderComponent(<ChangePassword isTokenValid={true}/>)).not.toThrow()
 })
 
 test('Renders register without errors', async () => {
