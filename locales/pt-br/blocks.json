@@ -13,6 +13,7 @@
     "categorized": "Categorizar Blocos"
   },
   "blocks": {
+    "program": "Ao inicio da execução",
     "footBallHere": "Há uma bola de futebol aqui?",
     "pingPongBallHere": "Há uma bolinha de ping pong aqui?",
     "pulpitoBallHere": "Há uma bola de plástico aqui?",

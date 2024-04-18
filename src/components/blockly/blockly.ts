@@ -29,8 +29,12 @@ const primitivesColor = '#4a6cd4';
 const controlColor = '#ee7d16';
 const sensorsColor = '#2ca5e2';
 const directionsColor = '#2ba4e2';
-const othersColor ='#cc5b22';
+const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
+
+export const xmlBloqueEmpezarAEjecutar =`<xml xmlns="http://www.w3.org/1999/xhtml">
+              <block type="al_empezar_a_ejecutar" x="15" y="15"></block>
+            </xml>`
 
 const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
 
@@ -74,12 +78,12 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
     output: null,
     code: `evaluar(${JSON.stringify(options.funcionSensor)})`
 
-  /* TODO para chequear luego si corresponde hacerlo de otra manera
-    Blockly.MyLanguage[id] = function () {
-      let codigo = `evaluar(${JSON.stringify(options.funcionSensor)})`;
-      return [codigo, Blockly.MyLanguage.ORDER_ATOMIC];
-    };
-  */
+    /* TODO para chequear luego si corresponde hacerlo de otra manera
+      Blockly.MyLanguage[id] = function () {
+        let codigo = `evaluar(${JSON.stringify(options.funcionSensor)})`;
+        return [codigo, Blockly.MyLanguage.ORDER_ATOMIC];
+      };
+    */
 
   })
 
@@ -127,6 +131,19 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
       this.jsonInit(jsonInit)
     }
   }
+}
+
+const createFirstBlock = (t: (key: string) => string) => {
+  Blockly.Blocks['al_empezar_a_ejecutar'] = {
+    init: function () {
+      this.setColour(eventsColor);
+      this.appendDummyInput().appendField(t('blocks.program'));
+      this.appendStatementInput('program');
+      this.setDeletable(false);
+      this.setEditable(false);
+      this.setMovable(false);
+    },
+  };
 }
 
 const createPrimitiveBlocks = (t: (key: string) => string) => {
@@ -1085,13 +1102,13 @@ const createOthersBlocks = (t: (key: string) => string) => {
     domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
     decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
     compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-    getProcedureDef: Blockly.Blocks['procedures_defnoreturn'].getProcedureDef, 
+    getProcedureDef: Blockly.Blocks['procedures_defnoreturn'].getProcedureDef,
     getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
     getVarModels: Blockly.Blocks['procedures_defnoreturn'].getVarModels,
     renameVarById: Blockly.Blocks['procedures_defnoreturn'].renameVarById,
     updateVarName: Blockly.Blocks['procedures_defnoreturn'].updateVarName,
     displayRenamedVar_: Blockly.Blocks['procedures_defnoreturn'].displayRenamedVar_,
-    customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu, 
+    customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     categoryId: 'myprocedures'
   };
 }
@@ -1132,7 +1149,7 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   // After calling init(), we disable unwanted toolbox blocks again
   enableUnwantedProcedureBlocks()
   //ProcedsBlockly.init()
-  disableUnwantedProcedureBlocks()  
+  disableUnwantedProcedureBlocks()
 }
 
 export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => ({
@@ -1190,9 +1207,11 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
 
   defineBlocklyTranslations(t)
 
-  createSensorBlocks(t)
+  createFirstBlock(t)
 
   createPrimitiveBlocks(t)
+
+  createSensorBlocks(t)
 
   createValueBlocks(t)
 
@@ -1201,4 +1220,3 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createOthersBlocks(t)
 
 }
-

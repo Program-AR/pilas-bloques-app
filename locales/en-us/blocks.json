@@ -13,6 +13,7 @@
     "categorized": "Categorize Blocks"
   },
   "blocks": {
+    "program": "When the program runs",
     "footBallHere": "Is there a football ball here?",
     "pingPongBallHere": "Is there a ping pong ball here?",
     "pulpitoBallHere": "Is there a rubber ball here?",
