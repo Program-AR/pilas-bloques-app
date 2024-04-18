@@ -194,12 +194,13 @@ export const PasswordInput = ({ password, setValidPassword, handlePassword, conf
     handlePassword(password)
   }
 
-  useEffect( () => {
-    if(passwordStrength === PasswordStrength.STRONG) setValidPassword(true)
+  useEffect(() => {
+    if (passwordStrength === PasswordStrength.STRONG) setValidPassword(true)
   }, [passwordStrength, setValidPassword])
 
   return <>
     <UserTextField
+      data-testid="passwordInput"
       label={t('password')}
       type="password"
       onChange={props => handlePasswordInput(props.target.value)}

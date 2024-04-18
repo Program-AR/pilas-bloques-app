@@ -72,6 +72,16 @@ const darkTheme: ThemeOptions = {
                     backgroundColor: '#252424',
                 }
             }
+        },
+        MuiMobileStepper: {
+            styleOverrides: {
+                dot:  ({ theme }) => ({
+                    backgroundColor: theme.palette.primary.main
+                }),
+                dotActive: ({ theme }) => ({
+                    backgroundColor: theme.palette.secondary.main
+                }),
+            }
         }
     }
 

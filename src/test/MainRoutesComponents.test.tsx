@@ -5,7 +5,7 @@ import { CreatorEditor } from "../components/creator/Editor/Editor"
 import { ActorSelection } from "../components/creator/ActorSelection/ActorSelection"
 import { Home } from "../components/home/Home"
 import { ImportedChallengeView } from "../components/ImportedChallengeView"
-import { PasswordRecovery } from "../components/users/passwordRecovery/PasswordRecovery"
+import { ChangePassword, PasswordRecovery } from "../components/users/passwordRecovery/PasswordRecovery"
 import { Register } from "../components/users/register/Register"
 import { expectToThrow, renderComponent } from "./testUtils"
 import { validChallenge } from "./serializedChallenge.test"
@@ -52,6 +52,10 @@ test('Renders about without errors', async () => {
 
 test('Renders password-recovery without errors', async () => {
   expect(() => renderComponent(<PasswordRecovery/>)).not.toThrow()
+})
+
+test('Renders password-recovery without errors', async () => {
+  expect(() => renderComponent(<ChangePassword isTokenValid={true}/>)).not.toThrow()
 })
 
 test('Renders register without errors', async () => {
