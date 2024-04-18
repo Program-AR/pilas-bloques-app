@@ -28,13 +28,11 @@ export const CreatorViewMode = () => {
         if (!challengeExists) navigate('/creador/seleccionar')
     }, [challengeExists, navigate])
 
-    //<EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
-
     return (<>
         {challengeExists ? (
             <>
                 <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
-                <ChallengeView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+                <ChallengeView height='calc(100% - var(--creator-subheader-height)) - var(--header-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
                 
             </>
         ) : <></>}

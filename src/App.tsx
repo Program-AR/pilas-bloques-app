@@ -4,7 +4,7 @@ import './App.css';
 import { createHashRouter, RouterProvider, Outlet } from "react-router-dom";
 import { Home } from './components/home/Home';
 import { PBError } from './components/pageNotFound/PBError';
-import { ChallengeById, ChallengeByName } from './components/ChallengeView';
+import { ChallengeById, ChallengeByName } from './components/EmberChallengeView';
 import { BookView } from './components/book/BookView';
 import { ImportedChallengeView } from './components/ImportedChallengeView';
 import { About } from './components/about/About';

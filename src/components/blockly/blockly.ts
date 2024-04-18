@@ -1190,9 +1190,9 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
 
   defineBlocklyTranslations(t)
 
-  createPrimitiveBlocks(t)
-
   createSensorBlocks(t)
+
+  createPrimitiveBlocks(t)
 
   createValueBlocks(t)
 
