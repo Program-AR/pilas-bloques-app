@@ -9,10 +9,13 @@ import { Stack } from "@mui/material";
 import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
 import { ToolboxPreview } from "./ToolboxPreview";
 import { availableBlocksFor, categories } from "../../../../blockly/blocks";
+import { PBCard } from "../../../../PBCard";
 
 export const ToolBoxEditor = () => {
 
     const shouldShow = process.env.NODE_ENV !== 'production'
+
+    const [contentHeight,] = useState(window.innerHeight*0.7)
 
     const { t } = useTranslation('creator');
 
@@ -57,12 +60,13 @@ export const ToolBoxEditor = () => {
             onConfirm={handleOnConfirm}
             onCancel={handleOnCancel}
             title={`${t('toolbox.title')}${t(`selection.cards.${challenge.scene.type}.name`)}`}
-            dialogProps={{ maxWidth: "md"}} >
+            noScrollable={true}
+            dialogProps={{ maxWidth: "md"}}>
             <Stack direction="row">
-                <Stack>
+                <PBCard sx={{display:"flex", flexDirection:"column", padding:"5px", maxHeight:`${contentHeight}px`}}> 
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
-                </Stack>
+                </PBCard>
                 {shouldShow ? <ToolboxPreview 
                     blockIds={toolBoxItems}
                     categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>

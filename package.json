@@ -62,6 +62,7 @@
     "postcss-loader": "^6.2.1",
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^7.0.1",
+    "proceds-blockly": "^1.1.0",
     "prompts": "^2.4.2",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
@@ -95,7 +96,7 @@
   "scripts": {
     "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
     "test": "jest",
-    "prestart": "node scripts/setEmberRoot.js public/emberPB ''",
+    "prestart": "rm node_modules/.vite/deps/* && node scripts/setEmberRoot.js public/emberPB ''",
     "start": "vite",
     "start:host": "vite --host",
     "start:emberDev": "sh ./scripts/localEmber.sh",

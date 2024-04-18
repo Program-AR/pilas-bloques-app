@@ -13,7 +13,9 @@ type BlocksSelectorProps = {
 export const BlocksSelector = ({toolboxState, setToolBoxItems, availableBlocks, toolBoxItems}: BlocksSelectorProps) => {
 	return (
 		<>
-			<Box style={{ justifyContent: "center" }}>
+			<Box sx={{ justifyContent: "center",
+                width: '100%', 
+                overflowY: "scroll" }}>
 				{categories.map((categoryName) => {
 					return (
 						<div key={categoryName}>
@@ -129,7 +131,7 @@ export const CategorizedToggle = ({toolboxState, isCategorized, setIsCategorized
 
 	return (
 		<>
-			<Stack alignItems="flex-end">
+			<Stack alignItems="flex-end" padding="5px">
 				<FormControlLabel
 					key="isCategorized"
 					labelPlacement="start"

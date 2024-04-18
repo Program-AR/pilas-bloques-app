@@ -22,6 +22,8 @@ export interface ModalDialogProps {
     dialogProps?: Partial<DialogProps>;
     children?: JSX.Element;
     isDraggable?: boolean;
+    noScrollable?: boolean;
+    contentRef?:any
   }
 
 export const GenericModalDialog: FC<ModalDialogProps> = ({
@@ -31,6 +33,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
     title,
     dialogProps,
     isDraggable,
+    noScrollable = false,
     children
   }) => {
  
@@ -56,7 +59,7 @@ export const GenericModalDialog: FC<ModalDialogProps> = ({
           aria-labelledby="draggable-dialog" 
         >          
         <DialogTitle id="draggable-dialog" sx={{ cursor: `${isDraggable ? 'move':'auto'}`, fontWeight: 'bold', height: '50px', display: 'flex', alignItems: 'center'}}>{title}</DialogTitle>
-        <DialogContent sx={{backgroundColor: theme.palette.background.default}}>
+        <DialogContent sx={{ overflow: noScrollable ? "hidden" : "", backgroundColor: theme.palette.background.default}}>
           {children}
         </DialogContent>
         <DialogActions sx={{backgroundColor: theme.palette.background.default}}>

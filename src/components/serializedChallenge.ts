@@ -143,7 +143,7 @@ export const defaultChallenge = (type: SceneType, defaultDescription = "", defau
 		},
 		scene: defaultScene(type),
 		toolbox: {
-			blocks: ['MoverACasillaDerecha']
+			blocks: [] // ['MoverACasillaDerecha']
 		},
         stepByStep: true
 	}
