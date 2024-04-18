@@ -12,12 +12,13 @@ import { PBreadcrumbs } from "../../PBreadcrumbs"
 import { EditorSubHeader } from "./Editor"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { ChallengeView } from "../../challengeView/ChallengeView"
 
 export const CreatorViewMode = () => {
 
     const challengeBeingEdited: SerializedChallenge = LocalStorage.getCreatorChallenge()!
 
-    Ember.importChallenge(challengeBeingEdited)
+    //Ember.importChallenge(challengeBeingEdited)
 
     const navigate = useNavigate()
 
@@ -27,11 +28,14 @@ export const CreatorViewMode = () => {
         if (!challengeExists) navigate('/creador/seleccionar')
     }, [challengeExists, navigate])
 
+    //<EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+
     return (<>
         {challengeExists ? (
             <>
                 <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
-                <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+                <ChallengeView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+                
             </>
         ) : <></>}
     </>)

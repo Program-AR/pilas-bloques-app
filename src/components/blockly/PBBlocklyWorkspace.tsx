@@ -7,7 +7,7 @@ import { PBCard } from "../PBCard";
 import { PaperProps } from "@mui/material";
 import { BlocklyWorkspaceProps } from "react-blockly/dist/BlocklyWorkspaceProps";
 
-type PBBlocklyWorkspaceProps = {
+export type PBBlocklyWorkspaceProps = {
   blockIds: string[]
   categorized: boolean
   sx?: PaperProps["sx"]
