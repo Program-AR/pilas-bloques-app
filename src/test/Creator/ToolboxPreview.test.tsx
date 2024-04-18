@@ -1,7 +1,5 @@
 import { screen } from '@testing-library/react'
-import { defaultChallenge } from "../../components/serializedChallenge"
-import { LocalStorage } from '../../localStorage';
-import { renderComponent, renderWithContext } from '../testUtils';
+import { renderComponent } from '../testUtils';
 import { ToolboxPreview } from '../../components/creator/Editor/ChallengeDetailsEdition/ToolBoxEditor/ToolboxPreview';
 import { commonBlocks, sceneBlocks } from '../../components/blockly/blocks';
 
