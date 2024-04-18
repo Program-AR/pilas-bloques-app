@@ -17,6 +17,8 @@ import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrow
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import { IconButtonTooltip } from "../creator/Editor/SceneEdition/IconButtonTooltip";
 import { useThemeContext } from "../../theme/ThemeContext";
+import { useState } from "react";
+import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
 
 type ChallengeViewProps = {
   path?: string,
@@ -127,15 +129,18 @@ return <Box height={props.height ? props.height : '100%'}>
 }
 
 const ChallengeWorkspace = (props: ChallengeWorkspaceProps ) => {
+  const [descriptionOrClue, setDescriptionOrClue] = useState(props.statement!)
 
+  const setToShow = ( show: StatementTextToShow ) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? props.clue! : props.statement!)
+  
   return <Stack flexGrow={1}>
     <StatementDescription
-      text={props.statement!}
-      setShowStatement={() => { }}
+      text={descriptionOrClue}
+      setShowStatement={setToShow}
       clueIsEnabled={props.clue !== ''}
       urlImage={props.challenge.imageURL()} />
     <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-      <EditableBlocklyWorkspace blockIds={props.challenge.toolboxBlockIds} categorized={props.challenge.toolboxStyle === 'categorized' } />
+      <EditableBlocklyWorkspace blockIds={props.challenge.toolboxBlockIds} categorized={!(props.challenge.toolboxStyle === 'noCategories') } />
       <Stack>
         <SceneButtons />
         <SceneView descriptor={props.challenge.sceneDescriptor} />
