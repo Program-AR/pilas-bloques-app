@@ -1,6 +1,16 @@
 {
     "aboutPilasBloques": "Acerca de Pilas Bloques",
+    "about": "Acerca de",
     "toTeachersSite": "Ir al sitio para docentes",
     "terms": "Términos y condiciones",
-    "version": "Versión"
+    "version": "Versión",
+    "problemWithChallenge": "¿Algún problema con este ejercicio?",
+    "bugReportModal": {
+        "problem": "¿Tenés algún problema?",
+        "error": "¿Pensás que este ejercicio tiene un error?",
+        "askTeacher": "Recordá contactarte siempre con tu docente o escuela para hacerle consultas. Quienes hacemos Pilas Bloques lamentablemente no conocemos a todas las maestras y maestros que usan la herramienta.",
+        "mail": "Podés escribirnos a ",
+        "githubReport": "Si tenés una cuenta en Github podés también hacernos un reporte de error directamente en el",
+        "issueTracker": "Issue Tracker"
+    }
 }
