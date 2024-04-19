@@ -3,17 +3,18 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Header } from "../header/Header"
 import styles from "./about.module.css"
-import { Container } from "@mui/material";
+import { UserCard } from "../users/userForm";
+import { PBLink } from "../footer/Footer";
 
-export const About = () =>{
-    const {t} = useTranslation("about")
+export const About = () => {
+    const { t } = useTranslation("about")
     return <>
-    <Header/>
-    <Container className={styles.about}>
-        <Typography className={styles.title} variant="h4">{t("title")}</Typography>
-        <Typography>{t("text")}
-            <Link to="https://pilasbloques.program.ar/acerca-de-pilas-bloques/" target="_blank">{t("redirect")}</Link>
-        </Typography>
-    </Container>
+        <Header />
+        <UserCard title={t("title")} handleSubmit={() => { }}>
+            <Typography className={styles.title} variant="h4"></Typography>
+            <Typography>{t("text")}
+                <PBLink to="https://pilasbloques.program.ar/acerca-de-pilas-bloques/" target="_blank">{t("redirect")}</PBLink>
+            </Typography>
+        </UserCard>
     </>
 }
