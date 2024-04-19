@@ -92,6 +92,7 @@ export const serializedSceneToDescriptor = (scene: Scene) => {
 export const ChallengeView = (props: ChallengeViewProps) => {
   var { id } = useParams()
 
+  // TODO Es necesario traerse en challenges.json los statement.decription y statement.clue con sus traducciones para cada desafio
   const { t } = useTranslation('challenges')
 
   const impChallenge: boolean = props.path?.includes("react-imported-challenge") ? true : false

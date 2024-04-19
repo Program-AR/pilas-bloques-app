@@ -8,6 +8,8 @@ type EmberChallengeViewProps = {
     challengeId: number
 }
 
+// Queda para los desafios hasta tanto tengamos funcional el ChallengeView en React 
+
 const EmberChallengeView = (props: EmberChallengeViewProps) => {
     const [searchParams] = useSearchParams();
     const solution: string | null = searchParams.get("codigo")
