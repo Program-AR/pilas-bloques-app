@@ -16,6 +16,7 @@ import { CreatorEditor } from './components/creator/Editor/Editor';
 import { useLocation } from 'react-router-dom';
 import ReactGA from "react-ga4";
 import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
+import { EmberCreatorViewMode } from './components/creator/Editor/EmberCreatorViewMode';
 import { useThemeContext } from './theme/ThemeContext';
 import { SharedChallengeView } from './components/creator/SharedChallengeView';
 import { PilasBloquesApi } from './pbApi';
@@ -113,6 +114,10 @@ const router = createHashRouter([{
   },
   {
     path: "/creador/ver",
+    element: <EmberCreatorViewMode/>
+  },
+  {
+    path: "/creador/verNuevo",
     element: <CreatorViewMode/>
   },
   {

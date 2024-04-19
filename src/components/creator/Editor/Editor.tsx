@@ -5,6 +5,7 @@ import { CreatorContextProvider } from "./CreatorContext";
 import { CreatorSubHeader } from "./EditorSubHeader/CreatorSubHeader";
 import { useTranslation } from "react-i18next";
 import { DiscardChallengeButton } from "./ActionButtons/DiscardChallengeButton";
+import { EmberPreviewButton } from "./ActionButtons/EmberPreviewButton";
 import { PreviewButton } from "./ActionButtons/PreviewButton";
 import { BetaBadge } from "../BetaBadge";
 import { useThemeContext } from "../../../theme/ThemeContext";
@@ -22,6 +23,8 @@ export const CreatorEditor = () => {
 
   const challengeExists = LocalStorage.getCreatorChallenge()
 
+  const shouldShow = process.env.NODE_ENV !== 'production'
+
   useEffect(() => {
     if (!challengeExists) navigate('/creador/seleccionar')
   }, [challengeExists, navigate])
@@ -31,7 +34,10 @@ export const CreatorEditor = () => {
     { challengeExists ?
       (<CreatorContextProvider>
         <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
-          <Header CenterComponent={<BetaBadge smaller={true}><HeaderText text={t("editor.editorHeader")} /></BetaBadge>} SubHeader={<EditorSubHeader viewButton={<PreviewButton />} />} />
+          <Header CenterComponent={<BetaBadge smaller={true}>
+                                      <HeaderText text={t("editor.editorHeader")} />
+                                   </BetaBadge>} 
+                  SubHeader={<EditorSubHeader viewButton={<EmberPreviewButton />} reactViewButton={shouldShow ? <PreviewButton /> : undefined } />} />
           <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
             <SceneEdition />
           </Stack>
@@ -45,11 +51,13 @@ export const CreatorEditor = () => {
 
 type EditorSubHeaderProps = {
   viewButton: React.ReactNode
+  reactViewButton?: React.ReactNode
 }
 
 export const EditorSubHeader = (props: EditorSubHeaderProps) =>
   <CreatorSubHeader>
     <DiscardChallengeButton />
     {props.viewButton}
+    {props.reactViewButton}
     <ShareButton/>
   </CreatorSubHeader>
