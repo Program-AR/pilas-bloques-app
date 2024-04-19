@@ -12,7 +12,7 @@ import { availableBlocksFor, categories } from "../../../../blockly/blocks";
 
 export const ToolBoxEditor = () => {
 
-    const shouldShow = import.meta.env.PROD
+    const shouldShow = process.env.PROD
 
     const { t } = useTranslation('creator');
 
