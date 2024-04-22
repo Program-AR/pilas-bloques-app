@@ -4,16 +4,17 @@ import { useTranslation } from "react-i18next";
 import { BlockType, getBlockFromId } from "./blocks";
 import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "./blockly";
 import { PBCard } from "../PBCard";
-import { PaperProps } from "@mui/material";
+import { PaperProps, Typography } from "@mui/material";
 import { BlocklyWorkspaceProps } from "react-blockly/dist/BlocklyWorkspaceProps";
 
 type PBBlocklyWorkspaceProps = {
   blockIds: string[]
   categorized: boolean
   sx?: PaperProps["sx"]
+  title?: boolean
 } & Partial<BlocklyWorkspaceProps>
 
-export const PBBlocklyWorkspace = ({blockIds, categorized, sx, ...props}: PBBlocklyWorkspaceProps) => {
+export const PBBlocklyWorkspace = ({blockIds, categorized, sx, title, ...props}: PBBlocklyWorkspaceProps) => {
   const {t} = useTranslation("blocks")
     
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
@@ -21,9 +22,10 @@ export const PBBlocklyWorkspace = ({blockIds, categorized, sx, ...props}: PBBloc
   setupBlocklyBlocks(t)
 
   return <PBCard sx={{...sx}}>
+        {title && <Typography>{t('preview')}</Typography>}
         <BlocklyWorkspace
           key={blockIds.join("") + categorized} //rerenders on toolbox or categorization changes
-          toolboxConfiguration={categorized ? categorizedToolbox(blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
+          toolboxConfiguration={categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
           className={styles.fill}
           {...props}
         />
