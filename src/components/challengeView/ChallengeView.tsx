@@ -5,10 +5,11 @@ import { ChallengeBreadcrumb } from "../ChallengeView";
 import { Stack, useMediaQuery } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
-import { SceneButtons } from "./SceneButtons";
+import { SceneButtons, SceneButtonsVertical } from "./SceneButtons";
 import { SceneView } from "./SceneView";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { ChallengeFooter } from "./ChallengeFooter";
+import { PBBlocklyWorkspace } from "../blockly/PBBlocklyWorkspace";
 
 
 
@@ -26,7 +27,6 @@ export const ChallengeView = () => {
     return <Stack height="100%">
         <Header CenterComponent={ChallengeBreadcrumb(path)} shouldShowSimpleReadSwitch={!path.book.simpleReadMode} />
         <ChallengeWorkspace challengeId={challengeId} />
-        <ChallengeFooter />
     </Stack>
 }
 
@@ -36,18 +36,42 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
 
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
-    return <Stack flexGrow={1}>
-        <StatementDescription
-            text={"enunciado"}
-            setShowStatement={() => { }}
-            clueIsEnabled={true}
-            urlImage={challenge.imageURL()} />
-        <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-            <EditableBlocklyWorkspace />
-            <Stack>
-                <SceneButtons />
-                <SceneView descriptor={challenge.sceneDescriptor} />
+    return <>
+        {!isSmallScreen ? <>
+            <Stack flexGrow={1}>
+                <StatementDescription
+                    text={"enunciado"}
+                    setShowStatement={() => { }}
+                    clueIsEnabled={true}
+                    urlImage={challenge.imageURL()} />
+                <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
+                    <EditableBlocklyWorkspace horizontalLayout={false} />
+                    <Stack>
+                        <SceneButtons />
+                        <SceneView descriptor={challenge.sceneDescriptor} />
+                    </Stack>
+                </Stack>
             </Stack>
-        </Stack>
-    </Stack>
+            <ChallengeFooter />
+        </>
+            : <Stack direction='column'>
+                <StatementDescription
+                    text={"enunciado"}
+                    setShowStatement={() => { }}
+                    clueIsEnabled={true}
+                    urlImage={challenge.imageURL()} />
+                <Stack flexWrap={"wrap"} flexGrow={1} height='85vh'>
+                    <EditableBlocklyWorkspace horizontalLayout={true} />
+                    <Stack direction='row' height='40vh' justifyContent='space-around'>
+                        <SceneView descriptor={challenge.sceneDescriptor} />
+                        <SceneButtonsVertical />
+                    </Stack>
+                </Stack>
+            </Stack>
+
+        }
+    </>
 }
+
+
+//

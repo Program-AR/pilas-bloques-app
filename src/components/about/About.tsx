@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material"
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Header } from "../header/Header"
 import styles from "./about.module.css"
