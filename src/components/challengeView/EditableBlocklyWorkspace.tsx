@@ -1,14 +1,14 @@
 import { PBBlocklyWorkspace } from "../blockly/PBBlocklyWorkspace"
 
 type EditableBlocklyWorkspaceProps = {
-    horizontalLayout: boolean
+    isVertical: boolean
 }
 
-export const EditableBlocklyWorkspace = ({ horizontalLayout }: EditableBlocklyWorkspaceProps) => {
+export const EditableBlocklyWorkspace = ({ isVertical }: EditableBlocklyWorkspaceProps) => {
     return <PBBlocklyWorkspace
         sx={{ flexGrow: 1}}
         blockIds={["MoverACasillaDerecha"]}
         categorized={false}
-        workspaceConfiguration={{ trashcan: true, scrollbars: true, horizontalLayout: horizontalLayout }}
+        workspaceConfiguration={{ toolboxPosition: isVertical ? 'end' : 'start', trashcan: true, scrollbars: true, horizontalLayout: isVertical }}
     />
 }

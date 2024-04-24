@@ -45,7 +45,7 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
                     clueIsEnabled={true}
                     urlImage={challenge.imageURL()} />
                 <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-                    <EditableBlocklyWorkspace horizontalLayout={false} />
+                    <EditableBlocklyWorkspace isVertical={false} />
                     <Stack>
                         <SceneButtons />
                         <SceneView descriptor={challenge.sceneDescriptor} />
@@ -61,7 +61,7 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
                     clueIsEnabled={true}
                     urlImage={challenge.imageURL()} />
                 <Stack flexWrap={"wrap"} flexGrow={1} height='85vh'>
-                    <EditableBlocklyWorkspace horizontalLayout={true} />
+                    <EditableBlocklyWorkspace isVertical={true} />
                     <Stack direction='row' height='40vh' justifyContent='space-around'>
                         <SceneView descriptor={challenge.sceneDescriptor} />
                         <SceneButtonsVertical />
