@@ -27,7 +27,7 @@ export namespace PBSession {
           online: online(),
           browserId: null,
           userId: LocalStorage.getUser(),
-          version: process.env.VITE_VERSION,
+          version: process.env.APP_VERSION,
           experimentGroup: 'off',
           url: window.location.href,
           ip: await userIp(),
