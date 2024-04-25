@@ -17,10 +17,10 @@ export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style
 
 
 const Version = () => {
-  if(!process.env.APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
+  if(!process.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
   const {t} = useTranslation("footer")
 
-  const appVersion = process.env.APP_VERSION
+  const appVersion = process.env.VITE_APP_VERSION
   const newsUrl = new URL(`/novedades`, siteUrl).toString()
   const lastCommitHash = process.env.VITE_GIT_SHORT_COMMIT_HASH
   const repoUrl = `https://github.com/Program-AR/pilas-bloques-app/tree/${process.env.VITE_GIT_COMMIT_HASH}`
