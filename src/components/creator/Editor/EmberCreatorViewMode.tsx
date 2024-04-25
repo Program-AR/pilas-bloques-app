@@ -1,8 +1,8 @@
 import { Typography } from "@mui/material"
 import { Ember } from "../../../emberCommunication"
+import { EmberView } from "../../emberView/EmberView"
 import { LocalStorage } from "../../../localStorage"
 import { EMBER_IMPORTED_CHALLENGE_PATH } from "../../ImportedChallengeView"
-import { EmberView } from "../../emberView/EmberView"
 import { Header, HeaderText } from "../../header/Header"
 import { SerializedChallenge } from "../../serializedChallenge"
 import { useTranslation } from "react-i18next"
@@ -14,11 +14,11 @@ import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ChallengeView } from "../../challengeView/ChallengeView"
 
-export const CreatorViewMode = () => {
+export const EmberCreatorViewMode = () => {
 
     const challengeBeingEdited: SerializedChallenge = LocalStorage.getCreatorChallenge()!
 
-    //Ember.importChallenge(challengeBeingEdited)
+    Ember.importChallenge(challengeBeingEdited)
 
     const navigate = useNavigate()
 
@@ -31,15 +31,15 @@ export const CreatorViewMode = () => {
     return (<>
         {challengeExists ? (
             <>
-                <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
-                <ChallengeView height='calc(100% - var(--creator-subheader-height)) - var(--header-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+                <Header CenterComponent={<EmberCreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
+                <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
                 
             </>
         ) : <></>}
     </>)
 }
 
-export const CreatorViewHeader = ({ title }: { title: string }) => {
+export const EmberCreatorViewHeader = ({ title }: { title: string }) => {
     const { t } = useTranslation('creator')
 
     return <BetaBadge smaller={true}>

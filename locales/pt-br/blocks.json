@@ -13,6 +13,7 @@
     "categorized": "Categorizar Blocos"
   },
   "blocks": {
+    "program": "Ao inicio da execução",
     "footBallHere": "Há uma bola de futebol aqui?",
     "pingPongBallHere": "Há uma bolinha de ping pong aqui?",
     "pulpitoBallHere": "Há uma bola de plástico aqui?",
@@ -40,6 +41,11 @@
     "moveRight": "Mover para a direita",
     "moveTo": "Mover para (com parâmetro)",
     "moveUp": "Mover acima",
+    "comeToTheEnd": "Cheguei ao fim?",
+    "canMoveDown": "Posso mover para baixo?",
+    "canMoveRight": "Posso mover para direita?",
+    "canMoveUp": "Posso mover para acima?",
+    "canMoveLeft": "Posso mover para esquerda?",
     "obstacleAtLeft": "Há um obstáculo à esquerda?",
     "obstacleAtRight": "Há um obstáculo à direita?",
     "obstacleDown": "Há um obstáculo abaixo?",

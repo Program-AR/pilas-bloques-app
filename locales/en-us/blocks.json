@@ -13,6 +13,7 @@
     "categorized": "Categorize Blocks"
   },
   "blocks": {
+    "program": "When the program runs",
     "footBallHere": "Is there a football ball here?",
     "pingPongBallHere": "Is there a ping pong ball here?",
     "pulpitoBallHere": "Is there a rubber ball here?",
@@ -39,6 +40,11 @@
     "moveRight": "Move right",
     "moveTo": "Move (with parameter)",
     "moveUp": "Move up",
+    "canMoveDown": "Can I move down?",
+    "canMoveRight": "Can I move to the right?",
+    "canMoveUp": "Can I move up?",
+    "canMoveLeft": "Can I move to the left?",
+    "cameToTheEnd": "Am I at the end?",
     "obstacleAtLeft": "Is there an obstacle on the left?",
     "obstacleAtRight": "Is there an obstacle on the right?",
     "obstacleDown": "Is there an obstacle down there?",

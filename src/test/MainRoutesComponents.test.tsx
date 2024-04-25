@@ -1,6 +1,6 @@
 import { About } from "../components/about/About"
 import { BookView } from "../components/book/BookView"
-import { ChallengeById, ChallengeByName } from "../components/ChallengeView"
+import { ChallengeById, ChallengeByName } from "../components/EmberChallengeView"
 import { CreatorEditor } from "../components/creator/Editor/Editor"
 import { ActorSelection } from "../components/creator/ActorSelection/ActorSelection"
 import { Home } from "../components/home/Home"

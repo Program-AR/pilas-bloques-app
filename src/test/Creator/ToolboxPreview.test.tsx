@@ -4,14 +4,14 @@ import { ToolboxPreview } from '../../components/creator/Editor/ChallengeDetails
 import { commonBlocks, sceneBlocks } from '../../components/blockly/blocks';
 
 describe('Toolbox Preview', () => {
-  test.skip('rendering toolbox preview ', async () => {
+    test.skip('rendering toolbox preview ', async () => {
 
-    const toolBoxItems = [...commonBlocks.map((block => block.id)), ...sceneBlocks.map((block => block.id))]
-    
-    renderComponent(<ToolboxPreview blockIds={toolBoxItems} categorized={false}/>)
-    
-    const blocks = await screen.findByTestId(toolBoxItems.join(","))      
-          
-    expect(blocks).toBeInTheDocument()
-  })
+      const toolBoxItems = [...commonBlocks.map((block => block.id)), ...sceneBlocks.map((block => block.id))]
+      
+      renderComponent(<ToolboxPreview blockIds={toolBoxItems} categorized={false}/>)
+      
+      const blocks = await screen.findByTestId(toolBoxItems.join(","))      
+            
+      expect(blocks).toBeInTheDocument()
+    })
 })

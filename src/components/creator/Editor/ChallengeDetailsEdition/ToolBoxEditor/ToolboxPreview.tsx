@@ -7,8 +7,7 @@ type ToolboxPreviewProps = {
 }
 
 export const ToolboxPreview = ( {categorized, blockIds} : ToolboxPreviewProps ) => {
-    return <PBBlocklyWorkspace 
-            data-testid={blockIds.join(",")}
+    return <PBBlocklyWorkspace
             sx={{display: "flex", flexDirection:"column", minWidth: "400px", padding:"5px"}}
             title
             blockIds={blockIds}
