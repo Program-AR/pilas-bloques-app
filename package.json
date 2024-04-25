@@ -1,6 +1,6 @@
 {
   "name": "pilasbloques",
-  "version": "2.5.4",
+  "version": "2.5.7",
   "productName": "Pilas Bloques",
   "genericName": "Programacion con bloques",
   "description": "Una herramienta para aprender a programar utilizando bloques",
@@ -55,6 +55,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^2.2.2",
+    "makensis": "^2.0.8",
     "mini-css-extract-plugin": "^2.4.5",
     "pilas-bloques-exercises": "^1.4.31",
     "postcss": "^8.4.4",
@@ -141,7 +142,6 @@
     "fetch-mock-jest": "^1.5.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "makensis": "^2.0.5",
     "react-markdown": "^8.0.7",
     "release-it": "^15.6.0",
     "remark-emoji": "^3.1.2",

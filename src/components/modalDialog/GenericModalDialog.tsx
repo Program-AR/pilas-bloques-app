@@ -22,8 +22,7 @@ export interface ModalDialogProps {
     dialogProps?: Partial<DialogProps>;
     children?: JSX.Element;
     isDraggable?: boolean;
-    noScrollable?: boolean;
-    contentRef?:any
+    noScrollable?: boolean
   }
 
 export const GenericModalDialog: FC<ModalDialogProps> = ({

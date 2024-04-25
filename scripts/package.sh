@@ -76,6 +76,8 @@ osx() {
 
 windows_exe() {
     eco "Generating installer for windows..."
+    sudo apt install wine64
+    sudo apt install nsis
     pack "win32" "ia32" "ico"
 	cp packaging/instalador.nsi binaries/$NAME-win32-ia32/
 	cd binaries/$NAME-win32-ia32/; makensis instalador.nsi; cd ../..
