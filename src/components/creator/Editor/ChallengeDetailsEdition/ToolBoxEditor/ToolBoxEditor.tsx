@@ -13,7 +13,7 @@ import { PBCard } from "../../../../PBCard";
 
 export const ToolBoxEditor = () => {
 
-    const shouldShow = process.env.PROD
+    const shouldShow = process.env.NODE_ENV !== 'production'
 
     const [contentHeight,] = useState(window.innerHeight*0.7)
 
