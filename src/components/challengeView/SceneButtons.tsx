@@ -1,6 +1,6 @@
 import { Button, IconButton, Stack } from "@mui/material"
 import { PBCard } from "../PBCard"
-import { Info, PlayCircle, NextPlan } from "@mui/icons-material"
+import { PlayCircle, NextPlan } from "@mui/icons-material"
 import { PBSwitch, pbIconStyle } from "../PBSwitch"
 import BoltIcon from '@mui/icons-material/Bolt';
 import { useThemeContext } from "../../theme/ThemeContext";
@@ -13,19 +13,12 @@ export const SceneButtons = () => {
 
 export const SceneButtonsVertical = () => {
     return <PBCard>
-        <Stack >
+        <Stack>
             <TurboModeSwitch />
             <NextStepButton />
             <ExecuteButton />
-            <FooterButton />
         </Stack>
     </PBCard>
-}
-
-const FooterButton = () => {
-    return <IconButton >
-        <Info />
-    </IconButton>
 }
 
 const NextStepButton = () => {
@@ -35,7 +28,7 @@ const NextStepButton = () => {
 }
 
 const ExecuteButton = () => {
-    return <IconButton sx={{width: '100%'}} color='success' size="large">
+    return <IconButton color='success' size="large">
         <PlayCircle />
     </IconButton>
 }

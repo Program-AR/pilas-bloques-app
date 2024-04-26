@@ -2,14 +2,14 @@ import { useParams } from "react-router-dom"
 import { PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
 import { Header } from "../header/Header";
 import { ChallengeBreadcrumb } from "../ChallengeView";
-import { Stack, useMediaQuery } from "@mui/material";
+import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { SceneButtons, SceneButtonsVertical } from "./SceneButtons";
 import { SceneView } from "./SceneView";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { ChallengeFooter } from "./ChallengeFooter";
-import { PBBlocklyWorkspace } from "../blockly/PBBlocklyWorkspace";
+import { Info } from "@mui/icons-material";
 
 
 
@@ -54,17 +54,20 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
             </Stack>
             <ChallengeFooter />
         </>
-            : <Stack direction='column'>
+            : <Stack flexGrow={1} direction='column'height='100%'>
                 <StatementDescription
                     text={"enunciado"}
                     setShowStatement={() => { }}
                     clueIsEnabled={true}
                     urlImage={challenge.imageURL()} />
-                <Stack flexWrap={"wrap"} flexGrow={1} height='85vh'>
+                <Stack flexWrap={"wrap"} flexGrow={1} >
                     <EditableBlocklyWorkspace isVertical={true} />
-                    <Stack direction='row' height='40vh' justifyContent='space-around'>
+                    <Stack direction='row' justifyContent='space-around'>
                         <SceneView descriptor={challenge.sceneDescriptor} />
-                        <SceneButtonsVertical />
+                        <Stack justifyContent='space-between'>
+                            <SceneButtonsVertical />
+                            <FooterButton />
+                        </Stack>
                     </Stack>
                 </Stack>
             </Stack>
@@ -73,5 +76,8 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
     </>
 }
 
-
-//
+const FooterButton = () => {
+    return <IconButton >
+        <Info />
+    </IconButton>
+}

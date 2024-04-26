@@ -23,9 +23,9 @@ export const ChallengeFooter = () => {
         <PBCard className={styles.card}>
             <Stack direction={'row'} className={styles.footer}>
                 <Stack direction={'row'} gap={2} >
-                    <Link to={PROGRAMAR_LINK} style={{ display: 'flex' }}>
+                    <a href={PROGRAMAR_LINK} target='_blank' style={{ display: 'flex' }}>
                         <img src="imagenes/programar-short.png" className={styles.image} alt="logos" />
-                    </Link>
+                    </a>
                     <Version />
                 </Stack>
                 <Stack direction={'row'} gap={2}>
@@ -38,7 +38,7 @@ export const ChallengeFooter = () => {
                         className={styles.button}
                         size="small"
                         startIcon={<InfoIcon />}
-                        onClick={() => navigate('/acercade')}><b>{t("about")}</b></Button>
+                        onClick={() => window.open('#/acercade', '_blank')}><b>{t("about")}</b></Button>
                 </Stack>
             </Stack>
         </PBCard>
