@@ -13,7 +13,7 @@ type PBLinkProps = {
   children: React.ReactNode
 }
 
-export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
+export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} target='_blank' style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
 
 
 const Version = () => {
@@ -28,11 +28,11 @@ const Version = () => {
   return (
     <Stack direction="row" gap={0.5}>
       {t("version")}
-      <PBLink to={newsUrl} target="_blank">
+      <PBLink to={newsUrl}>
         {appVersion}
       </PBLink>
       <Code />
-      <PBLink to={repoUrl} target="_blank">
+      <PBLink to={repoUrl}>
         {lastCommitHash}
       </PBLink>
     </Stack>
@@ -42,7 +42,7 @@ const Version = () => {
 
 const Links = () => {
   const {t} = useTranslation("footer")
-  const teachersSiteUrl = new URL(`/docentes`, siteUrl).toString()
+  const teachersSiteUrl = 'https://pilasbloques.program.ar/docentes/'
 
   return (
     <Stack direction="row" gap={1}>
