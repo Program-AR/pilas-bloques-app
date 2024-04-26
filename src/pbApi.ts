@@ -114,8 +114,6 @@ export namespace PilasBloquesApi{
         headers.append('Content-Type', 'application/json');
         if(user) headers.append('Authorization', `Bearer ${user.token}`)
 
-        console.log(url)
-
         return _doFetch(url, {
           method,
           body: JSON.stringify(await bodyWithContext<T>(body)),
