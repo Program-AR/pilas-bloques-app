@@ -1,0 +1,10 @@
+.circle-icon{
+    position: absolute;
+    transform: scale(2.2);
+}
+
+.icon{
+    color: white;
+    transform: scale(1.4);
+}
+

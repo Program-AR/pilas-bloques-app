@@ -1,9 +1,10 @@
-import { Box, Button, IconButton, Stack } from "@mui/material"
-import { PBCard } from "../PBCard"
-import { Circle, PlayCircle, SkipNext } from "@mui/icons-material"
-import { PBSwitch, pbIconStyle } from "../PBSwitch"
+import { Button, IconButton, Stack } from "@mui/material"
+import { PBCard } from "../../PBCard"
+import { Circle, PlayArrow, SkipNext } from "@mui/icons-material"
+import { PBSwitch, pbIconStyle } from "../../PBSwitch"
+import styles from './sceneButtons.module.css'
 import BoltIcon from '@mui/icons-material/Bolt';
-import { useThemeContext } from "../../theme/ThemeContext";
+import { useThemeContext } from "../../../theme/ThemeContext";
 
 export const SceneButtons = () => {
     return <PBCard>
@@ -17,21 +18,23 @@ export const SceneButtonsVertical = () => {
         <NextStepButton />
         <ExecuteButton />
     </Stack>
-
 }
 
 const NextStepButton = () => {
     return <IconButton sx={{ width: '45%' }}>
         <Stack>
-            <Circle sx={{ position: 'absolute', color: '#31b0d5', transform: 'scale(2.2)' }} />
-            <SkipNext sx={{ color: 'white', transform: 'scale(1.4)' }} />
+            <Circle className={styles['circle-icon']} sx={{color: '#31b0d5'}} />
+            <SkipNext className={styles['icon']} />
         </Stack>
     </IconButton>
 }
 
 const ExecuteButton = () => {
-    return <IconButton sx={{ width: '45%' }} color='success' size="large">
-        <PlayCircle sx={{ transform: 'scale(2.2)' }} />
+    return <IconButton sx={{ width: '45%' }}>
+        <Stack>
+            <Circle color='success' className={styles['circle-icon']} />
+            <PlayArrow className={styles['icon']} />
+        </Stack>
     </IconButton>
 }
 

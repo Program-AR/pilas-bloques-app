@@ -1,13 +1,13 @@
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Stack } from "@mui/material"
-import { PBCard } from "../PBCard"
-import { PBLink, Version } from "../footer/Footer"
+import { PBCard } from "../../PBCard"
+import { PBLink, Version } from "../../footer/Footer"
 import InfoIcon from '@mui/icons-material/Info';
 import HelpIcon from '@mui/icons-material/Help';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from "./challengeFooter.module.css"
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { PBMailLink } from "../users/userForm";
+import { PBMailLink } from "../../users/userForm";
 
 export const ChallengeFooter = () => {
 

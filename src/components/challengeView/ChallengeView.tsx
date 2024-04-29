@@ -5,10 +5,10 @@ import { ChallengeBreadcrumb } from "../ChallengeView";
 import { Drawer, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
-import { SceneButtons, SceneButtonsVertical } from "./SceneButtons";
+import { SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
 import { useThemeContext } from "../../theme/ThemeContext";
-import { ChallengeFooter } from "./ChallengeFooter";
+import { ChallengeFooter } from "./Info/ChallengeFooter";
 import { Info } from "@mui/icons-material";
 import { useState } from "react";
 
