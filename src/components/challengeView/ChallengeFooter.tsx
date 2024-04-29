@@ -1,6 +1,5 @@
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, Stack } from "@mui/material"
 import { PBCard } from "../PBCard"
-import { Link, useNavigate } from "react-router-dom"
 import { PBLink, Version } from "../footer/Footer"
 import InfoIcon from '@mui/icons-material/Info';
 import HelpIcon from '@mui/icons-material/Help';
@@ -13,7 +12,6 @@ import { PBMailLink } from "../users/userForm";
 export const ChallengeFooter = () => {
 
     const { t } = useTranslation("footer")
-    const navigate = useNavigate()
     const [openModal, setOpenModal] = useState(false);
 
     const PROGRAMAR_LINK = 'https://program.ar/'

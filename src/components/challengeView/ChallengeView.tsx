@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
 import { Header } from "../header/Header";
 import { ChallengeBreadcrumb } from "../ChallengeView";
-import { IconButton, Stack, useMediaQuery } from "@mui/material";
+import { Drawer, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { SceneButtons, SceneButtonsVertical } from "./SceneButtons";
@@ -10,6 +10,7 @@ import { SceneView } from "./SceneView";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { ChallengeFooter } from "./ChallengeFooter";
 import { Info } from "@mui/icons-material";
+import { useState } from "react";
 
 
 
@@ -33,6 +34,7 @@ export const ChallengeView = () => {
 const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
     const challenge = getChallengeWithId(challengeId)
     const { theme } = useThemeContext()
+    const [openDrawer, setOpenDrawer] = useState<boolean>(false)
 
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -54,7 +56,7 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
             </Stack>
             <ChallengeFooter />
         </>
-            : <Stack flexGrow={1} direction='column'height='100%'>
+            : <Stack flexGrow={1} direction='column' height='100%'>
                 <StatementDescription
                     text={"enunciado"}
                     setShowStatement={() => { }}
@@ -62,16 +64,16 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
                     urlImage={challenge.imageURL()} />
                 <Stack flexWrap={"wrap"} flexGrow={1} >
                     <EditableBlocklyWorkspace isVertical={true} />
-                    <Stack direction='row' justifyContent='space-around'>
-                        <SceneView descriptor={challenge.sceneDescriptor} />
-                        <Stack justifyContent='space-between'>
+                    <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
+                        <SceneView descriptor={challenge.sceneDescriptor}/>
+                        <Stack margin='10px' justifyContent='space-between'>
                             <SceneButtonsVertical />
                             <FooterButton />
+                            <InfoDrawer />
                         </Stack>
                     </Stack>
                 </Stack>
             </Stack>
-
         }
     </>
 }
@@ -80,4 +82,10 @@ const FooterButton = () => {
     return <IconButton >
         <Info />
     </IconButton>
+}
+
+
+const InfoDrawer = () => {
+    return <Drawer anchor='right' onClose={() => { }} open={false}>
+    </Drawer>
 }
