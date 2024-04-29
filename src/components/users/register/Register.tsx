@@ -149,7 +149,7 @@ export const Register: FC = () => {
         <Collapse style={{ padding: "10px" }} in={whyReqData}>
           <Typography>{t("whyData.privacy")}</Typography>
           <Typography>{t("whyData.dataProtectionLaw")}&nbsp;
-            <PBLink target="_blank" to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>
+            <PBLink to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>
           <Typography>{t("whyData.parentalContact")}&nbsp;
             <PBMailLink />&nbsp;
             {t("whyData.whyContact")}</Typography>
@@ -157,7 +157,7 @@ export const Register: FC = () => {
       </Stack>
 
       <FormControlLabel
-        label={<Typography>{t('terms')}<PBLink target="_blank" to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>}
+        label={<Typography>{t('terms')}<PBLink to={termsAndConditionsLink}>{t("linkTerms")}</PBLink></Typography>}
         control={<Checkbox sx={{ color: theme.palette.primary.main }}
           onChange={() => setTermAndConditions(!termsAndConditions)}
           required />
