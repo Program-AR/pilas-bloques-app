@@ -42,6 +42,16 @@ const TurboModeSwitch = () => {
     const { theme } = useThemeContext()
 
     return <PBSwitch
+        sx={{
+            "& .MuiSwitch-switchBase": {
+                "&.Mui-checked": {
+                    "+ .MuiSwitch-track": {
+                        backgroundColor: '#4ec2df',
+                        opacity: 1,
+                    }
+                },
+            },
+        }}
         icon={<BoltIcon sx={pbIconStyle(theme)} />}
         checkedIcon={<BoltIcon sx={pbIconStyle(theme)} />}
         onChange={() => { }} />
