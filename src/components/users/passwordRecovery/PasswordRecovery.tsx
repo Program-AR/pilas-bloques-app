@@ -38,7 +38,7 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
     const [userIdentifier, setUserIdentifier] = useState<string>('')
     const [mailSent, setMailSent] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false)
-
+    const navigate = useNavigate()
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault()
@@ -55,7 +55,7 @@ const SendEmail = ({ setServerError }: SendEmailProps) => {
     return <UserCard title={t("passwordRecovery")} handleSubmit={handleSubmit}>
         {mailSent ? <>
             <Typography><b>{t('mailSent')} <PBMailLink /></b></Typography>
-            <Button variant="contained" color="success" href="/#">{t("backToHome")}</Button>
+            <Button variant="contained" color="success" onClick={() => navigate('/#')}>{t("backToHome")}</Button>
         </>
             :
             <>
