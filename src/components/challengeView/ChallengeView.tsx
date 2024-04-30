@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
+import { Challenge, PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
 import { Header } from "../header/Header";
 import { ChallengeBreadcrumb } from "../ChallengeView";
 import { Drawer, Stack, useMediaQuery } from "@mui/material";
@@ -33,48 +33,51 @@ export const ChallengeView = () => {
 const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
     const challenge = getChallengeWithId(challengeId)
     const { theme } = useThemeContext()
-    const [openDrawer, setOpenDrawer] = useState<boolean>(false)
 
     const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
     return <>
-        {!isSmallScreen ? <>
-            <Stack flexGrow={1}>
-                <StatementDescription
-                    text={"enunciado"}
-                    setShowStatement={() => { }}
-                    clueIsEnabled={true}
-                    urlImage={challenge.imageURL()} />
-                <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-                    <EditableBlocklyWorkspace isVertical={false} />
-                    <Stack>
-                        <SceneButtons />
-                        <SceneView descriptor={challenge.sceneDescriptor} />
-                    </Stack>
-                </Stack>
-            </Stack>
-            <ChallengeFooter />
-        </>
-            : <Stack flexGrow={1} direction='column' height='100%'>
-                <StatementDescription
-                    text={"enunciado"}
-                    setShowStatement={() => { }}
-                    clueIsEnabled={true}
-                    urlImage={challenge.imageURL()} />
-                <Stack flexWrap={"wrap"} flexGrow={1} >
-                    <EditableBlocklyWorkspace isVertical={true} />
-                    <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
-                        <SceneView descriptor={challenge.sceneDescriptor} />
-                        <Stack margin='10px' justifyContent='space-between'>
-                            <SceneButtonsVertical />
-                            <InfoButton onClick={() => setOpenDrawer(true)} />
-                            <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
-                        </Stack>
-                    </Stack>
-                </Stack>
-            </Stack>
-        }
+        <Stack flexGrow={1} direction='column' height='100%'>
+            <StatementDescription
+                text={"enunciado"}
+                setShowStatement={() => { }}
+                clueIsEnabled={true}
+                urlImage={challenge.imageURL()} />
+            {isSmallScreen ? <VerticalChallengeWorkspace challenge={challenge} /> : <HorizontalChallengeWorkspace challenge={challenge} />}
+        </Stack>
+        {!isSmallScreen ? <ChallengeFooter /> : <></>}
     </>
+}
+
+type ChallengeWorkspaceProps = {
+    challenge: Challenge
+}
+
+const HorizontalChallengeWorkspace = ({ challenge }: ChallengeWorkspaceProps) => {
+    return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
+        <EditableBlocklyWorkspace isVertical={false} />
+        <Stack>
+            <SceneButtons />
+            <SceneView descriptor={challenge.sceneDescriptor} />
+        </Stack>
+    </Stack>
+}
+
+const VerticalChallengeWorkspace = ({ challenge }: ChallengeWorkspaceProps) => {
+
+    const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+
+    return <Stack flexWrap={"wrap"} flexGrow={1} >
+        <EditableBlocklyWorkspace isVertical={true} />
+        <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
+            <SceneView descriptor={challenge.sceneDescriptor} />
+            <Stack margin='10px' justifyContent='space-between'>
+                <SceneButtonsVertical />
+                <InfoButton onClick={() => setOpenDrawer(true)} />
+                <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
+            </Stack>
+        </Stack>
+    </Stack>
 }
 
 
