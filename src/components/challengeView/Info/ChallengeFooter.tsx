@@ -9,34 +9,41 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { PBMailLink } from "../../users/userForm";
 
-export const ChallengeFooter = () => {
+type ChallengeFooterProps = {
+    isVertical?: boolean
+}
+
+export const ChallengeFooter = ({ isVertical = false}: ChallengeFooterProps) => {
 
     const { t } = useTranslation("footer")
     const [openModal, setOpenModal] = useState(false);
 
+    const stackDirection = isVertical ? 'column' : 'row'
+    const shortText = isVertical ? 'Short' : ''
     const PROGRAMAR_LINK = 'https://program.ar/'
+    const stackGap = isVertical ? 1 : 2
 
     return <>
         <BugReportModal open={openModal} handleOnClose={() => setOpenModal(false)} />
-        <PBCard className={styles.card}>
-            <Stack direction={'row'} className={styles.footer}>
-                <Stack direction={'row'} gap={2} >
-                    <a href={PROGRAMAR_LINK} target='_blank' style={{ display: 'flex' }}>
+        <PBCard className={styles.card} sx={isVertical ? {height: '30vh'} : {}}>
+            <Stack  direction={stackDirection} className={styles.footer} gap={1}>
+                <Stack direction={stackDirection} gap={stackGap} >
+                    <a href={PROGRAMAR_LINK} target='_blank' style={{ display: 'flex', alignSelf:'center' }}>
                         <img src="imagenes/programar-short.png" className={styles.image} alt="logos" />
                     </a>
                     <Version />
                 </Stack>
-                <Stack direction={'row'} gap={2}>
+                <Stack direction={stackDirection} gap={stackGap}>
                     <Button
                         className={styles.button}
                         size="small"
                         startIcon={<HelpIcon />}
-                        onClick={() => { setOpenModal(true) }}><b>{t("problemWithChallenge")}</b></Button>
+                        onClick={() => { setOpenModal(true) }}><b>{t(`problemWithChallenge${shortText}`)}</b></Button>
                     <Button
                         className={styles.button}
                         size="small"
                         startIcon={<InfoIcon />}
-                        onClick={() => window.open('#/acercade', '_blank')}><b>{t("about")}</b></Button>
+                        onClick={() => window.open('#/acercade', '_blank')}><b>{t(`about`)}</b></Button>
                 </Stack>
             </Stack>
         </PBCard>

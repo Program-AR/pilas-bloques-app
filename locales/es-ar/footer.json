@@ -5,6 +5,7 @@
     "terms": "Términos y condiciones",
     "version": "Versión",
     "problemWithChallenge": "¿Algún problema con este ejercicio?",
+    "problemWithChallengeShort": "¿Algún problema?",
     "bugReportModal": {
         "problem": "¿Tenés algún problema?",
         "error": "¿Pensás que este ejercicio tiene un error?",

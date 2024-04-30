@@ -1,6 +1,6 @@
 import { Button, IconButton, Stack } from "@mui/material"
 import { PBCard } from "../../PBCard"
-import { Circle, PlayArrow, SkipNext } from "@mui/icons-material"
+import { Circle, Info, PlayArrow, SkipNext } from "@mui/icons-material"
 import { PBSwitch, pbIconStyle } from "../../PBSwitch"
 import styles from './sceneButtons.module.css'
 import BoltIcon from '@mui/icons-material/Bolt';
@@ -21,16 +21,16 @@ export const SceneButtonsVertical = () => {
 }
 
 const NextStepButton = () => {
-    return <IconButton sx={{ width: '45%' }}>
+    return <IconButton className={styles['icon-button']}>
         <Stack>
-            <Circle className={styles['circle-icon']} sx={{color: '#31b0d5'}} />
+            <Circle className={styles['circle-icon']} sx={{ color: '#31b0d5' }} />
             <SkipNext className={styles['icon']} />
         </Stack>
     </IconButton>
 }
 
 const ExecuteButton = () => {
-    return <IconButton sx={{ width: '45%' }}>
+    return <IconButton className={styles['icon-button']}>
         <Stack>
             <Circle color='success' className={styles['circle-icon']} />
             <PlayArrow className={styles['icon']} />
@@ -45,4 +45,14 @@ const TurboModeSwitch = () => {
         icon={<BoltIcon sx={pbIconStyle(theme)} />}
         checkedIcon={<BoltIcon sx={pbIconStyle(theme)} />}
         onChange={() => { }} />
+}
+
+type InfoButtonProps = {
+    onClick: () => void
+}
+
+export const InfoButton = ({ onClick }: InfoButtonProps) => {
+    return <IconButton onClick={onClick}>
+        <Info color="primary" />
+    </IconButton>
 }

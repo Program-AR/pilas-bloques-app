@@ -2,14 +2,13 @@ import { useParams } from "react-router-dom"
 import { PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
 import { Header } from "../header/Header";
 import { ChallengeBreadcrumb } from "../ChallengeView";
-import { Drawer, IconButton, Stack, useMediaQuery } from "@mui/material";
+import { Drawer, Stack, useMediaQuery } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
-import { SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
+import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { ChallengeFooter } from "./Info/ChallengeFooter";
-import { Info } from "@mui/icons-material";
 import { useState } from "react";
 
 
@@ -65,11 +64,11 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
                 <Stack flexWrap={"wrap"} flexGrow={1} >
                     <EditableBlocklyWorkspace isVertical={true} />
                     <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
-                        <SceneView descriptor={challenge.sceneDescriptor}/>
+                        <SceneView descriptor={challenge.sceneDescriptor} />
                         <Stack margin='10px' justifyContent='space-between'>
                             <SceneButtonsVertical />
-                            <FooterButton />
-                            <InfoDrawer />
+                            <InfoButton onClick={() => setOpenDrawer(true)} />
+                            <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
                         </Stack>
                     </Stack>
                 </Stack>
@@ -78,14 +77,18 @@ const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
     </>
 }
 
-const FooterButton = () => {
-    return <IconButton >
-        <Info />
-    </IconButton>
+
+type InfoDrawerProps = {
+    open: boolean
+    onClose: () => void
 }
 
-
-const InfoDrawer = () => {
-    return <Drawer anchor='right' onClose={() => { }} open={false}>
+const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
+    return <Drawer
+        PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-end' } }}
+        anchor='right'
+        onClose={onClose}
+        open={open}>
+        <ChallengeFooter isVertical={true} />
     </Drawer>
 }
