@@ -53,7 +53,7 @@ jobs:
             token: ${{ secrets.GITHUB_TOKEN }}
 
   pack-macos: # When there is a tag, pack the installers and upload to Github.
-    runs-on: macos-latest
+    runs-on: macos-13
     env:
       VITE_API_URL: ${{ secrets.API_URL }}
       VITE_PB_APP_URL: ${{ secrets.APP_URL }}
