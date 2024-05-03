@@ -41,7 +41,7 @@ export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xht
 
 const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
 
-const createJSCode = (id: string, customCode: string) => {
+const createGenericJSCode = (id: string, customCode: string) => {
   javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string) => any; }) {
     let variables = customCode.match(/\$(\w+)/g);
     let code = customCode;
@@ -96,7 +96,7 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
     }
   }
 
-  createJSCode(id, jsonInit.code || `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`)
+  createGenericJSCode(id, jsonInit.code || `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`)
 
 }
 
@@ -110,8 +110,6 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
     args0: [],
     output: null,
   })
-
-  Blockly.Blocks[id].isCustomBlock = true;
 
   if (icon) {
     jsonInit.message0 = `%1 ${message}`
@@ -181,6 +179,13 @@ const createFirstBlock = (t: (key: string) => string) => {
       this.setMovable(false);
     },
   };
+
+  javascriptGenerator.forBlock['al_empezar_a_ejecutar'] = function (block: any, generator: { statementToCode: (arg0: any, arg1: string) => any; }) {
+    const program = generator.statementToCode(block, 'program');
+    const code = `${program}`;
+    return code;
+  };
+
 }
 
 const createPrimitiveBlocks = (t: (key: string) => string) => {
@@ -713,7 +718,7 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
           <value name="longitud">
             <block type="math_number"><field name="NUM">100</field></block></value>
         </block>
-      `    
+      `
     });
 
   createPrimitiveBlock('GirarGrados', t(`blocks.turnDegrees`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
@@ -1047,6 +1052,31 @@ const createValueBlocks = (t: (key: string) => string) => {
 
 const createRepeatBlocks = (t: (key: string) => string) => {
 
+  const repeatBlocksCode = (id: string) => {
+    javascriptGenerator.forBlock[id] = function (block: { id: any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; addLoopTrap: (arg0: any, arg1: any) => any; nameDB_: { getDistinctName: (arg0: string, arg1: Blockly.Names.NameType) => any; }; }) {
+      const repeats = generator.valueToCode(block, 'count', Order.ASSIGNMENT) || '0';
+
+      var branch = generator.statementToCode(block, 'block');
+      branch = generator.addLoopTrap(branch, block.id);
+      var code = '';
+
+      const loopVar = generator.nameDB_.getDistinctName(
+        'count', Blockly.Names.NameType.VARIABLE);
+      var endVar = repeats;
+      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
+        endVar = generator.nameDB_.getDistinctName(
+          'repeat_end', Blockly.Names.NameType.VARIABLE);
+        code += 'var ' + endVar + ' = ' + repeats + ';\n';
+      }
+
+      code += 'for (var ' + loopVar + ' = 0; ' +
+        loopVar + ' < ' + endVar + '; ' +
+        loopVar + '++) {\n' +
+        branch + '}\n';
+
+      return code;
+    };
+  }
 
 
   Blockly.Blocks['RepetirVacio'] = {
@@ -1064,6 +1094,8 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     },
     categoryId: 'repetitions',
   };
+
+  repeatBlocksCode('RepetirVacio');
 
   Blockly.Blocks['Repetir'] = {
     init: function () {
@@ -1090,6 +1122,8 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     categoryId: 'repetitions',
   };
 
+  repeatBlocksCode('Repetir');
+
   Blockly.Blocks['Hasta'] = {
     init: function () {
       this.setColour(controlColor);
@@ -1104,6 +1138,13 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     categoryId: 'repetitions',
   };
 
+  javascriptGenerator.forBlock['Hasta'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
+    const condition = generator.valueToCode(block, 'condition', Order.ASSIGNMENT) || 'false';
+    const contenido = generator.statementToCode(block, 'block');
+    return `while (!${condition}) {
+      ${contenido}
+    }`;
+  };
 
   Blockly.Blocks['Si'] = {
     init: function () {
@@ -1117,6 +1158,14 @@ const createRepeatBlocks = (t: (key: string) => string) => {
       this.setNextStatement(true);
     },
     categoryId: 'alternatives',
+  };
+
+  javascriptGenerator.forBlock['Si'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
+    const condition = generator.valueToCode(block, 'condition', Order.ATOMIC) || 'false';
+    const contenido = generator.statementToCode(block, 'block');
+    return `if (${condition}) {
+      ${contenido}
+    }`;
   };
 
   Blockly.Blocks['SiNo'] = {
@@ -1136,19 +1185,24 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     categoryId: 'alternatives',
   };
 
+  javascriptGenerator.forBlock['SiNo'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
+    const condition = generator.valueToCode(block, 'condition', Order.ASSIGNMENT) || 'false';
+    const bloque_1 = generator.statementToCode(block, 'block1');
+    const bloque_2 = generator.statementToCode(block, 'block2');
+
+    return `if (${condition}) {
+      ${bloque_1}
+    } else {
+      ${bloque_2}
+    }`;
+  };
 }
 
 const createOthersBlocks = (t: (key: string) => string) => {
 
   createCommonBlocklyBlocks(t, othersColor)
 
-  Blockly.Blocks['OpComparacion'] = {
-    init: Blockly.Blocks['logic_compare'].init,
-    categoryId: 'operators',
-  };
-
   Blockly.Blocks['OpAritmetica'] = {
-    isCustomBlock: true,
     init: function () {
       this.jsonInit({
         type: "math_arithmetic",
@@ -1186,118 +1240,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     categoryId: 'operators'
   };
 
-  Blockly.Blocks['param_get'] = {
-    init: Blockly.Blocks['variables_get'].init,
-    mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
-    domToMutation: Blockly.Blocks['variables_get'].domToMutation,
-    onchange: Blockly.Blocks['variables_get'].onchange,
-    categoryId: 'variables',
-  };
-
-  Blockly.Blocks['param_set'] = {
-    init: Blockly.Blocks['variables_set'].init,
-    mutationToDom: Blockly.Blocks['variables_set'].mutationToDom,
-    domToMutation: Blockly.Blocks['variables_set'].domToMutation,
-    onchange: Blockly.Blocks['variables_set'].onchange,
-    categoryId: 'variables',
-  };
-
-  Blockly.Blocks['Procedimiento'] = {
-    init: Blockly.Blocks['procedures_defnoreturn'].init,
-    setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
-    updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
-    mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
-    domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
-    decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
-    compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-    getProcedureDef: Blockly.Blocks['procedures_defnoreturn'].getProcedureDef,
-    getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
-    getVarModels: Blockly.Blocks['procedures_defnoreturn'].getVarModels,
-    renameVarById: Blockly.Blocks['procedures_defnoreturn'].renameVarById,
-    updateVarName: Blockly.Blocks['procedures_defnoreturn'].updateVarName,
-    displayRenamedVar_: Blockly.Blocks['procedures_defnoreturn'].displayRenamedVar_,
-    customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
-    categoryId: 'myprocedures'
-  };
-}
-
-const createBlocksCode = () => {
-
-  const repeatBlocks = (id: string) => {
-    javascriptGenerator.forBlock[id] = function (block: { id: any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; addLoopTrap: (arg0: any, arg1: any) => any; nameDB_: { getDistinctName: (arg0: string, arg1: Blockly.Names.NameType) => any; }; }) {
-      const repeats = generator.valueToCode(block, 'count', Order.ASSIGNMENT) || '0';
-
-      var branch = generator.statementToCode(block, 'block');
-      branch = generator.addLoopTrap(branch, block.id);
-      var code = '';
-
-      const loopVar = generator.nameDB_.getDistinctName(
-        'count', Blockly.Names.NameType.VARIABLE);
-      var endVar = repeats;
-      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
-        endVar = generator.nameDB_.getDistinctName(
-          'repeat_end', Blockly.Names.NameType.VARIABLE);
-        code += 'var ' + endVar + ' = ' + repeats + ';\n';
-      }
-
-      code += 'for (var ' + loopVar + ' = 0; ' +
-        loopVar + ' < ' + endVar + '; ' +
-        loopVar + '++) {\n' +
-        branch + '}\n';
-
-      return code;
-    };
-  }
-
-  javascriptGenerator.addReservedWords('main', 'hacer', 'out_hacer', 'evaluar');
-
-  javascriptGenerator.required_value = function () {
-    return null
-  };
-
-  javascriptGenerator.required_statement = function () {
-    return null
-  };
-
-  javascriptGenerator.forBlock['al_empezar_a_ejecutar'] = function (block: any, generator: { statementToCode: (arg0: any, arg1: string) => any; }) {
-    const programa = generator.statementToCode(block, 'program');
-    const codigo = `${programa}`;
-    return codigo;
-  };
-
-
-  repeatBlocks('Repetir');
-  repeatBlocks('RepetirVacio');
-
-
-  javascriptGenerator.forBlock['Si'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
-    const condition = generator.valueToCode(block, 'condition', Order.ATOMIC) || 'false';
-    const contenido = generator.statementToCode(block, 'block');
-    return `if (${condition}) {
-      ${contenido}
-    }`;
-  };
-
-  javascriptGenerator.forBlock['SiNo'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
-    const condition = generator.valueToCode(block, 'condition', Order.ASSIGNMENT) || 'false';
-    const bloque_1 = generator.statementToCode(block, 'block1');
-    const bloque_2 = generator.statementToCode(block, 'block2');
-
-    return `if (${condition}) {
-      ${bloque_1}
-    } else {
-      ${bloque_2}
-    }`;
-  };
-
-  javascriptGenerator.forBlock['Hasta'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
-    const condition = generator.valueToCode(block, 'condition', Order.ASSIGNMENT) || 'false';
-    const contenido = generator.statementToCode(block, 'block');
-    return `while (!${condition}) {
-      ${contenido}
-    }`;
-  };
-
   javascriptGenerator.forBlock['OpAritmetica'] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: any) => string; }) {
     // Basic arithmetic operators, and power.    
     const OPERATORS = {
@@ -1333,6 +1275,56 @@ const createBlocksCode = () => {
     return [code, order];
   };
 
+  Blockly.Blocks['OpComparacion'] = {
+    init: Blockly.Blocks['logic_compare'].init,
+    categoryId: 'operators',
+  };
+
+  Blockly.Blocks['param_get'] = {
+    init: Blockly.Blocks['variables_get'].init,
+    mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
+    domToMutation: Blockly.Blocks['variables_get'].domToMutation,
+    onchange: Blockly.Blocks['variables_get'].onchange,
+    categoryId: 'variables',
+  };
+
+  Blockly.Blocks['param_set'] = {
+    init: Blockly.Blocks['variables_set'].init,
+    mutationToDom: Blockly.Blocks['variables_set'].mutationToDom,
+    domToMutation: Blockly.Blocks['variables_set'].domToMutation,
+    onchange: Blockly.Blocks['variables_set'].onchange,
+    categoryId: 'variables',
+  };
+
+  Blockly.Blocks['Procedimiento'] = {
+    init: Blockly.Blocks['procedures_defnoreturn'].init,
+    setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
+    updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
+    mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
+    domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
+    decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
+    compose: Blockly.Blocks['procedures_defnoreturn'].compose,
+    getProcedureDef: Blockly.Blocks['procedures_defnoreturn'].getProcedureDef,
+    getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
+    getVarModels: Blockly.Blocks['procedures_defnoreturn'].getVarModels,
+    renameVarById: Blockly.Blocks['procedures_defnoreturn'].renameVarById,
+    updateVarName: Blockly.Blocks['procedures_defnoreturn'].updateVarName,
+    displayRenamedVar_: Blockly.Blocks['procedures_defnoreturn'].displayRenamedVar_,
+    customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
+    categoryId: 'myprocedures'
+  };
+}
+
+const createCommonCode = () => {
+  javascriptGenerator.addReservedWords('main', 'hacer', 'out_hacer', 'evaluar');
+
+  javascriptGenerator.required_value = function () {
+    return null
+  };
+
+  javascriptGenerator.required_statement = function () {
+    return null
+  };
 
   javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
   javascriptGenerator.addReservedWords('highlightBlock');
@@ -1437,13 +1429,13 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
 
   createPrimitiveBlocks(t)
 
+  createSensorBlocks(t)
+
   createValueBlocks(t)
 
   createRepeatBlocks(t)
 
   createOthersBlocks(t)
 
-  createBlocksCode()
-
-  createSensorBlocks(t)
+  createCommonCode()
 }
