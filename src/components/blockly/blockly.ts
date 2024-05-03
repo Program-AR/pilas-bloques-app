@@ -1,7 +1,6 @@
 import { BlockType } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
-import { isNumber } from "blockly/core/utils/string";
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 
@@ -1235,7 +1234,7 @@ const createBlocksCode = () => {
       const loopVar = generator.nameDB_.getDistinctName(
         'count', Blockly.Names.NameType.VARIABLE);
       var endVar = repeats;
-      if (!repeats.match(/^\w+$/) && isNumber(repeats)) {
+      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
         endVar = generator.nameDB_.getDistinctName(
           'repeat_end', Blockly.Names.NameType.VARIABLE);
         code += 'var ' + endVar + ' = ' + repeats + ';\n';
