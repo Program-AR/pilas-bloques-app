@@ -5,6 +5,7 @@ export type optionType = {
   'argumentos'?: string
   'funcionSensor'?: string
   'valor'?: string
+  'code'?: string
 }
 
 export const validateRequiredOptions = (name: string, options: optionType, optionsRequiredList: string[]) => {
