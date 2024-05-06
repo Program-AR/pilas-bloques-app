@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
-import { Drawer, useMediaQuery, PaperProps, Box, Stack } from "@mui/material";
+import { Drawer, useMediaQuery, PaperProps, Stack } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
@@ -29,6 +29,7 @@ type ChallengeViewProps = {
 
 export const ChallengeView = ({path, height}: ChallengeViewProps) => {
   var { id } = useParams()
+  const { theme } = useThemeContext()
 
   // TODO Es necesario traerse en challenges.json los statement.decription y statement.clue con sus traducciones para cada desafio
   const { t } = useTranslation('challenges')
@@ -56,7 +57,7 @@ export const ChallengeView = ({path, height}: ChallengeViewProps) => {
     clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!
   }
 
-  return <Stack height={height ? height : '100%'}>
+  return <Stack height={height ? height : '100%'} sx={{ backgroundColor: theme.palette.background.paper }}>
     {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(pathToChallenge!)} shouldShowSimpleReadSwitch={!pathToChallenge!.book.simpleReadMode} />}
     <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} />
   </Stack>
