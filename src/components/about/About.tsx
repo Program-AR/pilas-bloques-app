@@ -12,7 +12,7 @@ export const About = () => {
         <UserCard title={t("title")} handleSubmit={() => { }}>
             <Typography className={styles.title} variant="h4"></Typography>
             <Typography>{t("text")}
-                <PBLink to="https://pilasbloques.program.ar/acerca-de-pilas-bloques/" target="_blank">{t("redirect")}</PBLink>
+                <PBLink to="https://pilasbloques.program.ar/acerca-de-pilas-bloques/">{t("redirect")}</PBLink>
             </Typography>
         </UserCard>
     </>

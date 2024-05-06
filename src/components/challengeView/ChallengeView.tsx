@@ -1,97 +1,145 @@
 import { useParams } from "react-router-dom"
-import { Challenge, PathToChallenge, currentIdFor, getChallengeWithId, getPathToChallenge } from "../../staticData/challenges";
-import { Header } from "../header/Header";
-import { ChallengeBreadcrumb } from "../ChallengeView";
-import { Drawer, Stack, useMediaQuery } from "@mui/material";
+import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
+import { Drawer, useMediaQuery, PaperProps, Box, Stack } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
-import { useThemeContext } from "../../theme/ThemeContext";
 import { ChallengeFooter } from "./Info/ChallengeFooter";
+import { LocalStorage } from "../../localStorage"
+import { Header } from "../header/Header"
+import { Scene, SceneMap, SerializedChallenge } from "../serializedChallenge";
+import { useTranslation } from "react-i18next";
+import { useThemeContext } from "../../theme/ThemeContext";
 import { useState } from "react";
+import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
+import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
 
+export const serializedSceneToDescriptor = (scene: Scene) => {
+  const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
+  const mapsAsString = scene.maps.map(mapToString).join(',')
 
-
-// Repeats code with components/ChallengeView.ts, should replace it eventually.
-export const ChallengeView = () => {
-    var { id } = useParams()
-    const challengeId = currentIdFor(Number(id))
-
-    const path: PathToChallenge = getPathToChallenge(challengeId)
-
-    //const [searchParams] = useSearchParams();
-    //const solution: string | null = searchParams.get("codigo")
-    //const solutionParam: string = solution ? `?codigo=${solution}` : ""
-
-    return <Stack height="100%">
-        <Header CenterComponent={ChallengeBreadcrumb(path)} shouldShowSimpleReadSwitch={!path.book.simpleReadMode} />
-        <ChallengeWorkspace challengeId={challengeId} />
-    </Stack>
+  return `new Escena${scene.type}([${mapsAsString}])`
 }
 
-const ChallengeWorkspace = ({ challengeId }: { challengeId: number }) => {
-    const challenge = getChallengeWithId(challengeId)
-    const { theme } = useThemeContext()
+type ChallengeViewProps = {
+  path?: string,
+  height?: string
+}
 
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+export const ChallengeView = (props: ChallengeViewProps) => {
+  var { id } = useParams()
 
-    return <>
-        <Stack flexGrow={1} direction='column' height='100%'>
-            <StatementDescription
-                text={"enunciado"}
-                setShowStatement={() => { }}
-                clueIsEnabled={true}
-                urlImage={challenge.imageURL()} />
-            {isSmallScreen ? <VerticalChallengeWorkspace challenge={challenge} /> : <HorizontalChallengeWorkspace challenge={challenge} />}
-        </Stack>
-        {!isSmallScreen ? <ChallengeFooter /> : <></>}
-    </>
+  // TODO Es necesario traerse en challenges.json los statement.decription y statement.clue con sus traducciones para cada desafio
+  const { t } = useTranslation('challenges')
+
+  const impChallenge: boolean = props.path?.includes("react-imported-challenge") ? true : false
+
+  const serializedChallengeToChallenge = (serializedChallenge: SerializedChallenge): Challenge => (
+    {
+      sceneDescriptor: serializedSceneToDescriptor(serializedChallenge.scene),
+      toolboxBlockIds: serializedChallenge.toolbox.blocks,
+      toolboxStyle: serializedChallenge.toolbox.categorized ? 'categorized' : 'noCategories',
+      debugging: serializedChallenge.stepByStep,
+      predefinedSolution: serializedChallenge.predefinedSolution,
+      shouldShowMultipleScenarioHelp: (serializedChallenge.scene.maps.length > 1),
+      id: 0,
+      imageURL: () => `imagenes/sceneImages/${serializedChallenge.scene.type}/tool.png`
+    }
+  )
+
+  const path: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
+
+  const workspace: ChallengeWorkspaceProps = {
+    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : path!.challenge),
+    statement: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.description : t(`${id}.statement`)!,
+    clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!
+  }
+
+  return <Box height={props.height ? props.height : '100%'}>
+    {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(path!)} shouldShowSimpleReadSwitch={!path!.book.simpleReadMode} />}
+    <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} />
+  </Box>
 }
 
 type ChallengeWorkspaceProps = {
-    challenge: Challenge
+  challenge: Challenge,
+  statement?: string,
+  clue?: string,
+  style?: PaperProps["style"]
 }
 
-const HorizontalChallengeWorkspace = ({ challenge }: ChallengeWorkspaceProps) => {
-    return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-        <EditableBlocklyWorkspace isVertical={false} />
-        <Stack>
-            <SceneButtons />
-            <SceneView descriptor={challenge.sceneDescriptor} />
-        </Stack>
+const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
+  const { theme } = useThemeContext()
+  const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
+  const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
+  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+  const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
+    blockIds: challenge.toolboxBlockIds,
+    categorized: challenge.toolboxStyle !== 'noCategories'
+  }
+
+  return <>
+    <Stack flexGrow={1} direction='column' height='100%'>
+      <StatementDescription
+        text={descriptionOrClue}
+        setShowStatement={setToShow}
+        clueIsEnabled={clue !== ''}
+        urlImage={challenge.imageURL()} />
+      {isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />}
     </Stack>
+    {!isSmallScreen ? <ChallengeFooter /> : <></>}
+  </>
 }
 
-const VerticalChallengeWorkspace = ({ challenge }: ChallengeWorkspaceProps) => {
+type ChallengeWorkspaceDistributionProps = {
+  challenge: Challenge,
+  blocklyWorkspaceProps: EditableBlocklyWorkspaceProps
+}
 
-    const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+type EditableBlocklyWorkspaceProps = {
+  blockIds: string[],
+  categorized: boolean
+}
 
-    return <Stack flexWrap={"wrap"} flexGrow={1} >
-        <EditableBlocklyWorkspace isVertical={true} />
-        <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
-            <SceneView descriptor={challenge.sceneDescriptor} />
-            <Stack margin='10px' justifyContent='space-between'>
-                <SceneButtonsVertical />
-                <InfoButton onClick={() => setOpenDrawer(true)} />
-                <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
-            </Stack>
-        </Stack>
+const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+  return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
+    <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} isVertical={false} />
+    <Stack>
+      <SceneButtons />
+      <SceneView descriptor={challenge.sceneDescriptor} />
     </Stack>
+  </Stack>
 }
 
+const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+
+  return <Stack flexWrap={"wrap"} flexGrow={1} >
+    <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} isVertical={true} />
+    <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
+      <SceneView descriptor={challenge.sceneDescriptor} />
+      <Stack margin='10px' justifyContent='space-between'>
+        <SceneButtonsVertical />
+        <InfoButton onClick={() => setOpenDrawer(true)} />
+        <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
+      </Stack>
+    </Stack>
+  </Stack>
+}
 
 type InfoDrawerProps = {
-    open: boolean
-    onClose: () => void
+  open: boolean
+  onClose: () => void
 }
 
 const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
-    return <Drawer
-        PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-end' } }}
-        anchor='right'
-        onClose={onClose}
-        open={open}>
-        <ChallengeFooter isVertical={true} />
-    </Drawer>
+  return <Drawer
+    PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-end' } }}
+    anchor='right'
+    onClose={onClose}
+    open={open}>
+    <ChallengeFooter isVertical={true} />
+  </Drawer>
 }

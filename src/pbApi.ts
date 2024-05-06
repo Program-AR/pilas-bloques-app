@@ -96,7 +96,7 @@ export namespace PilasBloquesApi{
       return isValid
     }
 
-    export const baseURL = window.PBRuntime?.apiURL || process.env.VITE_APP_API_URL
+    export const baseURL = window.PBRuntime?.apiURL || process.env.VITE_API_URL
 
     async function bodyWithContext<T>(body?: T) {
       return body ? {
@@ -113,9 +113,6 @@ export namespace PilasBloquesApi{
         const headers = new Headers()
         headers.append('Content-Type', 'application/json');
         if(user) headers.append('Authorization', `Bearer ${user.token}`)
-
-        console.log(url)
-        console.log(body)
 
         return _doFetch(url, {
           method,

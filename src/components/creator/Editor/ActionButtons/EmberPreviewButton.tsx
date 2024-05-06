@@ -2,10 +2,10 @@ import { Link } from "react-router-dom"
 import { StyledCreatorActionButton } from "./CreatorActionButton"
 import { Visibility } from "@mui/icons-material";
 
-export const PreviewButton = () => {
+export const EmberPreviewButton = () => {
 
-    return <Link to="/creador/verNuevo">
-            <StyledCreatorActionButton startIcon={<Visibility/>} nametag='preview'/>
+    return <Link to="/creador/ver">
+            <StyledCreatorActionButton startIcon={<Visibility/>} nametag='oldPreview'/>
         </Link>
 
 }

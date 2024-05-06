@@ -31,9 +31,9 @@ jobs:
   pack-linux: # When there is a tag, pack the installers and upload to Github.
       runs-on: ubuntu-latest
       env:
-        VITE_APP_API_URL: ${{ secrets.API_URL }}
-        VITE_APP_PB_APP_URL: ${{ secrets.APP_URL }}
-        VITE_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+        VITE_API_URL: ${{ secrets.API_URL }}
+        VITE_PB_APP_URL: ${{ secrets.APP_URL }}
+        VITE_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
         VITE_APP_VERSION: ${{github.ref_name}}
       if: startsWith(github.ref, 'refs/tags')
       needs: test
@@ -55,9 +55,9 @@ jobs:
   pack-macos: # When there is a tag, pack the installers and upload to Github.
     runs-on: macos-latest
     env:
-      VITE_APP_API_URL: ${{ secrets.API_URL }}
-      VITE_APP_PB_APP_URL: ${{ secrets.APP_URL }}
-      VITE_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+      VITE_API_URL: ${{ secrets.API_URL }}
+      VITE_PB_APP_URL: ${{ secrets.APP_URL }}
+      VITE_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       VITE_APP_VERSION: ${{github.ref_name}}
     if: startsWith(github.ref, 'refs/tags')
     needs: test
@@ -76,11 +76,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
   pack-windows: # When there is a tag, pack the installers and upload to Github.
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     env:
-      VITE_APP_API_URL: ${{ secrets.API_URL }}
-      VITE_APP_PB_APP_URL: ${{ secrets.APP_URL }}
-      VITE_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+      VITE_API_URL: ${{ secrets.API_URL }}
+      VITE_PB_APP_URL: ${{ secrets.APP_URL }}
+      VITE_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       VITE_APP_VERSION: ${{github.ref_name}}
     if: startsWith(github.ref, 'refs/tags')
     needs: test
@@ -101,9 +101,9 @@ jobs:
   publish-surge: # When there is a push in develop, publish on surge
     runs-on: ubuntu-latest
     env:
-      VITE_APP_API_URL: ${{ secrets.API_URL }}
-      VITE_APP_PB_APP_URL: ${{ secrets.APP_URL }}
-      VITE_APP_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
+      VITE_API_URL: ${{ secrets.API_URL }}
+      VITE_PB_APP_URL: ${{ secrets.APP_URL }}
+      VITE_GOOGLE_ANALYTICS_KEY: ${{ secrets.GOOGLE_ANALYTICS_KEY }}
       VITE_APP_VERSION: ${{github.ref_name}}
     if: false 
     #github.event_name == 'push' && github.ref == 'refs/heads/develop'

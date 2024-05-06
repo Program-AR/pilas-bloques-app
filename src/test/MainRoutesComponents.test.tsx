@@ -1,6 +1,6 @@
 import { About } from "../components/about/About"
 import { BookView } from "../components/book/BookView"
-import { ChallengeById, ChallengeByName } from "../components/ChallengeView"
+import { ChallengeById, ChallengeByName } from "../components/EmberChallengeView"
 import { CreatorEditor } from "../components/creator/Editor/Editor"
 import { ActorSelection } from "../components/creator/ActorSelection/ActorSelection"
 import { Home } from "../components/home/Home"
@@ -55,7 +55,7 @@ test('Renders password-recovery without errors', async () => {
 })
 
 test('Renders password-recovery without errors', async () => {
-  expect(() => renderComponent(<ChangePassword/>)).not.toThrow()
+  expect(() => renderComponent(<ChangePassword isTokenValid={true}/>)).not.toThrow()
 })
 
 test('Renders register without errors', async () => {

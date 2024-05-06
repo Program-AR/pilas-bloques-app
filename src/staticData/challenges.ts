@@ -2395,7 +2395,7 @@ const challenges: BasicChallenge[] = [
     id: 1015,
     sceneDescriptor: `new EscenaChuy(['[A,+]', '[A],[+]'])`,
     toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'MoverACasillaDerecha',
-      'MoverACasillaAbajo', 'TocandoAbajo', 'TocandoDerecha'],
+      'MoverACasillaAbajo', 'TocandoDerecha', 'TocandoAbajo'],
     expectations: {
       conditionalAlternative: true,
       decomposition: false
