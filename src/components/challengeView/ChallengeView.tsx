@@ -56,7 +56,7 @@ export const ChallengeView = ({path, height}: ChallengeViewProps) => {
     clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!
   }
 
-  return <Stack height={height}>
+  return <Stack height={height ? height : '100%'}>
     {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(pathToChallenge!)} shouldShowSimpleReadSwitch={!pathToChallenge!.book.simpleReadMode} />}
     <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} />
   </Stack>
