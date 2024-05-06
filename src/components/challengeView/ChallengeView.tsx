@@ -144,5 +144,3 @@ const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
     <ChallengeFooter isVertical={true} />
   </Drawer>
 }
-
-export { ChallengeBreadcrumb };

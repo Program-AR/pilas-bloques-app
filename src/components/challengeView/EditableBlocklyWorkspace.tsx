@@ -7,7 +7,7 @@ type EditableBlocklyWorkspaceProps = {
 
 export const EditableBlocklyWorkspace = ({ blockIds, categorized, sx, isVertical, ...props }: PBBlocklyWorkspaceProps & EditableBlocklyWorkspaceProps) => {
     return <PBBlocklyWorkspace
-        sx={{ flexGrow: 1, ...sx }}
+        sx={{ flexGrow: 1}}
         blockIds={blockIds}
         categorized={categorized}
         initialXml={xmlBloqueEmpezarAEjecutar}
