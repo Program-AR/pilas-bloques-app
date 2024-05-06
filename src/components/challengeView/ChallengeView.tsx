@@ -27,13 +27,13 @@ type ChallengeViewProps = {
   height?: string
 }
 
-export const ChallengeView = (props: ChallengeViewProps) => {
+export const ChallengeView = ({path, height}: ChallengeViewProps) => {
   var { id } = useParams()
 
   // TODO Es necesario traerse en challenges.json los statement.decription y statement.clue con sus traducciones para cada desafio
   const { t } = useTranslation('challenges')
 
-  const impChallenge: boolean = props.path?.includes("react-imported-challenge") ? true : false
+  const impChallenge: boolean = !!path?.includes("react-imported-challenge")
 
   const serializedChallengeToChallenge = (serializedChallenge: SerializedChallenge): Challenge => (
     {
@@ -48,18 +48,18 @@ export const ChallengeView = (props: ChallengeViewProps) => {
     }
   )
 
-  const path: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
+  const pathToChallenge: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
 
   const workspace: ChallengeWorkspaceProps = {
-    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : path!.challenge),
+    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : pathToChallenge!.challenge),
     statement: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.description : t(`${id}.statement`)!,
     clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!
   }
 
-  return <Box height={props.height ? props.height : '100%'}>
-    {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(path!)} shouldShowSimpleReadSwitch={!path!.book.simpleReadMode} />}
+  return <Stack height={height}>
+    {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(pathToChallenge!)} shouldShowSimpleReadSwitch={!pathToChallenge!.book.simpleReadMode} />}
     <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} />
-  </Box>
+  </Stack>
 }
 
 type ChallengeWorkspaceProps = {
@@ -143,3 +143,5 @@ const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
     <ChallengeFooter isVertical={true} />
   </Drawer>
 }
+
+export { ChallengeBreadcrumb };
