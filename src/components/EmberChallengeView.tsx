@@ -2,7 +2,7 @@ import { useParams, useSearchParams } from "react-router-dom";
 import { Challenge, currentIdFor, getChallengeWithName, getPathToChallenge, PathToChallenge } from "../staticData/challenges";
 import { EmberView } from "./emberView/EmberView";
 import { Header } from "./header/Header";
-import { ChallengeBreadcrumb } from "./challengeView/ChallengeView";
+import { ChallengeBreadcrumb } from "./challengeView/ChallengeBreadcrumb";
 
 type EmberChallengeViewProps = {
     challengeId: number

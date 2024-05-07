@@ -1,86 +1,19 @@
-import { useParams, Link } from "react-router-dom"
-import { PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
-import { Typography, useMediaQuery, PaperProps, Box, Stack } from "@mui/material";
+import { useParams } from "react-router-dom"
+import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
+import { Drawer, useMediaQuery, PaperProps, Stack } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
-import { Footer } from "../footer/Footer";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
-import { SceneButtons } from "./SceneButtons";
+import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
+import { ChallengeFooter } from "./Info/ChallengeFooter";
 import { LocalStorage } from "../../localStorage"
 import { Header } from "../header/Header"
-import { Challenge } from "../../staticData/challenges";
 import { Scene, SceneMap, SerializedChallenge } from "../serializedChallenge";
 import { useTranslation } from "react-i18next";
-import HomeIcon from '@mui/icons-material/Home';
-import { PBreadcrumbs } from "../PBreadcrumbs";
-import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
-import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import { IconButtonTooltip } from "../creator/Editor/SceneEdition/IconButtonTooltip";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { useState } from "react";
 import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
-
-type ChallengeViewProps = {
-  path?: string,
-  height?: string
-}
-
-type ChallengeWorkspaceProps = {
-  challenge: Challenge,
-  statement?: string,
-  clue?: string,
-  style?: PaperProps["style"]
-}
-
-export const ChallengeBreadcrumb = (path: PathToChallenge) => {
-
-  const { t } = useTranslation(["books", "challenges", "chapters", "groups", "others"])
-  const { theme } = useThemeContext()
-  const isSmallScreen: boolean = useMediaQuery('(max-width:1100px)');
-  const isVerySmallScreen: boolean = useMediaQuery('(max-width:700px)');
-
-  const shouldShowGroup = path.book.id === 1 && !isVerySmallScreen
-  const shouldShowChapter = !isSmallScreen
-  const hasPrevChallenge = path.group.previousChallenge(path.challenge)
-  const hasNextChallenge = path.group.nextChallenge(path.challenge)
-
-  return <Stack direction="row" alignItems="center">
-    <PBreadcrumbs>
-
-      <Link to="/">
-        <HomeIcon style={{ display: 'flex', color: '#787878' }} />
-
-      </Link>
-
-      <Link to={`/libros/${path.book.id}`}>
-        <Typography>{t(`${path.book.id}.title`, { ns: "books" })}</Typography>
-      </Link>
-
-      {shouldShowChapter &&
-        <Typography>{t(`${path.chapter.id}.title`, { ns: "chapters" })}</Typography>
-      }
-
-      {shouldShowGroup &&
-        <Typography>{t(`${path.group.id}.title`, { ns: "groups" })}</Typography>
-      }
-
-      <Typography>{t(`${path.challenge.id}.title`, { ns: "challenges" })}</Typography>
-
-    </PBreadcrumbs>
-    <Stack marginLeft={theme.spacing(5)} direction='row'>
-      {hasPrevChallenge &&
-        <Link to={`/desafio/${hasPrevChallenge!.id}`}>
-          <IconButtonTooltip icon={<KeyboardDoubleArrowLeftIcon />} tooltip={t('previousChallenge', { ns: "others" })} />
-        </Link>
-      }
-      {hasNextChallenge &&
-        <Link to={`/desafio/${hasNextChallenge!.id}`}>
-          <IconButtonTooltip icon={<KeyboardDoubleArrowRightIcon />} tooltip={t('nextChallenge', { ns: "others" })} />
-        </Link>
-      }
-    </Stack>
-  </Stack>
-}
+import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -89,13 +22,19 @@ export const serializedSceneToDescriptor = (scene: Scene) => {
   return `new Escena${scene.type}([${mapsAsString}])`
 }
 
-export const ChallengeView = (props: ChallengeViewProps) => {
+type ChallengeViewProps = {
+  path?: string,
+  height?: string
+}
+
+export const ChallengeView = ({path, height}: ChallengeViewProps) => {
   var { id } = useParams()
+  const { theme } = useThemeContext()
 
   // TODO Es necesario traerse en challenges.json los statement.decription y statement.clue con sus traducciones para cada desafio
   const { t } = useTranslation('challenges')
 
-  const impChallenge: boolean = props.path?.includes("react-imported-challenge") ? true : false
+  const impChallenge: boolean = !!path?.includes("react-imported-challenge")
 
   const serializedChallengeToChallenge = (serializedChallenge: SerializedChallenge): Challenge => (
     {
@@ -110,38 +49,98 @@ export const ChallengeView = (props: ChallengeViewProps) => {
     }
   )
 
-  const path: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
+  const pathToChallenge: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
 
   const workspace: ChallengeWorkspaceProps = {
-    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : path!.challenge),
+    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : pathToChallenge!.challenge),
     statement: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.description : t(`${id}.statement`)!,
     clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!
   }
 
-  return  <Box height={props.height ? props.height : '100%'}>
-            {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(path!)} shouldShowSimpleReadSwitch={!path!.book.simpleReadMode} />}
-            <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} />
-          </Box>
+  return <Stack height={height ? height : '100%'} sx={{ backgroundColor: theme.palette.background.paper }}>
+    {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(pathToChallenge!)} shouldShowSimpleReadSwitch={!pathToChallenge!.book.simpleReadMode} />}
+    <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} />
+  </Stack>
 }
 
-const ChallengeWorkspace = (props: ChallengeWorkspaceProps) => {
-  const [descriptionOrClue, setDescriptionOrClue] = useState(props.statement!)
+type ChallengeWorkspaceProps = {
+  challenge: Challenge,
+  statement?: string,
+  clue?: string,
+  style?: PaperProps["style"]
+}
 
-  const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? props.clue! : props.statement!)
+const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
+  const { theme } = useThemeContext()
+  const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
+  const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
+  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+  const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
+    blockIds: challenge.toolboxBlockIds,
+    categorized: challenge.toolboxStyle !== 'noCategories'
+  }
 
-  return  <Stack flexGrow={1}>
-            <StatementDescription
-              text={descriptionOrClue}
-              setShowStatement={setToShow}
-              clueIsEnabled={props.clue !== ''}
-              urlImage={props.challenge.imageURL()} />
-            <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-              <EditableBlocklyWorkspace blockIds={props.challenge.toolboxBlockIds} categorized={!(props.challenge.toolboxStyle === 'noCategories')} />
-              <Stack>
-                <SceneButtons />
-                <SceneView descriptor={props.challenge.sceneDescriptor} />
-              </Stack>
-            </Stack>
-            <Footer />
-          </Stack>
+  return <>
+    <Stack flexGrow={1} direction='column' height='100%'>
+      <StatementDescription
+        text={descriptionOrClue}
+        setShowStatement={setToShow}
+        clueIsEnabled={clue !== ''}
+        urlImage={challenge.imageURL()} />
+      {isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />}
+    </Stack>
+    {!isSmallScreen ? <ChallengeFooter /> : <></>}
+  </>
+}
+
+type ChallengeWorkspaceDistributionProps = {
+  challenge: Challenge,
+  blocklyWorkspaceProps: EditableBlocklyWorkspaceProps
+}
+
+type EditableBlocklyWorkspaceProps = {
+  blockIds: string[],
+  categorized: boolean
+}
+
+const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+  return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
+    <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} isVertical={false} />
+    <Stack>
+      <SceneButtons />
+      <SceneView descriptor={challenge.sceneDescriptor} />
+    </Stack>
+  </Stack>
+}
+
+const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+
+  const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+
+  return <Stack flexWrap={"wrap"} flexGrow={1} >
+    <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} isVertical={true} />
+    <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
+      <SceneView descriptor={challenge.sceneDescriptor} />
+      <Stack margin='10px' justifyContent='space-between'>
+        <SceneButtonsVertical />
+        <InfoButton onClick={() => setOpenDrawer(true)} />
+        <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
+      </Stack>
+    </Stack>
+  </Stack>
+}
+
+type InfoDrawerProps = {
+  open: boolean
+  onClose: () => void
+}
+
+const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
+  return <Drawer
+    PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-end' } }}
+    anchor='right'
+    onClose={onClose}
+    open={open}>
+    <ChallengeFooter isVertical={true} />
+  </Drawer>
 }

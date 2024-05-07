@@ -16,7 +16,7 @@ type PBLinkProps = {
 export const PBLink = (props: LinkProps & PBLinkProps) => <Link {...props} target='_blank' style={{color: 'var(--theme-link-color)'}}>{props.children}</Link>
 
 
-const Version = () => {
+export const Version = () => {
   if(!process.env.VITE_APP_VERSION) throw new Error("Missing Pilas Bloques version. ENV not set")
   const {t} = useTranslation("footer")
 

@@ -1,14 +1,15 @@
-import { Divider, Link, Stack, TextField, TextFieldProps, Typography } from "@mui/material"
+import { Divider, Stack, TextField, TextFieldProps, Typography } from "@mui/material"
 import { FormEvent } from "react"
 import { useThemeContext } from "../../theme/ThemeContext"
 import { PBCard } from "../PBCard"
 import styles from './userForm.module.css';
+import { PBLink } from "../footer/Footer";
 
 export const PBMailLink = () => {
 
     const PILAS_MAIL = 'pilasbloques@program.ar'
 
-    return <Link href={`mailto:${PILAS_MAIL}`}>{PILAS_MAIL}</Link>
+    return <PBLink to={`mailto:${PILAS_MAIL}`}>{PILAS_MAIL}</PBLink>
 }
 
 type UserCardProps = {

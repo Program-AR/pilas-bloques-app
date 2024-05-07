@@ -1,6 +1,17 @@
 {
     "aboutPilasBloques": "About Pilas Bloques",
+    "about": "About",
     "toTeachersSite": "Go to the teacher's site",
     "terms": "Terms and conditions",
-    "version": "Version"
+    "version": "Version",
+    "problemWithChallenge": "Any problem with this exercise?",
+    "problemWithChallengeShort": "Any problem?",
+    "bugReportModal": {
+        "problem": "Are you having any problem?",
+        "error": "Do you think there’s an error in this exercise?",
+        "askTeacher": "Remember to ask your teacher and/or school if you have any questions. Unfortunately the Pilas Bloques developer team doesn't know every teacher who uses the tool.",
+        "mail": "You can contact us writing to ",
+        "githubReport": "If you have a Github account, you can also report the error directly through the",
+        "issueTracker": "Issue Tracker"
+    }
 }
