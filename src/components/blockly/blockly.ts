@@ -1,6 +1,7 @@
 import { BlockType } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
+import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
@@ -13,10 +14,12 @@ type BlocklyBlockDefinition = {
   message1?: string
   args1?: any[]
   colour: string
+  toolbox?: string
   previousStatement?: any
   nextStatement?: any
   inputsInline?: any
   output?: any
+  helpUrl?: any
   code?: string
 }
 
@@ -32,11 +35,38 @@ const directionsColor = '#2ba4e2';
 const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
 
-export const xmlBloqueEmpezarAEjecutar =`<xml xmlns="http://www.w3.org/1999/xhtml">
+export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xhtml">
               <block type="al_empezar_a_ejecutar" x="15" y="15"></block>
             </xml>`
 
 const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
+
+const createGenericJSCode = (id: string, customCode: string) => {
+  javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string) => any; }) {
+    let variables = customCode.match(/\$(\w+)/g);
+    let code = customCode;
+
+    if (variables) {
+      variables.forEach((v) => {
+        let regex = new RegExp('\\' + v, "g");
+        let variable_name = v.slice(1);
+
+        var variable_object = null;
+
+        if (variable_name === "DO") {
+          variable_object = generator.statementToCode(block, variable_name);
+        } else {
+          variable_object = generator.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
+        }
+
+        code = code.replace(regex, variable_object);
+      });
+    }
+
+    return code;
+  };
+}
+
 
 const createPrimitiveBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition) => {
   validateRequiredOptions(id, options, ['comportamiento', 'argumentos']);
@@ -44,8 +74,8 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
   const jsonInit: BlocklyBlockDefinition = (blockDefinition ? blockDefinition : {
     message0: `${message}`,
     colour: primitivesColor,
-    previousStatement: '',
-    nextStatement: '',
+    previousStatement: true,
+    nextStatement: true,
     args0: [],
   })
 
@@ -65,6 +95,9 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
       this.jsonInit(jsonInit)
     }
   }
+
+  createGenericJSCode(id, jsonInit.code || `hacer(actor_id, "${options.comportamiento}", ${options.argumentos});`)
+
 }
 
 const createSensorBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition) => {
@@ -76,15 +109,6 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
     inputsInline: true,
     args0: [],
     output: null,
-    code: `evaluar(${JSON.stringify(options.funcionSensor)})`
-
-    /* TODO para chequear luego si corresponde hacerlo de otra manera
-      Blockly.MyLanguage[id] = function () {
-        let codigo = `evaluar(${JSON.stringify(options.funcionSensor)})`;
-        return [codigo, Blockly.MyLanguage.ORDER_ATOMIC];
-      };
-    */
-
   })
 
   if (icon) {
@@ -103,6 +127,12 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
       this.jsonInit(jsonInit)
     }
   }
+
+  javascriptGenerator.forBlock[id] = function () {
+    const codigo = `evaluar(${JSON.stringify(options['funcionSensor'])})`;
+    return [codigo, Order.ATOMIC];
+  }
+
 }
 
 const createValueBlock = (id: string, message: string, options: optionType, icon: string, blockDefinition?: BlocklyBlockDefinition) => {
@@ -112,7 +142,7 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
     message0: `${message}`,
     colour: directionsColor,
     args0: [],
-    output: options.valor
+    output: 'String'
   })
 
   if (icon) {
@@ -131,6 +161,11 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
       this.jsonInit(jsonInit)
     }
   }
+
+  javascriptGenerator.forBlock[id] = function () {
+    return [`'${options.valor}'`, Order.ATOMIC];
+  };
+
 }
 
 const createFirstBlock = (t: (key: string) => string) => {
@@ -144,6 +179,13 @@ const createFirstBlock = (t: (key: string) => string) => {
       this.setMovable(false);
     },
   };
+
+  javascriptGenerator.forBlock['al_empezar_a_ejecutar'] = function (block: any, generator: { statementToCode: (arg0: any, arg1: string) => any; }) {
+    const program = generator.statementToCode(block, 'program');
+    const code = `${program}`;
+    return code;
+  };
+
 }
 
 const createPrimitiveBlocks = (t: (key: string) => string) => {
@@ -670,7 +712,13 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
           "name": "longitud",
         }
       ],
-      code: 'hacer(actor_id, "DibujarHaciaAdelante", {distancia: $longitud, voltearAlIrAIzquierda: false, velocidad: 60, nombreAnimacion: "dibujar"});'
+      code: 'hacer(actor_id, "DibujarHaciaAdelante", {distancia: $longitud, voltearAlIrAIzquierda: false, velocidad: 60, nombreAnimacion: "dibujar"});',
+      toolbox: `
+        <block type="DibujarLado">
+          <value name="longitud">
+            <block type="math_number"><field name="NUM">100</field></block></value>
+        </block>
+      `
     });
 
   createPrimitiveBlock('GirarGrados', t(`blocks.turnDegrees`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
@@ -686,15 +734,21 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
           "name": "grados",
         }
       ],
-      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});'
+      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
+      toolbox: `
+        <block type="GirarGrados">
+          <value name="grados">
+            <block type="math_number"><field name="NUM">90</field></block></value>
+        </block>
+      `
     });
 
   createPrimitiveBlock('SaltarHaciaAdelante', t(`blocks.jumpFront`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.arriba.png',
     {
       message0: `${t(`blocks.jumpFront`)}`,
       colour: primitivesColor,
-      previousStatement: '',
-      nextStatement: '',
+      previousStatement: true,
+      nextStatement: true,
       inputsInline: true,
       args0: [
         {
@@ -702,8 +756,15 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
           "name": "longitud",
         }
       ],
-      code: 'hacer(actor_id, "SaltarHaciaAdelante", {distancia: $longitud, alturaDeseada: 50, velocidad_inicial: 20, nombreAnimacion: "saltar", voltearAlIrAIzquierda: false});'
+      code: 'hacer(actor_id, "SaltarHaciaAdelante", {distancia: $longitud, alturaDeseada: 50, velocidad_inicial: 20, nombreAnimacion: "saltar", voltearAlIrAIzquierda: false});',
+      toolbox: `
+      <block type="SaltarHaciaAdelante">
+        <value name="longitud">
+          <block type="math_number"><field name="NUM">100</field></block></value>
+      </block>
+      `
     });
+
 }
 
 const createSensorBlocks = (t: (key: string) => string) => {
@@ -991,6 +1052,51 @@ const createValueBlocks = (t: (key: string) => string) => {
 
 const createRepeatBlocks = (t: (key: string) => string) => {
 
+  const repeatBlocksCode = (id: string) => {
+    javascriptGenerator.forBlock[id] = function (block: { id: any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; addLoopTrap: (arg0: any, arg1: any) => any; nameDB_: { getDistinctName: (arg0: string, arg1: Blockly.Names.NameType) => any; }; }) {
+      const repeats = generator.valueToCode(block, 'count', Order.ASSIGNMENT) || '0';
+
+      var branch = generator.statementToCode(block, 'block');
+      branch = generator.addLoopTrap(branch, block.id);
+      var code = '';
+
+      const loopVar = generator.nameDB_.getDistinctName(
+        'count', Blockly.Names.NameType.VARIABLE);
+      var endVar = repeats;
+      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
+        endVar = generator.nameDB_.getDistinctName(
+          'repeat_end', Blockly.Names.NameType.VARIABLE);
+        code += 'var ' + endVar + ' = ' + repeats + ';\n';
+      }
+
+      code += 'for (var ' + loopVar + ' = 0; ' +
+        loopVar + ' < ' + endVar + '; ' +
+        loopVar + '++) {\n' +
+        branch + '}\n';
+
+      return code;
+    };
+  }
+
+
+  Blockly.Blocks['RepetirVacio'] = {
+    init: function () {
+      this.setColour(controlColor);
+      this.setInputsInline(true);
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.appendValueInput('count')
+        .setCheck('Number')
+        .appendField(t('blocks.repeat'))
+      this.appendDummyInput()
+        .appendField(t('blocks.times'));
+      this.appendStatementInput('block');
+    },
+    categoryId: 'repetitions',
+  };
+
+  repeatBlocksCode('RepetirVacio');
+
   Blockly.Blocks['Repetir'] = {
     init: function () {
       this.setColour(controlColor);
@@ -1016,6 +1122,8 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     categoryId: 'repetitions',
   };
 
+  repeatBlocksCode('Repetir');
+
   Blockly.Blocks['Hasta'] = {
     init: function () {
       this.setColour(controlColor);
@@ -1030,6 +1138,13 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     categoryId: 'repetitions',
   };
 
+  javascriptGenerator.forBlock['Hasta'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
+    const condition = generator.valueToCode(block, 'condition', Order.ASSIGNMENT) || 'false';
+    const contenido = generator.statementToCode(block, 'block');
+    return `while (!${condition}) {
+      ${contenido}
+    }`;
+  };
 
   Blockly.Blocks['Si'] = {
     init: function () {
@@ -1043,6 +1158,14 @@ const createRepeatBlocks = (t: (key: string) => string) => {
       this.setNextStatement(true);
     },
     categoryId: 'alternatives',
+  };
+
+  javascriptGenerator.forBlock['Si'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
+    const condition = generator.valueToCode(block, 'condition', Order.ATOMIC) || 'false';
+    const contenido = generator.statementToCode(block, 'block');
+    return `if (${condition}) {
+      ${contenido}
+    }`;
   };
 
   Blockly.Blocks['SiNo'] = {
@@ -1062,19 +1185,98 @@ const createRepeatBlocks = (t: (key: string) => string) => {
     categoryId: 'alternatives',
   };
 
+  javascriptGenerator.forBlock['SiNo'] = function (block: any, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; }) {
+    const condition = generator.valueToCode(block, 'condition', Order.ASSIGNMENT) || 'false';
+    const bloque_1 = generator.statementToCode(block, 'block1');
+    const bloque_2 = generator.statementToCode(block, 'block2');
+
+    return `if (${condition}) {
+      ${bloque_1}
+    } else {
+      ${bloque_2}
+    }`;
+  };
 }
 
 const createOthersBlocks = (t: (key: string) => string) => {
 
   createCommonBlocklyBlocks(t, othersColor)
 
-  Blockly.Blocks['OpComparacion'] = {
-    init: Blockly.Blocks['logic_compare'].init,
-    categoryId: 'operators',
+  Blockly.Blocks['OpAritmetica'] = {
+    init: function () {
+      this.jsonInit({
+        type: "math_arithmetic",
+        message0: "%1 %2 %3",
+        colour: sensorsColor,
+        inputsInline: true,
+        args0: [
+          {
+            "type": "input_value",
+            "name": "A",
+            "check": "Number"
+          },
+          {
+            "type": "field_dropdown",
+            "name": "OP",
+            "options": [
+              ["%{BKY_MATH_ADDITION_SYMBOL}", "ADD"],
+              ["%{BKY_MATH_SUBTRACTION_SYMBOL}", "MINUS"],
+              ["%{BKY_MATH_MULTIPLICATION_SYMBOL}", "MULTIPLY"],
+              ["%{BKY_MATH_DIVISION_SYMBOL}", "DIVIDE"],
+              ["%{BKY_MATH_POWER_SYMBOL}", "POWER"]
+            ]
+          },
+          {
+            "type": "input_value",
+            "name": "B",
+            "check": "Number"
+          }
+        ],
+        output: "Number",
+        helpUrl: "%{BKY_MATH_ARITHMETIC_HELPURL}",
+        extensions: ["math_op_tooltip"]
+      })
+    },
+    categoryId: 'operators'
   };
 
-  Blockly.Blocks['OpAritmetica'] = {
-    init: Blockly.Blocks['math_arithmetic'].init,
+  javascriptGenerator.forBlock['OpAritmetica'] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: any) => string; }) {
+    // Basic arithmetic operators, and power.    
+    const OPERATORS = {
+      'ADD': [' + ', Order.ADDITION],
+      'MINUS': [' - ', Order.SUBTRACTION],
+      'MULTIPLY': [' * ', Order.MULTIPLICATION],
+      'DIVIDE': [' / ', Order.DIVISION],
+      'POWER': [null, Order.COMMA]  // Handle power separately.
+    };
+    const op = block.getFieldValue('OP');
+    const tuple = OPERATORS[op as keyof typeof OPERATORS]
+    const operator = tuple[0];
+    const order = tuple[1];
+    const isPow = !operator;
+    const isDivision = op === 'DIVIDE';
+    var code;
+    const argument0 = generator.valueToCode(block, 'A', order) || '0';
+    const argument1 = generator.valueToCode(block, 'B', order) || '0';
+
+    // Power in JavaScript requires a special case since it has no operator.
+    if (isPow) {
+      code = 'Math.pow(' + argument0 + ', ' + argument1 + ')';
+      return [code, Order.FUNCTION_CALL];
+    }
+    code = `
+    (function(){
+      if (${isDivision} && ${argument1} === 0)
+        evaluar("lanzarActividadError('No se puede dividir por 0')")
+      else
+        return ${argument0 + operator + argument1}
+    })()
+    `;
+    return [code, order];
+  };
+
+  Blockly.Blocks['OpComparacion'] = {
+    init: Blockly.Blocks['logic_compare'].init,
     categoryId: 'operators',
   };
 
@@ -1083,15 +1285,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
     domToMutation: Blockly.Blocks['variables_get'].domToMutation,
     onchange: Blockly.Blocks['variables_get'].onchange,
-    categoryId: 'variables',
-  };
-
-  Blockly.Blocks['param_set'] = {
-    init: Blockly.Blocks['variables_set'].init,
-    mutationToDom: Blockly.Blocks['variables_set'].mutationToDom,
-    domToMutation: Blockly.Blocks['variables_set'].domToMutation,
-    onchange: Blockly.Blocks['variables_set'].onchange,
-    categoryId: 'variables',
+    categoryId: 'myprocedures',
   };
 
   Blockly.Blocks['Procedimiento'] = {
@@ -1112,6 +1306,22 @@ const createOthersBlocks = (t: (key: string) => string) => {
     categoryId: 'myprocedures'
   };
 }
+
+const createCommonCode = () => {
+  javascriptGenerator.addReservedWords('main', 'hacer', 'out_hacer', 'evaluar');
+
+  javascriptGenerator.required_value = function () {
+    return null
+  };
+
+  javascriptGenerator.required_statement = function () {
+    return null
+  };
+
+  javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+  javascriptGenerator.addReservedWords('highlightBlock');
+}
+
 
 const defineBlocklyTranslations = (t: (key: string) => string) => {
   Blockly.Msg.PROCEDURES_DEFNORETURN_PROCEDURE = t("procedures.name")
@@ -1219,4 +1429,5 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
 
   createOthersBlocks(t)
 
+  createCommonCode()
 }
