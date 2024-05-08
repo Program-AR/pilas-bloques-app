@@ -1285,7 +1285,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
     domToMutation: Blockly.Blocks['variables_get'].domToMutation,
     onchange: Blockly.Blocks['variables_get'].onchange,
-    categoryId: 'variables',
+    categoryId: 'myprocedures',
   };
 
   Blockly.Blocks['Procedimiento'] = {
