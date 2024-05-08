@@ -1288,14 +1288,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     categoryId: 'variables',
   };
 
-  Blockly.Blocks['param_set'] = {
-    init: Blockly.Blocks['variables_set'].init,
-    mutationToDom: Blockly.Blocks['variables_set'].mutationToDom,
-    domToMutation: Blockly.Blocks['variables_set'].domToMutation,
-    onchange: Blockly.Blocks['variables_set'].onchange,
-    categoryId: 'variables',
-  };
-
   Blockly.Blocks['Procedimiento'] = {
     init: Blockly.Blocks['procedures_defnoreturn'].init,
     setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
