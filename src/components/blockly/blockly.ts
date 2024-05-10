@@ -683,6 +683,24 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
   }, 'icono.abajo.png'
   );
 
+  createPrimitiveBlock('EscribirA', t("blocks.writeA"), {
+    'comportamiento': 'EscribirEnComputadora',
+    'argumentos': '{idTransicion: "escribirA"}',
+  }, 'icono.letter-a.svg'
+  );
+
+  createPrimitiveBlock('EscribirB', t("blocks.writeB"), {
+    'comportamiento': 'EscribirEnComputadora',
+    'argumentos': '{idTransicion: "escribirB"}',
+  }, 'icono.letter-b.svg'
+  );
+
+  createPrimitiveBlock('EscribirC', t("blocks.writeC"), {
+    'comportamiento': 'EscribirEnComputadora',
+    'argumentos': '{idTransicion: "escribirC"}',
+  }, 'icono.letter-c.svg'
+  );
+
   createPrimitiveBlock('MoverA', t(`blocks.moveTo`), { 'comportamiento': '', 'argumentos': '{}' }, '',
     {
       message0: `${t(`blocks.moveTo`)} %1`,
@@ -765,6 +783,22 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
+    createPrimitiveBlock('EscribirTextoDadoEnOtraCuadricula', t(`blocks.write`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
+    {
+      message0: `${t(`write`)}`,
+      colour: primitivesColor,
+      inputsInline: true,
+      previousStatement: true,
+      nextStatement: true,
+      args0: [
+        {
+          "type": "field_input",
+          "name": "texto",
+          "text": ""
+        }
+      ],
+      code: 'hacer(actor_id, "EscribirTextoDadoEnOtraCuadricula", {texto: "texto"});'
+    });
 }
 
 const createSensorBlocks = (t: (key: string) => string) => {
@@ -985,6 +1019,30 @@ const createSensorBlocks = (t: (key: string) => string) => {
   createSensorBlock('HayTrofeo', t('blocks.trophyHere'), {
     'funcionSensor': 'tocando("Trofeo")',
   }, 'icono.trofeo.png'
+  );
+  createSensorBlock('HayCharco', t('blocks.puddleHere'), {
+    'funcionSensor': 'hayEnEscena("Charco")',
+  }, 'icono.charco.png'
+  );
+
+  createSensorBlock('HayVocalRMT', t('blocks.currentCharacter'), {
+    'funcionSensor': '{}',
+  }, 'icono.DibujarLinea.png',
+  {
+    message0: `${t(`blocks.currentCharacter`)}`,
+    colour: sensorsColor,
+    args0: [
+      {
+        "type": "field_dropdown",
+        "name": "letra",
+        "options": [
+          ["R", "r"], ["M", "m"], ["T", "t"], ["A", "a"], ["E", "e"], ["I", "i"], ["O", "o"], ["U", "u"]
+        ]
+      }
+    ],
+    "output": null,
+    code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
+  }
   );
 }
 

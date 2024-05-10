@@ -83,7 +83,13 @@
     "while": "Repeat until",
     "chargerHere": "Is there a charger here?",
     "trophyHere": "Is there a trophy here?",
-    "saladBowlHere": "Is there a salad bowl here?"
+    "saladBowlHere": "Is there a salad bowl here?",
+    "writeA": "Write 'A'",
+    "writeB": "Write 'B'",
+    "writeC": "Write 'C'",
+    "puddleHere": "Is there a puddle here?",
+    "write": "'%1 write: %2'",
+    "currentCharacter": "'%1 Is the current letter an %2 ?'"
   },
   "procedures": {
     "definition": "Define",

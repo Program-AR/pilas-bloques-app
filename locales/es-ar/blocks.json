@@ -82,7 +82,13 @@
     "while": "Repetir hasta que",
     "chargerHere": "¿Hay un cargador acá?",
     "trophyHere": "¿Hay un trofeo acá?",
-    "saladBowlHere": "¿Hay una ensaladera acá?"
+    "saladBowlHere": "¿Hay una ensaladera acá?",
+    "writeA": "Escribir 'A'",
+    "writeB": "Escribir 'B'",
+    "writeC": "Escribir 'C'",
+    "puddleHere": "¿Hay un charco?",
+    "write": "'%1 Escribir: %2'",
+    "currentCharacter": "'%1 ¿La letra actual es una %2 ?'"
   },
   "procedures": {
     "definition": "Definir",
