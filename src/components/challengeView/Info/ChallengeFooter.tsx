@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Stack } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, Drawer, IconButton, Stack } from "@mui/material"
 import { PBCard } from "../../PBCard"
 import { PBLink, Version } from "../../footer/Footer"
 import InfoIcon from '@mui/icons-material/Info';
@@ -13,7 +13,7 @@ type ChallengeFooterProps = {
     isVertical?: boolean
 }
 
-export const ChallengeFooter = ({ isVertical = false}: ChallengeFooterProps) => {
+export const ChallengeFooter = ({ isVertical = false }: ChallengeFooterProps) => {
 
     const { t } = useTranslation("footer")
     const [openModal, setOpenModal] = useState(false);
@@ -25,10 +25,10 @@ export const ChallengeFooter = ({ isVertical = false}: ChallengeFooterProps) => 
 
     return <>
         <BugReportModal open={openModal} handleOnClose={() => setOpenModal(false)} />
-        <PBCard className={styles.card} sx={isVertical ? {height: '30vh'} : {}}>
-            <Stack  direction={stackDirection} className={styles.footer} gap={1}>
+        <PBCard className={styles.card} sx={isVertical ? { height: '30vh' } : {}}>
+            <Stack direction={stackDirection} className={styles.footer} gap={1}>
                 <Stack direction={stackDirection} gap={stackGap} >
-                    <a href={PROGRAMAR_LINK} target='_blank' style={{ display: 'flex', alignSelf:'center' }}>
+                    <a href={PROGRAMAR_LINK} target='_blank' style={{ display: 'flex', alignSelf: 'center' }}>
                         <img src="imagenes/programar-short.png" className={styles.image} alt="logos" />
                     </a>
                     <Version />
@@ -78,4 +78,19 @@ const BugReportModal = ({ open, handleOnClose }: BugReportModalProps) => {
             <p>{t("bugReportModal.githubReport")} <PBLink to={ISSUE_TRACKER}>{t("bugReportModal.issueTracker")}.</PBLink></p>
         </DialogContent>
     </Dialog>
+}
+
+type InfoDrawerProps = {
+    open: boolean
+    onClose: () => void
+}
+
+export const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
+    return <Drawer
+        PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-end' } }}
+        anchor='right'
+        onClose={onClose}
+        open={open}>
+        <ChallengeFooter isVertical={true} />
+    </Drawer>
 }
