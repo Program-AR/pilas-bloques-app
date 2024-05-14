@@ -20,9 +20,8 @@ export const SessionButton = () => {
     const [openModal, setOpenModal] = useState(false);
     const openLoginInMenu = Boolean(anchorElement);
 
-    const { theme } = useThemeContext()
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
-
+    const { isSmallScreen } = useThemeContext()
+    
     const handleButtonClick = (event: React.MouseEvent<HTMLElement>) => {
         if (isLoggedIn() || isSmallScreen) {
             setAnchorElement(event.currentTarget);

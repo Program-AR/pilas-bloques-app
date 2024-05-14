@@ -30,11 +30,9 @@ const HomeLinkImg: React.FC<{ img: string }> = ({ img }) => <Link to="/" style={
 export const Header = ({ CenterComponent = <></>, SubHeader = <></>, shouldShowSimpleReadSwitch = true }: HeaderProps) => {
     const { theme } = useThemeContext()
 
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
-
     return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
         <Grid container className={styles['header']} wrap="nowrap">
-            <HomeLinkImg img={isSmallScreen ? "cropped-pbicon.png" : "pblogo-whiteborder.svg"} />
+            <Logo/>
             {CenterComponent}
             <Stack direction='row'>
                 <ChangeLanguageButton />
@@ -45,4 +43,10 @@ export const Header = ({ CenterComponent = <></>, SubHeader = <></>, shouldShowS
         </Grid>
         {SubHeader}
     </AppBar>
+}
+
+const Logo = () => {
+    const { isSmallScreen } = useThemeContext()
+
+    return <HomeLinkImg img={isSmallScreen ? "cropped-pbicon.png" : "pblogo-whiteborder.svg"} />
 }

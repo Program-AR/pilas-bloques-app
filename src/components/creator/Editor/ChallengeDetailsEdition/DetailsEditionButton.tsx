@@ -8,9 +8,7 @@ type DetailsEditionButtonProps = {
 } & CardActionAreaProps
 
 export const DetailsEditionButton = (props: DetailsEditionButtonProps) => {
-    const { theme } = useThemeContext()
-
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+    const { theme, isSmallScreen } = useThemeContext()
 
     return (
         <PBCard sx={{padding: theme.spacing(1), flexGrow:"1"}} >

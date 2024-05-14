@@ -71,10 +71,9 @@ type ChallengeWorkspaceProps = {
 }
 
 const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
-  const { theme } = useThemeContext()
+  const { isSmallScreen } = useThemeContext()
   const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
   const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
-  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
   const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
     blockIds: challenge.toolboxBlockIds,
     categorized: challenge.toolboxStyle !== 'noCategories'

@@ -1,4 +1,4 @@
-import { createTheme, Theme } from "@mui/material";
+import { createTheme, Theme, useMediaQuery } from "@mui/material";
 import { createContext, FC, PropsWithChildren, useContext, useEffect, useMemo, useState } from "react";
 import { getDesignTokens } from "./theme";
 import { LocalStorage } from "../localStorage";
@@ -11,7 +11,8 @@ type ThemeContextType = {
     setDarkModeEnabled: (mode: boolean) => void;
     simpleReadModeEnabled: boolean;
     setSimpleReadModeEnabled: (mode: boolean) => void;
-    theme: Theme
+    theme: Theme;
+    isSmallScreen: boolean
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
@@ -19,7 +20,8 @@ export const ThemeContext = createContext<ThemeContextType>({
     setDarkModeEnabled: () => { },
     simpleReadModeEnabled: false,
     setSimpleReadModeEnabled: () => { },
-    theme: createTheme({})
+    theme: createTheme({}),
+    isSmallScreen: false
 });
 
 export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -37,9 +39,12 @@ export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
         LocalStorage.saveSimpleReadMode(simpleReadModeEnabled)
         Ember.refreshIframe()
     }, [darkModeEnabled, simpleReadModeEnabled])
+    
+    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+
 
     return (
-        <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, simpleReadModeEnabled, setSimpleReadModeEnabled, theme }}>
+        <ThemeContext.Provider value={{ darkModeEnabled, setDarkModeEnabled, simpleReadModeEnabled, setSimpleReadModeEnabled, theme, isSmallScreen }}>
             {children}
         </ThemeContext.Provider>
     );

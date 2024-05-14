@@ -1,4 +1,4 @@
-import { Button, darken, Tooltip, useMediaQuery } from "@mui/material"
+import { Button, darken, Tooltip } from "@mui/material"
 import UploadIcon from '../../home/UploadIcon';
 import { LocalStorage } from "../../../localStorage"
 import { SerializedChallenge, isValidChallenge } from "../../serializedChallenge"
@@ -10,8 +10,7 @@ import { useNavigate } from "react-router-dom"
 
 export const LoadChallengeButton = () => {
 	const { t } = useTranslation("creator")
-    const { theme } = useThemeContext()
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+    const { isSmallScreen, theme } = useThemeContext()
 	const navigate = useNavigate()
     const [snackbarOpen, setSnackbarOpen] = useState(false);
 
