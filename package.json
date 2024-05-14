@@ -10,6 +10,27 @@
     "email": "info@program.ar",
     "url": "http://program.ar"
   },
+  "scripts": {
+    "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
+    "test": "jest",
+    "prestart": " [ -d node_modules/.vite/deps ] && rm node_modules/.vite/deps/*; node scripts/setEmberRoot.js public/emberPB ''",
+    "start": "vite",
+    "start:host": "vite --host",
+    "start:emberDev": "sh ./scripts/localEmber.sh",
+    "start:electron": "electron ./dist",
+    "prebuild": "node scripts/setEmberRoot.js public/emberPB ''",
+    "build": "tsc && vite build",
+    "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
+    "pack:linux_zip": "bash ./scripts/package.sh -linux_zip",
+    "pack:linux": "bash ./scripts/package.sh -linux",
+    "pack:osx": "bash ./scripts/package.sh -osx",
+    "pack:win": "bash ./scripts/package.sh -win",
+    "pack:win_zip": "bash ./scripts/package.sh -win_zip",
+    "pack:html": "bash ./scripts/package.sh -html",
+    "clean": "rm -rf node_modules dist binaries",
+    "release": "release-it --only-version",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "@babel/core": "^7.16.0",
     "@emotion/babel-plugin": "^11.11.0",
@@ -93,27 +114,6 @@
     "webpack-dev-server": "^4.6.0",
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
-  },
-  "scripts": {
-    "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
-    "test": "jest",
-    "prestart": "rm node_modules/.vite/deps/* && node scripts/setEmberRoot.js public/emberPB ''",
-    "start": "vite",
-    "start:host": "vite --host",
-    "start:emberDev": "sh ./scripts/localEmber.sh",
-    "start:electron": "electron ./dist",
-    "prebuild": "node scripts/setEmberRoot.js public/emberPB ''",
-    "build": "tsc && vite build",
-    "pack:linux_deb": "bash ./scripts/package.sh -linux_deb",
-    "pack:linux_zip": "bash ./scripts/package.sh -linux_zip",
-    "pack:linux": "bash ./scripts/package.sh -linux",
-    "pack:osx": "bash ./scripts/package.sh -osx",
-    "pack:win": "bash ./scripts/package.sh -win",
-    "pack:win_zip": "bash ./scripts/package.sh -win_zip",
-    "pack:html": "bash ./scripts/package.sh -html",
-    "clean": "rm -rf node_modules dist binaries",
-    "release": "release-it --only-version",
-    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
