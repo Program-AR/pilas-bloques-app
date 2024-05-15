@@ -70,9 +70,7 @@ type GridOptionButtonProps = {
 }
 
 const GridOptionButton = (props: GridOptionButtonProps & ButtonProps) => {
-    const { theme } = useThemeContext()
-
-    const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
+    const { isSmallScreen } = useThemeContext()
 
     return <>
         {isSmallScreen ?
