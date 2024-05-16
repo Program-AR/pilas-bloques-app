@@ -1365,7 +1365,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     categoryId: 'myprocedures'
   };
-/*
+
   console.log('opcomparacion')
 
   Blockly.Blocks['OpComparacion'] = {

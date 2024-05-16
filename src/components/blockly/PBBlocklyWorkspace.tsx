@@ -36,7 +36,7 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
         workspace.dispose()
         setWorkspace(Blockly.inject(wrapperRef.current, {
           toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
-          //...props.workspaceConfiguration
+          ...props.workspaceConfiguration
         })); 
         }
       else 
@@ -51,7 +51,7 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
       setWasCategorized(categorized)
       setWorkspace(Blockly.inject(wrapperRef.current, {
         toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
-        //...props.workspaceConfiguration
+        ...props.workspaceConfiguration
       }));
    /*
     if (props.initialXml && workspace ) {
