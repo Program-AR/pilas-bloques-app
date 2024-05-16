@@ -13,7 +13,7 @@ export const ToolboxPreview = ( {categorized, blockIds} : ToolboxPreviewProps ) 
             blockIds={blockIds}
             categorized={categorized}
             workspaceConfiguration={{trashcan:false, scrollbars: false}} //Needed to make it look like this is only the toolbox
-            onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
+            //onWorkspaceChange={() => {Blockly.getMainWorkspace().clear()}} //Needed to make it look like this is only the toolbox
         />
     
 }

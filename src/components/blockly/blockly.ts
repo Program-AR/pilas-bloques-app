@@ -4,6 +4,7 @@ import Blockly from "blockly/core"
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 
+
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
 type BlocklyBlockDefinition = {
@@ -1336,11 +1337,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     return [code, order];
   };
 
-  Blockly.Blocks['OpComparacion'] = {
-    init: Blockly.Blocks['logic_compare'].init,
-    categoryId: 'operators',
-  };
-
+  console.log('variables_get')
   Blockly.Blocks['param_get'] = {
     init: Blockly.Blocks['variables_get'].init,
     mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
@@ -1348,6 +1345,8 @@ const createOthersBlocks = (t: (key: string) => string) => {
     onchange: Blockly.Blocks['variables_get'].onchange,
     categoryId: 'myprocedures',
   };
+
+  console.log('procedimiento')
 
   Blockly.Blocks['Procedimiento'] = {
     init: Blockly.Blocks['procedures_defnoreturn'].init,
@@ -1366,6 +1365,51 @@ const createOthersBlocks = (t: (key: string) => string) => {
     customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     categoryId: 'myprocedures'
   };
+/*
+  console.log('opcomparacion')
+
+  Blockly.Blocks['OpComparacion'] = {
+    init: Blockly.Blocks["logic_compare"].init,
+    categoryId: 'operators',
+  }
+/*
+  Blockly.Blocks['OpComparacion'] = {
+    init: function () {
+      this.jsonInit(
+        {
+          'type': 'logic_compare',
+          'message0': '%1 %2 %3',
+          'args0': [
+            {
+              'type': 'input_value',
+              'name': 'A',
+            },
+            {
+              'type': 'field_dropdown',
+              'name': 'OP',
+              'options': [
+                ['=', 'EQ'],
+                ['\u2260', 'NEQ'],
+                ['\u200F<', 'LT'],
+                ['\u200F\u2264', 'LTE'],
+                ['\u200F>', 'GT'],
+                ['\u200F\u2265', 'GTE'],
+              ],
+            },
+            {
+              'type': 'input_value',
+              'name': 'B',
+            },
+          ],
+          'inputsInline': true,
+          'output': 'Boolean',
+          'style': 'logic_blocks',
+          'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
+          'extensions': ['logic_compare', 'logic_op_tooltip'],
+          categoryId: 'operators',
+        })
+    }
+  } */
 }
 
 const createCommonCode = () => {

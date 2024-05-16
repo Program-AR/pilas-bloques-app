@@ -14,7 +14,9 @@ export type PBBlocklyWorkspaceProps = {
   categorized: boolean
   sx?: PaperProps["sx"]
   title?: boolean
-} & Partial<BlocklyWorkspaceProps>
+  initialXml?: string;
+  workspaceConfiguration?: Blockly.BlocklyOptions;
+}
 
 const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const wrapperRef = useRef();
@@ -34,6 +36,7 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
         workspace.dispose()
         setWorkspace(Blockly.inject(wrapperRef.current, {
           toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
+          //...props.workspaceConfiguration
         })); 
         }
       else 
@@ -48,18 +51,16 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
       setWasCategorized(categorized)
       setWorkspace(Blockly.inject(wrapperRef.current, {
         toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
+        //...props.workspaceConfiguration
       }));
-    }
-    /*
-    TODO ver cómo enviamos el primer bloque
-    if (xmlBloqueEmpezarAEjecutar) {
-      let block = workspaceRef.current.newBlock(xmlBloqueEmpezarAEjecutar.kind);
-      block.moveBy(initialBlock.x, initialBlock.y);
+   /*
+    if (props.initialXml && workspace ) {
+      let block = (workspace as Blockly.WorkspaceSvg).newBlock(xmlBloqueEmpezarAEjecutar);
       block.initSvg();
+//      workspace.render();
+    }*/
+  }
 
-      workspaceRef.current.render();
-    }
-*/
     return () => {
       if (workspace)
         (workspace as Blockly.WorkspaceSvg).dispose();
