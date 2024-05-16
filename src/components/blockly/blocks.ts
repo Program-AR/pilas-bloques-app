@@ -639,7 +639,7 @@ export const sceneBlocks: BlockType[] = [
     categoryId: 'primitives'
   },
   {
-    id: 'hayVocalRMT',
+    id: 'HayVocalRMT',
     intlId: 'isAVowel',
     categoryId: 'sensors'
   }
