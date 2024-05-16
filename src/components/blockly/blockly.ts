@@ -80,7 +80,10 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
   })
 
   if (icon) {
-    jsonInit.message0 = `%1 ${message}`
+    if (message.includes('%1'))
+      jsonInit.message0 = `%2 ${message}`
+    else
+      jsonInit.message0 = `%1 ${message}`
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -717,9 +720,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       code: 'hacer(actor_id, "MovimientoEnCuadricula", {direccionCasilla: $direccion});'
     });
 
-  createPrimitiveBlock('DibujarLado', t(`blocks.drawSide`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
+  createPrimitiveBlock('DibujarLado', `${t(`blocks.drawSide`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
     {
-      message0: `${t(`blocks.drawSide`)}`,
+      message0: `${t(`blocks.drawSide`)} %1`,
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
@@ -739,9 +742,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-  createPrimitiveBlock('GirarGrados', t(`blocks.turnDegrees`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
+  createPrimitiveBlock('GirarGrados', `${t(`blocks.turnDegrees`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
     {
-      message0: `${t(`blocks.turnDegrees`)}`,
+      message0: `${t(`blocks.turnDegrees`)} %1`,
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
@@ -761,9 +764,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-  createPrimitiveBlock('SaltarHaciaAdelante', t(`blocks.jumpFront`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.arriba.png',
+  createPrimitiveBlock('SaltarHaciaAdelante', `${t(`blocks.JumpForward`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.arriba.png',
     {
-      message0: `${t(`blocks.jumpFront`)}`,
+      message0: `${t(`blocks.JumpForward`)} %1`,
       colour: primitivesColor,
       previousStatement: true,
       nextStatement: true,
@@ -783,9 +786,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-    createPrimitiveBlock('EscribirTextoDadoEnOtraCuadricula', t(`blocks.write`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
+  createPrimitiveBlock('EscribirTextoDadoEnOtraCuadricula', `${t(`blocks.write`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
     {
-      message0: `${t(`write`)}`,
+      message0: `${t(`write`)} %1`,
       colour: primitivesColor,
       inputsInline: true,
       previousStatement: true,
@@ -1028,21 +1031,21 @@ const createSensorBlocks = (t: (key: string) => string) => {
   createSensorBlock('HayVocalRMT', t('blocks.currentCharacter'), {
     'funcionSensor': '{}',
   }, 'icono.DibujarLinea.png',
-  {
-    message0: `${t(`blocks.currentCharacter`)}`,
-    colour: sensorsColor,
-    args0: [
-      {
-        "type": "field_dropdown",
-        "name": "letra",
-        "options": [
-          ["R", "r"], ["M", "m"], ["T", "t"], ["A", "a"], ["E", "e"], ["I", "i"], ["O", "o"], ["U", "u"]
-        ]
-      }
-    ],
-    "output": null,
-    code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
-  }
+    {
+      message0: `${t(`blocks.currentCharacter`)}`,
+      colour: sensorsColor,
+      args0: [
+        {
+          "type": "field_dropdown",
+          "name": "letra",
+          "options": [
+            ["R", "r"], ["M", "m"], ["T", "t"], ["A", "a"], ["E", "e"], ["I", "i"], ["O", "o"], ["U", "u"]
+          ]
+        }
+      ],
+      "output": null,
+      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
+    }
   );
 }
 

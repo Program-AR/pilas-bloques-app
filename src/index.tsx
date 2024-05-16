@@ -13,18 +13,25 @@ if (process.env.VITE_GOOGLE_ANALYTICS_KEY) {
   ReactGA.initialize(process.env.VITE_GOOGLE_ANALYTICS_KEY);
 }
 
+type ShouldStrictModeProps = {
+  children: React.ReactNode
+}
+
+const ShouldStrictMode = (props: ShouldStrictModeProps) => process.env.NODE_ENV === 'production' ? <React.StrictMode>{props.children}</React.StrictMode> : <>{props.children}</>
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   //Suspense is needed because the translations are loaded asynchronously
- // <Suspense fallback="...is loading">
- <Suspense fallback={<PBProgress/>}>
-    <React.StrictMode>
-      <ThemeContextProvider>
-        <App />
-      </ThemeContextProvider>
-    </React.StrictMode>
+  <Suspense fallback={<PBProgress />}>
+    <ShouldStrictMode
+      children={
+        <ThemeContextProvider>
+          <App />
+        </ThemeContextProvider>
+      }>
+    </ShouldStrictMode>
   </Suspense>
 );
 

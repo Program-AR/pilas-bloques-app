@@ -6,7 +6,7 @@ import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox, xmlBloque
 import { PBCard } from "../PBCard";
 import { Box, Button, Paper, PaperProps, Typography } from "@mui/material";
 import { BlocklyWorkspaceProps } from "react-blockly/dist/BlocklyWorkspaceProps";
-import React, { useEffect, useState, RefObject } from "react";
+import React, { useEffect, useState, RefObject, useRef, useMemo } from "react";
 import Blockly from "blockly/core"
 
 export type PBBlocklyWorkspaceProps = {
@@ -16,78 +16,67 @@ export type PBBlocklyWorkspaceProps = {
   title?: boolean
 } & Partial<BlocklyWorkspaceProps>
 
-
-const MyBlocklyWorkspace = () => {
- return <Box  id="blocklyDiv" height="100%" width="100%">
-   </Box>
-}
- 
-
-export const PBBlocklyWorkspace = ({blockIds, categorized, sx, title, ...props}: PBBlocklyWorkspaceProps) => {
-  const {t} = useTranslation("blocks")
-    
+const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
+  const wrapperRef = useRef();
+  const [workspace, setWorkspace] = useState<Blockly.WorkspaceSvg>();
+  const [wasCategorized, setWasCategorized] = useState<Boolean | null>(null)
+  
+  const { t } = useTranslation("blocks")
+  
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
-  const [view, setView] = useState<boolean>(false)
 
   setupBlocklyBlocks(t)
 
-/*
-collapse
-comments
-css
-disable
-grid
-horizontalLayout
-maxBlocks
-maxInstances
-media
-move
-oneBasedIndex
-readOnly
-renderer
-rtl
-scrollbars
-sounds
-theme
-toolbox
-toolboxPosition
-trashcan
-maxTrashcanContents
-plugins
-zoom
-*/
+  useEffect(() => {
+    if (wrapperRef.current && workspace) {
+      if(wasCategorized !== null && categorized !== wasCategorized)
+        {
+        workspace.dispose()
+        setWorkspace(Blockly.inject(wrapperRef.current, {
+          toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
+        })); 
+        }
+      else 
+        workspace.updateToolbox(categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories))
+      
+      setWasCategorized(categorized)
+    }
+  }, [blockIds, categorized]);
 
   useEffect(() => {
-    if (view) 
-    Blockly.inject('blocklyDiv', {
+    if (wrapperRef.current && !workspace) {
+      setWasCategorized(categorized)
+      setWorkspace(Blockly.inject(wrapperRef.current, {
         toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
-        //initialXml: {xmlBloqueEmpezarAEjecutar},
-        toolboxPosition: 'start', 
-        trashcan: true, 
-        scrollbars: true, 
-        horizontalLayout: false
-      })
-  }, [view])
+      }));
+    }
+    /*
+    TODO ver cómo enviamos el primer bloque
+    if (xmlBloqueEmpezarAEjecutar) {
+      let block = workspaceRef.current.newBlock(xmlBloqueEmpezarAEjecutar.kind);
+      block.moveBy(initialBlock.x, initialBlock.y);
+      block.initSvg();
 
-  return <PBCard sx={{...sx}}>
-        <MyBlocklyWorkspace/>
-        <Button onClick={() => setView(!view)}>activar</Button>
-        {title && <Typography>{t('preview')}</Typography>}
-{/*}
-        <BlocklyWorkspace
-          data-testid={blockIds.join(",")}
-          key={blockIds.join("") + categorized} //rerenders on toolbox or categorization changes
-          toolboxConfiguration={categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
-          workspaceConfiguration={{}}
-          onWorkspaceChange={()=>{}}
-          onImportXmlError={()=>{}}
-          onImportError={()=>{}}
-          onXmlChange={()=>{}}
-          onJsonChange={()=>{}}
-          onInject={()=>{}}
-          onDispose={()=>{}}
-          className={styles.fill}
-          {...props}
-/>*/}
-      </PBCard>
+      workspaceRef.current.render();
+    }
+*/
+    return () => {
+      if (workspace)
+        (workspace as Blockly.WorkspaceSvg).dispose();
+    };
+  }, []);
+
+  return (<Box width="100%" height="100%" ref={wrapperRef} className="blockly" />)
+}
+
+
+
+export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
+  const { t } = useTranslation("blocks")
+  return <PBCard sx={{ ...sx }}>
+    {title && <Typography>{t('preview')}</Typography>}
+    <MyBlockly
+      blockIds={blockIds}
+      categorized={categorized} />    
+  </PBCard>
 }
