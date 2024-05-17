@@ -7,7 +7,7 @@ export const categories: string[] = [
   'alternatives',
   'values',
   'sensors',
-  'variables',
+  //'variables',
   'operators'
 ]
 

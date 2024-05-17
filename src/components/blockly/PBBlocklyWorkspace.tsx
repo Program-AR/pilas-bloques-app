@@ -7,7 +7,8 @@ import { useEffect, useState, useRef } from "react";
 import Blockly from "blockly/core"
 import { useThemeContext } from "../../theme/ThemeContext";
 
-/*
+/* inject options https://developers.google.com/blockly/reference/js/blockly.blocklyoptions_interface.md
+
 collapse
 comments
 css
@@ -42,7 +43,7 @@ export type PBBlocklyWorkspaceProps = {
   workspaceConfiguration?: Blockly.BlocklyOptions;
 }
 
-const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
+export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const wrapperRef = useRef();
   const [workspace, setWorkspace] = useState<Blockly.WorkspaceSvg>();
   const [wasCategorized, setWasCategorized] = useState<Boolean | null>(null)
@@ -57,10 +58,10 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
   setupBlocklyBlocks(t)
 
   useEffect(() => {
-    if( workspace )
+    if (workspace)
       workspace.setTheme(blocklyTheme)
   }, [blocklyTheme]);
-  
+
   useEffect(() => {
     if (wrapperRef.current && workspace) {
       if (wasCategorized !== null && categorized !== wasCategorized) {
@@ -72,8 +73,10 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
           ...props.workspaceConfiguration
         }));
       }
-      else
+      else {
         workspace.updateToolbox(toolbox)
+        workspace.getToolbox()?.clearSelection()
+      }
 
       setWasCategorized(categorized)
     }
@@ -102,19 +105,10 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
     };
   }, []);
 
-  return (<Box width="100%" height="100%" ref={wrapperRef} className="blockly" />)
-}
-
-
-export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
-  const { t } = useTranslation("blocks")
-  console.log(blockIds.join(","))
-  return <PBCard sx={{ ...sx }}>
-    {title && <Typography>{t('preview')}</Typography>}
-    <MyBlockly
-      data-testid={blockIds.join(",")}
-      blockIds={blockIds}
-      categorized={categorized}
-      {...props} />
-  </PBCard>
+  return (
+    <PBCard sx={{ ...sx }}>
+      {title && <Typography>{t('preview')}</Typography>}
+      <Box width="100%" height="100%" ref={wrapperRef} className="blockly" />
+    </PBCard>
+  )
 }

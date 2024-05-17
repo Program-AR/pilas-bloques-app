@@ -1,4 +1,4 @@
-import { BlockType } from "./blocks"
+import { BlockType, categories } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
 import { javascriptGenerator, Order } from 'blockly/javascript'
@@ -28,7 +28,7 @@ type BlocklyBlockDefinition = {
 export type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
 type ToolboxItem = ToolboxBlock | ToolBoxCategory
 type ToolboxBlock = { kind: "block", type: string }
-type ToolBoxCategory = { kind: "category", name: string, contents: ToolboxItem[] }
+type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[] }
 
 const primitivesColor = '#4a6cd4';
 const controlColor = '#ee7d16';
@@ -154,7 +154,10 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
   })
 
   if (icon) {
-    jsonInit.message0 = `%1 ${message}`
+    if (message.includes('%1'))
+      jsonInit.message0 = `%2 ${message}`
+    else
+      jsonInit.message0 = `%1 ${message}`
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -469,7 +472,7 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
 
   createPrimitiveBlock('IrseEnYacare', t("blocks.goInAlligator"), {
     'comportamiento': 'IrseEnYacare',
-    'argumentos': `{}`,
+    'argumentos': '{}',
   }, 'icono.yacare.png'
   );
 
@@ -709,7 +712,7 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
   }, 'icono.letter-c.svg'
   );
 
-  createPrimitiveBlock('MoverA', t(`blocks.moveTo`), { 'comportamiento': '', 'argumentos': '{}' }, '',
+  createPrimitiveBlock('MoverA', `${t(`blocks.moveTo`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, '',
     {
       message0: `${t(`blocks.moveTo`)} %1`,
       colour: primitivesColor,
@@ -1376,44 +1379,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     init: Blockly.Blocks["logic_compare"].init,
     categoryId: 'operators',
   }
-/*
-  Blockly.Blocks['OpComparacion'] = {
-    init: function () {
-      this.jsonInit(
-        {
-          'type': 'logic_compare',
-          'message0': '%1 %2 %3',
-          'args0': [
-            {
-              'type': 'input_value',
-              'name': 'A',
-            },
-            {
-              'type': 'field_dropdown',
-              'name': 'OP',
-              'options': [
-                ['=', 'EQ'],
-                ['\u2260', 'NEQ'],
-                ['\u200F<', 'LT'],
-                ['\u200F\u2264', 'LTE'],
-                ['\u200F>', 'GT'],
-                ['\u200F\u2265', 'GTE'],
-              ],
-            },
-            {
-              'type': 'input_value',
-              'name': 'B',
-            },
-          ],
-          'inputsInline': true,
-          'output': 'Boolean',
-          'style': 'logic_blocks',
-          'helpUrl': '%{BKY_LOGIC_COMPARE_HELPURL}',
-          'extensions': ['logic_compare', 'logic_op_tooltip'],
-          categoryId: 'operators',
-        })
-    }
-  } */
 }
 
 const createCommonCode = () => {
@@ -1471,51 +1436,28 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   disableUnwantedProcedureBlocks()
 }
 
-export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => ({
-  kind: "categoryToolbox",
-  contents: [
-    {
+
+
+export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => {
+
+  const categoryBlocksFor = (categoryId: string): ToolboxItem => {
+    const contents = blocks.filter(block => block.categoryId === categoryId).map(blockTypeToToolboxBlock)
+    return contents.length ? {
       kind: "category",
-      name: `${t('categories.primitives')}`,
-      contents: blocks.filter(block => block.categoryId === "primitives").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.myprocedures')}`,
-      contents: blocks.filter(block => block.categoryId === "myprocedures").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.repetitions')}`,
-      contents: blocks.filter(block => block.categoryId === "repetitions").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.alternatives')}`,
-      contents: blocks.filter(block => block.categoryId === "alternatives").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.variables')}`,
-      contents: blocks.filter(block => block.categoryId === "variables").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.values')}`,
-      contents: blocks.filter(block => block.categoryId === "values").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.sensors')}`,
-      contents: blocks.filter(block => block.categoryId === "sensors").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.operators')}`,
-      contents: blocks.filter(block => block.categoryId === "operators").map(blockTypeToToolboxBlock)
+      name: `${t(`categories.${categoryId}`)}`,
+      contents: contents
+    } : {
+      kind: '',
+      name: '',
+      contents: []
     }
-  ]
-})
+  }
+
+  return ({
+    kind: "categoryToolbox",
+    contents: categories.map(category => categoryBlocksFor(category) ) 
+  })
+}
 
 export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
   kind: "flyoutToolbox",
@@ -1523,9 +1465,9 @@ export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
 })
 
 export const setupBlocklyBlocks = (t: (key: string) => string) => {
-  
+
   defineBlocklyTranslations(t)
-  
+
   createFirstBlock(t)
 
   createPrimitiveBlocks(t)
