@@ -5,6 +5,7 @@ import { PBCard } from "../PBCard";
 import { Box, PaperProps, Typography } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
 import Blockly from "blockly/core"
+import { useThemeContext } from "../../theme/ThemeContext";
 
 /*
 collapse
@@ -47,6 +48,7 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
   const [wasCategorized, setWasCategorized] = useState<Boolean | null>(null)
 
   const { t } = useTranslation("blocks")
+  const { blocklyTheme } = useThemeContext()
 
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
 
@@ -55,11 +57,17 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
   setupBlocklyBlocks(t)
 
   useEffect(() => {
+    if( workspace )
+      workspace.setTheme(blocklyTheme)
+  }, [blocklyTheme]);
+  
+  useEffect(() => {
     if (wrapperRef.current && workspace) {
       if (wasCategorized !== null && categorized !== wasCategorized) {
         workspace.dispose()
 
         setWorkspace(Blockly.inject(wrapperRef.current, {
+          theme: blocklyTheme,
           toolbox: toolbox,
           ...props.workspaceConfiguration
         }));
@@ -75,6 +83,7 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
     if (wrapperRef.current && !workspace) {
       setWasCategorized(categorized)
       setWorkspace(Blockly.inject(wrapperRef.current, {
+        theme: blocklyTheme,
         toolbox: toolbox,
         ...props.workspaceConfiguration
       }));
