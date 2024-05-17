@@ -3,6 +3,7 @@ import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
+import 'blockly/blocks';
 
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
@@ -24,7 +25,7 @@ type BlocklyBlockDefinition = {
   code?: string
 }
 
-type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
+export type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
 type ToolboxItem = ToolboxBlock | ToolBoxCategory
 type ToolboxBlock = { kind: "block", type: string }
 type ToolBoxCategory = { kind: "category", name: string, contents: ToolboxItem[] }
@@ -116,7 +117,10 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
   })
 
   if (icon) {
-    jsonInit.message0 = `%1 ${message}`
+    if (message.includes('%1'))
+      jsonInit.message0 = `%2 ${message}`
+    else
+      jsonInit.message0 = `%1 ${message}`
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -1029,11 +1033,11 @@ const createSensorBlocks = (t: (key: string) => string) => {
   }, 'icono.charco.png'
   );
 
-  createSensorBlock('HayVocalRMT', t('blocks.currentCharacter'), {
+  createSensorBlock('HayVocalRMT', `${t('blocks.currentCharacter')} %1`, {
     'funcionSensor': '{}',
   }, 'icono.DibujarLinea.png',
     {
-      message0: `${t(`blocks.currentCharacter`)}`,
+      message0: `${t('blocks.currentCharacter')} %1`,
       colour: sensorsColor,
       args0: [
         {
@@ -1519,9 +1523,9 @@ export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
 })
 
 export const setupBlocklyBlocks = (t: (key: string) => string) => {
-
+  
   defineBlocklyTranslations(t)
-
+  
   createFirstBlock(t)
 
   createPrimitiveBlocks(t)

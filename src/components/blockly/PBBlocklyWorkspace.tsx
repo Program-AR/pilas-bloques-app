@@ -1,13 +1,37 @@
-import styles from "./PBBlocklyWorkspace.module.css";
-import { BlocklyWorkspace } from "react-blockly";
 import { useTranslation } from "react-i18next";
 import { BlockType, getBlockFromId } from "./blocks";
-import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox, xmlBloqueEmpezarAEjecutar } from "./blockly";
+import { Toolbox, categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "./blockly";
 import { PBCard } from "../PBCard";
-import { Box, Button, Paper, PaperProps, Typography } from "@mui/material";
-import { BlocklyWorkspaceProps } from "react-blockly/dist/BlocklyWorkspaceProps";
-import React, { useEffect, useState, RefObject, useRef, useMemo } from "react";
+import { Box, PaperProps, Typography } from "@mui/material";
+import { useEffect, useState, useRef } from "react";
 import Blockly from "blockly/core"
+import { useThemeContext } from "../../theme/ThemeContext";
+
+/*
+collapse
+comments
+css
+disable
+grid
+horizontalLayout
+maxBlocks
+maxInstances
+media
+move
+oneBasedIndex
+readOnly
+renderer
+rtl
+scrollbars
+sounds
+theme
+toolbox
+toolboxPosition
+trashcan
+maxTrashcanContents
+plugins
+zoom
+*/
 
 export type PBBlocklyWorkspaceProps = {
   blockIds: string[]
@@ -22,26 +46,35 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
   const wrapperRef = useRef();
   const [workspace, setWorkspace] = useState<Blockly.WorkspaceSvg>();
   const [wasCategorized, setWasCategorized] = useState<Boolean | null>(null)
-  
+
   const { t } = useTranslation("blocks")
-  
+  const { blocklyTheme } = useThemeContext()
+
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
+
+  const toolbox: Toolbox = categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)
 
   setupBlocklyBlocks(t)
 
   useEffect(() => {
+    if( workspace )
+      workspace.setTheme(blocklyTheme)
+  }, [blocklyTheme]);
+  
+  useEffect(() => {
     if (wrapperRef.current && workspace) {
-      if(wasCategorized !== null && categorized !== wasCategorized)
-        {
+      if (wasCategorized !== null && categorized !== wasCategorized) {
         workspace.dispose()
+
         setWorkspace(Blockly.inject(wrapperRef.current, {
-          toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
+          theme: blocklyTheme,
+          toolbox: toolbox,
           ...props.workspaceConfiguration
-        })); 
-        }
-      else 
-        workspace.updateToolbox(categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories))
-      
+        }));
+      }
+      else
+        workspace.updateToolbox(toolbox)
+
       setWasCategorized(categorized)
     }
   }, [blockIds, categorized]);
@@ -50,16 +83,18 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
     if (wrapperRef.current && !workspace) {
       setWasCategorized(categorized)
       setWorkspace(Blockly.inject(wrapperRef.current, {
-        toolbox: categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories),
+        theme: blocklyTheme,
+        toolbox: toolbox,
         ...props.workspaceConfiguration
       }));
-   /*
-    if (props.initialXml && workspace ) {
-      let block = (workspace as Blockly.WorkspaceSvg).newBlock(xmlBloqueEmpezarAEjecutar);
-      block.initSvg();
-//      workspace.render();
-    }*/
-  }
+    }
+
+    if (props.initialXml) {
+      Blockly.Xml.domToWorkspace(
+        Blockly.utils.xml.textToDom(props.initialXml),
+        Blockly.getMainWorkspace(),
+      );
+    }
 
     return () => {
       if (workspace)
@@ -71,13 +106,15 @@ const MyBlockly = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWork
 }
 
 
-
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const { t } = useTranslation("blocks")
+  console.log(blockIds.join(","))
   return <PBCard sx={{ ...sx }}>
     {title && <Typography>{t('preview')}</Typography>}
     <MyBlockly
+      data-testid={blockIds.join(",")}
       blockIds={blockIds}
-      categorized={categorized} />    
+      categorized={categorized}
+      {...props} />
   </PBCard>
 }
