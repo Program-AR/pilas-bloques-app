@@ -13,14 +13,6 @@ if (process.env.VITE_GOOGLE_ANALYTICS_KEY) {
   ReactGA.initialize(process.env.VITE_GOOGLE_ANALYTICS_KEY);
 }
 
-/*
-type ShouldStrictModeProps = {
-  children: React.ReactNode
-}
-
-const ShouldStrictMode = (props: ShouldStrictModeProps) => process.env.NODE_ENV === 'production' ? <React.StrictMode children={props.children}></React.StrictMode> : <>{props.children}</>
-*/
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
