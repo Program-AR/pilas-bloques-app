@@ -1445,11 +1445,6 @@ export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType
     },
     {
       kind: "category",
-      name: `${t('categories.variables')}`,
-      contents: blocks.filter(block => block.categoryId === "variables").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
       name: `${t('categories.values')}`,
       contents: blocks.filter(block => block.categoryId === "values").map(blockTypeToToolboxBlock)
     },

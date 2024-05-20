@@ -7,7 +7,6 @@ export const categories: string[] = [
   'alternatives',
   'values',
   'sensors',
-  'variables',
   'operators'
 ]
 
@@ -139,11 +138,6 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'myprocedures'
   },
   {
-    id: 'Avanzar',
-    intlId: 'advance',
-    categoryId: 'primitives'
-  },
-  {
     id: 'PuedeMoverAbajo',
     intlId: 'canMoveDown',
     categoryId: 'sensors'
@@ -153,7 +147,49 @@ export const commonBlocks: BlockType[] = [
     intlId: 'canMoveRight',
     categoryId: 'sensors'
   },
+  {
+    id: 'SiguienteColumna',
+    intlId: 'nextColumn',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'SiguienteFila',
+    intlId: 'nextLine',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'TocandoInicio',
+    intlId: 'atTheBeginning',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'VolverABordeIzquierdo',
+    intlId: 'goToLeftBorder',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'VolverAlBordeIzquierdo',
+    intlId: 'backToLeftBorder',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'RepetirVacio',
+    intlId: 'repeatEmpty',
+    categoryId: 'repetitions'
+  },
+  {
+    id: 'Retroceder',
+    intlId: 'back',
+    categoryId: 'primitives'
+  }
+]
 
+const notUsedBlocks: BlockType[] = [
+  {
+    id: 'Avanzar',
+    intlId: 'advance',
+    categoryId: 'primitives'
+  },
   {
     id: 'EscribirA',
     intlId: 'writeA',
@@ -180,11 +216,6 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'sensors'
   },
   {
-    id: 'Retroceder',
-    intlId: 'back',
-    categoryId: 'primitives'
-  },
-  {
     id: 'SaltarAbajo',
     intlId: 'jumpDown',
     categoryId: 'primitives'
@@ -205,39 +236,9 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'primitives'
   },
   {
-    id: 'SiguienteColumna',
-    intlId: 'nextColumn',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'SiguienteFila',
-    intlId: 'nextLine',
-    categoryId: 'primitives'
-  },
-  {
     id: 'SiguienteFilaTotal',
     intlId: 'nextLine',
     categoryId: 'primitives'
-  },
-  {
-    id: 'TocandoInicio',
-    intlId: 'atTheBeginning',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'VolverABordeIzquierdo',
-    intlId: 'goToLeftBorder',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'VolverAlBordeIzquierdo',
-    intlId: 'backToLeftBorder',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'RepetirVacio',
-    intlId: 'repeatEmpty',
-    categoryId: 'repetitions'
   },
   {
     id: 'SaltarHaciaAdelante',
@@ -639,7 +640,7 @@ export const sceneBlocks: BlockType[] = [
     categoryId: 'primitives'
   },
   {
-    id: 'hayVocalRMT',
+    id: 'HayVocalRMT',
     intlId: 'isAVowel',
     categoryId: 'sensors'
   }
