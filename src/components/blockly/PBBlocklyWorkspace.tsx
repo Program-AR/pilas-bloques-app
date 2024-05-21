@@ -27,7 +27,8 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
   
   return <PBCard sx={ isSmallScreen ? {...sx, ".blocklyToolboxDiv": { position: "relative !important"  }, 
                                               ".blocklyNonSelectable.blocklyToolboxDiv": { height: "auto !important"  }, 
-                                              ".blocklyFlyout": { transform: "translate(0px, 0px) !important" }} 
+                                              ".blocklyFlyout": { transform: "translate(0px, 0px) !important" },
+                                              ".blocklyBlockCanvas": { scale: "0.8 !important" }} 
                                     : { ...sx  }}>
   {title && <Typography>{t('preview')}</Typography>}
   <BlocklyWorkspace
