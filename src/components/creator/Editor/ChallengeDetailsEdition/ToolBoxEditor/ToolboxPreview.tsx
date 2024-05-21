@@ -1,3 +1,4 @@
+import { useThemeContext } from "../../../../../theme/ThemeContext";
 import { PBBlocklyWorkspace } from "../../../../blockly/PBBlocklyWorkspace"
 import Blockly from "blockly";
 
@@ -7,8 +8,10 @@ type ToolboxPreviewProps = {
 }
 
 export const ToolboxPreview = ( {categorized, blockIds} : ToolboxPreviewProps ) => {
+  const { isSmallScreen } = useThemeContext()
+
     return <PBBlocklyWorkspace
-            sx={{display: "flex", flexDirection:"column", minWidth: "400px", padding:"5px"}}
+            sx={{display: "flex", flexDirection:"column", minWidth: isSmallScreen ? "auto" : "400px", padding:"5px"}}
             title
             blockIds={blockIds}
             categorized={categorized}
