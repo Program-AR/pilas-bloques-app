@@ -123,6 +123,11 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'repetitions'
   },
   {
+    id: 'RepetirVacio',
+    intlId: 'repeatEmpty',
+    categoryId: 'repetitions'
+  },
+  {
     id: 'OpComparacion',
     intlId: 'logic_compare',
     categoryId: 'operators'
@@ -146,10 +151,18 @@ export const commonBlocks: BlockType[] = [
     id: 'PuedeMoverDerecha',
     intlId: 'canMoveRight',
     categoryId: 'sensors'
-  },
+  }
+]
+
+const notUsedBlocks: BlockType[] = [
   {
     id: 'SiguienteColumna',
     intlId: 'nextColumn',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'Retroceder',
+    intlId: 'back',
     categoryId: 'primitives'
   },
   {
@@ -158,33 +171,10 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'primitives'
   },
   {
-    id: 'TocandoInicio',
-    intlId: 'atTheBeginning',
-    categoryId: 'sensors'
-  },
-  {
     id: 'VolverABordeIzquierdo',
     intlId: 'goToLeftBorder',
     categoryId: 'primitives'
   },
-  {
-    id: 'VolverAlBordeIzquierdo',
-    intlId: 'backToLeftBorder',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'RepetirVacio',
-    intlId: 'repeatEmpty',
-    categoryId: 'repetitions'
-  },
-  {
-    id: 'Retroceder',
-    intlId: 'back',
-    categoryId: 'primitives'
-  }
-]
-
-const notUsedBlocks: BlockType[] = [
   {
     id: 'Avanzar',
     intlId: 'advance',
@@ -209,11 +199,6 @@ const notUsedBlocks: BlockType[] = [
     id: 'EscribirLetraActualEnOtraCuadricula',
     intlId: 'writeLetter',
     categoryId: 'primitives'
-  },
-  {
-    id: 'EstoyEnEsquina',
-    intlId: 'atTheSquare',
-    categoryId: 'sensors'
   },
   {
     id: 'SaltarAbajo',
@@ -244,6 +229,16 @@ const notUsedBlocks: BlockType[] = [
     id: 'SaltarHaciaAdelante',
     intlId: 'JumpForward',
     categoryId: 'primitives'
+  },
+  {
+    id: 'EstoyEnEsquina',
+    intlId: 'atTheSquare',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'TocandoInicio',
+    intlId: 'atTheBeginning',
+    categoryId: 'sensors'
   }
 ]
 
