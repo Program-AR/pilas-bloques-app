@@ -7,32 +7,7 @@ import { useEffect, useState, useRef } from "react";
 import Blockly from "blockly/core"
 import { useThemeContext } from "../../theme/ThemeContext";
 
-/* inject options https://developers.google.com/blockly/reference/js/blockly.blocklyoptions_interface.md
-
-collapse
-comments
-css
-disable
-grid
-horizontalLayout
-maxBlocks
-maxInstances
-media
-move
-oneBasedIndex
-readOnly
-renderer
-rtl
-scrollbars
-sounds
-theme
-toolbox
-toolboxPosition
-trashcan
-maxTrashcanContents
-plugins
-zoom
-*/
+// inject options https://developers.google.com/blockly/reference/js/blockly.blocklyoptions_interface.md
 
 export type PBBlocklyWorkspaceProps = {
   blockIds: string[]
@@ -46,7 +21,6 @@ export type PBBlocklyWorkspaceProps = {
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const wrapperRef = useRef();
   const [workspace, setWorkspace] = useState<Blockly.WorkspaceSvg>();
-  const [wasCategorized, setWasCategorized] = useState<Boolean | null>(null)
 
   const { t } = useTranslation("blocks")
   const { blocklyTheme } = useThemeContext()
@@ -57,10 +31,7 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   setupBlocklyBlocks(t)
 
-  useEffect(() => {
-    if (workspace)
-      workspace.setTheme(blocklyTheme)
-  }, [blocklyTheme]);
+  workspace?.setTheme(blocklyTheme)
 
   const restartWorkspace = () => {
     if (workspace) { 
@@ -80,15 +51,8 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
   };
 
   useEffect(() => {
-    console.log("entro al categorized")
     restartWorkspace()
-  }, [categorized]);
-
-  useEffect(() => {
-    workspace?.updateToolbox(toolbox)
-    workspace?.getToolbox()?.clearSelection()
-  }, [blockIds]);
-  
+  }, [categorized, blockIds]);
 
   const setInitialXml = () => {
     if (props.initialXml) {
