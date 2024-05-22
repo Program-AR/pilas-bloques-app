@@ -3,7 +3,7 @@ import { BlockType, getBlockFromId } from "./blocks";
 import { Toolbox, categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "./blockly";
 import { PBCard } from "../PBCard";
 import { Box, PaperProps, Typography } from "@mui/material";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, MutableRefObject, Ref } from "react";
 import Blockly from "blockly/core"
 import { useThemeContext } from "../../theme/ThemeContext";
 
@@ -19,8 +19,8 @@ export type PBBlocklyWorkspaceProps = {
 }
 
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
-  const wrapperRef = useRef();
-  const [workspace, setWorkspace] = useState<Blockly.WorkspaceSvg>();
+
+  const [wrapperRef, setWrapperRef] = useState<Ref<any>>()
 
   const { t } = useTranslation("blocks")
   const { blocklyTheme } = useThemeContext()
@@ -31,56 +31,27 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   setupBlocklyBlocks(t)
 
-  workspace?.setTheme(blocklyTheme)
+  wrapperRef?.replaceChildren()
 
-  const restartWorkspace = () => {
-    if (workspace) { 
-      workspace.dispose()
-      injectBlockly();
-  }
-  };
-
-  const injectBlockly=()=> {
-    if (wrapperRef.current) {
-      setWorkspace(Blockly.inject(wrapperRef.current, {
-        theme: blocklyTheme,
-        toolbox: toolbox,
-        ...props.workspaceConfiguration
-      }));
-    }
-  };
-
-  useEffect(() => {
-    restartWorkspace()
-  }, [categorized, blockIds]);
-
-  const setInitialXml = () => {
-    if (props.initialXml) {
-      Blockly.Xml.domToWorkspace(
-        Blockly.utils.xml.textToDom(props.initialXml),
-        Blockly.getMainWorkspace()
-      );
-    }
+  if (wrapperRef) {
+    Blockly.inject(wrapperRef, {
+      theme: blocklyTheme,
+      toolbox: toolbox,
+      ...props.workspaceConfiguration
+    })
   }
 
-  useEffect(() => {
-    if (!workspace) {
-      injectBlockly()
-    }
-
-    setInitialXml();
-
-    return () => {
-      if (workspace)
-        (workspace as Blockly.WorkspaceSvg).dispose();
-    };
-
-  }, []);
+  if (props.initialXml) {
+    Blockly.Xml.domToWorkspace(
+      Blockly.utils.xml.textToDom(props.initialXml),
+      Blockly.getMainWorkspace()
+    );
+  }
 
   return (
     <PBCard sx={{ ...sx }}>
       {title && <Typography>{t('preview')}</Typography>}
-      <Box width="100%" height="100%" ref={wrapperRef} className="blockly" />
+      <Box width="100%" height="100%" ref={setWrapperRef} className="blockly" />
     </PBCard>
   )
 }
