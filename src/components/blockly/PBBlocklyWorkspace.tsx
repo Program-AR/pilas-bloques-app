@@ -30,6 +30,7 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
                                               ".blocklyFlyout": { transform: "translate(0px, 0px) !important" },
                                               ".blocklyBlockCanvas": { scale: "0.8 !important" }} 
                                     : { ...sx  }}>
+                                                                       
   {title && <Typography>{t('preview')}</Typography>}
   <BlocklyWorkspace
     data-testid={blockIds.join(",")}

@@ -63,16 +63,6 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'sensors'
   },
   {
-    id: 'TocandoDerecha',
-    intlId: 'canMoveRight',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'TocandoAbajo',
-    intlId: 'canMoveDown',
-    categoryId: 'sensors'
-  },
-  {
     id: 'TocandoMeta',
     intlId: 'cameToTheEnd',
     categoryId: 'sensors'
@@ -120,11 +110,6 @@ export const commonBlocks: BlockType[] = [
   {
     id: 'Hasta',
     intlId: 'while',
-    categoryId: 'repetitions'
-  },
-  {
-    id: 'RepetirVacio',
-    intlId: 'repeatEmpty',
     categoryId: 'repetitions'
   },
   {
@@ -239,6 +224,187 @@ const notUsedBlocks: BlockType[] = [
     id: 'TocandoInicio',
     intlId: 'atTheBeginning',
     categoryId: 'sensors'
+  },
+  {
+    id: 'TocandoDerecha',
+    intlId: 'canMoveRight',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'TocandoAbajo',
+    intlId: 'canMoveDown',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'RepetirVacio',
+    intlId: 'repeatEmpty',
+    categoryId: 'repetitions'
+  },
+  // NotUsedSceneBlocks
+  {
+    id: 'EntregarPelota',
+    intlId: 'giveBall',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'MoverAbajoDibujando',
+    intlId: 'moveAndDrawDown',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'MoverArribaDibujando',
+    intlId: 'moveAndDrawUp',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'MoverDerechaDibujando',
+    intlId: 'moveAndDrawRight',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'MoverIzquierdaDibujando',
+    intlId: 'moveAndDrawLeft',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'EstoySobreElFinalManic',
+    intlId: 'atColumnEnd',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'EstoySobreElInicioManic',
+    intlId: 'atColumnBeginning',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'RebotarPiePulpito',
+    intlId: 'bounceFootRubberBall',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'RebotarPingPong',
+    intlId: 'bouncePingPong',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'ContarEstrella',
+    intlId: 'countStar',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'ContarPlaneta',
+    intlId: 'countPlanet',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'DibujarLado',
+    intlId: 'drawSide',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'EntregarCargador',
+    intlId: 'giveCharger',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'EntregarTelescopio',
+    intlId: 'giveTelescope',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'IrseEnYacare',
+    intlId: 'goInAlligator',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'TocandoGuyra',
+    intlId: 'guyraHere',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'InstalarJuego',
+    intlId: 'installGame',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'KmsTotales',
+    intlId: 'kmToTravel',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'ObservarConAmigos',
+    intlId: 'lookWithFriends',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'Avanzar1kmChuy',
+    intlId: 'move1Km',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'SiguienteTelescopio',
+    intlId: 'moveNextTelescope',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'MoverTelescopio',
+    intlId: 'moveTelescope',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'PasarASiguienteComputadora',
+    intlId: 'nextComputer',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'SubirPajarito',
+    intlId: 'pickBird',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'RecogerPulpito',
+    intlId: 'pickRubberBall',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'Colocar',
+    intlId: 'putIntoTheTrashBin',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'GirarGrados',
+    intlId: 'rotateGrades',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'TomarLata',
+    intlId: 'takeCan',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'TomarPapel',
+    intlId: 'takePaper',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'AgarrarTelescopio',
+    intlId: 'takeTelescope',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'ApagarComputadora',
+    intlId: 'turnComputerOff',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'PrenderComputadora',
+    intlId: 'turnComputerOn',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'RevolearPulpito',
+    intlId: 'volleyRubberBall',
+    categoryId: 'primitives'
   }
 ]
 
@@ -247,11 +413,6 @@ export const sceneBlocks: BlockType[] = [
   {
     id: 'RecogerTrofeo',
     intlId: 'pickTrophy',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'RebotarPingPong',
-    intlId: 'bouncePingPong',
     categoryId: 'primitives'
   },
   {
@@ -312,11 +473,6 @@ export const sceneBlocks: BlockType[] = [
   {
     id: 'SostenerPapel',
     intlId: 'holdPaper',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'Colocar',
-    intlId: 'putIntoTheTrashBin',
     categoryId: 'primitives'
   },
   {
@@ -445,94 +601,9 @@ export const sceneBlocks: BlockType[] = [
     categoryId: 'sensors'
   },
   {
-    id: 'ContarEstrella',
-    intlId: 'countStar',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'ContarPlaneta',
-    intlId: 'countPlanet',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'EntregarCargador',
-    intlId: 'giveCharger',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'EntregarPelota',
-    intlId: 'giveBall',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'EntregarTelescopio',
-    intlId: 'giveTelescope',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'AgarrarTelescopio',
-    intlId: 'takeTelescope',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'ApagarComputadora',
-    intlId: 'turnComputerOff',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'Avanzar1kmChuy',
-    intlId: 'move1Km',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'EstoySobreElFinalManic',
-    intlId: 'atColumnEnd',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'EstoySobreElInicioManic',
-    intlId: 'atColumnBeginning',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'InstalarJuego',
-    intlId: 'installGame',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'IrseEnYacare',
-    intlId: 'goInAlligator',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'KmsTotales',
-    intlId: 'kmToTravel',
-    categoryId: 'sensors'
-  },
-  {
     id: 'LargoColumnaActual',
     intlId: 'currentColumnLength',
     categoryId: 'sensors'
-  },
-  {
-    id: 'MoverAbajoDibujando',
-    intlId: 'moveAndDrawDown',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'MoverArribaDibujando',
-    intlId: 'moveAndDrawUp',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'MoverDerechaDibujando',
-    intlId: 'moveAndDrawRight',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'MoverIzquierdaDibujando',
-    intlId: 'moveAndDrawLeft',
-    categoryId: 'primitives'
   },
   {
     id: 'MoverLeyendoAbajo',
@@ -555,83 +626,13 @@ export const sceneBlocks: BlockType[] = [
     categoryId: 'primitives'
   },
   {
-    id: 'MoverTelescopio',
-    intlId: 'moveTelescope',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'ObservarConAmigos',
-    intlId: 'lookWithFriends',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'PasarASiguienteComputadora',
-    intlId: 'nextComputer',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'PrenderComputadora',
-    intlId: 'turnComputerOn',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'RebotarPiePulpito',
-    intlId: 'bounceFootRubberBall',
-    categoryId: 'primitives'
-  },
-  {
     id: 'RebotarUnaVezPingPong',
     intlId: 'bouncePingPong',
     categoryId: 'primitives'
   },
   {
-    id: 'RecogerPulpito',
-    intlId: 'pickRubberBall',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'RevolearPulpito',
-    intlId: 'volleyRubberBall',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'SiguienteTelescopio',
-    intlId: 'moveNextTelescope',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'SubirPajarito',
-    intlId: 'pickBird',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'TocandoGuyra',
-    intlId: 'guyraHere',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'TomarLata',
-    intlId: 'takeCan',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'TomarPapel',
-    intlId: 'takePaper',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'DibujarLado',
-    intlId: 'drawSide',
-    categoryId: 'primitives'
-  },
-  {
     id: 'EscribirTextoDadoEnOtraCuadricula',
     intlId: 'writeAnotherText',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'GirarGrados',
-    intlId: 'rotateGrades',
     categoryId: 'primitives'
   },
   {
