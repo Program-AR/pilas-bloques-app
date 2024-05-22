@@ -1344,7 +1344,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     return [code, order];
   };
 
-  console.log('variables_get')
   Blockly.Blocks['param_get'] = {
     init: Blockly.Blocks['variables_get'].init,
     mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
@@ -1352,8 +1351,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     onchange: Blockly.Blocks['variables_get'].onchange,
     categoryId: 'myprocedures',
   };
-
-  console.log('procedimiento')
 
   Blockly.Blocks['Procedimiento'] = {
     init: Blockly.Blocks['procedures_defnoreturn'].init,
@@ -1372,8 +1369,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     categoryId: 'myprocedures'
   };
-
-  console.log('opcomparacion')
 
   Blockly.Blocks['OpComparacion'] = {
     init: Blockly.Blocks["logic_compare"].init,
@@ -1481,4 +1476,17 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createOthersBlocks(t)
 
   createCommonCode()
+}
+
+export const setXml = (xml: string) => {
+  Blockly.Xml.domToWorkspace(
+    Blockly.utils.xml.textToDom(xml),
+    Blockly.getMainWorkspace()
+  );
+}
+
+export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
+  container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
+
+  Blockly.inject(container, workspaceConfiguration)
 }
