@@ -20,7 +20,7 @@ export type PBBlocklyWorkspaceProps = {
 
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
 
-  const [wrapperRef, setWrapperRef] = useState<Ref<any>>()
+  const [wrapperRef, setWrapperRef] = useState<Element>()
 
   const { t } = useTranslation("blocks")
   const { blocklyTheme } = useThemeContext()
@@ -31,9 +31,11 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   setupBlocklyBlocks(t)
 
-  wrapperRef?.replaceChildren()
 
   if (wrapperRef) {
+
+    wrapperRef.replaceChildren() //Removes previous injection, otherwise it will keep inserting below the current workspace
+
     Blockly.inject(wrapperRef, {
       theme: blocklyTheme,
       toolbox: toolbox,
