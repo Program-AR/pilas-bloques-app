@@ -62,47 +62,55 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
       workspace.setTheme(blocklyTheme)
   }, [blocklyTheme]);
 
-  useEffect(() => {
-    if (wrapperRef.current && workspace) {
-      if (wasCategorized !== null && categorized !== wasCategorized) {
-        workspace.dispose()
+  const restartWorkspace = () => {
+    if (workspace) { 
+      workspace.dispose()
+      injectBlockly();
+  }
+  };
 
-        setWorkspace(Blockly.inject(wrapperRef.current, {
-          theme: blocklyTheme,
-          toolbox: toolbox,
-          ...props.workspaceConfiguration
-        }));
-      }
-      else {
-        workspace.updateToolbox(toolbox)
-        workspace.getToolbox()?.clearSelection()
-      }
-
-      setWasCategorized(categorized)
-    }
-  }, [blockIds, categorized]);
-
-  useEffect(() => {
-    if (wrapperRef.current && !workspace) {
-      setWasCategorized(categorized)
+  const injectBlockly=()=> {
+    if (wrapperRef.current) {
       setWorkspace(Blockly.inject(wrapperRef.current, {
         theme: blocklyTheme,
         toolbox: toolbox,
         ...props.workspaceConfiguration
       }));
     }
+  };
 
+  useEffect(() => {
+    console.log("entro al categorized")
+    restartWorkspace()
+  }, [categorized]);
+
+  useEffect(() => {
+    workspace?.updateToolbox(toolbox)
+    workspace?.getToolbox()?.clearSelection()
+  }, [blockIds]);
+  
+
+  const setInitialXml = () => {
     if (props.initialXml) {
       Blockly.Xml.domToWorkspace(
         Blockly.utils.xml.textToDom(props.initialXml),
-        Blockly.getMainWorkspace(),
+        Blockly.getMainWorkspace()
       );
     }
+  }
+
+  useEffect(() => {
+    if (!workspace) {
+      injectBlockly()
+    }
+
+    setInitialXml();
 
     return () => {
       if (workspace)
         (workspace as Blockly.WorkspaceSvg).dispose();
     };
+
   }, []);
 
   return (
