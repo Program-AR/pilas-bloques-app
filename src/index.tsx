@@ -19,16 +19,11 @@ const root = ReactDOM.createRoot(
 root.render(
   //Suspense is needed because the translations are loaded asynchronously
   <Suspense fallback={<PBProgress />}>
-    {process.env.NODE_ENV === 'production' &&
       <React.StrictMode>
         <ThemeContextProvider>
           <App />
         </ThemeContextProvider>
-      </React.StrictMode>}
-    {process.env.NODE_ENV !== 'production' &&
-      <ThemeContextProvider>
-        <App />
-      </ThemeContextProvider>}
+      </React.StrictMode>
   </Suspense>
 );
 
