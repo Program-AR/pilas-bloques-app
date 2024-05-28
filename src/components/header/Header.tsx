@@ -1,4 +1,4 @@
-import { AppBar, Grid, Typography } from "@mui/material";
+import { AppBar, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import { ChangeLanguageButton } from "./ChangeLanguageButton";
 import styles from './header.module.css';
 import { SessionButton } from "../users/login/SessionButton";
@@ -18,29 +18,35 @@ type HeaderTextProps = {
 }
 
 export const HeaderText = (props: HeaderTextProps) => {
-
-	return <Typography 
-		className={styles["header-text"]}>
-		{props.text}
-	</Typography>
-}
-
-export const Header = ({CenterComponent= <></>, SubHeader=<></>, shouldShowSimpleReadSwitch=true}: HeaderProps) => {
-    const { theme } = useThemeContext()
     
-    return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
-            <Grid container className={styles['header']} wrap="nowrap">
-                <Link to="/" style={{display: 'flex'}}><img src="imagenes/pblogo-whiteborder.svg" className={styles['logo']} alt="logo pilas bloques"/></Link>
-                {CenterComponent}
-                <div>
-                    <ChangeLanguageButton/>
-                    {shouldShowSimpleReadSwitch && <SimpleReadSwitch/>}
-                    <DarkModeSwitch/>
-                    <SessionButton/>
-                </div>
-            </Grid>
-            {SubHeader}
-        </AppBar>
+    return <Typography
+    className={styles["header-text"]}>
+        {props.text}
+    </Typography>
 }
 
+const HomeLinkImg: React.FC<{ img: string }> = ({ img }) => <Link to="/" style={{ display: 'flex' }}><img src={`imagenes/${img}`} className={styles['logo']} alt="logo pilas bloques" /></Link>
 
+export const Header = ({ CenterComponent = <></>, SubHeader = <></>, shouldShowSimpleReadSwitch = true }: HeaderProps) => {
+    const { theme } = useThemeContext()
+
+    return <AppBar position="sticky" sx={{ bgcolor: theme.palette.background.default }} elevation={0}>
+        <Grid container className={styles['header']} wrap="nowrap">
+            <Logo/>
+            {CenterComponent}
+            <Stack direction='row'>
+                <ChangeLanguageButton />
+                {shouldShowSimpleReadSwitch && <SimpleReadSwitch />}
+                <DarkModeSwitch />
+                <SessionButton />
+            </Stack>
+        </Grid>
+        {SubHeader}
+    </AppBar>
+}
+
+const Logo = () => {
+    const { isSmallScreen } = useThemeContext()
+
+    return <HomeLinkImg img={isSmallScreen ? "cropped-pbicon.png" : "pblogo-whiteborder.svg"} />
+}

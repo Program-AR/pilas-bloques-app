@@ -8,11 +8,9 @@ type CreatorActionButtonProps = {
 } & ButtonProps
 
 export const CreatorActionButton = ({ isshortversion = false, ...props }: CreatorActionButtonProps) => {
-  const { theme } = useThemeContext()
+  const { isSmallScreen } = useThemeContext()
 
   const { t } = useTranslation('creator')
-
-  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Tooltip title={isSmallScreen ? t(`editor.buttons.${props.nametag}`) : ''}>

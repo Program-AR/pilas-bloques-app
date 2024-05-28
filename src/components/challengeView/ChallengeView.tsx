@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
-import { Drawer, useMediaQuery, PaperProps, Stack } from "@mui/material";
+import { useMediaQuery, PaperProps, Stack } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
-import { ChallengeFooter } from "./Info/ChallengeFooter";
+import { ChallengeFooter, InfoDrawer } from "./Info/ChallengeFooter";
 import { LocalStorage } from "../../localStorage"
 import { Header } from "../header/Header"
 import { Scene, SceneMap, SerializedChallenge } from "../serializedChallenge";
@@ -71,10 +71,9 @@ type ChallengeWorkspaceProps = {
 }
 
 const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
-  const { theme } = useThemeContext()
+  const { isSmallScreen } = useThemeContext()
   const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
   const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
-  const isSmallScreen: boolean = useMediaQuery(theme.breakpoints.down('sm'));
   const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
     blockIds: challenge.toolboxBlockIds,
     categorized: challenge.toolboxStyle !== 'noCategories'
@@ -128,19 +127,4 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
       </Stack>
     </Stack>
   </Stack>
-}
-
-type InfoDrawerProps = {
-  open: boolean
-  onClose: () => void
-}
-
-const InfoDrawer = ({ open, onClose }: InfoDrawerProps) => {
-  return <Drawer
-    PaperProps={{ sx: { backgroundColor: 'transparent', boxShadow: 'none', justifyContent: 'flex-end' } }}
-    anchor='right'
-    onClose={onClose}
-    open={open}>
-    <ChallengeFooter isVertical={true} />
-  </Drawer>
 }

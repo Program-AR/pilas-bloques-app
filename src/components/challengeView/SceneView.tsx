@@ -14,8 +14,8 @@ type SceneViewProps = {
 
 // It should react and rerender only on changes to the scene descriptor.
 export const SceneView = ({ descriptor, onLoad }: SceneViewProps) => {
-    const { theme } = useThemeContext()
-    const size = useMediaQuery(theme.breakpoints.down('sm')) ? { width: "200px", height: "243px" } :
+    const { theme, isSmallScreen } = useThemeContext()
+    const size = isSmallScreen ? { width: "200px", height: "243px" } :
         useMediaQuery(theme.breakpoints.down('xl')) ? { width: "300px", height: "343px" } :
             { width: "420px", height: "480px" }
 
