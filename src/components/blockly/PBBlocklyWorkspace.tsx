@@ -1,51 +1,47 @@
-import styles from "./PBBlocklyWorkspace.module.css";
-import { BlocklyWorkspace } from "react-blockly";
 import { useTranslation } from "react-i18next";
 import { BlockType, getBlockFromId } from "./blocks";
-import { categorizedToolbox, setupBlocklyBlocks, uncategorizedToolbox } from "./blockly";
+import { Toolbox, categorizedToolbox, setupBlockly, setupBlocklyBlocks, setXml, uncategorizedToolbox } from "./blockly";
 import { PBCard } from "../PBCard";
-import { PaperProps, Typography } from "@mui/material";
-import { BlocklyWorkspaceProps } from "react-blockly/dist/BlocklyWorkspaceProps";
+import { Box, PaperProps, Typography } from "@mui/material";
+import { useState } from "react";
+import Blockly from "blockly/core"
 import { useThemeContext } from "../../theme/ThemeContext";
+
+// inject options https://developers.google.com/blockly/reference/js/blockly.blocklyoptions_interface.md
 
 export type PBBlocklyWorkspaceProps = {
   blockIds: string[]
   categorized: boolean
   sx?: PaperProps["sx"]
   title?: boolean
-} & Partial<BlocklyWorkspaceProps>
+  initialXml?: string;
+  workspaceConfiguration?: Blockly.BlocklyOptions;
+}
 
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const { t } = useTranslation("blocks")
-  const { isSmallScreen } = useThemeContext()
- 
+
+  const { blocklyTheme } = useThemeContext()
+  
+  const [blocklyContainer, setBlocklyContainer] = useState<Element>()
+  
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
+  
+  const toolbox: Toolbox = categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)
 
   setupBlocklyBlocks(t)
-    
-  // con la version de scroll en las categorias del toolbox en la visualizacion del desafio en pantalla chica se hace con esto en el sx ".blocklyToolboxContents": { flexWrap: "noWrap" }, 
-  
-  return <PBCard sx={ isSmallScreen ? {...sx, ".blocklyToolboxDiv": { position: "relative !important"  }, 
-                                              ".blocklyNonSelectable.blocklyToolboxDiv": { height: "auto !important"  }, 
-                                              ".blocklyFlyout": { transform: "translate(0px, 0px) !important" },
-                                              ".blocklyBlockCanvas": { scale: "0.8 !important" }} 
-                                    : { ...sx  }}>
-                                                                       
-  {title && <Typography>{t('preview')}</Typography>}
-  <BlocklyWorkspace
-    data-testid={blockIds.join(",")}
-    key={blockIds.join("") + categorized} //rerenders on toolbox or categorization changes
-    toolboxConfiguration={categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)}
-    workspaceConfiguration={{}}
-    onWorkspaceChange={() => { }}
-    onImportXmlError={() => { }}
-    onImportError={() => { }}
-    onXmlChange={() => { }}
-    onJsonChange={() => { }}
-    onInject={() => { }}
-    onDispose={() => { }}
-    className={styles.fill}
-    {...props}
-  />
-</PBCard>
+
+  if (blocklyContainer) setupBlockly(blocklyContainer, {theme: blocklyTheme, toolbox, ...props.workspaceConfiguration})
+
+  if (props.initialXml) setXml(props.initialXml)
+
+  return (
+    <PBCard sx={{ ...sx }}>
+      {title && <Typography>{t('preview')}</Typography>}
+      <Box width="100%" height="100%" ref={setBlocklyContainer} className="blockly" />
+    </PBCard>
+  )
 }
+
+
+

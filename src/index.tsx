@@ -18,13 +18,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   //Suspense is needed because the translations are loaded asynchronously
- // <Suspense fallback="...is loading">
- <Suspense fallback={<PBProgress/>}>
-    <React.StrictMode>
-      <ThemeContextProvider>
-        <App />
-      </ThemeContextProvider>
-    </React.StrictMode>
+  <Suspense fallback={<PBProgress />}>
+      <React.StrictMode>
+        <ThemeContextProvider>
+          <App />
+        </ThemeContextProvider>
+      </React.StrictMode>
   </Suspense>
 );
 

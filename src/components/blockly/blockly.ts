@@ -1,8 +1,10 @@
-import { BlockType } from "./blocks"
+import { BlockType, categories } from "./blocks"
 import Es from 'blockly/msg/es';
 import Blockly from "blockly/core"
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
+import 'blockly/blocks';
+
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
@@ -23,10 +25,10 @@ type BlocklyBlockDefinition = {
   code?: string
 }
 
-type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
+export type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
 type ToolboxItem = ToolboxBlock | ToolBoxCategory
 type ToolboxBlock = { kind: "block", type: string }
-type ToolBoxCategory = { kind: "category", name: string, contents: ToolboxItem[] }
+type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[] }
 
 const primitivesColor = '#4a6cd4';
 const controlColor = '#ee7d16';
@@ -67,6 +69,11 @@ const createGenericJSCode = (id: string, customCode: string) => {
   };
 }
 
+const messageBlock = (message: string) => {
+  if (message.includes('%1'))
+    return `%2 ${message}`
+  return `%1 ${message}`
+}
 
 const createPrimitiveBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition) => {
   validateRequiredOptions(id, options, ['comportamiento', 'argumentos']);
@@ -80,7 +87,7 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
   })
 
   if (icon) {
-    jsonInit.message0 = `%1 ${message}`
+    jsonInit.message0 = messageBlock(message)
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -112,7 +119,7 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
   })
 
   if (icon) {
-    jsonInit.message0 = `%1 ${message}`
+    jsonInit.message0 = messageBlock(message)
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -146,7 +153,7 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
   })
 
   if (icon) {
-    jsonInit.message0 = `%1 ${message}`
+    jsonInit.message0 = messageBlock(message)
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -461,7 +468,7 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
 
   createPrimitiveBlock('IrseEnYacare', t("blocks.goInAlligator"), {
     'comportamiento': 'IrseEnYacare',
-    'argumentos': `{}`,
+    'argumentos': '{}',
   }, 'icono.yacare.png'
   );
 
@@ -701,7 +708,7 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
   }, 'icono.letter-c.svg'
   );
 
-  createPrimitiveBlock('MoverA', t(`blocks.moveTo`), { 'comportamiento': '', 'argumentos': '{}' }, '',
+  createPrimitiveBlock('MoverA', `${t(`blocks.moveTo`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, '',
     {
       message0: `${t(`blocks.moveTo`)} %1`,
       colour: primitivesColor,
@@ -717,9 +724,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       code: 'hacer(actor_id, "MovimientoEnCuadricula", {direccionCasilla: $direccion});'
     });
 
-  createPrimitiveBlock('DibujarLado', t(`blocks.drawSide`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
+  createPrimitiveBlock('DibujarLado', `${t(`blocks.drawSide`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
     {
-      message0: `${t(`blocks.drawSide`)}`,
+      message0: `${t(`blocks.drawSide`)} %1`,
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
@@ -739,9 +746,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-  createPrimitiveBlock('GirarGrados', t(`blocks.turnDegrees`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
+  createPrimitiveBlock('GirarGrados', `${t(`blocks.turnDegrees`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
     {
-      message0: `${t(`blocks.turnDegrees`)}`,
+      message0: `${t(`blocks.turnDegrees`)} %1`,
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
@@ -761,9 +768,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-  createPrimitiveBlock('SaltarHaciaAdelante', t(`blocks.jumpFront`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.arriba.png',
+  createPrimitiveBlock('SaltarHaciaAdelante', `${t(`blocks.JumpForward`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.arriba.png',
     {
-      message0: `${t(`blocks.jumpFront`)}`,
+      message0: `${t(`blocks.JumpForward`)} %1`,
       colour: primitivesColor,
       previousStatement: true,
       nextStatement: true,
@@ -783,9 +790,9 @@ const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-    createPrimitiveBlock('EscribirTextoDadoEnOtraCuadricula', t(`blocks.write`), { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
+  createPrimitiveBlock('EscribirTextoDadoEnOtraCuadricula', `${t(`blocks.write`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
     {
-      message0: `${t(`write`)}`,
+      message0: `${t(`write`)} %1`,
       colour: primitivesColor,
       inputsInline: true,
       previousStatement: true,
@@ -1025,24 +1032,24 @@ const createSensorBlocks = (t: (key: string) => string) => {
   }, 'icono.charco.png'
   );
 
-  createSensorBlock('HayVocalRMT', t('blocks.currentCharacter'), {
+  createSensorBlock('HayVocalRMT', `${t('blocks.currentCharacter')} %1`, {
     'funcionSensor': '{}',
   }, 'icono.DibujarLinea.png',
-  {
-    message0: `${t(`blocks.currentCharacter`)}`,
-    colour: sensorsColor,
-    args0: [
-      {
-        "type": "field_dropdown",
-        "name": "letra",
-        "options": [
-          ["R", "r"], ["M", "m"], ["T", "t"], ["A", "a"], ["E", "e"], ["I", "i"], ["O", "o"], ["U", "u"]
-        ]
-      }
-    ],
-    "output": null,
-    code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
-  }
+    {
+      message0: `${t('blocks.currentCharacter')} %1`,
+      colour: sensorsColor,
+      args0: [
+        {
+          "type": "field_dropdown",
+          "name": "letra",
+          "options": [
+            ["R", "r"], ["M", "m"], ["T", "t"], ["A", "a"], ["E", "e"], ["I", "i"], ["O", "o"], ["U", "u"]
+          ]
+        }
+      ],
+      "output": null,
+      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
+    }
   );
 }
 
@@ -1333,11 +1340,6 @@ const createOthersBlocks = (t: (key: string) => string) => {
     return [code, order];
   };
 
-  Blockly.Blocks['OpComparacion'] = {
-    init: Blockly.Blocks['logic_compare'].init,
-    categoryId: 'operators',
-  };
-
   Blockly.Blocks['param_get'] = {
     init: Blockly.Blocks['variables_get'].init,
     mutationToDom: Blockly.Blocks['variables_get'].mutationToDom,
@@ -1363,6 +1365,11 @@ const createOthersBlocks = (t: (key: string) => string) => {
     customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     categoryId: 'myprocedures'
   };
+
+  Blockly.Blocks['OpComparacion'] = {
+    init: Blockly.Blocks["logic_compare"].init,
+    categoryId: 'operators',
+  }
 }
 
 const createCommonCode = () => {
@@ -1420,46 +1427,28 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   disableUnwantedProcedureBlocks()
 }
 
-export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => ({
-  kind: "categoryToolbox",
-  contents: [
-    {
+
+
+export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => {
+
+  const categoryBlocksFor = (categoryId: string): ToolboxItem => {
+    const contents = blocks.filter(block => block.categoryId === categoryId).map(blockTypeToToolboxBlock)
+    return contents.length ? {
       kind: "category",
-      name: `${t('categories.primitives')}`,
-      contents: blocks.filter(block => block.categoryId === "primitives").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.myprocedures')}`,
-      contents: blocks.filter(block => block.categoryId === "myprocedures").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.repetitions')}`,
-      contents: blocks.filter(block => block.categoryId === "repetitions").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.alternatives')}`,
-      contents: blocks.filter(block => block.categoryId === "alternatives").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.values')}`,
-      contents: blocks.filter(block => block.categoryId === "values").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.sensors')}`,
-      contents: blocks.filter(block => block.categoryId === "sensors").map(blockTypeToToolboxBlock)
-    },
-    {
-      kind: "category",
-      name: `${t('categories.operators')}`,
-      contents: blocks.filter(block => block.categoryId === "operators").map(blockTypeToToolboxBlock)
+      name: `${t(`categories.${categoryId}`)}`,
+      contents: contents
+    } : {
+      kind: '',
+      name: '',
+      contents: []
     }
-  ]
-})
+  }
+
+  return ({
+    kind: "categoryToolbox",
+    contents: categories.map(category => categoryBlocksFor(category) ) 
+  })
+}
 
 export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({
   kind: "flyoutToolbox",
@@ -1483,4 +1472,17 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createOthersBlocks(t)
 
   createCommonCode()
+}
+
+export const setXml = (xml: string) => {
+  Blockly.Xml.domToWorkspace(
+    Blockly.utils.xml.textToDom(xml),
+    Blockly.getMainWorkspace()
+  );
+}
+
+export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
+  container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
+
+  Blockly.inject(container, workspaceConfiguration)
 }

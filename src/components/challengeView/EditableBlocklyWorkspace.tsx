@@ -11,7 +11,7 @@ export const EditableBlocklyWorkspace = ({ blockIds, categorized, sx, isVertical
         blockIds={blockIds}
         categorized={categorized}
         initialXml={xmlBloqueEmpezarAEjecutar}
-        workspaceConfiguration={{ toolboxPosition: isVertical ? 'end' : 'start', trashcan: true, scrollbars: true, horizontalLayout: isVertical }}
+        workspaceConfiguration={{ toolboxPosition: isVertical ? 'end' : 'start', trashcan: true, zoom: {controls: true, wheel: true}, scrollbars: true, horizontalLayout: isVertical }}
         {...props}
     />
 }
