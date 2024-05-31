@@ -7,7 +7,7 @@ export const categories: string[] = [
   'alternatives',
   'values',
   'sensors',
-  'variables',
+  //'variables',
   'operators'
 ]
 
@@ -639,7 +639,7 @@ export const sceneBlocks: BlockType[] = [
     categoryId: 'primitives'
   },
   {
-    id: 'hayVocalRMT',
+    id: 'HayVocalRMT',
     intlId: 'isAVowel',
     categoryId: 'sensors'
   }
