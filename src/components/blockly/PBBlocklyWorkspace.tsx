@@ -21,24 +21,30 @@ export type PBBlocklyWorkspaceProps = {
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const { t } = useTranslation("blocks")
 
-  const { blocklyTheme } = useThemeContext()
-  
+  const { blocklyTheme, isSmallScreen } = useThemeContext()
+
   const [blocklyContainer, setBlocklyContainer] = useState<Element>()
-  
+
   const blocksWithCategories: BlockType[] = blockIds.map(getBlockFromId)
-  
+
   const toolbox: Toolbox = categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)
 
   setupBlocklyBlocks(t)
 
-  if (blocklyContainer) setupBlockly(blocklyContainer, {theme: blocklyTheme, toolbox, ...props.workspaceConfiguration})
+  if (blocklyContainer) setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration })
 
   if (props.initialXml) setXml(props.initialXml)
 
   return (
     <PBCard sx={{ ...sx }}>
       {title && <Typography>{t('preview')}</Typography>}
-      <Box width="100%" height="100%" ref={setBlocklyContainer} className="blockly" />
+      <Box sx={isSmallScreen ? {
+        ".blocklyToolboxDiv": { position: "relative !important" },
+        ".blocklyNonSelectable.blocklyToolboxDiv": { height: "auto !important" },
+        ".blocklyFlyout": { transform: "translate(0px, 0px) !important" },
+        ".blocklyBlockCanvas": { scale: "0.8 !important" }
+        } : {}}
+        width="100%" height="100%" ref={setBlocklyContainer} className="blockly" />
     </PBCard>
   )
 }

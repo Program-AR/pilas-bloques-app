@@ -240,7 +240,6 @@ const notUsedBlocks: BlockType[] = [
     intlId: 'repeatEmpty',
     categoryId: 'repetitions'
   },
-  // NotUsedSceneBlocks
   {
     id: 'EntregarPelota',
     intlId: 'giveBall',
