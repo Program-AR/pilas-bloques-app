@@ -10,6 +10,7 @@ import { BlocksSelector, CategorizedToggle } from "./BlocksSelector";
 import { ToolboxPreview } from "./ToolboxPreview";
 import { availableBlocksFor, categories } from "../../../../blockly/blocks";
 import { PBCard } from "../../../../PBCard";
+import { useThemeContext } from "../../../../../theme/ThemeContext";
 
 export const ToolBoxEditor = () => {
 
@@ -18,6 +19,7 @@ export const ToolBoxEditor = () => {
     const [contentHeight,] = useState(window.innerHeight*0.7)
 
     const { t } = useTranslation('creator');
+    const { isSmallScreen } = useThemeContext()
 
     const storageChallenge = LocalStorage.getCreatorChallenge()
     const challenge: SerializedChallenge = storageChallenge ? storageChallenge : defaultChallenge('Duba')
@@ -63,7 +65,7 @@ export const ToolBoxEditor = () => {
             noScrollable={true}
             dialogProps={{ maxWidth: "md"}}>
             <Stack direction="row">
-                <PBCard sx={{display:"flex", flexDirection:"column", padding:"5px", maxHeight:`${contentHeight}px`}}> 
+                <PBCard sx={{display:"flex", maxWidth: isSmallScreen ? '50%' : 'inherit', flexDirection:"column", padding:"5px", maxHeight:`${contentHeight}px`}}> 
                     <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
                     <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
                 </PBCard>

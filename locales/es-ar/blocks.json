@@ -38,7 +38,7 @@
     "moveDown": "Mover abajo",
     "moveLeft": "Mover a la izquierda",
     "moveRight": "Mover a la derecha",
-    "moveTo": "Mover a (con parametro)",
+    "moveTo": "Mover a (con parámetro)",
     "moveUp": "Mover arriba",
     "canMoveDown": "¿Puedo mover abajo?",
     "canMoveLeft": "¿Puedo mover a la izquierda?",
