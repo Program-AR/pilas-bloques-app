@@ -69,6 +69,11 @@ const createGenericJSCode = (id: string, customCode: string) => {
   };
 }
 
+const messageBlock = (message: string) => {
+  if (message.includes('%1'))
+    return `%2 ${message}`
+  return `%1 ${message}`
+}
 
 const createPrimitiveBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition) => {
   validateRequiredOptions(id, options, ['comportamiento', 'argumentos']);
@@ -82,10 +87,7 @@ const createPrimitiveBlock = (id: string, message: string, options: optionType, 
   })
 
   if (icon) {
-    if (message.includes('%1'))
-      jsonInit.message0 = `%2 ${message}`
-    else
-      jsonInit.message0 = `%1 ${message}`
+    jsonInit.message0 = messageBlock(message)
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -117,10 +119,7 @@ const createSensorBlock = (id: string, message: string, options: optionType, ico
   })
 
   if (icon) {
-    if (message.includes('%1'))
-      jsonInit.message0 = `%2 ${message}`
-    else
-      jsonInit.message0 = `%1 ${message}`
+    jsonInit.message0 = messageBlock(message)
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
@@ -154,10 +153,7 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
   })
 
   if (icon) {
-    if (message.includes('%1'))
-      jsonInit.message0 = `%2 ${message}`
-    else
-      jsonInit.message0 = `%1 ${message}`
+    jsonInit.message0 = messageBlock(message)
     jsonInit.args0.push({
       "type": "field_image",
       "src": `imagenes/iconos/${icon}`,
