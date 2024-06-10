@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
-import { useMediaQuery, PaperProps, Stack } from "@mui/material";
+import { PaperProps, Stack } from "@mui/material";
 import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";

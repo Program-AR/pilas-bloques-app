@@ -1,6 +1,6 @@
 import { BlockType, categories } from "./blocks"
-import Es from 'blockly/msg/es';
-import Blockly from "blockly/core"
+import * as Es from 'blockly/msg/es';
+import * as Blockly from 'blockly/core'
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 import 'blockly/blocks';

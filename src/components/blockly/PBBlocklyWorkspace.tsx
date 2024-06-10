@@ -4,7 +4,7 @@ import { Toolbox, categorizedToolbox, setupBlockly, setupBlocklyBlocks, setXml, 
 import { PBCard } from "../PBCard";
 import { Box, PaperProps, Typography } from "@mui/material";
 import { useState } from "react";
-import Blockly from "blockly/core"
+import * as Blockly from 'blockly/core'
 import { useThemeContext } from "../../theme/ThemeContext";
 
 // inject options https://developers.google.com/blockly/reference/js/blockly.blocklyoptions_interface.md
