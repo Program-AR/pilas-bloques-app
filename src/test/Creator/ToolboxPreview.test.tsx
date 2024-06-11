@@ -8,9 +8,8 @@ describe('Toolbox Preview', () => {
     const toolBoxItems = [...commonBlocks.map((block => block.id)), ...sceneBlocks.map((block => block.id))]
     renderComponent(<ToolboxPreview blockIds={toolBoxItems} categorized={false} />);
     const idPBBlockly = await screen.findByTestId('pb-blockly')
-    const injectBlockly = await screen.findByText('child-blockly')
     expect(idPBBlockly).toBeInTheDocument()
-    expect(injectBlockly).toBeInTheDocument()
+    expect(idPBBlockly.firstChild).toHaveClass('injectionDiv')
   });
 
 })
