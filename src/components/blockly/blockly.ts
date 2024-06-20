@@ -4,6 +4,7 @@ import * as Blockly from 'blockly/core'
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 import 'blockly/blocks';
+import { ProcedsBlocklyInit } from "./procedsBlockly";
 
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
@@ -1348,6 +1349,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     categoryId: 'myprocedures',
   };
 
+  ProcedsBlocklyInit()
   Blockly.Blocks['Procedimiento'] = {
     init: Blockly.Blocks['procedures_defnoreturn'].init,
     setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
