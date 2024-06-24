@@ -45,7 +45,7 @@ var makeProcedureInit = function (
     16,
     16,
     Blockly.Msg.PROCEDURES_ADD_PARAMETER,
-    function () { }
+    function () { /*addParameter(block, 0, nameField)*/}
   );
 
   var input = block.appendDummyInput()
@@ -82,3 +82,93 @@ var makeProcedureInit = function (
   );
   input.appendField(createCallButton);
 };
+
+
+/* var addParameter = function(self: Blockly.Block, index: number, name: string) {
+  //var i = index === undefined ? self.arguments_.length : index;
+  var tmpName = name === undefined ? Blockly.Msg.PROCEDURES_PARAMETER + " " + (i + 1) : name;
+  var name = index === undefined ? getAvailableName(self, tmpName) : tmpName;
+  var id = "INPUTARG" + i;
+
+  if (index === undefined) {
+    self.arguments_.push(name);
+    self.updateParams_();
+
+    var blocks = self.workspace.getAllBlocks();
+    for (block of blocks)
+      if (block.type === self.callType_ && block.getProcedureCall() === self.getProcedureDef()[0]) {
+        block.arguments_.push(name);
+        block.updateShape_();
+      }
+  }
+
+  var createCallButton = new Blockly.FieldImage(
+    ProcedsBlockly.HAND,
+    16,
+    16,
+    Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name),
+    function() {
+      createParameterCaller(self, self.arguments_[i])();
+    }
+  );
+
+  var removeParameterButton = new Blockly.FieldImage(
+    ProcedsBlockly.MINUS,
+    16,
+    16,
+    Blockly.Msg.PROCEDURES_REMOVE_PARAMETER,
+    function() {
+      for (var j = 0; j < self.arguments_.length; j++)
+        self.removeInput("INPUTARG" + j);
+      self.arguments_.splice(i, 1);
+      self.arguments_.forEach(function(name, i) {
+        addParameter(this, i, name, true);
+      }.bind(self));
+
+      var blocks = self.workspace.getAllBlocks();
+      for (block of blocks)
+        if (block.type === self.callType_ && block.getProcedureCall() === self.getProcedureDef()[0]) {
+          block.arguments_.splice(i, 1);
+          block.updateShape_();
+        }
+    }
+  );
+
+  var nameField = new Blockly.FieldTextInput(name, function(newName) {
+    var oldName = self.arguments_[i];
+
+    if (oldName !== newName)
+      newName = getAvailableName(self, newName);
+
+    self.arguments_[i] = newName;
+
+    var blocks = self.workspace.getAllBlocks();
+    for (block of blocks) {
+      if (block.type === self.callType_ && block.getProcedureCall() === self.getProcedureDef()[0]) {
+        block.arguments_ = block.arguments_.map(function(it) {
+          return it === oldName ? newName : it;
+        });
+        block.updateShape_();
+      }
+
+      if (block.type === "variables_get" && block.$parent === self.id) {
+        var varField = block.getField("VAR");
+        if (varField.getValue() === oldName) {
+          varField.setValue(newName);
+        }
+      }
+    }
+
+    return newName;
+  });
+
+  self
+    .appendDummyInput(id)
+    .appendField(Blockly.Msg.PROCEDURES_BEFORE_PARAMS)
+    .appendField(nameField, 'ARG' + i)
+    .appendField(createCallButton)
+    .appendField(removeParameterButton);
+
+  self.moveInputBefore(id, 'STACK');
+};
+ */
