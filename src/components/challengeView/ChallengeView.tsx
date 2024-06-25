@@ -1,19 +1,21 @@
 import { useParams } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
 import { PaperProps, Stack } from "@mui/material";
-import { StatementDescription } from "./StatementDescription";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
+import { StatementDescription } from "./StatementDescription";
 import { ChallengeFooter, InfoDrawer } from "./Info/ChallengeFooter";
 import { LocalStorage } from "../../localStorage"
 import { Header } from "../header/Header"
 import { Scene, SceneMap, SerializedChallenge } from "../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { useThemeContext } from "../../theme/ThemeContext";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
 import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
+import Blockly from "blockly/core"
+import { setXml, xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -24,7 +26,7 @@ export const serializedSceneToDescriptor = (scene: Scene) => {
 
 type ChallengeViewProps = {
   path?: string,
-  height?: string
+  height?: string,
 }
 
 export const ChallengeView = ({path, height}: ChallengeViewProps) => {
@@ -74,12 +76,23 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
   const { isSmallScreen } = useThemeContext()
   const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
   const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
+  const [first, setFirst] = useState<boolean>(true)
+
+  useEffect(() => {
+    setFirst(false)
+  }, [])
+
   const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
     blockIds: challenge.toolboxBlockIds,
-    categorized: challenge.toolboxStyle !== 'noCategories'
+    categorized: challenge.toolboxStyle !== 'noCategories',
+    initialXml: first ? xmlBloqueEmpezarAEjecutar : Blockly.utils.xml.domToText( Blockly.Xml.workspaceToDom( Blockly.getMainWorkspace()))
   }
 
-  const challengeWorkspace = isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />
+  console.log(blocklyWorkspaceProps.initialXml)
+  
+  const InsideChallengeWorkspace = () => {
+    return isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />
+  }
 
   return <>
     <Stack flexGrow={1} direction='column' height='100%'>
@@ -88,7 +101,7 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
         setShowStatement={setToShow}
         clueIsEnabled={clue !== ''}
         urlImage={challenge.imageURL()} />
-        {challengeWorkspace}
+        <InsideChallengeWorkspace/>
     </Stack>
     {!isSmallScreen ? <ChallengeFooter /> : <></>}
   </>
@@ -101,12 +114,13 @@ type ChallengeWorkspaceDistributionProps = {
 
 type EditableBlocklyWorkspaceProps = {
   blockIds: string[],
-  categorized: boolean
+  categorized: boolean,
+  initialXml: string
 }
 
 const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
   const blocklyWorkspace = useMemo<JSX.Element>( () => {
-    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} isVertical={false} />
+    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} />
   },[])
 
   return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
@@ -123,7 +137,7 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   
   const blocklyWorkspace = useMemo<JSX.Element>( () => {
-    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} isVertical={true} /> }, [])
+    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} /> }, [])
 
   return <Stack flexWrap={"wrap"} flexGrow={1} >
     {blocklyWorkspace}

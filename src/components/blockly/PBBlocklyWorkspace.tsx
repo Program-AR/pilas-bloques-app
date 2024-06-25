@@ -3,7 +3,7 @@ import { BlockType, getBlockFromId } from "./blocks";
 import { Toolbox, categorizedToolbox, setupBlockly, setupBlocklyBlocks, setXml, uncategorizedToolbox } from "./blockly";
 import { PBCard } from "../PBCard";
 import { Box, PaperProps, Typography } from "@mui/material";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Blockly from "blockly/core"
 import { useThemeContext } from "../../theme/ThemeContext";
 
