@@ -79,11 +79,7 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
     categorized: challenge.toolboxStyle !== 'noCategories'
   }
 
-  const vBlocklyArea = useMemo<JSX.Element>( () => {
-        return <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />}, [] );
-
-  const hBlocklyArea = useMemo<JSX.Element>( () => {
-    return <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />},  [] );
+  const challengeWorkspace = isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />
 
   return <>
     <Stack flexGrow={1} direction='column' height='100%'>
@@ -92,7 +88,7 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
         setShowStatement={setToShow}
         clueIsEnabled={clue !== ''}
         urlImage={challenge.imageURL()} />
-        {isSmallScreen ? vBlocklyArea : hBlocklyArea }
+        {challengeWorkspace}
     </Stack>
     {!isSmallScreen ? <ChallengeFooter /> : <></>}
   </>
