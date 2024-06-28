@@ -1474,7 +1474,7 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createCommonCode()
 }
 
-export const setXml = (xml: string) => {
+export const setXml = (xml: string ) => {
   Blockly.Xml.domToWorkspace(
     Blockly.utils.xml.textToDom(xml),
     Blockly.getMainWorkspace()
