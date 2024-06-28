@@ -38,7 +38,7 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
   return (
     <PBCard sx={{ ...sx }}>
       {title && <Typography>{t('preview')}</Typography>}
-      <Box width="100%" height="100%" ref={setBlocklyContainer} className="blockly" />
+      <Box width="100%" height="100%" ref={setBlocklyContainer} data-testid='pb-blockly' className="blockly" />
     </PBCard>
   )
 }
