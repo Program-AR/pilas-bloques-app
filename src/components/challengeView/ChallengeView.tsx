@@ -88,7 +88,6 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
     initialXml: first ? xmlBloqueEmpezarAEjecutar : Blockly.utils.xml.domToText( Blockly.Xml.workspaceToDom( Blockly.getMainWorkspace()))
   }
 
-  console.log(blocklyWorkspaceProps.initialXml)
   
   const InsideChallengeWorkspace = () => {
     return isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />
