@@ -4,7 +4,8 @@ import * as Blockly from 'blockly/core'
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 import 'blockly/blocks';
-import { ProcedsBlocklyInit } from "./procedsBlockly";
+//@ts-ignore
+import { ProcedsBlocklyInit } from "blockly-proceds";
 
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
