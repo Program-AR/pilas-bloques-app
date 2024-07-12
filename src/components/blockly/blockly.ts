@@ -1350,7 +1350,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     categoryId: 'myprocedures',
   };
 
-  ProcedsBlocklyInit()
+  ProcedsBlocklyInit(Blockly)
   Blockly.Blocks['Procedimiento'] = {
     init: Blockly.Blocks['procedures_defnoreturn'].init,
     setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
