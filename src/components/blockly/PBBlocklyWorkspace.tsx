@@ -21,7 +21,7 @@ export type PBBlocklyWorkspaceProps = {
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
   const { t } = useTranslation("blocks")
 
-  const { blocklyTheme, isSmallScreen } = useThemeContext()
+  const { blocklyTheme } = useThemeContext()
 
   const [blocklyContainer, setBlocklyContainer] = useState<Element>()
 
@@ -31,14 +31,14 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   setupBlocklyBlocks(t)
 
-  if (blocklyContainer) setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration }) 
+  if (blocklyContainer)  setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration } ) 
   
-  if (blocklyContainer && props.initialXml) setXml(props.initialXml)
+  if (blocklyContainer && props.initialXml) setXml(props.initialXml )
 
   return (
     <PBCard sx={{ ...sx }}>
       {title && <Typography>{t('preview')}</Typography>}
-      <Box width="100%" height="100%" ref={setBlocklyContainer} className="blockly" />
+      <Box width="100%" height="100%" ref={setBlocklyContainer} data-testid='pb-blockly' className="blockly" />
     </PBCard>
   )
 }

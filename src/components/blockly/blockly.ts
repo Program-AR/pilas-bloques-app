@@ -1477,7 +1477,7 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createCommonCode()
 }
 
-export const setXml = (xml: string) => {
+export const setXml = (xml: string ) => {
   Blockly.Xml.domToWorkspace(
     Blockly.utils.xml.textToDom(xml),
     Blockly.getMainWorkspace()
@@ -1486,6 +1486,6 @@ export const setXml = (xml: string) => {
 
 export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
   container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
-
+  container.ariaValueText = 'child-blockly'
   Blockly.inject(container, workspaceConfiguration)
 }

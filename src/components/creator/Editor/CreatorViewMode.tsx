@@ -17,7 +17,6 @@ export const CreatorViewMode = () => {
     const challengeBeingEdited: SerializedChallenge = LocalStorage.getCreatorChallenge()!
 
     //Ember.importChallenge(challengeBeingEdited)
-
     const navigate = useNavigate()
 
     const challengeExists = LocalStorage.getCreatorChallenge()
@@ -30,7 +29,7 @@ export const CreatorViewMode = () => {
         {challengeExists ? (
             <>
                 <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
-                <ChallengeView height='calc(95% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+                <ChallengeView height='calc(95% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH}/>
                 
             </>
         ) : <></>}
