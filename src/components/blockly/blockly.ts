@@ -1486,3 +1486,5 @@ export const setupBlockly = (container: Element, workspaceConfiguration: Blockly
   container.ariaValueText = 'child-blockly'
   Blockly.inject(container, workspaceConfiguration)
 }
+
+export const workspaceToCode = () => javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace())

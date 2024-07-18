@@ -1,6 +1,6 @@
 import { Challenge } from "../../staticData/challenges"
 import { PBCard } from "../PBCard"
-import { scene } from "./scene"
+import { scene } from "./Scene/scene"
 import { useMediaQuery } from "@mui/material"
 import { useThemeContext } from "../../theme/ThemeContext"
 import { useState } from "react"

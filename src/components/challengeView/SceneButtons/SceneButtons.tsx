@@ -1,14 +1,15 @@
-import { Button, IconButton, Stack } from "@mui/material"
+import { IconButton, Stack } from "@mui/material"
 import { PBCard } from "../../PBCard"
 import { Circle, Info, PlayArrow, SkipNext } from "@mui/icons-material"
 import { PBSwitch, pbIconStyle } from "../../PBSwitch"
 import styles from './sceneButtons.module.css'
 import BoltIcon from '@mui/icons-material/Bolt';
 import { useThemeContext } from "../../../theme/ThemeContext";
+import { ExecuteButton } from "./Execute"
 
 export const SceneButtons = () => {
     return <PBCard>
-        <Button variant="contained" color="success" >{"Ejecutar"}</Button>
+        <ExecuteButton/>
     </PBCard>
 }
 
@@ -16,7 +17,7 @@ export const SceneButtonsVertical = () => {
     return <Stack gap={2} alignItems='center'>
         <TurboModeSwitch />
         <NextStepButton />
-        <ExecuteButton />
+        <ExcecuteButtonVertical />
     </Stack>
 }
 
@@ -29,7 +30,7 @@ const NextStepButton = () => {
     </IconButton>
 }
 
-const ExecuteButton = () => {
+const ExcecuteButtonVertical = () => {
     return <IconButton className={styles['icon-button']}>
         <Stack>
             <Circle color='success' className={styles['circle-icon']} />

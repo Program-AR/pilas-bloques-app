@@ -1,5 +1,5 @@
-import { adaptURL } from "../../scriptLoader";
-import { Challenge } from "../../staticData/challenges";
+import { adaptURL } from "../../../scriptLoader";
+import { Challenge } from "../../../staticData/challenges";
 
 class Scene {
     iframe(): HTMLIFrameElement {
@@ -75,6 +75,11 @@ class Scene {
         // The [1] access the first capture group
         const name = sceneDescriptor.match(/new\s+(\w+)\s*\(/)
         return name ? name[1] : sceneDescriptor
+    }
+
+    async restartScene(descriptor: Challenge["sceneDescriptor"]) {
+        this.eval('pilas.reiniciar()')
+        await this.setChallenge(descriptor)
     }
 }
 
