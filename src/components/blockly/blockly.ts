@@ -5,7 +5,8 @@ import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 import 'blockly/blocks';
 //@ts-ignore
-import { ProcedsBlocklyInit } from "blockly-proceds";
+import { ProcedsBlocklyInit, allProcedures } from "blockly-proceds";
+
 
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
@@ -30,7 +31,7 @@ type BlocklyBlockDefinition = {
 export type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
 type ToolboxItem = ToolboxBlock | ToolBoxCategory
 type ToolboxBlock = { kind: "block", type: string }
-type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[] }
+type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[], custom?: string }
 
 const primitivesColor = '#4a6cd4';
 const controlColor = '#ee7d16';
@@ -1350,6 +1351,9 @@ const createOthersBlocks = (t: (key: string) => string) => {
     categoryId: 'myprocedures',
   };
 
+  enableUnwantedProcedureBlocks()
+
+
   ProcedsBlocklyInit(Blockly)
   Blockly.Blocks['Procedimiento'] = {
     init: Blockly.Blocks['procedures_defnoreturn'].init,
@@ -1368,6 +1372,9 @@ const createOthersBlocks = (t: (key: string) => string) => {
     customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     categoryId: 'myprocedures'
   };
+
+  //ProcedsBlockly.init()
+  disableUnwantedProcedureBlocks()
 
   Blockly.Blocks['OpComparacion'] = {
     init: Blockly.Blocks["logic_compare"].init,
@@ -1430,16 +1437,19 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   disableUnwantedProcedureBlocks()
 }
 
-
-
 export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => {
 
   const categoryBlocksFor = (categoryId: string): ToolboxItem => {
     const contents = blocks.filter(block => block.categoryId === categoryId).map(blockTypeToToolboxBlock)
-    return contents.length ? {
+    return contents.length ? categoryId === 'myprocedures' ? {
       kind: "category",
       name: `${t(`categories.${categoryId}`)}`,
-      contents: contents
+      contents: contents,
+      custom: "PROCEDURE"
+    } : {
+      kind: "category",
+      name: `${t(`categories.${categoryId}`)}`,
+      contents: contents,
     } : {
       kind: '',
       name: '',
@@ -1449,7 +1459,7 @@ export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType
 
   return ({
     kind: "categoryToolbox",
-    contents: categories.map(category => categoryBlocksFor(category) ) 
+    contents: categories.map(category => categoryBlocksFor(category))
   })
 }
 
@@ -1477,15 +1487,55 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
   createCommonCode()
 }
 
-export const setXml = (xml: string ) => {
+export const setXml = (xml: string) => {
   Blockly.Xml.domToWorkspace(
     Blockly.utils.xml.textToDom(xml),
     Blockly.getMainWorkspace()
   );
 }
 
+// Returns an array of objects.
+var flyoutCallback = function (workspace: Blockly.WorkspaceSvg) {
+
+  console.log(workspace.getAllBlocks());
+
+  //const allBlocks = Object(Blockly.Blocks)
+
+  var blockList = []
+
+  const procedureList = allProcedures(workspace);
+
+  
+    blockList.push({
+      'kind': 'block',
+      'type': 'Procedimiento',
+      'fields': {
+        'NAME': 'hacer algo' //Blockly.Blocks['Procedimiento'].getFieldValue('NAME')
+      }
+    })
+  
+
+  for (var i = 0; i < procedureList.length; i++) {
+    blockList.push({
+      'kind': 'block',
+      'type': 'procedures_callnoreturn',
+      'fields': {
+        'NAME': procedureList[i].getFieldValue('NAME')
+      }
+    });
+  }
+  console.log(blockList)
+  return blockList;
+};
+
+
 export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
   container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
   container.ariaValueText = 'child-blockly'
-  Blockly.inject(container, workspaceConfiguration)
+  const workspace = Blockly.inject(container, workspaceConfiguration)
+
+  workspace.registerToolboxCategoryCallback(
+    'PROCEDURE', flyoutCallback);
+//  return workspace;
+
 }

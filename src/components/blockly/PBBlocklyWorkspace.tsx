@@ -31,7 +31,7 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   setupBlocklyBlocks(t)
 
-  if (blocklyContainer)  setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration } ) 
+  if (blocklyContainer) setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration } ) 
   
   if (blocklyContainer && props.initialXml) setXml(props.initialXml )
 
