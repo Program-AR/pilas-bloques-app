@@ -81,6 +81,32 @@ class Scene {
         this.eval('pilas.reiniciar()')
         await this.setChallenge(descriptor)
     }
+
+    sceneActor(): any { //TODO type
+        return this.eval('pilas.escena_actual().automata')
+    }
+
+    sceneReceptor(receptor: string): any {
+        return this.eval(`pilas.escena_actual().${receptor}`)
+    }
+
+    behaviourClass(behaviour: string): any {
+        return this.eval(`
+            var comportamiento = null;
+    
+            if (window['${behaviour}']) {
+              comportamiento = ${behaviour};
+            } else {
+              if (pilas.comportamientos['${behaviour}']) {
+                comportamiento = pilas.comportamientos['${behaviour}'];
+              } else {
+                throw new Error("No existe un comportamiento llamado '${behaviour}'.");
+              }
+            }
+    
+            comportamiento;
+          `)
+    }
 }
 
 export const scene = new Scene()
