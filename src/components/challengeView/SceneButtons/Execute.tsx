@@ -35,3 +35,11 @@ export const ExecuteButton = () => {
     return <Button variant="contained" color="success" onClick={handleExcecute}>{"Ejecutar"}</Button>
 
 }
+
+/**
+ * Context para challenge
+ * Tipos
+ * Bloques que no escupen codigo que deberian: con parametros, repeat (ver cambio al repeat de prod), procedimientos
+ * Test 
+ * Pantalla vertical -> ejecutar en un mismo componente
+ */

@@ -6,18 +6,41 @@ import beautify from 'js-beautify'
 import { scene } from "../scene"
 
 
+type Interpreter = {
+    setProperty: (scope: any, name: string, ) => void
+
+}
+
 class InterpreterFactory {
-    createInterpreter(): any { ///TODO tipo
-        console.log(this.wrappedCode())
+    /**
+     * Returns an interpreter to execute the code on the workspace.
+     * 
+     * The code will be executed in isolation, in a protected environment
+     * without access to the outside (you will not have access to pilas, window, or anything...)
+     * so the only features you will be able to access are detailed
+     * at the init function, which appears below.
+     */
+    createInterpreter(): Interpreter { ///TODO tipo
         return new Interpreter(this.wrappedCode(), (interpreter: any, scope: any) => {
             return this.init(interpreter, scope);
         })
     }
 
+    /**
+     * Initializes the interpreter and its initial scope, so that 
+     * it can use functions like "hacer", "evaluar", etc. 
+     * @param interpreter 
+     * @param scope 
+     */
     init(interpreter: any, scope: any): any {
         interpreter.setProperty(scope, 'out_hacer', interpreter.createAsyncFunction(this.doWrapper))
         interpreter.setProperty(scope, 'highlightBlock', interpreter.createNativeFunction(this.highlightBlock))
         interpreter.setProperty(scope, 'evaluar', interpreter.createNativeFunction(this.evaluateWrapper))
+        interpreter.setProperty(scope, 'console_log', interpreter.createNativeFunction(this.console_log_wrapper))
+    }
+
+    console_log_wrapper = (txt: string) => {
+        return console.log(txt = txt ? txt.toString() : '')
     }
 
     /**
@@ -64,7 +87,7 @@ class InterpreterFactory {
      */
     evaluateWrapper(expression: any) {
         return scene.evaluateExpression(expression ? expression.toString() : '')
-    }   
+    }
 
     wrappedCode(): string {
         return beautify.js(`
