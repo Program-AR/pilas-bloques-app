@@ -6,18 +6,23 @@ import styles from './sceneButtons.module.css'
 import BoltIcon from '@mui/icons-material/Bolt';
 import { useThemeContext } from "../../../theme/ThemeContext";
 import { ExecuteButton } from "./Execute"
+import { Challenge } from "../../../staticData/challenges"
 
-export const SceneButtons = () => {
+type SceneButtonsProps = {
+    challenge: Challenge
+}
+
+export const SceneButtons = ({ challenge }: SceneButtonsProps) => {
     return <PBCard>
-        <ExecuteButton/>
+        <ExecuteButton challenge={challenge} />
     </PBCard>
 }
 
-export const SceneButtonsVertical = () => {
+export const SceneButtonsVertical = ({ challenge }: SceneButtonsProps) => {
     return <Stack gap={2} alignItems='center'>
         <TurboModeSwitch />
         <NextStepButton />
-        <ExecuteButton />
+        <ExecuteButton challenge={challenge} />
     </Stack>
 }
 

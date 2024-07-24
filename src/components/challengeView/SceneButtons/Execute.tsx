@@ -5,13 +5,18 @@ import Interpreter from "js-interpreter"
 import { useThemeContext } from "../../../theme/ThemeContext"
 import styles from './sceneButtons.module.css'
 import { Circle, PlayArrow } from "@mui/icons-material"
+import { Challenge } from "../../../staticData/challenges"
 
-export const ExecuteButton = () => {
+type ExecuteButtonProps = {
+    challenge: Challenge
+}
+
+export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
 
     const { isSmallScreen } = useThemeContext()
 
     const handleExcecute = async () => {
-        await scene.restartScene('new EscenaLita(["[[A,-,-],[-,-,-],[-,-,-]]"])') //TODO context para el challenge? de donde lo saco? esta en muchos lugares como parametro???? vale la pena?
+        await scene.restartScene(challenge.sceneDescriptor)
         const interpreter = interpreterFactory.createInterpreter()
         executeUntilEnd(interpreter)
     }
@@ -54,9 +59,6 @@ export const ExecuteButton = () => {
 }
 
 /**
- * Context para challenge
- * Tipos
  * Bloques que no escupen codigo que deberian: con parametros, repeat (ver cambio al repeat de prod), procedimientos
  * Test 
- * Pantalla vertical -> ejecutar en un mismo componente
  */
