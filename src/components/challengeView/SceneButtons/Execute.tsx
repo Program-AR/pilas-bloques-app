@@ -17,8 +17,7 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
 
     const handleExcecute = async () => {
         await scene.restartScene(challenge.sceneDescriptor)
-        const interpreter = interpreterFactory.createInterpreter()
-        executeUntilEnd(interpreter)
+        executeUntilEnd(interpreterFactory.createInterpreter())
     }
 
     const executeUntilEnd = (interpreter: Interpreter) => {
