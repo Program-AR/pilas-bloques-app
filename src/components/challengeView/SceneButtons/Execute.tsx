@@ -1,6 +1,7 @@
 import { Button } from "@mui/material"
 import { scene } from "../scene"
 import { interpreterFactory } from "./interpreter-factory"
+import Interpreter from "js-interpreter"
 
 export const ExecuteButton = () => {
 
@@ -10,11 +11,11 @@ export const ExecuteButton = () => {
         executeUntilEnd(interpreter)
     }
 
-    const executeUntilEnd = (interpreter: any) => {
+    const executeUntilEnd = (interpreter: Interpreter) => {
         return new Promise((success, reject) => {
             let moreToExecute: boolean
 
-            const executeInterpreter = (interpreter: any) => {
+            const executeInterpreter = (interpreter: Interpreter) => {
                 try {
                     moreToExecute = interpreter.run();
                 } catch (e) {

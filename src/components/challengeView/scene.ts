@@ -1,5 +1,6 @@
 import { adaptURL } from "../../scriptLoader";
 import { Challenge } from "../../staticData/challenges";
+import { Actor, Behaviour } from "./SceneButtons/interpreter-factory";
 
 class Scene {
     iframe(): HTMLIFrameElement {
@@ -82,15 +83,15 @@ class Scene {
         await this.setChallenge(descriptor)
     }
 
-    sceneActor(): any { //TODO type
+    sceneActor(): Actor {
         return this.eval('pilas.escena_actual().automata')
     }
 
-    sceneReceptor(receptor: string): any {
+    sceneReceptor(receptor: string): Actor {
         return this.eval(`pilas.escena_actual().${receptor}`)
     }
 
-    behaviourClass(behaviour: string): any {
+    behaviourClass(behaviour: string): Behaviour {
         return this.eval(`
             var comportamiento = null;
     
@@ -108,7 +109,7 @@ class Scene {
           `)
     }
 
-    evaluateExpression(expression: string) {
+    evaluateExpression(expression: string): boolean {
         return this.eval(`
         try {
           var value = pilas.escena_actual().automata.${expression}

@@ -1,14 +1,18 @@
 import { workspaceToCode } from "../../blockly/blockly"
-//@ts-ignore
 import Interpreter from 'js-interpreter'
-//@ts-ignore
 import beautify from 'js-beautify'
 import { scene } from "../scene"
 
+export type Behaviour = {
+    receptor: any
+    argumentos: any
+    iniciar(receptor: any): void
+    actualizar(): void
+    eliminar(): void
+}
 
-type Interpreter = {
-    setProperty: (scope: any, name: string, ) => void
-
+export type Actor = {
+    hacer_luego: (behaviour: Behaviour, params: {}) => void
 }
 
 class InterpreterFactory {
@@ -20,7 +24,7 @@ class InterpreterFactory {
      * so the only features you will be able to access are detailed
      * at the init function, which appears below.
      */
-    createInterpreter(): Interpreter { ///TODO tipo
+    createInterpreter(): Interpreter {
         return new Interpreter(this.wrappedCode(), (interpreter: any, scope: any) => {
             return this.init(interpreter, scope);
         })
@@ -32,7 +36,7 @@ class InterpreterFactory {
      * @param interpreter 
      * @param scope 
      */
-    init(interpreter: any, scope: any): any {
+    init(interpreter: Interpreter, scope: any): void {
         interpreter.setProperty(scope, 'out_hacer', interpreter.createAsyncFunction(this.doWrapper))
         interpreter.setProperty(scope, 'highlightBlock', interpreter.createNativeFunction(this.highlightBlock))
         interpreter.setProperty(scope, 'evaluar', interpreter.createNativeFunction(this.evaluateWrapper))
@@ -63,7 +67,7 @@ class InterpreterFactory {
      * @param params 
      * @param callback 
      */
-    doWrapper(behaviour: any, params: any, callback: any) {
+    doWrapper(behaviour: Behaviour, params: any, callback: () => void) {
         const actor = scene.sceneActor()
         params = JSON.parse(params ? params.toString() : '')
         var behaviourClass = scene.behaviourClass(behaviour ? behaviour.toString() : '')
