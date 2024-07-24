@@ -17,7 +17,7 @@ export const SceneButtonsVertical = () => {
     return <Stack gap={2} alignItems='center'>
         <TurboModeSwitch />
         <NextStepButton />
-        <ExcecuteButtonVertical />
+        <ExecuteButton />
     </Stack>
 }
 
@@ -26,15 +26,6 @@ const NextStepButton = () => {
         <Stack>
             <Circle className={styles['circle-icon']} sx={{ color: '#31b0d5' }} />
             <SkipNext className={styles['icon']} />
-        </Stack>
-    </IconButton>
-}
-
-const ExcecuteButtonVertical = () => {
-    return <IconButton className={styles['icon-button']}>
-        <Stack>
-            <Circle color='success' className={styles['circle-icon']} />
-            <PlayArrow className={styles['icon']} />
         </Stack>
     </IconButton>
 }

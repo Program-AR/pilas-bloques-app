@@ -1,9 +1,14 @@
-import { Button } from "@mui/material"
+import { Button, IconButton, Stack } from "@mui/material"
 import { scene } from "../scene"
 import { interpreterFactory } from "./interpreter-factory"
 import Interpreter from "js-interpreter"
+import { useThemeContext } from "../../../theme/ThemeContext"
+import styles from './sceneButtons.module.css'
+import { Circle, PlayArrow } from "@mui/icons-material"
 
 export const ExecuteButton = () => {
+
+    const { isSmallScreen } = useThemeContext()
 
     const handleExcecute = async () => {
         await scene.restartScene('new EscenaLita(["[[A,-,-],[-,-,-],[-,-,-]]"])') //TODO context para el challenge? de donde lo saco? esta en muchos lugares como parametro???? vale la pena?
@@ -33,7 +38,18 @@ export const ExecuteButton = () => {
         })
     }
 
-    return <Button variant="contained" color="success" onClick={handleExcecute}>{"Ejecutar"}</Button>
+    return <>
+        {isSmallScreen ? <>
+            <IconButton className={styles['icon-button']} onClick={handleExcecute}>
+                <Stack>
+                    <Circle color='success' className={styles['circle-icon']} />
+                    <PlayArrow className={styles['icon']} />
+                </Stack>
+            </IconButton >
+        </> :
+            <Button variant="contained" color="success" onClick={handleExcecute}>{"Ejecutar"}</Button>
+        }
+    </>
 
 }
 
