@@ -1,4 +1,4 @@
-import Blockly from "blockly/core"
+import Blockly, { Block } from "blockly/core"
 import { javascriptGenerator, Order } from "blockly/javascript";
 
 const controlColor = '#ee7d16';
@@ -6,17 +6,17 @@ const controlColor = '#ee7d16';
 export const createControlStructureBlocks = (t: (key: string) => string) => {
 
   const repeatBlocksCode = (id: string) => {
-    javascriptGenerator.forBlock[id] = function (block: { id: any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; addLoopTrap: (arg0: any, arg1: any) => any; nameDB_: { getDistinctName: (arg0: string, arg1: Blockly.Names.NameType) => any; }; }) {
-      const repeats = generator.valueToCode(block, 'count', Order.ASSIGNMENT) || '0';
+    javascriptGenerator.forBlock[id] = function (block: Block, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; addLoopTrap: (arg0: any, arg1: any) => any; nameDB_: { getDistinctName: (arg0: string, arg1: Blockly.Names.NameType) => any; }; }) {
+      const repeats = block.getFieldValue('count') || '0';
 
       var branch = generator.statementToCode(block, 'block');
-      branch = generator.addLoopTrap(branch, block.id);
+      branch = generator.addLoopTrap(branch, block);
       var code = '';
 
       const loopVar = generator.nameDB_.getDistinctName(
         'count', Blockly.Names.NameType.VARIABLE);
       var endVar = repeats;
-      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
+      if (!repeats.toString().match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
         endVar = generator.nameDB_.getDistinctName(
           'repeat_end', Blockly.Names.NameType.VARIABLE);
         code += 'var ' + endVar + ' = ' + repeats + ';\n';
