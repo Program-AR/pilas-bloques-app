@@ -4,11 +4,11 @@ import Blockly from "blockly/core"
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks } from "./utils";
 import 'blockly/blocks';
-import { createPrimitiveBlocks } from "./blocksGeneration/primitives";
-import { createSensorBlocks } from "./blocksGeneration/sensors";
+import { createPrimitiveBlocks } from "./blocksGallery/primitives";
+import { createSensorBlocks } from "./blocksGallery/sensors";
 import { createValueBlocks } from "./values";
-import { createControlStructureBlocks } from "./blocksGeneration/controlStructures";
-import { createFirstBlock, createOthersBlocks } from "./blocksGeneration/others";
+import { createControlStructureBlocks } from "./blocksGallery/controlStructures";
+import { createFirstBlock, createOthersBlocks } from "./blocksGallery/others";
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
