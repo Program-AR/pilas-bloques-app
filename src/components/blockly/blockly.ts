@@ -5,8 +5,7 @@ import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks, optionType, createCommonBlocklyBlocks, validateRequiredOptions } from "./utils";
 import 'blockly/blocks';
 //@ts-ignore
-import { ProcedsBlocklyInit, allProcedures } from "blockly-proceds";
-
+import { ProcedsBlocklyInit } from "blockly-proceds";
 
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
@@ -47,7 +46,7 @@ export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xht
 const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
 
 const createGenericJSCode = (id: string, customCode: string) => {
-  javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string) => any; }) {
+  javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string, arg2: any) => any; }) {
     let variables = customCode.match(/\$(\w+)/g);
     let code = customCode;
 
@@ -61,7 +60,7 @@ const createGenericJSCode = (id: string, customCode: string) => {
         if (variable_name === "DO") {
           variable_object = generator.statementToCode(block, variable_name);
         } else {
-          variable_object = generator.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
+          variable_object = generator.valueToCode(block, variable_name, Order.ATOMIC) || block.getFieldValue(variable_name) || null;
         }
 
         code = code.replace(regex, variable_object);
@@ -1121,22 +1120,28 @@ const createValueBlocks = (t: (key: string) => string) => {
 const createRepeatBlocks = (t: (key: string) => string) => {
 
   const repeatBlocksCode = (id: string) => {
-    javascriptGenerator.forBlock[id] = function (block: { id: any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: Order) => string; statementToCode: (arg0: any, arg1: string) => any; addLoopTrap: (arg0: any, arg1: any) => any; nameDB_: { getDistinctName: (arg0: string, arg1: Blockly.Names.NameType) => any; }; }) {
-      const repeats = generator.valueToCode(block, 'count', Order.ASSIGNMENT) || '0';
+    
+    javascriptGenerator.forBlock[id] = function (block: { id: any },
+      generator: { valueToCode: (arg0: any, arg1: string, arg2: any) => string; 
+                    statementToCode: (arg0: any, arg1: string) => any; 
+                    addLoopTrap: (arg0: any, arg1: any) => any; 
+                    nameDB_?: { getDistinctName: (arg0: string, arg1: any) => any; };  
+                  }) {
 
+      const repeats = generator.valueToCode(block, 'count', Order.ASSIGNMENT) || '0';
+  
       var branch = generator.statementToCode(block, 'block');
       branch = generator.addLoopTrap(branch, block.id);
       var code = '';
 
-      const loopVar = generator.nameDB_.getDistinctName(
+      const loopVar = generator.nameDB_?.getDistinctName(
         'count', Blockly.Names.NameType.VARIABLE);
-      var endVar = repeats;
-      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
-        endVar = generator.nameDB_.getDistinctName(
+      var endVar = repeats
+      if (!repeats.match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {        
+        endVar = generator.nameDB_?.getDistinctName(
           'repeat_end', Blockly.Names.NameType.VARIABLE);
         code += 'var ' + endVar + ' = ' + repeats + ';\n';
       }
-
       code += 'for (var ' + loopVar + ' = 0; ' +
         loopVar + ' < ' + endVar + '; ' +
         loopVar + '++) {\n' +
@@ -1330,7 +1335,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
     // Power in JavaScript requires a special case since it has no operator.
     if (isPow) {
       code = 'Math.pow(' + argument0 + ', ' + argument1 + ')';
-      return [code, Order.FUNCTION_CALL];
+      return [code, Order.FUNCTION_CALL as number];
     }
     code = `
     (function(){
@@ -1340,7 +1345,7 @@ const createOthersBlocks = (t: (key: string) => string) => {
         return ${argument0 + operator + argument1}
     })()
     `;
-    return [code, order];
+    return [code, order as number];
   };
 
   Blockly.Blocks['param_get'] = {
@@ -1353,27 +1358,8 @@ const createOthersBlocks = (t: (key: string) => string) => {
 
   enableUnwantedProcedureBlocks()
 
-
   ProcedsBlocklyInit(Blockly)
-  Blockly.Blocks['Procedimiento'] = {
-    init: Blockly.Blocks['procedures_defnoreturn'].init,
-    setStatements_: Blockly.Blocks['procedures_defnoreturn'].setStatements_,
-    updateParams_: Blockly.Blocks['procedures_defnoreturn'].updateParams_,
-    mutationToDom: Blockly.Blocks['procedures_defnoreturn'].mutationToDom,
-    domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
-    decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
-    compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-    getProcedureDef: Blockly.Blocks['procedures_defnoreturn'].getProcedureDef,
-    getVars: Blockly.Blocks['procedures_defnoreturn'].getVars,
-    getVarModels: Blockly.Blocks['procedures_defnoreturn'].getVarModels,
-    renameVarById: Blockly.Blocks['procedures_defnoreturn'].renameVarById,
-    updateVarName: Blockly.Blocks['procedures_defnoreturn'].updateVarName,
-    displayRenamedVar_: Blockly.Blocks['procedures_defnoreturn'].displayRenamedVar_,
-    customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
-    categoryId: 'myprocedures'
-  };
 
-  //ProcedsBlockly.init()
   disableUnwantedProcedureBlocks()
 
   Blockly.Blocks['OpComparacion'] = {
@@ -1383,8 +1369,9 @@ const createOthersBlocks = (t: (key: string) => string) => {
 }
 
 const createCommonCode = () => {
-  javascriptGenerator.addReservedWords('main', 'hacer', 'out_hacer', 'evaluar');
+  javascriptGenerator.addReservedWords('main,hacer,out_hacer,evaluar');
 
+  /*
   javascriptGenerator.required_value = function () {
     return null
   };
@@ -1392,6 +1379,7 @@ const createCommonCode = () => {
   javascriptGenerator.required_statement = function () {
     return null
   };
+*/
 
   javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
   javascriptGenerator.addReservedWords('highlightBlock');
@@ -1428,7 +1416,6 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   Blockly.Msg.REDO = t("contextMenu.redo")
   Blockly.Msg.CLEAN_UP = t("contextMenu.cleanUp")
   Blockly.Msg.EXTERNAL_INPUTS = t("contextMenu.externalInputs")
-
 
   // ProcedsBlockly.init() needs all procedure blocks to work, so we need to put them back
   // After calling init(), we disable unwanted toolbox blocks again
@@ -1494,48 +1481,8 @@ export const setXml = (xml: string) => {
   );
 }
 
-// Returns an array of objects.
-var flyoutCallback = function (workspace: Blockly.WorkspaceSvg) {
-
-  console.log(workspace.getAllBlocks());
-
-  //const allBlocks = Object(Blockly.Blocks)
-
-  var blockList = []
-
-  const procedureList = allProcedures(workspace);
-
-  
-    blockList.push({
-      'kind': 'block',
-      'type': 'Procedimiento',
-      'fields': {
-        'NAME': 'hacer algo' //Blockly.Blocks['Procedimiento'].getFieldValue('NAME')
-      }
-    })
-  
-
-  for (var i = 0; i < procedureList.length; i++) {
-    blockList.push({
-      'kind': 'block',
-      'type': 'procedures_callnoreturn',
-      'fields': {
-        'NAME': procedureList[i].getFieldValue('NAME')
-      }
-    });
-  }
-  console.log(blockList)
-  return blockList;
-};
-
-
 export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
   container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
   container.ariaValueText = 'child-blockly'
-  const workspace = Blockly.inject(container, workspaceConfiguration)
-
-  workspace.registerToolboxCategoryCallback(
-    'PROCEDURE', flyoutCallback);
-//  return workspace;
-
+  Blockly.inject(container, workspaceConfiguration)
 }
