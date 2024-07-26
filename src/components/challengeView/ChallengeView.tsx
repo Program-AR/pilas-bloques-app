@@ -15,7 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
 import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
 import Blockly from "blockly/core"
-import { setXml, xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
+import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -29,7 +29,7 @@ type ChallengeViewProps = {
   height?: string,
 }
 
-export const ChallengeView = ({path, height}: ChallengeViewProps) => {
+export const ChallengeView = ({ path, height }: ChallengeViewProps) => {
   var { id } = useParams()
   const { theme } = useThemeContext()
 
@@ -85,10 +85,10 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
   const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
     blockIds: challenge.toolboxBlockIds,
     categorized: challenge.toolboxStyle !== 'noCategories',
-    initialXml: first ? xmlBloqueEmpezarAEjecutar : Blockly.utils.xml.domToText( Blockly.Xml.workspaceToDom( Blockly.getMainWorkspace()))
+    initialXml: first ? xmlBloqueEmpezarAEjecutar : Blockly.utils.xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()))
   }
 
-  
+
   const InsideChallengeWorkspace = () => {
     return isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} />
   }
@@ -100,7 +100,7 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
         setShowStatement={setToShow}
         clueIsEnabled={clue !== ''}
         urlImage={challenge.imageURL()} />
-        <InsideChallengeWorkspace/>
+      <InsideChallengeWorkspace />
     </Stack>
     {!isSmallScreen ? <ChallengeFooter /> : <></>}
   </>
@@ -118,14 +118,14 @@ type EditableBlocklyWorkspaceProps = {
 }
 
 const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
-  const blocklyWorkspace = useMemo<JSX.Element>( () => {
+  const blocklyWorkspace = useMemo<JSX.Element>(() => {
     return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} />
-  },[])
+  }, [])
 
   return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
     {blocklyWorkspace}
     <Stack>
-      <SceneButtons />
+      <SceneButtons challenge={challenge} />
       <SceneView descriptor={challenge.sceneDescriptor} />
     </Stack>
   </Stack>
@@ -134,16 +134,17 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
 const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
 
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
-  
-  const blocklyWorkspace = useMemo<JSX.Element>( () => {
-    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} /> }, [])
+
+  const blocklyWorkspace = useMemo<JSX.Element>(() => {
+    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} />
+  }, [])
 
   return <Stack flexWrap={"wrap"} flexGrow={1} >
     {blocklyWorkspace}
     <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
       <SceneView descriptor={challenge.sceneDescriptor} />
       <Stack margin='10px' justifyContent='space-between'>
-        <SceneButtonsVertical />
+        <SceneButtonsVertical challenge={challenge} />
         <InfoButton onClick={() => setOpenDrawer(true)} />
         <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
       </Stack>

@@ -1,5 +1,6 @@
 import { adaptURL } from "../../scriptLoader";
 import { Challenge } from "../../staticData/challenges";
+import { Actor, Behaviour } from "./SceneButtons/interpreter-factory";
 
 class Scene {
     iframe(): HTMLIFrameElement {
@@ -42,11 +43,11 @@ class Scene {
         })
     }
 
-    listenToIframeMessages() {      
+    listenToIframeMessages() {
         window.addEventListener("message", (event) => {
             // exercises post error messages in the form  { tipo: "error", error: object }
             // where object can be any error or { name: "ActividadError", message: "description"}
-            if(event.data.tipo === "error")
+            if (event.data.tipo === "error")
                 console.log(`Pilasweb execution ended with error: ${JSON.stringify(event.data.error)}`)
         })
     }
@@ -75,6 +76,48 @@ class Scene {
         // The [1] access the first capture group
         const name = sceneDescriptor.match(/new\s+(\w+)\s*\(/)
         return name ? name[1] : sceneDescriptor
+    }
+
+    async restartScene(descriptor: Challenge["sceneDescriptor"]) {
+        this.eval('pilas.reiniciar()')
+        await this.setChallenge(descriptor)
+    }
+
+    sceneActor(): Actor {
+        return this.eval('pilas.escena_actual().automata')
+    }
+
+    sceneReceptor(receptor: string): Actor {
+        return this.eval(`pilas.escena_actual().${receptor}`)
+    }
+
+    behaviourClass(behaviour: string): Behaviour {
+        return this.eval(`
+            var comportamiento = null;
+    
+            if (window['${behaviour}']) {
+              comportamiento = ${behaviour};
+            } else {
+              if (pilas.comportamientos['${behaviour}']) {
+                comportamiento = pilas.comportamientos['${behaviour}'];
+              } else {
+                throw new Error("No existe un comportamiento llamado '${behaviour}'.");
+              }
+            }
+    
+            comportamiento;
+          `)
+    }
+
+    evaluateExpression(expression: string): boolean {
+        return this.eval(`
+        try {
+          var value = pilas.escena_actual().automata.${expression}
+        } catch (e) {
+          pilas.escena_actual().errorHandler.handle(e);
+        }
+
+        value`)
     }
 }
 

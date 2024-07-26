@@ -44,10 +44,9 @@ export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xht
 const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
 
 const createGenericJSCode = (id: string, customCode: string) => {
-  javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string) => any; }) {
+  javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string, arg2: any) => any; }) {
     let variables = customCode.match(/\$(\w+)/g);
     let code = customCode;
-
     if (variables) {
       variables.forEach((v) => {
         let regex = new RegExp('\\' + v, "g");
@@ -58,7 +57,7 @@ const createGenericJSCode = (id: string, customCode: string) => {
         if (variable_name === "DO") {
           variable_object = generator.statementToCode(block, variable_name);
         } else {
-          variable_object = generator.valueToCode(block, variable_name) || block.getFieldValue(variable_name) || null;
+          variable_object = generator.valueToCode(block, variable_name,  Order.ATOMIC) || block.getFieldValue(variable_name) || null;
         }
 
         code = code.replace(regex, variable_object);
@@ -77,7 +76,7 @@ const messageBlock = (message: string) => {
 
 const createPrimitiveBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition) => {
   validateRequiredOptions(id, options, ['comportamiento', 'argumentos']);
-
+  
   const jsonInit: BlocklyBlockDefinition = (blockDefinition ? blockDefinition : {
     message0: `${message}`,
     colour: primitivesColor,
@@ -1486,3 +1485,5 @@ export const setupBlockly = (container: Element, workspaceConfiguration: Blockly
   container.ariaValueText = 'child-blockly'
   Blockly.inject(container, workspaceConfiguration)
 }
+
+export const workspaceToCode = () => javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace())
