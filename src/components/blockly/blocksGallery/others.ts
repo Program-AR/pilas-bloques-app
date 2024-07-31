@@ -1,5 +1,5 @@
 import { createCommonBlocklyBlocks } from "../utils";
-import Blockly from "blockly/core"
+import Blockly, { Block } from "blockly/core"
 import { sensorsColor } from "./sensors";
 import { javascriptGenerator, Order } from "blockly/javascript";
 
@@ -73,8 +73,8 @@ export const createOthersBlocks = (t: (key: string) => string) => {
         categoryId: 'operators'
     };
 
-    javascriptGenerator.forBlock['OpAritmetica'] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { valueToCode: (arg0: any, arg1: string, arg2: any) => string; }) {
-        // Basic arithmetic operators, and power.    
+    javascriptGenerator.forBlock['OpAritmetica'] = function (block: Block, generator: { valueToCode: (arg0: Block, arg1: string, arg2: any) => string; }) {
+        // Basic arithmetic operators, and power.   
         const OPERATORS = {
             'ADD': [' + ', Order.ADDITION],
             'MINUS': [' - ', Order.SUBTRACTION],

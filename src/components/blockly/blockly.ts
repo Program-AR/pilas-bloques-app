@@ -1,6 +1,6 @@
 import { BlockType, categories } from "./blocks"
 import Es from 'blockly/msg/es';
-import Blockly from "blockly/core"
+import Blockly, { Block } from "blockly/core"
 import { javascriptGenerator, Order } from 'blockly/javascript'
 import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks } from "./utils";
 import 'blockly/blocks';
@@ -75,7 +75,7 @@ export const workspaceToCode = () => javascriptGenerator.workspaceToCode(Blockly
 const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
 
 export const createGenericJSCode = (id: string, customCode: string) => {
-  javascriptGenerator.forBlock[id] = function (block: { getFieldValue: (arg0: string) => any; }, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: any, arg1: string, arg2: any) => any; }) {
+  javascriptGenerator.forBlock[id] = function (block: Block, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: Block, arg1: string, arg2: Order) => any; }) {
     let variables = customCode.match(/\$(\w+)/g);
     let code = customCode;
     if (variables) {
