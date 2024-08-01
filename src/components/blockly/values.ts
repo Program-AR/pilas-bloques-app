@@ -66,7 +66,7 @@ export const createValueBlocks = (t: (key: string) => string) => {
     categoryId: Blockly.Blocks['logic_boolean'].categoryId,
   }
 
-  javascriptGenerator.forBlock['Numero'] = function (block: Block) {
+  javascriptGenerator.forBlock['Booleano'] = function (block: Block) {
     return [`${(block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false'}`, Order.ATOMIC];
   }
 

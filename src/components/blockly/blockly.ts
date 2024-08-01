@@ -72,7 +72,10 @@ export const setupBlockly = (container: Element, workspaceConfiguration: Blockly
 
 export const workspaceToCode = () => javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace())
 
-const blockTypeToToolboxBlock = (block: BlockType): ToolboxBlock => ({ kind: "block", type: block.id })
+/**
+ * Some blocks, like "Repetir" need to be attached to a math_number block on toolbox, that's why they have toolboxJSON property
+ */
+const blockTypeToToolboxBlock = (block: BlockType): any => block.toolboxJSON ? block.toolboxJSON : { kind: "block", type: block.id }
 
 export const createGenericJSCode = (id: string, customCode: string) => {
   javascriptGenerator.forBlock[id] = function (block: Block, generator: { statementToCode: (arg0: any, arg1: string) => any; valueToCode: (arg0: Block, arg1: string, arg2: Order) => any; }) {

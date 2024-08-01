@@ -45,14 +45,14 @@ export const createControlStructureBlocks = (t: (key: string) => string) => {
         .appendField(t('blocks.times'));
       this.appendStatementInput('block');
     },
-    categoryId: 'repetitions',
+    categoryId: 'repetitions'
   };
 
   repeatBlocksCode('RepetirVacio');
 
   Blockly.Blocks['Repetir'] = {
     init: Blockly.Blocks['RepetirVacio'].init,
-    categoryId: Blockly.Blocks['RepetirVacio'].categoryId,
+    categoryId: Blockly.Blocks['RepetirVacio'].categoryId
   }
 
   repeatBlocksCode('Repetir');
