@@ -48,8 +48,9 @@ export const isFlying = (block: { getRootBlock: () => any; }) =>
 export const getParams = (procedureBlock: { getProcedureDef: () => any[]; }) =>
   procedureBlock.getProcedureDef()[1]
 
-export const hasParam = (procedureBlock: { getProcedureDef: () => any[]; }, paramBlock: { getFieldValue: (arg0: string) => any; }) =>
-  getParams(procedureBlock).includes(paramBlock.getFieldValue('VAR'))
+export const hasParam = (procedureBlock: { getProcedureDef: () => any[]; }, paramBlock: { getFieldValue: (arg0: string) => any; }) => {
+  return getParams(procedureBlock).includes(paramBlock.getFieldValue('VAR'))
+}
 
 export const clearValidations = (workspace: Blockly.Workspace = Blockly.getMainWorkspace()) => {
   workspace.getAllBlocks(false).forEach(clearValidationsFor)
@@ -94,10 +95,14 @@ const drawWarningIcon = (group: Element | null | undefined, colour: any, seconda
     group);
 };
 
-const setWarningColour = (block: { warning: { setVisible: (visible: any) => void; bubble_: { setColour: (arg0: any) => void; }; iconGroup_: Element | null | undefined; }; }, colour: any, secondaryColour: any) => {
+const setWarningColour = (block: { warning: { setVisible: (visible: any) => void; textBubble: { setColour: (arg0: any) => void; }; bubble_: { setColour: (arg0: any) => void; }; iconGroup_: Element | null | undefined; }; }, colour: any, secondaryColour: any) => {
   const unBoundedSetVisible = block.warning.setVisible
   const boundedSetVisible = unBoundedSetVisible.bind(block.warning)
-  block.warning.setVisible = (visible) => { boundedSetVisible(visible); if (visible) block.warning.bubble_.setColour(colour) }
+  block.warning.setVisible = (visible) => { 
+    boundedSetVisible(visible); 
+    if (visible) 
+      block.warning.textBubble.setColour(colour) 
+  }
   drawWarningIcon(block.warning.iconGroup_, colour, secondaryColour)
 }
 
@@ -177,7 +182,8 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       if (this.$parent) { // Este if sirve para las soluciones viejas que no tienen $parent
         var procedureDef = this.workspace.getBlockById(this.$parent)
         var ok = isInsideProcedureDef(this) && hasParam(procedureDef, this)
-        this.setDisabled(!ok)
+        //this.setDisabled(!ok)
+        this.setEnabled(ok)
         if (ok || isFlying(this) || !procedureDef) {
           clearValidationsFor(this)
         } else {
