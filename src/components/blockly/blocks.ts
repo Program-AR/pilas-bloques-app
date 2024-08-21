@@ -13,7 +13,8 @@ export const categories: string[] = [
 export type BlockType = {
   id: string
   intlId: string
-  categoryId: typeof categories[number]
+  categoryId: typeof categories[number],
+  toolboxJSON?: {}
 }
 
 export const commonBlocks: BlockType[] = [
@@ -105,7 +106,21 @@ export const commonBlocks: BlockType[] = [
   {
     id: 'Repetir',
     intlId: 'repeat',
-    categoryId: 'repetitions'
+    categoryId: 'repetitions',
+    toolboxJSON: {
+      "kind": "block",
+      "type": "Repetir",
+      "inputs": {
+        "count": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 10
+            }
+          }
+        }
+      }
+    }
   },
   {
     id: 'Hasta',
@@ -213,7 +228,21 @@ const notUsedBlocks: BlockType[] = [
   {
     id: 'SaltarHaciaAdelante',
     intlId: 'JumpForward',
-    categoryId: 'primitives'
+    categoryId: 'primitives',
+    toolboxJSON: {
+      "kind": "block",
+      "type": "SaltarHaciaAdelante",
+      "inputs": {
+        "longitud": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
+    }
   },
   {
     id: 'EstoyEnEsquina',
@@ -298,7 +327,21 @@ const notUsedBlocks: BlockType[] = [
   {
     id: 'DibujarLado',
     intlId: 'drawSide',
-    categoryId: 'primitives'
+    categoryId: 'primitives',
+    toolboxJSON: {
+      "kind": "block",
+      "type": "DibujarLado",
+      "inputs": {
+        "longitud": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
+    }
   },
   {
     id: 'EntregarCargador',
@@ -373,7 +416,21 @@ const notUsedBlocks: BlockType[] = [
   {
     id: 'GirarGrados',
     intlId: 'rotateGrades',
-    categoryId: 'primitives'
+    categoryId: 'primitives',
+    toolboxJSON: {
+      "kind": "block",
+      "type": "GirarGrados",
+      "inputs": {
+        "longitud": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
+    }
   },
   {
     id: 'TomarLata',
