@@ -9,6 +9,7 @@ import { createSensorBlocks } from "./blocksGallery/sensors";
 import { createValueBlocks } from "./values";
 import { createControlStructureBlocks } from "./blocksGallery/controlStructures";
 import { createFirstBlock, createOthersBlocks } from "./blocksGallery/others";
+import { ProcedsBlocklyInit } from 'blockly-proceds';
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
@@ -159,6 +160,7 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   // ProcedsBlockly.init() needs all procedure blocks to work, so we need to put them back
   // After calling init(), we disable unwanted toolbox blocks again
   enableUnwantedProcedureBlocks()
+  ProcedsBlocklyInit()
   //ProcedsBlockly.init()
   disableUnwantedProcedureBlocks()
 }
