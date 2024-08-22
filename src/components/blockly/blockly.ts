@@ -9,6 +9,7 @@ import { createSensorBlocks } from "./blocksGallery/sensors";
 import { createValueBlocks } from "./values";
 import { createControlStructureBlocks } from "./blocksGallery/controlStructures";
 import { createFirstBlock, createOthersBlocks } from "./blocksGallery/others";
+//@ts-ignore
 import { ProcedsBlocklyInit } from 'blockly-proceds';
 
 Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
@@ -134,6 +135,11 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   Blockly.Msg.PROCEDURES_DEFNORETURN_TOOLTIP = t("procedures.create")
   Blockly.Msg.PROCEDURES_DEFNORETURN_COMMENT = t("procedures.comment")
   Blockly.Msg.PROCEDURES_DEFNORETURN_NOPARAMS = t("procedures.noParams")
+  Blockly.Msg.PROCEDURES_CALLNORETURN_PROCEDURE = t("procedures.name")
+  Blockly.Msg.PROCEDURES_CALLNORETURN_TITLE = t("procedures.definition")
+  Blockly.Msg.PROCEDURES_CALLNORETURN_TOOLTIP = t("procedures.create")
+  Blockly.Msg.PROCEDURES_CALLNORETURN_COMMENT = t("procedures.comment")
+  Blockly.Msg.PROCEDURES_CALLNORETURN_NOPARAMS = t("procedures.noParams")
   Blockly.Msg.PROCEDURES_ADD_PARAMETER = t("procedures.addParam")
   Blockly.Msg.PROCEDURES_ADD_PARAMETER_PROMPT = t("procedures.addParamPrompt")
   Blockly.Msg.PROCEDURES_REMOVE_PARAMETER = t("procedures.removeParam")
@@ -160,7 +166,7 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   // ProcedsBlockly.init() needs all procedure blocks to work, so we need to put them back
   // After calling init(), we disable unwanted toolbox blocks again
   enableUnwantedProcedureBlocks()
-  ProcedsBlocklyInit()
+  //ProcedsBlocklyInit()
   //ProcedsBlockly.init()
   disableUnwantedProcedureBlocks()
 }

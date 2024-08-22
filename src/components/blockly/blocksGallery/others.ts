@@ -1,7 +1,9 @@
-import { createCommonBlocklyBlocks } from "../utils";
+import { createCommonBlocklyBlocks, disableUnwantedProcedureBlocks, enableUnwantedProcedureBlocks } from "../utils";
 import Blockly, { Block } from "blockly/core"
 import { sensorsColor } from "./sensors";
 import { javascriptGenerator, Order } from "blockly/javascript";
+//@ts-ignore
+import { ProcedsBlocklyInit } from 'blockly-proceds';
 
 const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
@@ -34,6 +36,12 @@ export const createFirstBlock = (t: (key: string) => string) => {
 export const createOthersBlocks = (t: (key: string) => string) => {
 
     createCommonBlocklyBlocks(t, othersColor)
+
+    enableUnwantedProcedureBlocks()
+    ProcedsBlocklyInit(Blockly)
+    //ProcedsBlockly.init()
+    disableUnwantedProcedureBlocks()
+  
 
     Blockly.Blocks['OpAritmetica'] = {
         init: function () {
