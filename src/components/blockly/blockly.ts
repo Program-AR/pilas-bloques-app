@@ -32,7 +32,7 @@ export type BlocklyBlockDefinition = {
 export type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
 type ToolboxItem = ToolboxBlock | ToolBoxCategory
 type ToolboxBlock = { kind: "block", type: string }
-type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[] }
+type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[], custom?: string }
 
 export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xhtml">
               <block type="al_empezar_a_ejecutar" x="15" y="15"></block>
@@ -167,10 +167,15 @@ export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType
 
   const categoryBlocksFor = (categoryId: string): ToolboxItem => {
     const contents = blocks.filter(block => block.categoryId === categoryId).map(blockTypeToToolboxBlock)
-    return contents.length ? {
+    return contents.length ? categoryId === 'myprocedures' ? {
       kind: "category",
       name: `${t(`categories.${categoryId}`)}`,
-      contents: contents
+      contents: contents,
+      custom: "PROCEDURE"
+    } : {
+      kind: "category",
+      name: `${t(`categories.${categoryId}`)}`,
+      contents: contents,
     } : {
       kind: '',
       name: '',
