@@ -1,6 +1,6 @@
 import { IconButton, Stack } from "@mui/material"
 import { PBCard } from "../../PBCard"
-import { Circle, Info, PlayArrow, SkipNext } from "@mui/icons-material"
+import { Circle, Info, SkipNext } from "@mui/icons-material"
 import { PBSwitch, pbIconStyle } from "../../PBSwitch"
 import styles from './sceneButtons.module.css'
 import BoltIcon from '@mui/icons-material/Bolt';

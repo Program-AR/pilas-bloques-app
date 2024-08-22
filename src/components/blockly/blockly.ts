@@ -6,7 +6,7 @@ import { enableUnwantedProcedureBlocks, disableUnwantedProcedureBlocks } from ".
 import 'blockly/blocks';
 import { createPrimitiveBlocks } from "./blocksGallery/primitives";
 import { createSensorBlocks } from "./blocksGallery/sensors";
-import { createValueBlocks } from "./values";
+import { createValueBlocks } from "./blocksGallery/values";
 import { createControlStructureBlocks } from "./blocksGallery/controlStructures";
 import { createFirstBlock, createOthersBlocks } from "./blocksGallery/others";
 

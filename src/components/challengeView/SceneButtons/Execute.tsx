@@ -1,6 +1,6 @@
 import { Button, IconButton, Stack } from "@mui/material"
 import { scene } from "../scene"
-import { interpreterFactory } from "./interpreter-factory"
+import { interpreterFactory } from "./interpreterFactory"
 import Interpreter from "js-interpreter"
 import { useThemeContext } from "../../../theme/ThemeContext"
 import styles from './sceneButtons.module.css'
@@ -56,8 +56,3 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
     </>
 
 }
-
-/**
- * Bloques que no escupen codigo que deberian: con parametros, repeat (ver cambio al repeat de prod), procedimientos
- * Test 
- */

@@ -1,6 +1,6 @@
 import { adaptURL } from "../../scriptLoader";
 import { Challenge } from "../../staticData/challenges";
-import { Actor, Behaviour } from "./SceneButtons/interpreter-factory";
+import { Actor, Behaviour } from "./SceneButtons/interpreterFactory";
 
 class Scene {
     iframe(): HTMLIFrameElement {
