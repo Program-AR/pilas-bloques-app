@@ -4,9 +4,9 @@
  */
 // This enables iframe loading on rendering, otherwise it's turned off.
 
-import { SceneView } from "../../components/challengeView/SceneView"
+import { SceneView } from "../../../../components/challengeView/SceneView"
 import { screen } from '@testing-library/react'
-import { renderComponent } from "../testUtils"
+import { renderComponent } from "../../../testUtils"
 describe('SceneView renders all challenges', () => {
 
     test.skip(`Scene LimpiandoElHumedal loads ok`, () => {
