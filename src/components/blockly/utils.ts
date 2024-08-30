@@ -143,7 +143,7 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         "message0": "%1",
         "args0": [
           {
-            "type": "field_variable",
+            "type": "field_label",
             "name": "VAR",
             "variable": t("procedures.variableName")
           }
@@ -152,7 +152,7 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         "style": "variable_blocks",
         "tooltip": "",
         "helpUrl": "",
-        "extensions": ["contextMenu_variableSetterGetter"]
+        //"extensions": ["contextMenu_variableSetterGetter"]
       });
     },
     mutationToDom: function () {
@@ -177,7 +177,8 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       if (this.$parent) { // Este if sirve para las soluciones viejas que no tienen $parent
         var procedureDef = this.workspace.getBlockById(this.$parent)
         var ok = isInsideProcedureDef(this) && hasParam(procedureDef, this)
-        this.setDisabled(!ok)
+        //this.setDisabled(!ok)
+        this.setEnabled(ok)
         if (ok || isFlying(this) || !procedureDef) {
           clearValidationsFor(this)
         } else {
@@ -214,6 +215,8 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
     }
   }
 
+  /*
+
   Blockly.Blocks['procedures_defnoreturn'] = {
     init: function () {
       var nameField = new Blockly.FieldTextInput(Blockly.Msg['PROCEDURES_DEFNORETURN_PROCEDURE'],
@@ -239,11 +242,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       this.statementConnection_ = null;
 
     },
-    /**
-     * Add or remove the statement block from this function definition.
-     * @param {boolean} hasStatements True if a statement block is needed.
-     * @this {Blockly.Block}
-     */
     setStatements_: function (hasStatements: boolean) {
       if (this.hasStatements_ === hasStatements) {
         return;
@@ -259,11 +257,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       }
       this.hasStatements_ = hasStatements;
     },
-    /**
-     * Update the display of parameters for this procedure definition block.
-     * @private
-     * @this {Blockly.Block}
-     */
     updateParams_: function () {
 
       // Merge the arguments into a human-readable list.
@@ -281,13 +274,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         Blockly.Events.enable();
       }
     },
-    /**
-     * Create XML to represent the argument inputs.
-     * @param {boolean=} opt_paramIds If true include the IDs of the parameter
-     *     quarks.  Used by Blockly.Procedures.mutateCallers for reconnection.
-     * @return {!Element} XML storage element.
-     * @this {Blockly.Block}
-     */
     mutationToDom: function (opt_paramIds: any) {
       var container = Blockly.utils.xml.createElement('mutation');
       if (opt_paramIds) {
@@ -310,11 +296,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       }
       return container;
     },
-    /**
-     * Parse XML to restore the argument inputs.
-     * @param {!Element} xmlElement XML storage element.
-     * @this {Blockly.Block}
-     */
     domToMutation: function (xmlElement: { childNodes: any[]; getAttribute: (arg0: string) => string; }) {
       this.arguments_ = [];
       this.argumentVarModels_ = [];
@@ -338,14 +319,8 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       // Show or hide the statement input.
       this.setStatements_(xmlElement.getAttribute('statements') !== 'false');
     },
-    /**
-     * Populate the mutator's dialog with this block's components.
-     * @param {!Blockly.Workspace} workspace Mutator's workspace.
-     * @return {!Blockly.Block} Root block in mutator.
-     * @this {Blockly.Block}
-     */
     decompose: function (workspace: Blockly.Workspace) {
-      /*
+       *
        * Creates the following XML:
        * <block type="procedures_mutatorcontainer">
        *   <statement name="STACK">
@@ -355,7 +330,7 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
        *     </block>
        *   </statement>
        * </block>
-       */
+       *
 
       var containerBlockNode = Blockly.utils.xml.createElement('block');
       containerBlockNode.setAttribute('type', 'procedures_mutatorcontainer');
@@ -391,11 +366,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
       Blockly.Procedures.mutateCallers(this);
       return containerBlock;
     },
-    /**
-     * Reconfigure this block based on the mutator dialog's components.
-     * @param {!Blockly.Block} containerBlock Root block in mutator.
-     * @this {Blockly.Block}
-     */
     compose: function (containerBlock: { getInputTargetBlock: (arg0: string) => any; getFieldValue: (arg0: string) => any; }) {
       // Parameter list.
       this.arguments_ = [];
@@ -439,43 +409,15 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         }
       }
     },
-    /**
-     * Return the signature of this procedure definition.
-     * @return {!Array} Tuple containing three elements:
-     *     - the name of the defined procedure,
-     *     - a list of all its arguments,
-     *     - that it DOES NOT have a return value.
-     * @this {Blockly.Block}
-     */
     getProcedureDef: function () {
       return [this.getFieldValue('NAME'), this.arguments_, false];
     },
-    /**
-     * Return all variables referenced by this block.
-     * @return {!Array.<string>} List of variable names.
-     * @this {Blockly.Block}
-     */
     getVars: function () {
       return this.arguments_;
     },
-    /**
-     * Return all variables referenced by this block.
-     * @return {!Array.<!Blockly.VariableModel>} List of variable models.
-     * @this {Blockly.Block}
-     */
     getVarModels: function () {
       return this.argumentVarModels_;
     },
-    /**
-     * Notification that a variable is renaming.
-     * If the ID matches one of this block's variables, rename it.
-     * @param {string} oldId ID of variable to rename.
-     * @param {string} newId ID of new variable.  May be the same as oldId, but
-     *     with an updated name.  Guaranteed to be the same type as the old
-     *     variable.
-     * @override
-     * @this {Blockly.Block}
-     */
     renameVarById: function (oldId: any, newId: any) {
       var oldVariable = this.workspace.getVariableById(oldId);
       if (oldVariable.type != '') {
@@ -498,14 +440,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         Blockly.Procedures.mutateCallers(this);
       }
     },
-    /**
-     * Notification that a variable is renaming but keeping the same ID.  If the
-     * variable is in use on this block, rerender to show the new name.
-     * @param {!Blockly.VariableModel} variable The variable being renamed.
-     * @package
-     * @override
-     * @this {Blockly.Block}
-     */
     updateVarName: function (variable: { name: any; getId: () => any; }) {
       var newName = variable.name;
       var change = false;
@@ -521,13 +455,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         Blockly.Procedures.mutateCallers(this);
       }
     },
-    /**
-     * Update the display to reflect a newly renamed argument.
-     * @param {string} oldName The old display name of the argument.
-     * @param {string} newName The new display name of the argument.
-     * @private
-     * @this {Blockly.Block}
-     */
     displayRenamedVar_: function (oldName: string, newName: any) {
       this.updateParams_();
       // Update the mutator's variables if the mutator is open.
@@ -541,11 +468,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
         }
       }
     },
-    /**
-     * Add custom menu options to this block's context menu.
-     * @param {!Array} options List of menu options to add to.
-     * @this {Blockly.Block}
-     */
     customContextMenu: function (options: { enabled: boolean; }[]) {
       if (this.isInFlyout) {
         return;
@@ -589,10 +511,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
   }
 
   Blockly.Blocks['procedures_defreturn'] = {
-    /**
-     * Block for defining a procedure with a return value.
-     * @this {Blockly.Block}
-     */
     init: function () {
       var nameField = new Blockly.FieldTextInput(Blockly.Msg['PROCEDURES_DEFRETURN_PROCEDURE'],
         Blockly.Procedures.rename);
@@ -625,14 +543,6 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
     domToMutation: Blockly.Blocks['procedures_defnoreturn'].domToMutation,
     decompose: Blockly.Blocks['procedures_defnoreturn'].decompose,
     compose: Blockly.Blocks['procedures_defnoreturn'].compose,
-    /**
-     * Return the signature of this procedure definition.
-     * @return {!Array} Tuple containing three elements:
-     *     - the name of the defined procedure,
-     *     - a list of all its arguments,
-     *     - that it DOES have a return value.
-     * @this {Blockly.Block}
-     */
     getProcedureDef: function () {
       return [this.getFieldValue('NAME'), this.arguments_, true];
     },
@@ -644,5 +554,5 @@ export const createCommonBlocklyBlocks = (t: (key: string) => string, color: str
     customContextMenu: Blockly.Blocks['procedures_defnoreturn'].customContextMenu,
     callType_: 'procedures_callreturn'
   };
-
+*/
 }
