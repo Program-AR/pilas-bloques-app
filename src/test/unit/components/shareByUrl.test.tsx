@@ -8,7 +8,7 @@ import { LocalStorage } from '../../../localStorage'
 import { User } from '../../../pbApi'
 import { renderComponent } from '../../testUtils'
 
-jest.mock("../pbApi", () => {
+jest.mock("../../../pbApi", () => {
     return {
         PilasBloquesApi: ({
             shareChallenge: (challenge: SerializedChallenge) => {

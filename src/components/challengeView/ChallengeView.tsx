@@ -82,10 +82,12 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
     setFirst(false)
   }, [])
 
+  const initialXml = challenge.predefinedSolution ? challenge.predefinedSolution : xmlBloqueEmpezarAEjecutar
+
   const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
     blockIds: challenge.toolboxBlockIds,
     categorized: challenge.toolboxStyle !== 'noCategories',
-    initialXml: first ? xmlBloqueEmpezarAEjecutar : Blockly.utils.xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()))
+    initialXml: first ? initialXml : Blockly.utils.xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()))
   }
 
 
