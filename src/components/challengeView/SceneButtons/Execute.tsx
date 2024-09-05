@@ -51,7 +51,7 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
                 </Stack>
             </IconButton >
         </> :
-            <Button variant="contained" color="success" onClick={handleExcecute}>{"Ejecutar"}</Button>
+            <Button variant="contained" color="success" onClick={handleExcecute} data-testid='execute-button' >{"Ejecutar"}</Button>
         }
     </>
 
