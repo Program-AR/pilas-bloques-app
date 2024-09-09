@@ -91,6 +91,10 @@ class Scene {
         return this.eval(`pilas.escena_actual().${receptor}`)
     }
 
+    isTheProblemSolved() {
+      return this.eval(`pilas.escena_actual().estaResueltoElProblema();`);
+    }
+
     behaviourClass(behaviour: string): Behaviour {
         return this.eval(`
             var comportamiento = null;
