@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, IconButton, Stack, Tooltip, Typography } from "@mui/material"
+import { Button, IconButton, Stack, Tooltip } from "@mui/material"
 import { scene } from "../scene"
 import { interpreterFactory } from "./interpreter-factory"
 import Interpreter from "js-interpreter"
@@ -8,9 +8,7 @@ import { Circle, PlayArrow } from "@mui/icons-material"
 import { Challenge } from "../../../staticData/challenges"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
-import ConfettiExplosion from 'react-confetti-explosion';
-import { CloseOutlined } from '@mui/icons-material';
-import { IconButtonTooltip } from "../../creator/Editor/SceneEdition/IconButtonTooltip"
+import { EndDialog } from "./EndChallengeDialog"
 
 type ExecuteButtonProps = {
   challenge: Challenge
@@ -21,7 +19,6 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
   const { isSmallScreen } = useThemeContext()
   const [showModal, setShowModal] = useState(false)
   const { t } = useTranslation('challenge')
-  const { theme } = useThemeContext()
 
   const handleExcecute = async () => {
     await scene.restartScene(challenge.sceneDescriptor)
@@ -33,29 +30,6 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
     if (solved)
       setShowModal(true)
   }
-
-  const EndDialog = () =>
-    <Dialog
-      open={showModal}
-      disableRestoreFocus
-      fullWidth={true}
-      maxWidth="md"
-      onClose={() => setShowModal(false)}>
-      <DialogTitle id="draggable-dialog" sx={{ cursor: 'auto', fontWeight: 'bold', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{t('congratulationsModal.title')}
-        <IconButtonTooltip onClick={() => setShowModal(false)} icon={<CloseOutlined />} tooltip={t('close')} />
-      </DialogTitle>
-      <DialogContent sx={{ overflow: "hidden", backgroundColor: theme.palette.background.default }}>
-        <Stack alignItems="center">
-          <ConfettiExplosion {...{ force: 0.8, duration: 3000, particleCount: 250, width: 1600 }} />
-          <img alt="register" width="25%" src="imagenes/primer-ciclo.png"></img>
-          <Stack display='flex' flexDirection='row' flexWrap='wrap' justifyContent='center' alignItems='center'>
-            <Typography style={{ display: 'inline-block', fontSize: '1.1rem', fontWeight: 'bold', fontStyle: 'italic' }}>{t("congratulationsModal.subtitle")}&nbsp;</Typography>
-            <Typography style={{ display: 'inline-block', fontSize: '1.1rem' }}>{t("congratulationsModal.text1")}</Typography>
-          </Stack>
-          <Typography style={{ fontSize: '1.1rem' }}>{t("congratulationsModal.text2")}</Typography>
-        </Stack>
-      </DialogContent>
-    </Dialog>
 
   const executeUntilEnd = (interpreter: Interpreter) => {
     return new Promise((success, reject) => {
@@ -93,6 +67,6 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
         <Button variant="contained" color="success" onClick={handleExcecute}>{t("run.label")}</Button>
       }
     </Tooltip>
-    <EndDialog />
+    <EndDialog showModal={showModal} setShowModal={setShowModal} />
   </>
 }
