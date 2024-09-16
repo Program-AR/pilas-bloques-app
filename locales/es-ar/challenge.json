@@ -21,5 +21,6 @@
     "label": "Reiniciar",
     "tooltip": "Reiniciar la ejecución"
   },
-  "multipleScenarios": "¡Hay varios escenarios!"
+  "multipleScenarios": "¡Hay varios escenarios!",
+  "close": "Cerrar"
 }

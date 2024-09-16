@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogContent, DialogTitle, Grid, IconButton, Stack, Typography } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, Stack, Tooltip, Typography } from "@mui/material"
 import { scene } from "../scene"
 import { interpreterFactory } from "./interpreter-factory"
 import Interpreter from "js-interpreter"
@@ -9,6 +9,8 @@ import { Challenge } from "../../../staticData/challenges"
 import { useState } from "react"
 import { useTranslation } from "react-i18next"
 import ConfettiExplosion from 'react-confetti-explosion';
+import { CloseOutlined } from '@mui/icons-material';
+import { IconButtonTooltip } from "../../creator/Editor/SceneEdition/IconButtonTooltip"
 
 type ExecuteButtonProps = {
   challenge: Challenge
@@ -39,7 +41,9 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
       fullWidth={true}
       maxWidth="md"
       onClose={() => setShowModal(false)}>
-      <DialogTitle id="draggable-dialog" sx={{ cursor: 'auto', fontWeight: 'bold', height: '50px', display: 'flex', alignItems: 'center' }}>{t('congratulationsModal.title')}</DialogTitle>
+      <DialogTitle id="draggable-dialog" sx={{ cursor: 'auto', fontWeight: 'bold', height: '50px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>{t('congratulationsModal.title')}
+        <IconButtonTooltip onClick={() => setShowModal(false)} icon={<CloseOutlined />} tooltip={t('close')} />
+      </DialogTitle>
       <DialogContent sx={{ overflow: "hidden", backgroundColor: theme.palette.background.default }}>
         <Stack alignItems="center">
           <ConfettiExplosion {...{ force: 0.8, duration: 3000, particleCount: 250, width: 1600 }} />
@@ -77,16 +81,18 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
   }
 
   return <>
-    {isSmallScreen ? <>
-      <IconButton className={styles['icon-button']} onClick={handleExcecute}>
-        <Stack>
-          <Circle color='success' className={styles['circle-icon']} />
-          <PlayArrow className={styles['icon']} />
-        </Stack>
-      </IconButton >
-    </> :
-      <Button variant="contained" color="success" onClick={handleExcecute}>{"Ejecutar"}</Button>
-    }
+    <Tooltip title={t('run.tooltip')}>
+      {isSmallScreen ?
+        <IconButton className={styles['icon-button']} onClick={handleExcecute}>
+          <Stack>
+            <Circle color='success' className={styles['circle-icon']} />
+            <PlayArrow className={styles['icon']} />
+          </Stack>
+        </IconButton >
+        :
+        <Button variant="contained" color="success" onClick={handleExcecute}>{t("run.label")}</Button>
+      }
+    </Tooltip>
     <EndDialog />
   </>
 }
