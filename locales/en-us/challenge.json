@@ -1,0 +1,26 @@
+{
+  "congratulationsModal": {
+    "title": "You did it!",
+    "subtitle": "Something to think about...",
+    "text1": "Your program is not the only one that solves the problem. There are other solutions!",
+    "text2": "Are you using the concepts correctly?"
+  },
+  "stepByStepRun": {
+    "label": "Step",
+    "tooltip": "Run the proposed solution step by step"
+  },
+  "runStep": {
+    "label": "Step",
+    "tooltip": "Move forward one step"
+  },
+  "run": {
+    "label": "Run",
+    "tooltip": "Run the proposed solution"
+  },
+  "restart": {
+    "label": "Restart",
+    "tooltip": "Restart execution"
+  },
+  "multipleScenarios": "There are multiple scenarios!",
+  "close": "Close"
+}
