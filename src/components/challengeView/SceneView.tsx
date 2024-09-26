@@ -34,7 +34,7 @@ export const SceneView = ({ descriptor, onLoad }: SceneViewProps) => {
             style={{ border: "inherit", borderRadius: "inherit", ...size }}
             id="sceneIframe"
             data-testid="scene-iframe"
-            data-loaded={isLoading}
+            data-loaded={!isLoading}
             key={descriptor} // rerenders on descriptor changes
             title='iframePilas'
             src={adaptURL(`pilas.html`)}

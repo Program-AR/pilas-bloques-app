@@ -29,7 +29,18 @@ describe('<ChallengeView />', () => {
                 </block>
               </xml>`
   }
-  it('renders', () => {
+
+
+  const executeChallengeWithEval = (expression: string, expected: any) => {
+    cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'true').then($iframe => {
+      const iframe = $iframe[0] as HTMLIFrameElement;
+      cy.get('[data-testid="execute-button"]').click().should('have.attr', 'data-finishedExecution', 'true').then(() => {
+        expect((iframe.contentWindow as any).eval(`pilas.escena_actual().${expression}`)).to.equal(expected)
+      })
+    })
+  }
+
+  it('Executes ', () => {
     LocalStorage.saveCreatorChallenge(challenge)
     mount(
       <ThemeContextProvider>
@@ -37,28 +48,6 @@ describe('<ChallengeView />', () => {
           path={EMBER_IMPORTED_CHALLENGE_PATH} />
       </ThemeContextProvider>
     )
-    cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'false').then($iframe => {
-      const iframe = $iframe[0] as HTMLIFrameElement;
-      cy.get('[data-testid="execute-button"]').click()
-     //console.log((iframe.contentWindow as any).eval('pilas.escena_actual().automata.casillaActual().nroColumna'))
-    })
+    executeChallengeWithEval('automata.casillaActual().nroColumna', 1)
   })
 })
-
-/*
-    mountWithThemeContext()
-  
-      cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'false').then($iframe => {
-      const iframe = $iframe[0] as HTMLIFrameElement; 
-      console.log((iframe.contentWindow as any).eval('pilas.escena_actual().automata'))
-    })
-
-
-    mount(<SceneView descriptor={`new EscenaDuba("\
-      [O,O,O,O,O,O],\
-      [O,-,-,-,O,-],\
-      [-,A,-,-,P,-],\
-      [-,-,-,O,-,-],\
-      [O,O,O,O,-,O],\
-    ")`} onLoad={() =>console.log((screen.getByTestId("scene-iframe") as any).contentWindow.eval("pilas.escena_actual().automata"))} />)
- */
