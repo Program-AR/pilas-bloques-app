@@ -44,7 +44,7 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
 
     return <>
         {isSmallScreen ? <>
-            <IconButton className={styles['icon-button']} onClick={handleExcecute}>
+            <IconButton className={styles['icon-button']} onClick={handleExcecute} data-testid='execute-button'>
                 <Stack>
                     <Circle color='success' className={styles['circle-icon']} />
                     <PlayArrow className={styles['icon']} />
