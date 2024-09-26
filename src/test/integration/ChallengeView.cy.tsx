@@ -40,7 +40,7 @@ describe('<ChallengeView />', () => {
     })
   }
 
-  it('Executes ', () => {
+  it('Execution of a solution has effect on scene view', () => {
     LocalStorage.saveCreatorChallenge(challenge)
     mount(
       <ThemeContextProvider>
