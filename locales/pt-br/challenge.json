@@ -1,0 +1,26 @@
+{
+  "congratulationsModal": {
+    "title": "Você conseguiu!",
+    "subtitle": "Para pensar...",
+    "text1": "Seu programa não é o único que resolve o problema. Existem outras soluções!",
+    "text2": "Você está usando bem os conceitos?"
+  },
+  "stepByStepRun": {
+    "label": "Passo",
+    "tooltip": "Executar a solução proposta passo a passo"
+  },
+  "runStep": {
+    "label": "Passo",
+    "tooltip": "Dê um passo"
+  },
+  "run": {
+    "label": "Executar",
+    "tooltip": "Executar a solução proposta"
+  },
+  "restart": {
+    "label": "Reiniciar",
+    "tooltip": "Reiniciar execução"
+  },
+  "multipleScenarios": "Existem vários cenários!",
+  "close": "Fechar"
+}

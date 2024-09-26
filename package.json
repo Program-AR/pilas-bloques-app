@@ -92,6 +92,7 @@
     "react-app-polyfill": "^3.0.0",
     "react-blockly": "^8.0.0",
     "react-carousel3": "^1.0.0",
+    "react-confetti-explosion": "^2.1.2",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "react-draggable": "^4.4.6",
