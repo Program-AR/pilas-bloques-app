@@ -5,7 +5,7 @@ import { SerializedChallenge } from '../../components/serializedChallenge'
 import { EMBER_IMPORTED_CHALLENGE_PATH } from '../../components/ImportedChallengeView'
 import { ThemeContextProvider } from '../../theme/ThemeContext'
 
-describe('<ChallengeView />', () => {
+describe('Integration - Challenge view (scene view and blockly)', () => {
   const challenge: SerializedChallenge = {
     fileVersion: 0,
     title: '',
