@@ -36,8 +36,8 @@ describe('Challenge view with blocks', () => {
 
 
   //TODO - remove the skip once this issue is resolved: https://github.com/Program-AR/pilas-bloques-app/issues/312
-  const testExecutionWithBlocks = (name: string, solution: string, expected: any) => {
-    it.skip(name, () => {
+  const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = true) => {
+    (skip ? it.skip: it)(name, () => {
       LocalStorage.saveCreatorChallenge(challenge(solution))
       mount(
         <ThemeContextProvider>
@@ -220,7 +220,7 @@ const aritmethicSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
   </block>
 </xml>`
 
-  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 1)
+  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 1, false)
 
   //Code from blocks have effect 
 
