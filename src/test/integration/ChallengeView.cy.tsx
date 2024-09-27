@@ -34,7 +34,7 @@ describe('Integration - Challenge view (scene view and blockly)', () => {
   const executeChallengeWithEval = (expression: string, expected: any) => {
     cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'true').then($iframe => {
       const iframe = $iframe[0] as HTMLIFrameElement;
-      cy.get('[data-testid="execute-button"]').click().should('have.attr', 'data-finishedExecution', 'true').then(() => {
+      cy.get('[data-testid="execute-button"]').click().should('have.attr', 'data-finishedexecution', 'true').then(() => {
         expect((iframe.contentWindow as any).eval(`pilas.escena_actual().${expression}`)).to.equal(expected)
       })
     })
