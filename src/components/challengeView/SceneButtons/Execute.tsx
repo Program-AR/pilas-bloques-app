@@ -59,14 +59,14 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
   return <>
     <Tooltip title={t('run.tooltip')}>
       {isSmallScreen ?
-        <IconButton className={styles['icon-button']} onClick={handleExcecute} data-testid='execute-button' data-finishedExecution={finishedExecution}>
+        <IconButton className={styles['icon-button']} onClick={handleExcecute} data-testid='execute-button' data-finishedexecution={finishedExecution}>
           <Stack>
             <Circle color='success' className={styles['circle-icon']} />
             <PlayArrow className={styles['icon']} />
           </Stack>
         </IconButton >
         :
-        <Button variant="contained" color="success" onClick={handleExcecute} data-testid='execute-button' data-finishedExecution={finishedExecution}>{t("run.label")} </Button>
+        <Button variant="contained" color="success" onClick={handleExcecute} data-testid='execute-button' data-finishedexecution={finishedExecution}>{t("run.label")} </Button>
       }
     </Tooltip>
     <EndDialog showModal={showModal} setShowModal={setShowModal} />

@@ -7,6 +7,7 @@
 import { SceneView } from "../../../../components/challengeView/SceneView"
 import { screen } from '@testing-library/react'
 import { renderComponent } from "../../../testUtils"
+import React from "react"
 describe('SceneView renders all challenges', () => {
 
     test.skip(`Scene LimpiandoElHumedal loads ok`, () => {
