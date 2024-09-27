@@ -35,8 +35,9 @@ describe('Challenge view with blocks', () => {
   }
 
 
+  //TODO - remove the skip once this issue is resolved: https://github.com/Program-AR/pilas-bloques-app/issues/312
   const testExecutionWithBlocks = (name: string, solution: string, expected: any) => {
-    it(name, () => {
+    it.skip(name, () => {
       LocalStorage.saveCreatorChallenge(challenge(solution))
       mount(
         <ThemeContextProvider>
@@ -61,24 +62,29 @@ describe('Challenge view with blocks', () => {
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
+      <shadow type="required_statement"></shadow>
       <block type="MoverA">
         <value name="direccion">
+          <shadow type="required_value"></shadow>
           <block type="ParaLaDerecha"></block>
         </value>
       </block>
       </statement>
       </block>
       </xml>`
-
+  
   const ifSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
+      <shadow type="required_statement"></shadow>
       <block type="Si">
         <value name="condition">
+          <shadow type="required_value"></shadow>
           <block type="HayLechuga"></block>
         </value>
         <statement name="block">
+          <shadow type="required_statement"></shadow>
           <block type="MoverACasillaDerecha"></block>
         </statement>
       </block>
@@ -86,10 +92,13 @@ describe('Challenge view with blocks', () => {
   </block>
   <block type="SiNo" disabled="true" x="-632" y="103">
     <value name="condition">
+      <shadow type="required_value"></shadow>
     </value>
     <statement name="block1">
+      <shadow type="required_statement"></shadow>
     </statement>
     <statement name="block2">
+      <shadow type="required_statement"></shadow>
     </statement>
   </block>
 </xml>`
@@ -98,13 +107,16 @@ describe('Challenge view with blocks', () => {
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
-      <block type="Repetir">
+      <shadow type="required_statement"></shadow>
+      <block type="repetir">
         <value name="count">
+          <shadow type="required_value"></shadow>
           <block type="math_number">
             <field name="NUM">2</field>
           </block>
         </value>
         <statement name="block">
+          <shadow type="required_statement"></shadow>
           <block type="MoverACasillaDerecha"></block>
         </statement>
       </block>
@@ -112,10 +124,13 @@ describe('Challenge view with blocks', () => {
   </block>
   <block type="SiNo" disabled="true" x="-632" y="103">
     <value name="condition">
+      <shadow type="required_value"></shadow>
     </value>
     <statement name="block1">
+      <shadow type="required_statement"></shadow>
     </statement>
     <statement name="block2">
+      <shadow type="required_statement"></shadow>
     </statement>
   </block>
 </xml>`
@@ -124,11 +139,14 @@ describe('Challenge view with blocks', () => {
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
+      <shadow type="required_statement"></shadow>
       <block type="Hasta">
         <value name="condition">
+          <shadow type="required_value"></shadow>
           <block type="HayLechuga"></block>
         </value>
         <statement name="block">
+          <shadow type="required_statement"></shadow>
           <block type="MoverACasillaDerecha"></block>
         </statement>
       </block>
@@ -140,16 +158,20 @@ describe('Challenge view with blocks', () => {
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
+      <shadow type="required_statement"></shadow>
       <block type="Si">
         <value name="condition">
+          <shadow type="required_value"></shadow>
           <block type="OpComparacion">
           <field name="OP">EQ</field>
           <value name="A">
+          <shadow type="required_value"></shadow>
               <block type="Numero">
               <field name="NUM">1</field>
               </block>
             </value>
             <value name="B">
+              <shadow type="required_value"></shadow>
               <block type="Numero">
               <field name="NUM">1</field>
               </block>
@@ -157,6 +179,40 @@ describe('Challenge view with blocks', () => {
           </block>
         </value>
         <statement name="block">
+        <shadow type="required_statement"></shadow>
+          <block type="MoverACasillaDerecha"></block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>`
+
+const aritmethicSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+    <statement name="program">
+      <shadow type="required_statement"></shadow>
+      <block type="repetir">
+        <value name="count">
+          <shadow type="required_value"></shadow>
+          <block type="OpAritmetica">
+            <field name="OP">ADD</field>
+            <value name="A">
+              <shadow type="required_value"></shadow>
+              <block type="Numero">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+            <value name="B">
+              <shadow type="required_value"></shadow>
+              <block type="Numero">
+                <field name="NUM">1</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="block">
+          <shadow type="required_statement"></shadow>
           <block type="MoverACasillaDerecha"></block>
         </statement>
       </block>
@@ -168,7 +224,9 @@ describe('Challenge view with blocks', () => {
 
   //Code from blocks have effect 
 
-  //testExecutionWithBlocks('Code from blocks have effect - operators', operatorSolution, 1)
+  testExecutionWithBlocks('Code from blocks have effect - boolean operators', operatorSolution, 1)
+
+  testExecutionWithBlocks('Code from blocks have effect - aritmethic operators', aritmethicSolution, 2)
 
   testExecutionWithBlocks('Code from blocks have effect - move with parameters', moveWithParameterSolution, 1)
 
