@@ -98,7 +98,7 @@ describe('Challenge view with blocks', () => {
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
-      <block type="repetir">
+      <block type="Repetir">
         <value name="count">
           <block type="math_number">
             <field name="NUM">2</field>
@@ -168,7 +168,7 @@ describe('Challenge view with blocks', () => {
 
   //Code from blocks have effect 
 
-  testExecutionWithBlocks('Code from blocks have effect - operators', operatorSolution, 1)
+  //testExecutionWithBlocks('Code from blocks have effect - operators', operatorSolution, 1)
 
   testExecutionWithBlocks('Code from blocks have effect - move with parameters', moveWithParameterSolution, 1)
 

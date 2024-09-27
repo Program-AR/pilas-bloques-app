@@ -50,12 +50,12 @@ export const createControlStructureBlocks = (t: (key: string) => string) => {
 
   repeatBlocksCode('RepetirVacio');
 
-  Blockly.Blocks['repetir'] = {
+  Blockly.Blocks['Repetir'] = {
     init: Blockly.Blocks['RepetirVacio'].init,
     categoryId: Blockly.Blocks['RepetirVacio'].categoryId
   }
 
-  repeatBlocksCode('repetir');
+  repeatBlocksCode('Repetir');
 
   Blockly.Blocks['Hasta'] = {
     init: function () {
