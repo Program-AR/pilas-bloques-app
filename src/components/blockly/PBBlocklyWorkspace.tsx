@@ -16,6 +16,7 @@ export type PBBlocklyWorkspaceProps = {
   title?: boolean
   initialXml?: string;
   workspaceConfiguration?: Blockly.BlocklyOptions;
+  zoomScale?: number;
 }
 
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
