@@ -13,19 +13,21 @@ type SceneButtonsProps = {
   challenge: Challenge
 }
 
+const shouldShow = process.env.NODE_ENV !== 'production'
+
 export const SceneButtons = ({ challenge }: SceneButtonsProps) => {
   return <PBCard sx={{justifyContent: 'space-between'}}>
+    { shouldShow ? <NextStepButton /> :<></> }
     <ExecuteButton challenge={challenge} />
-    <NextStepButton />
-    <TurboModeSwitch />
+    { shouldShow ? <TurboModeSwitch /> :<></> }
   </PBCard>
 }
 
 export const SceneButtonsVertical = ({ challenge }: SceneButtonsProps) => {
   return <Stack gap={2} alignItems='center'>
-    <TurboModeSwitch />
-    <NextStepButton />
+    { shouldShow ? <NextStepButton /> :<></> }
     <ExecuteButton challenge={challenge} />
+    { shouldShow ? <TurboModeSwitch /> :<></> }
   </Stack>
 }
 
