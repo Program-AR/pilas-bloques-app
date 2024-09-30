@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react'
-import { defaultChallenge } from "../../components/serializedChallenge"
-import { SceneTools } from '../../components/creator/Editor/SceneEdition/SceneTools';
-import { LocalStorage } from '../../localStorage';
-import { renderComponent } from '../testUtils';
+import { defaultChallenge } from "../../../../components/serializedChallenge"
+import { SceneTools } from '../../../../components/creator/Editor/SceneEdition/SceneTools';
+import { LocalStorage } from '../../../../localStorage';
+import { renderComponent } from '../../../testUtils';
 
 describe('Scene Tools', () => {
     afterEach(() => {

@@ -1,5 +1,5 @@
-import { LocalStorage } from '../localStorage';
-import { User } from '../pbApi';
+import { LocalStorage } from '../../localStorage';
+import { User } from '../../pbApi';
 
 describe('Storage', () => {
 

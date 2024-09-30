@@ -1,5 +1,5 @@
-import { Scene, SerializedChallenge, isValidChallenge, sceneIsValid } from '../components/serializedChallenge';
-import { Ember } from '../emberCommunication';
+import { Scene, SerializedChallenge, isValidChallenge, sceneIsValid } from '../../components/serializedChallenge';
+import { Ember } from '../../emberCommunication';
 
 const validScene: Scene = {
     type: "Lita",

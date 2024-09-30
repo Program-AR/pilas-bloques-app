@@ -1,6 +1,6 @@
 import { Button, IconButton, Stack, Tooltip } from "@mui/material"
 import { scene } from "../scene"
-import { interpreterFactory } from "./interpreter-factory"
+import { interpreterFactory } from "./interpreterFactory"
 import Interpreter from "js-interpreter"
 import { useThemeContext } from "../../../theme/ThemeContext"
 import styles from './sceneButtons.module.css'
@@ -18,6 +18,7 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
 
   const { isSmallScreen } = useThemeContext()
   const [showModal, setShowModal] = useState(false)
+  const [finishedExecution, setFinishedExecution] = useState(false)
   const { t } = useTranslation('challenge')
 
   const handleExcecute = async () => {
@@ -26,6 +27,7 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
   }
 
   const whenExecuteEnd = async () => {
+    setFinishedExecution(true)
     const solved = await scene.isTheProblemSolved()
     if (solved)
       setShowModal(true)
@@ -57,14 +59,14 @@ export const ExecuteButton = ({ challenge }: ExecuteButtonProps) => {
   return <>
     <Tooltip title={t('run.tooltip')}>
       {isSmallScreen ?
-        <IconButton className={styles['icon-button']} onClick={handleExcecute}>
+        <IconButton className={styles['icon-button']} onClick={handleExcecute} data-testid='execute-button' data-finishedexecution={finishedExecution}>
           <Stack>
             <Circle color='success' className={styles['circle-icon']} />
             <PlayArrow className={styles['icon']} />
           </Stack>
         </IconButton >
         :
-        <Button variant="contained" color="success" onClick={handleExcecute}>{t("run.label")}</Button>
+        <Button variant="contained" color="success" onClick={handleExcecute} data-testid='execute-button' data-finishedexecution={finishedExecution}>{t("run.label")} </Button>
       }
     </Tooltip>
     <EndDialog showModal={showModal} setShowModal={setShowModal} />

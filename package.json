@@ -13,6 +13,7 @@
   "scripts": {
     "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
     "test": "jest",
+    "test:cy": "npx cypress open",
     "prestart": " [ -d node_modules/.vite/deps ] && rm node_modules/.vite/deps/*; node scripts/setEmberRoot.js public/emberPB ''",
     "start": "vite",
     "start:host": "vite --host",
@@ -137,9 +138,12 @@
     ]
   },
   "devDependencies": {
+    "@cypress/react18": "^2.0.1",
+    "@cypress/vite-dev-server": "^5.2.0",
     "@types/jest": "^29.5.12",
     "@types/js-beautify": "^1.14.3",
     "canvas": "^2.11.2",
+    "cypress": "^13.14.2",
     "electron": "^22.3.25",
     "electron-packager": "^17.1.2",
     "electron-rebuild": "^3.2.9",

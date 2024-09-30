@@ -1,6 +1,6 @@
 import { adaptURL } from "../../scriptLoader";
 import { Challenge } from "../../staticData/challenges";
-import { Actor, Behaviour } from "./SceneButtons/interpreter-factory";
+import { Actor, Behaviour } from "./SceneButtons/interpreterFactory";
 
 class Scene {
     iframe(): HTMLIFrameElement {
@@ -15,7 +15,7 @@ class Scene {
      */
     async load(descriptor: Challenge["sceneDescriptor"]) {
         await this.initializePilasWeb(descriptor)
-        await this.setChallenge(descriptor)
+        this.setChallenge(descriptor)
     }
 
     setChallenge(descriptor: Challenge["sceneDescriptor"]) {
@@ -78,9 +78,9 @@ class Scene {
         return name ? name[1] : sceneDescriptor
     }
 
-    async restartScene(descriptor: Challenge["sceneDescriptor"]) {
+    restartScene(descriptor: Challenge["sceneDescriptor"]) {
         this.eval('pilas.reiniciar()')
-        await this.setChallenge(descriptor)
+        this.setChallenge(descriptor)
     }
 
     sceneActor(): Actor {

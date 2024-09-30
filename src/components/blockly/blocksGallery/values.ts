@@ -1,6 +1,6 @@
 import { javascriptGenerator, Order } from "blockly/javascript";
-import { BlocklyBlockDefinition, messageBlock } from "./blockly";
-import { optionType, validateRequiredOptions } from "./utils";
+import { BlocklyBlockDefinition, messageBlock } from "../blockly";
+import { optionType, validateRequiredOptions } from "../utils";
 import Blockly, { Block } from "blockly/core"
 
 const directionsColor = '#2ba4e2';
@@ -77,5 +77,14 @@ export const createValueBlocks = (t: (key: string) => string) => {
 
   javascriptGenerator.forBlock['Numero'] = function (block: Block) {
     return [`${block.getFieldValue('NUM')}`, Order.ATOMIC];
+  };
+
+  Blockly.Blocks['Texto'] = {
+    init: Blockly.Blocks['text'].init,
+    categoryId: Blockly.Blocks['text'].categoryId,
+  }
+
+  javascriptGenerator.forBlock['Texto'] = function (block: Block) {
+    return [`${block.getFieldValue('TEXT')}`, Order.ATOMIC];
   };
 }
