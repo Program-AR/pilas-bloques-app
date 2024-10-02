@@ -83,7 +83,11 @@
     "while": "Repeat until",
     "chargerHere": "Is there a charger here?",
     "trophyHere": "Is there a trophy here?",
-    "saladBowlHere": "Is there a salad bowl here?"
+    "saladBowlHere": "Is there a salad bowl here?",
+    "leftBorder": "Am I on the left edge?",
+    "rightBorder": "Am I on the right edge?",
+    "bottomBorder": "Am I on the bottom edge?",
+    "topBorder": "Am I on the top edge?"
   },
   "procedures": {
     "definition": "Define",

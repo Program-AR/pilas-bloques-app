@@ -63,6 +63,26 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'sensors'
   },
   {
+    id: 'BordeArriba',
+    intlId: 'topBorder',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'BordeAbajo',
+    intlId: 'bottomBorder',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'BordeIzquierdo',
+    intlId: 'leftBorder',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'BordeDerecho',
+    intlId: 'rightBorder',
+    categoryId: 'sensors'
+  },
+  {
     id: 'Si',
     intlId: 'simpleAlternative',
     categoryId: 'alternatives'
