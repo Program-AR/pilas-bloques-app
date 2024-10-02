@@ -7,7 +7,6 @@ export const categories: string[] = [
   'alternatives',
   'values',
   'sensors',
-  'variables',
   'operators'
 ]
 
@@ -64,21 +63,6 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'sensors'
   },
   {
-    id: 'TocandoDerecha',
-    intlId: 'canMoveRight',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'TocandoAbajo',
-    intlId: 'canMoveDown',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'TocandoMeta',
-    intlId: 'cameToTheEnd',
-    categoryId: 'sensors'
-  },
-  {
     id: 'Si',
     intlId: 'simpleAlternative',
     categoryId: 'alternatives'
@@ -132,16 +116,6 @@ export const commonBlocks: BlockType[] = [
     id: 'OpAritmetica',
     intlId: 'math_arithmetic',
     categoryId: 'operators'
-  },
-  {
-    id: 'param_get',
-    intlId: 'variables_get',
-    categoryId: 'variables'
-  },
-  {
-    id: 'param_set',
-    intlId: 'variables_set',
-    categoryId: 'variables'
   },
   {
     id: 'Procedimiento',
