@@ -32,7 +32,7 @@ const directionsColor = '#2ba4e2';
 const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
 
-export const xmlBloqueEmpezarAEjecutar =`<xml xmlns="http://www.w3.org/1999/xhtml">
+export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xhtml">
               <block type="al_empezar_a_ejecutar" x="15" y="15"></block>
             </xml>`
 
@@ -924,6 +924,26 @@ const createSensorBlocks = (t: (key: string) => string) => {
   createSensorBlock('HayTrofeo', t('blocks.trophyHere'), {
     'funcionSensor': 'tocando("Trofeo")',
   }, 'icono.trofeo.png'
+  );
+
+  createSensorBlock('BordeIzquierdo', t('blocks.leftBorder'), {
+    'funcionSensor': 'enBordeIzquierdo()',
+  }, 'icono.izquierda.png'
+  );
+
+  createSensorBlock('BordeDerecho', t('blocks.rightBorder'), {
+    'funcionSensor': 'enBordeDerecho()',
+  }, 'icono.derecha.png'
+  );
+
+  createSensorBlock('BordeAbajo', t('blocks.bottomBorder'), {
+    'funcionSensor': 'enBordeAbajo()',
+  }, 'icono.abajo.png'
+  );
+
+  createSensorBlock('BordeArriba', t('blocks.topBorder'), {
+    'funcionSensor': 'enBordeArriba()',
+  }, 'icono.arriba.png'
   );
 }
 

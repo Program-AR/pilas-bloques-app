@@ -57,7 +57,7 @@
     "jest-watch-typeahead": "^2.2.2",
     "makensis": "^2.0.8",
     "mini-css-extract-plugin": "^2.4.5",
-    "pilas-bloques-exercises": "^1.4.31",
+    "pilas-bloques-exercises": "^1.4.34",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",
@@ -97,7 +97,7 @@
   "scripts": {
     "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
     "test": "jest",
-    "prestart": "rm node_modules/.vite/deps/* && node scripts/setEmberRoot.js public/emberPB ''",
+    "prestart": " [ -d node_modules/.vite/deps ] && rm node_modules/.vite/deps/*; node scripts/setEmberRoot.js public/emberPB ''",
     "start": "vite",
     "start:host": "vite --host",
     "start:emberDev": "sh ./scripts/localEmber.sh",

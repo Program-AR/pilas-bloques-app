@@ -82,7 +82,11 @@
     "while": "Repetir hasta que",
     "chargerHere": "¿Hay un cargador acá?",
     "trophyHere": "¿Hay un trofeo acá?",
-    "saladBowlHere": "¿Hay una ensaladera acá?"
+    "saladBowlHere": "¿Hay una ensaladera acá?",
+    "leftBorder": "¿Estoy en el borde de la izquierda?",
+    "rightBorder": "¿Estoy en el borde de la derecha?",
+    "bottomBorder": "¿Estoy en el borde de abajo?",
+    "topBorder": "¿Estoy en el borde de arriba?"
   },
   "procedures": {
     "definition": "Definir",
