@@ -81,7 +81,7 @@
     "js-interpreter": "^5.1.2",
     "makensis": "^2.0.8",
     "mini-css-extract-plugin": "^2.4.5",
-    "pilas-bloques-exercises": "^1.4.33",
+    "pilas-bloques-exercises": "^1.4.34",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^6.2.1",

@@ -120,7 +120,11 @@
     "jumpDown": "Saltar para baixo",
     "jumpUp": "Saltar para cima",
     "goInAlligator": "Vai em jacaré",
-    "backToLeftBorder": "Voltar para a margem esquerda"    
+    "backToLeftBorder": "Voltar para a margem esquerda",
+    "leftBorder": "Estou na borda esquerda?",
+    "rightBorder": "Estou na borda direita?",
+    "bottomBorder": "Estou na borda inferior?",
+    "topBorder": "Estou na borda superior?"
   },
   "procedures": {
     "definition": "Definir",

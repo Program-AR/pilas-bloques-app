@@ -138,7 +138,11 @@
     "rotateGrades": "Girar grados",
     "isAVowel": "¿ Hay vocal ?",
     "repeatEmpty": "Repetir",
-    "JumpForward": "Saltar hacia adelante"    
+    "JumpForward": "Saltar hacia adelante",
+    "leftBorder": "¿Estoy en el borde de la izquierda?",
+    "rightBorder": "¿Estoy en el borde de la derecha?",
+    "bottomBorder": "¿Estoy en el borde de abajo?",
+    "topBorder": "¿Estoy en el borde de arriba?"
   },
   "procedures": {
     "definition": "Definir",
