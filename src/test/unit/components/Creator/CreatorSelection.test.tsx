@@ -1,8 +1,8 @@
 import { screen } from '@testing-library/react'
-import { ActorSelection } from '../../components/creator/ActorSelection/ActorSelection';
-import { LocalStorage } from '../../localStorage';
-import { defaultChallenge } from "../../components/serializedChallenge"
-import { renderComponent } from '../testUtils';
+import { ActorSelection } from '../../../../components/creator/ActorSelection/ActorSelection';
+import { LocalStorage } from '../../../../localStorage';
+import { defaultChallenge } from "../../../../components/serializedChallenge"
+import { renderComponent } from '../../../testUtils';
 
 describe('Creator selection', () => {
     afterEach(() => {

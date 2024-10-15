@@ -23,7 +23,6 @@ import { PilasBloquesApi } from './pbApi';
 import { Ember } from './emberCommunication';
 import { ChallengeView } from './components/challengeView/ChallengeView';
 import { PBSession } from './pbSession';
-import { setXml, xmlBloqueEmpezarAEjecutar } from './components/blockly/blockly';
 
 const AnalyticsComponent = () => {
   const location = useLocation();

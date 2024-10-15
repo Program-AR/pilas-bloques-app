@@ -1,6 +1,6 @@
 import { screen, fireEvent } from '@testing-library/react'
-import { ImportChallengeCard } from '../components/home/ImportChallengeCard';
-import { renderComponent } from './testUtils';
+import { ImportChallengeCard } from '../../../components/home/ImportChallengeCard';
+import { renderComponent } from '../../testUtils';
 
 
 test('shows error snackbar when invalid file is uploaded', async () => {

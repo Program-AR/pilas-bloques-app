@@ -1,13 +1,14 @@
-import { ShareModal } from "../components/creator/Editor/ActionButtons/ShareChallenge/ShareButton"
-import { ChallengeUpsertButton, ShareButtons } from "../components/creator/Editor/ActionButtons/ShareChallenge/ShareModalButtons"
-import { CreatorContextProvider } from "../components/creator/Editor/CreatorContext"
-import { SerializedChallenge } from "../components/serializedChallenge"
-import { LocalStorage } from "../localStorage"
-import { User } from "../pbApi"
-import { renderComponent } from "./testUtils"
-import { act, screen } from '@testing-library/react'
 
-jest.mock("../pbApi", () => {
+import { act, screen } from '@testing-library/react'
+import { ShareModal } from '../../../components/creator/Editor/ActionButtons/ShareChallenge/ShareButton'
+import { ChallengeUpsertButton, ShareButtons } from '../../../components/creator/Editor/ActionButtons/ShareChallenge/ShareModalButtons'
+import { CreatorContextProvider } from '../../../components/creator/Editor/CreatorContext'
+import { SerializedChallenge } from '../../../components/serializedChallenge'
+import { LocalStorage } from '../../../localStorage'
+import { User } from '../../../pbApi'
+import { renderComponent } from '../../testUtils'
+
+jest.mock("../../../pbApi", () => {
     return {
         PilasBloquesApi: ({
             shareChallenge: (challenge: SerializedChallenge) => {

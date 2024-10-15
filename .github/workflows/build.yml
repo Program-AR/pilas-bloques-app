@@ -28,6 +28,11 @@ jobs:
       - name: Run tests
         run: xvfb-run -a npm run test
 
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          component: true
+
   pack-linux: # When there is a tag, pack the installers and upload to Github.
       runs-on: ubuntu-latest
       env:

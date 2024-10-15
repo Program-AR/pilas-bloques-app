@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react'
-import { renderComponent } from '../testUtils';
-import { ToolboxPreview } from '../../components/creator/Editor/ChallengeDetailsEdition/ToolBoxEditor/ToolboxPreview';
-import { commonBlocks, sceneBlocks } from '../../components/blockly/blocks';
+import { renderComponent } from '../../../testUtils';
+import { ToolboxPreview } from '../../../../components/creator/Editor/ChallengeDetailsEdition/ToolBoxEditor/ToolboxPreview';
+import { commonBlocks, sceneBlocks } from '../../../../components/blockly/blocks';
 
 describe('Toolbox Preview', () => {
   test('rendering toolbox preview ', async () => {

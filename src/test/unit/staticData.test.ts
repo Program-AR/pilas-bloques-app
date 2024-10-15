@@ -1,6 +1,6 @@
-import { Book, getBook } from '../staticData/books';
-import { Challenge, getChallengeWithId, getChallengeWithName, getPathToChallenge, PathToChallenge } from '../staticData/challenges';
-import { expectToThrow } from './testUtils';
+import { Book, getBook } from '../../staticData/books';
+import { Challenge, getChallengeWithId, getChallengeWithName, getPathToChallenge, PathToChallenge } from '../../staticData/challenges';
+import { expectToThrow } from '../testUtils';
 
 describe('Static data fetching', () => {
   test('Should get book if it exists', () => {

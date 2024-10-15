@@ -1,6 +1,6 @@
-import { ChangePassword, PasswordRecovery } from "../components/users/passwordRecovery/PasswordRecovery"
-import { PasswordStrength, testingPasswordStrength } from "../components/users/register/StrengthPassword"
-import { renderComponent } from "./testUtils"
+import { ChangePassword, PasswordRecovery } from "../../../components/users/passwordRecovery/PasswordRecovery"
+import { PasswordStrength, testingPasswordStrength } from "../../../components/users/register/StrengthPassword"
+import { renderComponent } from "../../testUtils"
 import { screen } from '@testing-library/react'
 
 describe("Password recovery", () => {

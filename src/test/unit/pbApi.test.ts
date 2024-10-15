@@ -1,7 +1,7 @@
 import fetchMock from 'fetch-mock-jest';
-import { PilasBloquesApi } from '../pbApi';
-import { LocalStorage } from '../localStorage';
-import { expectToThrow, fakeUser, mockApi, mockApiPath } from './testUtils';
+import { PilasBloquesApi } from '../../pbApi';
+import { LocalStorage } from '../../localStorage';
+import { fakeUser, mockApi, mockApiPath } from '../testUtils';
 
 describe('PB Api', () => {
 
