@@ -1,7 +1,9 @@
-import { createCommonBlocklyBlocks } from "../utils";
+import { createCommonBlocklyBlocks, disableUnwantedProcedureBlocks, enableUnwantedProcedureBlocks } from "../utils";
 import Blockly, { Block } from "blockly/core"
 import { sensorsColor } from "./sensors";
 import { javascriptGenerator, Order } from "blockly/javascript";
+//@ts-ignore
+import { ProcedsBlocklyInit } from "blockly-proceds";
 
 const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
@@ -138,4 +140,10 @@ export const createOthersBlocks = (t: (key: string) => string) => {
         init: Blockly.Blocks["logic_compare"].init,
         categoryId: 'operators',
     }
+    
+    enableUnwantedProcedureBlocks()
+
+    ProcedsBlocklyInit(Blockly)
+  
+    disableUnwantedProcedureBlocks()
 }

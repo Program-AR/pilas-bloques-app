@@ -3,8 +3,7 @@ import { createContext, FC, PropsWithChildren, useContext, useEffect, useMemo, u
 import { getDesignTokens } from "./theme";
 import { LocalStorage } from "../localStorage";
 import { Ember } from "../emberCommunication";
-import Blockly, { Theme as BlocklyTheme } from 'blockly/core'
-
+import * as Blockly from 'blockly/core'
 
 const BlocklyClassicTheme = Blockly.Theme.defineTheme('classicBlockly', {
   base: Blockly.Themes.Classic,
@@ -43,7 +42,7 @@ type ThemeContextType = {
     setSimpleReadModeEnabled: (mode: boolean) => void;
     theme: Theme;
     isSmallScreen: boolean;
-    blocklyTheme: BlocklyTheme;
+    blocklyTheme: Blockly.Theme;
 };
 
 export const ThemeContext = createContext<ThemeContextType>({
