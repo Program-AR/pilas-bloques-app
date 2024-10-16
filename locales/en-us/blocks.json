@@ -139,7 +139,11 @@
     "rotateGrades": "Rotate grades",
     "isAVowel": "Is a vowel ?",
     "repeatEmpty": "Repeat",
-    "JumpForward": "Jump forward"    
+    "JumpForward": "Jump forward", 
+    "leftBorder": "Am I on the left edge?",
+    "rightBorder": "Am I on the right edge?",
+    "bottomBorder": "Am I on the bottom edge?",
+    "topBorder": "Am I on the top edge?"
   },
   "procedures": {
     "definition": "Define",
