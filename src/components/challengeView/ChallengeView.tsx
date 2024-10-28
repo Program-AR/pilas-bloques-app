@@ -12,7 +12,6 @@ import { Scene, SceneMap, SerializedChallenge } from "../serializedChallenge";
 import { useTranslation } from "react-i18next";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { useEffect, useMemo, useState } from "react";
-import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
 import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
 import Blockly from "blockly/core"
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
@@ -74,8 +73,8 @@ type ChallengeWorkspaceProps = {
 
 const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
   const { isSmallScreen } = useThemeContext()
-  const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
-  const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
+  // const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
+  // const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
   const [first, setFirst] = useState<boolean>(true)
 
   useEffect(() => {
@@ -98,8 +97,10 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
   return <>
     <Stack flexGrow={1} direction='column' height='100%'>
       <StatementDescription
-        text={descriptionOrClue}
-        setShowStatement={setToShow}
+        // text={descriptionOrClue}
+        //setShowStatement={() => {}}
+        statement={statement}
+        clue={clue}
         clueIsEnabled={clue !== ''}
         urlImage={challenge.imageURL()} />
       <InsideChallengeWorkspace />

@@ -1,7 +1,7 @@
 import { Switch, FormControlLabel, TextField } from "@mui/material";
-import { StatementTextToShow } from "./MarkdownEditor";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { StatementTextToShow } from "../../../challengeView/StatementDescription";
 
 type MarkdownInputProps = {
   statement: string,
@@ -32,6 +32,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
     if(!e.currentTarget.checked) {
       props.setClue(undefined)
       props.setShowStatement(StatementTextToShow.STATEMENT)
+      props.statement
     }
 
   }
@@ -49,6 +50,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
         value={props.statement}
         onChange={onStatementChange}
         onFocus={() => props.setShowStatement(StatementTextToShow.STATEMENT)}
+        //onFocus={() => props.statement}
         sx={{marginTop: '10px'}}
         id="statement-input"
     />
@@ -63,6 +65,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
         value={props.clue}
         onChange={onClueChange}
         onFocus={() => props.setShowStatement(StatementTextToShow.CLUE)}
+        //onFocus={() => props.clue}
         id="clue-input"
     />
     :
