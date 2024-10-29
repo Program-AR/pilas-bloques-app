@@ -73,8 +73,6 @@ type ChallengeWorkspaceProps = {
 
 const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
   const { isSmallScreen } = useThemeContext()
-  // const [descriptionOrClue, setDescriptionOrClue] = useState(statement!)
-  // const setToShow = (show: StatementTextToShow) => setDescriptionOrClue(show === StatementTextToShow.CLUE ? clue! : statement!)
   const [first, setFirst] = useState<boolean>(true)
 
   useEffect(() => {
@@ -97,8 +95,6 @@ const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspacePr
   return <>
     <Stack flexGrow={1} direction='column' height='100%'>
       <StatementDescription
-        // text={descriptionOrClue}
-        //setShowStatement={() => {}}
         statement={statement}
         clue={clue}
         clueIsEnabled={clue !== ''}

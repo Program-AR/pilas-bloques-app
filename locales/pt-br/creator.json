@@ -140,6 +140,7 @@
 		"clue": "Pista",
 		"includeClue": "Incluir uma pista",
 		"defaultDescription": "Assim se verá teu **enunciado**...",
+		"defaultClue": "Assim se verá teu **pista**...",
 		"defaultTitle": "Escreva teu título..."
 	},
 	"tools": {

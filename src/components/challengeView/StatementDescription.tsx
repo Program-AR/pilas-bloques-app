@@ -4,21 +4,17 @@ import { WbIncandescent, MenuBook } from"@mui/icons-material"
 import { PBCard } from "../PBCard";
 import remarkGfm from 'remark-gfm';
 import remarkemoji from 'remark-emoji';
-//import { StatementTextToShow } from "../creator/Editor/MarkDownEdition/MarkdownEditor";
 import { useThemeContext } from "../../theme/ThemeContext";
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 
 export type StatementDescriptionProps = {
   statement?: string
   clue?: string
-  // text: string
-  //setShowStatement: (show: StatementTextToShow) => void
   clueIsEnabled: boolean
   urlImage: string
+  statementButtonRef?: MutableRefObject<HTMLButtonElement | null>
+  clueButtonRef?: MutableRefObject<HTMLButtonElement | null>
 }
-
-// TODO: This component should have state of its own to know when to show the clue.
-// TODO: StatementTextToShow should be on this file.
 
 export enum StatementTextToShow {
   STATEMENT,
@@ -35,11 +31,11 @@ export const StatementDescription = (props: StatementDescriptionProps) => {
         <img height="100%" alt="actor" src={props.urlImage}/>
         <Stack width="50px" height="100%" alignItems="center" justifyContent="center" sx={{backgroundColor: darken(theme.palette.text.secondary, 0.13)}}>
           
-          <Button onClick={() => setShowStatement(StatementTextToShow.STATEMENT)} sx={{minWidth:"50px"}}>
+          <Button ref={props.statementButtonRef} onClick={() => setShowStatement(StatementTextToShow.STATEMENT)} sx={{minWidth:"50px"}}>
             <MenuBook/>
           </Button>
 
-          <Button disabled={!props.clueIsEnabled} onClick={() => setShowStatement(StatementTextToShow.CLUE)} sx={{color:"#ebca14", minWidth:"50px"}}>
+          <Button disabled={!props.clueIsEnabled} ref={props.clueButtonRef} onClick={() => setShowStatement(StatementTextToShow.CLUE)} sx={{color:"#ebca14", minWidth:"50px"}}>
             <WbIncandescent style={{ transform: "rotate(180deg)"}}/>
           </Button>
 

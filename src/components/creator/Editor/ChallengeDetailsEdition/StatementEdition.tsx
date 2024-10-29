@@ -56,7 +56,7 @@ export const StatementEdition = (props: StatementEditionType) => {
                         title={`${t('statement.title')}${t(`selection.cards.${actor}.name`)}`}>
             <Box style={{ justifyContent:'center'}}>
             
-            <MarkdownEditor statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} clueIsEnabled={false} urlImage={""} />
+            <MarkdownEditor statement={statement} clue={clue} setStatement={setStatement} setClue={setClue} />
 
             </Box>
         </GenericModalDialog>
