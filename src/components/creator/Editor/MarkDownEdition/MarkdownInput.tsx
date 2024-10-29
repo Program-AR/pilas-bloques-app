@@ -1,14 +1,14 @@
 import { Switch, FormControlLabel, TextField } from "@mui/material";
-import { StatementTextToShow } from "./MarkdownEditor";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { MutableRefObject, useState } from "react";
 
 type MarkdownInputProps = {
   statement: string,
   setStatement: (statement: string) => void,
   clue: string | undefined,
   setClue: (clue?: string) => void
-  setShowStatement: (selected: StatementTextToShow) => void
+  statementButtonRef: MutableRefObject<HTMLButtonElement | null>
+  clueButtonRef: MutableRefObject<HTMLButtonElement | null>
 }
 
 export const MarkdownInput = (props: MarkdownInputProps) => {
@@ -16,7 +16,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
   const [clueIsEnabled, setClueIsEnabled] = useState<boolean>(!!props.clue)
 
   const { t } = useTranslation('creator');
-  
+
   const onClueChange = (e: { currentTarget: { value: string; }; }) => {
     const newValue = e.currentTarget.value;
     props.setClue(newValue)
@@ -29,9 +29,11 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
 
   const toggleClueEnabled = (e: { currentTarget: { checked: boolean }; }) => {
     setClueIsEnabled(e.currentTarget.checked)
-    if(!e.currentTarget.checked) {
+    if (!e.currentTarget.checked) {
       props.setClue(undefined)
-      props.setShowStatement(StatementTextToShow.STATEMENT)
+      props.statementButtonRef.current?.click()
+    } else {
+      props.setClue(t("statement.defaultClue")!)
     }
 
   }
@@ -39,7 +41,7 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
 
   return (
     <>
-    <TextField
+      <TextField
         fullWidth
         autoFocus
         size="small"
@@ -48,26 +50,26 @@ export const MarkdownInput = (props: MarkdownInputProps) => {
         label={t('statement.description')}
         value={props.statement}
         onChange={onStatementChange}
-        onFocus={() => props.setShowStatement(StatementTextToShow.STATEMENT)}
-        sx={{marginTop: '10px'}}
+        onFocus={() => props.statementButtonRef.current?.click()}
+        sx={{ marginTop: '10px' }}
         id="statement-input"
-    />
-    <FormControlLabel control={<Switch color="secondary" onChange={toggleClueEnabled} checked={clueIsEnabled}/>} label={t("statement.includeClue")}/>
+      />
+      <FormControlLabel control={<Switch color="secondary" onChange={toggleClueEnabled} checked={clueIsEnabled} />} label={t("statement.includeClue")} />
 
-    {clueIsEnabled ? 
-    <TextField
-        fullWidth
-        size="small"
-        multiline={true}
-        label={t('statement.clue')}
-        value={props.clue}
-        onChange={onClueChange}
-        onFocus={() => props.setShowStatement(StatementTextToShow.CLUE)}
-        id="clue-input"
-    />
-    :
-    <></>
-  }
-</>
+      {clueIsEnabled ?
+        <TextField
+          fullWidth
+          size="small"
+          multiline={true}
+          label={t('statement.clue')}
+          value={props.clue}
+          onChange={onClueChange}
+          onFocus={() => props.clueButtonRef.current?.click()}
+          id="clue-input"
+        />
+        :
+        <></>
+      }
+    </>
   );
 }

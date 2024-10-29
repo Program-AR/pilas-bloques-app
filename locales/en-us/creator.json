@@ -140,6 +140,7 @@
 		"clue": "Clue",
 		"includeClue": "Include a clue",
 		"defaultDescription": "Your **statement** will look like this...",
+		"defaultClue": "Your **clue** will look like this...",
 		"defaultTitle": "Write your challenge's title..."
 	},
 	"tools": {

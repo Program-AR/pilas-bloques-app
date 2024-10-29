@@ -5,13 +5,13 @@ type EditableBlocklyWorkspaceProps = {
     isVertical: boolean
 }
 
-export const EditableBlocklyWorkspace = ({ blockIds, categorized, sx, isVertical, ...props }: PBBlocklyWorkspaceProps & EditableBlocklyWorkspaceProps) => {
+export const EditableBlocklyWorkspace = ({ blockIds, categorized, sx, isVertical, zoomScale, ...props }: PBBlocklyWorkspaceProps & EditableBlocklyWorkspaceProps) => {
     return <PBBlocklyWorkspace
         sx={{ flexGrow: 1}}
         blockIds={blockIds}
         categorized={categorized}
         initialXml={xmlBloqueEmpezarAEjecutar}
-        workspaceConfiguration={{ toolboxPosition: isVertical ? 'end' : 'start', trashcan: true, zoom: {controls: true, wheel: true}, scrollbars: true, horizontalLayout: isVertical }}
+        workspaceConfiguration={{ toolboxPosition: isVertical ? 'end' : 'start', trashcan: true, zoom: {controls: true, wheel: true, startScale: zoomScale}, scrollbars: true, horizontalLayout: isVertical }}
         {...props}
     />
 }
