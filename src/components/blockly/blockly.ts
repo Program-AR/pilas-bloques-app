@@ -67,7 +67,8 @@ export const setXml = (xml: string) => {
 export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
   container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
   container.ariaValueText = 'child-blockly'
-  Blockly.inject(container, workspaceConfiguration)
+  const workspace = Blockly.inject(container, workspaceConfiguration)
+  workspace.addChangeListener(Blockly.Events.disableOrphans);
 }
 
 export const workspaceToCode = () => javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace())
