@@ -2,7 +2,6 @@ import { createCommonBlocklyBlocks, disableUnwantedProcedureBlocks, enableUnwant
 import Blockly, { Block } from "blockly/core"
 import { sensorsColor } from "./sensors";
 import { javascriptGenerator, Order } from "blockly/javascript";
-//@ts-ignore
 import { ProcedsBlocklyInit } from "blockly-proceds";
 
 const othersColor = '#cc5b22';
