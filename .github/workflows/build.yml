@@ -9,9 +9,6 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Clean npm cache
-        run: npm cache clean --force
-
       #https://docs.github.com/es/actions/guides/caching-dependencies-to-speed-up-workflows#using-the-cache-action
       - name: Cache node modules
         uses: actions/cache@v3
@@ -27,7 +24,11 @@ jobs:
             ${{ runner.os }}-
 
       - run: npm install
-      
+
+      - name: Verify package installation
+        run: ls -la node_modules/blockly-proceds/dist
+
+
       - name: Run tests
         run: xvfb-run -a npm run test
 
