@@ -25,10 +25,6 @@ jobs:
 
       - run: npm install
 
-      - name: Verify package installation
-        run: ls -la node_modules/blockly
-
-
       - name: Run tests
         run: xvfb-run -a npm run test
 
