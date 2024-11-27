@@ -26,7 +26,7 @@ jobs:
       - run: npm install
 
       - name: Verify package installation
-        run: ls -la node_modules/blockly-proceds
+        run: ls -la node_modules/blockly
 
 
       - name: Run tests
