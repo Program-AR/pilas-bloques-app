@@ -37,7 +37,7 @@ export const CreatorEditor = () => {
           <Header CenterComponent={<BetaBadge smaller={true}>
                                       <HeaderText text={t("editor.editorHeader")} />
                                    </BetaBadge>} 
-                  SubHeader={<EditorSubHeader viewButton={<EmberPreviewButton />} reactViewButton={shouldShow ? <PreviewButton /> : undefined } />} />
+                  SubHeader={<EditorSubHeader viewButton={shouldShow ? <EmberPreviewButton /> : undefined} reactViewButton={<PreviewButton /> } />} />
           <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
             <SceneEdition />
           </Stack>
