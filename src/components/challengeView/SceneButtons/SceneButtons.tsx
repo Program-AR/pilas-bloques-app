@@ -17,7 +17,7 @@ const shouldShow = process.env.NODE_ENV !== 'production'
 
 export const SceneButtons = ({ challenge }: SceneButtonsProps) => {
   return <PBCard sx={{ justifyContent: 'space-between', padding: '7px' }}>
-    <Stack direction='row' justifyContent='flex-start' flexGrow={2} spacing={2}>
+    <Stack direction='row' justifyContent='flex-start' flexGrow={2} spacing={2} marginRight='7px'>
       {shouldShow && <NextStepButton />}
       <ExecuteButton challenge={challenge} />
     </Stack>
