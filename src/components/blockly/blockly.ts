@@ -32,7 +32,7 @@ export type BlocklyBlockDefinition = {
 export type Toolbox = { kind: "categoryToolbox" | "flyoutToolbox", contents: ToolboxItem[] }
 type ToolboxItem = ToolboxBlock | ToolBoxCategory
 type ToolboxBlock = { kind: "block", type: string }
-type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[] }
+type ToolBoxCategory = { kind: "category" | '', name: string, contents: ToolboxItem[], custom?: string }
 
 export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xhtml">
               <block type="al_empezar_a_ejecutar" x="15" y="15"></block>
@@ -67,7 +67,8 @@ export const setXml = (xml: string) => {
 export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
   container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
   container.ariaValueText = 'child-blockly'
-  Blockly.inject(container, workspaceConfiguration)
+  const workspace = Blockly.inject(container, workspaceConfiguration)
+  workspace.addChangeListener(Blockly.Events.disableOrphans);
 }
 
 export const workspaceToCode = () => javascriptGenerator.workspaceToCode(Blockly.getMainWorkspace())
@@ -109,8 +110,9 @@ export const messageBlock = (message: string) => {
 }
 
 const createCommonCode = () => {
-  javascriptGenerator.addReservedWords('main', 'hacer', 'out_hacer', 'evaluar');
+  javascriptGenerator.addReservedWords('main,hacer,out_hacer,evaluar');
 
+  /*
   javascriptGenerator.required_value = function () {
     return null
   };
@@ -118,6 +120,7 @@ const createCommonCode = () => {
   javascriptGenerator.required_statement = function () {
     return null
   };
+*/
 
   javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
   javascriptGenerator.addReservedWords('highlightBlock');
@@ -155,7 +158,6 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   Blockly.Msg.CLEAN_UP = t("contextMenu.cleanUp")
   Blockly.Msg.EXTERNAL_INPUTS = t("contextMenu.externalInputs")
 
-
   // ProcedsBlockly.init() needs all procedure blocks to work, so we need to put them back
   // After calling init(), we disable unwanted toolbox blocks again
   enableUnwantedProcedureBlocks()
@@ -167,10 +169,15 @@ export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType
 
   const categoryBlocksFor = (categoryId: string): ToolboxItem => {
     const contents = blocks.filter(block => block.categoryId === categoryId).map(blockTypeToToolboxBlock)
-    return contents.length ? {
+    return contents.length ? categoryId === 'myprocedures' ? {
       kind: "category",
       name: `${t(`categories.${categoryId}`)}`,
-      contents: contents
+      contents: contents,
+      custom: "PROCEDURE"
+    } : {
+      kind: "category",
+      name: `${t(`categories.${categoryId}`)}`,
+      contents: contents,
     } : {
       kind: '',
       name: '',

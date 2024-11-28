@@ -37,7 +37,7 @@ describe('Challenge view with blocks', () => {
 
   //TODO - remove the skip once this issue is resolved: https://github.com/Program-AR/pilas-bloques-app/issues/312
   const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = true) => {
-    (skip ? it.skip: it)(name, () => {
+    (skip ? it.skip : it)(name, () => {
       LocalStorage.saveCreatorChallenge(challenge(solution))
       mount(
         <ThemeContextProvider>
@@ -72,7 +72,7 @@ describe('Challenge view with blocks', () => {
       </statement>
       </block>
       </xml>`
-  
+
   const ifSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
@@ -187,7 +187,7 @@ describe('Challenge view with blocks', () => {
   </block>
 </xml>`
 
-const aritmethicSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
+  const aritmethicSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
@@ -220,6 +220,60 @@ const aritmethicSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
   </block>
 </xml>`
 
+
+  const procedureSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+    <statement name="program">
+      <shadow type="required_statement"></shadow>
+      <block type="procedures_callnoreturn">
+        <mutation name="Hacer algo"></mutation>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" x="131" y="177">
+    <field name="NAME">Hacer algo</field>
+    <statement name="STACK">
+      <block type="MoverACasillaDerecha"></block>
+    </statement>
+  </block>
+</xml>`
+
+  const procedureWithParameterSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+    <statement name="program">
+      <shadow type="required_statement"></shadow>
+      <block type="procedures_callnoreturn">
+        <mutation name="Hacer algo">
+          <arg name="parámetro 1"></arg>
+        </mutation>
+        <value name="ARG0">
+          <shadow type="required_value"></shadow>
+          <block type="ParaLaDerecha"></block>
+        </value>
+      </block>
+    </statement>
+  </block>
+  <block type="procedures_defnoreturn" x="131" y="177">
+    <mutation>
+      <arg name="parámetro 1"></arg>
+    </mutation>
+    <field name="NAME">Hacer algo</field>
+    <field name="ARG0">parámetro 1</field>
+    <statement name="STACK">
+      <block type="MoverA">
+        <value name="direccion">
+          <shadow type="required_value"></shadow>
+          <block type="variables_get">
+            <mutation var="parámetro 1" parent="c*BJ:I!^xdp2/};|N==)"></mutation>
+          </block>
+        </value>
+      </block>
+    </statement>
+  </block>
+</xml>`
+
   testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 1, false)
 
   //Code from blocks have effect 
@@ -235,4 +289,9 @@ const aritmethicSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
   testExecutionWithBlocks('Code from blocks have effect - repeat', repeatSolution, 2)
 
   testExecutionWithBlocks('Code from blocks have effect - repeat until', repeatUntilSolution, 1)
+
+  testExecutionWithBlocks('Code from blocks have effect - procedures', procedureSolution, 1)
+
+  testExecutionWithBlocks('Code from blocks have effect - procedures with parameter', procedureWithParameterSolution, 1)
+
 })
