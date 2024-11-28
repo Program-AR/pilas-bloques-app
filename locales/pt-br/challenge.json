@@ -6,19 +6,19 @@
     "text2": "Você está usando bem os conceitos?"
   },
   "stepByStepRun": {
-    "label": "Passo",
+    "label": "PASSO",
     "tooltip": "Executar a solução proposta passo a passo"
   },
   "runStep": {
-    "label": "Passo",
+    "label": "PASSO",
     "tooltip": "Dê um passo"
   },
   "run": {
-    "label": "Executar",
+    "label": "EXECUTAR",
     "tooltip": "Executar a solução proposta"
   },
   "restart": {
-    "label": "Reiniciar",
+    "label": "REINICIAR",
     "tooltip": "Reiniciar execução"
   },
   "multipleScenarios": "Existem vários cenários!",

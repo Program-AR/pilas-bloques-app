@@ -16,18 +16,20 @@ type SceneButtonsProps = {
 const shouldShow = process.env.NODE_ENV !== 'production'
 
 export const SceneButtons = ({ challenge }: SceneButtonsProps) => {
-  return <PBCard sx={{justifyContent: 'space-between'}}>
-    { shouldShow && <NextStepButton /> }
-    <ExecuteButton challenge={challenge} />
-    { shouldShow && <TurboModeSwitch /> }
+  return <PBCard sx={{ justifyContent: 'space-between', padding: '7px' }}>
+    <Stack direction='row' justifyContent='flex-start' flexGrow={2} spacing={2}>
+      {shouldShow && <NextStepButton />}
+      <ExecuteButton challenge={challenge} />
+    </Stack>
+      {shouldShow && <TurboModeSwitch />}
   </PBCard>
 }
 
 export const SceneButtonsVertical = ({ challenge }: SceneButtonsProps) => {
   return <Stack gap={2} alignItems='center'>
-    { shouldShow && <NextStepButton /> }
+    {shouldShow && <NextStepButton />}
     <ExecuteButton challenge={challenge} />
-    { shouldShow && <TurboModeSwitch /> }
+    {shouldShow && <TurboModeSwitch />}
   </Stack>
 }
 
@@ -44,7 +46,7 @@ const NextStepButton = () => {
         </Stack>
       </IconButton>
       :
-      <Button variant="contained" sx={{ backgroundColor: "#31b0d5" }} onClick={() => { }}>{t("stepByStepRun.label")}</Button>
+      <Button className={styles['scene-button']} startIcon={<SkipNext />} variant="contained" sx={{ backgroundColor: "#31b0d5"}} onClick={() => { }}>{t("stepByStepRun.label")}</Button>
     }
   </Tooltip>
 }
