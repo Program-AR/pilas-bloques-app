@@ -33,7 +33,7 @@ export const EmberCreatorViewMode = () => {
             <>
                 <Header CenterComponent={<EmberCreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
                 <EmberView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
-                
+
             </>
         ) : <></>}
     </>)
@@ -42,11 +42,8 @@ export const EmberCreatorViewMode = () => {
 export const EmberCreatorViewHeader = ({ title }: { title: string }) => {
     const { t } = useTranslation('creator')
 
-    return <BetaBadge smaller={true}>
-        <PBreadcrumbs>
-            <HeaderText text={t("editor.previewModeHeader")} />
-            <Typography>{title}</Typography>
-        </PBreadcrumbs>
-    </BetaBadge>
-
+    return <PBreadcrumbs>
+        <HeaderText text={t("editor.previewModeHeader")} />
+        <Typography>{title}</Typography>
+    </PBreadcrumbs>
 }

@@ -15,7 +15,7 @@ export const ActorSelection = () => {
 	return (
         <Stack alignItems="center" height="inherit" sx={{backgroundColor: theme.palette.background.paper}}>
             <Header CenterComponent={
-                <BetaBadge smaller={true}><HeaderText text={t("selection.title")}/></BetaBadge>}/>
+                <HeaderText text={t("selection.title")}/>}/>
             <ChallengeInProgressDialog />
             <Stack className={styles['selection']}
                    style={isSmallScreen ? {} : {height: "100%"}}>
