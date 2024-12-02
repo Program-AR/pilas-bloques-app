@@ -18,7 +18,7 @@ export const ToolboxPreview = ({ categorized, blockIds }: ToolboxPreviewProps) =
   } : {} // used only in toolboxpreview to show blocks under the categories
 
   return <PBBlocklyWorkspace
-    sx={{ minWidth: isSmallScreen ? "auto" : "50%", padding: "5px", display: "flex", flexDirection: "column", ...sx }}
+    sx={{ minWidth: isSmallScreen ? "auto" : "58%", padding: "5px", display: "flex", flexDirection: "column", ...sx }}
     title
     blockIds={blockIds}
     categorized={categorized}
