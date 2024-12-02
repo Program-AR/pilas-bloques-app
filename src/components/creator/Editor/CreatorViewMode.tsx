@@ -29,8 +29,8 @@ export const CreatorViewMode = () => {
         {challengeExists ? (
             <>
                 <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
-                <ChallengeView height='calc(95% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH}/>
-                
+                <ChallengeView height='calc(95% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+
             </>
         ) : <></>}
     </>)
@@ -39,11 +39,8 @@ export const CreatorViewMode = () => {
 export const CreatorViewHeader = ({ title }: { title: string }) => {
     const { t } = useTranslation('creator')
 
-    return <BetaBadge smaller={true}>
-        <PBreadcrumbs>
-            <HeaderText text={t("editor.previewModeHeader")} />
-            <Typography>{title}</Typography>
-        </PBreadcrumbs>
-    </BetaBadge>
-
+    return <PBreadcrumbs>
+        <HeaderText text={t("editor.previewModeHeader")} />
+        <Typography>{title}</Typography>
+    </PBreadcrumbs>
 }

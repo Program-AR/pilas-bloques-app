@@ -14,9 +14,7 @@ import { useThemeContext } from "../../../../../theme/ThemeContext";
 
 export const ToolBoxEditor = () => {
 
-    const shouldShow = process.env.NODE_ENV !== 'production'
-
-    const [contentHeight,] = useState(window.innerHeight*0.7)
+    const [contentHeight,] = useState(window.innerHeight * 0.7)
 
     const { t } = useTranslation('creator');
     const { isSmallScreen } = useThemeContext()
@@ -63,17 +61,15 @@ export const ToolBoxEditor = () => {
             onCancel={handleOnCancel}
             title={`${t('toolbox.title')}${t(`selection.cards.${challenge.scene.type}.name`)}`}
             noScrollable={true}
-            dialogProps={{ maxWidth: "md"}}>
+            dialogProps={{ maxWidth: "md" }}>
             <Stack direction="row">
-                <PBCard sx={{display:"flex", maxWidth: isSmallScreen ? '50%' : 'inherit', flexDirection:"column", padding:"5px", maxHeight:`${contentHeight}px`}}> 
-                    <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized}/>
-                    <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)}/>
+                <PBCard sx={{ display: "flex", maxWidth: isSmallScreen ? '50%' : 'inherit', flexDirection: "column", padding: "5px", maxHeight: `${contentHeight}px` }}>
+                    <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized} />
+                    <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)} />
                 </PBCard>
-                {shouldShow ? <ToolboxPreview 
+                <ToolboxPreview
                     blockIds={toolBoxItems}
-                    categorized={isCategorized || toolboxState.categorizationShouldBeForced()}/>
-                    :<></>
-                }
+                    categorized={isCategorized || toolboxState.categorizationShouldBeForced()} />
             </Stack>
         </GenericModalDialog>
     </>
@@ -108,7 +104,7 @@ export class ToolboxState {
         return this.categories.find(category => category.id === categoryId)!.isSelected()
     }
 
-    categorizationShouldBeForced() { 
+    categorizationShouldBeForced() {
         return this.isCategorySelected(PROCEDURE_CATEGORY) //If this category is selected, the categorization should always be enabled
     }
 }

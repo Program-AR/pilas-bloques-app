@@ -148,11 +148,6 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'repetitions'
   },
   {
-    id: 'OpComparacion',
-    intlId: 'logic_compare',
-    categoryId: 'operators'
-  },
-  {
     id: 'OpAritmetica',
     intlId: 'math_arithmetic',
     categoryId: 'operators'
@@ -175,6 +170,11 @@ export const commonBlocks: BlockType[] = [
 ]
 
 const notUsedBlocks: BlockType[] = [
+  {
+    id: 'OpComparacion',
+    intlId: 'logic_compare',
+    categoryId: 'operators'
+  },
   {
     id: 'SiguienteColumna',
     intlId: 'nextColumn',

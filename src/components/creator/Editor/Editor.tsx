@@ -30,20 +30,18 @@ export const CreatorEditor = () => {
   }, [challengeExists, navigate])
 
   return (
-    <>   
-    { challengeExists ?
-      (<CreatorContextProvider>
-        <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
-          <Header CenterComponent={<BetaBadge smaller={true}>
-                                      <HeaderText text={t("editor.editorHeader")} />
-                                   </BetaBadge>} 
-                  SubHeader={<EditorSubHeader viewButton={shouldShow ? <EmberPreviewButton /> : undefined} reactViewButton={<PreviewButton /> } />} />
-          <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
-            <SceneEdition />
+    <>
+      {challengeExists ?
+        (<CreatorContextProvider>
+          <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
+            <Header CenterComponent={<HeaderText text={t("editor.editorHeader")} />}
+              SubHeader={<EditorSubHeader viewButton={shouldShow ? <EmberPreviewButton /> : undefined} reactViewButton={<PreviewButton />} />} />
+            <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
+              <SceneEdition />
+            </Stack>
           </Stack>
-        </Stack>
-      </CreatorContextProvider>
-      ) : <></>}
+        </CreatorContextProvider>
+        ) : <></>}
     </>
 
   )
@@ -59,5 +57,5 @@ export const EditorSubHeader = (props: EditorSubHeaderProps) =>
     <DiscardChallengeButton />
     {props.viewButton}
     {props.reactViewButton}
-    <ShareButton/>
+    <ShareButton />
   </CreatorSubHeader>
