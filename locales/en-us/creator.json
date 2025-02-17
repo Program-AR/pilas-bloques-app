@@ -154,8 +154,8 @@
 		"numRows": "Modify rows"
 	},
 	"toolbox": {
-		"title": "Select the challenge's commands for ",
-		"button": "Select available commands",
+		"title": "Select the challenge's blocks for ",
+		"button": "Select available blocks",
 		"categoriesHint": "When you want to use procedures there should always be categories"
 	},
 	"scenarios": {

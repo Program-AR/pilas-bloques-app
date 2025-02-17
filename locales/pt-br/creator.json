@@ -154,8 +154,8 @@
 		"numRows": "Modificar linhas"
 	},
 	"toolbox": {
-		"title": "Selecione os comandos para o desafio de ",
-		"button": "Selecione os comandos disponíveis",
+		"title": "Selecione os blocos para o desafio de ",
+		"button": "Selecione os blocos disponíveis",
 		"categoriesHint": "Quando se pretende utilizar procedimentos, deve haver sempre categorias"
 	},
 	"scenarios": {
