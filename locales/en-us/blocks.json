@@ -1,16 +1,16 @@
 {
-  "preview": "This is what your available commands will look like",
+  "preview": "This is what your available blocks will look like",
   "categories": {
     "primitives": "Primitives",
-    "myprocedures": "My Procedures",
+    "myprocedures": "My procedures",
     "repetitions": "Repetitions",
     "alternatives": "Alternatives",
     "variables": "Variables",
     "values": "Values",
     "sensors": "Sensors",
     "operators": "Operators",
-    "myfunctions": "My Functions",
-    "categorized": "Categorize Blocks"
+    "myfunctions": "My functions",
+    "categorized": "Categorize blocks"
   },
   "blocks": {
     "program": "When the program runs",

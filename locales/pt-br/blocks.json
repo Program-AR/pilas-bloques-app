@@ -1,8 +1,8 @@
 {
-  "preview": "Esta é a aparência dos comandos disponíveis",
+  "preview": "Esta é a aparência dos blocos disponíveis",
   "categories": {
     "primitives": "Primitivas",
-    "myprocedures": "Meus Procedimentos",
+    "myprocedures": "Meus procedimentos",
     "repetitions": "Repetições",
     "alternatives": "Alternativas",
     "variables": "Variáveis",
@@ -10,7 +10,7 @@
     "sensors": "Sensores",
     "operators": "Operadores",
     "myfunctions": "Minhas funções",
-    "categorized": "Categorizar Blocos"
+    "categorized": "Categorizar blocos"
   },
   "blocks": {
     "program": "Ao inicio da execução",
