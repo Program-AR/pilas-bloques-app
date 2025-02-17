@@ -5,8 +5,8 @@ export const categories: string[] = [
   'myprocedures',
   'repetitions',
   'alternatives',
-  'values',
   'sensors',
+  'values',
   'operators'
 ]
 
