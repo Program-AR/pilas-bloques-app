@@ -2,15 +2,15 @@
   "preview": "Así se verán tus bloques disponibles",
   "categories": {
     "primitives": "Primitivas",
-    "myprocedures": "Mis Procedimientos",
+    "myprocedures": "Mis procedimientos",
     "repetitions": "Repeticiones",
     "alternatives": "Alternativas",
     "variables": "Variables",
     "values": "Valores",
     "sensors": "Sensores",
     "operators": "Operadores",
-    "myfunctions": "Mis Funciones",
-    "categorized": "Categorizar Bloques"
+    "myfunctions": "Mis funciones",
+    "categorized": "Categorizar bloques"
   },
   "blocks": {
     "program": "Al empezar a ejecutar",
