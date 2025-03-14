@@ -11,36 +11,37 @@ import { EditorSubHeader } from "./Editor"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ChallengeView } from "../../challengeView/ChallengeView"
+import { CreatorContextProvider } from "./CreatorContext"
 
 export const CreatorViewMode = () => {
 
-    const challengeBeingEdited: SerializedChallenge = LocalStorage.getCreatorChallenge()!
+  const challengeBeingEdited: SerializedChallenge = LocalStorage.getCreatorChallenge()!
 
-    //Ember.importChallenge(challengeBeingEdited)
-    const navigate = useNavigate()
+  //Ember.importChallenge(challengeBeingEdited)
+  const navigate = useNavigate()
 
-    const challengeExists = LocalStorage.getCreatorChallenge()
+  const challengeExists = LocalStorage.getCreatorChallenge()
 
-    useEffect(() => {
-        if (!challengeExists) navigate('/creador/seleccionar')
-    }, [challengeExists, navigate])
+  useEffect(() => {
+    if (!challengeExists) navigate('/creador/seleccionar')
+  }, [challengeExists, navigate])
 
-    return (<>
-        {challengeExists ? (
-            <>
-                <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
-                <ChallengeView height='calc(95% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+  return (<>
+    {challengeExists ?
+      (<CreatorContextProvider>
+        <Header CenterComponent={<CreatorViewHeader title={challengeBeingEdited.title} />} SubHeader={<EditorSubHeader viewButton={<ReturnToEditionButton />} />} />
+        <ChallengeView height='calc(95% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
 
-            </>
-        ) : <></>}
-    </>)
+      </CreatorContextProvider>
+      ) : <></>}
+  </>)
 }
 
 export const CreatorViewHeader = ({ title }: { title: string }) => {
-    const { t } = useTranslation('creator')
+  const { t } = useTranslation('creator')
 
-    return <PBreadcrumbs>
-        <HeaderText text={t("editor.previewModeHeader")} />
-        <Typography>{title}</Typography>
-    </PBreadcrumbs>
+  return <PBreadcrumbs>
+    <HeaderText text={t("editor.previewModeHeader")} />
+    <Typography>{title}</Typography>
+  </PBreadcrumbs>
 }
