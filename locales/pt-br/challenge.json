@@ -22,5 +22,10 @@
     "tooltip": "Reiniciar execução"
   },
   "multipleScenarios": "Existem vários cenários!",
-  "close": "Fechar"
+  "close": "Fechar",
+  "solutionButtons": {
+    "download": "Baixe a solução para o seu computador",
+    "upload": "Carregar solução do seu computador",
+    "clear": "Exclua a solução atual"
+  }
 }
