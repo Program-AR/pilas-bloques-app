@@ -1,4 +1,4 @@
-import { IconButton, IconButtonProps, Stack, Tooltip } from "@mui/material"
+import { Button, Dialog, DialogContent, DialogTitle, IconButton, IconButtonProps, Stack, Tooltip, Typography } from "@mui/material"
 import DownloadIcon from '@mui/icons-material/Download';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useThemeContext } from "../../theme/ThemeContext";
@@ -7,6 +7,7 @@ import Blockly, { Block } from "blockly/core"
 import { LocalStorage } from "../../localStorage";
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
+import { useState } from "react";
 
 export const SolutionButtons = () => {
     const { t } = useTranslation('challenge')
@@ -87,11 +88,47 @@ const SaveSolutionButton = () => {
 const ClearSolutionButton = () => {
     const { t } = useTranslation('challenge')
 
-    const handleClick = () => {
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState<boolean>(false)
+
+    const deleteSolution = () => {
         Blockly.getMainWorkspace().clear()
         const xmlDom = Blockly.utils.xml.textToDom(xmlBloqueEmpezarAEjecutar)
         Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
+        setDeleteDialogOpen(false)
     }
 
-    return <SolutionButton onClick={handleClick} icon={<ClearIcon />} tooltip={t("solutionButtons.clear")} />
+    const handleClick = () => {
+        setDeleteDialogOpen(true)
+    }
+
+    const handleClose = () => {
+        setDeleteDialogOpen(false)
+    }
+
+    return <>
+        <Dialog open={deleteDialogOpen} onClose={handleClose}>
+            <DialogTitle display="flex" justifyContent="flex-end">
+                <IconButton onClick={handleClose}>
+                    <ClearIcon />
+                </IconButton>
+            </DialogTitle>
+            <DialogContent >
+                <Stack justifyContent="center" alignContent="center">
+                    <Typography>{t("solutionButtons.clearModal.warning")}</Typography>
+                    <Button onClick={deleteSolution}
+                        sx={{
+                            fontWeight: 'bold',
+                            margin: 1,
+                            width: "auto",
+                            alignSelf: "center",
+                            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+                        }}>
+                        {t("solutionButtons.clearModal.button")}
+                    </Button>
+                </Stack>
+            </DialogContent>
+        </Dialog>
+
+        <SolutionButton onClick={handleClick} icon={<ClearIcon />} tooltip={t("solutionButtons.clear")} />
+    </>
 }

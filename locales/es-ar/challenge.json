@@ -26,6 +26,10 @@
   "solutionButtons": {
     "download": "Descargar solución a tu computadora",
     "upload": "Subir solución desde tu computadora",
-    "clear": "Borrar la solución actual"
+    "clear": "Borrar la solución actual",
+    "clearModal": {
+      "warning": "¡Cuidado! Al borrar la solución se perderan tus cambios.",
+      "button": "BORRAR LA SOLUCIÓN"
+    }
   }
 }
