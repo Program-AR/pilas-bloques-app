@@ -7,14 +7,12 @@ import Blockly, { Block } from "blockly/core"
 import { LocalStorage } from "../../localStorage";
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
-import { useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 
 export const SolutionButtons = () => {
-    const { t } = useTranslation('challenge')
-
     return <Stack sx={{ position: "absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
         <SaveSolutionButton />
-        <SolutionButton icon={<DriveFolderUploadIcon />} tooltip={t("solutionButtons.upload")} />
+        <UploadSolution />
         <ClearSolutionButton />
     </Stack >
 }
@@ -43,7 +41,7 @@ const SolutionButton = (props: SolucionButtonProps & IconButtonProps) => {
 
 }
 
-const SPBQ_FILE_VERSION = 1
+const SPBQ_FILE_VERSION = 2
 
 const SaveSolutionButton = () => {
     const { t } = useTranslation('challenge')
@@ -130,5 +128,40 @@ const ClearSolutionButton = () => {
         </Dialog>
 
         <SolutionButton onClick={handleClick} icon={<ClearIcon />} tooltip={t("solutionButtons.clear")} />
+    </>
+}
+
+const UploadSolution = () => {
+    const { t } = useTranslation('challenge')
+
+    const fileInputRef = useRef<HTMLInputElement>(null)
+
+    const handleClick = () => {
+        fileInputRef.current?.click()
+    }
+
+    const handleOpenFile = async (event: ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0]
+
+        if (!file) return
+
+        const text = await file.text()
+        const solution = atob(JSON.parse(text).solucion)
+
+        Blockly.getMainWorkspace().clear()
+        const xmlDom = Blockly.utils.xml.textToDom(solution)
+        Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
+    }
+
+
+    return <>
+        <SolutionButton icon={<DriveFolderUploadIcon />} tooltip={t("solutionButtons.upload")} onClick={handleClick} />
+        <input
+            type="file"
+            accept=".spbq"
+            ref={fileInputRef}
+            onChange={handleOpenFile}
+            style={{ display: "none" }}
+        />
     </>
 }
