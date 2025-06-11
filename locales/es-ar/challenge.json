@@ -24,8 +24,8 @@
   "multipleScenarios": "¡Hay varios escenarios!",
   "close": "Cerrar",
   "solutionButtons": {
-    "download": "Descargar solución a tu computadora",
-    "upload": "Subir solución desde tu computadora",
+    "download": "Descargar solución",
+    "upload": "Cargar solución",
     "clear": "Borrar la solución actual",
     "clearModal": {
       "warning": "¡Cuidado! Al borrar la solución se perderan tus cambios.",

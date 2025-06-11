@@ -24,8 +24,8 @@
   "multipleScenarios": "There are multiple scenarios!",
   "close": "Close",
   "solutionButtons": {
-    "download": "Download solution to your computer",
-    "upload": "Upload solution from your computer",
+    "download": "Download solution",
+    "upload": "Upload solution",
     "clear": "Clear the current solution",
     "clearModal": {
       "warning": "Be careful! If you delete your solution, you will lose your work.",

@@ -11,8 +11,8 @@ import { ChangeEvent, useRef, useState } from "react";
 
 export const SolutionButtons = () => {
     return <Stack sx={{ position: "absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
-        <SaveSolutionButton />
         <UploadSolution />
+        <SaveSolutionButton />
         <ClearSolutionButton />
     </Stack >
 }
@@ -120,6 +120,7 @@ const ClearSolutionButton = () => {
                             width: "auto",
                             alignSelf: "center",
                             boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+                            color: 'red'
                         }}>
                         {t("solutionButtons.clearModal.button")}
                     </Button>
