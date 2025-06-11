@@ -22,5 +22,14 @@
     "tooltip": "Reiniciar la ejecución"
   },
   "multipleScenarios": "¡Hay varios escenarios!",
-  "close": "Cerrar"
+  "close": "Cerrar",
+  "solutionButtons": {
+    "download": "Descargar solución",
+    "upload": "Cargar solución",
+    "clear": "Borrar la solución actual",
+    "clearModal": {
+      "warning": "¡Cuidado! Al borrar la solución se perderan tus cambios.",
+      "button": "BORRAR LA SOLUCIÓN"
+    }
+  }
 }

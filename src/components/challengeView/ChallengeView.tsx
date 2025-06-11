@@ -15,6 +15,7 @@ import { useEffect, useMemo, useState } from "react";
 import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
 import Blockly from "blockly/core"
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
+import { SolutionButtons } from "./SolutionButtons";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -118,11 +119,14 @@ type EditableBlocklyWorkspaceProps = {
 
 const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
-    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} zoomScale={1.0}/>
+    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} zoomScale={1.0} />
   }, [])
 
-  return <Stack direction="row" flexWrap={"wrap"} flexGrow={1}>
-    {blocklyWorkspace}
+  return <Stack direction="row" >
+    <Stack direction="row" position="relative" flexWrap={"wrap"} flexGrow={1}>
+      <SolutionButtons/>
+      {blocklyWorkspace}
+    </Stack>
     <Stack>
       <SceneButtons challenge={challenge} />
       <SceneView descriptor={challenge.sceneDescriptor} />
@@ -135,7 +139,7 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
 
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
-    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} zoomScale={0.7}/>
+    return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} zoomScale={0.7} />
   }, [])
 
   return <Stack flexWrap={"wrap"} flexGrow={1} >

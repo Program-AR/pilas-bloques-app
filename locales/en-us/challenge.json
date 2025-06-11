@@ -22,5 +22,14 @@
     "tooltip": "Restart execution"
   },
   "multipleScenarios": "There are multiple scenarios!",
-  "close": "Close"
+  "close": "Close",
+  "solutionButtons": {
+    "download": "Download solution",
+    "upload": "Upload solution",
+    "clear": "Clear the current solution",
+    "clearModal": {
+      "warning": "Be careful! If you delete your solution, you will lose your work.",
+      "button": "DELETE SOLUTION"
+    }
+  }
 }
