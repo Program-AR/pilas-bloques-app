@@ -21,6 +21,10 @@
     "label": "RESTART",
     "tooltip": "Restart execution"
   },
+  "showScenarios": {
+    "label": "SCENARIOS",
+    "tooltip": "Show another scenario"
+  },
   "multipleScenarios": "There are multiple scenarios!",
   "close": "Close",
   "solutionButtons": {

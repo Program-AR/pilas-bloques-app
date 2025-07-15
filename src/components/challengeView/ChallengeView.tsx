@@ -120,11 +120,12 @@ type EditableBlocklyWorkspaceProps = {
 const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
     return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} zoomScale={1.0} />
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return <Stack direction="row" >
     <Stack direction="row" position="relative" flexWrap={"wrap"} flexGrow={1}>
-      <SolutionButtons/>
+      <SolutionButtons />
       {blocklyWorkspace}
     </Stack>
     <Stack>
@@ -140,6 +141,7 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
 
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
     return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} zoomScale={0.7} />
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return <Stack flexWrap={"wrap"} flexGrow={1} >
