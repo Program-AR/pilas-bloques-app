@@ -22,7 +22,7 @@
     "tooltip": "Reiniciar la ejecución"
   },
   "showScenarios": {
-    "label": "ESCENARIOS",
+    "label": "CAMBIAR ESCENARIO",
     "tooltip": "Mostrar otro escenario"
   },
   "multipleScenarios": "¡Hay varios escenarios!",
