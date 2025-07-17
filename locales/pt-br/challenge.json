@@ -21,6 +21,10 @@
     "label": "REINICIAR",
     "tooltip": "Reiniciar execução"
   },
+  "showScenarios": {
+    "label": "TROCAR CENÁRIO",
+    "tooltip": "Mostrar outro cenário"
+  },
   "multipleScenarios": "Existem vários cenários!",
   "close": "Fechar",
   "solutionButtons": {

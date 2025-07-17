@@ -8,6 +8,7 @@ import { useThemeContext } from "../../../theme/ThemeContext";
 import { ExecuteButton } from "./Execute"
 import { Challenge } from "../../../staticData/challenges"
 import { useTranslation } from "react-i18next"
+import { MultipleScenariosButton } from "./MultipleScenarios"
 
 type SceneButtonsProps = {
   challenge: Challenge
@@ -20,6 +21,7 @@ export const SceneButtons = ({ challenge }: SceneButtonsProps) => {
     <Stack direction='row' justifyContent='flex-start' flexGrow={2} spacing={2} marginRight='7px'>
       {shouldShow && <NextStepButton />}
       <ExecuteButton challenge={challenge} />
+      { challenge.shouldShowMultipleScenarioHelp && <MultipleScenariosButton challenge={challenge} /> }
     </Stack>
       {shouldShow && <TurboModeSwitch />}
   </PBCard>
@@ -29,6 +31,7 @@ export const SceneButtonsVertical = ({ challenge }: SceneButtonsProps) => {
   return <Stack gap={2} alignItems='center'>
     {shouldShow && <NextStepButton />}
     <ExecuteButton challenge={challenge} />
+    { challenge.shouldShowMultipleScenarioHelp && <MultipleScenariosButton challenge={challenge} /> }
     {shouldShow && <TurboModeSwitch />}
   </Stack>
 }
