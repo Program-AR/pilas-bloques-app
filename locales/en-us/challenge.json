@@ -22,7 +22,7 @@
     "tooltip": "Restart execution"
   },
   "showScenarios": {
-    "label": "SCENARIOS",
+    "label": "CHANGE SCENARIO",
     "tooltip": "Show another scenario"
   },
   "multipleScenarios": "There are multiple scenarios!",
