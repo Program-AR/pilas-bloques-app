@@ -1,4 +1,4 @@
-import { Button, darken, IconButton, Stack, Tooltip } from "@mui/material"
+import { Button, IconButton, Stack, Tooltip } from "@mui/material"
 import { scene } from "../scene"
 import { interpreterFactory } from "./interpreterFactory"
 import Interpreter from "js-interpreter"
@@ -19,7 +19,7 @@ type ExecuteButtonProps = {
 
 export const ExecuteButton = ({ challenge, running, setRunning, step }: ExecuteButtonProps) => {
 
-  const { isSmallScreen, theme } = useThemeContext()
+  const { isSmallScreen } = useThemeContext()
   const [showModal, setShowModal] = useState(false)
   const [finishedExecution, setFinishedExecution] = useState(false)
   const { t } = useTranslation('challenge')
