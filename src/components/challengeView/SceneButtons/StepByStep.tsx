@@ -20,10 +20,12 @@ export const StepByStepButton = ({ challenge, running, setRunning }: ExecuteButt
 
   const { isSmallScreen } = useThemeContext()
   const [showModal, setShowModal] = useState(false)
+  const [stepping, setStepping] = useState(false)
   const { t } = useTranslation('challenge')
 
   const handleExcecute = async () => {
     setRunning && setRunning(true)
+    setStepping(true)
     await scene.restartScene(challenge.sceneDescriptor)
     executeUntilEnd(interpreterFactory.createInterpreter()).then((finished) => { if (finished) whenExecuteEnd() })
   }
@@ -36,6 +38,7 @@ export const StepByStepButton = ({ challenge, running, setRunning }: ExecuteButt
 
   const whenExecuteEnd = async () => {
     setRunning && setRunning(false)
+    setStepping(false)
     const solved = await scene.isTheProblemSolved()
     if (solved)
       setShowModal(true)
@@ -61,6 +64,7 @@ export const StepByStepButton = ({ challenge, running, setRunning }: ExecuteButt
         if (moreToExecute) {
           setTimeout(executeInterpreter, 10);
         } else {
+          setStepping(false);
           resolve(true);
         }
       };
@@ -82,7 +86,7 @@ export const StepByStepButton = ({ challenge, running, setRunning }: ExecuteButt
   return <>
     <Tooltip title={t('stepByStepRun.tooltip')}>
       {isSmallScreen ?
-        <IconButton className={styles['icon-button']} onClick={() => running ? handleStep() : handleExcecute()}
+        <IconButton className={styles['icon-button']} disabled={running && !stepping} onClick={() => running ? handleStep() : handleExcecute()}
           data-testid='step-button'>
           <Stack>
             <Circle className={styles['circle-icon']} sx={{ color: '#31b0d5' }} />
@@ -90,7 +94,7 @@ export const StepByStepButton = ({ challenge, running, setRunning }: ExecuteButt
           </Stack>
         </IconButton>
         :
-        <Button className={styles['scene-button']} startIcon={<SkipNext />} variant="contained" sx={{ backgroundColor: "#31b0d5" }} onClick={() => running ? handleStep() : handleExcecute()}>{t("stepByStepRun.label")}</Button>
+        <Button className={styles['scene-button']} disabled={running && !stepping} startIcon={<SkipNext />} variant="contained" sx={{ backgroundColor: "#31b0d5" }} onClick={() => running ? handleStep() : handleExcecute()}>{t("stepByStepRun.label")}</Button>
       }
     </Tooltip>
 
