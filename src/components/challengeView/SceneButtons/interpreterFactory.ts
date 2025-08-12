@@ -75,7 +75,6 @@ class InterpreterFactory {
         if (typeof params.receptor === 'string') {
             params.receptor = scene.sceneReceptor(params.receptor)
         }
-
         actor.hacer_luego(behaviourClass, params);
         actor.hacer_luego(scene.behaviourClass('LlamarCallback'), { callback });
     };

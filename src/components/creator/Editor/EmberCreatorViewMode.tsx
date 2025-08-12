@@ -7,12 +7,10 @@ import { Header, HeaderText } from "../../header/Header"
 import { SerializedChallenge } from "../../serializedChallenge"
 import { useTranslation } from "react-i18next"
 import { ReturnToEditionButton } from "./ActionButtons/ReturnToEditButton"
-import { BetaBadge } from "../BetaBadge"
 import { PBreadcrumbs } from "../../PBreadcrumbs"
 import { EditorSubHeader } from "./Editor"
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { ChallengeView } from "../../challengeView/ChallengeView"
 
 export const EmberCreatorViewMode = () => {
 

@@ -9,9 +9,10 @@ import { useEffect, useState } from "react"
 
 type MultipleScenariosButtonProps = {
   challenge: Challenge
+  disabled?: boolean
 }
 
-export const MultipleScenariosButton = ({ challenge }: MultipleScenariosButtonProps) => {
+export const MultipleScenariosButton = ({ challenge, disabled }: MultipleScenariosButtonProps) => {
 
   const { isSmallScreen, theme } = useThemeContext()
   const { t } = useTranslation('challenge')
@@ -29,7 +30,7 @@ export const MultipleScenariosButton = ({ challenge }: MultipleScenariosButtonPr
 
   const handleShowScenarios = async () => {
     if (currentScene == null) {
-      await scene.restartScene(challenge.sceneDescriptor)      
+      await scene.restartScene(challenge.sceneDescriptor)
       setCurrentScene(scene.currentScene())
       return
     }
@@ -52,15 +53,27 @@ export const MultipleScenariosButton = ({ challenge }: MultipleScenariosButtonPr
   }
 
   return <Tooltip title={t('showScenarios.tooltip')}>
-    {isSmallScreen ?
-      <IconButton className={styles['icon-button']}  style={{backgroundColor: theme.palette.secondary.main}} onClick={handleShowScenarios} data-testid='showScenarios-button' data-finishedexecution={false}>
-        <Stack>
-          <Circle className={styles['circle-icon']} style={{color: theme.palette.secondary.main}} />
-          <SwapHorizOutlined className={styles['icon']}/>
-        </Stack>
-      </IconButton >
-      :
-      <Button className={styles['scene-button']} startIcon={<SwapHorizOutlined />} variant="contained" style={{backgroundColor: theme.palette.secondary.main}} onClick={handleShowScenarios} data-testid='showScenarios-button' data-finishedexecution={false}>{t("showScenarios.label")} </Button>
-    }
+    <Stack alignItems={isSmallScreen ? 'center' : 'flex-start'} marginLeft={isSmallScreen ? '0px' : '7px'}>
+      {isSmallScreen ?
+        <IconButton className={styles['icon-button']} disabled={disabled}
+          style={{ marginTop: '7px' }}
+          onClick={handleShowScenarios}
+          data-testid='showScenarios-button'
+          data-finishedexecution={false}>
+          <Stack>
+            <Circle className={styles['circle-icon']} style={{ color: disabled ? 'rgba(0,0,0,0.26)' : theme.palette.secondary.main }} />
+            <SwapHorizOutlined className={styles['icon']} style={{ color: disabled ? '#fff' : '#000' }} />
+          </Stack>
+        </IconButton >
+        :
+        <Button className={styles['scene-button']} disabled={disabled}
+          startIcon={<SwapHorizOutlined style={{ color: disabled ? 'rgba(0,0,0,0.26)' : '#000' }} />}
+          variant="contained"
+          style={{  color: disabled ? 'rgba(0,0,0,0.26)' : '#000', backgroundColor: disabled ? 'rgba(0,0,0,0.12)' : theme.palette.secondary.main }}
+          onClick={handleShowScenarios}
+          data-testid='showScenarios-button'
+          data-finishedexecution={false}>{t("showScenarios.label")} </Button>
+      }
+    </Stack>
   </Tooltip>
 }
