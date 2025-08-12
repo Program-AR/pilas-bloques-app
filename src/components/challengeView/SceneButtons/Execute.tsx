@@ -14,20 +14,24 @@ type ExecuteButtonProps = {
   challenge: Challenge
   running?: boolean
   setRunning?: (running: boolean) => void
-  step?: boolean
 }
 
-export const ExecuteButton = ({ challenge, running, setRunning, step }: ExecuteButtonProps) => {
+export const ExecuteButton = ({ challenge, running, setRunning }: ExecuteButtonProps) => {
 
   const { isSmallScreen } = useThemeContext()
   const [showModal, setShowModal] = useState(false)
   const [finishedExecution, setFinishedExecution] = useState(false)
   const { t } = useTranslation('challenge')
 
+  const handleRestart = async () => {
+    setFinishedExecution(false)
+    setRunning && setRunning(false)
+    await scene.restartScene(challenge.sceneDescriptor)
+  }
   const handleExcecute = async () => {
     setRunning && setRunning(true)
     await scene.restartScene(challenge.sceneDescriptor)
-    executeUntilEnd(interpreterFactory.createInterpreter(), step).then((finished) => { if (finished) whenExecuteEnd() })
+    executeUntilEnd(interpreterFactory.createInterpreter()).then((finished) => { if (finished) whenExecuteEnd() })
   }
 
   const whenExecuteEnd = async () => {
@@ -38,12 +42,12 @@ export const ExecuteButton = ({ challenge, running, setRunning, step }: ExecuteB
       setShowModal(true)
   }
 
-  const executeUntilEnd = (interpreter: Interpreter, stepByStep: boolean = false) => {
+  const executeUntilEnd = (interpreter: Interpreter) => {
     return new Promise((success, reject) => {
 
       let moreToExecute: boolean
 
-      const executeInterpreter = (interpreter: Interpreter, stepAction: boolean = false) => {
+      const executeInterpreter = (interpreter: Interpreter) => {
         try {
           moreToExecute = interpreter.run();
         } catch (e) {
@@ -56,7 +60,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, step }: ExecuteB
           success({ finished: true })
         }
       }
-      executeInterpreter(interpreter, stepByStep)
+      executeInterpreter(interpreter)
     })
   }
 
@@ -64,7 +68,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, step }: ExecuteB
     {running || finishedExecution ? (
       <Tooltip title={t('restart.tooltip')}>
         {isSmallScreen ?
-          <IconButton className={styles['icon-button']} onClick={handleExcecute}
+          <IconButton className={styles['icon-button']} onClick={handleRestart}
             data-testid='restart-button' data-finishedexecution={finishedExecution}>
             <Stack>
               <Circle color='secondary' className={styles['circle-icon']} />
@@ -74,7 +78,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, step }: ExecuteB
           :
           <Button className={styles['scene-button']}
             sx={{color: '#fff'}}
-            startIcon={<ReplayOutlined />} variant="contained" color="secondary" onClick={handleExcecute} data-testid='restart-button' data-finishedexecution={finishedExecution}>{t("restart.label")} </Button>
+            startIcon={<ReplayOutlined />} variant="contained" color="secondary" onClick={handleRestart} data-testid='restart-button' data-finishedexecution={finishedExecution}>{t("restart.label")} </Button>
         }
       </Tooltip>) : (
       <Tooltip title={t('run.tooltip')}>
