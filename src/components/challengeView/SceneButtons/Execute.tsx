@@ -36,7 +36,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
           :
           <Button className={styles['scene-button']}
             sx={{ color: '#fff' }}
-            startIcon={<ReplayOutlined />} variant="contained" color="secondary" onClick={onRestart} data-finishedexecution={running} data-testid='execute-button'>{t("restart.label")} </Button>
+            startIcon={<ReplayOutlined />} variant="contained" color="secondary" onClick={onRestart} data-finishedexecution={true} data-testid='execute-button'>{t("restart.label")} </Button>
         }
       </Tooltip>) : (
       <Tooltip title={t('run.tooltip')}>
@@ -48,7 +48,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
             </Stack>
           </IconButton >
           :
-          <Button className={styles['scene-button']} startIcon={<PlayArrow />} variant="contained" color="success" onClick={run} data-finishedexecution={running} data-testid='execute-button'>{t("run.label")} </Button>
+          <Button className={styles['scene-button']} startIcon={<PlayArrow />} variant="contained" color="success" onClick={run} data-finishedexecution={true} data-testid='execute-button'>{t("run.label")} </Button>
         }
       </Tooltip>
     )}
