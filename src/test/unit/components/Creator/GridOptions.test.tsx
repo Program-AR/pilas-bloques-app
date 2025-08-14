@@ -1,8 +1,8 @@
-import { renderComponent, renderWithContext } from "../../../testUtils"
+import { renderComponent } from "../../../testUtils"
 import { fireEvent, screen } from '@testing-library/react'
 import { GridOptions } from "../../../../components/creator/Editor/SceneEdition/GridOptions/GridOptions"
 import { LocalStorage } from "../../../../localStorage"
-import { SceneMap, SerializedChallenge, defaultChallenge, defaultScene } from "../../../../components/serializedChallenge"
+import { SceneMap, SerializedChallenge, defaultChallenge } from "../../../../components/serializedChallenge"
 import { ACTOR, EMPTY, OBSTACLE } from "../../../../components/creator/Editor/SceneEdition/mapUtils"
 import { CreatorContextProvider } from "../../../../components/creator/Editor/CreatorContext"
 
