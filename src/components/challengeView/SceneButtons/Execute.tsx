@@ -27,7 +27,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
       <Tooltip title={t('restart.tooltip')}>
         {isSmallScreen ?
           <IconButton className={styles['icon-button']} onClick={onRestart}
-            data-testid='execute-button'>
+            data-testid='execute-button' data-finishedexecution={false}>
             <Stack>
               <Circle color='secondary' className={styles['circle-icon']} />
               <ReplayOutlined className={styles['icon']} />
@@ -36,12 +36,12 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
           :
           <Button className={styles['scene-button']}
             sx={{ color: '#fff' }}
-            startIcon={<ReplayOutlined />} variant="contained" color="secondary" onClick={onRestart} data-finishedexecution={true} data-testid='execute-button'>{t("restart.label")} </Button>
+            startIcon={<ReplayOutlined />} variant="contained" color="secondary" onClick={onRestart} data-finishedexecution={false} data-testid='execute-button'>{t("restart.label")} </Button>
         }
       </Tooltip>) : (
       <Tooltip title={t('run.tooltip')}>
         {isSmallScreen ?
-          <IconButton className={styles['icon-button']} onClick={run} data-testid='execute-button'>
+          <IconButton className={styles['icon-button']} onClick={run} data-testid='execute-button' data-finishedexecution={true}>
             <Stack>
               <Circle color='success' className={styles['circle-icon']} />
               <PlayArrow className={styles['icon']} />
