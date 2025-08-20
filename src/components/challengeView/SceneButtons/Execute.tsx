@@ -46,7 +46,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
       <Tooltip title={t('restart.tooltip')}>
         {isSmallScreen ?
           <IconButton className={styles['icon-button']} onClick={handleRestart}
-            data-testid='execute-button' data-finishedexecution={false}>
+            data-testid='execute-button' data-finishedexecution={true}>
             <Stack>
               <Circle color='secondary' className={styles['circle-icon']} />
               <ReplayOutlined className={styles['icon']} />

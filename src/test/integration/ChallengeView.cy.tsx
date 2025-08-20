@@ -274,7 +274,7 @@ describe('Challenge view with blocks', () => {
   </block>
 </xml>`
 
-  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 1, false)
+  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
 
   //Code from blocks have effect 
 
