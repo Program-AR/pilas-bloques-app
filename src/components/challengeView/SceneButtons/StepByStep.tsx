@@ -27,12 +27,19 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
         <IconButton className={styles['icon-button']} disabled={running && !stepping} onClick={run}
           data-testid='step-button'>
           <Stack>
-            <Circle className={styles['circle-icon']} sx={{ color: '#31b0d5' }} />
-            <SkipNext className={styles['icon']} />
+            <Circle className={styles['circle-icon']} sx={{
+              color: running && !stepping ? 'rgba(0,0,0,0.26)' : '#31b0d5',
+              '&:hover': { color: '#269abc' },
+            }} />
+            <SkipNext className={styles['icon']}/>
           </Stack>
         </IconButton>
         :
-        <Button className={styles['scene-button']} disabled={running && !stepping} startIcon={<SkipNext />} variant="contained" sx={{ backgroundColor: "#31b0d5" }} onClick={run}>{t("stepByStepRun.label")}</Button>
+        <Button className={styles['scene-button']} disabled={running && !stepping} startIcon={<SkipNext />} variant="contained"
+          sx={{
+            backgroundColor: '#31b0d5',
+            '&:hover': { backgroundColor: '#269abc' }
+          }} onClick={run}>{t("stepByStepRun.label")}</Button>
       }
     </Tooltip>
     <EndDialog showModal={showModal} setShowModal={setShowModal} />

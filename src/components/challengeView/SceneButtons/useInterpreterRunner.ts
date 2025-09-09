@@ -51,7 +51,6 @@ export const useInterpreterRunner = (
           setTimeout(executeInterpreter, 10);
         } else {
           interpreterRef.current = null;
-          setRunning && setRunning(false);
           setStepping(false);
           checkProblemSolved().then(resolve);
         }
