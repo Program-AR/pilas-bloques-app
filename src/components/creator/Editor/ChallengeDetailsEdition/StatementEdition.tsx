@@ -6,11 +6,13 @@ import { GenericModalDialog } from "../../../modalDialog/GenericModalDialog";
 import { DetailsEditionButton } from "./DetailsEditionButton";
 import { MarkdownEditor } from "../MarkDownEdition/MarkdownEditor";
 
+/*
 type StatementEditionType = {
     dialogImageUrl?: string;
     };
+*/
 
-export const StatementEdition = (props: StatementEditionType) => {
+export const StatementEdition = () => {
 
     const { t } = useTranslation('creator');
 
