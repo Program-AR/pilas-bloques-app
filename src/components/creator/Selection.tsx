@@ -10,7 +10,6 @@ import UploadIcon from '../home/UploadIcon';
 import { LocalStorage } from "../../localStorage"
 import { SceneType, SerializedChallenge, isValidChallenge, defaultChallenge } from "../serializedChallenge"
 import { DialogSnackbar } from "../dialogSnackbar/DialogSnackbar";
-import { BetaBadge } from "./BetaBadge"
 import { useThemeContext } from "../../theme/ThemeContext"
 
 

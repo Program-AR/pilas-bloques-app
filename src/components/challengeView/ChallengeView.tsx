@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
 import { PaperProps, Stack } from "@mui/material";
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
-import { InfoButton, SceneButtons, SceneButtonsVertical } from "./SceneButtons/SceneButtons";
+import { InfoButton, SceneButtons } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
 import { StatementDescription } from "./StatementDescription";
 import { ChallengeFooter, InfoDrawer } from "./Info/ChallengeFooter";
@@ -16,6 +16,7 @@ import { ChallengeBreadcrumb } from "./ChallengeBreadcrumb";
 import Blockly from "blockly/core"
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { SolutionButtons } from "./SolutionButtons";
+import { MultipleScenariosButton } from "./SceneButtons/MultipleScenarios";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -118,6 +119,7 @@ type EditableBlocklyWorkspaceProps = {
 }
 
 const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+  const [running, setRunning] = useState(false)
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
     return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} zoomScale={1.0} />
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,14 +131,15 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
       {blocklyWorkspace}
     </Stack>
     <Stack>
-      <SceneButtons challenge={challenge} />
+      <SceneButtons challenge={challenge} running={running} setRunning={setRunning} />
+      {challenge.shouldShowMultipleScenarioHelp && <MultipleScenariosButton challenge={challenge} disabled={running} />}
       <SceneView descriptor={challenge.sceneDescriptor} />
     </Stack>
   </Stack>
 }
 
 const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
-
+  const [running, setRunning] = useState(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
 
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
@@ -149,7 +152,8 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
     <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
       <SceneView descriptor={challenge.sceneDescriptor} />
       <Stack margin='10px' justifyContent='space-between'>
-        <SceneButtonsVertical challenge={challenge} />
+        <SceneButtons challenge={challenge} vertical={true} running={running} setRunning={setRunning} />
+        {challenge.shouldShowMultipleScenarioHelp && <MultipleScenariosButton challenge={challenge} disabled={running} />}
         <InfoButton onClick={() => setOpenDrawer(true)} />
         <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
       </Stack>

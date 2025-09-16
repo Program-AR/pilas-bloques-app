@@ -96,6 +96,29 @@ class Scene {
     this.setChallenge(descriptor)
   }
 
+  pausadoEnBreakpoint() {
+    return this.eval('pilas').pausadoEnBreakpoint
+  }
+
+  setPausadoEnBreakpoint(setPaused: boolean) {
+    this.eval(`pilas`).pausadoEnBreakpoint = setPaused
+    this.eval('pilas').ejecutando = !setPaused
+  }
+
+  enableTurboMode() {
+    this.eval('ComportamientoConVelocidad').modoTurbo = true;
+    this.eval('pilas.ponerVelocidadMaxima()');
+  }
+
+  disableTurboMode() {
+    this.eval('ComportamientoConVelocidad').modoTurbo = false;
+    this.eval('pilas.ponerVelocidadNormal()');
+  }
+
+  isTurboModeActive() {
+    return this.eval('ComportamientoConVelocidad').modoTurbo
+  }
+
   sceneActor(): Actor {
     return this.eval('pilas.escena_actual().automata')
   }

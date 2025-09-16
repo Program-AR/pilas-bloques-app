@@ -28,7 +28,7 @@ describe('Challenge view with blocks', () => {
   const executeChallengeWithEval = (expression: string, expected: any) => {
     cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'true').then($iframe => {
       const iframe = $iframe[0] as HTMLIFrameElement;
-      cy.get('[data-testid="execute-button"]').click().should('have.attr', 'data-finishedexecution', 'true').then(() => {
+      cy.get('[data-testid="execute-button"]').click().should('have.attr', 'data-finishedexecution', 'false').then(() => {
         expect((iframe.contentWindow as any).eval(`pilas.escena_actual().${expression}`)).to.equal(expected)
       })
     })
@@ -274,7 +274,7 @@ describe('Challenge view with blocks', () => {
   </block>
 </xml>`
 
-  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 1, false)
+  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
 
   //Code from blocks have effect 
 

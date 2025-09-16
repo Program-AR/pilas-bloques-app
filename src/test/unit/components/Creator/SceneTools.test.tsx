@@ -14,7 +14,7 @@ describe('Scene Tools', () => {
         LocalStorage.saveCreatorChallenge(defaultChallenge("Lita"))
     })
 
-    test('check tool button belongs to the scene ', async () => {
+    test('check tool button belongs to the scene', async () => {
   
         renderComponent(<SceneTools />)
 
@@ -23,7 +23,7 @@ describe('Scene Tools', () => {
         expect(toolButton).toBeInTheDocument()
     })
 
-    test('check tool button not belongs to the scene ', async () => {
+    test('check tool button not belongs to the scene', async () => {
   
         renderComponent(<SceneTools />)
 
