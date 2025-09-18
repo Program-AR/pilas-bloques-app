@@ -19,8 +19,6 @@ type SceneButtonsProps = {
   setRunning?: (running: boolean) => void
 }
 
-const shouldShow = process.env.NODE_ENV !== 'production'
-
 export const SceneButtons = ({ challenge, vertical, running, setRunning }: SceneButtonsProps) => {
   const [interpreterVersion, setInterpreterVersion] = useState(0);
   const handleRestart = () => {
@@ -32,15 +30,15 @@ export const SceneButtons = ({ challenge, vertical, running, setRunning }: Scene
   return <PBCard sx={{ justifyContent: 'space-between', padding: '7px' }}>
     {!vertical &&
       <Stack direction='row' justifyContent='flex-start' flexGrow={2} spacing={2} marginRight='7px'>
-        {shouldShow && <StepByStepButton challenge={challenge} running={running} setRunning={setRunning} interpreterVersion={interpreterVersion} />}
+        <StepByStepButton challenge={challenge} running={running} setRunning={setRunning} interpreterVersion={interpreterVersion} />
         <ExecuteButton challenge={challenge} running={running} setRunning={setRunning} interpreterVersion={interpreterVersion} onRestart={handleRestart} />
       </Stack>}
-    {!vertical && shouldShow && <TurboModeSwitch />}
+    {!vertical && <TurboModeSwitch />}
     {vertical &&
       <Stack gap={2} alignItems='center'>
-        {shouldShow && <StepByStepButton challenge={challenge} running={running} setRunning={setRunning}  interpreterVersion={interpreterVersion} />}
+        <StepByStepButton challenge={challenge} running={running} setRunning={setRunning}  interpreterVersion={interpreterVersion} />
         <ExecuteButton challenge={challenge} running={running} setRunning={setRunning}  interpreterVersion={interpreterVersion} onRestart={handleRestart}/>
-        {shouldShow && <TurboModeSwitch />}
+        <TurboModeSwitch />
       </Stack>}
   </PBCard>
 }
