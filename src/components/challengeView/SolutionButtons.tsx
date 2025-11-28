@@ -8,13 +8,31 @@ import { LocalStorage } from "../../localStorage";
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { ChangeEvent, useRef, useState } from "react";
+import { PBCard } from "../PBCard"
 
-export const SolutionButtons = () => {
-    return <Stack sx={{ position: "absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
-        <UploadSolution />
-        <SaveSolutionButton />
-        <ClearSolutionButton />
-    </Stack >
+
+type IsSolucionVertical = {
+    vertical?: boolean
+}
+
+export const SolutionButtons = ({ vertical }: IsSolucionVertical) => {
+    if (!vertical) {
+        return (
+            <Stack sx={{ position: "absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
+                <UploadSolution />
+                <SaveSolutionButton />
+                <ClearSolutionButton />
+            </Stack>
+        );
+    }
+
+    return (
+        <Stack gap={2} alignItems='center'>
+            <UploadSolution />
+            <SaveSolutionButton />
+            <ClearSolutionButton />
+        </Stack>
+    );
 }
 
 type SolucionButtonProps = {

@@ -127,7 +127,7 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
 
   return <Stack direction="row" >
     <Stack direction="row" position="relative" flexWrap={"wrap"} flexGrow={1}>
-      <SolutionButtons />
+      <SolutionButtons/>
       {blocklyWorkspace}
     </Stack>
     <Stack>
@@ -148,7 +148,10 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
   }, [])
 
   return <Stack flexWrap={"wrap"} flexGrow={1} >
-    {blocklyWorkspace}
+    
+      <SolutionButtons vertical={true}/>
+      {blocklyWorkspace}
+    
     <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
       <SceneView descriptor={challenge.sceneDescriptor} />
       <Stack margin='10px' justifyContent='space-between'>
