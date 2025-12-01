@@ -18,7 +18,7 @@ type IsSolucionVertical = {
 export const SolutionButtons = ({ vertical }: IsSolucionVertical) => {
     if (!vertical) {
         return (
-            <Stack sx={{ position: "absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
+            <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
                 <UploadSolution />
                 <SaveSolutionButton />
                 <ClearSolutionButton />
@@ -27,7 +27,7 @@ export const SolutionButtons = ({ vertical }: IsSolucionVertical) => {
     }
 
     return (
-        <Stack gap={2} alignItems='center'>
+        <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} gap={2} alignItems='center'>
             <UploadSolution />
             <SaveSolutionButton />
             <ClearSolutionButton />

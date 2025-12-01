@@ -17,6 +17,7 @@ import Blockly from "blockly/core"
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { SolutionButtons } from "./SolutionButtons";
 import { MultipleScenariosButton } from "./SceneButtons/MultipleScenarios";
+import { relative } from "path";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -147,7 +148,7 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <Stack flexWrap={"wrap"} flexGrow={1} >
+  return <Stack position="relative" flexWrap={"wrap"} flexGrow={1} >
     
       <SolutionButtons vertical={true}/>
       {blocklyWorkspace}
