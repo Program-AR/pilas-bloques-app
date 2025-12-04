@@ -3,36 +3,40 @@ import DownloadIcon from '@mui/icons-material/Download';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useThemeContext } from "../../theme/ThemeContext";
 import { useTranslation } from "react-i18next";
-import Blockly, { Block } from "blockly/core"
+import Blockly from "blockly/core"
 import { LocalStorage } from "../../localStorage";
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { ChangeEvent, useRef, useState } from "react";
-import { PBCard } from "../PBCard"
 
-
-type IsSolucionVertical = {
-    vertical?: boolean
+type SolucionButtonsProps = {
+    direction: 'row' | 'row-reverse' | 'column' | 'column-reverse';
 }
 
-export const SolutionButtons = ({ vertical }: IsSolucionVertical) => {
-    if (!vertical) {
-        return (
-            <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} direction="row" spacing={2}>
-                <UploadSolution />
-                <SaveSolutionButton />
-                <ClearSolutionButton />
-            </Stack>
-        );
-    }
+
+export const SolutionButtons = (props : SolucionButtonsProps) => {
 
     return (
-        <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} gap={2} alignItems='center'>
+        <Stack direction={props.direction} spacing={2}>
             <UploadSolution />
             <SaveSolutionButton />
             <ClearSolutionButton />
         </Stack>
+        // <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} direction={props.direction} spacing={2}>
+        //     <UploadSolution />
+        //     <SaveSolutionButton />
+        //     <ClearSolutionButton />
+        // </Stack>
     );
+    
+
+    // return (
+    //     <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} gap={1} alignItems='center'>
+    //         <UploadSolution />
+    //         <SaveSolutionButton />
+    //         <ClearSolutionButton />
+    //     </Stack>
+    // );
 }
 
 type SolucionButtonProps = {

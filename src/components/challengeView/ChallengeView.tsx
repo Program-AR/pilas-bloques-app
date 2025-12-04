@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
-import { PaperProps, Stack } from "@mui/material";
+import { Collapse, IconButton, PaperProps, Stack } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import { EditableBlocklyWorkspace } from "./EditableBlocklyWorkspace";
 import { InfoButton, SceneButtons } from "./SceneButtons/SceneButtons";
 import { SceneView } from "./SceneView";
@@ -17,7 +19,6 @@ import Blockly from "blockly/core"
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { SolutionButtons } from "./SolutionButtons";
 import { MultipleScenariosButton } from "./SceneButtons/MultipleScenarios";
-import { relative } from "path";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -128,7 +129,7 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
 
   return <Stack direction="row" >
     <Stack direction="row" position="relative" flexWrap={"wrap"} flexGrow={1}>
-      <SolutionButtons/>
+      <SolutionButtons direction="row"/>
       {blocklyWorkspace}
     </Stack>
     <Stack>
@@ -142,16 +143,34 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
 const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
   const [running, setRunning] = useState(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
+  const [openSolution, setOpenSolution] = useState(false);
 
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
     return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={true} zoomScale={0.7} />
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <Stack position="relative" flexWrap={"wrap"} flexGrow={1} >
+  return <Stack position={"relative"} flexWrap={"wrap"} flexGrow={1} >
     
-      <SolutionButtons vertical={true}/>
+    
+
+      {/* <SolutionButtons direction="column"/> */}
+      <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} direction="column" spacing={1} alignItems="flex-end">
+            
+            {/* 1. Botón Hamburguesa/Cerrar */}
+            <IconButton onClick={() => setOpenSolution(!openSolution)} size="large">
+                {openSolution ? <CloseIcon /> : <MenuIcon />}
+            </IconButton>
+
+            {/* 2. Contenedor de Colapso (Collapse) */}
+            <Collapse in={openSolution} orientation="vertical">
+                {/* 3. SolutionButtons o sus hijos dentro del Collapse */}
+                {/* Nota: Asegúrate de que SolutionButtons ahora solo maneje los botones y no el Stack externo de posicionamiento. */}
+                <SolutionButtons direction="column" /> 
+            </Collapse>
+        </Stack>
       {blocklyWorkspace}
+    
     
     <Stack direction='row' marginBottom='5px' justifyContent='space-evenly'>
       <SceneView descriptor={challenge.sceneDescriptor} />
@@ -162,5 +181,6 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
         <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
       </Stack>
     </Stack>
+    
   </Stack>
 }
