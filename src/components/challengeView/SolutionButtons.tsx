@@ -17,7 +17,7 @@ type SolucionButtonsProps = {
 export const SolutionButtons = (props : SolucionButtonsProps) => {
 
     return (
-        <Stack direction={props.direction} spacing={2}>
+        <Stack direction={props.direction} spacing={2}> 
             <UploadSolution />
             <SaveSolutionButton />
             <ClearSolutionButton />

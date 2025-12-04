@@ -129,7 +129,11 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
 
   return <Stack direction="row" >
     <Stack direction="row" position="relative" flexWrap={"wrap"} flexGrow={1}>
-      <SolutionButtons direction="row"/>
+      {/* 2. Stack Flotante para SolutionButtons (position: absolute) */}
+          <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }}>
+              {/* SolutionButtons: Se renderiza en fila (row) */}
+              <SolutionButtons direction="row"/>
+          </Stack>
       {blocklyWorkspace}
     </Stack>
     <Stack>
@@ -162,10 +166,9 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
                 {openSolution ? <CloseIcon /> : <MenuIcon />}
             </IconButton>
 
-            {/* 2. Contenedor de Colapso (Collapse) */}
+            {/* Contenedor de Colapso (Collapse) que envuelve el SolutionButtons */}
             <Collapse in={openSolution} orientation="vertical">
-                {/* 3. SolutionButtons o sus hijos dentro del Collapse */}
-                {/* Nota: Asegúrate de que SolutionButtons ahora solo maneje los botones y no el Stack externo de posicionamiento. */}
+                {/* Usamos el SolutionButtons original, pasándole la dirección correcta */}
                 <SolutionButtons direction="column" /> 
             </Collapse>
         </Stack>
