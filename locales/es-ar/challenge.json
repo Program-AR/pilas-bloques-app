@@ -34,6 +34,11 @@
     "clearModal": {
       "warning": "¡Cuidado! Al borrar la solución se perderan tus cambios.",
       "button": "BORRAR LA SOLUCIÓN"
+    },
+    "extensionAndVersionError": {
+      "title": "Error al cargar la solución",
+      "message": "Este archivo no tiene una solución de Pilas Bloques.",
+      "button": "Aceptar"
     }
   }
 }

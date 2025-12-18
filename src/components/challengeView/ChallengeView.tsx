@@ -19,6 +19,7 @@ import Blockly from "blockly/core"
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { SolutionButtons } from "./SolutionButtons";
 import { MultipleScenariosButton } from "./SceneButtons/MultipleScenarios";
+import { MoreVert } from "@mui/icons-material";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -129,9 +130,9 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
 
   return <Stack direction="row" >
     <Stack direction="row" position="relative" flexWrap={"wrap"} flexGrow={1}>
-      {/* 2. Stack Flotante para SolutionButtons (position: absolute) */}
+      
           <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }}>
-              {/* SolutionButtons: Se renderiza en fila (row) */}
+              
               <SolutionButtons direction="row"/>
           </Stack>
       {blocklyWorkspace}
@@ -158,17 +159,17 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
     
     
 
-      {/* <SolutionButtons direction="column"/> */}
+      
       <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} direction="column" spacing={1} alignItems="flex-end">
             
-            {/* 1. Botón Hamburguesa/Cerrar */}
-            <IconButton onClick={() => setOpenSolution(!openSolution)} size="large">
-                {openSolution ? <CloseIcon /> : <MenuIcon />}
+           
+            <IconButton sx={{backgroundColor:"background.paper", color:"text.primary"}} onClick={() => setOpenSolution(!openSolution)} size="large">
+                {openSolution ? <CloseIcon /> : <MoreVert />}
             </IconButton>
 
-            {/* Contenedor de Colapso (Collapse) que envuelve el SolutionButtons */}
+            
             <Collapse in={openSolution} orientation="vertical">
-                {/* Usamos el SolutionButtons original, pasándole la dirección correcta */}
+                
                 <SolutionButtons direction="column" /> 
             </Collapse>
         </Stack>

@@ -9,34 +9,23 @@ import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { ChangeEvent, useRef, useState } from "react";
 
+
 type SolucionButtonsProps = {
     direction: 'row' | 'row-reverse' | 'column' | 'column-reverse';
 }
 
 
-export const SolutionButtons = (props : SolucionButtonsProps) => {
+export const SolutionButtons = (props: SolucionButtonsProps) => {
 
     return (
-        <Stack direction={props.direction} spacing={2}> 
+        <Stack direction={props.direction} spacing={2}>
             <UploadSolution />
             <SaveSolutionButton />
             <ClearSolutionButton />
         </Stack>
-        // <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} direction={props.direction} spacing={2}>
-        //     <UploadSolution />
-        //     <SaveSolutionButton />
-        //     <ClearSolutionButton />
-        // </Stack>
-    );
-    
 
-    // return (
-    //     <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }} gap={1} alignItems='center'>
-    //         <UploadSolution />
-    //         <SaveSolutionButton />
-    //         <ClearSolutionButton />
-    //     </Stack>
-    // );
+    );
+
 }
 
 type SolucionButtonProps = {
@@ -159,26 +148,84 @@ const UploadSolution = () => {
 
     const fileInputRef = useRef<HTMLInputElement>(null)
 
+
+    const [uploadSolutionDialogOpen, setUploadSolutionDialogOpen] = useState<{
+        isOpen: boolean;
+        titleKey: string;
+        message: string;
+        type: 'error';
+    }>({
+        isOpen: false,
+        titleKey: '',
+        message: '',
+        type: 'error'
+    });
+
+
+    const handleOpenErrorModal = (message: string) => {
+        setUploadSolutionDialogOpen({
+            isOpen: true,
+            titleKey: "solutionButtons.extensionAndVersionError.title",
+            message: message,
+            type: 'error'
+        });
+    };
+
+    const handleCloseModal = () => {
+        setUploadSolutionDialogOpen(prev => ({ ...prev, isOpen: false }));
+    };
+
     const handleClick = () => {
-        fileInputRef.current?.click()
-    }
+        fileInputRef.current?.click();
+    };
+
+
+
 
     const handleOpenFile = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0]
 
-        if (!file) return
+        if (!file || !file.name.endsWith(".spbq")) {
+            handleOpenErrorModal(
+                t("solutionButtons.extensionAndVersionError.message")
+            );
+            return;
+        }
 
-        const text = await file.text()
-        const solution = atob(JSON.parse(text).solucion)
+        try {
+            const text = await file.text();
 
-        Blockly.getMainWorkspace().clear()
-        const xmlDom = Blockly.utils.xml.textToDom(solution)
-        Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
+
+            const solution = atob(JSON.parse(text).solucion);
+
+
+            if (!solution) {
+                throw new Error("El archivo no contiene una solución válida.");
+            }
+
+
+
+            Blockly.getMainWorkspace().clear()
+            const xmlDom = Blockly.utils.xml.textToDom(solution)
+            Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
+
+        } catch (error) {
+
+            console.error("Error al cargar el archivo:", error);
+            handleOpenErrorModal(t("solutionButtons.extensionAndVersionError.message"));
+        } 
+        // const text = await file.text()
+        // const solution = atob(JSON.parse(text).solucion)
+
+        // Blockly.getMainWorkspace().clear()
+        // const xmlDom = Blockly.utils.xml.textToDom(solution)
+        // Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
     }
 
 
     return <>
         <SolutionButton icon={<DriveFolderUploadIcon />} tooltip={t("solutionButtons.upload")} onClick={handleClick} />
+
         <input
             type="file"
             accept=".spbq"
@@ -186,5 +233,40 @@ const UploadSolution = () => {
             onChange={handleOpenFile}
             style={{ display: "none" }}
         />
-    </>
+
+
+        <Dialog open={uploadSolutionDialogOpen.isOpen} onClose={handleCloseModal}>
+            <DialogTitle display="flex" justifyContent="flex-end">
+                <IconButton onClick={handleCloseModal}>
+                    <ClearIcon />
+                </IconButton>
+            </DialogTitle>
+            <DialogContent>
+                <Stack justifyContent="center" alignContent="center">
+                    <Typography>
+                        {uploadSolutionDialogOpen.message}
+                    </Typography>
+                    <Button onClick={handleCloseModal}
+                        sx={{
+                            fontWeight: 'bold',
+                            margin: 1,
+                            width: "auto",
+                            alignSelf: "center",
+                            boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+                            backgroundColor: 'blue',
+                            color: 'white',
+                            '&:hover': {
+                                backgroundColor: '#00008B',
+                                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
+                            },
+
+                        }}>
+                        {t("solutionButtons.extensionAndVersionError.button")}
+                    </Button>
+
+                </Stack>
+            </DialogContent>
+
+        </Dialog>
+    </>;
 }
