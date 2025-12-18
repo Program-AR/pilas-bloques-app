@@ -153,7 +153,7 @@ const UploadSolution = () => {
         isOpen: boolean;
         titleKey: string;
         message: string;
-        type: 'error';
+        type: 'error' | 'warning';
     }>({
         isOpen: false,
         titleKey: '',
@@ -202,6 +202,10 @@ const UploadSolution = () => {
             if (!solution) {
                 throw new Error("El archivo no contiene una solución válida.");
             }
+
+            if (!solution.startsWith("<xml") && !solution.includes("<block")) {
+            throw new Error("El contenido interno no es válido.");
+        }
 
 
 
