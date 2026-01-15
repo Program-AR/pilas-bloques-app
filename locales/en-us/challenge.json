@@ -34,6 +34,13 @@
     "clearModal": {
       "warning": "Be careful! If you delete your solution, you will lose your work.",
       "button": "DELETE SOLUTION"
+    },
+    "extensionAndVersionError": {
+      "title": "Error loading solution",
+      "message": "This file does not contain a Pilas Bloques solution.",
+      "wrongActivity": "Be careful! The file indicates that it is for another activity ({{activity}}). It will be loaded anyway, but it may fail.",
+      "oldVersion": "Be careful! The file indicates that it is from an older version. It will be loaded anyway, but we suggest you solve the exercise again and save a new file.",
+      "button": "OK"
     }
   }
 }

@@ -54,21 +54,22 @@ const SolutionButton = (props: SolucionButtonProps & IconButtonProps) => {
 
 const SPBQ_FILE_VERSION = 2
 
+
+const getSanitizedActivityName = () => LocalStorage.getCreatorChallenge()?.title
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9 ]/g, '')
+    .trim()
+    .split(/\s+/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('') || "SinTitulo";
+
 const SaveSolutionButton = () => {
-    const { t } = useTranslation('challenge')
 
-    const sanatizedTitle = () => LocalStorage.getCreatorChallenge()?.title
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .replace(/[^a-zA-Z0-9 ]/g, '')
-        .trim()
-        .split(/\s+/)
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-        .join('');
-
-    const activityName = sanatizedTitle() || "SinTitulo"
-
+    const { t } = useTranslation('challenge');
+    const activityName = getSanitizedActivityName();
     const fileName = `${activityName}.spbq`;
+
 
     const downloadFile = (text: string, name: string, type: string) => {
         const file = new Blob([text], { type: type });
@@ -161,15 +162,18 @@ const UploadSolution = () => {
         type: 'error'
     });
 
-
-    const handleOpenErrorModal = (message: string) => {
+    const handleOpenErrorModal = (message: string, type: 'error' | 'warning') => {
         setUploadSolutionDialogOpen({
             isOpen: true,
-            titleKey: "solutionButtons.extensionAndVersionError.title",
+           
+            titleKey: type === 'error' 
+                ? "solutionButtons.extensionAndVersionError.title" 
+                : "solutionButtons.clearModal.warning", 
             message: message,
-            type: 'error'
+            type: type
         });
     };
+
 
     const handleCloseModal = () => {
         setUploadSolutionDialogOpen(prev => ({ ...prev, isOpen: false }));
@@ -180,51 +184,56 @@ const UploadSolution = () => {
     };
 
 
-
-
     const handleOpenFile = async (event: ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0]
+    const file = event.target.files?.[0];
 
-        if (!file || !file.name.endsWith(".spbq")) {
-            handleOpenErrorModal(
-                t("solutionButtons.extensionAndVersionError.message")
-            );
-            return;
+    
+    if (!file || !file.name.endsWith(".spbq")) {
+        handleOpenErrorModal(t("solutionButtons.extensionAndVersionError.message"), 'error');
+        return;
+    }
+
+    try {
+        const text = await file.text();
+        const jsonContent = JSON.parse(text);
+        
+        const fileVersion = jsonContent.version;
+        const fileActivityName = jsonContent.actividad;
+        const currentActivityName = getSanitizedActivityName();
+        const solutionXmlText = atob(jsonContent.solucion);
+
+        
+        let warningMessage = "";
+        if (fileActivityName !== currentActivityName) {
+           
+            warningMessage = t("solutionButtons.extensionAndVersionError.wrongActivity", { activity: fileActivityName });
+        } else if (fileVersion < SPBQ_FILE_VERSION) {
+            
+            warningMessage = t("solutionButtons.extensionAndVersionError.oldVersion");
+        }
+
+        
+        if (warningMessage) {
+            handleOpenErrorModal(warningMessage, 'warning');
         }
 
         try {
-            const text = await file.text();
-
-
-            const solution = atob(JSON.parse(text).solucion);
-
-
-            if (!solution) {
-                throw new Error("El archivo no contiene una solución válida.");
-            }
-
-            if (!solution.startsWith("<xml") && !solution.includes("<block")) {
-            throw new Error("El contenido interno no es válido.");
+            Blockly.getMainWorkspace().clear();
+            const xmlDom = Blockly.utils.xml.textToDom(solutionXmlText);
+            Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace());
+        } catch (blocklyError) {
+            console.error("Blockly no reconoce los bloques de este archivo:", blocklyError);
+            handleOpenErrorModal("Este archivo contiene bloques que no son compatibles con el desafío actual.", 'error');
         }
 
-
-
-            Blockly.getMainWorkspace().clear()
-            const xmlDom = Blockly.utils.xml.textToDom(solution)
-            Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
-
-        } catch (error) {
-
-            console.error("Error al cargar el archivo:", error);
-            handleOpenErrorModal(t("solutionButtons.extensionAndVersionError.message"));
-        } 
-        // const text = await file.text()
-        // const solution = atob(JSON.parse(text).solucion)
-
-        // Blockly.getMainWorkspace().clear()
-        // const xmlDom = Blockly.utils.xml.textToDom(solution)
-        // Blockly.Xml.domToWorkspace(xmlDom, Blockly.getMainWorkspace())
+    } catch (parseError) {
+        
+        console.error("Error al procesar el archivo:", parseError);
+        handleOpenErrorModal(t("solutionButtons.extensionAndVersionError.message"), 'error');
+    } finally {
+        if (event.target) event.target.value = "";
     }
+};
 
 
     return <>
