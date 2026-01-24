@@ -224,6 +224,10 @@ const UploadSolution = () => {
         } catch (blocklyError) {
             console.error("Blockly no reconoce los bloques de este archivo:", blocklyError);
             handleOpenErrorModal("Este archivo contiene bloques que no son compatibles con el desafío actual.", 'error');
+            // inicializamos el workspace con el bloque ppal para que el usuario pueda seguir trabajando
+            Blockly.getMainWorkspace().clear();
+            const xmlInitDom = Blockly.utils.xml.textToDom(xmlBloqueEmpezarAEjecutar);
+            Blockly.Xml.domToWorkspace(xmlInitDom, Blockly.getMainWorkspace());
         }
 
     } catch (parseError) {

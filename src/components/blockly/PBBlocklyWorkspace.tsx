@@ -32,9 +32,15 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   setupBlocklyBlocks(t)
 
-  if (blocklyContainer) setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration } ) 
-  
-  if (blocklyContainer && props.initialXml) setXml(props.initialXml )
+  if (blocklyContainer) setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration } )
+
+  // controlamos el error por si no se puede establecer el XML inicial
+  try {
+    if (blocklyContainer && props.initialXml)
+      setXml(props.initialXml)
+  } catch (error) {
+    console.error("Error setting XML:", error)
+  }
 
   return (
     <PBCard sx={{ ...sx }}>

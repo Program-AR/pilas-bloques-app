@@ -4,11 +4,12 @@ import { ToolboxPreview } from '../../../../components/creator/Editor/ChallengeD
 import { commonBlocks, sceneBlocks } from '../../../../components/blockly/blocks';
 
 describe('Toolbox Preview', () => {
-  test('rendering toolbox preview ', async () => {
+  test('rendering toolbox preview', async () => {
     const toolBoxItems = [...commonBlocks.map((block => block.id)), ...sceneBlocks.map((block => block.id))]
     renderComponent(<ToolboxPreview blockIds={toolBoxItems} categorized={false} />);
     const idPBBlockly = await screen.findByTestId('pb-blockly')
     expect(idPBBlockly).toBeInTheDocument()
+    // eslint-disable-next-line testing-library/no-node-access
     expect(idPBBlockly.firstChild).toHaveClass('injectionDiv')
   });
 
