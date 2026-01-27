@@ -34,6 +34,13 @@
     "clearModal": {
       "warning": "Atenção! Remover a solução perderá suas alterações.",
       "button": "REMOVER A SOLUÇÃO"
+    },
+    "extensionAndVersionError": {
+      "title": "Erro ao carregar a solução",
+      "message": "Este arquivo não contém uma solução do Pilas Bloques.",
+      "wrongActivity": "Atenção! O arquivo indica que é para outra atividade ({{activity}}). Ele será carregado mesmo assim, mas pode falhar.",
+      "oldVersion": "Atenção! O arquivo indica que é de uma versão mais antiga. Ele será carregado mesmo assim, mas sugerimos que você resolva o exercício novamente e salve um novo arquivo.",
+      "button": "OK"
     }
   }
 }
