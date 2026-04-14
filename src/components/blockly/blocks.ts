@@ -171,11 +171,6 @@ export const commonBlocks: BlockType[] = [
 
 const notUsedBlocks: BlockType[] = [
   {
-    id: 'OpComparacion',
-    intlId: 'logic_compare',
-    categoryId: 'operators'
-  },
-  {
     id: 'SiguienteColumna',
     intlId: 'nextColumn',
     categoryId: 'primitives'

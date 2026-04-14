@@ -1,6 +1,7 @@
 import { BlocklyBlockDefinition, createGenericJSCode, messageBlock } from "../blockly";
 import Blockly from "blockly/core"
 import { optionType, validateRequiredOptions } from "../utils";
+import { javascriptGenerator } from "blockly/javascript";
 
 const primitivesColor = '#4a6cd4';
 
@@ -563,6 +564,39 @@ export const createPrimitiveBlocks = (t: (key: string) => string) => {
             ],
             code: 'hacer(actor_id, "MovimientoEnCuadricula", {direccionCasilla: $direccion});'
         });
+
+        javascriptGenerator.forBlock['MoverA'] = function (block: any, generator: any) {
+            let direccion = generator.valueToCode(block, 'direccion', 0);
+
+            // fallback: si valueToCode no devolvió nada, intentamos leer el bloque conectado a mano
+            if (!direccion) {
+                const targetBlock = block.getInputTargetBlock?.('direccion');
+
+                if (targetBlock) {
+                    const fieldVar = targetBlock.getFieldValue?.('VAR');
+                    const varsFromBlock = targetBlock.getVars?.();
+                    const mutation = targetBlock.mutationToDom?.();
+                    const mutationVar = mutation?.getAttribute?.('var');
+
+                    const varName =
+                        fieldVar ||
+                        mutationVar ||
+                        (Array.isArray(varsFromBlock) && varsFromBlock.length ? varsFromBlock[0] : '');
+
+                    if (varName && generator.nameDB_) {
+                        direccion = generator.nameDB_.getName(
+                            varName,
+                            Blockly.Names.NameType.VARIABLE
+                        );
+                    } else if (varName) {
+                        direccion = varName.replace(/[^\w]/g, '_');
+                    }
+                }
+            }
+
+            return `hacer(actor_id, "MovimientoEnCuadricula", {direccionCasilla: ${direccion || 'null'}});\n`;
+        };
+
 
     createPrimitiveBlock('DibujarLado', `${t(`blocks.drawSide`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.DibujarLinea.png',
         {

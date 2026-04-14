@@ -23,9 +23,8 @@ export const useInterpreterRunner = (
   const executeUntilEnd = useCallback((): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       setRunning && setRunning(true);
-
       if (!interpreterRef.current) {
-        scene.restartScene(challenge.sceneDescriptor);
+        await scene.restartScene(challenge.sceneDescriptor);        
         interpreterRef.current = interpreterFactory.createInterpreter();
       }
 

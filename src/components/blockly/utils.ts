@@ -22,7 +22,7 @@ export const shouldAddRequiredShadow = (connection: { getShadowDom: () => null; 
 
 export const requiredInput = (block: { inputList?: any[]; getInput?: any; }, inputName: any) => {
   let connection = block.getInput(inputName).connection
-  let shadowType = (connection.type == Blockly.INPUT_VALUE)
+  let shadowType = (connection.type === Blockly.INPUT_VALUE)
     ? "required_value"
     : "required_statement"
   var shadowValue = Blockly.utils.xml.textToDom(`<shadow type="${shadowType}"></shadow>`)
