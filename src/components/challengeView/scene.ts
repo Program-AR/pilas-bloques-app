@@ -91,13 +91,6 @@ class Scene {
     return name ? name[1] : sceneDescriptor
   }
 
-/* DOF
-  restartScene(descriptor: Challenge["sceneDescriptor"]) {
-    this.eval('pilas.reiniciar()')
-    this.setChallenge(descriptor)
-  }
-*/
-
   async restartScene(descriptor: Challenge["sceneDescriptor"]) {
     this.eval('pilas.reiniciar()')
     this.setChallenge(descriptor)
