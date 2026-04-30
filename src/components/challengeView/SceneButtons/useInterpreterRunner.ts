@@ -3,6 +3,7 @@ import Interpreter from "js-interpreter";
 import { scene } from "../scene";
 import { interpreterFactory } from "./interpreterFactory";
 import { Challenge } from "../../../staticData/challenges";
+import { PilasBloquesApi } from "../../../pbApi";
 
 type Mode = 'run' | 'step';
 export const useInterpreterRunner = (
@@ -22,10 +23,12 @@ export const useInterpreterRunner = (
 
   const executeUntilEnd = useCallback((): Promise<void> => {
     return new Promise(async (resolve, reject) => {
+      let solutionId: string | undefined;
       setRunning && setRunning(true);
 
       if (!interpreterRef.current) {
         scene.restartScene(challenge.sceneDescriptor);
+        solutionId = await PilasBloquesApi.runProgram(challenge.id.toString(), {});
         interpreterRef.current = interpreterFactory.createInterpreter();
       }
 
@@ -52,7 +55,12 @@ export const useInterpreterRunner = (
         } else {
           interpreterRef.current = null;
           setStepping(false);
-          checkProblemSolved().then(resolve);
+          checkProblemSolved().then(async (solved) => {
+            const staticAnalysis = {};
+            const executionResult = { solved };
+            if (solutionId) await PilasBloquesApi.executionFinished(solutionId, staticAnalysis, executionResult);
+            resolve();
+          });
         }
       };
 
@@ -71,6 +79,7 @@ export const useInterpreterRunner = (
   const checkProblemSolved = async () => {
     const solved = await scene.isTheProblemSolved();
     if (solved) setShowModal(true);
+    return solved;
   };
 
   const run = useCallback(() => {
