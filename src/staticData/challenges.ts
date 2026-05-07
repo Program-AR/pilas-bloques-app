@@ -2783,8 +2783,8 @@ const challenges: BasicChallenge[] = [
     id: 1136,
     sceneDescriptor: `DibujandoLibrementeManic`,
     hasAutomaticGrading: false,
-    toolboxBlockIds: ['Procedimiento', 'Repetir', 'DibujarLado',
-      'GirarGrados', 'Numero', 'OpAritmetica', 'SaltarHaciaAdelante'],
+    toolboxBlockIds: ['Procedimiento', 'Repetir', 'Si', 'SiNo', 'Hasta', 'Numero',
+      'OpComparacion', 'OpAritmetica', 'DibujarLado', 'GirarGrados', 'SaltarHaciaAdelante'],
     expectations: {
       decomposition: false,
       simpleRepetition: false
