@@ -1,3 +1,4 @@
+import { log } from "console";
 import { SerializedChallenge } from "./components/serializedChallenge";
 import { LocalStorage } from "./localStorage"
 import { PBSession } from "./pbSession";
@@ -44,8 +45,8 @@ export namespace PilasBloquesApi{
 
     const isCreatorURL = () => {
       const currentURL = window.location.href
-      const creatorURLs = ['react-imported-challenge']
-      return creatorURLs.some(url => currentURL.includes(url))
+      const creatorRoutes = ['/creador', '/desafioImportado', 'react-imported-challenge']
+      return creatorRoutes.some(route => currentURL.includes(route))
     }
 
     const logger = (context: string) => (error: any) => {
@@ -87,8 +88,9 @@ export namespace PilasBloquesApi{
       return await _send('GET', `user-ip`)
     }
 
-    export const runProgramEvent = async (challenge: Challenge) => {
-      return await _send<Challenge>('POST', 'challenges', challenge)
+    export const runProgramEvent = async (challengeId: string, metadata: any) => {
+      // TODO: En Ember este método se construye con program, ast, turboModeOn y staticAnalysis.
+      return await runProgram(challengeId, metadata)
     }
 
     export const lastSolution = async (challengeId: string) => {
@@ -142,6 +144,7 @@ export namespace PilasBloquesApi{
     }
 
     async function _send<T>(method: HttpMethod, resource: string, body?: T, critical: boolean = true) {
+      
         if (resource.includes('solution') && isCreatorURL()) return Promise.resolve()
         
         const user = LocalStorage.getUser()
