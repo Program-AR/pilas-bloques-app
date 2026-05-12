@@ -41,7 +41,8 @@ export const useInterpreterRunner = (
         scene.restartScene(challenge.sceneDescriptor);
         // TODO: Enviar ast, turboModeOn y staticAnalysis como lo hace Ember
         const programXML = blocklyXML || getBlocklyXML();
-        solutionId = await PilasBloquesApi.runProgram(challenge.id.toString(), { program: programXML });
+        const staticAnalysis = { couldExecute: true };
+        solutionId = await PilasBloquesApi.runProgram(challenge.id.toString(), { program: programXML, staticAnalysis });
         interpreterRef.current = interpreterFactory.createInterpreter();
       }
 
@@ -69,7 +70,8 @@ export const useInterpreterRunner = (
           interpreterRef.current = null;
           setStepping(false);
           checkProblemSolved().then(async (solved) => {
-            const staticAnalysis = {};
+            // TODO: Enviar staticAnalysis y executionResult como lo hace Ember
+            const staticAnalysis = { couldExecute: true };
             const executionResult = { solved };
             if (solutionId) await PilasBloquesApi.executionFinished(solutionId, staticAnalysis, executionResult);
             resolve();
