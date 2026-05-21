@@ -3,13 +3,16 @@ import Interpreter from "js-interpreter";
 import { scene } from "../scene";
 import { interpreterFactory } from "./interpreterFactory";
 import { Challenge } from "../../../staticData/challenges";
+import { PilasBloquesApi } from "../../../pbApi";
+import Blockly from "blockly/core"
 
 type Mode = 'run' | 'step';
 export const useInterpreterRunner = (
   challenge: Challenge,
   setRunning: ((r: boolean) => void) | undefined,
   mode: Mode = 'run',
-  interpreterVersion: number
+  interpreterVersion: number,
+  blocklyXML: string = ''
 ) => {
   const [showModal, setShowModal] = useState(false);
   const [stepping, setStepping] = useState(false);
@@ -20,12 +23,26 @@ export const useInterpreterRunner = (
     setStepping(false);
   }, [interpreterVersion]);
 
+  const getBlocklyXML = useCallback((): string => {
+    try {
+      return Blockly.utils.xml.domToText(Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace()));
+    } catch (e) {
+      console.warn("No se pudo obtener el XML del Blockly, retornando cadena vacía", e);
+      return '';
+    }
+  }, []);
+
   const executeUntilEnd = useCallback((): Promise<void> => {
     return new Promise(async (resolve, reject) => {
+      let solutionId: string | undefined;
       setRunning && setRunning(true);
 
       if (!interpreterRef.current) {
         scene.restartScene(challenge.sceneDescriptor);
+        // TODO: Enviar ast, turboModeOn y staticAnalysis como lo hace Ember
+        const programXML = blocklyXML || getBlocklyXML();
+        const staticAnalysis = { couldExecute: true };
+        solutionId = await PilasBloquesApi.runProgram(challenge.id.toString(), { program: programXML, staticAnalysis });
         interpreterRef.current = interpreterFactory.createInterpreter();
       }
 
@@ -52,7 +69,13 @@ export const useInterpreterRunner = (
         } else {
           interpreterRef.current = null;
           setStepping(false);
-          checkProblemSolved().then(resolve);
+          checkProblemSolved().then(async (solved) => {
+            // TODO: Enviar staticAnalysis y executionResult como lo hace Ember
+            const staticAnalysis = { couldExecute: true };
+            const executionResult = { solved };
+            if (solutionId) await PilasBloquesApi.executionFinished(solutionId, staticAnalysis, executionResult);
+            resolve();
+          });
         }
       };
 
@@ -66,11 +89,12 @@ export const useInterpreterRunner = (
 
       executeInterpreter();
     });
-  }, [challenge, mode, setRunning]);
+  }, [challenge, mode, setRunning, getBlocklyXML]);
 
   const checkProblemSolved = async () => {
     const solved = await scene.isTheProblemSolved();
     if (solved) setShowModal(true);
+    return solved;
   };
 
   const run = useCallback(() => {

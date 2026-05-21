@@ -1,7 +1,8 @@
+import { log } from "console";
 import { SerializedChallenge } from "./components/serializedChallenge";
 import { LocalStorage } from "./localStorage"
 import { PBSession } from "./pbSession";
-
+import { Challenge } from "./staticData/challenges";
 export interface User{
     id: string,
     token: string,
@@ -42,6 +43,16 @@ declare global { // see public/index.html
 
 export namespace PilasBloquesApi{
 
+    const isCreatorURL = () => {
+      const currentURL = window.location.href
+      const creatorRoutes = ['/creador', '/desafioImportado', 'react-imported-challenge']
+      return creatorRoutes.some(route => currentURL.includes(route))
+    }
+
+    const logger = (context: string) => (error: any) => {
+    console.error(`Error en [${context}]:`, error);
+    };
+
     export const login = async (credentials: Credentials) => {
       await _send<Credentials>('POST', 'login', credentials)
       .then(user => LocalStorage.saveUser(user))
@@ -77,6 +88,32 @@ export namespace PilasBloquesApi{
       return await _send('GET', `user-ip`)
     }
 
+    export const runProgramEvent = async (challengeId: string, metadata: any) => {
+      // TODO: En Ember este método se construye con program, ast, turboModeOn y staticAnalysis.
+      return await runProgram(challengeId, metadata)
+    }
+
+    export const lastSolution = async (challengeId: string) => {
+      const user = LocalStorage.getUser()
+      if (!user) return null
+      return await _send('GET', `challenges/${challengeId}/solution`, undefined, false).catch(() => null)
+    }
+
+    export const runProgram = async (challengeId: string, metadata: any) => {
+      const solutionId = crypto.randomUUID()
+      const data = {
+        challengeId,
+        solutionId,
+        ...metadata
+      }
+      await _send('POST', 'solutions', data, false).catch(logger('runProgram'))
+      return solutionId
+    }
+
+    export const executionFinished = async (solutionId: string, staticAnalysis: any, executionResult: any) => {
+      await _send('PUT', `solutions/${solutionId}`, { staticAnalysis, executionResult }, false).catch(logger('executionFinished'))
+    }
+
     export const passwordRecovery = async (userIdentifier: string) => {
       return await _send('POST', `password-recovery?userIdentifier=${userIdentifier}`)
     }
@@ -106,7 +143,10 @@ export namespace PilasBloquesApi{
       } : undefined
     }
 
-    async function _send<T>(method: HttpMethod, resource: string, body?: T) {
+    async function _send<T>(method: HttpMethod, resource: string, body?: T, critical: boolean = true) {
+      
+        if (resource.includes('solution') && isCreatorURL()) return Promise.resolve()
+        
         const user = LocalStorage.getUser()
         const url = `${baseURL}/${resource}`
 
@@ -120,7 +160,9 @@ export namespace PilasBloquesApi{
           headers
         })  
           .catch(connectionErr => {
-            throw connectionErr
+            if (critical) throw connectionErr
+            // For non-critical, don't throw connection errors
+            return Promise.reject(connectionErr)
           })
           .then(res => {
             if (res.status >= 400) { return res.text().then(message => { throw new ApiError(res.status, message) }) }
