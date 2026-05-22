@@ -20,6 +20,7 @@ import { xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { SolutionButtons } from "./SolutionButtons";
 import { MultipleScenariosButton } from "./SceneButtons/MultipleScenarios";
 import { MoreVert } from "@mui/icons-material";
+import { PilasBloquesApi } from "../../pbApi";
 
 export const serializedSceneToDescriptor = (scene: Scene) => {
   const mapToString = (map: SceneMap) => `"${JSON.stringify(map).replace(/"/g, '')}"`
@@ -79,12 +80,40 @@ type ChallengeWorkspaceProps = {
 const ChallengeWorkspace = ({ statement, challenge, clue }: ChallengeWorkspaceProps) => {
   const { isSmallScreen } = useThemeContext()
   const [first, setFirst] = useState<boolean>(true)
+  const [savedSolutionXml, setSavedSolutionXml] = useState<string | null | undefined>(undefined)
 
   useEffect(() => {
-    setFirst(false)
-  }, [])
+    let mounted = true
+    setFirst(true)
+    setSavedSolutionXml(undefined)
 
-  const initialXml = challenge.predefinedSolution ? challenge.predefinedSolution : xmlBloqueEmpezarAEjecutar
+    if (challenge.id && challenge.id !== 0) {
+      PilasBloquesApi.lastSolution(challenge.id.toString())
+        .then(solution => {
+          if (!mounted) return
+          setSavedSolutionXml(solution?.program ?? null)
+        })
+        .catch(() => {
+          if (mounted) setSavedSolutionXml(null)
+        })
+    } else {
+      setSavedSolutionXml(null)
+    }
+
+    return () => {
+      mounted = false
+    }
+  }, [challenge.id])
+
+  useEffect(() => {
+    if (savedSolutionXml !== undefined && first) {
+      setFirst(false)
+    }
+  }, [savedSolutionXml, first])
+
+  const initialXml = savedSolutionXml === undefined
+    ? (challenge.predefinedSolution ?? xmlBloqueEmpezarAEjecutar)
+    : (savedSolutionXml ?? challenge.predefinedSolution ?? xmlBloqueEmpezarAEjecutar)
 
   const blocklyWorkspaceProps: EditableBlocklyWorkspaceProps = {
     blockIds: challenge.toolboxBlockIds,
