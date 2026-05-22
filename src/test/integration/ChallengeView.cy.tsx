@@ -35,8 +35,6 @@ describe('Challenge view with blocks', () => {
     })
   }
 
-
-  //TODO - remove the skip once this issue is resolved: https://github.com/Program-AR/pilas-bloques-app/issues/312
   const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = true) => {
     (skip ? it.skip : it)(name, () => {
       LocalStorage.saveCreatorChallenge(challenge(solution))
