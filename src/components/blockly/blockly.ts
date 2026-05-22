@@ -54,15 +54,271 @@ export const setupBlocklyBlocks = (t: (key: string) => string) => {
 
   createOthersBlocks(t)
 
+  createShadowBlocks()
+
+  createAliases()
+
   createCommonCode()
 }
 
+const restoreVariablesGetFieldsFromXml = (workspace: Blockly.Workspace, xml: string) => {
+  const xmlDom = Blockly.utils.xml.textToDom(xml);
+  const xmlBlocks = Array.from(xmlDom.getElementsByTagName('block'));
+
+  xmlBlocks.forEach((xmlBlock) => {
+    const type = xmlBlock.getAttribute('type');
+    if (type !== 'variables_get' && type !== 'param_get') return;
+
+    const blockId = xmlBlock.getAttribute('id');
+    if (!blockId) return;
+
+    const mutationNode = Array.from(xmlBlock.children).find(
+      (child) => child.tagName.toLowerCase() === 'mutation'
+    );
+
+    const mutationVar = mutationNode?.getAttribute('var');
+    if (!mutationVar) return;
+
+    const block = workspace.getBlockById(blockId) as any;
+    if (!block) return;
+
+    const field = block.getField?.('VAR');
+    if (field) {
+      field.setValue(mutationVar);
+    }
+
+    if (typeof block.render === 'function') {
+      block.render();
+    }
+  });
+};
+
+const removeProcedureMutationsBeforeLoad = (xml: string): Element => {
+  const xmlDom = Blockly.utils.xml.textToDom(xml);
+
+  const procedureBlocks = Array.from(xmlDom.getElementsByTagName('block')).filter((node) => {
+    const type = node.getAttribute('type');
+    return type === 'procedures_defnoreturn' || type === 'procedures_defreturn';
+  });
+
+  procedureBlocks.forEach((node) => {
+    const mutationNode = Array.from(node.children).find(
+      (child) => child.tagName.toLowerCase() === 'mutation'
+    );
+
+    if (mutationNode) {
+      node.removeChild(mutationNode);
+    }
+  });
+
+  return xmlDom;
+};
+
+export const workspaceToXmlText = () => {
+  const workspace = Blockly.getMainWorkspace();
+  const xmlDom = Blockly.Xml.workspaceToDom(workspace);
+
+  ensureProcedureMutationsInDom(xmlDom);
+
+  return Blockly.utils.xml.domToText(xmlDom);
+};
+
+const ensureProcedureMutationsInDom = (xmlDom: Element) => {
+  const blocks = Array.from(xmlDom.getElementsByTagName('block'));
+
+  blocks.forEach((block) => {
+    const type = block.getAttribute('type');
+    if (type !== 'procedures_defnoreturn' && type !== 'procedures_defreturn') return;
+
+    const hasMutation = Array.from(block.children).some(
+      (child) => child.tagName.toLowerCase() === 'mutation'
+    );
+
+    if (hasMutation) return;
+
+    const argFields = Array.from(block.children)
+      .filter((child) => child.tagName.toLowerCase() === 'field')
+      .filter((child) => /^ARG\d+$/.test(child.getAttribute('name') || ''))
+      .sort((a, b) => {
+        const aNum = Number((a.getAttribute('name') || '').replace('ARG', ''));
+        const bNum = Number((b.getAttribute('name') || '').replace('ARG', ''));
+        return aNum - bNum;
+      });
+
+    if (!argFields.length) return;
+
+    const mutation = document.createElement('mutation');
+
+    argFields.forEach((field) => {
+      const arg = document.createElement('arg');
+      arg.setAttribute('name', field.textContent || '');
+      mutation.appendChild(arg);
+    });
+
+    const nameField = Array.from(block.children).find(
+      (child) =>
+        child.tagName.toLowerCase() === 'field' &&
+        child.getAttribute('name') === 'NAME'
+    );
+
+    if (nameField && nameField.nextSibling) {
+      block.insertBefore(mutation, nameField.nextSibling);
+    } else {
+      block.insertBefore(mutation, block.firstChild);
+    }
+  });
+};
+
+const getProcedureArgsFromXml = (xml: string): Map<string, string[]> => {
+  const xmlDom = Blockly.utils.xml.textToDom(xml);
+  const result = new Map<string, string[]>();
+
+  const blocks = Array.from(xmlDom.getElementsByTagName('block'));
+
+  blocks.forEach((block) => {
+    const type = block.getAttribute('type');
+    if (type !== 'procedures_defnoreturn' && type !== 'procedures_defreturn') return;
+
+    const blockId = block.getAttribute('id');
+    if (!blockId) return;
+
+    let argNames: string[] = [];
+
+    const mutationNode = Array.from(block.children).find(
+      (child) => child.tagName.toLowerCase() === 'mutation'
+    );
+
+    if (mutationNode) {
+      argNames = Array.from(mutationNode.children)
+        .filter((child) => child.tagName.toLowerCase() === 'arg')
+        .map((arg) => arg.getAttribute('name') || '')
+        .filter(Boolean);
+    }
+
+    if (!argNames.length) {
+      argNames = Array.from(block.children)
+        .filter((child) => child.tagName.toLowerCase() === 'field')
+        .filter((child) => /^ARG\d+$/.test(child.getAttribute('name') || ''))
+        .sort((a, b) => {
+          const aNum = Number((a.getAttribute('name') || '').replace('ARG', ''));
+          const bNum = Number((b.getAttribute('name') || '').replace('ARG', ''));
+          return aNum - bNum;
+        })
+        .map((field) => field.textContent || '')
+        .filter(Boolean);
+    }
+
+    if (argNames.length) {
+      result.set(blockId, argNames);
+    }
+  });
+
+  return result;
+};
+
+const revalidateVariableBlocks = (workspace: Blockly.Workspace) => {
+  const blocks = workspace.getAllBlocks(false);
+
+  blocks.forEach((block: any) => {
+    if (block.type !== 'variables_get' && block.type !== 'param_get') return;
+
+    // primero intentamos revalidar
+    if (typeof block.onchange === 'function') {
+      try {
+        block.onchange();
+      } catch (e) {
+        console.error('Error revalidating variable block', {
+          blockId: block.id,
+          error: e,
+        });
+      }
+    }
+
+    // y después forzamos el estado correcto
+    if (typeof block.setDisabled === 'function') {
+      block.setDisabled(false);
+    }
+
+    if (typeof block.setEnabled === 'function') {
+      block.setEnabled(true);
+    }
+
+    if (typeof block.setWarningText === 'function') {
+      block.setWarningText(null);
+    }
+
+    if (block.warning && typeof block.warning.setVisible === 'function') {
+      block.warning.setVisible(false);
+    }
+
+    if (typeof block.render === 'function') {
+      block.render();
+    }
+  });
+};
+
+const restoreProcedureArgsFromXmlMap = (
+  workspace: Blockly.Workspace,
+  procedureArgsMap: Map<string, string[]>
+) => {
+  procedureArgsMap.forEach((argNames, blockId) => {
+    const block = workspace.getBlockById(blockId) as any;
+    if (!block) return;
+
+    // 1) Restaurar estructura interna
+    block.arguments_ = [...argNames];
+
+    const variableMap = workspace.getVariableMap();
+    block.argumentVarModels_ = argNames.map((name) => {
+      let variable = variableMap.getVariable(name);
+      if (!variable) {
+        variable = variableMap.createVariable(name);
+      }
+      return variable;
+    });
+
+    // 2) Refrescar params internos sin usar domToMutation
+    if (typeof block.updateParams_ === 'function') {
+      block.updateParams_();
+    }
+
+    // 3) Forzar que el texto visible del encabezado muestre los parámetros
+    const paramsText = argNames.join(', ');
+
+    const paramsField = block.getField?.('PARAMS');
+    if (paramsField) {
+      if (typeof paramsField.setValue === 'function') {
+        paramsField.setValue(paramsText);
+      } else if (typeof paramsField.setText === 'function') {
+        paramsField.setText(paramsText);
+      }
+    } else {
+      const topRow = block.getInput?.('TOPROW');
+      if (topRow) {
+        topRow.appendField(paramsText, 'PARAMS');
+      }
+    }
+
+    // 4) Render final
+    if (typeof block.render === 'function') {
+      block.render();
+    }
+  });
+};
+
 export const setXml = (xml: string) => {
-  Blockly.Xml.domToWorkspace(
-    Blockly.utils.xml.textToDom(xml),
-    Blockly.getMainWorkspace()
-  );
-}
+  const workspace = Blockly.getMainWorkspace();
+  workspace.clear();
+
+  const procedureArgsMap = getProcedureArgsFromXml(xml);
+  const xmlDom = removeProcedureMutationsBeforeLoad(xml);
+
+  Blockly.Xml.domToWorkspace(xmlDom, workspace);
+
+  restoreProcedureArgsFromXmlMap(workspace, procedureArgsMap);
+  restoreVariablesGetFieldsFromXml(workspace, xml);
+  revalidateVariableBlocks(workspace);
+};
 
 export const setupBlockly = (container: Element, workspaceConfiguration: Blockly.BlocklyOptions) => {
   container.replaceChildren() //Removes previous injection, otherwise it might keep inserting below the current workspace
@@ -109,18 +365,72 @@ export const messageBlock = (message: string) => {
   return `%1 ${message}`
 }
 
+export const delegateGenerator = (aliasType: string, originalType: string) => {
+  const original = javascriptGenerator.forBlock[originalType];
+  if (!original) {
+    throw new Error(`No generator found for ${originalType}`);
+  }
+
+  javascriptGenerator.forBlock[aliasType] = function (block: Block, generator: any) {
+    return original(block, generator);
+  };
+};
+
+const createAliases = () => {
+  const aliasBlock = (alias: string, original: string, extra?: Partial<any>) => {
+    if (!Blockly.Blocks[original]) return;
+
+    Blockly.Blocks[alias] = {
+      init: function () {
+        Blockly.Blocks[original].init.call(this);
+      },
+      ...extra,
+    };
+
+    if (javascriptGenerator.forBlock[original]) {
+      javascriptGenerator.forBlock[alias] = function (block: Block, generator: any) {
+        return javascriptGenerator.forBlock[original](block, generator);
+      };
+    }
+  };
+
+  aliasBlock('si', 'Si', { categoryId: 'alternatives' });
+  aliasBlock('Sino', 'SiNo', { categoryId: 'alternatives' });
+  aliasBlock('sino', 'SiNo', { categoryId: 'alternatives' });
+  aliasBlock('hasta', 'Hasta', { categoryId: 'repetitions' });
+  aliasBlock('repetir', 'Repetir', { categoryId: 'repetitions' });
+};
+
+const createShadowBlocks = () => {
+  Blockly.Blocks['required_value'] = {
+    init: function () {
+      this.appendDummyInput();
+      this.setOutput(true);
+      this.setColour('#cccccc');
+    }
+  };
+
+  Blockly.Blocks['required_statement'] = {
+    init: function () {
+      this.appendDummyInput();
+      this.setPreviousStatement(true);
+      this.setNextStatement(true);
+      this.setColour('#cccccc');
+    }
+  };
+
+  javascriptGenerator.forBlock['required_value'] = function () {
+    return ['', Order.ATOMIC];
+  };
+
+  javascriptGenerator.forBlock['required_statement'] = function () {
+    return '';
+  };
+};
+
+
 const createCommonCode = () => {
   javascriptGenerator.addReservedWords('main,hacer,out_hacer,evaluar');
-
-  /*
-  javascriptGenerator.required_value = function () {
-    return null
-  };
-
-  javascriptGenerator.required_statement = function () {
-    return null
-  };
-*/
 
   javascriptGenerator.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
   javascriptGenerator.addReservedWords('highlightBlock');
@@ -166,29 +476,33 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
 }
 
 export const categorizedToolbox = (t: (key: string) => string, blocks: BlockType[]): Toolbox => {
+  const contents = categories
+    .map((categoryId) => {
+      const categoryContents = blocks
+        .filter(block => block.categoryId === categoryId)
+        .map(blockTypeToToolboxBlock);
 
-  const categoryBlocksFor = (categoryId: string): ToolboxItem => {
-    const contents = blocks.filter(block => block.categoryId === categoryId).map(blockTypeToToolboxBlock)
-    return contents.length ? categoryId === 'myprocedures' ? {
-      kind: "category",
-      name: `${t(`categories.${categoryId}`)}`,
-      contents: contents,
-      custom: "PROCEDURE"
-    } : {
-      kind: "category",
-      name: `${t(`categories.${categoryId}`)}`,
-      contents: contents,
-    } : {
-      kind: '',
-      name: '',
-      contents: []
-    }
-  }
+      if (!categoryContents.length) return null;
 
-  return ({
+      return categoryId === 'myprocedures'
+        ? {
+          kind: "category" as const,
+          name: `${t(`categories.${categoryId}`)}`,
+          contents: categoryContents,
+          custom: "PROCEDURE"
+        }
+        : {
+          kind: "category" as const,
+          name: `${t(`categories.${categoryId}`)}`,
+          contents: categoryContents,
+        };
+    })
+    .filter(Boolean) as ToolboxItem[];
+
+  return {
     kind: "categoryToolbox",
-    contents: categories.map(category => categoryBlocksFor(category))
-  })
+    contents
+  };
 }
 
 export const uncategorizedToolbox = (blocks: BlockType[]): Toolbox => ({

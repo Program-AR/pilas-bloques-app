@@ -36,9 +36,8 @@ export const useInterpreterRunner = (
     return new Promise(async (resolve, reject) => {
       let solutionId: string | undefined;
       setRunning && setRunning(true);
-
       if (!interpreterRef.current) {
-        scene.restartScene(challenge.sceneDescriptor);
+        await scene.restartScene(challenge.sceneDescriptor);        
         // TODO: Enviar ast, turboModeOn y staticAnalysis como lo hace Ember
         const programXML = blocklyXML || getBlocklyXML();
         const staticAnalysis = { couldExecute: true };

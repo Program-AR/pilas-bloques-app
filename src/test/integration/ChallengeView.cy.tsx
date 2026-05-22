@@ -28,14 +28,13 @@ describe('Challenge view with blocks', () => {
   const executeChallengeWithEval = (expression: string, expected: any) => {
     cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'true').then($iframe => {
       const iframe = $iframe[0] as HTMLIFrameElement;
-      cy.get('[data-testid="execute-button"]').click().should('have.attr', 'data-finishedexecution', 'false').then(() => {
-        expect((iframe.contentWindow as any).eval(`pilas.escena_actual().${expression}`)).to.equal(expected)
-      })
+      cy.get('[data-testid="execute-button"]').click().should(() => {
+        const value = (iframe.contentWindow as any).eval(`pilas.escena_actual().${expression}`);
+        expect(value).to.equal(expected);
+      });
     })
   }
 
-
-  //TODO - remove the skip once this issue is resolved: https://github.com/Program-AR/pilas-bloques-app/issues/312
   const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = true) => {
     (skip ? it.skip : it)(name, () => {
       LocalStorage.saveCreatorChallenge(challenge(solution))
@@ -108,7 +107,7 @@ describe('Challenge view with blocks', () => {
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <shadow type="required_statement"></shadow>
-      <block type="repetir">
+      <block type="Repetir">
         <value name="count">
           <shadow type="required_value"></shadow>
           <block type="math_number">
@@ -192,7 +191,7 @@ describe('Challenge view with blocks', () => {
   <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
     <statement name="program">
       <shadow type="required_statement"></shadow>
-      <block type="repetir">
+      <block type="Repetir">
         <value name="count">
           <shadow type="required_value"></shadow>
           <block type="OpAritmetica">
@@ -239,59 +238,56 @@ describe('Challenge view with blocks', () => {
   </block>
 </xml>`
 
-  const procedureWithParameterSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
-  <variables></variables>
-  <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+const procedureWithParameterSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="param1">parámetro 1</variable>
+  </variables>
+
+  <block type="al_empezar_a_ejecutar" x="15" y="15">
     <statement name="program">
-      <shadow type="required_statement"></shadow>
       <block type="procedures_callnoreturn">
         <mutation name="Hacer algo">
           <arg name="parámetro 1"></arg>
         </mutation>
         <value name="ARG0">
-          <shadow type="required_value"></shadow>
           <block type="ParaLaDerecha"></block>
         </value>
       </block>
     </statement>
   </block>
-  <block type="procedures_defnoreturn" x="131" y="177">
-    <mutation>
-      <arg name="parámetro 1"></arg>
-    </mutation>
+
+  <block type="procedures_defnoreturn" id="proc_hacer_algo" x="120" y="120">
     <field name="NAME">Hacer algo</field>
     <field name="ARG0">parámetro 1</field>
     <statement name="STACK">
       <block type="MoverA">
         <value name="direccion">
-          <shadow type="required_value"></shadow>
           <block type="variables_get">
-            <mutation var="parámetro 1" parent="c*BJ:I!^xdp2/};|N==)"></mutation>
+            <mutation var="parámetro 1" parent="proc_hacer_algo"></mutation>
           </block>
         </value>
       </block>
     </statement>
   </block>
-</xml>`
+</xml>`;
 
-  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
+ testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
 
   //Code from blocks have effect 
+  testExecutionWithBlocks('Code from blocks have effect - boolean operators', operatorSolution, 1, false)
+ 
+  testExecutionWithBlocks('Code from blocks have effect - aritmethic operators', aritmethicSolution, 2, false) 
 
-  testExecutionWithBlocks('Code from blocks have effect - boolean operators', operatorSolution, 1)
+  testExecutionWithBlocks('Code from blocks have effect - move with parameters', moveWithParameterSolution, 1, false)
+  
+  testExecutionWithBlocks('Code from blocks have effect -  if', ifSolution, 0, false)
 
-  testExecutionWithBlocks('Code from blocks have effect - aritmethic operators', aritmethicSolution, 2)
+  testExecutionWithBlocks('Code from blocks have effect - repeat', repeatSolution, 2, false)
 
-  testExecutionWithBlocks('Code from blocks have effect - move with parameters', moveWithParameterSolution, 1)
+  testExecutionWithBlocks('Code from blocks have effect - repeat until', repeatUntilSolution, 1, false)
 
-  testExecutionWithBlocks('Code from blocks have effect -  if', ifSolution, 0)
+  testExecutionWithBlocks('Code from blocks have effect - procedures', procedureSolution, 1, false)
 
-  testExecutionWithBlocks('Code from blocks have effect - repeat', repeatSolution, 2)
-
-  testExecutionWithBlocks('Code from blocks have effect - repeat until', repeatUntilSolution, 1)
-
-  testExecutionWithBlocks('Code from blocks have effect - procedures', procedureSolution, 1)
-
-  testExecutionWithBlocks('Code from blocks have effect - procedures with parameter', procedureWithParameterSolution, 1)
+  testExecutionWithBlocks('Code from blocks have effect - procedures with parameter', procedureWithParameterSolution, 1, false)
 
 })

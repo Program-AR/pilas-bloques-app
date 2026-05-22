@@ -1,7 +1,7 @@
 import { javascriptGenerator, Order } from "blockly/javascript";
-import { BlocklyBlockDefinition, messageBlock } from "../blockly";
+import { BlocklyBlockDefinition, delegateGenerator, messageBlock } from "../blockly";
 import { optionType, validateRequiredOptions } from "../utils";
-import Blockly, { Block } from "blockly/core"
+import Blockly from "blockly/core"
 
 const directionsColor = '#2ba4e2';
 
@@ -35,56 +35,49 @@ const createValueBlock = (id: string, message: string, options: optionType, icon
   javascriptGenerator.forBlock[id] = function () {
     return [`'${options.valor}'`, Order.ATOMIC];
   };
-
 }
 
 export const createValueBlocks = (t: (key: string) => string) => {
 
   createValueBlock("ParaLaDerecha", t('blocks.right'), {
     valor: 'derecha',
-  }, 'icono.derecha.png',
-  );
+  }, 'icono.derecha.png');
 
   createValueBlock('ParaLaIzquierda', t('blocks.left'), {
     valor: 'izquierda',
-  }, 'icono.izquierda.png',
-  );
+  }, 'icono.izquierda.png');
 
   createValueBlock('ParaArriba', t('blocks.up'), {
     valor: 'arriba',
-  }, 'icono.arriba.png',
-  );
+  }, 'icono.arriba.png');
 
   createValueBlock('ParaAbajo', t('blocks.down'), {
     valor: 'abajo',
-  }, 'icono.abajo.png',
-  );
+  }, 'icono.abajo.png');
 
 
   Blockly.Blocks['Booleano'] = {
-    init: Blockly.Blocks['logic_boolean'].init,
-    categoryId: Blockly.Blocks['logic_boolean'].categoryId,
-  }
-
-  javascriptGenerator.forBlock['Booleano'] = function (block: Block) {
-    return [`${(block.getFieldValue('BOOL') == 'TRUE') ? 'true' : 'false'}`, Order.ATOMIC];
-  }
+    init: function () {
+      Blockly.Blocks['logic_boolean'].init.call(this);
+    },
+    categoryId: 'values',
+  };
+  delegateGenerator('Booleano', 'logic_boolean');
 
   Blockly.Blocks['Numero'] = {
-    init: Blockly.Blocks['math_number'].init,
-    categoryId: Blockly.Blocks['math_number'].categoryId,
-  }
-
-  javascriptGenerator.forBlock['Numero'] = function (block: Block) {
-    return [`${block.getFieldValue('NUM')}`, Order.ATOMIC];
+    init: function () {
+      Blockly.Blocks['math_number'].init.call(this);
+    },
+    categoryId: 'values',
   };
+  delegateGenerator('Numero', 'math_number');
 
   Blockly.Blocks['Texto'] = {
-    init: Blockly.Blocks['text'].init,
-    categoryId: Blockly.Blocks['text'].categoryId,
-  }
-
-  javascriptGenerator.forBlock['Texto'] = function (block: Block) {
-    return [`${block.getFieldValue('TEXT')}`, Order.ATOMIC];
+    init: function () {
+      Blockly.Blocks['text'].init.call(this);
+    },
+    categoryId: 'values',
   };
+  delegateGenerator('Texto', 'text');
+
 }

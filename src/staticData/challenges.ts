@@ -1604,7 +1604,7 @@ const challenges: BasicChallenge[] = [
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <shadow type="required_statement"></shadow>
-        <block type="repetir">
+        <block type="Repetir">
           <value name="count">
             <shadow type="required_value"></shadow>
             <block type="math_number">
@@ -2258,7 +2258,7 @@ const challenges: BasicChallenge[] = [
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
       <statement name="program">
         <shadow type="required_statement"></shadow>
-        <block type="repetir">
+        <block type="Repetir">
           <value name="count">
             <shadow type="required_value"></shadow>
             <block type="math_number">
