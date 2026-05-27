@@ -1,6 +1,7 @@
 import { Button, Dialog, DialogContent, DialogTitle, IconButton, IconButtonProps, Stack, Tooltip, Typography } from "@mui/material"
 import DownloadIcon from '@mui/icons-material/Download';
 import ClearIcon from '@mui/icons-material/Clear';
+import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import { useThemeContext } from "../../theme/ThemeContext";
 import { useTranslation } from "react-i18next";
 import Blockly from "blockly/core"
@@ -137,7 +138,7 @@ const ClearSolutionButton = () => {
       </DialogContent>
     </Dialog>
 
-    <SolutionButton onClick={handleClick} icon={<ClearIcon />} tooltip={t("solutionButtons.clear")} />
+    <SolutionButton onClick={handleClick} icon={<CleaningServicesIcon />} tooltip={t("solutionButtons.clear")} />
   </>
 }
 
