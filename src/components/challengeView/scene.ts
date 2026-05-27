@@ -91,9 +91,35 @@ class Scene {
     return name ? name[1] : sceneDescriptor
   }
 
-  restartScene(descriptor: Challenge["sceneDescriptor"]) {
+  async restartScene(descriptor: Challenge["sceneDescriptor"]) {
     this.eval('pilas.reiniciar()')
     this.setChallenge(descriptor)
+    await this.waitUntilSceneActorReady()
+  }
+
+  private async waitUntilSceneActorReady(): Promise<void> {
+    for (let i = 0; i < 100; i++) {
+      try {
+        const ready = this.eval(`
+          (function() {
+            var escena = pilas.escena_actual();
+            return !!(
+              escena &&
+              escena.automata &&
+              typeof escena.automata.casillaActual === 'function'
+            );
+          })()
+        `)
+
+        if (ready) return
+      } catch (_) {
+        // la escena todavía no está lista
+      }
+
+      await new Promise(res => setTimeout(res, 50))
+    }
+
+    throw new Error('Scene actor was not ready after restart')
   }
 
   pausadoEnBreakpoint() {

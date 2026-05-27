@@ -16,7 +16,7 @@ export const createControlStructureBlocks = (t: (key: string) => string) => {
       const loopVar = generator.nameDB_.getDistinctName(
         'count', Blockly.Names.NameType.VARIABLE);
       var endVar = repeats;
-      if (!repeats.toString().match(/^\w+$/) && Blockly.utils.string.isNumber(repeats)) {
+      if (!repeats.toString().match(/^\w+$/) && !Blockly.utils.string.isNumber(repeats)) {
         endVar = generator.nameDB_.getDistinctName(
           'repeat_end', Blockly.Names.NameType.VARIABLE);
         code += 'var ' + endVar + ' = ' + repeats + ';\n';

@@ -36,8 +36,8 @@ export const SceneButtons = ({ challenge, vertical, running, setRunning }: Scene
     {!vertical && <TurboModeSwitch />}
     {vertical &&
       <Stack gap={2} alignItems='center'>
-        <StepByStepButton challenge={challenge} running={running} setRunning={setRunning}  interpreterVersion={interpreterVersion} />
-        <ExecuteButton challenge={challenge} running={running} setRunning={setRunning}  interpreterVersion={interpreterVersion} onRestart={handleRestart}/>
+        <StepByStepButton challenge={challenge} running={running} setRunning={setRunning} interpreterVersion={interpreterVersion} />
+        <ExecuteButton challenge={challenge} running={running} setRunning={setRunning} interpreterVersion={interpreterVersion} onRestart={handleRestart} />
         <TurboModeSwitch />
       </Stack>}
   </PBCard>
