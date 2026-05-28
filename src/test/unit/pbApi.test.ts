@@ -75,5 +75,16 @@ describe('PB Api', () => {
         mockApiPath('login', { body: "SERVER ERROR", status: 400 })
         expect(async () => {await PilasBloquesApi.login(credentials)}).rejects.toThrow("SERVER ERROR")
     })
+
+    test('executionFinishedEvent should call executionFinished with merged executionResult', async () => {
+       
+        fetchMock.put(`${PilasBloquesApi.baseURL}/solutions/sol-123`, 200)
+
+        await PilasBloquesApi.executionFinishedEvent('sol-123', { couldExecute: true }, true, { duration: 42 })
+
+        const body = fetchCallBody()
+        
+        expect(body.executionResult).toMatchObject({ isTheProblemSolved: true, duration: 42 })
+    })
 })
 

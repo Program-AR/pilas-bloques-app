@@ -114,6 +114,13 @@ export namespace PilasBloquesApi{
       await _send('PUT', `solutions/${solutionId}`, { staticAnalysis, executionResult }, false).catch(logger('executionFinished'))
     }
 
+    export const executionFinishedEvent = async (solutionId: string, staticAnalysis: any, isTheProblemSolved: boolean, executionResult: any = {}) => {
+      await executionFinished(solutionId, staticAnalysis, {
+        isTheProblemSolved,
+        ...executionResult
+      })
+    }
+
     export const passwordRecovery = async (userIdentifier: string) => {
       return await _send('POST', `password-recovery?userIdentifier=${userIdentifier}`)
     }
