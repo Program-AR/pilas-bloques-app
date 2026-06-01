@@ -70,7 +70,7 @@ linux() {
 
 osx() {
     eco "Generating installer for osx..."
-    pack "darwin" "all" "icns"
+    pack "darwin" "x64" "icns"
     hdiutil create binaries/$NAME-$VERSION.dmg -srcfolder ./binaries/$NAME-darwin-x64/$NAME.app -size 1g
 }
 
