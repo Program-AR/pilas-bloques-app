@@ -6,6 +6,7 @@ import { Challenge } from "../../../staticData/challenges"
 import { useTranslation } from "react-i18next"
 import { EndDialog } from "./EndChallengeDialog"
 import { useInterpreterRunner } from "./useInterpreterRunner"
+import * as Blockly from 'blockly/core'
 
 type ExecuteButtonProps = {
   challenge: Challenge
@@ -20,7 +21,73 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
   const { isSmallScreen } = useThemeContext()
   const { t } = useTranslation('challenge')
 
-  const { run, showModal, setShowModal } = useInterpreterRunner(challenge, setRunning, 'run', interpreterVersion);
+  const runValidations = async (): Promise<boolean> => {
+    const workspace = Blockly.getMainWorkspace()
+
+    const blocks = workspace
+      .getAllBlocks(false)
+      .filter((block: any) => !block.disabled)
+
+    const clearBlockValidation = (block: any) => {
+      if (typeof block.setWarningText === 'function') {
+        block.setWarningText(null)
+      }
+
+      if (block.warning && typeof block.warning.setVisible === 'function') {
+        block.warning.setBubbleVisible(false)
+      }
+    }
+
+    const markBlockError = (block: any, message: string) => {
+      if (typeof block.setWarningText === 'function') {
+        block.setWarningText(message)
+      }
+
+      if (block.warning && typeof block.warning.setVisible === 'function') {
+        block.warning.setBubbleVisible(true)
+      }
+    }
+
+    blocks.forEach(clearBlockValidation)
+
+    const isRequiredPlaceholder = (block: any) =>
+      block?.isShadow?.() &&
+      ['required_value', 'required_statement'].includes(block.type)
+
+    const blockHasMissingInput = (block: any) => {
+      return (block.inputList || []).some((input: any) => {
+        if (!input.connection) return false
+
+        const targetBlock = input.connection.targetBlock()
+
+        if (!targetBlock) return true
+
+        return isRequiredPlaceholder(targetBlock)
+      })
+    }
+
+    const hasWarnings = blocks.some((block: any) =>
+      block.warning?.isVisible?.() || block.warning?.text_
+    )
+
+    const invalidBlocks = blocks.filter(blockHasMissingInput)
+
+    invalidBlocks.forEach((block: any) => {
+      markBlockError(block, 'Faltan completar bloques obligatorios')
+    })
+
+    const hasEmptyRequiredInputs = invalidBlocks.length > 0
+
+    console.log('RUN VALIDATIONS', {
+      blocks: blocks.length,
+      hasWarnings,
+      hasEmptyRequiredInputs,
+    })
+
+    return !hasWarnings && !hasEmptyRequiredInputs
+  }
+
+  const { run, showModal, setShowModal } = useInterpreterRunner(challenge, setRunning, 'run', interpreterVersion, '', { runValidations });
 
   return <>
     {running ? (

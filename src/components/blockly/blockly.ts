@@ -248,7 +248,7 @@ const revalidateVariableBlocks = (workspace: Blockly.Workspace) => {
     }
 
     if (block.warning && typeof block.warning.setVisible === 'function') {
-      block.warning.setVisible(false);
+      block.warning.setBubbleVisible(false);
     }
 
     if (typeof block.render === 'function') {

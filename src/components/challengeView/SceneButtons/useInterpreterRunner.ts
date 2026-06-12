@@ -7,12 +7,18 @@ import { PilasBloquesApi } from "../../../pbApi";
 import Blockly from "blockly/core"
 
 type Mode = 'run' | 'step';
+
+type UseInterpreterRunnerOptions = {
+  runValidations?: () => Promise<boolean>
+}
+
 export const useInterpreterRunner = (
   challenge: Challenge,
   setRunning: ((r: boolean) => void) | undefined,
   mode: Mode = 'run',
   interpreterVersion: number,
-  blocklyXML: string = ''
+  blocklyXML: string = '',
+  options?: UseInterpreterRunnerOptions
 ) => {
   const [showModal, setShowModal] = useState(false);
   const [stepping, setStepping] = useState(false);
@@ -37,7 +43,7 @@ export const useInterpreterRunner = (
       let solutionId: string | undefined;
       setRunning && setRunning(true);
       if (!interpreterRef.current) {
-        await scene.restartScene(challenge.sceneDescriptor);        
+        await scene.restartScene(challenge.sceneDescriptor);
         // TODO: Enviar ast, turboModeOn y staticAnalysis como lo hace Ember
         const programXML = blocklyXML || getBlocklyXML();
         const staticAnalysis = { couldExecute: true };
@@ -96,13 +102,18 @@ export const useInterpreterRunner = (
     return solved;
   };
 
-  const run = useCallback(() => {
+  const run = useCallback(async () => {
     if (mode === 'step' && interpreterRef.current && stepping) {
       (window as any).continueExecution();
     } else {
+      const canRun = await options?.runValidations?.();
+
+      if (canRun === false) return;
+
       executeUntilEnd();
     }
-  }, [executeUntilEnd, mode, stepping]);
+  }, [executeUntilEnd, mode, stepping, options]);
+
 
   return {
     run,
