@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core'
 import { parseAll } from './mulang/pilasMulang'
 import { analyzeWithMulang } from './mulang/pilasMulangAnalyzer'
+import { showMulangFeedback } from './mulang/blockFeedback'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
 
@@ -54,38 +55,16 @@ export const runBlocklyValidations = async (
     markBlockError(block, 'Faltan completar bloques obligatorios')
   })
 
-  /*
-  const ast = parseAll(workspace as Blockly.WorkspaceSvg)
-  */
-
-  /* para verificar si quedó bien el AST
-  console.log('MULANG AST', JSON.stringify(ast, null, 2))
-
-  try {
-    const result = (window as any).mulang.astCode(ast)
-
-    console.log('MULANG AST CODE OK', result)
-  } catch (e) {
-    console.error('MULANG AST CODE ERROR', e)
-  }*/
-
-  /*
-  const customExpect = `expectation "dGVzdHxpc1N1Z2dlc3Rpb249dHJ1ZQ==": calls || ! calls;`
-
-  try {
-    const result = (window as any).mulang
-      .astCode(ast)
-      .customExpect(customExpect)
-
-    console.log('MULANG CUSTOM EXPECT OK', result)
-  } catch (e) {
-    console.error('MULANG CUSTOM EXPECT ERROR', e)
-  }*/
-
-  const results = analyzeWithMulang(
+  const mulangResults = analyzeWithMulang(
     workspace as Blockly.WorkspaceSvg,
     challenge
   )
 
-  return invalidBlocks.length === 0
+  showMulangFeedback(workspace, mulangResults)
+
+  const hasCriticalErrors = mulangResults.some(
+    result => result.result === false && result.isCritical
+  )
+
+  return invalidBlocks.length === 0 && !hasCriticalErrors
 }

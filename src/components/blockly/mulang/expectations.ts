@@ -140,3 +140,25 @@ export const nameWasChanged = (defaultProcedureName: string) =>
     )
 
 export const noExpectation = () => ''
+
+export const parseExpect = (name: string) => {
+  const expectationName = name.split('|')[0]
+
+  const stringToBool = (value: string) => {
+    if (value === 'true') return true
+    if (value === 'false') return false
+    return value
+  }
+
+  const paramsPart = name.split('|')[1] || ''
+
+  const expectationParams = Object.fromEntries(
+    paramsPart
+      .split(';')
+      .filter(Boolean)
+      .map(entry => entry.split('='))
+      .map(([paramName, paramValue]) => [paramName, stringToBool(paramValue)])
+  )
+
+  return [expectationName, expectationParams] as const
+}
