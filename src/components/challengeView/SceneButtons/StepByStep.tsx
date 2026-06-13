@@ -6,6 +6,7 @@ import { Challenge } from "../../../staticData/challenges"
 import { useTranslation } from "react-i18next"
 import { EndDialog } from "./EndChallengeDialog"
 import { useInterpreterRunner } from "./useInterpreterRunner"
+import { runBlocklyValidations } from "../../blockly/blocklyValidations"
 
 type ExecuteButtonProps = {
   challenge: Challenge
@@ -19,7 +20,11 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
   const { isSmallScreen } = useThemeContext()
   const { t } = useTranslation('challenge')
 
-  const { run, showModal, setShowModal, stepping } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion);
+  const runValidations = async (): Promise<boolean> => {
+    return runBlocklyValidations()
+  }
+
+  const { run, showModal, setShowModal, stepping } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion, '', { runValidations });
 
   return <>
     <Tooltip title={t('stepByStepRun.tooltip')}>
@@ -31,7 +36,7 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
               color: running && !stepping ? 'rgba(0,0,0,0.26)' : '#31b0d5',
               '&:hover': { color: '#269abc' },
             }} />
-            <SkipNext className={styles['icon']}/>
+            <SkipNext className={styles['icon']} />
           </Stack>
         </IconButton>
         :

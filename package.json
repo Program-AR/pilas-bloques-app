@@ -11,7 +11,7 @@
     "url": "http://program.ar"
   },
   "scripts": {
-    "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js",
+    "postinstall": "sh scripts/copyEmberPB.sh && node ./scripts/change-pilas-versions.js && node ./scripts/copyMulang.js",
     "test": "jest",
     "test:cy": "npx cypress open",
     "prestart": " [ -d node_modules/.vite/deps ] && rm node_modules/.vite/deps/*; node scripts/setEmberRoot.js public/emberPB ''",
@@ -82,6 +82,7 @@
     "js-interpreter": "^5.1.2",
     "makensis": "^2.0.8",
     "mini-css-extract-plugin": "^2.4.5",
+    "mulang": "^6.0.5",
     "pilas-bloques-exercises": "^1.4.34",
     "postcss": "^8.4.4",
     "postcss-flexbugs-fixes": "^5.0.2",
