@@ -6,12 +6,16 @@ import { showMulangFeedback } from './mulang/blockFeedback'
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
 
 const clearBlockValidation = (block: any) => {
+  if (typeof block.setWarningText === 'function') {
+    block.setWarningText(null)
+  }
+
   if (block.warning && typeof block.warning.setBubbleVisible === 'function') {
     block.warning.setBubbleVisible(false)
   }
 
-  if (typeof block.setWarningText === 'function') {
-    block.setWarningText(null)
+  if (block.warning && typeof block.warning.setVisible === 'function') {
+    block.warning.setVisible(false)
   }
 }
 
@@ -59,6 +63,8 @@ export const runBlocklyValidations = async (
     workspace as Blockly.WorkspaceSvg,
     challenge
   )
+
+  console.log(JSON.stringify(mulangResults, null, 2))
 
   showMulangFeedback(workspace, mulangResults)
 
