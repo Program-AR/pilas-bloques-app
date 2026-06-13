@@ -163,16 +163,14 @@ const parseIfElse = (block: any) => {
 const parseProcedure = (block: any) => {
   return [
     getName(block),
-    createNode('Equation', parseEquation(block)),
+    [parseEquation(block)],
   ]
 }
 
 const parseEquation = (block: any) => {
   return [
     getParams(block).map(param => createNode('VariablePattern', param)),
-    [
-      createNode('UnguardedBody', buildSequenceAst(getChild(block))),
-    ],
+    createNode('UnguardedBody', buildSequenceAst(getChild(block))),
   ]
 }
 

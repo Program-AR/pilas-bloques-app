@@ -54,7 +54,9 @@ export const runBlocklyValidations = async (
     markBlockError(block, 'Faltan completar bloques obligatorios')
   })
 
+  /*
   const ast = parseAll(workspace as Blockly.WorkspaceSvg)
+  */
 
   /* para verificar si quedó bien el AST
   console.log('MULANG AST', JSON.stringify(ast, null, 2))
