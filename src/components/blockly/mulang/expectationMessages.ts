@@ -6,6 +6,6 @@ export const messageForExpectation = (
   t: TFunction
 ) => {
   return t(`mulang:suggestions.${result.id}`, {
-    defaultValue: 'Revisá este bloque.',
+    defaultValue: t('mulang:suggestions.check_out_this_block'),
   })
 }
