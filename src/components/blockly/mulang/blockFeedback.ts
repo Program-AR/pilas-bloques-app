@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly/core'
 import { MulangExpectationResult } from './mulangResults'
 import { messageForExpectation } from './expectationMessages'
+import { TFunction } from 'i18next'
 
 const entryPointType = 'al_empezar_a_ejecutar'
 
@@ -53,11 +54,12 @@ const blockForResult = (
 
 export const showMulangFeedback = (
   workspace: Blockly.Workspace,
-  results: MulangExpectationResult[]
+  results: MulangExpectationResult[],
+  t: TFunction
 ) => {
   failedResults(results).forEach(result => {
     const block = blockForResult(workspace, result)
-    const message = messageForExpectation(result)
+    const message = messageForExpectation(result, t)
 
     showWarning(block, message)
   })

@@ -19,10 +19,10 @@ type ExecuteButtonProps = {
 export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersion, onRestart }: ExecuteButtonProps) => {
 
   const { isSmallScreen } = useThemeContext()
-  const { t } = useTranslation('challenge')
+  const { t } = useTranslation(['challenge', 'mulang'])
 
   const runValidations = async (): Promise<boolean> => {
-    return runBlocklyValidations(challenge)
+    return runBlocklyValidations(challenge, t)
   }
 
   const { run, showModal, setShowModal } = useInterpreterRunner(challenge, setRunning, 'run', interpreterVersion, '', { runValidations });
