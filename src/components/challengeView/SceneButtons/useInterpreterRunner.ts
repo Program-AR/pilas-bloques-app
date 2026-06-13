@@ -25,8 +25,9 @@ export const useInterpreterRunner = (
   const interpreterRef = useRef<Interpreter | null>(null);
 
   useEffect(() => {
-    interpreterRef.current = null;
+    interpreterRef.current = null;    
     setStepping(false);
+    interpreterFactory.clearHighlight();
   }, [interpreterVersion]);
 
   const getBlocklyXML = useCallback((): string => {
@@ -65,6 +66,7 @@ export const useInterpreterRunner = (
             }
           }
         } catch (e) {
+          interpreterFactory.clearHighlight();
           reject(e);
           return;
         }
@@ -74,6 +76,8 @@ export const useInterpreterRunner = (
         } else {
           interpreterRef.current = null;
           setStepping(false);
+          interpreterFactory.clearHighlight();
+
           checkProblemSolved().then(async (solved) => {
             // TODO: Enviar staticAnalysis y executionResult como lo hace Ember
             const staticAnalysis = { couldExecute: true };

@@ -1,3 +1,4 @@
+import Blockly from 'blockly/core'
 import { workspaceToCode } from "../../blockly/blockly"
 import Interpreter from 'js-interpreter'
 import beautify from 'js-beautify'
@@ -79,8 +80,19 @@ class InterpreterFactory {
     actor.hacer_luego(scene.behaviourClass('LlamarCallback'), { callback });
   };
 
-  highlightBlock(id: string) {
-    console.log(id) //TODO
+
+  highlightBlock(id: any) {
+    const blockId = id ? id.toString() : ''
+    const workspace = Blockly.getMainWorkspace() as Blockly.WorkspaceSvg
+
+    if (!blockId || !workspace) return
+
+    workspace.highlightBlock(blockId)
+  }
+
+  clearHighlight() {
+    const workspace = Blockly.getMainWorkspace() as Blockly.WorkspaceSvg
+    workspace?.highlightBlock(null)
   }
 
   /**
@@ -106,7 +118,7 @@ class InterpreterFactory {
 
       main();
     `);
-    
+
     return code;
   }
 }

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core'
 import { runMulangSmokeTest } from './mulang/mulangSmokeTest'
+import { parseAll } from './mulang/pilasMulang'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
 
@@ -53,6 +54,9 @@ export const runBlocklyValidations = async (): Promise<boolean> => {
   })
 
   runMulangSmokeTest()
+
+  const ast = parseAll(workspace as Blockly.WorkspaceSvg)
+  console.log('MULANG AST', JSON.stringify(ast, null, 2))
 
   return invalidBlocks.length === 0
 }
