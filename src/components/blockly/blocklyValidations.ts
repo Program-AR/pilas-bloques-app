@@ -1,5 +1,4 @@
 import * as Blockly from 'blockly/core'
-import { runMulangSmokeTest } from './mulang/mulangSmokeTest'
 import { parseAll } from './mulang/pilasMulang'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
@@ -53,10 +52,30 @@ export const runBlocklyValidations = async (): Promise<boolean> => {
     markBlockError(block, 'Faltan completar bloques obligatorios')
   })
 
-  runMulangSmokeTest()
-
   const ast = parseAll(workspace as Blockly.WorkspaceSvg)
+
+  /* para verificar si quedó bien el AST
   console.log('MULANG AST', JSON.stringify(ast, null, 2))
+
+  try {
+    const result = (window as any).mulang.astCode(ast)
+
+    console.log('MULANG AST CODE OK', result)
+  } catch (e) {
+    console.error('MULANG AST CODE ERROR', e)
+  }*/
+
+  const customExpect = `expectation "dGVzdHxpc1N1Z2dlc3Rpb249dHJ1ZQ==": calls || ! calls;`
+
+  try {
+    const result = (window as any).mulang
+      .astCode(ast)
+      .customExpect(customExpect)
+
+    console.log('MULANG CUSTOM EXPECT OK', result)
+  } catch (e) {
+    console.error('MULANG CUSTOM EXPECT ERROR', e)
+  }
 
   return invalidBlocks.length === 0
 }
