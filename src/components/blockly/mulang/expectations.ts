@@ -1,4 +1,39 @@
-const entryPointType = 'al_empezar_a_ejecutar'
+import * as Blockly from 'blockly/core'
+import {
+  allProcedureNames,
+  allBlocksNestingControlStructures,
+  entryPointType,
+} from './blockUtils'
+
+export const allProceduresShould =
+  (...expectations: Array<(declaration: string) => string>) =>
+  (workspace: Blockly.Workspace) =>
+    allProcedureNames(workspace)
+      .map(name => multiExpect(...expectations)(name))
+      .join('\n')
+
+const usesControlStructureEDL =
+  'something that (uses if || uses while || uses repeat)'
+
+const nestedControlStructureEDL = (loop: string) =>
+  `! uses ${loop} with (anything, ${usesControlStructureEDL})`
+
+const nestedAlternativeStructureEDL =
+  `! uses if with (anything, ${usesControlStructureEDL}, anything) && ! uses if with (anything, anything, ${usesControlStructureEDL})`
+
+export const declarationDoesNotNestControlStructures = (declaration: string) =>
+  newExpectation(
+    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    `within \`${declaration}\` ${nestedAlternativeStructureEDL} && ${nestedControlStructureEDL('repeat')} && ${nestedControlStructureEDL('while')}`,
+    doesNotNestControlStructuresId,
+    { declaration }
+  )
+
+export const doesNotNestControlStructures = (workspace: Blockly.Workspace) =>
+  allBlocksNestingControlStructures(workspace)
+    .map(declarationDoesNotNestControlStructures)
+    .join('\n')
+
 
 const toEDLString = (name: string) => `\`${name}\``
 

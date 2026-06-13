@@ -22,7 +22,7 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
   const { t } = useTranslation('challenge')
 
   const runValidations = async (): Promise<boolean> => {
-    return runBlocklyValidations()
+    return runBlocklyValidations(challenge)
   }
 
   const { run, showModal, setShowModal } = useInterpreterRunner(challenge, setRunning, 'run', interpreterVersion, '', { runValidations });

@@ -1,5 +1,6 @@
 import * as Blockly from 'blockly/core'
 import { parseAll } from './mulang/pilasMulang'
+import { analyzeWithMulang } from './mulang/pilasMulangAnalyzer'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
 
@@ -37,9 +38,10 @@ const blockHasMissingInput = (block: any) => {
   })
 }
 
-export const runBlocklyValidations = async (): Promise<boolean> => {
+export const runBlocklyValidations = async (
+  challenge: any
+): Promise<boolean> => {
   const workspace = Blockly.getMainWorkspace()
-
   const blocks = workspace
     .getAllBlocks(false)
     .filter((block: any) => !block.disabled)
@@ -65,6 +67,7 @@ export const runBlocklyValidations = async (): Promise<boolean> => {
     console.error('MULANG AST CODE ERROR', e)
   }*/
 
+  /*
   const customExpect = `expectation "dGVzdHxpc1N1Z2dlc3Rpb249dHJ1ZQ==": calls || ! calls;`
 
   try {
@@ -75,7 +78,12 @@ export const runBlocklyValidations = async (): Promise<boolean> => {
     console.log('MULANG CUSTOM EXPECT OK', result)
   } catch (e) {
     console.error('MULANG CUSTOM EXPECT ERROR', e)
-  }
+  }*/
+
+  const results = analyzeWithMulang(
+    workspace as Blockly.WorkspaceSvg,
+    challenge
+  )
 
   return invalidBlocks.length === 0
 }

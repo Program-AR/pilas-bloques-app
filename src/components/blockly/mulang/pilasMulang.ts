@@ -170,7 +170,9 @@ const parseProcedure = (block: any) => {
 const parseEquation = (block: any) => {
   return [
     getParams(block).map(param => createNode('VariablePattern', param)),
-    createNode('UnguardedBody', buildSequenceAst(getChild(block))),
+    [
+      createNode('UnguardedBody', buildSequenceAst(getChild(block))),
+    ],
   ]
 }
 
@@ -203,6 +205,7 @@ const pilasToMulangParsers: Record<string, any> = {
   Numero: numberParser,
   procedures_defnoreturn: procedureParser,
   variables_get: { ...referenceParser, parse: parseVariable },
+  param_get: { ...referenceParser, parse: parseVariable },
 }
 
 export const parseAll = (workspace: Blockly.WorkspaceSvg) => {

@@ -21,7 +21,7 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
   const { t } = useTranslation('challenge')
 
   const runValidations = async (): Promise<boolean> => {
-    return runBlocklyValidations()
+    return runBlocklyValidations(challenge)
   }
 
   const { run, showModal, setShowModal, stepping } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion, '', { runValidations });
