@@ -69,10 +69,8 @@ export const useInterpreterRunner = (
           interpreterRef.current = null;
           setStepping(false);
           checkProblemSolved().then(async (solved) => {
-            // TODO: Enviar staticAnalysis y executionResult como lo hace Ember
             const staticAnalysis = { couldExecute: true };
-            const executionResult = { solved };
-            if (solutionId) await PilasBloquesApi.executionFinished(solutionId, staticAnalysis, executionResult);
+            if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
             resolve();
           });
         }
