@@ -5,7 +5,8 @@ export const messageForExpectation = (
   result: MulangExpectationResult,
   t: TFunction
 ) => {
-  return t(`mulang:suggestions.${result.id}`, {
-    defaultValue: t('mulang:suggestions.check_out_this_block'),
+  return t(`suggestions.${result.id}`, {
+    ns: 'mulang',
+    defaultValue: t('suggestions.check_out_this_block', { ns: 'mulang' }),
   })
 }

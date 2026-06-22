@@ -21,11 +21,11 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
   const { isSmallScreen } = useThemeContext()
   const { t } = useTranslation(['challenge', 'mulang'])
 
-  const runValidations = async (): Promise<boolean> => {
+  const runValidations = async () => {
     return runBlocklyValidations(challenge, t)
   }
 
-  const { run, showModal, setShowModal } = useInterpreterRunner(challenge, setRunning, 'run', interpreterVersion, '', { runValidations });
+  const { run, showModal, setShowModal, mulangResults, solved } = useInterpreterRunner(challenge, setRunning, 'run', interpreterVersion, '', { runValidations });
 
   return <>
     {running ? (
@@ -57,6 +57,6 @@ export const ExecuteButton = ({ challenge, running, setRunning, interpreterVersi
         }
       </Tooltip>
     )}
-    <EndDialog showModal={showModal} setShowModal={setShowModal} />
+    <EndDialog showModal={showModal} setShowModal={setShowModal} challenge={challenge} mulangResults={mulangResults} solved={solved}/>
   </>
 }

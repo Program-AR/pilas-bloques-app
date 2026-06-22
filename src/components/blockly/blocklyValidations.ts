@@ -1,10 +1,15 @@
 import * as Blockly from 'blockly/core'
-import { parseAll } from './mulang/pilasMulang'
 import { analyzeWithMulang } from './mulang/pilasMulangAnalyzer'
 import { showMulangFeedback } from './mulang/blockFeedback'
 import { TFunction } from 'i18next'
+import { MulangExpectationResult } from './mulang/mulangResults'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
+
+export type BlocklyValidationResult = {
+  canRun: boolean
+  mulangResults: MulangExpectationResult[]
+}
 
 const clearBlockValidation = (block: any) => {
   if (typeof block.setWarningText === 'function') {
@@ -47,7 +52,7 @@ const blockHasMissingInput = (block: any) => {
 export const runBlocklyValidations = async (
   challenge: any,
   t: TFunction
-): Promise<boolean> => {
+): Promise<BlocklyValidationResult> => {
   const workspace = Blockly.getMainWorkspace()
   const blocks = workspace
     .getAllBlocks(false)
@@ -74,5 +79,8 @@ export const runBlocklyValidations = async (
     result => result.result === false && result.isCritical
   )
 
-  return invalidBlocks.length === 0 && !hasCriticalErrors
+  return {
+    canRun: invalidBlocks.length === 0 && !hasCriticalErrors,
+    mulangResults,
+  }
 }

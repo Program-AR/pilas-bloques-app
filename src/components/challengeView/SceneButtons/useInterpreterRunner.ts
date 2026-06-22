@@ -5,11 +5,17 @@ import { interpreterFactory } from "./interpreterFactory";
 import { Challenge } from "../../../staticData/challenges";
 import { PilasBloquesApi } from "../../../pbApi";
 import Blockly from "blockly/core"
+import { MulangExpectationResult } from "../../blockly/mulang/mulangResults";
 
 type Mode = 'run' | 'step';
 
+type ValidationResult = {
+  canRun: boolean
+  mulangResults: MulangExpectationResult[]
+}
+
 type UseInterpreterRunnerOptions = {
-  runValidations?: () => Promise<boolean>
+  runValidations?: () => Promise<ValidationResult>
 }
 
 export const useInterpreterRunner = (
@@ -23,9 +29,11 @@ export const useInterpreterRunner = (
   const [showModal, setShowModal] = useState(false);
   const [stepping, setStepping] = useState(false);
   const interpreterRef = useRef<Interpreter | null>(null);
+  const [mulangResults, setMulangResults] = useState<MulangExpectationResult[]>([]);
+  const [solved, setSolved] = useState(false);
 
   useEffect(() => {
-    interpreterRef.current = null;    
+    interpreterRef.current = null;
     setStepping(false);
     interpreterFactory.clearHighlight();
   }, [interpreterVersion]);
@@ -101,7 +109,8 @@ export const useInterpreterRunner = (
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
   const checkProblemSolved = async () => {
-    const solved = await scene.isTheProblemSolved();
+    const solved = await scene.isTheProblemSolved();    
+    setSolved(solved);
     if (solved) setShowModal(true);
     return solved;
   };
@@ -110,19 +119,23 @@ export const useInterpreterRunner = (
     if (mode === 'step' && interpreterRef.current && stepping) {
       (window as any).continueExecution();
     } else {
-      const canRun = await options?.runValidations?.();
+      const validationResult = await options?.runValidations?.();
 
-      if (canRun === false) return;
+      if (validationResult?.canRun === false) return;
+
+      setMulangResults(validationResult?.mulangResults || [])
 
       executeUntilEnd();
+
     }
   }, [executeUntilEnd, mode, stepping, options]);
-
 
   return {
     run,
     showModal,
     setShowModal,
     stepping,
+    mulangResults,
+    solved,
   };
 };

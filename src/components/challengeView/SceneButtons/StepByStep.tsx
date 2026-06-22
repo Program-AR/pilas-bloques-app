@@ -20,11 +20,11 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
   const { isSmallScreen } = useThemeContext()
   const { t } = useTranslation(['challenge', 'mulang'])
 
-  const runValidations = async (): Promise<boolean> => {
+  const runValidations = async () => {
     return runBlocklyValidations(challenge, t)
   }
 
-  const { run, showModal, setShowModal, stepping } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion, '', { runValidations });
+  const { run, showModal, setShowModal, stepping, mulangResults, solved } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion, '', { runValidations });
 
   return <>
     <Tooltip title={t('stepByStepRun.tooltip')}>
@@ -47,6 +47,6 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
           }} onClick={run}>{t("stepByStepRun.label")}</Button>
       }
     </Tooltip>
-    <EndDialog showModal={showModal} setShowModal={setShowModal} />
+    <EndDialog showModal={showModal} setShowModal={setShowModal} challenge={challenge} mulangResults={mulangResults} solved={solved}/>
   </>
 }
