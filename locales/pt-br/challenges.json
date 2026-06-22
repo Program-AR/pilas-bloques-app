@@ -270,7 +270,7 @@
         "clue": "A língua Jeringozo adiciona \"PA\" depois de um A, \"PE\" depois de um E, e assim por diante para todas as vogais."
     },
     "255": {
-        "title": "¡Coty desenha livremente!",
+        "title": "Coty desenha livremente!",
         "description": "Nesta atividade você poderá fazer o desenho que mais goste",
         "clue": "Incluímos todos os blocos possíveis, para que você possa libertar seu conhecimento."
     },
@@ -290,68 +290,68 @@
         "clue": "O bloco Repetir permite que você escolha o número de vezes que deseja repetir uma sequência de ações. Isso é chamado de \"Repetição Simples\"."
     },
     "1004": {
-        "title": "Mañic en el cielo",
-        "description": "Mañic está facinado con el cielo y le encanta observar todo, principalmente: ¡las estrellas! Ayudalo a cumplir su objetivo. Pista: Crear un procedimiento (bloque) para cada conjunto de estrellas\n",
-        "clue": "Hay muchas formas de observar estrellas. Podés empezar por las de la derecha, ¡o podés empezar por arriba! ¿Se te ocurre otra estrategia? Pensala siempre antes de programar"
+        "title": "Mañic no céu",
+        "description": "Mañic está fascinado com o céu e adora observar tudo, principalmente: as estrelas! Ajude-a a cumprir seu objetivo. Dica: crie um procedimento (bloco) para cada conjunto de estrelas.\n",
+        "clue": "Há muitas maneiras de observar estrelas. Você pode começar pelas da direita, ou pode começar por cima! Consegue pensar em outra estratégia? Pense nisso sempre antes de programar."
     },
     "1005": {
-        "title": "Yvoty despierta las luciérnagas",
-        "description": "Ayudá a Yvoty a despertar todas las luciérnagas.\nPista: creá un procedimiento para despertar todas las luciérnagas de una diagonal.\n",
-        "clue": "Se puede crear un procedimiento una vez y usarlo todas las veces que quieras dentro de un programa."
+        "title": "Yvoty desperta os vagalumes",
+        "description": "Ajude Yvoty a despertar todos os vagalumes.\nDica: crie um procedimento para despertar todos os vagalumes de uma diagonal.\n",
+        "clue": "Você pode criar um procedimento uma vez e usá-lo todas as vezes que quiser dentro de um programa."
     },
     "1007": {
-        "title": "La Reparadora de Telescopios",
-        "description": "Ayudá a Mañic a reparar todos los telescopios. Pista: podés hacer un procedimiento que tome una fila de telescopios.\n",
-        "clue": "Usar muchas veces un procedimiento te ahorra trabajo."
+        "title": "A Reparadora de Telescópios",
+        "description": "Ajude Mañic a reparar todos os telescópios. Dica: você pode fazer um procedimento que pegue uma fila de telescópios.\n",
+        "clue": "Usar um procedimento muitas vezes te poupa trabalho."
     },
     "1008": {
-        "title": "Mañic y los planetas",
-        "description": "Mañic tiene que observar todos los planetas de la cuadrícula. Pensá de qué manera puede hacerlo creando los bloques necesarios.\n",
-        "clue": "Podés también pensar si existe una estrategia que te permita **reutilizar** un mismo procedimiento varias veces."
+        "title": "Mañic e os planetas",
+        "description": "Mañic tem que observar todos os planetas da grade. Pense em de que maneira ela pode fazer isso criando os blocos necessários.\n",
+        "clue": "Você também pode pensar se existe uma estratégia que permita **reutilizar** um mesmo procedimento várias vezes."
     },
     "1009": {
-        "title": "Cargando los celus",
-        "description": "Yvoty debe cargar con el cargador a los 7 celus que hay en esta escena. Buscá primero el cargador y luego pasá por cada celular cargandolo. Pista: ¿Cuántas partes debería tener tu estrategia?\n",
+        "title": "Carregando os celus",
+        "description": "Yvoty deve carregar com o carregador os 7 celus que estão nesta cena. Procure primeiro o carregador e depois passe por cada celular carregando-o. Dica: quantas partes sua estratégia deve ter?\n",
         "clue": ""
     },
     "1010": {
-        "title": "Instalando juegos",
-        "description": "Yvoty tiene que instalar un juego en 3 compus para divertirse con sus amigos. Los pasos para instalarlo en cada una son: encenderla, escribir la contraseña (\"ABC\"), instalar el juego y apagar la máquina. Pista: aprovechá que en cada compu hay que hacer el mismo trabajo.\n",
+        "title": "Instalando jogos",
+        "description": "Yvoty tem que instalar um jogo em 3 compus para se divertir com seus amigos. Os passos para instalar em cada uma são: ligá-la, escrever a senha (\"ABC\"), instalar o jogo e desligar a máquina. Dica: aproveite que em cada compu é preciso fazer o mesmo trabalho.\n",
         "clue": ""
     },
     "1012": {
         "title": "Limpando o pantanal",
-        "description": "Capy precisa limpar o pântano antes de surfar. Para conseguir isso, Capy precisa pegar 3 latas e 3 pedaços de papel e levá-los para o lixo, mas não pode jogar mais de um de cada vez. Aí ele sobe no jacaré e finalmente a surfar!",
+        "description": "Capy precisa limpar o pântano antes de surfar. Para conseguir isso, Capy precisa pegar 3 latas e 3 pedaços de papel e levá-los para o lixo, mas não pode jogar mais de um de cada vez. Aí ele sobe no jacaré e finalmente surfa!",
         "clue": ""
     },
     "1016": {
-        "title": "Tres telescopios",
-        "description": "Mañic debe reparar todos los telescopios rotos que aparezcan en las casillas. ¡Pero no siempre aparecen en los mismos lugares ni la misma cantidad de telescopios! Pista: pensá primero cómo harías un procedimiento para reparar un solo telescopio si es que lo hay.\n",
+        "title": "Três telescópios",
+        "description": "Mañic deve reparar todos os telescópios quebrados que apareçam nas células. Mas eles não aparecem sempre nos mesmos lugares nem na mesma quantidade! Dica: pense primeiro como você faria um procedimento para reparar um único telescópio, se houver.\n",
         "clue": ""
     },
     "1017": {
-        "title": "Yvoty despierta más luciérnagas",
-        "description": "Yvoty necesita despertar a las luciérnagas para poder conocer el camino... ¡Pero en cada ejecución cambian de lugar! Podés utlizar los procedimientos y bloques de control.",
+        "title": "Yvoty desperta mais vagalumes",
+        "description": "Yvoty precisa despertar os vagalumes para poder conhecer o caminho... Mas a cada execução eles mudam de lugar! Você pode usar procedimentos e blocos de controle.",
         "clue": ""
     },
     "1019": {
         "title": "Mudando comprimentos",
-        "description": "Ayudá a Yvoty a despertar las luciérnagas.\n¡Ojo! En todas las celdas hay una luciérnaga, pero no sabés cuántas celdas hay en cada ejecución.\n",
-        "clue": "Hay nuevos bloques que pueden ayudarte a resolver el desafío de manera muy sencilla. ¡Aprovechalos!"
+        "description": "Ajude Yvoty a despertar os vagalumes.\nAtenção! Em todas as células há um vagalume, mas você não sabe quantas células há em cada execução.\n",
+        "clue": "Existem novos blocos que podem ajudá-lo a resolver o desafio de forma muito simples. Aproveite-os!"
     },
     "1020": {
         "title": "Mudando luzes",
         "description": "Neste caso, Yvoty também deve acordar todas as luzes que encontrar para iluminar bem a paisagem, mas no momento ela não sabe a extensão do caminho... mas também não sabe se haverá luzes em cada etapa! A mesma ajuda que você disse em “Mudando comprimentos” irá ajudá-lo?\n",
-        "clue": "El bloque \"repetir hasta que\" repite una secuencia de acciones hasta que se cumple una condición. Esto se llama \"repetición condicional\"."
+        "clue": "O bloco \"repetir até que\" repete uma sequência de ações até que uma condição se cumpra. Isso se chama \"repetição condicional\"."
     },
     "1022": {
         "title": "Capy busca a Guyrá",
-        "description": "Ayuda a Capy a encontrar a Guyrá\n",
+        "description": "Ajude Capy a encontrar Guyrá\n",
         "clue": ""
     },
     "1024": {
-        "title": "Prendiendo las compus",
-        "description": "Debemos prender todas las compus teniendo en cuenta que el ancho y el alto del escenario cambian en cada ejecución. Pista: pensá cómo harías para prender las compus de un solo lado del rectángulo y después repetilo para el resto de los lados.\n",
+        "title": "Ligando os compus",
+        "description": "Devemos ligar todos os compus levando em conta que a largura e a altura do cenário mudam a cada execução. Dica: pense em como você faria para ligar os compus de um lado do retângulo e depois repita para o resto dos lados.\n",
         "clue": ""
     },
     "1025": {
@@ -361,7 +361,7 @@
     },
     "1026": {
         "title": "Chuy vai correr",
-        "description": "Chuy deve realizar sua caminhada matinal, que consiste em percorrer um determinado número de quilômetros que varia de dia para dia (entre 15 e 45 km). Certifique-se de que Chuy sempre chegue ao destino sem exagerar! Dica: procure na categoria \"Sensores\" se há algo que pode ajudar-te.\n",
+        "description": "Chuy deve realizar sua caminhada matinal, que consiste em percorrer um determinado número de quilômetros que varia de dia para dia (entre 15 e 45 km). Certifique-se de que Chuy sempre chegue ao destino sem exagerar! Dica: procure na categoria \"Sensores\" se há algo que pode ajudá-lo.\n",
         "clue": "Você pode usar um bloco \"Repetir\" com o valor de um sensor. Isso permite que uma sequência de código seja repetida o número de vezes indicado pelo sensor"
     },
     "1027": {
@@ -370,9 +370,9 @@
         "clue": "Um sensor nos permite obter informações que podem mudar a cada execução do programa, até na mesma execução. Por exemplo, o comprimento de cada coluna varia dependendo da coluna em que Mañic está."
     },
     "1028": {
-        "title": "El planeta de Capy y Guyrá",
-        "description": "Ayudá a Capy y Guyrá a recoger todas las latas. ¡Cuidado! No se puede bajar...\n¡Tené en cuenta que el escenario no cambia, las latas están siempre en las mismas casillas!\n",
-        "clue": "A los procedimientos se les pueden agregar parámetros para que resulten más generales. Por ejemplo, si creamos los procedimientos \"Recoger 2 latas a la derecha\", \"Recoger 3 latas a la derecha\" y \"Recoger 4 latas a la derecha\", podemos reemplazar a los tres por un solo procedimiento que reciba como parámetro la cantidad de latas que queremos recoger a la derecha: \"Recoger a la derecha esta cantidad: [cantidad]\".\nPara agregar un parámetro a un procedimiento nuevo, hay que hacer clic en el + que aparece al lado del nombre en el bloque \"Definir\".\n"
+        "title": "O planeta de Capy e Guyrá",
+        "description": "Ajude Capy e Guyrá a recolher todas as latas. Cuidado! Não se pode descer...\nTenha em conta que o cenário não muda, as latas estão sempre nas mesmas células!\n",
+        "clue": "Procedimentos podem receber parâmetros para torná-los mais gerais. Por exemplo, se criarmos os procedimentos \"Pegar 2 latas à direita\", \"Pegar 3 latas à direita\" e \"Pegar 4 latas à direita\", podemos substituir os três por um único procedimento que receba como parâmetro a quantidade de latas que queremos pegar à direita: \"Pegar à direita esta quantidade: [quantidade]\".\nPara adicionar um parâmetro a um procedimento novo, é preciso clicar no + que aparece ao lado do nome no bloco \"Definir\".\n"
     },
     "1029": {
         "title": "Desenho: Quadrado\n",
@@ -407,12 +407,12 @@
     "1035": {
         "title": "Desenho: Pirâmide invertida\n",
         "description": "Desenhe um triângulo equilátero de lado 100, como mostrado na figura sombreada. Dica: Pense se existe uma relação entre os ângulos e o número de lados.\n",
-        "clue": "Em polígonos, a adición de todos os ângulos externos é 360"
+        "clue": "Em polígonos, a adição de todos os ângulos externos é 360"
     },
     "1036": {
         "title": "Desenho: Figuras dentro de figuras\n",
         "description": "Desenhe um triângulo, um quadrado e um pentágono de lado 100, como mostrado na figura sombreada. Dica: Crie um procedimento com um parâmetro para o número de lados.\n",
-        "clue": "Ahora tenemos Operadores: estos bloques nos van a permitir realizar algunas cuentas automáticamente ¡Como una calculadora!... ¿Cuántos grados tiene un giro completo? ¿Por qué número debemos dividirlo?\n"
+        "clue": "Agora temos Operadores: esses blocos vão nos permitir realizar alguns cálculos automaticamente, como uma calculadora!... Quantos graus tem um giro completo? Por qual número devemos dividir?\n"
     },
     "1037": {
         "title": "Desenho: A caverna das estalactites\n",
@@ -420,44 +420,44 @@
         "clue": "Para poder utilizar os parâmetros em um novo procedimento, deve-se clicar com o botão direito do mouse no bloco que define o referido procedimento."
     },
     "1038": {
-        "title": "Las estrellas de Mañic",
-        "description": "En los caminos de Mañic suele haber muchos obstáculos que se interponen, impidiendo que pueda ir a observar su estrella favorita. Si eso pasa, debe tomar el largo y agotador camino sinuoso. Ayudá a Mañic a observar la estrella al final del camino. ¡No te olvides de descargar tu solución! (la vas a necesitar más adelante).\n",
-        "clue": "¿Cuántos posibles caminos hacia la estrella existen? ¿Todos ellos se pueden recorrer siempre o depende de algo?"
+        "title": "As estrelas de Mañic",
+        "description": "Nos caminhos de Mañic costuma haver muitos obstáculos que se interpõem, impedindo que ela possa ir observar sua estrela favorita. Se isso acontecer, ela deve tomar o longo e cansativo caminho sinuoso. Ajude Mañic a observar a estrela no final do caminho. Não se esqueça de baixar sua solução! (você vai precisar dela mais adiante).\n",
+        "clue": "Quantos possíveis caminhos para a estrela existem? Todos eles podem ser percorridos sempre ou isso depende de algo?"
     },
     "1039": {
-        "title": "Los caminos de Mañic",
-        "description": "Mañic escuchó la ubicación de otra hermosa estrella para observar, aunque el camino es más largo y peligroso. El camino no siempre está libre de obstáculos.\n",
-        "clue": "¿Hay algún patrón que se repita? ¿Nos podría ayudar la solución del desafío anterior (Las estrellas de Mañic)?"
+        "title": "Os caminhos de Mañic",
+        "description": "Mañic ouviu a localização de outra linda estrela para observar, embora o caminho seja mais longo e perigoso. O caminho nem sempre está livre de obstáculos.\n",
+        "clue": "Há algum padrão que se repete? Isso poderia ajudar a solução do desafio anterior (As estrelas de Mañic)?"
     },
     "1040": {
-        "title": "Hilera de latas\n",
-        "description": "“Nada mejor que despertar por la mañana y salir a mantener un mundo mas limpio” piensa Capy. Ayudá a Capy a recoger todas las latas que encuentre a su paso. No te olvides de descargar tu solución (la vas a necesitar más adelante).\n",
-        "clue": "¿Cómo puede saber Capy fácilmente si hay una hilera de latas? ¿Qué debería hacer si no hay ninguna lata?"
+        "title": "Fileira de latas\n",
+        "description": "“Nada melhor do que acordar de manhã e sair para deixar o mundo mais limpo”, pensa Capy. Ajude Capy a recolher todas as latas que encontrar pelo caminho. Não se esqueça de baixar sua solução (você vai precisar dela mais adiante).\n",
+        "clue": "Como Capy pode saber facilmente se há uma fileira de latas? O que ela deve fazer se não houver nenhuma lata?"
     },
     "1041": {
-        "title": "Muchas hileras de latas\n",
-        "description": "Hoy es un día especial para ayudar a mantener el planeta mas limpio... pero hay personas que tiran las latas al piso. Ayudá a Capy a levantar las latas de todas las hileras que encuentre a su paso.\n",
-        "clue": "¿Hay alguna tarea que Capy tenga que realizar varias veces? ¿Nos podría ayudar la solución del desafío anterior (Hilera de latas)?"
+        "title": "Muitas fileiras de latas\n",
+        "description": "Hoje é um dia especial para ajudar a manter o planeta mais limpo... mas há pessoas que jogam as latas no chão. Ajude Capy a recolher as latas de todas as fileiras que encontrar pelo caminho.\n",
+        "clue": "Há alguma tarefa que Capy precise realizar várias vezes? Isso poderia ajudar a solução do desafio anterior (Fileira de latas)?"
     },
     "1042": {
-        "title": "A veces latas, a veces papeles\n",
-        "description": "La vida en el planeta puede ser muy difícil para Capy, así que toparse con un área llena de basura es todo un problema. Ayudá a Capy a recoger todas las latas y papales que encuentre a su paso.\n",
-        "clue": "Pensá una estrategia que permita que Capy recorra una fila y recoja todas las latas y papeles que encuentre. ¿Se podrá hacer lo mismo en las demás filas?"
+        "title": "Às vezes latas, às vezes papéis\n",
+        "description": "A vida no planeta pode ser muito difícil para Capy, então topar com uma área cheia de lixo é um grande problema. Ajude Capy a recolher todas as latas e papéis que encontrar pelo caminho.\n",
+        "clue": "Pense em uma estratégia que permita que Capy percorra uma fila e recolha todas as latas e papéis que encontrar. Será que dá para fazer o mesmo nas outras filas?"
     },
     "1043": {
-        "title": "El pasillo curvo de celus\n",
-        "description": "¡Yvoty encontró un pasillo lleno de celus! El único problema es que el pasillo da varias vueltas y los celus justo están ahí… ¿Podrá Yvoty desbloquear todos los celus de este pasillo?\n",
-        "clue": "Los celus se encuentran justo en las curvas que da el pasillo. Una estrategia para desbloquear los celus en una curva sería una excelente ayuda."
+        "title": "O corredor curvo de celus\n",
+        "description": "Yvoty encontrou um corredor cheio de celus! O único problema é que o corredor faz várias curvas e os celus estão exatamente ali… Será que Yvoty poderá desbloquear todos os celus desse corredor?\n",
+        "clue": "Os celus estão justamente nas curvas que o corredor faz. Uma estratégia para desbloquear os celus em uma curva seria uma excelente ajuda."
     },
     "1044": {
-        "title": "El festín astronómico\n",
-        "description": "Mañic vino a observar los astros al lugar de siempre, aunque escuchó rumores que se está dando un gran evento astronómico en el cielo… ¡Hoy es un gran día para darse un festín!\n",
-        "clue": "Una observacion habitual de Mañic es una columna de 6 astros. ¿Cuántas columnas tiene un evento astronómico? Si lográs hacer que Mañic observe los astros de una columna tal vez puedas hacer lo mismo en un evento."
+        "title": "O banquete astronômico\n",
+        "description": "Mañic veio observar os astros no lugar de sempre, embora tenha ouvido rumores de que um grande evento astronômico esteja acontecendo no céu... Hoje é um grande dia para festejar!\n",
+        "clue": "Uma observação habitual de Mañic é uma coluna de 6 astros. Quantas colunas tem um evento astronômico? Se você conseguir fazer Mañic observar os astros de uma coluna, talvez possa fazer o mesmo em um evento."
     },
     "1045": {
-        "title": "Observadora de mariposas\n",
-        "description": "El universo tiene millones y millones de galaxias; por suerte para el recolector de estrellas, hoy debe recolectar solamente dos galaxias muy pequeñas.\n",
-        "clue": "Cada galaxia es un grupo de estrellas distribuidas de forma diferente pero siempre en un mismo espacio. Pensá una estrategia que vaya de lo más simple a lo más complejo: primero un casillero, luego una fila o columna, y finalmente una galaxia."
+        "title": "Observadora de borboletas\n",
+        "description": "O universo tem milhões e milhões de galáxias; por sorte para o coletor de estrelas, hoje ele deve coletar somente duas galáxias muito pequenas.\n",
+        "clue": "Cada galáxia é um grupo de estrelas distribuídas de forma diferente, mas sempre no mesmo espaço. Pense em uma estratégia que vá do mais simples ao mais complexo: primeiro uma célula, depois uma fila ou coluna, e finalmente uma galáxia."
     },
     "1046": {
         "title": "Novos comandos",
@@ -470,32 +470,32 @@
         "clue": "Guie-se pelas sombras dos telescópios para saber até onde movê-los"
     },
     "1131": {
-        "title": "Reciclando papeles",
-        "description": "Ayudá a Capy y Guyrá a dejar un papel en el tacho al final de cada fila. ¡Tené en cuenta que el escenario no cambia de una ejecución a la otra! Pista: si tuvieses que elegir un parámetro para tu procedimiento... ¿Cuál eligirías? ¿Qué varía de fila a fila?\n",
+        "title": "Reciclando papéis",
+        "description": "Ajude Capy e Guyrá a deixar um papel no tacho no final de cada fila. Tenha em conta que o cenário não muda de uma execução para a outra! Dica: se você tivesse que escolher um parâmetro para o seu procedimento... Qual você escolheria? O que varia de fila para fila?\n",
         "clue": ""
     },
     "1132": {
-        "title": "Prendiendo las compus parametrizado",
-        "description": "Al igual que antes, debemos prender todas las compus. Pero esta vez tenés que definir un único procedimiento que prenda cualquiera de los lados.",
-        "clue": "Los parámetros pueden ser direcciones, no siempre deben ser números. Por ejemplo, un parámetro podría ser la dirección en que el autómata debe moverse."
+        "title": "Ligando os compus parametrizado",
+        "description": "Como antes, devemos ligar todos os compus. Mas desta vez você tem que definir um único procedimento que ligue qualquer um dos lados.",
+        "clue": "Parâmetros podem ser direções, não precisam ser sempre números. Por exemplo, um parâmetro pode ser a direção em que o autômato deve se mover."
     },
     "1133": {
-        "title": "Mariposas encuadradas",
-        "description": "Yvoty debe observar todas las mariposas del cuadrado pero en cada ejecución están distribuidas de una manera diferente. Tené en cuenta que las casillas de la esquina nunca tienen mariposas y que el tamaño del cuadrado no varía de una ejecución a la otra.",
+        "title": "Borboletas emolduradas",
+        "description": "Yvoty deve observar todas as borboletas do quadrado, mas em cada execução elas estão distribuídas de maneira diferente. Tenha em conta que as células do canto nunca têm borboletas e que o tamanho do quadrado não varia de uma execução para a outra.",
         "clue": ""
     },
     "1135": {
-        "title": "Paleteando con parámetros",
-        "description": "En este caso debemos rebotar con la paleta todas las pelotas de ping pong del cuadrado pero en cada ejecución están distribuidas de una manera diferente. Tené en cuenta que en las casillas de la esquina nunca habrá una pelota de ping pong y que el tamaño del cuadrado no varía de una ejecución a la otra.",
-        "clue": "Si no tenés un procedimiento con parámetros para mover en cualquier direccion... ¡Podés crearlo!"
+        "title": "Rebatendo com parâmetros",
+        "description": "Neste caso devemos rebater com a raquete todas as bolas de pingue-pongue do quadrado, mas em cada execução elas estão distribuídas de maneira diferente. Tenha em conta que nas células do canto nunca haverá uma bola de pingue-pongue e que o tamanho do quadrado não varia de uma execução para a outra.",
+        "clue": "Se você não tiver um procedimento com parâmetros para mover em qualquer direção... você pode criá-lo!"
     },
     "1136": {
-        "title": "¡Desenho livre!",
+        "title": "Desenho livre!",
         "description": "Nesta atividade você poderá fazer o desenho que mais gosta",
         "clue": "Incluímos todos os blocos possíveis, para que você possa liberar seu conhecimento."
     },
     "202101": {
-        "title": "Introducción",
+        "title": "Introdução",
         "description": "Ajude Duba a recolher todos os churrascos.\nAqui está um vídeo que explica como: <https://youtu.be/bc43ZyJrfSo>\n",
         "clue": ""
     },
