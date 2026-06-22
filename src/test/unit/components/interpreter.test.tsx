@@ -1,3 +1,23 @@
+jest.mock("react-i18next", () => {
+  const React = require("react");
+
+  return {
+    initReactI18next: {
+      type: "3rdParty",
+      init: jest.fn(),
+    },
+    I18nextProvider: ({ children }: any) => <>{children}</>,
+    useTranslation: () => ({
+      t: (key: string) => key,
+      i18n: {
+        changeLanguage: jest.fn(),
+        language: "es",
+      },
+    }),
+    Trans: ({ children }: any) => <>{children}</>,
+  };
+});
+
 import { ExecuteButton } from "../../../components/challengeView/SceneButtons/Execute";
 import { Challenge } from "../../../staticData/challenges";
 import { renderComponent } from "../../testUtils";
@@ -16,24 +36,31 @@ jest.mock("../../../theme/ThemeContext", () => ({
   }),
 }));
 
-// Mock de Blockly
-jest.mock('blockly', () => ({
+jest.mock('blockly/core', () => ({
   getMainWorkspace: jest.fn(() => ({
     getVariableMap: jest.fn(),
   })),
-  javascriptGenerator: {
-    workspaceToCode: jest.fn(() => 'mocked code'),
+  utils: {
+    xml: {
+      domToText: jest.fn(() => ''),
+    },
+  },
+  Xml: {
+    workspaceToDom: jest.fn(() => ({})),
   },
 }));
 
 // Mock de useInterpreterRunner
 const mockRun = jest.fn();
+
 jest.mock("../../../components/challengeView/SceneButtons/useInterpreterRunner", () => ({
   useInterpreterRunner: () => ({
     run: mockRun,
     showModal: false,
     setShowModal: jest.fn(),
     stepping: false,
+    mulangResults: [],
+    solved: false,
   }),
 }));
 
