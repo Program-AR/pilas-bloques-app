@@ -10,7 +10,6 @@ import { createValueBlocks } from "./blocksGallery/values";
 import { createControlStructureBlocks } from "./blocksGallery/controlStructures";
 import { createFirstBlock, createOthersBlocks } from "./blocksGallery/others";
 
-Blockly.setLocale(Es); // TODO: this needs to be taken from chosen intl
 
 export type BlocklyBlockDefinition = {
   type?: string
@@ -38,7 +37,16 @@ export const xmlBloqueEmpezarAEjecutar = `<xml xmlns="http://www.w3.org/1999/xht
               <block type="al_empezar_a_ejecutar" x="15" y="15"></block>
             </xml>`
 
-export const setupBlocklyBlocks = (t: (key: string) => string) => {
+export const setupBlocklyBlocks = (t: (key: string) => string, simpleReadModeEnabled: boolean = false) => {
+  if (simpleReadModeEnabled) {
+    const upperMsg: any = {};
+    for (const key in Es) {
+      upperMsg[key] = typeof (Es as any)[key] === 'string' ? (Es as any)[key].toUpperCase() : (Es as any)[key];
+    }
+    Blockly.setLocale(upperMsg);
+  } else {
+    Blockly.setLocale(Es);
+  }
 
   defineBlocklyTranslations(t)
 
