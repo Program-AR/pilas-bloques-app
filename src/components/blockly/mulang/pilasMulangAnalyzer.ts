@@ -10,26 +10,13 @@ export const analyzeWithMulang = (
   const ast = parseAll(workspace)
   const customExpect = expectationFor(challenge, workspace)
 
-  console.log('MULANG AST FULL', JSON.stringify(ast, null, 2))
-  console.log('MULANG CUSTOM EXPECT', customExpect)
-
   try {
     const astCode = (window as any).mulang.astCode(ast)
-
-    console.log(
-      'MULANG CODE CONTENT',
-      JSON.stringify(astCode.content, null, 2)
-    )
-
-    console.log('MULANG AST CODE OK', astCode)
 
     if (!customExpect.trim()) return []
 
     const results = astCode.customExpect(customExpect)
     const parsedResults = combineUsageResults(parseMulangResults(results))
-
-    console.log('MULANG RESULTS', results)
-    console.log('MULANG PARSED RESULTS', parsedResults)
 
     return parsedResults
     

@@ -25,18 +25,6 @@ const findEntryPointBlock = (workspace: Blockly.Workspace) =>
   workspace
     .getAllBlocks(false)
     .find((block: any) => block.type === entryPointType)
-/*
-const findProcedureBlock = (
-  workspace: Blockly.Workspace,
-  declaration: string
-) =>
-  workspace
-    .getAllBlocks(false)
-    .find((block: any) =>
-      block.type === 'procedures_defnoreturn' &&
-      blockName(block) === declaration
-    )
-*/
 
 const normalizeName = (value: string = '') =>
   value.trim().replace(/\s+/g, ' ')
@@ -51,24 +39,11 @@ const findProcedureBlock = (
   const procedureBlocks = workspace
     .getAllBlocks(false) 
 
-  console.log('LOOKING PROCEDURE', declaration)
-  console.log(
-    'PROCEDURE BLOCKS',
-    procedureBlocks.map((block: any) => ({
-      type: block.type,
-      nameField: block.getFieldValue?.('NAME'),
-      procedureDef: block.getProcedureDef?.(),
-      blockName: blockName(block),
-    }))
-  )
-
   return procedureBlocks.find((block: any) =>
     isProcedureDefinition(block) &&
     normalizeName(blockName(block)) === normalizeName(declaration)
   )
 }
-
-
 
 const blockForResult = (
   workspace: Blockly.Workspace,

@@ -80,13 +80,6 @@ export const runBlocklyValidations = async (
     challenge
   )
 
-  console.log(
-  'FAILED MULANG',
-  mulangResults.filter(result => result.result === false)
-)
-
-  console.log('stringify results ', JSON.stringify(mulangResults, null, 2))
-
   showMulangFeedback(workspace, mulangResults, t)
 
   const hasCriticalErrors = mulangResults.some(
