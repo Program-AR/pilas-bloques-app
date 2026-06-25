@@ -19,3 +19,7 @@ a {
 .injectionDiv {
   border-radius: 10px !important;
 }
+
+.blocklyText, .blocklyHtmlInput {
+  text-transform: none !important;
+}

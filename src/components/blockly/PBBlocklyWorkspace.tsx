@@ -20,9 +20,14 @@ export type PBBlocklyWorkspaceProps = {
 }
 
 export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props }: PBBlocklyWorkspaceProps) => {
-  const { t } = useTranslation("blocks")
+  const { t: originalT } = useTranslation("blocks")
 
-  const { blocklyTheme } = useThemeContext()
+  const { blocklyTheme, simpleReadModeEnabled } = useThemeContext()
+
+  const t = (key: string) => {
+    const translation = originalT(key);
+    return simpleReadModeEnabled && typeof translation === 'string' ? translation.toUpperCase() : translation;
+  }
 
   const [blocklyContainer, setBlocklyContainer] = useState<Element>()
 
@@ -30,7 +35,7 @@ export const PBBlocklyWorkspace = ({ blockIds, categorized, sx, title, ...props 
 
   const toolbox: Toolbox = categorized ? categorizedToolbox(t, blocksWithCategories) : uncategorizedToolbox(blocksWithCategories)
 
-  setupBlocklyBlocks(t)
+  setupBlocklyBlocks(t, simpleReadModeEnabled)
 
   if (blocklyContainer) setupBlockly(blocklyContainer, { theme: blocklyTheme, toolbox, ...props.workspaceConfiguration } )
 
