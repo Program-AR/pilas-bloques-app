@@ -25,7 +25,7 @@ const findEntryPointBlock = (workspace: Blockly.Workspace) =>
   workspace
     .getAllBlocks(false)
     .find((block: any) => block.type === entryPointType)
-
+/*
 const findProcedureBlock = (
   workspace: Blockly.Workspace,
   declaration: string
@@ -36,6 +36,39 @@ const findProcedureBlock = (
       block.type === 'procedures_defnoreturn' &&
       blockName(block) === declaration
     )
+*/
+
+const normalizeName = (value: string = '') =>
+  value.trim().replace(/\s+/g, ' ')
+
+const isProcedureDefinition = (block: any) =>
+  block.type === 'procedures_defnoreturn' || block.type === 'procedures_defreturn'
+
+const findProcedureBlock = (
+  workspace: Blockly.Workspace,
+  declaration: string
+) => {
+  const procedureBlocks = workspace
+    .getAllBlocks(false) 
+
+  console.log('LOOKING PROCEDURE', declaration)
+  console.log(
+    'PROCEDURE BLOCKS',
+    procedureBlocks.map((block: any) => ({
+      type: block.type,
+      nameField: block.getFieldValue?.('NAME'),
+      procedureDef: block.getProcedureDef?.(),
+      blockName: blockName(block),
+    }))
+  )
+
+  return procedureBlocks.find((block: any) =>
+    isProcedureDefinition(block) &&
+    normalizeName(blockName(block)) === normalizeName(declaration)
+  )
+}
+
+
 
 const blockForResult = (
   workspace: Blockly.Workspace,
@@ -57,10 +90,19 @@ export const showMulangFeedback = (
   results: MulangExpectationResult[],
   t: TFunction
 ) => {
+  const messagesByBlock = new Map<any, string[]>()
+
   failedResults(results).forEach(result => {
     const block = blockForResult(workspace, result)
+    if (!block) return
+
     const message = messageForExpectation(result, t)
 
-    showWarning(block, message)
+    const currentMessages = messagesByBlock.get(block) || []
+    messagesByBlock.set(block, [...currentMessages, message])
+  })
+
+  messagesByBlock.forEach((messages, block) => {
+    showWarning(block, messages.join('\n'))
   })
 }

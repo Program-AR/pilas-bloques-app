@@ -167,10 +167,22 @@ const parseProcedure = (block: any) => {
   ]
 }
 
+const emptySequence = () => createNode('Sequence', [])
+
+const parseProcedureBody = (block: any) => {
+  const child = getChild(block)
+
+  if (!child || child.isShadow?.()) {
+    return emptySequence()
+  }
+
+  return buildSequenceAst(child)
+}
+
 const parseEquation = (block: any) => {
   return [
     getParams(block).map(param => createNode('VariablePattern', param)),
-    createNode('UnguardedBody', buildSequenceAst(getChild(block))),
+    createNode('UnguardedBody', parseProcedureBody(block)),
   ]
 }
 

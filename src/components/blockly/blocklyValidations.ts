@@ -37,9 +37,18 @@ const markBlockError = (block: any, message: string) => {
 const isRequiredPlaceholder = (block: any) =>
   block?.isShadow?.() && REQUIRED_PLACEHOLDERS.includes(block.type)
 
+const isProcedureDefinition = (block: any) =>
+  block.type === 'procedures_defnoreturn' || block.type === 'procedures_defreturn'
+
 const blockHasMissingInput = (block: any) => {
   return (block.inputList || []).some((input: any) => {
     if (!input.connection) return false
+
+    // En Ember, un procedimiento vacío no bloquea ejecución.
+    // Lo informa Mulang con do_something, pero se puede ejecutar.
+    // Lo dejamos a consideracion de los profes y en tal caso, 
+    // quitamos este helper y se vuelve a bloquear.
+    if (isProcedureDefinition(block)) return false
 
     const targetBlock = input.connection.targetBlock()
 
@@ -71,7 +80,12 @@ export const runBlocklyValidations = async (
     challenge
   )
 
-  console.log(JSON.stringify(mulangResults, null, 2))
+  console.log(
+  'FAILED MULANG',
+  mulangResults.filter(result => result.result === false)
+)
+
+  console.log('stringify results ', JSON.stringify(mulangResults, null, 2))
 
   showMulangFeedback(workspace, mulangResults, t)
 

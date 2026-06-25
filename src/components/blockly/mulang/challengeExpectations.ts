@@ -44,7 +44,7 @@ const idsToExpectations = (defaultProcedureName: string) => ({
 export const expectationFor = (
   challenge: any,
   workspace: Blockly.WorkspaceSvg,
-  defaultProcedureName = 'procedimiento'
+  defaultProcedureName = 'Hacer algo'
 ) => {
   const expectationsConfig = challenge?.expectations || {}
 

@@ -1,7 +1,7 @@
 import * as Blockly from 'blockly/core'
 import { parseAll } from './pilasMulang'
 import { expectationFor } from './challengeExpectations'
-import { parseMulangResults } from './mulangResults'
+import { combineUsageResults, parseMulangResults } from './mulangResults'
 
 export const analyzeWithMulang = (
   workspace: Blockly.WorkspaceSvg,
@@ -26,7 +26,7 @@ export const analyzeWithMulang = (
     if (!customExpect.trim()) return []
 
     const results = astCode.customExpect(customExpect)
-    const parsedResults = parseMulangResults(results)
+    const parsedResults = combineUsageResults(parseMulangResults(results))
 
     console.log('MULANG RESULTS', results)
     console.log('MULANG PARSED RESULTS', parsedResults)
