@@ -1,4 +1,16 @@
 {
+  "expectationsModal": {
+    "scoredExpectations": {
+      "notAllPassed": {
+        "title": "Good job, but... it could be even better!",
+        "description": "Review your solution and try to meet all the goals."
+      },
+      "allPassed": {
+        "title": "You did it!",
+        "description": "You achieved all the goals."
+      }
+    }
+  },
   "congratulationsModal": {
     "title": "You did it!",
     "subtitle": "Something to think about...",

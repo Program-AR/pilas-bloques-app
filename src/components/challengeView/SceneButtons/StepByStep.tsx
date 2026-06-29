@@ -6,6 +6,7 @@ import { Challenge } from "../../../staticData/challenges"
 import { useTranslation } from "react-i18next"
 import { EndDialog } from "./EndChallengeDialog"
 import { useInterpreterRunner } from "./useInterpreterRunner"
+import { runBlocklyValidations } from "../../blockly/blocklyValidations"
 
 type ExecuteButtonProps = {
   challenge: Challenge
@@ -17,9 +18,13 @@ type ExecuteButtonProps = {
 export const StepByStepButton = ({ challenge, running, setRunning, interpreterVersion }: ExecuteButtonProps) => {
 
   const { isSmallScreen } = useThemeContext()
-  const { t } = useTranslation('challenge')
+  const { t } = useTranslation(['challenge', 'mulang'])
 
-  const { run, showModal, setShowModal, stepping } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion);
+  const runValidations = async () => {
+    return runBlocklyValidations(challenge, t)
+  }
+
+  const { run, showModal, setShowModal, stepping, mulangResults, solved } = useInterpreterRunner(challenge, setRunning, 'step', interpreterVersion, '', { runValidations });
 
   return <>
     <Tooltip title={t('stepByStepRun.tooltip')}>
@@ -31,7 +36,7 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
               color: running && !stepping ? 'rgba(0,0,0,0.26)' : '#31b0d5',
               '&:hover': { color: '#269abc' },
             }} />
-            <SkipNext className={styles['icon']}/>
+            <SkipNext className={styles['icon']} />
           </Stack>
         </IconButton>
         :
@@ -42,6 +47,6 @@ export const StepByStepButton = ({ challenge, running, setRunning, interpreterVe
           }} onClick={run}>{t("stepByStepRun.label")}</Button>
       }
     </Tooltip>
-    <EndDialog showModal={showModal} setShowModal={setShowModal} />
+    <EndDialog showModal={showModal} setShowModal={setShowModal} challenge={challenge} mulangResults={mulangResults} solved={solved}/>
   </>
 }

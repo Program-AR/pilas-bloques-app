@@ -110,7 +110,7 @@ const addWarningToBlock = (block: { setWarningText?: any; warning: any; }, itemC
   const text = `${itemChar} ${lineWrap(message)}`
   block.setWarningText(text, index)
   setWarningColour(block, colour, secondaryColour)
-  block.warning.setVisible(visible)
+  block.warning.setBubbleVisible(visible)
 }
 
 export const addWarning = (block: { setWarningText?: any; warning: any; }, message: string, index?: any, visible?: boolean | undefined) => {

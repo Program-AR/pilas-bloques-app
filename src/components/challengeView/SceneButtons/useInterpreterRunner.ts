@@ -5,22 +5,37 @@ import { interpreterFactory } from "./interpreterFactory";
 import { Challenge } from "../../../staticData/challenges";
 import { PilasBloquesApi } from "../../../pbApi";
 import Blockly from "blockly/core"
+import { MulangExpectationResult } from "../../blockly/mulang/mulangResults";
 
 type Mode = 'run' | 'step';
+
+type ValidationResult = {
+  canRun: boolean
+  mulangResults: MulangExpectationResult[]
+}
+
+type UseInterpreterRunnerOptions = {
+  runValidations?: () => Promise<ValidationResult>
+}
+
 export const useInterpreterRunner = (
   challenge: Challenge,
   setRunning: ((r: boolean) => void) | undefined,
   mode: Mode = 'run',
   interpreterVersion: number,
-  blocklyXML: string = ''
+  blocklyXML: string = '',
+  options?: UseInterpreterRunnerOptions
 ) => {
   const [showModal, setShowModal] = useState(false);
   const [stepping, setStepping] = useState(false);
   const interpreterRef = useRef<Interpreter | null>(null);
+  const [mulangResults, setMulangResults] = useState<MulangExpectationResult[]>([]);
+  const [solved, setSolved] = useState(false);
 
   useEffect(() => {
     interpreterRef.current = null;
     setStepping(false);
+    interpreterFactory.clearHighlight();
   }, [interpreterVersion]);
 
   const getBlocklyXML = useCallback((): string => {
@@ -37,7 +52,7 @@ export const useInterpreterRunner = (
       let solutionId: string | undefined;
       setRunning && setRunning(true);
       if (!interpreterRef.current) {
-        await scene.restartScene(challenge.sceneDescriptor);        
+        await scene.restartScene(challenge.sceneDescriptor);
         // TODO: Enviar ast, turboModeOn y staticAnalysis como lo hace Ember
         const programXML = blocklyXML || getBlocklyXML();
         const staticAnalysis = { couldExecute: true };
@@ -59,6 +74,7 @@ export const useInterpreterRunner = (
             }
           }
         } catch (e) {
+          interpreterFactory.clearHighlight();
           reject(e);
           return;
         }
@@ -68,6 +84,8 @@ export const useInterpreterRunner = (
         } else {
           interpreterRef.current = null;
           setStepping(false);
+          interpreterFactory.clearHighlight();
+
           checkProblemSolved().then(async (solved) => {
             const staticAnalysis = { couldExecute: true };
             if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
@@ -89,23 +107,33 @@ export const useInterpreterRunner = (
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
   const checkProblemSolved = async () => {
-    const solved = await scene.isTheProblemSolved();
+    const solved = await scene.isTheProblemSolved();    
+    setSolved(solved);
     if (solved) setShowModal(true);
     return solved;
   };
 
-  const run = useCallback(() => {
+  const run = useCallback(async () => {
     if (mode === 'step' && interpreterRef.current && stepping) {
       (window as any).continueExecution();
     } else {
+      const validationResult = await options?.runValidations?.();
+
+      if (validationResult?.canRun === false) return;
+
+      setMulangResults(validationResult?.mulangResults || [])
+
       executeUntilEnd();
+
     }
-  }, [executeUntilEnd, mode, stepping]);
+  }, [executeUntilEnd, mode, stepping, options]);
 
   return {
     run,
     showModal,
     setShowModal,
     stepping,
+    mulangResults,
+    solved,
   };
 };
