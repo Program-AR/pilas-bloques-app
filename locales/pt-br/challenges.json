@@ -1,269 +1,667 @@
 {
     "201": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Ajude Duba, a puma, a comer seu churrasco. Evite os obstáculos.",
+        "clue": ""
     },
     "202": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Duba quer comer seu churrasco. Ajude ela!",
+        "clue": ""
     },
     "203": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Você ajuda o puma a comer seu churrasco? Evite os obstáculos.",
+        "clue": ""
     },
     "204": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "Duba quer comer churrasco. Como você pode fazer isso sem esbarrar em obstáculos?",
+        "clue": ""
     },
     "205": {
-      "title": "Desafio 5"
+        "title": "Desafio 5",
+        "statement": "Ajude o puma Duba a saciar sua fome, evitando os obstáculos.",
+        "clue": ""
     },
     "206": {
-      "title": "Desafio 6"
+        "title": "Desafio 6",
+        "statement": "Duba quer devorar seu churrasco. Como pode fazer isso?",
+        "clue": ""
     },
     "207": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Ajude à lhama a completar a torre.",
+        "clue": "Para completar o desenho, a Coty deve desenhar nas linhas cinzas."
     },
     "208": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Coty quer desenhar a casa! Você a ajuda?",
+        "clue": ""
     },
     "209": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "A lhama só quer desenhar três listras. Como você pode fazer isso?",
+        "clue": ""
     },
     "210": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "Você ajuda a lhama a completar a carinha feliz?",
+        "clue": ""
     },
     "211": {
-      "title": "Desafio 5"
+        "title": "Desafio 5",
+        "statement": "Como a lhama pode terminar de desenhar a ponte?",
+        "clue": ""
     },
     "212": {
-      "title": "Desafio 6"
+        "title": "Desafio 6",
+        "statement": "Como a lhama pode completar o cardo?",
+        "clue": ""
     },
     "213": {
-      "title": "Desafio 7"
+        "title": "Desafio 7",
+        "statement": "É hora de um bom mate. Ajude a lhama a terminar de desenhá-lo.",
+        "clue": ""
     },
     "214": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Ajude a mula a preparar a salada mista.",
+        "clue": ""
     },
     "215": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Hoje Lita quer comer um pouco de salada. Ajude-a a prepará-lo!",
+        "clue": ""
     },
     "216": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Tomate, alface e pronto. Ajude Lita a preparar sua salada.",
+        "clue": ""
     },
     "217": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Ajude Lita a preparar seu prato favorito.",
+        "clue": ""
     },
     "218": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Você pega o tomate ou a alface primeiro? Ajude Lita a preparar seu prato favorito.",
+        "clue": ""
     },
     "219": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "Que passos a mula pode tomar para preparar seu prato favorito?",
+        "clue": ""
     },
     "220": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Qual é o erro do problema? Encontre-o e ajude Duba a comer seu churrasco.",
+        "clue": ""
     },
     "221": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "E o Duba que não pode comer sua comida? Corrija o programa para que o puma satisfaça sua fome.",
+        "clue": ""
     },
     "222": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Descubra o problema do programa e corrija-o para que Duba possa comer seu churrasco.",
+        "clue": ""
     },
     "223": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "Existem instruções extras ou ausentes? Assista ao programa, descubra o erro e ajude Duba a comer seu prato favorito.",
+        "clue": ""
     },
     "224": {
-      "title": "Desafio 5"
+        "title": "Desafio 5",
+        "statement": "Qual erro você encontra neste programa? Corrija e ajude a mulazinha a preparar o almoço.",
+        "clue": ""
     },
     "225": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Ajude à raposa a ler seu nome: TOTO.\n",
+        "clue": "TOTO lê as letras pelas quais se move."
     },
     "226": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "A raposa está pensando em seu amigo da Puna, Coty. Ajude-o a ler LLAMA.",
+        "clue": ""
     },
     "227": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Adivinha em quem a raposa está pensando! Uma ajuda: é um animal que gosta muito de comer churrasco.\n",
+        "clue": ""
     },
     "228": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "O que a raposa queria ler e o que ela acabou lendo? Descobri o erro e corrigi!",
+        "clue": "Toto está voltando. Vai demorar um pouco porque você está caminhando para..."
     },
     "229": {
-      "title": "Desafio 5"
+        "title": "Desafio 5",
+        "statement": "A raposa está distraída. Ajude-a a ler corretamente o dia em que chega a Humahuaca.",
+        "clue": ""
     },
     "230": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "O puma pode chegar ao churrasco usando apenas um bloco de movimento?",
+        "clue": "Você pode usar o novo bloco \"Repetir\""
     },
     "231": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "O puma está com fome e está longe do churrasco. Mas agora ele sabe repetir!",
+        "clue": ""
     },
     "232": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Como o puma pode chegar à comida sem ter que usar muitos blocos de movimento?",
+        "clue": ""
     },
     "233": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "A lhama quer desenhar quatro linhas. O que se repete desta vez?",
+        "clue": "Pode haver mais de um bloco dentro do Repetir"
     },
     "234": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Agora você tem que desenhar para baixo! Será tão fácil quanto adicionar um bloco ao que você fez antes? Quantas repetições são necessárias agora?",
+        "clue": ""
     },
     "235": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "A lhama quer desenhar uma escada. Você consegue encontrar o padrão que se repete? Quantas vezes é repetido?",
+        "clue": ""
     },
     "236": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Bom, agora você tem uma solução! Você tenta?",
+        "clue": "Você pode testar os programas passo a passo para descobrir os erros"
     },
     "237": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "O que acontece que Duba não consegue comer seu prato favorito? Retire, modifique e/ou adicione os blocos que faltam para atingir seu objetivo.",
+        "clue": ""
     },
     "238": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Qual padrão a Coty deve repetir desta vez? A solução proposta está correta?",
+        "clue": ""
     },
     "239": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "Coty está fazendo qualquer coisa de novo! Você pode encontrar os erros e corrigi-los? A lhama vai agradecer.",
+        "clue": ""
     },
     "240": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Você encontra etapas que são repetidas? Quais são? Crie o programa que ajuda a Lita a preparar a sua salada diária.",
+        "clue": ""
     },
     "241": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Do jeito que está, a mulazinha não pode preparar sua salada! Quantas vezes Lita repete os passos para chegar à alface? O que deve ser modificado? O que acontece quando ele tenta pegar o tomate?",
+        "clue": ""
     },
     "242": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Às vezes tem churrasco e às vezes não! Dá pra fazer um programa só pra que o Duba sempre avance e coma só se tiver churrasco?",
+        "clue": "O bloco \"Se\" é usado às vezes para fazer algo e às vezes não. Serve para perguntar!"
     },
     "243": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Agora Duba deve avançar duas vezes. Você tem que comer todos os churrascos que aparecem! ...mas apenas se eles aparecerem",
+        "clue": ""
     },
     "244": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Coty deve desenhar um quadrado, mas... Cuidado, às vezes aparece uma poça!",
+        "clue": ""
     },
     "245": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Lita quer pegar qualquer vegetal. Mas deve estar correta!",
+        "clue": "O bloco \"Se/Se Não\" permite que você escolha entre duas alternativas. Basta escolher bem a pergunta."
     },
     "246": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Nem sempre é preciso se mover para a direita... Que pergunta ajuda Duba a decidir?",
+        "clue": "Você também pode colocar mais de uma instrução no bloco \"Se/Se Não\"."
     },
     "247": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Cuidado Duba! Onde pode aparecer um obstáculo? Vamos ter que decidir qual caminho seguir!",
+        "clue": ""
     },
     "248": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Agora Duba está longe, e ela tem que decidir se come ou não. Vamos ajudá-la com os blocos que aprendemos?",
+        "clue": "É importante pressionar executar várias vezes para entender o problema"
     },
     "249": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Quantos churrascos! Que padrão o Duba deve repetir? Quantas perguntas você tem que fazer?",
+        "clue": "É importante pressionar executar várias vezes para entender o problema"
     },
     "250": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Lita também deve repetir sua decisão várias vezes! Há sempre um vegetal, ela só precisa decidir qual deles pegar em cada etapa.",
+        "clue": ""
     },
     "251": {
-      "title": "Desafio 1"
+        "title": "Desafio 1",
+        "statement": "Agora o Toto sabe escrever! Faça-o copiar a palavra inteira.",
+        "clue": "Toto sabe escrever as letras que está tocando"
     },
     "252": {
-      "title": "Desafio 2"
+        "title": "Desafio 2",
+        "statement": "Agora Toto quer escrever uma X para cada letra. Não importa o que ele lê! Quantas Xs ele deve escrever?",
+        "clue": "Toto também sabe escrever uma carta que você diz a ele"
     },
     "253": {
-      "title": "Desafio 3"
+        "title": "Desafio 3",
+        "statement": "Toto gosta de brincar com as letras: ajude-o a copiar a palavra, mas quando chegar ao M, adicione \"ICH\"\n",
+        "clue": "Ao copiar \"Cimento\" escreva \"Cimichento\""
     },
     "254": {
-      "title": "Desafio 4"
+        "title": "Desafio 4",
+        "statement": "Faça o Toto copiar a palavra falando em Jeringozo. Se a palavra for \"DUBA\" ele tem que copiar \"DUPUBAPA\"",
+        "clue": "A língua Jeringozo adiciona \"PA\" depois de um A, \"PE\" depois de um E, e assim por diante para todas as vogais."
     },
     "255": {
-      "title": "¡Coty desenha livremente!"
+        "title": "Coty desenha livremente!",
+        "statement": "Nesta atividade você poderá fazer o desenho que mais goste",
+        "clue": "Incluímos todos os blocos possíveis, para que você possa libertar seu conhecimento."
+    },
+    "1001": {
+        "title": "Capy e Guyrá",
+        "statement": "A capivara Capy e seu amigo inseparável, o pica-boi Guyrá, têm um jeito muito particular de viajar pelos estuários. Ajude Capy a pegar seu amigo para colocá-lo na cabeça e assim embarcar em uma nova aventura juntos.\n",
+        "clue": "Preste atenção na ordem dos _primitivos_: o que você tem que fazer primeiro e o que vem a seguir."
+    },
+    "1002": {
+        "title": "Chuy joga uma embaixadinha",
+        "statement": "Faça que Chuy dê um passo à frente, aqueça-se (movendo-se para frente e para trás, duas vezes), pegue a bola de borracha, jogue uma embaixadinha virando a bola e quicando-a com o pé e, finalmente, retorne ao seu lugar.",
+        "clue": "Novas ações podem ser criadas em Procedimentos definindo novos blocos que incluem outras ações."
+    },
+    "1003": {
+        "title": "Eu adoro quicar a bola de pingue-pongue",
+        "statement": "Ajude Chuy a quicar a bola de pingue-pongue 30 vezes seguidas. Dica: pode ser resolvido com menos de 30 blocos.\n",
+        "clue": "O bloco Repetir permite que você escolha o número de vezes que deseja repetir uma sequência de ações. Isso é chamado de \"Repetição Simples\"."
+    },
+    "1004": {
+        "title": "Mañic no céu",
+        "statement": "Mañic está fascinado com o céu e adora observar tudo, principalmente: as estrelas! Ajude-a a cumprir seu objetivo. Dica: crie um procedimento (bloco) para cada conjunto de estrelas.\n",
+        "clue": "Há muitas maneiras de observar estrelas. Você pode começar pelas da direita, ou pode começar por cima! Consegue pensar em outra estratégia? Pense nisso sempre antes de programar."
+    },
+    "1005": {
+        "title": "Yvoty desperta os vagalumes",
+        "statement": "Ajude Yvoty a despertar todos os vagalumes.\nDica: crie um procedimento para despertar todos os vagalumes de uma diagonal.\n",
+        "clue": "Você pode criar um procedimento uma vez e usá-lo todas as vezes que quiser dentro de um programa."
+    },
+    "1007": {
+        "title": "A Reparadora de Telescópios",
+        "statement": "Ajude Mañic a reparar todos os telescópios. Dica: você pode fazer um procedimento que pegue uma fila de telescópios.\n",
+        "clue": "Usar um procedimento muitas vezes te poupa trabalho."
+    },
+    "1008": {
+        "title": "Mañic e os planetas",
+        "statement": "Mañic tem que observar todos os planetas da grade. Pense em de que maneira ela pode fazer isso criando os blocos necessários.\n",
+        "clue": "Você também pode pensar se existe uma estratégia que permita **reutilizar** um mesmo procedimento várias vezes."
+    },
+    "1009": {
+        "title": "Carregando os celus",
+        "statement": "Yvoty deve carregar com o carregador os 7 celus que estão nesta cena. Procure primeiro o carregador e depois passe por cada celular carregando-o. Dica: quantas partes sua estratégia deve ter?\n",
+        "clue": ""
+    },
+    "1010": {
+        "title": "Instalando jogos",
+        "statement": "Yvoty tem que instalar um jogo em 3 compus para se divertir com seus amigos. Os passos para instalar em cada uma são: ligá-la, escrever a senha (\"ABC\"), instalar o jogo e desligar a máquina. Dica: aproveite que em cada compu é preciso fazer o mesmo trabalho.\n",
+        "clue": ""
+    },
+    "1012": {
+        "title": "Limpando o pantanal",
+        "statement": "Capy precisa limpar o pântano antes de surfar. Para conseguir isso, Capy precisa pegar 3 latas e 3 pedaços de papel e levá-los para o lixo, mas não pode jogar mais de um de cada vez. Aí ele sobe no jacaré e finalmente surfa!",
+        "clue": ""
+    },
+    "1016": {
+        "title": "Três telescópios",
+        "statement": "Mañic deve reparar todos os telescópios quebrados que apareçam nas células. Mas eles não aparecem sempre nos mesmos lugares nem na mesma quantidade! Dica: pense primeiro como você faria um procedimento para reparar um único telescópio, se houver.\n",
+        "clue": ""
+    },
+    "1017": {
+        "title": "Yvoty desperta mais vagalumes",
+        "statement": "Yvoty precisa despertar os vagalumes para poder conhecer o caminho... Mas a cada execução eles mudam de lugar! Você pode usar procedimentos e blocos de controle.",
+        "clue": ""
+    },
+    "1019": {
+        "title": "Mudando comprimentos",
+        "statement": "Ajude Yvoty a despertar os vagalumes.\nAtenção! Em todas as células há um vagalume, mas você não sabe quantas células há em cada execução.\n",
+        "clue": "Existem novos blocos que podem ajudá-lo a resolver o desafio de forma muito simples. Aproveite-os!"
+    },
+    "1020": {
+        "title": "Mudando luzes",
+        "statement": "Neste caso, Yvoty também deve acordar todas as luzes que encontrar para iluminar bem a paisagem, mas no momento ela não sabe a extensão do caminho... mas também não sabe se haverá luzes em cada etapa! A mesma ajuda que você disse em “Mudando comprimentos” irá ajudá-lo?\n",
+        "clue": "O bloco \"repetir até que\" repete uma sequência de ações até que uma condição se cumpra. Isso se chama \"repetição condicional\"."
+    },
+    "1022": {
+        "title": "Capy busca a Guyrá",
+        "statement": "Ajude Capy a encontrar Guyrá\n",
+        "clue": ""
+    },
+    "1024": {
+        "title": "Ligando os compus",
+        "statement": "Devemos ligar todos os compus levando em conta que a largura e a altura do cenário mudam a cada execução. Dica: pense em como você faria para ligar os compus de um lado do retângulo e depois repita para o resto dos lados.\n",
+        "clue": ""
+    },
+    "1025": {
+        "title": "Contando planetas e estrelas",
+        "statement": "Mañic deve passar por todos os quadrados e contar quantas estrelas e planetas existem no total. Dica: primeiro pense em como você contaria se houvesse uma estrela ou um planeta em um determinado quadrado. Em seguida, pense em como você faria para contar todos os corpos celestiais em uma única coluna.\n",
+        "clue": "Subdividir um grande problema em problemas menores ajuda a compreender melhor cada uma de suas partes componentes. Também nos permite focar na solução de questões mais simples do problema original."
+    },
+    "1026": {
+        "title": "Chuy vai correr",
+        "statement": "Chuy deve realizar sua caminhada matinal, que consiste em percorrer um determinado número de quilômetros que varia de dia para dia (entre 15 e 45 km). Certifique-se de que Chuy sempre chegue ao destino sem exagerar! Dica: procure na categoria \"Sensores\" se há algo que pode ajudá-lo.\n",
+        "clue": "Você pode usar um bloco \"Repetir\" com o valor de um sensor. Isso permite que uma sequência de código seja repetida o número de vezes indicado pelo sensor"
+    },
+    "1027": {
+        "title": "Mañic conta novamente",
+        "statement": "Mañic tem que contar os astros novamente, mas agora ela não pode verificar se já atingiu o fim de uma coluna! Existe um sensor que pode ajudá-la?",
+        "clue": "Um sensor nos permite obter informações que podem mudar a cada execução do programa, até na mesma execução. Por exemplo, o comprimento de cada coluna varia dependendo da coluna em que Mañic está."
+    },
+    "1028": {
+        "title": "O planeta de Capy e Guyrá",
+        "statement": "Ajude Capy e Guyrá a recolher todas as latas. Cuidado! Não se pode descer...\nTenha em conta que o cenário não muda, as latas estão sempre nas mesmas células!\n",
+        "clue": "Procedimentos podem receber parâmetros para torná-los mais gerais. Por exemplo, se criarmos os procedimentos \"Pegar 2 latas à direita\", \"Pegar 3 latas à direita\" e \"Pegar 4 latas à direita\", podemos substituir os três por um único procedimento que receba como parâmetro a quantidade de latas que queremos pegar à direita: \"Pegar à direita esta quantidade: [quantidade]\".\nPara adicionar um parâmetro a um procedimento novo, é preciso clicar no + que aparece ao lado do nome no bloco \"Definir\".\n"
+    },
+    "1029": {
+        "title": "Desenho: Quadrado\n",
+        "statement": "Desenhe um quadrado com 100 de cada lado.",
+        "clue": ""
+    },
+    "1030": {
+        "title": "Desenho: amarelinha robótica\n",
+        "statement": "Desenhe 5 quadrados em uma linha, cada um com um lado de 50, como mostrado na figura sombreada.",
+        "clue": ""
+    },
+    "1031": {
+        "title": "Desenho: Curto na diagonal\n",
+        "statement": "Desenhe 5 quadrados na diagonal, cada um com o lado 50, como mostrado na figura sombreada.",
+        "clue": ""
+    },
+    "1032": {
+        "title": "Desenho: Mamushka quadrada\n",
+        "statement": "Desenhe 4 quadrados com lados 50, 100, 150 e 200, como mostrado na figura sombreada. Dica: Crie um novo procedimento para desenhar quadrados de qualquer comprimento de lado.\n",
+        "clue": "Incluir parâmetros em procedimentos permite generalizar um conceito. Por exemplo, o comprimento do lado de um quadrado."
+    },
+    "1033": {
+        "title": "Desenho: Escada quadrada\n",
+        "statement": "Desenhe 5 quadrados: 4 de lado 50 e um de 100, como visto na figura sombreada..\n",
+        "clue": "Ao criar um procedimento parametrizado, seus valores são indefinidos (por exemplo, \"comprimento lateral\"). Ao usar os procedimentos, esses parâmetros devem receber um valor específico (50, 100, etc.)."
+    },
+    "1034": {
+        "title": "Desenho: Hexágono\n",
+        "statement": "Desenhe um hexágono de lado 100, como mostrado na figura sombreada. Dica: pense em quantos graus o robô deve girar sabendo qual é o comprimento dos ângulos internos do hexágono.\n",
+        "clue": "Nos polígonos, o valor de um ângulo externo é igual a 180 menos o valor de um ângulo interno."
+    },
+    "1035": {
+        "title": "Desenho: Pirâmide invertida\n",
+        "statement": "Desenhe um triângulo equilátero de lado 100, como mostrado na figura sombreada. Dica: Pense se existe uma relação entre os ângulos e o número de lados.\n",
+        "clue": "Em polígonos, a adição de todos os ângulos externos é 360"
+    },
+    "1036": {
+        "title": "Desenho: Figuras dentro de figuras\n",
+        "statement": "Desenhe um triângulo, um quadrado e um pentágono de lado 100, como mostrado na figura sombreada. Dica: Crie um procedimento com um parâmetro para o número de lados.\n",
+        "clue": "Agora temos Operadores: esses blocos vão nos permitir realizar alguns cálculos automaticamente, como uma calculadora!... Quantos graus tem um giro completo? Por qual número devemos dividir?\n"
+    },
+    "1037": {
+        "title": "Desenho: A caverna das estalactites\n",
+        "statement": "Desenhe 3 triângulos com lados 40, 60 e 100 e um quadrado com lados 200, como mostrado na figura sombreada. Dica: Crie um procedimento com 2 parâmetros, um para o número de lados e outro para o comprimento dos lados.\n",
+        "clue": "Para poder utilizar os parâmetros em um novo procedimento, deve-se clicar com o botão direito do mouse no bloco que define o referido procedimento."
+    },
+    "1038": {
+        "title": "As estrelas de Mañic",
+        "statement": "Nos caminhos de Mañic costuma haver muitos obstáculos que se interpõem, impedindo que ela possa ir observar sua estrela favorita. Se isso acontecer, ela deve tomar o longo e cansativo caminho sinuoso. Ajude Mañic a observar a estrela no final do caminho. Não se esqueça de baixar sua solução! (você vai precisar dela mais adiante).\n",
+        "clue": "Quantos possíveis caminhos para a estrela existem? Todos eles podem ser percorridos sempre ou isso depende de algo?"
+    },
+    "1039": {
+        "title": "Os caminhos de Mañic",
+        "statement": "Mañic ouviu a localização de outra linda estrela para observar, embora o caminho seja mais longo e perigoso. O caminho nem sempre está livre de obstáculos.\n",
+        "clue": "Há algum padrão que se repete? Isso poderia ajudar a solução do desafio anterior (As estrelas de Mañic)?"
+    },
+    "1040": {
+        "title": "Fileira de latas\n",
+        "statement": "“Nada melhor do que acordar de manhã e sair para deixar o mundo mais limpo”, pensa Capy. Ajude Capy a recolher todas as latas que encontrar pelo caminho. Não se esqueça de baixar sua solução (você vai precisar dela mais adiante).\n",
+        "clue": "Como Capy pode saber facilmente se há uma fileira de latas? O que ela deve fazer se não houver nenhuma lata?"
+    },
+    "1041": {
+        "title": "Muitas fileiras de latas\n",
+        "statement": "Hoje é um dia especial para ajudar a manter o planeta mais limpo... mas há pessoas que jogam as latas no chão. Ajude Capy a recolher as latas de todas as fileiras que encontrar pelo caminho.\n",
+        "clue": "Há alguma tarefa que Capy precise realizar várias vezes? Isso poderia ajudar a solução do desafio anterior (Fileira de latas)?"
+    },
+    "1042": {
+        "title": "Às vezes latas, às vezes papéis\n",
+        "statement": "A vida no planeta pode ser muito difícil para Capy, então topar com uma área cheia de lixo é um grande problema. Ajude Capy a recolher todas as latas e papéis que encontrar pelo caminho.\n",
+        "clue": "Pense em uma estratégia que permita que Capy percorra uma fila e recolha todas as latas e papéis que encontrar. Será que dá para fazer o mesmo nas outras filas?"
+    },
+    "1043": {
+        "title": "O corredor curvo de celus\n",
+        "statement": "Yvoty encontrou um corredor cheio de celus! O único problema é que o corredor faz várias curvas e os celus estão exatamente ali… Será que Yvoty poderá desbloquear todos os celus desse corredor?\n",
+        "clue": "Os celus estão justamente nas curvas que o corredor faz. Uma estratégia para desbloquear os celus em uma curva seria uma excelente ajuda."
+    },
+    "1044": {
+        "title": "O banquete astronômico\n",
+        "statement": "Mañic veio observar os astros no lugar de sempre, embora tenha ouvido rumores de que um grande evento astronômico esteja acontecendo no céu... Hoje é um grande dia para festejar!\n",
+        "clue": "Uma observação habitual de Mañic é uma coluna de 6 astros. Quantas colunas tem um evento astronômico? Se você conseguir fazer Mañic observar os astros de uma coluna, talvez possa fazer o mesmo em um evento."
+    },
+    "1045": {
+        "title": "Observadora de borboletas\n",
+        "statement": "O universo tem milhões e milhões de galáxias; por sorte para o coletor de estrelas, hoje ele deve coletar somente duas galáxias muito pequenas.\n",
+        "clue": "Cada galáxia é um grupo de estrelas distribuídas de forma diferente, mas sempre no mesmo espaço. Pense em uma estratégia que vá do mais simples ao mais complexo: primeiro uma célula, depois uma fila ou coluna, e finalmente uma galáxia."
+    },
+    "1046": {
+        "title": "Novos comandos",
+        "statement": "Agora Capy precisa pegar duas latas à sua direita, depois duas mais abaixo e uma no final.\n",
+        "clue": "Você viu os procedimentos? Eles podem ajudá-lo a **criar novos comandos** para usar **quantas vezes quiser.**"
+    },
+    "1130": {
+        "title": "Procurando pela estrelas",
+        "statement": "Para que Mañic convide seus amigos para observar as estrelas, ela deve organizar os três telescópios movendo-os um certo número de vezes até que estejam posicionados corretamente.\n",
+        "clue": "Guie-se pelas sombras dos telescópios para saber até onde movê-los"
+    },
+    "1131": {
+        "title": "Reciclando papéis",
+        "statement": "Ajude Capy e Guyrá a deixar um papel no tacho no final de cada fila. Tenha em conta que o cenário não muda de uma execução para a outra! Dica: se você tivesse que escolher um parâmetro para o seu procedimento... Qual você escolheria? O que varia de fila para fila?\n",
+        "clue": ""
+    },
+    "1132": {
+        "title": "Ligando os compus parametrizado",
+        "statement": "Como antes, devemos ligar todos os compus. Mas desta vez você tem que definir um único procedimento que ligue qualquer um dos lados.",
+        "clue": "Parâmetros podem ser direções, não precisam ser sempre números. Por exemplo, um parâmetro pode ser a direção em que o autômato deve se mover."
+    },
+    "1133": {
+        "title": "Borboletas emolduradas",
+        "statement": "Yvoty deve observar todas as borboletas do quadrado, mas em cada execução elas estão distribuídas de maneira diferente. Tenha em conta que as células do canto nunca têm borboletas e que o tamanho do quadrado não varia de uma execução para a outra.",
+        "clue": ""
+    },
+    "1135": {
+        "title": "Rebatendo com parâmetros",
+        "statement": "Neste caso devemos rebater com a raquete todas as bolas de pingue-pongue do quadrado, mas em cada execução elas estão distribuídas de maneira diferente. Tenha em conta que nas células do canto nunca haverá uma bola de pingue-pongue e que o tamanho do quadrado não varia de uma execução para a outra.",
+        "clue": "Se você não tiver um procedimento com parâmetros para mover em qualquer direção... você pode criá-lo!"
+    },
+    "1136": {
+        "title": "Desenho livre!",
+        "statement": "Nesta atividade você poderá fazer o desenho que mais gosta",
+        "clue": "Incluímos todos os blocos possíveis, para que você possa liberar seu conhecimento."
     },
     "202101": {
-      "title": "Introducción"
+        "title": "Introdução",
+        "statement": "Ajude Duba a recolher todos os churrascos.\nAqui está um vídeo que explica como: <https://youtu.be/bc43ZyJrfSo>\n",
+        "clue": ""
     },
     "202102": {
-      "title": "Introdução à repetição"
+        "title": "Introdução à repetição",
+        "statement": "Ajude Dubai a coletar todos os churrascos, mas agora há um novo bloco! :thinking:.",
+        "clue": "Veja o que acontece quando você pressiona o botão Executar."
     },
     "2021001": {
-      "title": "Nível 1"
+        "title": "Nível 1",
+        "statement": "Ajude Duba a recolher todos os churrascos.\nAqui está um vídeo que explica como: <https://youtu.be/bc43ZyJrfSo>\n",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021002": {
-      "title": "Nível 2"
+        "title": "Nível 2",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021003": {
-      "title": "Nível 3"
+        "title": "Nível 3",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021004": {
-      "title": "Nível 4"
+        "title": "Nível 4",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021005": {
-      "title": "Nível 5"
+        "title": "Nível 5",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021006": {
-      "title": "Nível 6"
+        "title": "Nível 6",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021007": {
-      "title": "Nível 7"
+        "title": "Nível 7",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021008": {
-      "title": "Nível 8"
+        "title": "Nível 8",
+        "statement": "Ajude Duba a recolher todos os churrascos.",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021101": {
-      "title": "Nível 1"
+        "title": "Nível 1",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)\nAqui está um vídeo que explica como: <https://youtu.be/cKNtw32dUCI>\n",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021102": {
-      "title": "Nível 2"
+        "title": "Nível 2",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021103": {
-      "title": "Nível 3"
+        "title": "Nível 3",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021104": {
-      "title": "Nível 4"
+        "title": "Nível 4",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021105": {
-      "title": "Nível 5"
+        "title": "Nível 5",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021106": {
-      "title": "Nível 6"
+        "title": "Nível 6",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021107": {
-      "title": "Nível 7"
+        "title": "Nível 7",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021108": {
-      "title": "Nível 8"
+        "title": "Nível 8",
+        "statement": "Ajude Lita a preparar a salada (com tomate e alface)",
+        "clue": "O bloco REPETIR pode ajudá-lo."
     },
     "2021201": {
-      "title": "Nível 1"
+        "title": "Nível 1",
+        "statement": "Ajude Coty, a lhama, a completar a torre.",
+        "clue": "Para completar o desenho, a Coty deve desenhar nas linhas cinzas."
     },
     "2021202": {
-      "title": "Nível 2"
+        "title": "Nível 2",
+        "statement": "A lhama quer apenas desenhar três linhas. Como você pode fazer isso?",
+        "clue": ""
     },
     "2021203": {
-      "title": "Nível 3"
+        "title": "Nível 3",
+        "statement": "É hora de um bom mate. Ajude Coty a terminar de desenhá-lo.",
+        "clue": ""
     },
     "2021204": {
-      "title": "Nível 4"
+        "title": "Nível 4",
+        "statement": "A lhama quer desenhar quatro linhas. O que se repete desta vez?",
+        "clue": "Pode haver mais de um bloco dentro do Repetir"
     },
     "2021205": {
-      "title": "Nível 5"
+        "title": "Nível 5",
+        "statement": "Coty quer desenhar uma escada. Você consegue encontrar o padrão que se repete? Quantas vezes é repetido?",
+        "clue": ""
     },
     "2021206": {
-      "title": "Nível 6"
+        "title": "Nível 6",
+        "statement": "Ajude Coty a escrever a letra que falta.",
+        "clue": ""
     },
     "2021207": {
-      "title": "Nível 7"
+        "title": "Nível 7",
+        "statement": "Você encontra o padrão que se repete? Quantas vezes é repetido?",
+        "clue": ""
     },
     "2021301": {
-      "title": "Nível 1"
+        "title": "Nível 1",
+        "statement": "A raposa Toto lê as letras enquanto se move. Ajude-o a ler seu nome.\n",
+        "clue": "TOTO lê as letras pelas quais se move."
     },
     "2021302": {
-      "title": "Nível 2"
+        "title": "Nível 2",
+        "statement": "Ajude-o a se mover para ler LLAMA.",
+        "clue": ""
     },
     "2021303": {
-      "title": "Nível 3"
+        "title": "Nível 3",
+        "statement": "Toto tem que ler uma palavra. Adivinha em quem a raposa está pensando! Uma ajuda: é um animal que gosta muito de comer churrasco.\n",
+        "clue": ""
     },
     "2021304": {
-      "title": "Nível 4"
+        "title": "Nível 4",
+        "statement": "Corrija o programa para que o Toto possa ler um dia da semana.",
+        "clue": "Com o botão 'PASSO' o Toto pode executar as instruções uma a uma"
     },
     "2021305": {
-      "title": "Nível 5"
+        "title": "Nível 5",
+        "statement": "Toto tem que ler uma palavra. Onde há um stand de Pilas Bloques? Em Tec...!",
+        "clue": ""
     },
     "2021306": {
-      "title": "Nível 6"
+        "title": "Nível 6",
+        "statement": "Toto tem que ler o nome de uma província argentina que lê da mesma forma para frente e para trás. Sabe qual é?",
+        "clue": "A província e Neuquén. O bloco Repetir apareceu para nos ajudar a resolver o Desafio!"
     },
     "2021307": {
-      "title": "Nível 7"
+        "title": "Nível 7",
+        "statement": "Toto tem que ler Neuquén novamente. Lembre-se de que pode ser lido da mesma forma para a frente e para trás! :wink:\n",
+        "clue": ""
     },
     "2021308": {
-      "title": "Nível 8"
+        "title": "Nível 8",
+        "statement": "Ajude o Toto a ler SANTA CRUZ. Mas desta vez usando o bloco de repetição!",
+        "clue": "Você sabia que muitos blocos podem ser colocados dentro de um bloco de repetição?"
     },
     "2021309": {
-      "title": "Nível 9"
+        "title": "Nível 9",
+        "statement": "Já temos um programa feito para o Toto ler a província que fica ao sul do Rio Negro.\nVeja se funciona ou o que precisa ser corrigido.\n",
+        "clue": "A província é Chubut. Com o botão 'PASSO' o Toto pode executar as instruções uma a uma"
     }
-  }
+}
