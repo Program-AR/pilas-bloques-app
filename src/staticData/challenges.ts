@@ -1480,7 +1480,7 @@ const challenges: BasicChallenge[] = [
       'Repetir',
       'Si',
       'SiNo',
-      'hayVocalRMT'
+      'HayVocalRMT'
     ],
   },
 
@@ -1498,7 +1498,7 @@ const challenges: BasicChallenge[] = [
       'Repetir',
       'Si',
       'SiNo',
-      'hayVocalRMT'
+      'HayVocalRMT'
     ],
   },
 
@@ -2472,7 +2472,7 @@ const challenges: BasicChallenge[] = [
         [*,*,*,*,*],\
       ", { coleccion: ["G", "A"] })`,
     toolboxBlockIds: ['Repetir', 'Si', 'SiNo', 'Hasta', 'Procedimiento',
-      'VolverAlBordeIzquierdo', 'MoverACasillaDerecha', 'TocandoGuyra','SubirPajarito'],
+      'VolverABordeIzquierdo', 'MoverACasillaDerecha', 'TocandoGuyra','SubirPajarito'],
     expectations: {
       conditionalRepetition: true,
     }
