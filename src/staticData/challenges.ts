@@ -49,7 +49,7 @@ export class Challenge {
   */
   predefinedSolution?: string
 
-  constructor(b: BasicChallenge){
+  constructor(b: BasicChallenge) {
     Object.assign(this, b)
   }
 
@@ -76,21 +76,21 @@ export const getChallengeWithId = (id: number): Challenge => {
 
   return new Challenge(challenge[0])
 }
-  
-const legacyChallenges = [{id:1, name:"AlienTocaBoton"}, {id:46, name:"NuevosComandos"}, {id:2, name:"ElGatoEnLaCalle"}, {id:3, name:"NoMeCansoDeSaltar"}, {id:4, name:"ElMarcianoEnElDesierto"}, {id:5, name:"TitoEnciendeLuces"}, {id:6, name:"ElAlienYLasTuercas"}, {id:7, name:"ElRecolectorDeEstrellas"}, {id:8, name:"MariaLaComeSandias"}, {id:9, name:"AlimentandoALosPeces"}, {id:10, name:"InstalandoJuegos"}, {id:11, name:"LaGranAventuraDelMarEncantado"}, {id:12, name:"ReparandoLaNave"}, {id:13, name:"ElMonoYLasBananas"}, {id:14, name:"LaEleccionDelMono"}, {id:15, name:"LaberintoCorto"}, {id:16, name:"TresNaranjas"}, {id:17, name:"TitoRecargado"}, {id:18, name:"LaberintoLargo"}, {id:19, name:"SuperTito1"}, {id:20, name:"SuperTito2"}, {id:21, name:"LaberintoConQueso"}, {id:22, name:"ElDetectiveChaparro"}, {id:23, name:"FutbolRobots"}, {id:24, name:"PrendiendoLasCompus"}, {id:25, name:"ElMonoQueSabeContar"}, {id:26, name:"ElSuperviaje"}, {id:27, name:"ElMonoCuentaDeNuevo"}, {id:28, name:"ElPlanetaDeNano"}, {id:29, name:"DibujandoAlCuadrado"}, {id:30, name:"DibujandoRayuelaRobotica"}, {id:31, name:"DibujandoCortoPorLaDiagonal"}, {id:32, name:"DibujandoMamushkaCuadrada"}, {id:33, name:"DibujandoEscaleraCuadrada"}, {id:34, name:"DibujandoHexagono"}, {id:35, name:"DibujandoPiramideInvertida"}, {id:36, name:"DibujandoFigurasDentroDeFiguras"}, {id:37, name:"DibujandoLaCuevaDeEstalagtitas"}, {id:38, name:"LasRocasDeNano"}, {id:39, name:"LosCaminosDeNano"}, {id:40, name:"UnaFiestaArruinada"}, {id:41, name:"RedecorandoFiestas"}, {id:42, name:"ElDesiertoMultiFrutal"}, {id:43, name:"ElPasilloCurvoDeSandias"}, {id:44, name:"ElFestinFrutal"}, {id:45, name:"RecolectorDeGalaxias"}, {id:130, name:"LaFiestaDeDracula"}, {id:131, name:"SalvandoLaNavidad"}, {id:132, name:"PrendiendoLasCompusParametrizado"}, {id:133, name:"TitoCuadrado"}, {id:134, name:"ElCangrejoAguafiestas"}, {id:135, name:"PrendiendoLasFogatas"}, {id:136, name:"DibujoLibre"}]
+
+const legacyChallenges = [{ id: 1, name: "AlienTocaBoton" }, { id: 46, name: "NuevosComandos" }, { id: 2, name: "ElGatoEnLaCalle" }, { id: 3, name: "NoMeCansoDeSaltar" }, { id: 4, name: "ElMarcianoEnElDesierto" }, { id: 5, name: "TitoEnciendeLuces" }, { id: 6, name: "ElAlienYLasTuercas" }, { id: 7, name: "ElRecolectorDeEstrellas" }, { id: 8, name: "MariaLaComeSandias" }, { id: 9, name: "AlimentandoALosPeces" }, { id: 10, name: "InstalandoJuegos" }, { id: 11, name: "LaGranAventuraDelMarEncantado" }, { id: 12, name: "ReparandoLaNave" }, { id: 13, name: "ElMonoYLasBananas" }, { id: 14, name: "LaEleccionDelMono" }, { id: 15, name: "LaberintoCorto" }, { id: 16, name: "TresNaranjas" }, { id: 17, name: "TitoRecargado" }, { id: 18, name: "LaberintoLargo" }, { id: 19, name: "SuperTito1" }, { id: 20, name: "SuperTito2" }, { id: 21, name: "LaberintoConQueso" }, { id: 22, name: "ElDetectiveChaparro" }, { id: 23, name: "FutbolRobots" }, { id: 24, name: "PrendiendoLasCompus" }, { id: 25, name: "ElMonoQueSabeContar" }, { id: 26, name: "ElSuperviaje" }, { id: 27, name: "ElMonoCuentaDeNuevo" }, { id: 28, name: "ElPlanetaDeNano" }, { id: 29, name: "DibujandoAlCuadrado" }, { id: 30, name: "DibujandoRayuelaRobotica" }, { id: 31, name: "DibujandoCortoPorLaDiagonal" }, { id: 32, name: "DibujandoMamushkaCuadrada" }, { id: 33, name: "DibujandoEscaleraCuadrada" }, { id: 34, name: "DibujandoHexagono" }, { id: 35, name: "DibujandoPiramideInvertida" }, { id: 36, name: "DibujandoFigurasDentroDeFiguras" }, { id: 37, name: "DibujandoLaCuevaDeEstalagtitas" }, { id: 38, name: "LasRocasDeNano" }, { id: 39, name: "LosCaminosDeNano" }, { id: 40, name: "UnaFiestaArruinada" }, { id: 41, name: "RedecorandoFiestas" }, { id: 42, name: "ElDesiertoMultiFrutal" }, { id: 43, name: "ElPasilloCurvoDeSandias" }, { id: 44, name: "ElFestinFrutal" }, { id: 45, name: "RecolectorDeGalaxias" }, { id: 130, name: "LaFiestaDeDracula" }, { id: 131, name: "SalvandoLaNavidad" }, { id: 132, name: "PrendiendoLasCompusParametrizado" }, { id: 133, name: "TitoCuadrado" }, { id: 134, name: "ElCangrejoAguafiestas" }, { id: 135, name: "PrendiendoLasFogatas" }, { id: 136, name: "DibujoLibre" }]
 
 // Legacy challenge ids URLs should be redirected.
-const isLegacy = (challengeId: number) => legacyChallenges.find( ({id}) => id === challengeId)
+const isLegacy = (challengeId: number) => legacyChallenges.find(({ id }) => id === challengeId)
 export const currentIdFor = (challengeId: number) => isLegacy(challengeId) ? challengeId + 1000 : challengeId
 
 /**
   @throws Error
  **/
-  export const getChallengeWithName = (challengeName: string): Challenge => {
-    const challenge = legacyChallenges.find(({name}) => name === challengeName)
-    if (!challenge) throw new Error(`Challenge with name "${challengeName}" does not exist`)
-    return getChallengeWithId(currentIdFor(challenge.id))
-  }
+export const getChallengeWithName = (challengeName: string): Challenge => {
+  const challenge = legacyChallenges.find(({ name }) => name === challengeName)
+  if (!challenge) throw new Error(`Challenge with name "${challengeName}" does not exist`)
+  return getChallengeWithId(currentIdFor(challenge.id))
+}
 
 export type PathToChallenge = {
   book: Book,
@@ -105,13 +105,14 @@ export const getPathToChallenge = (challengeId: number): PathToChallenge => {
   const chapter: Chapter = book.chapters.find(chapter => chapterIncludesChallenge(chapter, challenge))!
   const group: Group = chapter.groups.find(group => group.includes(challenge))!
 
-  return {book, chapter, group, challenge}
+  return { book, chapter, group, challenge }
 }
 
 export const hasMultipleScenarios = (challenge: Challenge): boolean => {
-  const descriptor = challenge.sceneDescriptor.replace(/\s/g, '')
+  const descriptor = challenge.sceneDescriptor
 
-  const hasArrayOfScenarios = descriptor.includes('([')
+  const hasArrayWithMultipleStringScenarios =
+    /new\s+\w+\s*\(\s*\[\s*["'`][\s\S]*?["'`]\s*,\s*["'`]/.test(descriptor)
 
   const hasGenerativeScenario =
     descriptor.includes('?') ||
@@ -119,18 +120,25 @@ export const hasMultipleScenarios = (challenge: Challenge): boolean => {
     descriptor.includes('*>') ||
     descriptor.includes('#')
 
-  return hasArrayOfScenarios || hasGenerativeScenario
+  return hasArrayWithMultipleStringScenarios || hasGenerativeScenario
 }
 
-export const shouldShowMultipleScenariosButton = (challenge: Challenge): boolean =>
-  !!challenge.shouldShowMultipleScenarioHelp || hasMultipleScenarios(challenge)
+export const shouldShowMultipleScenariosButton = (challenge: Challenge): boolean => {
+  if (challenge.shouldShowMultipleScenarioHelp !== undefined) {
+    return challenge.shouldShowMultipleScenarioHelp
+  }
+
+  return hasMultipleScenarios(challenge)
+}
 
 /**
  * For testing purposes.
  * @returns all sceneDescriptors from existing challenges.
  */
 export const allDescriptors = (): Challenge["sceneDescriptor"][] =>
-  challenges.map( c => c.sceneDescriptor )
+  challenges.map(c => c.sceneDescriptor)
+
+
 
 // This type allows to define a challenge in JSON
 // Shouldn't be used outside this file, instead call getChallengeById to get a complete Challenge
@@ -1533,9 +1541,9 @@ const challenges: BasicChallenge[] = [
     sceneDescriptor: `new EscenaCapySolo("[A,-,-,G]")`,
     toolboxBlockIds: ['MoverACasillaDerecha', 'SubirPajarito'],
     expectations: {
-        decomposition: false,
-        simpleRepetition: false
-      }
+      decomposition: false,
+      simpleRepetition: false
+    }
   },
   {
     id: 1046,
@@ -2302,7 +2310,7 @@ const challenges: BasicChallenge[] = [
     expectations: {
       simpleRepetition: false
     }
-  },  
+  },
   {
     id: 1003,
     sceneDescriptor: 'NoMeCansoDeRebotar',
@@ -2311,7 +2319,7 @@ const challenges: BasicChallenge[] = [
       decomposition: false
     }
   },
-    {
+  {
     id: 1004,
     sceneDescriptor: `new EscenaManic("\
                     [E,-,E,-,E],\
@@ -2350,7 +2358,7 @@ const challenges: BasicChallenge[] = [
         [-,T,T,T,T],\
         [A,T,T,T,T],")`,
     toolboxBlockIds: ['MoverACasillaDerecha', 'MoverACasillaArriba', 'VolverABordeIzquierdo', 'RepararTelescopio', 'Procedimiento', 'Repetir']
-  },  
+  },
   {
     id: 1008,
     sceneDescriptor: `new EscenaManic("\
@@ -2489,7 +2497,7 @@ const challenges: BasicChallenge[] = [
         [*,*,*,*,*],\
       ", { coleccion: ["G", "A"] })`,
     toolboxBlockIds: ['Repetir', 'Si', 'SiNo', 'Hasta', 'Procedimiento',
-      'VolverAlBordeIzquierdo', 'MoverACasillaDerecha', 'TocandoGuyra','SubirPajarito'],
+      'VolverAlBordeIzquierdo', 'MoverACasillaDerecha', 'TocandoGuyra', 'SubirPajarito'],
     expectations: {
       conditionalRepetition: true,
     }
@@ -2543,7 +2551,7 @@ const challenges: BasicChallenge[] = [
     expectations: {
       decomposition: false
     }
-  },  
+  },
   {
     id: 1027,
     sceneDescriptor: 'ContandoDeNuevoManic',
@@ -2552,7 +2560,7 @@ const challenges: BasicChallenge[] = [
       'ContarPlaneta', 'ContarEstrella', 'TocandoPlaneta',
       'TocandoEstrellaManic', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
       'EstoySobreElInicioManic', 'LargoColumnaActual']
-  },  
+  },
   {
     id: 1028,
     sceneDescriptor: `new EscenaCapy("\
@@ -2628,7 +2636,7 @@ const challenges: BasicChallenge[] = [
       '[A,_,_,_,_],[-,O,-,-,-],[-,_,_,_,-],[E,-,-,-,-]',
       '[A,_,_,_,_],[-,-,-,-,-],[O,_,_,_,-],[E,-,-,-,-]'])`,
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MoverACasillaIzquierda',
-      'ObservarEstrella', 'Repetir', 'Si', 'SiNo', 
+      'ObservarEstrella', 'Repetir', 'Si', 'SiNo',
       'HayObstaculoArriba', 'HayObstaculoAbajo', 'HayObstaculoIzquierda', 'HayObstaculoDerecha']
   },
   {
@@ -2639,7 +2647,7 @@ const challenges: BasicChallenge[] = [
       '[A,_,_,_,_,_],[-,-,-,-,-,_],[O,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,O,-,-,-],[_,-,_,_,_,-],[_,E,-,-,-,-]',
       '[A,_,_,_,_,_],[-,-,-,-,-,_],[O,_,_,_,-,_],[-,-,-,-,-,_],[-,_,_,_,_,_],[-,-,-,-,-,-],[_,O,_,_,_,-],[_,E,-,-,-,-]'])`,
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba', 'MoverACasillaAbajo', 'MoverACasillaIzquierda',
-      'ObservarEstrella', 'Repetir', 'Si', 'SiNo', 
+      'ObservarEstrella', 'Repetir', 'Si', 'SiNo',
       'HayObstaculoArriba', 'HayObstaculoAbajo', 'HayObstaculoIzquierda', 'HayObstaculoDerecha'],
     expectations: {
       decomposition: false,
@@ -2773,7 +2781,7 @@ const challenges: BasicChallenge[] = [
       'MoverA', 'Procedimiento', 'RepetirVacio', 'Repetir', 'Si', 'SiNo', 'Hasta',
       'TocandoMariposa', 'FotografiarMariposa', 'Numero', 'OpAritmetica'],
   },
-   {
+  {
     id: 1134,
     sceneDescriptor: `new EscenaChuy("\
     [A,T,T,T,T,-],\

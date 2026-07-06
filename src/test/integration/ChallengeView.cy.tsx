@@ -26,6 +26,25 @@ describe('Challenge view with blocks', () => {
   }
 
   const executeChallengeWithEval = (expression: string, expected: any) => {
+    cy.get('[data-testid="scene-iframe"]')
+      .should('have.attr', 'data-loaded', 'true')
+      .then($iframe => {
+        const iframe = $iframe[0] as HTMLIFrameElement
+
+        cy.get('[data-testid="execute-button"]').click()
+
+        cy.wrap(null).should(() => {
+          const value = (iframe.contentWindow as any).eval(`
+          pilas.escena_actual().${expression}
+        `)
+
+          expect(value).to.equal(expected)
+        })
+      })
+  }
+
+  /*
+  const executeChallengeWithEval = (expression: string, expected: any) => {
     cy.get('[data-testid="scene-iframe"]').should('have.attr', 'data-loaded', 'true').then($iframe => {
       const iframe = $iframe[0] as HTMLIFrameElement;
       cy.get('[data-testid="execute-button"]').click().should(() => {
@@ -33,7 +52,7 @@ describe('Challenge view with blocks', () => {
         expect(value).to.equal(expected);
       });
     })
-  }
+  }*/
 
   const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = true) => {
     (skip ? it.skip : it)(name, () => {
@@ -238,7 +257,7 @@ describe('Challenge view with blocks', () => {
   </block>
 </xml>`
 
-const procedureWithParameterSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
+  const procedureWithParameterSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
   <variables>
     <variable id="param1">parámetro 1</variable>
   </variables>
@@ -271,15 +290,15 @@ const procedureWithParameterSolution = `<xml xmlns="https://developers.google.co
   </block>
 </xml>`;
 
- testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
+  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
 
   //Code from blocks have effect 
   testExecutionWithBlocks('Code from blocks have effect - boolean operators', operatorSolution, 1, false)
- 
-  testExecutionWithBlocks('Code from blocks have effect - aritmethic operators', aritmethicSolution, 2, false) 
+
+  testExecutionWithBlocks('Code from blocks have effect - aritmethic operators', aritmethicSolution, 2, false)
 
   testExecutionWithBlocks('Code from blocks have effect - move with parameters', moveWithParameterSolution, 1, false)
-  
+
   testExecutionWithBlocks('Code from blocks have effect -  if', ifSolution, 0, false)
 
   testExecutionWithBlocks('Code from blocks have effect - repeat', repeatSolution, 2, false)
