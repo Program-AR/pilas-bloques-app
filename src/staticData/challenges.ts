@@ -108,6 +108,23 @@ export const getPathToChallenge = (challengeId: number): PathToChallenge => {
   return {book, chapter, group, challenge}
 }
 
+export const hasMultipleScenarios = (challenge: Challenge): boolean => {
+  const descriptor = challenge.sceneDescriptor.replace(/\s/g, '')
+
+  const hasArrayOfScenarios = descriptor.includes('([')
+
+  const hasGenerativeScenario =
+    descriptor.includes('?') ||
+    descriptor.includes('|') ||
+    descriptor.includes('*>') ||
+    descriptor.includes('#')
+
+  return hasArrayOfScenarios || hasGenerativeScenario
+}
+
+export const shouldShowMultipleScenariosButton = (challenge: Challenge): boolean =>
+  !!challenge.shouldShowMultipleScenarioHelp || hasMultipleScenarios(challenge)
+
 /**
  * For testing purposes.
  * @returns all sceneDescriptors from existing challenges.
