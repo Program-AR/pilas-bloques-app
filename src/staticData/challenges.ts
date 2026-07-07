@@ -2544,7 +2544,7 @@ const challenges: BasicChallenge[] = [
         [-,L,-,-,-],\
         [A,L,L,L,-],")`,
     toolboxBlockIds: ['Procedimiento', 'MoverACasillaDerecha', 'MoverACasillaArriba',
-      'VolverAlBordeIzquierdo', 'RecogerLata', 'RepetirVacio', 'Repetir', 'Si',
+      'VolverABordeIzquierdo', 'RecogerLata', 'RepetirVacio', 'Repetir', 'Si',
       'SiNo', 'Hasta', 'Numero'],
     expectations: {
       decomposition: false,

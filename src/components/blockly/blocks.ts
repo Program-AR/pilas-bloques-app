@@ -166,103 +166,11 @@ export const commonBlocks: BlockType[] = [
     id: 'PuedeMoverDerecha',
     intlId: 'canMoveRight',
     categoryId: 'sensors'
-  }
-]
-
-const notUsedBlocks: BlockType[] = [
-  {
-    id: 'SiguienteColumna',
-    intlId: 'nextColumn',
-    categoryId: 'primitives'
   },
   {
-    id: 'SiguienteFila',
-    intlId: 'nextLine',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'SiguienteFilaTotal',
-    intlId: 'nextLine',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'SaltarHaciaAdelante',
-    intlId: 'JumpForward',
-    categoryId: 'primitives',
-    toolboxJSON: {
-      "kind": "block",
-      "type": "SaltarHaciaAdelante",
-      "inputs": {
-        "longitud": {
-          "block": {
-            "type": "math_number",
-            "fields": {
-              "NUM": 100
-            }
-          }
-        }
-      }
-    }
-  },
-  {
-    id: 'EstoyEnEsquina',
-    intlId: 'atTheSquare',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'TocandoInicio',
-    intlId: 'atTheBeginning',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'RepetirVacio',
-    intlId: 'repeatEmpty',
-    categoryId: 'repetitions'
-  },
-  {
-    id: 'EstoySobreElFinalManic',
-    intlId: 'atColumnEnd',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'EstoySobreElInicioManic',
-    intlId: 'atColumnBeginning',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'ContarEstrella',
-    intlId: 'countStar',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'ContarPlaneta',
-    intlId: 'countPlanet',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'KmsTotales',
-    intlId: 'kmToTravel',
-    categoryId: 'sensors'
-  },
-  {
-    id: 'ObservarConAmigos',
-    intlId: 'lookWithFriends',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'Avanzar1kmChuy',
-    intlId: 'move1Km',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'SiguienteTelescopio',
-    intlId: 'moveNextTelescope',
-    categoryId: 'primitives'
-  },
-  {
-    id: 'MoverTelescopio',
-    intlId: 'moveTelescope',
-    categoryId: 'primitives'
+    id: 'OpComparacion',
+    intlId: 'logic_compare',
+    categoryId: 'operators'
   },
 ]
 
@@ -721,6 +629,100 @@ const challengeOnlyBlocks: BlockType[] = [
     id: 'TocandoGuyra',
     intlId: 'guyraHere',
     categoryId: 'sensors'
+  },
+  {
+    id: 'SiguienteFila',
+    intlId: 'nextLine',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'TocandoInicio',
+    intlId: 'atTheBeginning',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'EstoyEnEsquina',
+    intlId: 'atTheSquare',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'ContarEstrella',
+    intlId: 'countStar',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'ContarPlaneta',
+    intlId: 'countPlanet',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'EstoySobreElFinalManic',
+    intlId: 'atColumnEnd',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'EstoySobreElInicioManic',
+    intlId: 'atColumnBeginning',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'SiguienteColumna',
+    intlId: 'nextColumn',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'Avanzar1kmChuy',
+    intlId: 'move1Km',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'RepetirVacio',
+    intlId: 'repeatEmpty',
+    categoryId: 'repetitions'
+  },
+  {
+    id: 'KmsTotales',
+    intlId: 'kmToTravel',
+    categoryId: 'sensors'
+  },
+  {
+    id: 'SaltarHaciaAdelante',
+    intlId: 'JumpForward',
+    categoryId: 'primitives',
+    toolboxJSON: {
+      "kind": "block",
+      "type": "SaltarHaciaAdelante",
+      "inputs": {
+        "longitud": {
+          "block": {
+            "type": "math_number",
+            "fields": {
+              "NUM": 100
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    id: 'MoverTelescopio',
+    intlId: 'moveTelescope',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'ObservarConAmigos',
+    intlId: 'lookWithFriends',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'SiguienteFilaTotal',
+    intlId: 'nextLine',
+    categoryId: 'primitives'
+  },
+  {
+    id: 'SiguienteTelescopio',
+    intlId: 'moveNextTelescope',
+    categoryId: 'primitives'
   }, 
 ]
 
