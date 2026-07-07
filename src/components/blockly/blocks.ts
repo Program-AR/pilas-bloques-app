@@ -166,12 +166,7 @@ export const commonBlocks: BlockType[] = [
     id: 'PuedeMoverDerecha',
     intlId: 'canMoveRight',
     categoryId: 'sensors'
-  },
-  {
-    id: 'OpComparacion',
-    intlId: 'logic_compare',
-    categoryId: 'operators'
-  },
+  }
 ]
 
 
@@ -723,7 +718,12 @@ const challengeOnlyBlocks: BlockType[] = [
     id: 'SiguienteTelescopio',
     intlId: 'moveNextTelescope',
     categoryId: 'primitives'
-  }, 
+  },
+  {
+    id: 'OpComparacion',
+    intlId: 'logic_compare',
+    categoryId: 'operators'
+  } 
 ]
 
 const allBlocks: BlockType[] = commonBlocks.concat(sceneBlocks).concat(challengeOnlyBlocks)
