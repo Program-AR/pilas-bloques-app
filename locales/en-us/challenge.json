@@ -40,6 +40,8 @@
   "multipleScenarios": "There are multiple scenarios!",
   "close": "Close",
   "solutionButtons": {
+    "disableSuggestions": "Disable suggestions",
+    "enableSuggestions": "Enable suggestions",
     "download": "Download solution",
     "upload": "Upload solution",
     "clear": "Clear the current solution",

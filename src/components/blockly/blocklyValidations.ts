@@ -3,6 +3,7 @@ import { analyzeWithMulang } from './mulang/pilasMulangAnalyzer'
 import { showMulangFeedback } from './mulang/blockFeedback'
 import { TFunction } from 'i18next'
 import { MulangExpectationResult } from './mulang/mulangResults'
+import { LocalStorage } from '../../localStorage'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
 
@@ -80,7 +81,10 @@ export const runBlocklyValidations = async (
     challenge
   )
 
-  showMulangFeedback(workspace, mulangResults, t)
+  const showSuggestions = LocalStorage.getMulangSuggestionsEnabled()
+  const resultsToShow = showSuggestions ? mulangResults : mulangResults.filter(r => r.isCritical)
+
+  showMulangFeedback(workspace, resultsToShow, t)
 
   const hasCriticalErrors = mulangResults.some(
     result => result.result === false && result.isCritical

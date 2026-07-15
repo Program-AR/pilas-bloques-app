@@ -40,6 +40,8 @@
   "multipleScenarios": "¡Hay varios escenarios!",
   "close": "Cerrar",
   "solutionButtons": {
+    "disableSuggestions": "Desactivar sugerencias",
+    "enableSuggestions": "Activar sugerencias",
     "download": "Descargar solución",
     "upload": "Cargar solución",
     "clear": "Borrar la solución actual",

@@ -2,13 +2,16 @@ import { Button, Dialog, DialogContent, DialogTitle, IconButton, IconButtonProps
 import DownloadIcon from '@mui/icons-material/Download';
 import ClearIcon from '@mui/icons-material/Clear';
 import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
+import CommentsDisabledIcon from '@mui/icons-material/CommentsDisabled';
+import CommentIcon from '@mui/icons-material/Comment';
+import { PBSwitch, pbIconStyle } from "../PBSwitch";
 import { useThemeContext } from "../../theme/ThemeContext";
 import { useTranslation } from "react-i18next";
 import Blockly from "blockly/core"
 import { LocalStorage } from "../../localStorage";
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { setXml, workspaceToXmlText, xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
-import { ChangeEvent, useRef, useState } from "react";
+import { ChangeEvent, useRef, useState, useEffect } from "react";
 
 
 type SolucionButtonsProps = {
@@ -20,6 +23,7 @@ export const SolutionButtons = (props: SolucionButtonsProps) => {
 
   return (
     <Stack direction={props.direction} spacing={2}>
+      <ToggleSuggestionsButton />
       <UploadSolution />
       <SaveSolutionButton />
       <ClearSolutionButton />
@@ -27,6 +31,39 @@ export const SolutionButtons = (props: SolucionButtonsProps) => {
 
   );
 
+}
+
+const ToggleSuggestionsButton = () => {
+  const { theme } = useThemeContext()
+  const { t } = useTranslation('challenge')
+  const [enabled, setEnabled] = useState(() => LocalStorage.getMulangSuggestionsEnabled())
+
+  const handleToggle = () => {
+    const newState = !enabled
+    setEnabled(newState)
+    LocalStorage.saveMulangSuggestionsEnabled(newState)
+  }
+
+  return (
+    <Tooltip title={enabled ? t("solutionButtons.disableSuggestions") : t("solutionButtons.enableSuggestions")}>
+      <PBSwitch
+        checked={enabled}
+        sx={{
+          "& .MuiSwitch-switchBase": {
+            "&.Mui-checked": {
+              "+ .MuiSwitch-track": {
+                backgroundColor: theme.palette.secondary.main,
+                opacity: 1,
+              }
+            },
+          },
+        }}
+        icon={<CommentsDisabledIcon sx={pbIconStyle(theme)} />}
+        checkedIcon={<CommentIcon sx={pbIconStyle(theme)} />}
+        onChange={handleToggle}
+      />
+    </Tooltip>
+  )
 }
 
 type SolucionButtonProps = {
