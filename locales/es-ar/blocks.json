@@ -136,7 +136,7 @@
     "backToLeftBorder": "Volver al borde izquierdo",
     "drawSide": "Dibujar lado",
     "writeAnotherText": "Escribir texto dado en otra cuadricula",
-    "rotateGrades": "Girar grados",
+    "rotateGrades": "Girar %1 grados",
     "isAVowel": "¿ Hay vocal ?",
     "repeatEmpty": "Repetir",
     "JumpForward": "Saltar hacia adelante",
