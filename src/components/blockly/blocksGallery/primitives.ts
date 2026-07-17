@@ -633,7 +633,7 @@ export const createPrimitiveBlocks = (t: (key: string) => string) => {
           "name": "grados",
         }
       ],
-      code: 'hacer(actor_id, "Girar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
+      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
       toolbox: `
         <block type="GirarGrados">
           <value name="grados">
