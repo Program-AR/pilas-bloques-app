@@ -620,9 +620,9 @@ export const createPrimitiveBlocks = (t: (key: string) => string) => {
       `
     });
 
-  createPrimitiveBlock('GirarGrados', `${t(`blocks.turnDegrees`)} %1`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
+  createPrimitiveBlock('GirarGrados', `${t(`blocks.rotateGrades`)}`, { 'comportamiento': '', 'argumentos': '{}' }, 'icono.Girar.png',
     {
-      message0: `${t(`blocks.turnDegrees`)} %1`,
+      message0: `${t(`blocks.rotateGrades`)}`,
       colour: primitivesColor,
       previousStatement: '',
       nextStatement: '',
@@ -633,7 +633,7 @@ export const createPrimitiveBlocks = (t: (key: string) => string) => {
           "name": "grados",
         }
       ],
-      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
+      code: 'hacer(actor_id, "Girar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
       toolbox: `
         <block type="GirarGrados">
           <value name="grados">
