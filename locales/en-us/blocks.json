@@ -137,7 +137,7 @@
     "backToLeftBorder": "Get back to the left border",
     "drawSide": "Draw a side of",
     "writeAnotherText": "Write text in another cel",
-    "rotateGrades": "Rotate grades",
+    "rotateGrades": "Rotate %1 grades",
     "isAVowel": "Is a vowel ?",
     "repeatEmpty": "Repeat",
     "JumpForward": "Jump forward", 
