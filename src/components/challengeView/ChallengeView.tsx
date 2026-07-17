@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge } from "../../staticData/challenges";
+import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge, shouldShowMultipleScenariosButton } from "../../staticData/challenges";
 import { Collapse, IconButton, PaperProps, Stack } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
@@ -168,7 +168,7 @@ const HorizontalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Chal
     </Stack>
     <Stack>
       <SceneButtons challenge={challenge} running={running} setRunning={setRunning} />
-      {challenge.shouldShowMultipleScenarioHelp && <MultipleScenariosButton challenge={challenge} disabled={running} />}
+      {shouldShowMultipleScenariosButton(challenge) && (<MultipleScenariosButton challenge={challenge} disabled={running} />)}     
       <SceneView descriptor={challenge.sceneDescriptor} />
     </Stack>
   </Stack>
@@ -209,7 +209,7 @@ const VerticalChallengeWorkspace = ({ challenge, blocklyWorkspaceProps }: Challe
       <SceneView descriptor={challenge.sceneDescriptor} />
       <Stack margin='10px' justifyContent='space-between'>
         <SceneButtons challenge={challenge} vertical={true} running={running} setRunning={setRunning} />
-        {challenge.shouldShowMultipleScenarioHelp && <MultipleScenariosButton challenge={challenge} disabled={running} />}
+        {shouldShowMultipleScenariosButton(challenge) && (<MultipleScenariosButton challenge={challenge} disabled={running} />)}
         <InfoButton onClick={() => setOpenDrawer(true)} />
         <InfoDrawer open={openDrawer} onClose={() => setOpenDrawer(false)} />
       </Stack>
