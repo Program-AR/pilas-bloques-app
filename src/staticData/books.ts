@@ -4,7 +4,8 @@ import { Chapter, chapterIncludesChallenge, getChapter } from "./chapters"
 export type Book = {
   id: number,
   chapters: Chapter[]
-  simpleReadMode: boolean
+  simpleReadMode: boolean,
+  expectations?: ExpectationConfig
 }
 
 type RawBookData = {
@@ -31,7 +32,7 @@ export const getBook = (id: number): Book => {
 
 const rawDataToBook = (rawBook: RawBookData): Book => {
   const chapters = rawBook.chapterIds.map(getChapter) 
-  return {id: rawBook.id, chapters, simpleReadMode: rawBook.simpleReadMode}
+  return {id: rawBook.id, chapters, simpleReadMode: rawBook.simpleReadMode, expectations: rawBook.expectations}
 }
 
 export const bookIncludesChallenge = (book: Book, challenge: Challenge): boolean => {

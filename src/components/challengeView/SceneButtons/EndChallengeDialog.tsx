@@ -40,7 +40,7 @@ const groupScoreableResults = (
       isScoreable: true,
     },
     ...combined,
-  ]
+  ].sort((left, right) => Number(right.result) - Number(left.result))
 }
 
 const markdownLite = (text: string) =>

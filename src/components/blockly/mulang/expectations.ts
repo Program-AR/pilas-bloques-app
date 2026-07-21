@@ -162,3 +162,19 @@ export const parseExpect = (name: string) => {
 
   return [expectationName, expectationParams] as const
 }
+
+const newGlobalExpectation = (types: Record<string, any>, expect: string, id: string) =>
+  newExpectation(types, `through ${toEDLString(entryPointType)} ${expect}`, id, { declaration: entryPointType })
+
+export const conditionalAlternativeId = 'uses_conditional_alternative'
+export const conditionalRepetitionId = 'uses_conditional_repetition'
+export const simpleRepetitionId = 'uses_simple_repetition'
+
+export const usesConditionalAlternative = () =>
+  newGlobalExpectation({ isSuggestion: true, isForControlGroup: true, isScoreable: true }, 'uses if', conditionalAlternativeId)
+
+export const usesConditionalRepetition = () =>
+  newGlobalExpectation({ isSuggestion: true, isForControlGroup: true, isScoreable: true }, 'uses while', conditionalRepetitionId)
+
+export const usesSimpleRepetition = () =>
+  newGlobalExpectation({ isSuggestion: true, isForControlGroup: true, isScoreable: true }, 'uses repeat', simpleRepetitionId)
