@@ -48,7 +48,10 @@ export const rawChapterData: RawChapterData[] = [
     },
     {
         id: '1',
-        groupIds: ['1001', '1046', '1002', '1003', '1004', '1006', '1005', '1007', '1008', '1009', '1010', '1011', '1012']
+        groupIds: ['1001', '1046', '1002', '1003', '1004', '1006', '1005', '1007', '1008', '1009', '1010', '1011', '1012'],
+        expectations: {
+            simpleRepetition: true
+        }
     },
     {
         id: '2',
@@ -64,6 +67,9 @@ export const rawChapterData: RawChapterData[] = [
     },
     {
         id: '5',
-        groupIds: ['1028', 'dibujando', '1130', '1131', '1132', '1133', '1134', '1135', '1136']
+        groupIds: ['1028', 'dibujando', '1130', '1131', '1132', '1133', '1134', '1135', '1136'],
+        expectations: {
+            simpleRepetition: true
+        }
     }
 ];
