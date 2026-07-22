@@ -12,6 +12,7 @@ import { LocalStorage } from "../../localStorage";
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { setXml, workspaceToXmlText, xmlBloqueEmpezarAEjecutar } from "../blockly/blockly";
 import { ChangeEvent, useRef, useState, useEffect } from "react";
+import { refreshBlocklyValidations } from "../blockly/blocklyValidations";
 
 
 type SolucionButtonsProps = {
@@ -22,7 +23,7 @@ type SolucionButtonsProps = {
 export const SolutionButtons = (props: SolucionButtonsProps) => {
 
   return (
-    <Stack direction={props.direction} spacing={2}>
+    <Stack direction={props.direction} spacing={2} alignItems="center">
       <ToggleSuggestionsButton />
       <UploadSolution />
       <SaveSolutionButton />
@@ -42,6 +43,7 @@ const ToggleSuggestionsButton = () => {
     const newState = !enabled
     setEnabled(newState)
     LocalStorage.saveMulangSuggestionsEnabled(newState)
+    refreshBlocklyValidations()
   }
 
   return (

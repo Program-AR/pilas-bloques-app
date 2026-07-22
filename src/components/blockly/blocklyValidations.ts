@@ -59,10 +59,22 @@ const blockHasMissingInput = (block: any) => {
   })
 }
 
+let lastChallenge: any = null
+let lastT: TFunction | null = null
+
+export const refreshBlocklyValidations = async () => {
+  if (lastChallenge && lastT) {
+    await runBlocklyValidations(lastChallenge, lastT)
+  }
+}
+
 export const runBlocklyValidations = async (
   challenge: any,
   t: TFunction
 ): Promise<BlocklyValidationResult> => {
+  lastChallenge = challenge
+  lastT = t
+  
   const workspace = Blockly.getMainWorkspace()
   const blocks = workspace
     .getAllBlocks(false)
