@@ -23,7 +23,7 @@ const nestedAlternativeStructureEDL =
 
 export const declarationDoesNotNestControlStructures = (declaration: string) =>
   newExpectation(
-    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    { isSuggestion: true, isScoreable: true },
     `within \`${declaration}\` ${nestedAlternativeStructureEDL} && ${nestedControlStructureEDL('repeat')} && ${nestedControlStructureEDL('while')}`,
     doesNotNestControlStructuresId,
     { declaration }
@@ -82,7 +82,7 @@ export const countCallsWithin = (declaration: string) =>
 
 export const doSomething = (declaration: string) =>
   newExpectation(
-    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    { isSuggestion: true, isScoreable: true },
     `${countCallsWithin(declaration)} >= 1`,
     doSomethingId,
     { declaration }
@@ -110,7 +110,7 @@ const declarationNotTooLong = (
   expectationName: string
 ) =>
   newExpectation(
-    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    { isSuggestion: true, isScoreable: true },
     `${countCallsWithin(declaration)} <= ${limit - 1}`,
     expectationName,
     { declaration, limit }
@@ -133,7 +133,7 @@ export const doesNotUseRecursion = (declaration: string) =>
 export const nameWasChanged = (defaultProcedureName: string) =>
   (declaration: string) =>
     newSimpleCondition(
-      { isSuggestion: true, isScoreable: true, isForControlGroup: true },
+      { isSuggestion: true, isScoreable: true },
       !declaration.includes(defaultProcedureName),
       nameWasChangedId,
       { declaration }
@@ -171,10 +171,11 @@ export const conditionalRepetitionId = 'uses_conditional_repetition'
 export const simpleRepetitionId = 'uses_simple_repetition'
 
 export const usesConditionalAlternative = () =>
-  newGlobalExpectation({ isSuggestion: true, isForControlGroup: true, isScoreable: true }, 'uses if', conditionalAlternativeId)
+  newGlobalExpectation({ isSuggestion: true, isScoreable: true }, 'uses if', conditionalAlternativeId)
 
 export const usesConditionalRepetition = () =>
-  newGlobalExpectation({ isSuggestion: true, isForControlGroup: true, isScoreable: true }, 'uses while', conditionalRepetitionId)
+  newGlobalExpectation({ isSuggestion: true, isScoreable: true }, 'uses while', conditionalRepetitionId)
 
 export const usesSimpleRepetition = () =>
-  newGlobalExpectation({ isSuggestion: true, isForControlGroup: true, isScoreable: true }, 'uses repeat', simpleRepetitionId)
+  newGlobalExpectation({ isSuggestion: true, isScoreable: true }, 'uses repeat', simpleRepetitionId)
+export const isCritical = (result: any) => !!result.isCritical

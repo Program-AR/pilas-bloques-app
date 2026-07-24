@@ -137,11 +137,12 @@ export const EndDialog = ({
           {scoreableResults.map((result, index) => {
             const passed = result.result === true
 
-            const text = t(`control_group.${result.id}`, {
+            const text = t(`scoreable.${result.id}`, {
               ns: 'mulang',
+              context: result.result ? 'passed' : 'failed',
               defaultValue: t(`suggestions.${result.id}`, {
                 ns: 'mulang',
-                defaultValue: result.id,
+                defaultValue: t('suggestions.check_out_this_block', { ns: 'mulang' }),
               }),
             })
 
@@ -158,8 +159,6 @@ export const EndDialog = ({
               >
                 {passed ? (
                   <CheckCircle fontSize="small" />
-                ) : result.id === 'main_too_long' || result.id === 'too_long' ? (
-                  <TouchAppOutlined fontSize="small" />
                 ) : (
                   <Error fontSize="small" />
                 )}
