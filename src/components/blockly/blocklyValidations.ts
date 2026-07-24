@@ -96,7 +96,15 @@ export const runBlocklyValidations = async (
   const showSuggestions = LocalStorage.getMulangSuggestionsEnabled()
   const resultsToShow = showSuggestions ? mulangResults : mulangResults.filter(r => r.isCritical)
 
-  showMulangFeedback(workspace, resultsToShow, t)
+  const isSimpleReadMode = LocalStorage.getIsSimpleReadMode()
+  const customT = (key: string, options?: any) => {
+    const translation = t(key, options)
+    return isSimpleReadMode && typeof translation === 'string'
+      ? translation.toUpperCase()
+      : translation
+  }
+
+  showMulangFeedback(workspace, resultsToShow, customT as TFunction)
 
   const hasCriticalErrors = mulangResults.some(
     result => result.result === false && result.isCritical

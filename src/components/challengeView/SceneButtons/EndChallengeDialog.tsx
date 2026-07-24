@@ -30,7 +30,7 @@ const groupScoreableResults = (
     }, {})
 
   const combined = Object.values(grouped).map(group => {
-    return group.find(result => result.result) || group[0]
+    return group.find(result => !result.result) || group[0]
   })
 
   return [
@@ -45,11 +45,11 @@ const groupScoreableResults = (
 
 const markdownLite = (text: string) =>
   text
-    .replace(/<br\/?>/g, '\n')
-    .replace(/:point_right:/g, '👉')
-    .replace(/:repeat:/g, '🔁')
-    .replace(/\*\*/g, '')
-    .replace(/_/g, '')
+    .replace(/<br\/?>/gi, '\n')
+    .replace(/:point_right:/gi, '👉')
+    .replace(/:repeat:/gi, '🔁')
+    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+    .replace(/_(.*?)_/g, '<i>$1</i>')
 
 export const EndDialog = ({
   showModal,
@@ -59,7 +59,7 @@ export const EndDialog = ({
   solved,
 }: EndDialogProps) => {
   const { t } = useTranslation(['challenge', 'mulang'])
-  const { theme } = useThemeContext()
+  const { theme, simpleReadModeEnabled } = useThemeContext()
 
   const scoreableResults = groupScoreableResults(mulangResults, solved)
   const failedScoreable = scoreableResults.filter(result => result.result === false)
@@ -137,7 +137,7 @@ export const EndDialog = ({
           {scoreableResults.map((result, index) => {
             const passed = result.result === true
 
-            const text = t(`scoreable.${result.id}`, {
+            let text = t(`scoreable.${result.id}`, {
               ns: 'mulang',
               context: result.result ? 'passed' : 'failed',
               defaultValue: t(`suggestions.${result.id}`, {
@@ -145,6 +145,10 @@ export const EndDialog = ({
                 defaultValue: t('suggestions.check_out_this_block', { ns: 'mulang' }),
               }),
             })
+
+            if (simpleReadModeEnabled) {
+              text = text.toUpperCase()
+            }
 
             return (
               <Stack
@@ -169,9 +173,8 @@ export const EndDialog = ({
                     color: passed ? 'success.main' : 'error.main',
                     whiteSpace: 'pre-line',
                   }}
-                >
-                  {markdownLite(text)}
-                </Typography>
+                  dangerouslySetInnerHTML={{ __html: markdownLite(text) }}
+                />
               </Stack>
             )
           })}

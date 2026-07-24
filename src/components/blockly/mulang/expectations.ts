@@ -144,9 +144,10 @@ export const noExpectation = () => ''
 export const parseExpect = (name: string) => {
   const expectationName = name.split('|')[0]
 
-  const stringToBool = (value: string) => {
-    if (value === 'true') return true
-    if (value === 'false') return false
+  const parseParamValue = (value: string) => {
+    const trimmed = value.trim()
+    if (trimmed === 'true') return true
+    if (trimmed === 'false') return false
     return value
   }
 
@@ -157,7 +158,7 @@ export const parseExpect = (name: string) => {
       .split(';')
       .filter(Boolean)
       .map(entry => entry.split('='))
-      .map(([paramName, paramValue]) => [paramName, stringToBool(paramValue)])
+      .map(([paramName, paramValue]) => [paramName, parseParamValue(paramValue)])
   )
 
   return [expectationName, expectationParams] as const
