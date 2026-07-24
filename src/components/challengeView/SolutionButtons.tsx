@@ -13,6 +13,7 @@ import { ChangeEvent, useRef, useState } from "react";
 
 type SolucionButtonsProps = {
   direction: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  challengeTitle?: string;
 }
 
 
@@ -20,8 +21,8 @@ export const SolutionButtons = (props: SolucionButtonsProps) => {
 
   return (
     <Stack direction={props.direction} spacing={2}>
-      <UploadSolution />
-      <SaveSolutionButton />
+      <UploadSolution challengeTitle={props.challengeTitle} />
+      <SaveSolutionButton challengeTitle={props.challengeTitle} />
       <ClearSolutionButton />
     </Stack>
 
@@ -55,20 +56,27 @@ const SolutionButton = (props: SolucionButtonProps & IconButtonProps) => {
 
 const SPBQ_FILE_VERSION = 2
 
+export const sanitizeActivityName = (challengeTitle?: string) => {
+  const rawTitle = challengeTitle ?? LocalStorage.getCreatorChallenge()?.title ?? '';
 
-const getSanitizedActivityName = () => LocalStorage.getCreatorChallenge()?.title
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-zA-Z0-9 ]/g, '')
-  .trim()
-  .split(/\s+/)
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-  .join('') || "SinTitulo";
+  return rawTitle
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9 ]/g, '')
+    .trim()
+    .split(/\s+/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('') || "SinTitulo";
+};
 
-const SaveSolutionButton = () => {
+type SolutionButtonWithTitleProps = {
+  challengeTitle?: string;
+}
+
+const SaveSolutionButton = ({ challengeTitle }: SolutionButtonWithTitleProps) => {
 
   const { t } = useTranslation('challenge');
-  const activityName = getSanitizedActivityName();
+  const activityName = sanitizeActivityName(challengeTitle);
   const fileName = `${activityName}.spbq`;
 
 
@@ -142,7 +150,7 @@ const ClearSolutionButton = () => {
   </>
 }
 
-const UploadSolution = () => {
+const UploadSolution = ({ challengeTitle }: SolutionButtonWithTitleProps) => {
   const { t } = useTranslation('challenge')
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -197,7 +205,7 @@ const UploadSolution = () => {
 
       const fileVersion = jsonContent.version;
       const fileActivityName = jsonContent.actividad;
-      const currentActivityName = getSanitizedActivityName();
+      const currentActivityName = sanitizeActivityName(challengeTitle);
       const solutionXmlText = atob(jsonContent.solucion);
 
 
