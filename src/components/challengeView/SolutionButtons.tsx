@@ -22,21 +22,17 @@ type SolucionButtonsProps = {
 
 
 export const SolutionButtons = (props: SolucionButtonsProps) => {
-
-  return (
-    <Stack direction={props.direction} spacing={2}>
-      <UploadSolution challengeTitle={props.challengeTitle} />
-      <SaveSolutionButton challengeTitle={props.challengeTitle} />
-    <Stack direction={props.direction} spacing={2} alignItems="center">
-      <ToggleSuggestionsButton />
-      <UploadSolution />
-      <SaveSolutionButton />
-      <ClearSolutionButton />
+  return ( 
+      <Stack direction={props.direction} spacing={2} alignItems="center">
+        <ToggleSuggestionsButton />
+        <UploadSolution challengeTitle={props.challengeTitle} />
+        <SaveSolutionButton challengeTitle={props.challengeTitle} />
+        <ClearSolutionButton />
+      
     </Stack>
-
   );
+};
 
-}
 
 const ToggleSuggestionsButton = () => {
   const { theme } = useThemeContext()
