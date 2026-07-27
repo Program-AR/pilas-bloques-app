@@ -3,6 +3,7 @@ import { analyzeWithMulang } from './mulang/pilasMulangAnalyzer'
 import { showMulangFeedback } from './mulang/blockFeedback'
 import { TFunction } from 'i18next'
 import { MulangExpectationResult } from './mulang/mulangResults'
+import { LocalStorage } from '../../localStorage'
 
 const REQUIRED_PLACEHOLDERS = ['required_value', 'required_statement']
 
@@ -58,10 +59,22 @@ const blockHasMissingInput = (block: any) => {
   })
 }
 
+let lastChallenge: any = null
+let lastT: TFunction | null = null
+
+export const refreshBlocklyValidations = async () => {
+  if (lastChallenge && lastT) {
+    await runBlocklyValidations(lastChallenge, lastT)
+  }
+}
+
 export const runBlocklyValidations = async (
   challenge: any,
   t: TFunction
 ): Promise<BlocklyValidationResult> => {
+  lastChallenge = challenge
+  lastT = t
+  
   const workspace = Blockly.getMainWorkspace()
   const blocks = workspace
     .getAllBlocks(false)
@@ -80,7 +93,18 @@ export const runBlocklyValidations = async (
     challenge
   )
 
-  showMulangFeedback(workspace, mulangResults, t)
+  const showSuggestions = LocalStorage.getMulangSuggestionsEnabled()
+  const resultsToShow = showSuggestions ? mulangResults : mulangResults.filter(r => r.isCritical)
+
+  const isSimpleReadMode = LocalStorage.getIsSimpleReadMode()
+  const customT = (key: string, options?: any) => {
+    const translation: any = t(key as any, options as any)
+    return isSimpleReadMode && typeof translation === 'string'
+      ? translation.toUpperCase()
+      : translation
+  }
+
+  showMulangFeedback(workspace, resultsToShow, customT as TFunction)
 
   const hasCriticalErrors = mulangResults.some(
     result => result.result === false && result.isCritical

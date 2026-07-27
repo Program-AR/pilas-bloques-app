@@ -14,25 +14,22 @@
     "check_out_this_block": "Check out this block."
   },
   "scoreable": {
-    "solution_works": "Your solution works!",
-    "uses_simple_repetition": "{result, select, \n  true {You're using}\n  other {You should Use}\n} repetition for the repeating parts of the program.\n",
-    "uses_conditional_alternative": "{result, select, \n  true {You're using}\n  other {You should Use}\n} conditional alternatives to consider all possible scenarios.\n",
-    "uses_conditional_repetition": "{result, select, \n  true {You're using}\n  other {You should Use}\n} conditional repetition to consider varying scenarios.\n",
-    "main_too_long": "{result, select, \n  true {The main program is short and legible.}\n  other {Main program is too long, it should be divided into simpler pieces of work}\n}\n",
-    "too_long": "{result, select, \n  true {Your procedures are}\n  other {Your procedures should be}\n} divided into simpler pieces of work.\n",
-    "do_something": "{result, select, \n  true {Your procedures are not empty, they contain blocks}\n  other {Your procedures are empty, they should contain blocks}\n}.\n",
-    "name_was_changed": "{result, select,\n  true {You chose}\n  other {You should choose}\n} a name for each one of your procedures.\n",
-    "does_not_nest_control_structures": "{result, select, \n  true {Your repetitions and alternatives are subdivided}\n  other {You should also subdivide your repetitions and alternatives}\n} into simpler pieces of work using procedures.\n"
-  },
-  "control_group": {
     "solution_works": "Your solution _works_!",
-    "uses_simple_repetition": "You should use simple repetition for the repeating parts of your program.",
-    "uses_conditional_alternative": "You should use conditional alternative to consider all possible scenarios.",
-    "uses_conditional_repetition": "You should use conditional repetition to consider all scenarios.",
-    "main_too_long": "The main program should be subdivided into simpler pieces of work using procedures.",
-    "too_long": "Your procedures should not be long, they should also be subdivided into simpler pieces of work (procedures).",
-    "do_something": "You should not have empty procedures with no blocks.",
-    "name_was_changed": "You should choose a good name for each one of your procedures.",
-    "does_not_nest_control_structures": "You should also divide your repetitions and alternatives into simpler pieces of work using procedures."
+    "uses_simple_repetition_passed": "You're using repetition for the repeating parts of the program.",
+    "uses_simple_repetition_failed": "You should use repetition for the repeating parts of the program.",
+    "uses_conditional_alternative_passed": "You're using conditional alternatives to consider all possible scenarios.",
+    "uses_conditional_alternative_failed": "You should use conditional alternatives to consider all possible scenarios.",
+    "uses_conditional_repetition_passed": "You're using conditional repetition to consider varying scenarios.",
+    "uses_conditional_repetition_failed": "You should use conditional repetition to consider varying scenarios.",
+    "main_too_long_passed": "The main program is short and legible.",
+    "main_too_long_failed": "Main program is too long, it should be divided into simpler pieces of work.",
+    "too_long_passed": "Your procedures are divided into simpler pieces of work.",
+    "too_long_failed": "Your procedures should be divided into simpler pieces of work.",
+    "do_something_passed": "Your procedures are not empty, they contain blocks.",
+    "do_something_failed": "Your procedures are empty, they should contain blocks.",
+    "name_was_changed_passed": "You chose a name for each one of your procedures.",
+    "name_was_changed_failed": "You should choose a name for each one of your procedures.",
+    "does_not_nest_control_structures_passed": "Your repetitions and alternatives are subdivided into simpler pieces of work using procedures.",
+    "does_not_nest_control_structures_failed": "You should also subdivide your repetitions and alternatives into simpler pieces of work using procedures."
   }
 }

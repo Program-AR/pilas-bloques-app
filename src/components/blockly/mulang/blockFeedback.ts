@@ -1,6 +1,8 @@
 import * as Blockly from 'blockly/core'
 import { MulangExpectationResult } from './mulangResults'
 import { messageForExpectation } from './expectationMessages'
+import { doesNotNestControlStructuresId } from './expectations'
+import { getNestedControlStructureBlocks } from './blockUtils'
 import { TFunction } from 'i18next'
 
 const entryPointType = 'al_empezar_a_ejecutar'
@@ -45,19 +47,23 @@ const findProcedureBlock = (
   )
 }
 
-const blockForResult = (
+const blocksForResult = (
   workspace: Blockly.Workspace,
   result: MulangExpectationResult
-) => {
-  if (result.declaration === entryPointType) {
-    return findEntryPointBlock(workspace)
+): any[] => {
+  const declarationBlock = result.declaration === entryPointType
+    ? findEntryPointBlock(workspace)
+    : result.declaration
+      ? findProcedureBlock(workspace, result.declaration)
+      : findEntryPointBlock(workspace)
+
+  if (!declarationBlock) return []
+
+  if (result.id === doesNotNestControlStructuresId) {
+    return getNestedControlStructureBlocks(declarationBlock)
   }
 
-  if (result.declaration) {
-    return findProcedureBlock(workspace, result.declaration)
-  }
-
-  return findEntryPointBlock(workspace)
+  return [declarationBlock]
 }
 
 export const showMulangFeedback = (
@@ -68,13 +74,15 @@ export const showMulangFeedback = (
   const messagesByBlock = new Map<any, string[]>()
 
   failedResults(results).forEach(result => {
-    const block = blockForResult(workspace, result)
-    if (!block) return
+    const blocks = blocksForResult(workspace, result)
+    if (!blocks || !blocks.length) return
 
     const message = messageForExpectation(result, t)
 
-    const currentMessages = messagesByBlock.get(block) || []
-    messagesByBlock.set(block, [...currentMessages, message])
+    blocks.forEach(block => {
+      const currentMessages = messagesByBlock.get(block) || []
+      messagesByBlock.set(block, [...currentMessages, message])
+    })
   })
 
   messagesByBlock.forEach((messages, block) => {

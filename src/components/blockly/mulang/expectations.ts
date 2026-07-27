@@ -23,7 +23,7 @@ const nestedAlternativeStructureEDL =
 
 export const declarationDoesNotNestControlStructures = (declaration: string) =>
   newExpectation(
-    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    { isSuggestion: true, isScoreable: true },
     `within \`${declaration}\` ${nestedAlternativeStructureEDL} && ${nestedControlStructureEDL('repeat')} && ${nestedControlStructureEDL('while')}`,
     doesNotNestControlStructuresId,
     { declaration }
@@ -82,7 +82,7 @@ export const countCallsWithin = (declaration: string) =>
 
 export const doSomething = (declaration: string) =>
   newExpectation(
-    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    { isSuggestion: true, isScoreable: true },
     `${countCallsWithin(declaration)} >= 1`,
     doSomethingId,
     { declaration }
@@ -110,7 +110,7 @@ const declarationNotTooLong = (
   expectationName: string
 ) =>
   newExpectation(
-    { isSuggestion: true, isForControlGroup: true, isScoreable: true },
+    { isSuggestion: true, isScoreable: true },
     `${countCallsWithin(declaration)} <= ${limit - 1}`,
     expectationName,
     { declaration, limit }
@@ -133,7 +133,7 @@ export const doesNotUseRecursion = (declaration: string) =>
 export const nameWasChanged = (defaultProcedureName: string) =>
   (declaration: string) =>
     newSimpleCondition(
-      { isSuggestion: true, isScoreable: true, isForControlGroup: true },
+      { isSuggestion: true, isScoreable: true },
       !declaration.includes(defaultProcedureName),
       nameWasChangedId,
       { declaration }
@@ -144,9 +144,10 @@ export const noExpectation = () => ''
 export const parseExpect = (name: string) => {
   const expectationName = name.split('|')[0]
 
-  const stringToBool = (value: string) => {
-    if (value === 'true') return true
-    if (value === 'false') return false
+  const parseParamValue = (value: string) => {
+    const trimmed = value.trim()
+    if (trimmed === 'true') return true
+    if (trimmed === 'false') return false
     return value
   }
 
@@ -157,8 +158,25 @@ export const parseExpect = (name: string) => {
       .split(';')
       .filter(Boolean)
       .map(entry => entry.split('='))
-      .map(([paramName, paramValue]) => [paramName, stringToBool(paramValue)])
+      .map(([paramName, paramValue]) => [paramName, parseParamValue(paramValue)])
   )
 
   return [expectationName, expectationParams] as const
 }
+
+const newGlobalExpectation = (types: Record<string, any>, expect: string, id: string) =>
+  newExpectation(types, `through ${toEDLString(entryPointType)} ${expect}`, id, { declaration: entryPointType })
+
+export const conditionalAlternativeId = 'uses_conditional_alternative'
+export const conditionalRepetitionId = 'uses_conditional_repetition'
+export const simpleRepetitionId = 'uses_simple_repetition'
+
+export const usesConditionalAlternative = () =>
+  newGlobalExpectation({ isSuggestion: true, isScoreable: true }, 'uses if', conditionalAlternativeId)
+
+export const usesConditionalRepetition = () =>
+  newGlobalExpectation({ isSuggestion: true, isScoreable: true }, 'uses while', conditionalRepetitionId)
+
+export const usesSimpleRepetition = () =>
+  newGlobalExpectation({ isSuggestion: true, isScoreable: true }, 'uses repeat', simpleRepetitionId)
+export const isCritical = (result: any) => !!result.isCritical
