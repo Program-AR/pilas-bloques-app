@@ -1,3 +1,4 @@
+import * as Blockly from 'blockly/core'
 import mulang from 'mulang'
 import { entryPointType } from '../../../../../components/blockly/mulang/blockUtils'
 import { 
@@ -238,7 +239,7 @@ describe('Mulang Expectations', () => {
       application('PRIMITIVE'))
   ], 'Direct recursion with another procedure call should count as recursion')
 
-  expectationTestOk('countCallsWithin', newExpectation(`${countCallsWithin(declaration)} = 2`, 'counts', { declaration }), [
+  expectationTestOk('countCallsWithin', newExpectation({}, `${countCallsWithin(declaration)} = 2`, 'counts', { declaration }), [
     procedure(declaration, [],
       application("PROCEDURE2"),
       application(declaration)

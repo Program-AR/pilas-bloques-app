@@ -98,7 +98,7 @@ export const runBlocklyValidations = async (
 
   const isSimpleReadMode = LocalStorage.getIsSimpleReadMode()
   const customT = (key: string, options?: any) => {
-    const translation = t(key, options)
+    const translation: any = t(key as any, options as any)
     return isSimpleReadMode && typeof translation === 'string'
       ? translation.toUpperCase()
       : translation

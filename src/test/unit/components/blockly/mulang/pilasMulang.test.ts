@@ -52,11 +52,11 @@ Blockly.Blocks['procedures_defnoreturn'] = {
     return [name, this.arguments_, false]
   },
   domToMutation: function(xmlElement: Element) {
-    const args = []
+    const args: string[] = []
     for (let i = 0; i < xmlElement.childNodes.length; i++) {
       const child = xmlElement.childNodes[i] as Element
       if (child.tagName && child.tagName.toLowerCase() === 'arg') {
-        args.push(child.getAttribute('name'))
+        args.push(child.getAttribute('name') || '')
       }
     }
     this.arguments_ = args

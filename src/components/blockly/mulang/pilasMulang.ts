@@ -215,7 +215,7 @@ const pilasToMulangParsers: Record<string, any> = {
   param_get: { ...referenceParser, parse: parseVariable },
 }
 
-export const parseAll = (workspace: Blockly.WorkspaceSvg) => {
+export const parseAll = (workspace: Blockly.Workspace) => {
   const astNodes = workspace.getTopBlocks(false).map(buildBlockAst)
   return createNode('Sequence', astNodes)
 }
