@@ -23,10 +23,6 @@ const getBlockSiblings = (block: any): any[] => {
   return siblings
 }
 
-const isValue = (block: any) => {
-  return !!block.outputConnection
-}
-
 const isOperator = (block: any) => {
   return ['OpComparacion', 'OpAritmetica', 'logic_compare', 'math_arithmetic'].includes(block.type)
 }
@@ -72,7 +68,7 @@ const buildBlockAst = (block: any): any => {
 }
 
 const mulangParser = (block: any) => {
-  return pilasToMulangParsers[block.type] || searchAlias(block) || (isValue(block) ? referenceParser : applicationParser)
+  return pilasToMulangParsers[block.type] || searchAlias(block) || applicationParser
 }
 
 const buildSequenceAst = (firstBlock: any): any => {
@@ -205,12 +201,13 @@ const applicationParser = { tag: 'Application', parse: parseApplication }
 
 const pilasToMulangParsers: Record<string, any> = {
   [entryPointType]: entryPointParser,
-  Repetir: repeatParser,
   repetir: repeatParser,
+  Repetir: repeatParser,
   RepetirVacio: repeatParser,
+  hasta: untilParser,
+  Hasta: untilParser,
   Si: ifParser,
   SiNo: { ...ifParser, parse: parseIfElse },
-  Hasta: untilParser,
   math_number: numberParser,
   Numero: numberParser,
   procedures_defnoreturn: procedureParser,

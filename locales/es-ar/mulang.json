@@ -14,25 +14,22 @@
     "check_out_this_block": "Revisá este bloque."
   },
   "scoreable": {
-    "solution_works": "¡Tu solución _funciona_!",
-    "uses_simple_repetition": "{result, select, \n  true {Usás}\n  other {Deberías usar}\n} **repetición simple** para las partes de tu programa que hay que repetir.\n",
-    "uses_conditional_alternative": "{result, select, \n  true {Usás}\n  other {Deberías usar}\n} **alternativa condicional** para considerar los escenarios variantes.\n",
-    "uses_conditional_repetition": "{result, select, \n  true {Usás}\n  other {Deberías usar}\n} **repetición condicional** :repeat: para considerar los escenarios variantes.\n",
-    "main_too_long": "{result, select, \n  true {El _programa principal_ es corto, y por eso es más **fácil de leer**.}\n  other {El _programa principal_ es largo, y por eso es **difícil de leer**. <br/> :point_right: Debería estar dividido en subtareas usando **procedimientos**.}\n}\n",
-    "too_long": "{result, select, \n  true {Tus _procedimientos_ son cortos y por eso son más **fáciles de leer**.}\n  other {Tus _procedimientos_ son largos y por eso son más **difíciles de leer**. <br/> :point_right: Deberían estar divididos en subtareas usando **más procedimientos** dentro de ellos.}\n}\n",
-    "do_something": "{result, select, \n  true {Tus _procedimientos_ no están vacíos, **tienen bloques** adentro}\n  other {Tus _procedimientos_ están **vacíos** <br/> :point_right: deberían tener bloques en su interior}\n}.\n",
-    "name_was_changed": "{result, select,\n  true {Elegiste}\n  other {Tus procedimientos se llaman \"Hacer algo\" <br/> :point_right: Podrías elegir}\n} un **nombre** para cada uno de tus procedimientos.\n",
-    "does_not_nest_control_structures": "{result, select, \n  true {Tu programa es más fácil de leer porque tus _repeticiones y alternativas_ están divididas}\n  other {Para que tu programa sea más fácil de leer <br/> :point_right: dentro de las _repeticiones y alternativas_ deberías dividir}\n} en subtareas usando **procedimientos**.\n"
-  },
-  "control_group": {
-    "solution_works": "¡Tu solución _funciona_!",
-    "uses_simple_repetition": "Deberías usar **repetición simple** :repeat: para las partes de tu programa que se repiten.",
-    "uses_conditional_alternative": "Deberías usar **alternativa condicional** para considerar todos los escenarios.",
-    "uses_conditional_repetition": "Deberías usar **repetición condicional** para considerar todos los escenarios.",
-    "main_too_long": "El _programa principal_ debería ser corto y **fácil de leer**. Podés hacerlo más corto dividiéndolo en subtareas usando **procedimientos**.",
-    "too_long": "Tus _procedimientos_ deberían ser cortos y **fáciles de leer**. Podés hacerlos más cortos dividiéndolos en subtareas usando **más procedimientos** dentro de ellos.",
-    "do_something": "No deberías tener procedimientos **vacíos**, sin bloques.",
-    "name_was_changed": "Deberías elegir un buen **nombre** para cada uno de tus procedimientos.",
-    "does_not_nest_control_structures": "Dentro de las repeticiones y alternativas también deberías dividir en subtareas usando **procedimientos**."
+    "solution_works": "¡Tu solución funciona!",
+    "uses_simple_repetition_passed": "Usás **repetición simple** para las partes de tu programa que hay que repetir.",
+    "uses_simple_repetition_failed": "Deberías usar **repetición simple** para las partes de tu programa que hay que repetir.",
+    "uses_conditional_alternative_passed": "Usás **alternativa condicional** para considerar los escenarios variantes.",
+    "uses_conditional_alternative_failed": "Deberías usar **alternativa condicional** para considerar los escenarios variantes.",
+    "uses_conditional_repetition_passed": "Usás **repetición condicional** 🔁 para considerar los escenarios variantes.",
+    "uses_conditional_repetition_failed": "Deberías usar **repetición condicional** 🔁 para considerar los escenarios variantes.",
+    "main_too_long_passed": "El _programa principal_ es corto, y por eso es más **fácil de leer**.",
+    "main_too_long_failed": "El _programa principal_ es largo, y por eso es **difícil de leer**.<br/> 👉 Debería estar dividido en subtareas usando **procedimientos**.",
+    "too_long_passed": "Tus _procedimientos_ son cortos y por eso son más **fáciles de leer**.",
+    "too_long_failed": "Tus _procedimientos_ son largos y por eso son más **difíciles de leer**.<br/> 👉 Deberían estar divididos en subtareas usando **más procedimientos** dentro de ellos.",
+    "do_something_passed": "Tus _procedimientos_ no están vacíos, **tienen bloques** adentro.",
+    "do_something_failed": "Tus _procedimientos_ están **vacíos**.<br/> 👉 Deberían tener bloques en su interior.",
+    "name_was_changed_passed": "Elegiste un **nombre** para cada uno de tus procedimientos.",
+    "name_was_changed_failed": "Tus procedimientos se llaman \"Hacer algo\".<br/> 👉 Podrías elegir un **nombre** para cada uno de tus procedimientos.",
+    "does_not_nest_control_structures_passed": "Tu programa es más fácil de leer porque tus _repeticiones y alternativas_ están divididas en subtareas usando **procedimientos**.",
+    "does_not_nest_control_structures_failed": "Para que tu programa sea más fácil de leer,<br/> 👉 dentro de las _repeticiones y alternativas_ deberías dividir en subtareas usando **procedimientos**."
   }
 }

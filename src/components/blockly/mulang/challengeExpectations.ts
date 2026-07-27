@@ -51,7 +51,7 @@ const idsToExpectations = (defaultProcedureName: string) => ({
   ),
 })
 
-const mergeConfigurations = (expectationsConfigs: Array<Record<string, boolean> | undefined>) =>
+export const mergeConfigurations = (expectationsConfigs: Array<Record<string, boolean> | undefined>) =>
   expectationsConfigs
     .filter(Boolean)
     .reduce((baseExpect, expectWithPriority) => ({
@@ -59,7 +59,7 @@ const mergeConfigurations = (expectationsConfigs: Array<Record<string, boolean> 
       ...expectWithPriority,
     }), {} as Record<string, boolean>)
 
-const configToExpectation = (
+export const configToExpectation = (
   expectationsConfig: Record<string, boolean> | undefined,
   workspace: Blockly.WorkspaceSvg,
   defaultProcedureName: string

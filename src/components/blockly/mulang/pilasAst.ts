@@ -12,4 +12,4 @@ export const createReference = (name: string): MulangNode =>
   createNode('Reference', name)
 
 export const createEmptyNode = (): MulangNode =>
-  createNode('None', null)
+  createNode('None', [])

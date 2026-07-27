@@ -9,7 +9,6 @@ export type MulangExpectationResult = {
   isCritical?: boolean
   isSuggestion?: boolean
   isScoreable?: boolean
-  isForControlGroup?: boolean
   isRelatedToUsage?: boolean
   [key: string]: any
 }
