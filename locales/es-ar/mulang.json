@@ -19,17 +19,17 @@
     "uses_simple_repetition_failed": "Deberías usar **repetición simple** para las partes de tu programa que hay que repetir.",
     "uses_conditional_alternative_passed": "Usás **alternativa condicional** para considerar los escenarios variantes.",
     "uses_conditional_alternative_failed": "Deberías usar **alternativa condicional** para considerar los escenarios variantes.",
-    "uses_conditional_repetition_passed": "Usás **repetición condicional** 🔁 para considerar los escenarios variantes.",
-    "uses_conditional_repetition_failed": "Deberías usar **repetición condicional** 🔁 para considerar los escenarios variantes.",
+    "uses_conditional_repetition_passed": "Usás **repetición condicional** :repeat: para considerar los escenarios variantes.",
+    "uses_conditional_repetition_failed": "Deberías usar **repetición condicional** :repeat: para considerar los escenarios variantes.",
     "main_too_long_passed": "El _programa principal_ es corto, y por eso es más **fácil de leer**.",
-    "main_too_long_failed": "El _programa principal_ es largo, y por eso es **difícil de leer**.<br/> 👉 Debería estar dividido en subtareas usando **procedimientos**.",
+    "main_too_long_failed": "El _programa principal_ es largo, y por eso es **difícil de leer**.<br/>:point_right: Debería estar dividido en subtareas usando **procedimientos**.",
     "too_long_passed": "Tus _procedimientos_ son cortos y por eso son más **fáciles de leer**.",
-    "too_long_failed": "Tus _procedimientos_ son largos y por eso son más **difíciles de leer**.<br/> 👉 Deberían estar divididos en subtareas usando **más procedimientos** dentro de ellos.",
+    "too_long_failed": "Tus _procedimientos_ son largos y por eso son más **difíciles de leer**.<br/>:point_right: Deberían estar divididos en subtareas usando **más procedimientos** dentro de ellos.",
     "do_something_passed": "Tus _procedimientos_ no están vacíos, **tienen bloques** adentro.",
-    "do_something_failed": "Tus _procedimientos_ están **vacíos**.<br/> 👉 Deberían tener bloques en su interior.",
+    "do_something_failed": "Tus _procedimientos_ están **vacíos**.<br/>:point_right: Deberían tener bloques en su interior.",
     "name_was_changed_passed": "Elegiste un **nombre** para cada uno de tus procedimientos.",
-    "name_was_changed_failed": "Tus procedimientos se llaman \"Hacer algo\".<br/> 👉 Podrías elegir un **nombre** para cada uno de tus procedimientos.",
+    "name_was_changed_failed": "Tus procedimientos se llaman \"Hacer algo\".<br/>:point_right: Podrías elegir un **nombre** para cada uno de tus procedimientos.",
     "does_not_nest_control_structures_passed": "Tu programa es más fácil de leer porque tus _repeticiones y alternativas_ están divididas en subtareas usando **procedimientos**.",
-    "does_not_nest_control_structures_failed": "Para que tu programa sea más fácil de leer,<br/> 👉 dentro de las _repeticiones y alternativas_ deberías dividir en subtareas usando **procedimientos**."
+    "does_not_nest_control_structures_failed": "Para que tu programa sea más fácil de leer,<br/>:point_right: dentro de las _repeticiones y alternativas_ deberías dividir en subtareas usando **procedimientos**."
   }
 }

@@ -2,10 +2,11 @@ import { Dialog, DialogContent, DialogTitle, Paper, Stack, Typography } from "@m
 import { useThemeContext } from "../../../theme/ThemeContext"
 import { useTranslation } from "react-i18next"
 import ConfettiExplosion from 'react-confetti-explosion';
-import { CheckCircle, CloseOutlined, Error, TouchAppOutlined } from '@mui/icons-material';
+import { Repeat, CheckCircle, CloseOutlined, Error, TouchAppOutlined } from '@mui/icons-material';
 import { IconButtonTooltip } from "../../creator/Editor/SceneEdition/IconButtonTooltip"
 import { MulangExpectationResult } from "../../blockly/mulang/mulangResults"
 import { Challenge } from "../../../staticData/challenges"
+import { ReactNode } from "react";
 
 interface EndDialogProps {
   showModal: boolean;
@@ -43,13 +44,53 @@ const groupScoreableResults = (
   ].sort((left, right) => Number(right.result) - Number(left.result))
 }
 
-const markdownLite = (text: string) =>
-  text
-    .replace(/<br\/?>/gi, '\n')
-    .replace(/:point_right:/gi, '👉')
-    .replace(/:repeat:/gi, '🔁')
-    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
-    .replace(/_(.*?)_/g, '<i>$1</i>')
+const renderMarkdownLite = (text: string): ReactNode[] => {
+  const normalizedText = text.replace(/<br\s*\/?>/gi, '\n')
+
+  const parts = normalizedText.split(/(:point_right:|:repeat:|\*\*.*?\*\*|_.*?_|\n)/gi)
+
+  return parts.map((part, index) => {
+    if (!part) {
+      return null
+    }
+
+    const normalizedPart = part.toLowerCase()
+
+    if (normalizedPart === ':point_right:') {
+      return (
+        <TouchAppOutlined key={index} aria-label="Sugerencia" fontSize="inherit" sx={{ display: 'inline-block', verticalAlign: 'text-bottom', mx: 0.4 }} />
+      )
+    }
+
+    if (normalizedPart === ':repeat:') {
+      return (
+        <Repeat key={index} aria-label="Repetición" fontSize="inherit" sx={{ display: 'inline-block', verticalAlign: 'text-bottom', mx: 0.4 }} />
+      )
+    }
+
+    if (part === '\n') {
+      return <br key={index} />
+    }
+
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return (
+        <strong key={index}>
+          {part.slice(2, -2)}
+        </strong>
+      )
+    }
+
+    if (part.startsWith('_') && part.endsWith('_')) {
+      return (
+        <em key={index}>
+          {part.slice(1, -1)}
+        </em>
+      )
+    }
+
+    return <span key={index}>{part}</span>
+  })
+}
 
 export const EndDialog = ({
   showModal,
@@ -82,6 +123,7 @@ export const EndDialog = ({
     disableRestoreFocus
     fullWidth={true}
     maxWidth="md"
+    scroll="paper"
     onClose={() => setShowModal(false)}
   >
     <DialogTitle
@@ -89,13 +131,18 @@ export const EndDialog = ({
       sx={{
         cursor: 'auto',
         fontWeight: 'bold',
-        height: '50px',
+        minHeight: '50px',
+        py: 2,
+        px: 3,
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        gap: 2,
       }}
     >
-      {title}
+      <Typography component="span" sx={{ fontSize: '1.25rem', fontWeight: 'bold', lineHeight: 1.25}}>
+        {title}
+      </Typography>
       <IconButtonTooltip
         onClick={() => setShowModal(false)}
         icon={<CloseOutlined />}
@@ -103,30 +150,16 @@ export const EndDialog = ({
       />
     </DialogTitle>
 
-    <DialogContent sx={{ overflow: "hidden", backgroundColor: theme.palette.background.default }}>
+    <DialogContent sx={{ overflowY: "auto", maxHeight: "70vh", backgroundColor: theme.palette.background.default }}>
       <Stack spacing={2}>
         {allPassed && (
           <ConfettiExplosion {...{ force: 0.8, duration: 3000, particleCount: 250, width: 1600 }} />
         )}
-
-        <Paper
-          elevation={2}
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 2,
-            p: 2,
-            borderRadius: 2,
-          }}
-        >
+        <Paper elevation={2} sx={{ display: 'flex', alignItems: 'center', gap: 2, p: 2, borderRadius: 2 }}>
           <img
             alt={(challenge as any).title || (challenge as any).titulo || 'challenge'}
             src={coverSrc}
-            style={{
-              width: 100,
-              height: 80,
-              objectFit: 'contain',
-            }}
+            style={{ width: 100, height: 80, objectFit: 'contain' }}
           />
           <Typography sx={{ fontSize: '1.1rem' }}>
             {description}
@@ -156,10 +189,7 @@ export const EndDialog = ({
                 direction="row"
                 alignItems="flex-start"
                 spacing={1}
-                sx={{
-                  color: passed ? 'success.main' : 'error.main',
-                  fontSize: '1rem',
-                }}
+                sx={{ color: passed ? 'success.main' : 'error.main', fontSize: '1rem' }}
               >
                 {passed ? (
                   <CheckCircle fontSize="small" />
@@ -167,14 +197,9 @@ export const EndDialog = ({
                   <Error fontSize="small" />
                 )}
 
-                <Typography
-                  sx={{
-                    fontSize: '1rem',
-                    color: passed ? 'success.main' : 'error.main',
-                    whiteSpace: 'pre-line',
-                  }}
-                  dangerouslySetInnerHTML={{ __html: markdownLite(text) }}
-                />
+                <Typography component="div" sx={{ fontSize: '1rem', color: passed ? 'success.main' : 'error.main', lineHeight: 1.5 }}>
+                  {renderMarkdownLite(text)}
+                </Typography>
               </Stack>
             )
           })}
