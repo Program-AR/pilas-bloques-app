@@ -44,7 +44,7 @@ describe('SolutionButtons', () => {
     expect(LocalStorage.saveMulangSuggestionsEnabled).toHaveBeenCalledWith(false)
   })
 
-  test('uses the provided challenge title to build the file name', () => {
+  test('uses the provided challenge identifier to build the file name', () => {
     expect(sanitizeActivityName('mi desafío 1')).toBe('MiDesafio1')
   })
 
@@ -53,4 +53,9 @@ describe('SolutionButtons', () => {
 
     expect(sanitizeActivityName()).toBe('DesafioDePrueba')
   })
+
+  test('uses the provided challenge id to build the file name', () => {
+    expect(sanitizeActivityName('1233')).toBe('1233')
+  })
+
 })

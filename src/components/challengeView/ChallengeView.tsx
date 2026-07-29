@@ -58,18 +58,18 @@ export const ChallengeView = ({ path, height }: ChallengeViewProps) => {
 
   const pathToChallenge: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
 
-  const challengeTitle = impChallenge ? LocalStorage.getCreatorChallenge()?.title : t(`${id}.title`)!;
+  const challengeIdentifier = impChallenge ? LocalStorage.getCreatorChallenge()?.title : id;
 
   const workspace: ChallengeWorkspaceProps = {
     challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : pathToChallenge!.challenge),
     statement: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.description : t(`${id}.statement`)!,
     clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!,
-    challengeTitle
+    challengeIdentifier
   }
 
   return <Stack height={height ? height : '100%'} sx={{ backgroundColor: theme.palette.background.paper }}>
     {!impChallenge && <Header CenterComponent={ChallengeBreadcrumb(pathToChallenge!)} shouldShowSimpleReadSwitch={!pathToChallenge!.book.simpleReadMode} />}
-    <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} challengeTitle={workspace.challengeTitle} />
+    <ChallengeWorkspace challenge={workspace.challenge} statement={workspace.statement} clue={workspace.clue} challengeIdentifier={workspace.challengeIdentifier} />
   </Stack>
 }
 
@@ -77,11 +77,11 @@ type ChallengeWorkspaceProps = {
   challenge: Challenge,
   statement?: string,
   clue?: string,
-  challengeTitle?: string,
+  challengeIdentifier?: string,
   style?: PaperProps["style"]
 }
 
-const ChallengeWorkspace = ({ statement, challenge, clue, challengeTitle }: ChallengeWorkspaceProps) => {
+const ChallengeWorkspace = ({ statement, challenge, clue, challengeIdentifier }: ChallengeWorkspaceProps) => {
   const { isSmallScreen } = useThemeContext()
   const [first, setFirst] = useState<boolean>(true)
   const [savedSolutionXml, setSavedSolutionXml] = useState<string | null | undefined>(undefined)
@@ -127,7 +127,7 @@ const ChallengeWorkspace = ({ statement, challenge, clue, challengeTitle }: Chal
 
 
   const InsideChallengeWorkspace = () => {
-    return isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} challengeTitle={challengeTitle} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} challengeTitle={challengeTitle} />
+    return isSmallScreen ? <VerticalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} challengeIdentifier={challengeIdentifier} /> : <HorizontalChallengeWorkspace blocklyWorkspaceProps={blocklyWorkspaceProps} challenge={challenge} challengeIdentifier={challengeIdentifier} />
   }
 
   return <>
@@ -145,7 +145,7 @@ const ChallengeWorkspace = ({ statement, challenge, clue, challengeTitle }: Chal
 
 type ChallengeWorkspaceDistributionProps = {
   challenge: Challenge,
-  challengeTitle?: string,
+  challengeIdentifier?: string,
   blocklyWorkspaceProps: EditableBlocklyWorkspaceProps
 }
 
@@ -155,7 +155,7 @@ type EditableBlocklyWorkspaceProps = {
   initialXml: string
 }
 
-const HorizontalChallengeWorkspace = ({ challenge, challengeTitle, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+const HorizontalChallengeWorkspace = ({ challenge, challengeIdentifier, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
   const [running, setRunning] = useState(false)
   const blocklyWorkspace = useMemo<JSX.Element>(() => {
     return <EditableBlocklyWorkspace blockIds={blocklyWorkspaceProps.blockIds} categorized={blocklyWorkspaceProps.categorized} initialXml={blocklyWorkspaceProps.initialXml} isVertical={false} zoomScale={1.0} />
@@ -167,7 +167,7 @@ const HorizontalChallengeWorkspace = ({ challenge, challengeTitle, blocklyWorksp
       
           <Stack sx={{ position:"absolute", zIndex: 10, right: 15, top: 15 }}>
               
-              <SolutionButtons direction="row" challengeTitle={challengeTitle} />
+              <SolutionButtons direction="row" challengeIdentifier={challengeIdentifier} />
           </Stack>
       {blocklyWorkspace}
     </Stack>
@@ -179,7 +179,7 @@ const HorizontalChallengeWorkspace = ({ challenge, challengeTitle, blocklyWorksp
   </Stack>
 }
 
-const VerticalChallengeWorkspace = ({ challenge, challengeTitle, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
+const VerticalChallengeWorkspace = ({ challenge, challengeIdentifier, blocklyWorkspaceProps }: ChallengeWorkspaceDistributionProps) => {
   const [running, setRunning] = useState(false)
   const [openDrawer, setOpenDrawer] = useState<boolean>(false)
   const [openSolution, setOpenSolution] = useState(false);
@@ -204,7 +204,7 @@ const VerticalChallengeWorkspace = ({ challenge, challengeTitle, blocklyWorkspac
             
             <Collapse in={openSolution} orientation="vertical">
                 
-                <SolutionButtons direction="column" challengeTitle={challengeTitle} /> 
+                <SolutionButtons direction="column" challengeIdentifier={challengeIdentifier} /> 
             </Collapse>
         </Stack>
       {blocklyWorkspace}

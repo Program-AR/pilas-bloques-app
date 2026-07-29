@@ -17,7 +17,7 @@ import { refreshBlocklyValidations } from "../blockly/blocklyValidations";
 
 type SolucionButtonsProps = {
   direction: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-  challengeTitle?: string;
+  challengeIdentifier?: string;
 }
 
 
@@ -25,8 +25,8 @@ export const SolutionButtons = (props: SolucionButtonsProps) => {
   return ( 
       <Stack direction={props.direction} spacing={2} alignItems="center">
         <ToggleSuggestionsButton />
-        <UploadSolution challengeTitle={props.challengeTitle} />
-        <SaveSolutionButton challengeTitle={props.challengeTitle} />
+        <UploadSolution challengeIdentifier={props.challengeIdentifier} />
+        <SaveSolutionButton challengeIdentifier={props.challengeIdentifier} />
         <ClearSolutionButton />
       
     </Stack>
@@ -94,10 +94,10 @@ const SolutionButton = (props: SolucionButtonProps & IconButtonProps) => {
 
 const SPBQ_FILE_VERSION = 2
 
-export const sanitizeActivityName = (challengeTitle?: string) => {
-  const rawTitle = challengeTitle ?? LocalStorage.getCreatorChallenge()?.title ?? '';
+export const sanitizeActivityName = (challengeIdentifier?: string) => {
+  const rawIdentifier = challengeIdentifier ?? LocalStorage.getCreatorChallenge()?.title ?? '';
 
-  return rawTitle
+  return rawIdentifier
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-zA-Z0-9 ]/g, '')
@@ -108,13 +108,13 @@ export const sanitizeActivityName = (challengeTitle?: string) => {
 };
 
 type SolutionButtonWithTitleProps = {
-  challengeTitle?: string;
+  challengeIdentifier?: string;
 }
 
-const SaveSolutionButton = ({ challengeTitle }: SolutionButtonWithTitleProps) => {
+const SaveSolutionButton = ({ challengeIdentifier }: SolutionButtonWithTitleProps) => {
 
   const { t } = useTranslation('challenge');
-  const activityName = sanitizeActivityName(challengeTitle);
+  const activityName = sanitizeActivityName(challengeIdentifier);
   const fileName = `${activityName}.spbq`;
 
 
@@ -188,7 +188,7 @@ const ClearSolutionButton = () => {
   </>
 }
 
-const UploadSolution = ({ challengeTitle }: SolutionButtonWithTitleProps) => {
+const UploadSolution = ({ challengeIdentifier }: SolutionButtonWithTitleProps) => {
   const { t } = useTranslation('challenge')
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -243,7 +243,7 @@ const UploadSolution = ({ challengeTitle }: SolutionButtonWithTitleProps) => {
 
       const fileVersion = jsonContent.version;
       const fileActivityName = jsonContent.actividad;
-      const currentActivityName = sanitizeActivityName(challengeTitle);
+      const currentActivityName = sanitizeActivityName(challengeIdentifier);
       const solutionXmlText = atob(jsonContent.solucion);
 
 
