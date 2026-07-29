@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogTitle, Paper, Stack, Typography } from "@m
 import { useThemeContext } from "../../../theme/ThemeContext"
 import { useTranslation } from "react-i18next"
 import ConfettiExplosion from 'react-confetti-explosion';
-import { Repeat, CheckCircle, CloseOutlined, Error, TouchAppOutlined } from '@mui/icons-material';
+import { Repeat, CheckCircle, CloseOutlined, Error, ArrowForward } from '@mui/icons-material';
 import { IconButtonTooltip } from "../../creator/Editor/SceneEdition/IconButtonTooltip"
 import { MulangExpectationResult } from "../../blockly/mulang/mulangResults"
 import { Challenge } from "../../../staticData/challenges"
