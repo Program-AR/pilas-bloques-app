@@ -14,22 +14,22 @@
     "check_out_this_block": "Revise este bloco."
   },
   "scoreable": {
-    "solution_works": "Sua solução funciona!",
-    "uses_simple_repetition_passed": "Você usa **repetição simples** para as partes do seu programa que precisam ser repetidas.",
-    "uses_simple_repetition_failed": "Você deveria usar **repetição simples** para as partes do seu programa que precisam ser repetidas.",
-    "uses_conditional_alternative_passed": "Você usa **alternativa condicional** para considerar os diferentes cenários.",
-    "uses_conditional_alternative_failed": "Você deveria usar **alternativa condicional** para considerar os diferentes cenários.",
-    "uses_conditional_repetition_passed": "Você usa **repetição condicional** :repeat: para considerar os diferentes cenários.",
-    "uses_conditional_repetition_failed": "Você deveria usar **repetição condicional** :repeat: para considerar os diferentes cenários.",
-    "main_too_long_passed": "O _programa principal_ é curto e, por isso, é mais **fácil de ler**.",
-    "main_too_long_failed": "O _programa principal_ é longo e, por isso, é **difícil de ler**.<br/>:point_right: Ele deveria ser dividido em subtarefas usando **procedimentos**.",
-    "too_long_passed": "Seus _procedimentos_ são curtos e, por isso, são mais **fáceis de ler**.",
-    "too_long_failed": "Seus _procedimentos_ são longos e, por isso, são mais **difíceis de ler**.<br/>:point_right: Eles deveriam ser divididos em subtarefas usando **mais procedimentos**.",
-    "do_something_passed": "Seus _procedimentos_ não estão vazios, **eles contêm blocos**.",
-    "do_something_failed": "Seus _procedimentos_ estão **vazios**.<br/>:point_right: Eles deveriam conter blocos.",
+    "solution_works": "Sua solução _funciona_!",
+    "uses_simple_repetition_passed": "Você usa **repetição** para as partes do seu programa que se repetem.",
+    "uses_simple_repetition_failed": "Você deveria usar **repetição** para as partes do seu programa que se repetem.",
+    "uses_conditional_alternative_passed": "Você usa **alternativa condicional** para considerar os cenários variáveis.",
+    "uses_conditional_alternative_failed": "Você deveria usar **alternativa condicional** para considerar os cenários variáveis.",
+    "uses_conditional_repetition_passed": "Você usa **repetição condicional** :repeat: para considerar os cenários variáveis.",
+    "uses_conditional_repetition_failed": "Você deveria usar **repetição condicional** :repeat: para considerar os cenários variáveis.",
+    "main_too_long_passed": "O _programa principal_ é curto e legível.",
+    "main_too_long_failed": "O _programa principal_ é longo,<br/>:point_right: deveria estar dividido em subtarefas.",
+    "too_long_passed": "Seus _procedimentos_ estão divididos em subtarefas.",
+    "too_long_failed": "Seus _procedimentos_<br/>:point_right: deveriam estar divididos em subtarefas.",
+    "do_something_passed": "Seus _procedimentos_ não estão vazios, têm blocos dentro.",
+    "do_something_failed": "Seus _procedimentos_ estão vazios,<br/>:point_right: deveriam ter blocos dentro.",
     "name_was_changed_passed": "Você escolheu um **nome** para cada um dos seus procedimentos.",
-    "name_was_changed_failed": "Seus procedimentos ainda se chamam \"Fazer algo\".<br/>:point_right: Você poderia escolher um **nome** para cada um deles.",
-    "does_not_nest_control_structures_passed": "Seu programa é mais fácil de ler porque suas _repetições e alternativas_ estão divididas em subtarefas usando **procedimentos**.",
-    "does_not_nest_control_structures_failed": "Para tornar seu programa mais fácil de ler,<br/>:point_right: dentro das _repetições e alternativas_ você deveria dividir o código em subtarefas usando **procedimentos**."
+    "name_was_changed_failed": "Você poderia escolher um **nome** para cada um dos seus procedimentos.",
+    "does_not_nest_control_structures_passed": "Suas _repetições e alternativas_ estão divididas em subtarefas usando procedimentos.",
+    "does_not_nest_control_structures_failed": "Dentro das _repetições e alternativas_,<br/>:point_right: você também deveria dividir em subtarefas usando procedimentos."
   }
 }
