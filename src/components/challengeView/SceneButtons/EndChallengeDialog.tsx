@@ -58,7 +58,7 @@ const renderMarkdownLite = (text: string): ReactNode[] => {
 
     if (normalizedPart === ':point_right:') {
       return (
-        <TouchAppOutlined key={index} aria-label="Sugerencia" fontSize="inherit" sx={{ display: 'inline-block', verticalAlign: 'text-bottom', mx: 0.4 }} />
+        <ArrowForward key={index} aria-label="Sugerencia" fontSize="inherit" sx={{ display: 'inline-block', verticalAlign: 'middle', mx: 0.4 }} />
       )
     }
 
