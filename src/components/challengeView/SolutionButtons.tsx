@@ -17,22 +17,22 @@ import { refreshBlocklyValidations } from "../blockly/blocklyValidations";
 
 type SolucionButtonsProps = {
   direction: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+  challengeIdentifier?: string;
 }
 
 
 export const SolutionButtons = (props: SolucionButtonsProps) => {
-
-  return (
-    <Stack direction={props.direction} spacing={2} alignItems="center">
-      <ToggleSuggestionsButton />
-      <UploadSolution />
-      <SaveSolutionButton />
-      <ClearSolutionButton />
+  return ( 
+      <Stack direction={props.direction} spacing={2} alignItems="center">
+        <ToggleSuggestionsButton />
+        <UploadSolution challengeIdentifier={props.challengeIdentifier} />
+        <SaveSolutionButton challengeIdentifier={props.challengeIdentifier} />
+        <ClearSolutionButton />
+      
     </Stack>
-
   );
+};
 
-}
 
 const ToggleSuggestionsButton = () => {
   const { theme } = useThemeContext()
@@ -94,20 +94,27 @@ const SolutionButton = (props: SolucionButtonProps & IconButtonProps) => {
 
 const SPBQ_FILE_VERSION = 2
 
+export const sanitizeActivityName = (challengeIdentifier?: string) => {
+  const rawIdentifier = challengeIdentifier ?? LocalStorage.getCreatorChallenge()?.title ?? '';
 
-const getSanitizedActivityName = () => LocalStorage.getCreatorChallenge()?.title
-  .normalize('NFD')
-  .replace(/[\u0300-\u036f]/g, '')
-  .replace(/[^a-zA-Z0-9 ]/g, '')
-  .trim()
-  .split(/\s+/)
-  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-  .join('') || "SinTitulo";
+  return rawIdentifier
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-zA-Z0-9 ]/g, '')
+    .trim()
+    .split(/\s+/)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('') || "SinTitulo";
+};
 
-const SaveSolutionButton = () => {
+type SolutionButtonWithTitleProps = {
+  challengeIdentifier?: string;
+}
+
+const SaveSolutionButton = ({ challengeIdentifier }: SolutionButtonWithTitleProps) => {
 
   const { t } = useTranslation('challenge');
-  const activityName = getSanitizedActivityName();
+  const activityName = sanitizeActivityName(challengeIdentifier);
   const fileName = `${activityName}.spbq`;
 
 
@@ -181,7 +188,7 @@ const ClearSolutionButton = () => {
   </>
 }
 
-const UploadSolution = () => {
+const UploadSolution = ({ challengeIdentifier }: SolutionButtonWithTitleProps) => {
   const { t } = useTranslation('challenge')
 
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -236,7 +243,7 @@ const UploadSolution = () => {
 
       const fileVersion = jsonContent.version;
       const fileActivityName = jsonContent.actividad;
-      const currentActivityName = getSanitizedActivityName();
+      const currentActivityName = sanitizeActivityName(challengeIdentifier);
       const solutionXmlText = atob(jsonContent.solucion);
 
 

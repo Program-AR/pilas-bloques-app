@@ -1,5 +1,5 @@
-import { screen, fireEvent, waitFor } from '@testing-library/react'
-import { SolutionButtons } from '../../../components/challengeView/SolutionButtons'
+import { screen, fireEvent } from '@testing-library/react'
+import { sanitizeActivityName, SolutionButtons } from '../../../components/challengeView/SolutionButtons'
 import { renderComponent } from '../../testUtils'
 import { LocalStorage } from '../../../localStorage'
 
@@ -43,4 +43,19 @@ describe('SolutionButtons', () => {
     // Should have saved the new state to localStorage
     expect(LocalStorage.saveMulangSuggestionsEnabled).toHaveBeenCalledWith(false)
   })
+
+  test('uses the provided challenge identifier to build the file name', () => {
+    expect(sanitizeActivityName('mi desafío 1')).toBe('MiDesafio1')
+  })
+
+  test('uses the creator title as fallback when no challenge title is provided', () => {
+    ;(LocalStorage.getCreatorChallenge as jest.Mock).mockReturnValue({ title: 'desafío de prueba' })
+
+    expect(sanitizeActivityName()).toBe('DesafioDePrueba')
+  })
+
+  test('uses the provided challenge id to build the file name', () => {
+    expect(sanitizeActivityName('1233')).toBe('1233')
+  })
+
 })
