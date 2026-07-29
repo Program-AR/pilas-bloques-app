@@ -7,13 +7,46 @@ import { TFunction } from 'i18next'
 
 const entryPointType = 'al_empezar_a_ejecutar'
 
+const warningLineLength = () => {
+  if (typeof window === 'undefined') return 60
+
+  return window.innerWidth <= 600 ? 34 : 60
+}
+
+const wrapWarningText = (
+  message: string,
+  maxLineLength = warningLineLength()
+) =>
+  message
+    .split('\n')
+    .map(paragraph => {
+      const words = paragraph.trim().split(/\s+/)
+
+      if (!words.length || !words[0]) return ''
+
+      return words.reduce<string[]>((lines, word) => {
+        const lastLine = lines[lines.length - 1]
+
+        if (!lastLine) {
+          lines[lines.length - 1] = word
+        } else if (lastLine.length + 1 + word.length <= maxLineLength) {
+          lines[lines.length - 1] = `${lastLine} ${word}`
+        } else {
+          lines.push(word)
+        }
+
+        return lines
+      }, ['']).join('\n')
+    })
+    .join('\n')
+
 const failedResults = (results: MulangExpectationResult[]) =>
   results.filter(result => result.result === false)
 
 const showWarning = (block: any, message: string) => {
   if (!block) return
 
-  block.setWarningText?.(message)
+  block.setWarningText?.(wrapWarningText(message))
 
   if (block.warning?.setBubbleVisible) {
     block.warning.setBubbleVisible(true)
@@ -39,7 +72,7 @@ const findProcedureBlock = (
   declaration: string
 ) => {
   const procedureBlocks = workspace
-    .getAllBlocks(false) 
+    .getAllBlocks(false)
 
   return procedureBlocks.find((block: any) =>
     isProcedureDefinition(block) &&
