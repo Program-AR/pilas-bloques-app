@@ -64,7 +64,7 @@ const renderMarkdownLite = (text: string): ReactNode[] => {
 
     if (normalizedPart === ':repeat:') {
       return (
-        <Repeat key={index} aria-label="Repetición" fontSize="inherit" sx={{ display: 'inline-block', verticalAlign: 'text-bottom', mx: 0.4 }} />
+        <Repeat key={index} aria-label="Repetición" fontSize="inherit" sx={{ display: 'inline-block', verticalAlign: 'middle', mx: 0.4 }} />
       )
     }
 
