@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { EmberView } from "./emberView/EmberView";
+import { ChallengeView } from "./challengeView/ChallengeView";
 import { Header } from "./header/Header";
 import { SerializedChallenge } from "./serializedChallenge";
 import { Typography } from "@mui/material";
@@ -13,7 +13,7 @@ export const ImportedChallengeView = () => {
 
     return <>
         <Header CenterComponent={<ImportedChallengeViewBreadcrumb />} />
-        <EmberView path={EMBER_IMPORTED_CHALLENGE_PATH} />
+        <ChallengeView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
     </>
 }
 

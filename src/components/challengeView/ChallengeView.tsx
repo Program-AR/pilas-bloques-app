@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { Challenge, PathToChallenge, currentIdFor, getPathToChallenge, shouldShowMultipleScenariosButton } from "../../staticData/challenges";
 import { Collapse, IconButton, PaperProps, Stack } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -37,6 +37,7 @@ type ChallengeViewProps = {
 export const ChallengeView = ({ path, height }: ChallengeViewProps) => {
   var { id } = useParams()
   const { theme } = useThemeContext()
+  const location = useLocation()
 
   // TODO Es necesario traerse en challenges.json los statement.decription y statement.clue con sus traducciones para cada desafio
   const { t } = useTranslation('challenges')
@@ -58,12 +59,18 @@ export const ChallengeView = ({ path, height }: ChallengeViewProps) => {
 
   const pathToChallenge: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
 
-  const challengeIdentifier = impChallenge ? LocalStorage.getCreatorChallenge()?.title : id;
+  // For imported challenges, the SerializedChallenge is passed via router state
+  // (navigate("/desafioImportado", {state: challenge})). Fall back to LocalStorage
+  // for the creator's preview flow (/creador/ver) which doesn't use router state.
+  const importedSerializedChallenge: SerializedChallenge | null =
+    (location.state as SerializedChallenge | null) ?? LocalStorage.getCreatorChallenge()
+
+  const challengeIdentifier = impChallenge ? importedSerializedChallenge?.title : id;
 
   const workspace: ChallengeWorkspaceProps = {
-    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : pathToChallenge!.challenge),
-    statement: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.description : t(`${id}.statement`)!,
-    clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!,
+    challenge: (impChallenge ? serializedChallengeToChallenge(importedSerializedChallenge!) : pathToChallenge!.challenge),
+    statement: impChallenge ? importedSerializedChallenge!.statement.description : t(`${id}.statement`)!,
+    clue: impChallenge ? importedSerializedChallenge!.statement.clue || '' : t(`${id}.clue`)!,
     challengeIdentifier
   }
 
