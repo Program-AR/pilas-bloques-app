@@ -4,7 +4,7 @@ import { Visibility } from "@mui/icons-material";
 
 export const EmberPreviewButton = () => {
 
-    return <Link to="/creador/ver">
+    return <Link to="/creador/verEmber">
             <StyledCreatorActionButton startIcon={<Visibility/>} nametag='oldPreview'/>
         </Link>
 

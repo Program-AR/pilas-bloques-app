@@ -32,9 +32,10 @@ export const serializedSceneToDescriptor = (scene: Scene) => {
 type ChallengeViewProps = {
   path?: string,
   height?: string,
+  serializedChallenge?: SerializedChallenge | null,
 }
 
-export const ChallengeView = ({ path, height }: ChallengeViewProps) => {
+export const ChallengeView = ({ path, height, serializedChallenge }: ChallengeViewProps) => {
   var { id } = useParams()
   const { theme } = useThemeContext()
 
@@ -43,27 +44,32 @@ export const ChallengeView = ({ path, height }: ChallengeViewProps) => {
 
   const impChallenge: boolean = !!path?.includes("react-imported-challenge")
 
-  const serializedChallengeToChallenge = (serializedChallenge: SerializedChallenge): Challenge => (
+  const serializedChallengeToChallenge = (sc: SerializedChallenge): Challenge => (
     {
-      sceneDescriptor: serializedSceneToDescriptor(serializedChallenge.scene),
-      toolboxBlockIds: serializedChallenge.toolbox.blocks,
-      toolboxStyle: serializedChallenge.toolbox.categorized ? 'categorized' : 'noCategories',
-      debugging: serializedChallenge.stepByStep,
-      predefinedSolution: serializedChallenge.predefinedSolution,
-      shouldShowMultipleScenarioHelp: (serializedChallenge.scene.maps.length > 1),
+      sceneDescriptor: serializedSceneToDescriptor(sc.scene),
+      toolboxBlockIds: sc.toolbox.blocks,
+      toolboxStyle: sc.toolbox.categorized ? 'categorized' : 'noCategories',
+      debugging: sc.stepByStep,
+      predefinedSolution: sc.predefinedSolution,
+      shouldShowMultipleScenarioHelp: (sc.scene.maps.length > 1),
       id: 0,
-      imageURL: () => `imagenes/sceneImages/${serializedChallenge.scene.type}/tool.png`
+      imageURL: () => `imagenes/sceneImages/${sc.scene.type}/tool.png`
     }
   )
 
   const pathToChallenge: PathToChallenge | null = !impChallenge ? getPathToChallenge(currentIdFor(Number(id))) : null
 
-  const challengeIdentifier = impChallenge ? LocalStorage.getCreatorChallenge()?.title : id;
+  // serializedChallenge prop takes priority (e.g. ImportedChallengeView passes location.state).
+  // Fall back to LocalStorage for the creator's preview flow (/creador/ver).
+  const importedSerializedChallenge: SerializedChallenge | null =
+    serializedChallenge !== undefined ? serializedChallenge : LocalStorage.getCreatorChallenge()
+
+  const challengeIdentifier = impChallenge ? importedSerializedChallenge?.title : id;
 
   const workspace: ChallengeWorkspaceProps = {
-    challenge: (impChallenge ? serializedChallengeToChallenge(LocalStorage.getCreatorChallenge()!) : pathToChallenge!.challenge),
-    statement: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.description : t(`${id}.statement`)!,
-    clue: impChallenge ? LocalStorage.getCreatorChallenge()!.statement.clue || '' : t(`${id}.clue`)!,
+    challenge: (impChallenge ? serializedChallengeToChallenge(importedSerializedChallenge!) : pathToChallenge!.challenge),
+    statement: impChallenge ? importedSerializedChallenge!.statement.description : t(`${id}.statement`)!,
+    clue: impChallenge ? importedSerializedChallenge!.statement.clue || '' : t(`${id}.clue`)!,
     challengeIdentifier
   }
 

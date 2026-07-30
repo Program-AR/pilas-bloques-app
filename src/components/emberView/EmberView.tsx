@@ -7,7 +7,8 @@ import { PBProgress } from "../PBProgress";
 
 type EmberViewProps = {
     path: string,
-    height?: string
+    height?: string,
+    reactPath?: string
 }
 
 export const EmberView = (props: EmberViewProps) => {
@@ -20,9 +21,11 @@ export const EmberView = (props: EmberViewProps) => {
 
     const handleMessage = useCallback((event: MessageEvent)=>{
         if (event.source === iframeRef.current?.contentWindow && event.data && event.data.route) {
-            navigate(event.data.route.slice(1)) //routes always start with #, the slice is to remove it
+            // If a reactPath is provided, use it instead of Ember's internal route
+            // to avoid overwriting the current URL (e.g. /desafioEmber -> /desafio)
+            navigate(props.reactPath ?? event.data.route.slice(1)) //routes always start with #, the slice is to remove it
         }
-    },[navigate])
+    },[navigate, props.reactPath])
     
     useEffect(() => {
         window.addEventListener('message', handleMessage)

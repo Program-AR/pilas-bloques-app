@@ -61,17 +61,17 @@ const router = createHashRouter([{
   },
   {
     path: "/desafio/:id",
+    element: <ChallengeView/>,
+    errorElement: <PBError />
+  },
+  {
+    path: "/desafioEmber/:id",
     element: <ChallengeById/>,
     errorElement: <PBError />,
     loader: async() => {
       await PBSession.saveUserIP()
       return null
     }
-  },
-  {
-    path: "/desafioNuevo/:id",
-    element: <ChallengeView/>,
-    errorElement: <PBError />
   },
   {
     path: "/desafios/:challengeName",
@@ -114,11 +114,11 @@ const router = createHashRouter([{
   },
   {
     path: "/creador/ver",
-    element: <EmberCreatorViewMode/>
+    element: <CreatorViewMode/>
   },
   {
-    path: "/creador/verNuevo",
-    element: <CreatorViewMode/>
+    path: "/creador/verEmber",
+    element: <EmberCreatorViewMode/>
   },
   {
     path: "*",
