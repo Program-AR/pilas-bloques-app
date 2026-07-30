@@ -5,7 +5,8 @@ import { Header } from "./header/Header";
 import { ChallengeBreadcrumb } from "./challengeView/ChallengeBreadcrumb";
 
 type EmberChallengeViewProps = {
-    challengeId: number
+    challengeId: number,
+    reactPath?: string
 }
 
 // Queda para los desafios hasta tanto tengamos funcional el ChallengeView en React 
@@ -20,14 +21,15 @@ const EmberChallengeView = (props: EmberChallengeViewProps) => {
 
     return <>
         <Header CenterComponent={ChallengeBreadcrumb(path)} shouldShowSimpleReadSwitch={!path.book.simpleReadMode} />
-        <EmberView path={`desafio/${props.challengeId}${solutionParam}`} />
+        <EmberView path={`desafio/${props.challengeId}${solutionParam}`} reactPath={props.reactPath} />
     </>
 }
 
 
 export const ChallengeById = () => {
     var { id } = useParams()
-    return <EmberChallengeView challengeId={currentIdFor(Number(id))} />
+    const challengeId = currentIdFor(Number(id))
+    return <EmberChallengeView challengeId={challengeId} reactPath={`/desafioEmber/${id}`} />
 }
 
 export const ChallengeByName = () => {
