@@ -10,19 +10,18 @@ export const EMBER_IMPORTED_CHALLENGE_PATH = "desafio/react-imported-challenge"
 
 
 export const ImportedChallengeView = () => {
+    const location = useLocation();
+    const importedChallenge: SerializedChallenge | undefined = location.state;
 
     return <>
-        <Header CenterComponent={<ImportedChallengeViewBreadcrumb />} />
-        <ChallengeView height='calc(100% - var(--creator-subheader-height))' path={EMBER_IMPORTED_CHALLENGE_PATH} />
+        <Header CenterComponent={<ImportedChallengeViewBreadcrumb importedChallenge={importedChallenge} />} />
+        <ChallengeView path={EMBER_IMPORTED_CHALLENGE_PATH} serializedChallenge={importedChallenge} />
     </>
 }
 
-const ImportedChallengeViewBreadcrumb = () => {
+const ImportedChallengeViewBreadcrumb = ({ importedChallenge }: { importedChallenge: SerializedChallenge | undefined }) => {
 
     const { t } = useTranslation("creator")
-
-    const location = useLocation();
-    const importedChallenge: SerializedChallenge | undefined = location.state;
 
     if (!importedChallenge) throw new Error("No hay desafio importado :(")
 
