@@ -84,10 +84,6 @@ export const runBlocklyValidations = async (
 
   const invalidBlocks = blocks.filter(blockHasMissingInput)
 
-  invalidBlocks.forEach((block: any) => {
-    markBlockError(block, 'Faltan completar bloques obligatorios')
-  })
-
   const mulangResults = analyzeWithMulang(
     workspace as Blockly.WorkspaceSvg,
     challenge
@@ -105,6 +101,12 @@ export const runBlocklyValidations = async (
   }
 
   showMulangFeedback(workspace, resultsToShow, customT as TFunction)
+
+  // Los errores estructurales tienen prioridad sobre las sugerencias y validaciones de Mulang.
+
+  invalidBlocks.forEach((block: any) => {
+    markBlockError(block, 'Faltan completar bloques obligatorios')
+  })
 
   const hasCriticalErrors = mulangResults.some(
     result => result.result === false && result.isCritical
