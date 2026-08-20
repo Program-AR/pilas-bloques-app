@@ -18,7 +18,7 @@ import ReactGA from "react-ga4";
 import { CreatorViewMode } from './components/creator/Editor/CreatorViewMode';
 import { EmberCreatorViewMode } from './components/creator/Editor/EmberCreatorViewMode';
 import { useThemeContext } from './theme/ThemeContext';
-import { SharedChallengeView } from './components/creator/SharedChallengeView';
+import { SharedChallengeView, EmberSharedChallengeView } from './components/creator/SharedChallengeView';
 import { PilasBloquesApi } from './pbApi';
 import { Ember } from './emberCommunication';
 import { ChallengeView } from './components/challengeView/ChallengeView';
@@ -50,7 +50,6 @@ const router = createHashRouter([{
     errorElement: <PBError />,
     loader: async ({ params }) => {
       const challenge = await PilasBloquesApi.getSharedChallenge(params.id!);
-      Ember.importChallenge(challenge)
       return challenge
     },
   },
