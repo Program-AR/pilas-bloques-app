@@ -301,7 +301,11 @@ export const createSensorBlocks = (t: (key: string) => string) => {
         }
       ],
       "output": null,
-      code: 'hacer(actor_id, "Rotar", {angulo: - ($grados), voltearAlIrAIzquierda: false, velocidad: 60});',
     }
   );
+  javascriptGenerator.forBlock['HayVocalRMT'] = function (block: any) {
+    const letra = block.getFieldValue('letra');
+    const codigo = `evaluar('leyendoCaracter("${letra}")')`;
+    return [codigo, Order.ATOMIC];
+  };
 }
