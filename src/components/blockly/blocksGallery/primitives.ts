@@ -678,6 +678,6 @@ export const createPrimitiveBlocks = (t: (key: string) => string) => {
           "text": ""
         }
       ],
-      code: 'hacer(actor_id, "EscribirTextoDadoEnOtraCuadricula", {texto: "texto"});'
+      code: 'hacer(actor_id, "EscribirTextoDadoEnOtraCuadricula", {texto: "$texto"});'
     });
 }

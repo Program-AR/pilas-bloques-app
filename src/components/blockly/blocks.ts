@@ -449,12 +449,12 @@ const challengeOnlyBlocks: BlockType[] = [
   },
   {
     id: 'EscribirTextoDadoEnOtraCuadricula',
-    intlId: 'writeAnotherText',
+    intlId: 'write',
     categoryId: 'primitives'
   },
   {
     id: 'HayVocalRMT',
-    intlId: 'isAVowel',
+    intlId: 'currentCharacter',
     categoryId: 'sensors'
   },
   {
