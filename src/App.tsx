@@ -20,7 +20,6 @@ import { EmberCreatorViewMode } from './components/creator/Editor/EmberCreatorVi
 import { useThemeContext } from './theme/ThemeContext';
 import { SharedChallengeView } from './components/creator/SharedChallengeView';
 import { PilasBloquesApi } from './pbApi';
-import { Ember } from './emberCommunication';
 import { ChallengeView } from './components/challengeView/ChallengeView';
 import { PBSession } from './pbSession';
 
@@ -50,7 +49,6 @@ const router = createHashRouter([{
     errorElement: <PBError />,
     loader: async ({ params }) => {
       const challenge = await PilasBloquesApi.getSharedChallenge(params.id!);
-      Ember.importChallenge(challenge)
       return challenge
     },
   },
