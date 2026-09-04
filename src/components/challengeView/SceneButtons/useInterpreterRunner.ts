@@ -33,6 +33,21 @@ export const useInterpreterRunner = (
   const [mulangResults, setMulangResults] = useState<MulangExpectationResult[]>([]);
   const [solved, setSolved] = useState(false);
 
+  const trackExecutionEvent = useCallback((eventType: 'run' | 'success' | 'failure') => {
+    const isOfficial = challenge.id !== 0;
+    const actionMap = {
+      run: isOfficial ? "run_challenge" : "creator_challenge_run",
+      success: isOfficial ? "challenge_success" : "creator_challenge_success",
+      failure: isOfficial ? "challenge_failure" : "creator_challenge_failure"
+    };
+
+    ReactGA.event({
+        category: isOfficial ? "execution" : "creator_execution",
+        action: actionMap[eventType],
+        label: isOfficial ? challenge.id.toString() : challenge.title
+    });
+  }, [challenge]);
+
   useEffect(() => {
     interpreterRef.current = null;
     setStepping(false);
@@ -111,11 +126,7 @@ export const useInterpreterRunner = (
     const solved = await scene.isTheProblemSolved();    
     setSolved(solved);
 
-    ReactGA.event({
-        category: "execution",
-        action: solved ? "challenge_success" : "challenge_failure",
-        label: challenge.title || challenge.id.toString()
-    });
+    trackExecutionEvent(solved ? 'success' : 'failure');
 
     if (solved) setShowModal(true);
     return solved;
@@ -129,18 +140,14 @@ export const useInterpreterRunner = (
 
       if (validationResult?.canRun === false) return;
 
-      ReactGA.event({
-          category: "execution",
-          action: "run_challenge",
-          label: challenge.title || challenge.id.toString()
-      });
+      trackExecutionEvent('run');
 
       setMulangResults(validationResult?.mulangResults || [])
 
       executeUntilEnd();
 
     }
-  }, [executeUntilEnd, mode, stepping, options]);
+  }, [executeUntilEnd, mode, stepping, options, trackExecutionEvent]);
 
   return {
     run,
