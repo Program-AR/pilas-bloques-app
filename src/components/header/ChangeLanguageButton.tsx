@@ -2,6 +2,7 @@ import {IconButton, Menu, MenuItem} from "@mui/material";
 import LanguageIcon from '@mui/icons-material/Language';
 import React from "react";
 import { availableLanguages, changeLanguage, InternalizationLanguage } from "../../language";
+import ReactGA from "react-ga4";
 
 export const ChangeLanguageButton = () => {
     const [anchorElement, setAnchorElement] = React.useState<null | HTMLElement>(null);
@@ -16,6 +17,11 @@ export const ChangeLanguageButton = () => {
     }
 
     const handleLanguageSelection = (selectedLanguage: InternalizationLanguage) => {
+      ReactGA.event({
+          category: "localization",
+          action: "language_changed",
+          label: selectedLanguage.languageCode
+      });
       changeLanguage(selectedLanguage)
       closeMenu()
     };
