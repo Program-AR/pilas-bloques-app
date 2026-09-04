@@ -2,6 +2,7 @@ import { SerializedChallenge } from "../../../serializedChallenge";
 import { LocalStorage } from "../../../../localStorage";
 import { CreatorActionButton } from "./CreatorActionButton";
 import DownloadIcon from '@mui/icons-material/Download';
+import ReactGA from "react-ga4";
 
 export const DownloadButton = () => {
     
@@ -12,6 +13,11 @@ export const DownloadButton = () => {
 const downloadChallenge = () => {
     const challenge: SerializedChallenge = LocalStorage.getCreatorChallenge()!
   
+    ReactGA.event({
+        category: "creator",
+        action: "download_challenge"
+    });
+
     const blob = new Blob([JSON.stringify(challenge)], { type: 'application/json' });
   
     const temporaryAnchorElement = document.createElement('a')
