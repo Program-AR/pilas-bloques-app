@@ -64,7 +64,7 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
       .should('have.attr', 'data-loaded', 'true')
 
     cy.window().then(() => {
-      const workspace = Blockly.getMainWorkspace()
+      const workspace = Blockly.getMainWorkspace() as Blockly.WorkspaceSvg
       const xml = Blockly.utils.xml.textToDom(solucion)
       Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace)
     })
@@ -83,7 +83,7 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
         const found = errorMessages.some((msg: string) =>
           msg.includes(errorEsperado)
         )
-        expect(found, `Se esperaba el error: "${errorEsperado}"\nErrores recibidos: ${JSON.stringify(errorMessages)}`).to.be.true
+        assert(found, `Se esperaba el error: "${errorEsperado}"\nErrores recibidos: ${JSON.stringify(errorMessages)}`)
       })
     } else if (resuelveDesafio) {
       cy.get('.MuiDialog-root', { timeout: 60000 }).should('contain.text', 'Lo lograste')
