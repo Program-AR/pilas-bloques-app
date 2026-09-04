@@ -6,6 +6,7 @@ import { Challenge } from "../../../staticData/challenges";
 import { PilasBloquesApi } from "../../../pbApi";
 import Blockly from "blockly/core"
 import { MulangExpectationResult } from "../../blockly/mulang/mulangResults";
+import ReactGA from "react-ga4";
 
 type Mode = 'run' | 'step';
 
@@ -109,6 +110,13 @@ export const useInterpreterRunner = (
   const checkProblemSolved = async () => {
     const solved = await scene.isTheProblemSolved();    
     setSolved(solved);
+
+    ReactGA.event({
+        category: "execution",
+        action: solved ? "challenge_success" : "challenge_failure",
+        label: challenge.title || challenge.id.toString()
+    });
+
     if (solved) setShowModal(true);
     return solved;
   };
@@ -120,6 +128,12 @@ export const useInterpreterRunner = (
       const validationResult = await options?.runValidations?.();
 
       if (validationResult?.canRun === false) return;
+
+      ReactGA.event({
+          category: "execution",
+          action: "run_challenge",
+          label: challenge.title || challenge.id.toString()
+      });
 
       setMulangResults(validationResult?.mulangResults || [])
 
