@@ -9,6 +9,7 @@ export class Challenge {
    * Used to access the challenge by URL.
    */
   id!: number
+  title?: string
   /**
    * The pilasweb framework's scene for the challenge.
    * Scene class name or scene string initializer e.g. "new Scene..."
