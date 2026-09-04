@@ -33,19 +33,23 @@ export const useInterpreterRunner = (
   const [mulangResults, setMulangResults] = useState<MulangExpectationResult[]>([]);
   const [solved, setSolved] = useState(false);
 
-  const trackExecutionEvent = useCallback((eventType: 'run' | 'success' | 'failure') => {
+  const trackExecutionEvent = useCallback((eventType: 'run' | 'success' | 'success_with_warnings' | 'failure', failedExpectations?: string) => {
     const isOfficial = challenge.id !== 0;
     const actionMap = {
       run: isOfficial ? "run_challenge" : "creator_challenge_run",
       success: isOfficial ? "challenge_success" : "creator_challenge_success",
+      success_with_warnings: isOfficial ? "challenge_success_with_warnings" : "creator_challenge_success_with_warnings",
       failure: isOfficial ? "challenge_failure" : "creator_challenge_failure"
     };
 
-    ReactGA.event({
-        category: isOfficial ? "execution" : "creator_execution",
-        action: actionMap[eventType],
-        label: isOfficial ? challenge.id.toString() : challenge.title
-    });
+    const params: Record<string, string> = {
+      event_category: isOfficial ? "execution" : "creator_execution",
+      event_label: isOfficial ? challenge.id.toString() : challenge.title ?? "",
+    };
+
+    if (failedExpectations) params.failed_expectations = failedExpectations;
+
+    ReactGA.event(actionMap[eventType], params);
   }, [challenge]);
 
   useEffect(() => {
@@ -63,7 +67,7 @@ export const useInterpreterRunner = (
     }
   }, []);
 
-  const executeUntilEnd = useCallback((): Promise<void> => {
+  const executeUntilEnd = useCallback((currentMulangResults: MulangExpectationResult[] = []): Promise<void> => {
     return new Promise(async (resolve, reject) => {
       let solutionId: string | undefined;
       setRunning && setRunning(true);
@@ -102,7 +106,7 @@ export const useInterpreterRunner = (
           setStepping(false);
           interpreterFactory.clearHighlight();
 
-          checkProblemSolved().then(async (solved) => {
+          checkProblemSolved(currentMulangResults).then(async (solved) => {
             const staticAnalysis = { couldExecute: true };
             if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
             resolve();
@@ -122,11 +126,25 @@ export const useInterpreterRunner = (
     });
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
-  const checkProblemSolved = async () => {
+  const checkProblemSolved = async (currentMulangResults: MulangExpectationResult[]) => {
     const solved = await scene.isTheProblemSolved();    
     setSolved(solved);
 
-    trackExecutionEvent(solved ? 'success' : 'failure');
+    let outcome: 'success' | 'success_with_warnings' | 'failure' = 'failure';
+    let failedExpectationsString = "";
+
+    if (solved) {
+       const failedExpectations = currentMulangResults.filter(req => req.result === false);
+       if (failedExpectations.length > 0) {
+           outcome = 'success_with_warnings';
+           // Join the IDs of the failed expectations (e.g. "Uses Simple Repetition")
+           failedExpectationsString = failedExpectations.map(req => req.id).join(', ');
+       } else {
+           outcome = 'success';
+       }
+    }
+    
+    trackExecutionEvent(outcome, failedExpectationsString);
 
     if (solved) setShowModal(true);
     return solved;
@@ -144,7 +162,7 @@ export const useInterpreterRunner = (
 
       setMulangResults(validationResult?.mulangResults || [])
 
-      executeUntilEnd();
+      executeUntilEnd(validationResult?.mulangResults || []);
 
     }
   }, [executeUntilEnd, mode, stepping, options, trackExecutionEvent]);
