@@ -1,9 +1,10 @@
 import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
-moduloDesafio(1009, () => {
 
-    challengeTest(1009, {
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+
+describe('Desafío 1009 - CargandoCelus', () => {
+  it('Resuelve el desafío 1009', () => {
+    const solucion = `<xml xmlns="http://www.w3.org/1999/xhtml">
       <block type="al_empezar_a_ejecutar" id="141" deletable="false" movable="false" editable="false" x="0" y="0">
         <statement name="program">
           <block type="procedures_callnoreturn" id="142">
@@ -108,7 +109,9 @@ moduloDesafio(1009, () => {
           </block>
         </statement>
       </block>
-    </xml>`,
-    });
+    </xml>`;
+    challengeTest(1009, solucion)
+  })
 
-});
+})
+
