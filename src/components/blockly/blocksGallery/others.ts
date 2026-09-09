@@ -176,6 +176,17 @@ export const createOthersBlocks = (t: (key: string) => string) => {
     }
 
     procedsBlocklyInit(Blockly);
+    Blockly.Blocks['procedures_defnoreturn'].mutationToDom = function () {
+        const container = Blockly.utils.xml.createElement('mutation');
+        if (this.arguments_) {
+            for (let i = 0; i < this.arguments_.length; i++) {
+                const parameter = Blockly.utils.xml.createElement('arg');
+                parameter.setAttribute('name', this.arguments_[i]);
+                container.appendChild(parameter);
+            }
+        }
+        return container;
+    };
     disableUnwantedProcedureBlocks();
 
     // Generators custom: tienen que ir DESPUÉS de procedsBlocklyInit.

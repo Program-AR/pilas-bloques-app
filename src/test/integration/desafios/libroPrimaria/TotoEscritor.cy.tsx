@@ -2,9 +2,9 @@ import { challengeTest } from '../../../helpers/challengeTest'
 
 describe("Toto escritor", () => {
 
-    challengeTest(251, {
-        descripcionAdicional: '251: Se puede resolver',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(251, {
+    descripcionAdicional: '251: Se puede resolver',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -24,12 +24,13 @@ describe("Toto escritor", () => {
         </block>
       </statement>
     </block>
-  </xml>`
-    });
+  </xml>`,
+    resuelveDesafio: true
+  });
 
-    challengeTest(251, {
-        descripcionAdicional: '251: No puede copiar la letra en un casillero vacío',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(251, {
+    descripcionAdicional: '251: No puede copiar la letra en un casillero vacío',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -37,12 +38,12 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-        errorEsperado: "No hay una letra aquí"
-    });
+    errorEsperado: "No hay una letra aquí"
+  });
 
-    challengeTest(251, {
-        descripcionAdicional: '251: No puede salir de la cuadrícula',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(251, {
+    descripcionAdicional: '251: No puede salir de la cuadrícula',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -50,12 +51,12 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-        errorEsperado: "No puedo ir para la izquierda"
-    });
+    errorEsperado: "No puedo ir para la izquierda"
+  });
 
-    challengeTest(251, {
-        descripcionAdicional: '251: No puede escribir de más',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(251, {
+    descripcionAdicional: '251: No puede escribir de más',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -76,12 +77,12 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-        errorEsperado: "¡Estoy cansado! No quiero escribir más..."
-    });
+    errorEsperado: "¡Estoy cansado! No quiero escribir más..."
+  });
 
-    challengeTest(252, {
-        descripcionAdicional: '252: Se puede resolver',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(252, {
+    descripcionAdicional: '252: Se puede resolver',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
         <block type="Repetir">
@@ -102,12 +103,13 @@ describe("Toto escritor", () => {
         </block>
       </statement>
     </block>
-  </xml>`
-    });
+  </xml>`,
+    resuelveDesafio: true,
+  });
 
-    challengeTest(252, {
-        descripcionAdicional: '252: Solamente escribir sin moverse NO resuelve el desafio',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(252, {
+    descripcionAdicional: '252: Solamente escribir sin moverse NO resuelve el desafio',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -126,12 +128,12 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-        resuelveDesafio: false
-    });
+    resuelveDesafio: false
+  });
 
-    challengeTest(253, {
-        descripcionAdicional: '253: Se puede resolver',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(253, {
+    descripcionAdicional: '253: Se puede resolver',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -167,11 +169,11 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`
-    });
+  });
 
-    challengeTest(253, {
-        descripcionAdicional: '253: No puede preguntar sobre la letra actual en un casillero vacío',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(253, {
+    descripcionAdicional: '253: No puede preguntar sobre la letra actual en un casillero vacío',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -193,12 +195,12 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-        errorEsperado: "No hay una letra aquí"
-    });
+    errorEsperado: "No hay una letra aquí"
+  });
 
-    challengeTest(254, {
-        descripcionAdicional: '254: Se puede resolver',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(254, {
+    descripcionAdicional: '254: Se puede resolver',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="382" y="15">
       <statement name="program">
@@ -290,11 +292,11 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`
-    });
+  });
 
-    challengeTest(254, {
-        descripcionAdicional: '254: Se brinda un mensaje de error al intentar escribir un carácter inválido',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(254, {
+    descripcionAdicional: '254: Se brinda un mensaje de error al intentar escribir un carácter inválido',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="378" y="15">
       <statement name="program">
@@ -304,7 +306,7 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-        errorEsperado: 'No sé escribir ese símbolo'
-    });
+    errorEsperado: 'No sé escribir ese símbolo'
+  });
 
 });
