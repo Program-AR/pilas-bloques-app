@@ -123,9 +123,7 @@ export const useInterpreterRunner = (
 
       setMulangResults(validationResult?.mulangResults || [])
 
-      executeUntilEnd().catch((err) => {
-        console.warn("Ejecución terminada con error esperado: ", err);
-      });
+      executeUntilEnd();
 
     }
   }, [executeUntilEnd, mode, stepping, options]);

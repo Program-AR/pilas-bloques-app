@@ -168,25 +168,7 @@ export const createOthersBlocks = (t: (key: string) => string) => {
     // IMPORTANTE:
     // primero inicializamos proceds, y DESPUÉS sobrescribimos generators.
     enableUnwantedProcedureBlocks();
-    if (typeof window !== 'undefined') {
-        (window as any).Blockly = Blockly;
-    }
-    if (typeof globalThis !== 'undefined') {
-        (globalThis as any).Blockly = Blockly;
-    }
-
     procedsBlocklyInit(Blockly);
-    Blockly.Blocks['procedures_defnoreturn'].mutationToDom = function () {
-        const container = Blockly.utils.xml.createElement('mutation');
-        if (this.arguments_) {
-            for (let i = 0; i < this.arguments_.length; i++) {
-                const parameter = Blockly.utils.xml.createElement('arg');
-                parameter.setAttribute('name', this.arguments_[i]);
-                container.appendChild(parameter);
-            }
-        }
-        return container;
-    };
     disableUnwantedProcedureBlocks();
 
     // Generators custom: tienen que ir DESPUÉS de procedsBlocklyInit.
