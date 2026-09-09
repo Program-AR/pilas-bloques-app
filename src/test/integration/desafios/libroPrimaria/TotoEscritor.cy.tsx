@@ -150,7 +150,7 @@ describe("Toto escritor", () => {
                   <next>
                     <block type="si">
                       <value name="condition">
-                        <block type="hayVocalRMT">
+                        <block type="HayVocalRMT">
                           <field name="letra">m</field>
                         </block>
                       </value>
@@ -179,7 +179,7 @@ describe("Toto escritor", () => {
       <statement name="program">
         <block type="si">
           <value name="condition">
-            <block type="hayVocalRMT">
+            <block type="HayVocalRMT">
               <field name="letra">m</field>
             </block>
           </value>
@@ -217,7 +217,7 @@ describe("Toto escritor", () => {
                   <next>
                     <block type="si">
                       <value name="condition">
-                        <block type="hayVocalRMT">
+                        <block type="HayVocalRMT">
                           <field name="letra">a</field>
                         </block>
                       </value>
@@ -229,7 +229,7 @@ describe("Toto escritor", () => {
                       <next>
                         <block type="si">
                           <value name="condition">
-                            <block type="hayVocalRMT">
+                            <block type="HayVocalRMT">
                               <field name="letra">e</field>
                             </block>
                           </value>
@@ -241,7 +241,7 @@ describe("Toto escritor", () => {
                           <next>
                             <block type="si">
                               <value name="condition">
-                                <block type="hayVocalRMT">
+                                <block type="HayVocalRMT">
                                   <field name="letra">i</field>
                                 </block>
                               </value>
@@ -253,7 +253,7 @@ describe("Toto escritor", () => {
                               <next>
                                 <block type="si">
                                   <value name="condition">
-                                    <block type="hayVocalRMT">
+                                    <block type="HayVocalRMT">
                                       <field name="letra">o</field>
                                     </block>
                                   </value>
@@ -265,7 +265,7 @@ describe("Toto escritor", () => {
                                   <next>
                                     <block type="si">
                                       <value name="condition">
-                                        <block type="hayVocalRMT">
+                                        <block type="HayVocalRMT">
                                           <field name="letra">u</field>
                                         </block>
                                       </value>
