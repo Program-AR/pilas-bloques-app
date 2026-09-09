@@ -1,6 +1,5 @@
 import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
-
 moduloDesafio(1044, () => {
 
     challengeTest(1044, {

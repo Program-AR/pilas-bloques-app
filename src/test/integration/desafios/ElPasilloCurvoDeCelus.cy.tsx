@@ -1,7 +1,5 @@
 import { challengeTest, moduloDesafio } from '../../helpers/challengeTest'
 
-const nombre = '1043';
-
 moduloDesafio(1043, () => {
 
   challengeTest(1043, {

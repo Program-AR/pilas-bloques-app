@@ -107,7 +107,7 @@ export const useInterpreterRunner = (
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
   const checkProblemSolved = async () => {
-    const solved = await scene.isTheProblemSolved();    
+    const solved = await scene.isTheProblemSolved();
     setSolved(solved);
     if (solved) setShowModal(true);
     return solved;
@@ -123,7 +123,9 @@ export const useInterpreterRunner = (
 
       setMulangResults(validationResult?.mulangResults || [])
 
-      executeUntilEnd();
+      executeUntilEnd().catch((err) => {
+        console.warn("Ejecución terminada con error esperado: ", err);
+      });
 
     }
   }, [executeUntilEnd, mode, stepping, options]);
