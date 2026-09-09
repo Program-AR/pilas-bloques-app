@@ -4,7 +4,7 @@ import { sensorsColor } from "./sensors";
 import { javascriptGenerator, Order } from "blockly/javascript";
 import { procedsBlocklyInit } from 'blockly-proceds'
 import { delegateGenerator } from "../blockly";
-import * as Procedures from 'blockly/core/procedures';
+
 
 const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
@@ -168,7 +168,13 @@ export const createOthersBlocks = (t: (key: string) => string) => {
     // IMPORTANTE:
     // primero inicializamos proceds, y DESPUÉS sobrescribimos generators.
     enableUnwantedProcedureBlocks();
-    (Blockly as any).Procedures = Procedures;
+    if (typeof window !== 'undefined') {
+        (window as any).Blockly = Blockly;
+    }
+    if (typeof globalThis !== 'undefined') {
+        (globalThis as any).Blockly = Blockly;
+    }
+
     procedsBlocklyInit(Blockly);
     disableUnwantedProcedureBlocks();
 

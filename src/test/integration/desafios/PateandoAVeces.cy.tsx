@@ -2,8 +2,8 @@ import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
 moduloDesafio(1013, () => {
 
-    challengeTest(1013, {
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(1013, {
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
   <block type="al_empezar_a_ejecutar" id="25" deletable="false" movable="false" editable="false" x="0" y="0">
     <statement name="program">
       <block type="MoverACasillaDerecha" id="26">
@@ -27,13 +27,14 @@ moduloDesafio(1013, () => {
     </statement>
   </block>
   </xml>`,
-    });
+    resuelveDesafio: true,
+  });
 
 
-    challengeTest(1013, {
-        descripcionAdicional: 'Debe moverse a la posición final para que esté resuelto',
-        resuelveDesafio: false,
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(1013, {
+    descripcionAdicional: 'Debe moverse a la posición final para que esté resuelto',
+    resuelveDesafio: false,
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <variables></variables>
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="0" y="0">
       <statement name="program">
@@ -59,5 +60,5 @@ moduloDesafio(1013, () => {
       </statement>
     </block>
   </xml>`
-    })
+  })
 });
