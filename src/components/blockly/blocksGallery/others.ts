@@ -5,6 +5,7 @@ import { javascriptGenerator, Order } from "blockly/javascript";
 import { procedsBlocklyInit } from 'blockly-proceds'
 import { delegateGenerator } from "../blockly";
 
+
 const othersColor = '#cc5b22';
 const eventsColor = '#00a65a'; // == boton ejecutar
 
@@ -189,67 +190,67 @@ export const createOthersBlocks = (t: (key: string) => string) => {
         return [varName.replace(/[^\w]/g, '_'), Order.ATOMIC];
     };
 
-javascriptGenerator.forBlock['variables_get'] = function (block: Block, generator: any) {
-    const varName = getVariableNameFromBlock(block);
+    javascriptGenerator.forBlock['variables_get'] = function (block: Block, generator: any) {
+        const varName = getVariableNameFromBlock(block);
 
-    if (!varName) {
-        return ['null', Order.ATOMIC];
-    }
-
-    if (generator.nameDB_) {
-        const safeName = generator.nameDB_.getName(
-            varName,
-            Blockly.Names.NameType.VARIABLE
-        );
-
-        return [safeName, Order.ATOMIC];
-    }
-
-    return [varName.replace(/[^\w]/g, '_'), Order.ATOMIC];
-};    
-
-javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, generator: any) {
-    const rawName = block.getFieldValue('NAME') || 'procedimiento';
-    const funcName = sanitizeName(rawName);
-
-    const directParams = [
-        ...(Array.isArray(block.arguments_) ? block.arguments_ : []),
-        ...(Array.isArray(block.argumentVarModels_)
-            ? block.argumentVarModels_.map((m: any) => m?.name || '')
-            : [])
-    ].filter(Boolean);
-
-    const descendantParams = (block.getDescendants?.(false) || [])
-        .filter((child: any) => child.id !== block.id)
-        .filter((child: any) => child.type === 'variables_get' || child.type === 'param_get')
-        .map((child: any) => {
-            const mutation = child.mutationToDom?.();
-            const parent = mutation?.getAttribute?.('parent');
-
-            if (parent && parent !== block.id) return '';
-
-            return (
-                child.getFieldValue?.('VAR') ||
-                mutation?.getAttribute?.('var') ||
-                child.getVars?.()?.[0] ||
-                ''
-            );
-        })
-        .filter(Boolean);
-
-    const rawParams = [...new Set([...directParams, ...descendantParams])];
-
-    const params = rawParams.map((param: string) => {
-        if (generator.nameDB_) {
-            return generator.nameDB_.getName(param, Blockly.Names.NameType.VARIABLE);
+        if (!varName) {
+            return ['null', Order.ATOMIC];
         }
-        return sanitizeName(param);
-    });
 
-    const branch = generator.statementToCode(block, 'STACK') || '';
+        if (generator.nameDB_) {
+            const safeName = generator.nameDB_.getName(
+                varName,
+                Blockly.Names.NameType.VARIABLE
+            );
 
-    return `function ${funcName}(${params.join(', ')}) {\n${branch}}\n`;
-};
+            return [safeName, Order.ATOMIC];
+        }
+
+        return [varName.replace(/[^\w]/g, '_'), Order.ATOMIC];
+    };
+
+    javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, generator: any) {
+        const rawName = block.getFieldValue('NAME') || 'procedimiento';
+        const funcName = sanitizeName(rawName);
+
+        const directParams = [
+            ...(Array.isArray(block.arguments_) ? block.arguments_ : []),
+            ...(Array.isArray(block.argumentVarModels_)
+                ? block.argumentVarModels_.map((m: any) => m?.name || '')
+                : [])
+        ].filter(Boolean);
+
+        const descendantParams = (block.getDescendants?.(false) || [])
+            .filter((child: any) => child.id !== block.id)
+            .filter((child: any) => child.type === 'variables_get' || child.type === 'param_get')
+            .map((child: any) => {
+                const mutation = child.mutationToDom?.();
+                const parent = mutation?.getAttribute?.('parent');
+
+                if (parent && parent !== block.id) return '';
+
+                return (
+                    child.getFieldValue?.('VAR') ||
+                    mutation?.getAttribute?.('var') ||
+                    child.getVars?.()?.[0] ||
+                    ''
+                );
+            })
+            .filter(Boolean);
+
+        const rawParams = [...new Set([...directParams, ...descendantParams])];
+
+        const params = rawParams.map((param: string) => {
+            if (generator.nameDB_) {
+                return generator.nameDB_.getName(param, Blockly.Names.NameType.VARIABLE);
+            }
+            return sanitizeName(param);
+        });
+
+        const branch = generator.statementToCode(block, 'STACK') || '';
+
+        return `function ${funcName}(${params.join(', ')}) {\n${branch}}\n`;
+    };
 
     javascriptGenerator.forBlock['procedures_callnoreturn'] = function (block: any, generator: any) {
         const rawName = block.getProcedureCall

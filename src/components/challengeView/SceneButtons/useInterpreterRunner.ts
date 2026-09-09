@@ -107,7 +107,7 @@ export const useInterpreterRunner = (
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
   const checkProblemSolved = async () => {
-    const solved = await scene.isTheProblemSolved();    
+    const solved = await scene.isTheProblemSolved();
     setSolved(solved);
     if (solved) setShowModal(true);
     return solved;
