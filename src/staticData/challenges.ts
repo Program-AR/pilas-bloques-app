@@ -1472,6 +1472,10 @@ const challenges: BasicChallenge[] = [
       'Si',
       'SiNo'
     ],
+    shouldShowMultipleScenarioHelp: true,
+    expectations: {
+    conditionalAlternative: false,
+    }
   },
 
   {
@@ -1489,6 +1493,10 @@ const challenges: BasicChallenge[] = [
       'Si',
       'SiNo'
     ],
+    shouldShowMultipleScenarioHelp: true,
+    expectations: {
+    conditionalAlternative: false,
+    }
   },
 
   {
@@ -1507,6 +1515,7 @@ const challenges: BasicChallenge[] = [
       'SiNo',
       'HayVocalRMT'
     ],
+    shouldShowMultipleScenarioHelp: true
   },
 
   {
@@ -1525,6 +1534,7 @@ const challenges: BasicChallenge[] = [
       'SiNo',
       'HayVocalRMT'
     ],
+    shouldShowMultipleScenarioHelp: true
   },
 
   {
