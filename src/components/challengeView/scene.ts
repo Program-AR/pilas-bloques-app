@@ -71,7 +71,9 @@ class Scene {
    * @param code string with js code to run on the iframe
    */
   private eval(code: string): any {
-    return (this.iframe().contentWindow as any).eval(code)
+    const iframe = this.iframe()
+    if (!iframe || !iframe.contentWindow) return undefined
+    return (iframe.contentWindow as any).eval(code)
   }
 
   private imagesToPreload(descriptor: Challenge["sceneDescriptor"]) {
@@ -154,7 +156,18 @@ class Scene {
   }
 
   isTheProblemSolved() {
-    return this.eval(`pilas.escena_actual().estaResueltoElProblema();`);
+    try {
+      return Boolean(this.eval(`
+        typeof pilas !== 'undefined' &&
+        pilas.escena_actual &&
+        pilas.escena_actual() &&
+        typeof pilas.escena_actual().estaResueltoElProblema === 'function'
+          ? pilas.escena_actual().estaResueltoElProblema()
+          : false
+      `));
+    } catch (e) {
+      return false;
+    }
   }
 
   behaviourClass(behaviour: string): Behaviour {

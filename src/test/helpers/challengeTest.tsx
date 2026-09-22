@@ -11,6 +11,7 @@ type ChallengeTestOptions = {
   resuelveDesafio?: boolean
   errorEsperado?: string
   descripcionAdicional?: string
+  turbo?: boolean
 }
 
 /**
@@ -24,7 +25,7 @@ type ChallengeTestOptions = {
  */
 export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeTestOptions | string) => {
   const options = typeof optionsOrSolucion === 'string' ? { solucion: optionsOrSolucion } : optionsOrSolucion;
-  const { solucion, resuelveDesafio = true, errorEsperado, descripcionAdicional } = options
+  const { solucion, resuelveDesafio = true, errorEsperado, descripcionAdicional, turbo = true } = options
 
   const testName = descripcionAdicional
     ? descripcionAdicional
@@ -33,6 +34,10 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
       : `Resuelve el desafío ${challengeId}`
 
   it(testName, () => {
+    if (errorEsperado) {
+      cy.on('uncaught:exception', () => false)
+    }
+
     cy.intercept('GET', '**/challenges/**', { statusCode: 404 }).as('lastSolution')
     cy.intercept('POST', '**/solutions**', { statusCode: 200 }).as('runProgram')
     cy.intercept('PUT', '**/solutions**', { statusCode: 200 }).as('executionFinished')
@@ -69,10 +74,17 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
       Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace)
     })
 
+    if (turbo) {
+      cy.log('⚡️ Activando Modo Turbo')
+      cy.get('[data-testid="turbo-switch"] input').first().check({ force: true })
+    }
+
+    if (errorEsperado) {
+      cy.log(`🔍 Test esperando error: "${errorEsperado}"`)
+    }
+
     // Ejecutar el programa
     cy.get('[data-testid="execute-button"]').click()
-
-
 
     if (errorEsperado) {
       cy.window({ timeout: 60000 }).should((win) => {
@@ -83,7 +95,10 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
         const found = errorMessages.some((msg: string) =>
           msg.includes(errorEsperado)
         )
-        expect(found, `Se esperaba el error: "${errorEsperado}"\nErrores recibidos: ${JSON.stringify(errorMessages)}`).to.be.true
+        expect(
+          found,
+          `Se esperaba el error: "${errorEsperado}"\nErrores recibidos: ${JSON.stringify(errorMessages)}`
+        ).to.be.true
       })
     } else if (resuelveDesafio) {
       cy.get('.MuiDialog-root', { timeout: 60000 }).should('contain.text', 'Lo lograste')
