@@ -2,9 +2,9 @@ import { challengeTest } from '../../../helpers/challengeTest'
 
 describe("Lita - Alternativa condicional", () => {
 
-    challengeTest(245, {
-        descripcionAdicional: '245: Se puede resolver (solución 1)',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(245, {
+    descripcionAdicional: '245: Se puede resolver (solución 1)',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverACasillaDerecha">
@@ -29,11 +29,11 @@ describe("Lita - Alternativa condicional", () => {
       </statement>
     </block>
   </xml>`,
-    });
+  });
 
-    challengeTest(245, {
-        descripcionAdicional: '245: Se puede resolver (solución 2)',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(245, {
+    descripcionAdicional: '245: Se puede resolver (solución 2)',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverACasillaDerecha">
@@ -48,7 +48,7 @@ describe("Lita - Alternativa condicional", () => {
                     <block type="AgarrarLechuga"></block>
                   </statement>
                   <statement name="block2">
-                    <block type="AgarrarTom"5.1.4a"ate"></block>
+                    <block type="AgarrarTomate"></block>
                   </statement>
                 </block>
               </next>
@@ -58,11 +58,11 @@ describe("Lita - Alternativa condicional", () => {
       </statement>
     </block>
   </xml>`,
-    });
+  });
 
-    challengeTest(245, {
-        descripcionAdicional: '245: Se puede resolver (solución 3)',
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(245, {
+    descripcionAdicional: '245: Se puede resolver (solución 3)',
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="MoverACasillaDerecha">
@@ -94,12 +94,12 @@ describe("Lita - Alternativa condicional", () => {
       </statement>
     </block>
   </xml>`,
-    });
+  });
 
 
-    challengeTest(250, {
-        descripcionAdicional: "250: Se puede resolver",
-        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+  challengeTest(250, {
+    descripcionAdicional: "250: Se puede resolver",
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
       <statement name="program">
         <block type="Repetir">
@@ -143,25 +143,25 @@ describe("Lita - Alternativa condicional", () => {
       </statement>
     </block>
   </xml>`
-    });
+  });
 
 
-    // Se necesita implementar un algoritmo de mocking para resolver los tests en donde pueda haber un tomate o una lechuga.
+  // Se necesita implementar un algoritmo de mocking para resolver los tests en donde pueda haber un tomate o una lechuga.
 
 
-    challengeTest(250, {
-        descripcionAdicional: "250: Solo se puede preparar ensalada si hay ensaladera",
-        solucion: '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="al_empezar_a_ejecutar" id="aeQFM$g(t%`)|=s~[]yA" deletable="false" movable="false" editable="false" x="271" y="15"><statement name="program"><block type="PrepararEnsalada" id="!FM]Q.=?#.H_Yox_6Q.?"></block></statement></block></xml>',
-        resuelveDesafio: false,
-        errorEsperado: "¡Acá no hay ensaladera!",
-    });
+  challengeTest(250, {
+    descripcionAdicional: "250: Solo se puede preparar ensalada si hay ensaladera",
+    solucion: '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="al_empezar_a_ejecutar" id="aeQFM$g(t%`)|=s~[]yA" deletable="false" movable="false" editable="false" x="271" y="15"><statement name="program"><block type="PrepararEnsalada" id="!FM]Q.=?#.H_Yox_6Q.?"></block></statement></block></xml>',
+    resuelveDesafio: false,
+    errorEsperado: "¡Acá no hay ensaladera!",
+  });
 
 
-    challengeTest(250, {
-        descripcionAdicional: "250: No se puede preparar ensalada aun, faltan recoger todas las verduras restantes",
-        solucion: '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="al_empezar_a_ejecutar" id="m+bao0~F%Q;[seB/+6/3" deletable="false" movable="false" editable="false" x="271" y="15"><statement name="program"><block type="Repetir" id="%6n:[itB,;QL.6sXUuIx"><value name="count"><block type="math_number" id="U.-e{r/vX+Z(A5mz+i5:"><field name="NUM">7</field></block></value><statement name="block"><block type="MoverACasillaAbajo" id=",G_SMDg%CGYuVOpeZBf3"></block></statement><next><block type="PrepararEnsalada" id="Z~_|BigUji_!L?Q-DxdR"></block></next></block></statement></block></xml>',
-        resuelveDesafio: false,
-        errorEsperado: "¡Todavía me quedan ingredientes por recoger!",
-    });
+  challengeTest(250, {
+    descripcionAdicional: "250: No se puede preparar ensalada aun, faltan recoger todas las verduras restantes",
+    solucion: '<xml xmlns="http://www.w3.org/1999/xhtml"><variables></variables><block type="al_empezar_a_ejecutar" id="m+bao0~F%Q;[seB/+6/3" deletable="false" movable="false" editable="false" x="271" y="15"><statement name="program"><block type="Repetir" id="%6n:[itB,;QL.6sXUuIx"><value name="count"><block type="math_number" id="U.-e{r/vX+Z(A5mz+i5:"><field name="NUM">7</field></block></value><statement name="block"><block type="MoverACasillaAbajo" id=",G_SMDg%CGYuVOpeZBf3"></block></statement><next><block type="PrepararEnsalada" id="Z~_|BigUji_!L?Q-DxdR"></block></next></block></statement></block></xml>',
+    resuelveDesafio: false,
+    errorEsperado: "¡Todavía me quedan ingredientes por recoger!",
+  });
 
 });

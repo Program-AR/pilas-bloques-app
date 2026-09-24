@@ -128,7 +128,7 @@ describe("Toto escritor", () => {
       </statement>
     </block>
   </xml>`,
-    resuelveDesafio: false
+    resuelveDesafio: false,
   });
 
   challengeTest(253, {

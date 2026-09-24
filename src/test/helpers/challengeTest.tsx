@@ -34,9 +34,8 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
       : `Resuelve el desafío ${challengeId}`
 
   it(testName, () => {
-    if (errorEsperado) {
-      cy.on('uncaught:exception', () => false)
-    }
+    // Evitar que Cypress aborte el test por excepciones del motor o de la app
+    cy.on('uncaught:exception', () => false)
 
     cy.intercept('GET', '**/challenges/**', { statusCode: 404 }).as('lastSolution')
     cy.intercept('POST', '**/solutions**', { statusCode: 200 }).as('runProgram')

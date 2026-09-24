@@ -17,7 +17,6 @@ moduloDesafio(1013, () => {
   </block>
 
   <block type="procedures_defnoreturn" id="32" x="-11" y="110">
-    <mutation></mutation>
     <field name="NAME">Patear pelota si hay</field>
     <statement name="STACK">
       <block type="si" id="27" inline="true">

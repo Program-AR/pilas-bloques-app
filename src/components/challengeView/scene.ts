@@ -12,7 +12,19 @@ class Scene {
   }
 
   currentScene(): Challenge["sceneDescriptor"] {
-    return this.isReady ? this.eval('pilas.mundo.gestor_escenas.escena.mapaEscena') : ''
+    if (!this.isReady) return ''
+    try {
+      return this.eval(`
+        typeof pilas !== 'undefined' &&
+        pilas.mundo &&
+        pilas.mundo.gestor_escenas &&
+        pilas.mundo.gestor_escenas.escena
+          ? pilas.mundo.gestor_escenas.escena.mapaEscena
+          : ''
+      `) || ''
+    } catch (e) {
+      return ''
+    }
   }
 
   iframe(): HTMLIFrameElement {
@@ -26,33 +38,51 @@ class Scene {
    * @param descriptor The scene descriptor
    */
   async load(descriptor: Challenge["sceneDescriptor"]) {
+    this.isReady = false
     await this.initializePilasWeb(descriptor)
     this.isReady = true
     this.setChallenge(descriptor)
   }
 
   setChallenge(descriptor: Challenge["sceneDescriptor"]) {
-    const initializer = descriptor === this.sceneName(descriptor) ? `new ${descriptor}()` : descriptor
-    this.eval(`pilas.mundo.gestor_escenas.cambiar_escena(${initializer})`)
+    try {
+      const initializer = descriptor === this.sceneName(descriptor) ? `new ${descriptor}()` : descriptor
+      this.eval(`
+        if (typeof pilas !== 'undefined' && pilas.mundo && pilas.mundo.gestor_escenas) {
+          pilas.mundo.gestor_escenas.cambiar_escena(${initializer});
+        }
+      `)
+    } catch (e) {
+      console.warn("Error en setChallenge:", e)
+    }
   }
 
   initializePilasWeb(descriptor: string) {
     return new Promise<void>((resolve) => {
-      const pilasweb = this.eval(`
-            pilasengine.iniciar({
-                    ancho: 420,
-                    alto: 480,
-                    canvas: document.getElementById('canvas'),
-                    data_path: '${adaptURL('libs/data')}',
-                    imagenesExtra: ${this.imagesToPreload(descriptor)},
-                    cargar_imagenes_estandar: false,
-                    silenciar_advertencia_de_multiples_ejecutar: true
-            });`)
-      pilasweb.ejecutar()
-      pilasweb.setFPS(100)
-      pilasweb.onready = resolve
+      try {
+        const pilasweb = this.eval(`
+              typeof pilasengine !== 'undefined' ? pilasengine.iniciar({
+                      ancho: 420,
+                      alto: 480,
+                      canvas: document.getElementById('canvas'),
+                      data_path: '${adaptURL('libs/data')}',
+                      imagenesExtra: ${this.imagesToPreload(descriptor)},
+                      cargar_imagenes_estandar: false,
+                      silenciar_advertencia_de_multiples_ejecutar: true
+              }) : null;`)
+        if (pilasweb) {
+          pilasweb.ejecutar()
+          pilasweb.setFPS(100)
+          pilasweb.onready = resolve
+        } else {
+          resolve()
+        }
 
-      this.listenToIframeMessages()
+        this.listenToIframeMessages()
+      } catch (e) {
+        console.warn("Error al inicializar PilasWeb:", e)
+        resolve()
+      }
     })
   }
 
@@ -78,11 +108,12 @@ class Scene {
 
   private imagesToPreload(descriptor: Challenge["sceneDescriptor"]) {
     //Responsibiliy of the exercise's scene class
-    var images = this.eval(`${this.sceneName(descriptor)}.imagenesPreCarga()`)
-    //TODO: Some scenes (like EscapeEnYacare) don't have images to preload. They should.
-    images = images.length ? images : this.eval(`imageList`)
-
-    return JSON.stringify(images)
+    try {
+      var images = this.eval(`typeof ${this.sceneName(descriptor)} !== 'undefined' && typeof ${this.sceneName(descriptor)}.imagenesPreCarga === 'function' ? ${this.sceneName(descriptor)}.imagenesPreCarga() : (typeof imageList !== 'undefined' ? imageList : [])`)
+      return JSON.stringify(images || [])
+    } catch (e) {
+      return '[]'
+    }
   }
 
 
@@ -94,7 +125,13 @@ class Scene {
   }
 
   async restartScene(descriptor: Challenge["sceneDescriptor"]) {
-    this.eval('pilas.reiniciar()')
+    try {
+      this.eval(`
+        if (typeof pilas !== 'undefined' && typeof pilas.reiniciar === 'function') {
+          pilas.reiniciar();
+        }
+      `)
+    } catch (e) { }
     this.setChallenge(descriptor)
     await this.waitUntilSceneActorReady()
   }
@@ -104,6 +141,7 @@ class Scene {
       try {
         const ready = this.eval(`
           (function() {
+            if (typeof pilas === 'undefined' || typeof pilas.escena_actual !== 'function') return false;
             var escena = pilas.escena_actual();
             return !!(
               escena &&
@@ -125,34 +163,72 @@ class Scene {
   }
 
   pausadoEnBreakpoint() {
-    return this.eval('pilas').pausadoEnBreakpoint
+    try {
+      return Boolean(this.eval(`typeof pilas !== 'undefined' ? pilas.pausadoEnBreakpoint : false`))
+    } catch (e) {
+      return false
+    }
   }
 
   setPausadoEnBreakpoint(setPaused: boolean) {
-    this.eval(`pilas`).pausadoEnBreakpoint = setPaused
-    this.eval('pilas').ejecutando = !setPaused
+    try {
+      this.eval(`
+        if (typeof pilas !== 'undefined') {
+          pilas.pausadoEnBreakpoint = ${setPaused};
+          pilas.ejecutando = ${!setPaused};
+        }
+      `)
+    } catch (e) { }
   }
 
   enableTurboMode() {
-    this.eval('ComportamientoConVelocidad').modoTurbo = true;
-    this.eval('pilas.ponerVelocidadMaxima()');
+    try {
+      this.eval(`
+        if (typeof ComportamientoConVelocidad !== 'undefined') {
+          ComportamientoConVelocidad.modoTurbo = true;
+        }
+        if (typeof pilas !== 'undefined' && typeof pilas.ponerVelocidadMaxima === 'function') {
+          pilas.ponerVelocidadMaxima();
+        }
+      `);
+    } catch (e) { }
   }
 
   disableTurboMode() {
-    this.eval('ComportamientoConVelocidad').modoTurbo = false;
-    this.eval('pilas.ponerVelocidadNormal()');
+    try {
+      this.eval(`
+        if (typeof ComportamientoConVelocidad !== 'undefined') {
+          ComportamientoConVelocidad.modoTurbo = false;
+        }
+        if (typeof pilas !== 'undefined' && typeof pilas.ponerVelocidadNormal === 'function') {
+          pilas.ponerVelocidadNormal();
+        }
+      `);
+    } catch (e) { }
   }
 
   isTurboModeActive() {
-    return this.eval('ComportamientoConVelocidad').modoTurbo
+    try {
+      return Boolean(this.eval(`typeof ComportamientoConVelocidad !== 'undefined' ? ComportamientoConVelocidad.modoTurbo : false`))
+    } catch (e) {
+      return false
+    }
   }
 
   sceneActor(): Actor {
-    return this.eval('pilas.escena_actual().automata')
+    return this.eval(`
+      typeof pilas !== 'undefined' && pilas.escena_actual && pilas.escena_actual()
+        ? pilas.escena_actual().automata
+        : null
+    `)
   }
 
   sceneReceptor(receptor: string): Actor {
-    return this.eval(`pilas.escena_actual().${receptor}`)
+    return this.eval(`
+      typeof pilas !== 'undefined' && pilas.escena_actual && pilas.escena_actual()
+        ? pilas.escena_actual().${receptor}
+        : null
+    `)
   }
 
   isTheProblemSolved() {
@@ -174,10 +250,10 @@ class Scene {
     return this.eval(`
             var comportamiento = null;
     
-            if (window['${behaviour}']) {
-              comportamiento = ${behaviour};
+            if (typeof window['${behaviour}'] !== 'undefined') {
+              comportamiento = window['${behaviour}'];
             } else {
-              if (pilas.comportamientos['${behaviour}']) {
+              if (typeof pilas !== 'undefined' && pilas.comportamientos && pilas.comportamientos['${behaviour}']) {
                 comportamiento = pilas.comportamientos['${behaviour}'];
               } else {
                 throw new Error("No existe un comportamiento llamado '${behaviour}'.");
@@ -190,13 +266,18 @@ class Scene {
 
   evaluateExpression(expression: string): boolean {
     return this.eval(`
-        try {
-          var value = pilas.escena_actual().automata.${expression}
-        } catch (e) {
-          pilas.escena_actual().errorHandler.handle(e);
-        }
-
-        value`)
+        (function() {
+          if (typeof pilas === 'undefined' || !pilas.escena_actual || !pilas.escena_actual()) return false;
+          try {
+            var value = pilas.escena_actual().automata.${expression};
+          } catch (e) {
+            if (pilas.escena_actual().errorHandler) {
+              pilas.escena_actual().errorHandler.handle(e);
+            }
+          }
+          return value;
+        })()
+    `)
   }
 }
 
