@@ -1,0 +1,183 @@
+import { challengeTest } from '../../../helpers/challengeTest'
+
+describe("Toto lector", () => {
+
+    challengeTest(225, {
+        descripcionAdicional: '225: Se puede resolver',
+        solucion: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+  <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"15\" y=\"15\">
+    <statement name=\"program\">
+      <block type=\"MoverLeyendoAbajo\">
+        <next>
+          <block type=\"MoverLeyendoDerecha\">
+            <next>
+              <block type=\"MoverLeyendoAbajo\">
+                <next>
+                  <block type=\"MoverLeyendoDerecha\"></block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>`,
+    });
+
+    challengeTest(225, {
+        descripcionAdicional: '225: Estalla al leer de más',
+        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    <variables></variables>
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
+      <statement name="program">
+        <block type="MoverLeyendoAbajo">
+          <next>
+            <block type="MoverLeyendoDerecha">
+              <next>
+                <block type="MoverLeyendoIzquierda">
+                  <next>
+                    <block type="MoverLeyendoDerecha">
+                      <next>
+                        <block type="MoverLeyendoIzquierda"></block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+  </xml>`,
+        errorEsperado: "Ya leí mucho, ¡estoy cansado!"
+    });
+
+    challengeTest(225, {
+        descripcionAdicional: '225: No puede salir del tablero',
+        solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
+    <variables></variables>
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="269" y="15">
+      <statement name="program">
+        <block type="MoverLeyendoArriba"></block>
+      </statement>
+    </block>
+  </xml>`,
+        errorEsperado: "No puedo ir para arriba"
+    });
+
+    challengeTest(226, {
+        descripcionAdicional: '226: Se puede resolver',
+        solucion: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+  <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"15\" y=\"15\">
+    <statement name=\"program\">
+      <block type=\"MoverLeyendoAbajo\">
+        <next>
+          <block type=\"MoverLeyendoDerecha\">
+            <next>
+              <block type=\"MoverLeyendoArriba\">
+                <next>
+                  <block type=\"MoverLeyendoDerecha\">
+                    <next>
+                      <block type=\"MoverLeyendoArriba\"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>`,
+    });
+
+
+    challengeTest(227, {
+        descripcionAdicional: '227: Se puede resolver',
+        solucion: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+  <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"15\" y=\"15\">
+    <statement name=\"program\">
+      <block type=\"MoverLeyendoAbajo\">
+        <next>
+          <block type=\"MoverLeyendoIzquierda\">
+            <next>
+              <block type=\"MoverLeyendoArriba\">
+                <next>
+                  <block type=\"MoverLeyendoIzquierda\"></block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>`,
+    });
+
+    challengeTest(228, {
+        descripcionAdicional: '228: Se puede resolver',
+        solucion: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+    <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"15\" y=\"15\">
+      <statement name=\"program\">
+        <block type=\"MoverLeyendoDerecha\">
+          <next>
+            <block type=\"MoverLeyendoDerecha\">
+              <next>
+                <block type=\"MoverLeyendoDerecha\">
+                  <next>
+                    <block type=\"MoverLeyendoIzquierda\">
+                      <next>
+                        <block type=\"MoverLeyendoAbajo\">
+                          <next>
+                            <block type=\"MoverLeyendoIzquierda\">
+                              <next>
+                                <block type=\"MoverLeyendoIzquierda\"></block>
+                              </next>
+                            </block>
+                          </next>
+                        </block>
+                      </next>
+                    </block>
+                  </next>
+                </block>
+              </next>
+            </block>
+          </next>
+        </block>
+      </statement>
+    </block>
+  </xml>`,
+    });
+
+    challengeTest(229, {
+        descripcionAdicional: '229: Se puede resolver',
+        solucion: `<xml xmlns=\"http://www.w3.org/1999/xhtml\">
+  <block type=\"al_empezar_a_ejecutar\" deletable=\"false\" movable=\"false\" editable=\"false\" x=\"15\" y=\"15\">
+    <statement name=\"program\">
+      <block type=\"MoverLeyendoIzquierda\">
+        <next>
+          <block type=\"MoverLeyendoArriba\">
+            <next>
+              <block type=\"MoverLeyendoDerecha\">
+                <next>
+                  <block type=\"MoverLeyendoDerecha\">
+                    <next>
+                      <block type=\"MoverLeyendoAbajo\"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>`,
+    });
+
+});

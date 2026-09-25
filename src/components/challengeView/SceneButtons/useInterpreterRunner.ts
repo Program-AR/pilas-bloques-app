@@ -86,11 +86,16 @@ export const useInterpreterRunner = (
           setStepping(false);
           interpreterFactory.clearHighlight();
 
-          checkProblemSolved().then(async (solved) => {
-            const staticAnalysis = { couldExecute: true };
-            if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
-            resolve();
-          });
+          checkProblemSolved()
+            .then(async (solved) => {
+              const staticAnalysis = { couldExecute: true };
+              if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
+              resolve();
+            })
+            .catch((err) => {
+              console.warn("La escena finalizó con error o no se pudo verificar el resultado:", err);
+              resolve();
+            });
         }
       };
 
@@ -107,7 +112,7 @@ export const useInterpreterRunner = (
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
   const checkProblemSolved = async () => {
-    const solved = await scene.isTheProblemSolved();    
+    const solved = await scene.isTheProblemSolved();
     setSolved(solved);
     if (solved) setShowModal(true);
     return solved;
