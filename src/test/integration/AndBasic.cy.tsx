@@ -31,9 +31,8 @@ describe('Challenge view with andBasic block', () => {
       .should('have.attr', 'data-loaded', 'true')
       .then($iframe => {
         const iframe = $iframe[0] as HTMLIFrameElement
-
         cy.get('[data-testid="execute-button"]').click()
-
+        cy.wait(500)
         cy.wrap(null).should(() => {
           const value = (iframe.contentWindow as any).eval(`
           pilas.escena_actual().${expression}
@@ -102,26 +101,26 @@ describe('Challenge view with andBasic block', () => {
   </xml>`
 
   const andFalsoVerdadero = `<xml xmlns="https://developers.google.com/blockly/xml">
-    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
-      <statement name="program">
-        <block type="Si">
-          <value name="condition">
-            <block type="andBasic">
-              <value name="A">
-                <block type="BordeAbajo" />
-              </value>
-              <value name="B">
-                <block type="BordeArriba" />
-              </value>
-            </block>
-          </value>
-          <statement name="block">
-            <block type="MoverACasillaDerecha" />
-          </statement>
-        </block>
-      </statement>
-    </block>
-  </xml>`
+      <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+        <statement name="program">
+          <block type="Si">
+            <value name="condition">
+              <block type="andBasic">
+                <value name="A">
+                  <block type="BordeAbajo" />
+                </value>
+                <value name="B">
+                  <block type="BordeArriba" />
+                </value>
+              </block>
+            </value>
+            <statement name="block">
+              <block type="MoverACasillaDerecha" />
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </xml>`
 
   const andFalsoFalso = `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
