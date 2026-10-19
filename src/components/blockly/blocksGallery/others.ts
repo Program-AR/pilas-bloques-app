@@ -206,7 +206,7 @@ javascriptGenerator.forBlock['variables_get'] = function (block: Block, generato
     }
 
     return [varName.replace(/[^\w]/g, '_'), Order.ATOMIC];
-};    
+};
 
 javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, generator: any) {
     const rawName = block.getFieldValue('NAME') || 'procedimiento';
@@ -270,7 +270,40 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
         return `${funcName}(${args.join(', ')});\n`;
     };
 
-    // BLOQUE AND BASICO
+  Blockly.Blocks["or_logic"] = {
+    init: function () {
+      this.jsonInit({
+        type: "or_logic",
+        message0: `%1 ${t("blocks.or_logic")} %2`,
+        colour: sensorsColor,
+        inputsInline: true,
+        args0: [
+          {
+            type: "input_value",
+            name: "A",
+            check: "Boolean",
+          },
+          {
+            type: "input_value",
+            name: "B",
+            check: "Boolean",
+          },
+        ],
+        output: "Boolean",
+      });
+    },
+    categoryId: "operators",
+  };
+
+  javascriptGenerator.forBlock["or_logic"] = function (block: Block, generator: any) {
+    const argument0 =
+      generator.valueToCode(block, "A", Order.LOGICAL_OR) || "false";
+    const argument1 =
+      generator.valueToCode(block, "B", Order.LOGICAL_OR) || "false";
+
+    const code = `${argument0} || ${argument1}`;
+    return [code, Order.LOGICAL_OR];
+    };
 
     Blockly.Blocks['andBasic'] = {
         init: function () {
@@ -283,18 +316,18 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
                     {
                         type: "input_value",
                         name: "A",
-                        check: "Boolean" // Obliga a que solo encastren bloques verdaderos/falsos
+                        check: "Boolean"
                     },
                     {
                         type: "input_value",
                         name: "B",
-                        check: "Boolean" // Obliga a que solo encastren bloques verdaderos/falsos
+                        check: "Boolean"
                     }
                 ],
-                output: "Boolean" // El bloque entero devuelve un booleano
+                output: "Boolean"
             });
         },
-        categoryId: 'operators' // Esta categoria lo asigna a la parte de operadores
+        categoryId: 'operators'
     };
 
 
@@ -308,8 +341,6 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
     };
 
 
-
-//DESPLEGABLE LOGICO, imitando opAritmetica
 Blockly.Blocks['OpLogico'] = {
     init: function () {
         this.jsonInit({
@@ -324,7 +355,7 @@ Blockly.Blocks['OpLogico'] = {
                     check: "Boolean"
                 },
                 {
-                    type: "field_dropdown", // Este sería el desplegable
+                    type: "field_dropdown", // desplegable
                     name: "Operator_Desplegable",
                     options: [
                         [t('blocks.andText'), "AND"],
@@ -332,13 +363,13 @@ Blockly.Blocks['OpLogico'] = {
                     ]
                 },
                 {
-                    type: "input_value", // hueco 2
+                    type: "input_value",
                     name: "B",
                     check: "Boolean"
                 }
             ],
             output: "Boolean",
-            categoryId: 'operators' // Se agrupa en operadores
+            categoryId: 'operators'
         });
         
     }
