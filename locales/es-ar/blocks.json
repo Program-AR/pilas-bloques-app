@@ -143,7 +143,12 @@
     "leftBorder": "¿Estoy en el borde de la izquierda?",
     "rightBorder": "¿Estoy en el borde de la derecha?",
     "bottomBorder": "¿Estoy en el borde de abajo?",
-    "topBorder": "¿Estoy en el borde de arriba?"
+    "topBorder": "¿Estoy en el borde de arriba?",
+    "andBasic": "And Basico",
+    "OpLogico": "Operadores Lógicos",
+    "andText": "Y",
+    "orText": "O"
+
   },
   "procedures": {
     "definition": "Definir",

@@ -269,4 +269,99 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
 
         return `${funcName}(${args.join(', ')});\n`;
     };
+
+    // BLOQUE AND BASICO
+
+    Blockly.Blocks['andBasic'] = {
+        init: function () {
+            this.jsonInit({
+                type: "andBasic", 
+                message0: `%1 ${t('blocks.andText')} %2`,
+                colour: sensorsColor,
+                inputsInline: true,
+                args0: [
+                    {
+                        type: "input_value",
+                        name: "A",
+                        check: "Boolean" // Obliga a que solo encastren bloques verdaderos/falsos
+                    },
+                    {
+                        type: "input_value",
+                        name: "B",
+                        check: "Boolean" // Obliga a que solo encastren bloques verdaderos/falsos
+                    }
+                ],
+                output: "Boolean" // El bloque entero devuelve un booleano
+            });
+        },
+        categoryId: 'operators' // Esta categoria lo asigna a la parte de operadores
+    };
+
+
+    // Parte lógica
+    javascriptGenerator.forBlock['andBasic'] = function (block: Block, generator: any) { 
+        const argument0 = generator.valueToCode(block, 'A', Order.LOGICAL_AND); 
+        const argument1 = generator.valueToCode(block, 'B', Order.LOGICAL_AND); 
+
+        const code = `${argument0} && ${argument1}`; 
+        return [code, Order.LOGICAL_AND]; // Devuelve el resultado true o false
+    };
+
+
+
+//DESPLEGABLE LOGICO, imitando opAritmetica
+Blockly.Blocks['OpLogico'] = {
+    init: function () {
+        this.jsonInit({
+            type: "OpLogico",
+            message0: "%1 %2 %3", // Hueco A, Desplegable, Hueco B
+            colour: sensorsColor, 
+            inputsInline: true, 
+            args0: [ 
+                {
+                    type: "input_value", 
+                    name: "A",
+                    check: "Boolean"
+                },
+                {
+                    type: "field_dropdown", // Este sería el desplegable
+                    name: "Operator_Desplegable",
+                    options: [
+                        [t('blocks.andText'), "AND"],
+                        [t('blocks.orText'), "OR"]
+                    ]
+                },
+                {
+                    type: "input_value", // hueco 2
+                    name: "B",
+                    check: "Boolean"
+                }
+            ],
+            output: "Boolean",
+            categoryId: 'operators' // Se agrupa en operadores
+        });
+        
+    }
+    
 };
+
+javascriptGenerator.forBlock['OpLogico'] = function (block: Block, generator: any) { 
+        const OPERATORS = {
+            AND: ['&&', Order.LOGICAL_AND],
+            OR: ['||', Order.LOGICAL_OR],
+
+        } as const; 
+
+        const opLogic = block.getFieldValue('Operator_Desplegable') as keyof typeof OPERATORS;
+
+        const operadorJS = OPERATORS[opLogic][0]; 
+        const ordenJS = OPERATORS[opLogic][1]; 
+        const argument0 = generator.valueToCode(block, 'A', ordenJS);
+        const argument1 = generator.valueToCode(block, 'B', ordenJS);
+
+        const code = `${argument0} ${operadorJS} ${argument1}`;
+        
+        return [code, ordenJS]; 
+    };
+
+    };

@@ -124,7 +124,11 @@
     "leftBorder": "Estou na borda esquerda?",
     "rightBorder": "Estou na borda direita?",
     "bottomBorder": "Estou na borda inferior?",
-    "topBorder": "Estou na borda superior?"
+    "topBorder": "Estou na borda superior?",
+    "andBasic": "AND/E Básico",
+    "OpLogico": "Operadores lógicos",
+    "andText": "E",
+    "orText": "OU"
   },
   "procedures": {
     "definition": "Definir",
