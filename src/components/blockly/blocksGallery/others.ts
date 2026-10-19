@@ -304,7 +304,6 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
     const code = `${argument0} || ${argument1}`;
     return [code, Order.LOGICAL_OR];
     };
-}
 
     Blockly.Blocks['andBasic'] = {
         init: function () {
