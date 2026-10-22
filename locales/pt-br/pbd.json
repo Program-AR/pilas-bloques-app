@@ -1,0 +1,14 @@
+{
+	"header": "Pilas Bloques Desplugado",
+	"homeButton": "Conheça Pilas Bloques Desplugado",
+	"title": "Imprima, recorte e jogue!",
+	"download": "Baixar",
+	"game": { "title": "Jogo", "subtitle": "para baixar" },
+	"instructions": { "title": "Manual", "subtitle": "de instruções" },
+	"teacher": { "title": "Caderno", "subtitle": "para professores" },
+	"form": {
+		"question": "Quer levar o jogo para sua sala de aula?",
+		"help": "Ajude-nos a impulsionar novas produções",
+		"button": "Preencha o formulário"
+	}
+}

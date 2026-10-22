@@ -1,0 +1,14 @@
+{
+	"header": "Pilas Bloques Unplugged",
+	"homeButton": "Discover Pilas Bloques Unplugged",
+	"title": "Print, cut out and play!",
+	"download": "Download",
+	"game": { "title": "Game", "subtitle": "downloadable" },
+	"instructions": { "title": "Manual", "subtitle": "instructions" },
+	"teacher": { "title": "Notebook", "subtitle": "for teachers" },
+	"form": {
+		"question": "Do you want to bring the game to your classroom?",
+		"help": "Help us boost new productions",
+		"button": "Fill out the form"
+	}
+}

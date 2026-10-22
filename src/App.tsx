@@ -22,6 +22,7 @@ import { SharedChallengeView } from './components/creator/SharedChallengeView';
 import { PilasBloquesApi } from './pbApi';
 import { ChallengeView } from './components/challengeView/ChallengeView';
 import { PBSession } from './pbSession';
+import { PBD_PATH, PBDView } from './components/pbd/PBDView'; // FIX TEMPORAL PBD
 
 const AnalyticsComponent = () => {
   const location = useLocation();
@@ -84,6 +85,10 @@ const router = createHashRouter([{
   {
     path: "/acercade",
     element: <About/>
+  },
+  { // FIX TEMPORAL PBD
+    path: PBD_PATH,
+    element: <PBDView/>
   },
   {
     path: "/establecer-contrasenia",
