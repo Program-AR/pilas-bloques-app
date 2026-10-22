@@ -278,11 +278,11 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
         return `${funcName}(${args.join(', ')});\n`;
     };
 
-  Blockly.Blocks["or_logic"] = {
+  Blockly.Blocks["orLogic"] = {
     init: function () {
       this.jsonInit({
-        type: "or_logic",
-        message0: `%1 ${t("blocks.or_logic")} %2`,
+        type: "orLogic",
+        message0: `%1 ${t("blocks.orLogic")} %2`,
         colour: sensorsColor,
         inputsInline: true,
         args0: [
@@ -303,7 +303,7 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
     categoryId: "operators",
   };
 
-  javascriptGenerator.forBlock["or_logic"] = function (block: Block, generator: any) {
+  javascriptGenerator.forBlock["orLogic"] = function (block: Block, generator: any) {
     const argument0 =
       generator.valueToCode(block, "A", Order.LOGICAL_OR) || "false";
     const argument1 =
@@ -313,11 +313,11 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
     return [code, Order.LOGICAL_OR];
     };
 
-    Blockly.Blocks['andBasic'] = {
+    Blockly.Blocks['andLogic'] = {
         init: function () {
             this.jsonInit({
-                type: "andBasic", 
-                message0: `%1 ${t('blocks.andText')} %2`,
+                type: "andLogic", 
+                message0: `%1 ${t('blocks.andLogic')} %2`,
                 colour: sensorsColor,
                 inputsInline: true,
                 args0: [
@@ -340,7 +340,7 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
 
 
     // Parte lógica
-    javascriptGenerator.forBlock['andBasic'] = function (block: Block, generator: any) { 
+    javascriptGenerator.forBlock['andLogic'] = function (block: Block, generator: any) { 
         const argument0 = generator.valueToCode(block, 'A', Order.LOGICAL_AND); 
         const argument1 = generator.valueToCode(block, 'B', Order.LOGICAL_AND); 
 
@@ -349,10 +349,10 @@ javascriptGenerator.forBlock['procedures_defnoreturn'] = function (block: any, g
     };
 
 
-Blockly.Blocks['OpLogico'] = {
+Blockly.Blocks['logicOperator'] = {
     init: function () {
         this.jsonInit({
-            type: "OpLogico",
+            type: "logicOperator",
             message0: "%1 %2 %3", // Hueco A, Desplegable, Hueco B
             colour: sensorsColor, 
             inputsInline: true, 
@@ -366,8 +366,8 @@ Blockly.Blocks['OpLogico'] = {
                     type: "field_dropdown", // desplegable
                     name: "Operator_Desplegable",
                     options: [
-                        [t('blocks.andText'), "AND"],
-                        [t('blocks.orText'), "OR"]
+                        [t('blocks.andLogic'), "AND"],
+                        [t('blocks.orLogic'), "OR"]
                     ]
                 },
                 {
@@ -384,7 +384,7 @@ Blockly.Blocks['OpLogico'] = {
     
 };
 
-javascriptGenerator.forBlock['OpLogico'] = function (block: Block, generator: any) { 
+javascriptGenerator.forBlock['logicOperator'] = function (block: Block, generator: any) { 
         const OPERATORS = {
             AND: ['&&', Order.LOGICAL_AND],
             OR: ['||', Order.LOGICAL_OR],

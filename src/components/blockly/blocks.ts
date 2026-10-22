@@ -153,11 +153,6 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'operators'
   },
   {
-    id: 'or_logic',
-    intlId: 'or_logic',
-    categoryId: 'operators'
-  },
-  {
     id: 'Procedimiento',
     intlId: 'Procedures',
     categoryId: 'myprocedures'
@@ -173,19 +168,23 @@ export const commonBlocks: BlockType[] = [
     categoryId: 'sensors'
   },
   {
+    id: 'andLogic',
+    intlId: 'andLogic',
+    categoryId: 'operators'
+  },
+  {
+    id: 'orLogic',
+    intlId: 'orLogic',
+    categoryId: 'operators'
+  },
+  {
     id:'operadorNot',
     intlId:'notOperator',
     categoryId:'operators'
   },
   {
-    id: 'andBasic',
-    intlId: 'andBasic',
-    categoryId: 'operators'
-  },
-
-  {
-    id: 'OpLogico',
-    intlId: 'OpLogico',
+    id: 'logicOperator',
+    intlId: 'logicOperator',
     categoryId: 'operators'
   },
 

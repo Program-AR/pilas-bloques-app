@@ -36,7 +36,6 @@
     "logic_compare": "Comparar",
     "math_arithmetic": "Calcular",
     "math_number": "Número",
-    "or_logic": "Ou",
     "moveDown": "Mover para baixo",
     "moveLeft": "Mover para a esquerda",
     "moveRight": "Mover para a direita",
@@ -126,11 +125,10 @@
     "rightBorder": "Estou na borda direita?",
     "bottomBorder": "Estou na borda inferior?",
     "topBorder": "Estou na borda superior?",
+    "andLogic": "E",
+    "orLogic": "Ou",
     "notOperator": "Não",
-    "andBasic": "AND/E Básico",
-    "OpLogico": "Operadores lógicos",
-    "andText": "E",
-    "orText": "OU"
+    "logicOperator": "Operadores lógicos"
   },
   "procedures": {
     "definition": "Definir",

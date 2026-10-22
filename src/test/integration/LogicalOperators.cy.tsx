@@ -18,7 +18,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
         maps: [[["A", "L", "-"], ["-", "-", "-"], ["-", "-", "-"]]]
       },
       toolbox: {
-        blocks: ["MoverACasillaDerecha", "Si", "BordeArriba", "BordeAbajo", "or_logic", "andBasic"],
+        blocks: ["MoverACasillaDerecha", "Si", "BordeArriba", "BordeAbajo", "orLogic", "andLogic"],
         categorized: true
       },
       predefinedSolution: solution
@@ -144,13 +144,13 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  testExecutionWithBlocks('True OR True moves to the right', trueOrTrueSolution('or_logic'), 1, false)
-  testExecutionWithBlocks('True OR False moves to the right', trueOrFalseSolution('or_logic'), 1, false)
-  testExecutionWithBlocks('False OR True moves to the right', falseOrTrueSolution('or_logic'), 1, false)
-  testExecutionWithBlocks('False OR False does not move to the right', falseOrFalseSolution('or_logic'), 0, false)
+  testExecutionWithBlocks('True OR True moves to the right', trueOrTrueSolution('orLogic'), 1, false)
+  testExecutionWithBlocks('True OR False moves to the right', trueOrFalseSolution('orLogic'), 1, false)
+  testExecutionWithBlocks('False OR True moves to the right', falseOrTrueSolution('orLogic'), 1, false)
+  testExecutionWithBlocks('False OR False does not move to the right', falseOrFalseSolution('orLogic'), 0, false)
 
-  testExecutionWithBlocks('True AND True moves to the right', trueOrTrueSolution('andBasic'), 1, false)
-  testExecutionWithBlocks('True AND False does not moves to the right', trueOrFalseSolution('andBasic'), 0, false)
-  testExecutionWithBlocks('False AND True does not moves to the right', falseOrTrueSolution('andBasic'), 0, false)
-  testExecutionWithBlocks('False AND False does not move to the right', falseOrFalseSolution('andBasic'), 0, false)
+  testExecutionWithBlocks('True AND True moves to the right', trueOrTrueSolution('andLogic'), 1, false)
+  testExecutionWithBlocks('True AND False does not moves to the right', trueOrFalseSolution('andLogic'), 0, false)
+  testExecutionWithBlocks('False AND True does not moves to the right', falseOrTrueSolution('andLogic'), 0, false)
+  testExecutionWithBlocks('False AND False does not move to the right', falseOrFalseSolution('andLogic'), 0, false)
 })

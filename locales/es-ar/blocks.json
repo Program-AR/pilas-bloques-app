@@ -34,7 +34,6 @@
     "lettuceHere": "¿Hay lechuga acá?",
     "logic_compare": "Comparar",
     "math_arithmetic": "Calcular",
-    "or_logic": "O",
     "math_number": "Número",
     "moveDown": "Mover abajo",
     "moveLeft": "Mover a la izquierda",
@@ -145,12 +144,10 @@
     "rightBorder": "¿Estoy en el borde de la derecha?",
     "bottomBorder": "¿Estoy en el borde de abajo?",
     "topBorder": "¿Estoy en el borde de arriba?",
+    "andLogic": "Y",
+    "orLogic": "O",
     "notOperator": "No",
-    "andBasic": "And Basico",
-    "OpLogico": "Operadores Lógicos",
-    "andText": "Y",
-    "orText": "O"
-
+    "logicOperator": "Operadores Lógicos"
   },
   "procedures": {
     "definition": "Definir",

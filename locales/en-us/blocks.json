@@ -34,7 +34,6 @@
     "lettuceHere": "Is there lettuce here?",
     "logic_compare": "Compare",
     "math_arithmetic": "Calculate",
-    "or_logic": "Or",
     "math_number": "Number",
     "moveDown": "Move down",
     "moveLeft": "Move left",
@@ -146,11 +145,10 @@
     "rightBorder": "Am I on the right edge?",
     "bottomBorder": "Am I on the bottom edge?",
     "topBorder": "Am I on the top edge?",
+    "andLogic": "AND",
+    "orLogic": "OR",
     "notOperator": "Not",
-    "andBasic": "Basic AND",
-    "OpLogico": "Logical Operators",
-    "andText": "AND",
-    "orText": "OR"
+    "logicOperator": "Logical Operators"
   },
   "procedures": {
     "definition": "Define",
