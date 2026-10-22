@@ -7,39 +7,41 @@ import { Footer } from "../footer/Footer";
 import { Header, HeaderText } from "../header/Header";
 import styles from './home.module.css';
 import { CreatorCards } from "./CreatorCard";
+import { PBDHomeButton } from "../pbd/PBDHomeButton"; // FIX TEMPORAL PBD
 
 const RegisterButton: React.FC = () => {
     const { t } = useTranslation("home");
 
     return <>
-        <Button 
-            component={Link} 
-            to="registrar" 
-            variant="outlined" 
+        <Button
+            component={Link}
+            to="registrar"
+            variant="outlined"
             size="large"
-            style={{color: "white", borderColor: "white", borderRadius:"20px", textTransform:"none"}} 
+            style={{ color: "white", borderColor: "white", borderRadius: "20px", textTransform: "none" }}
             startIcon={<ArrowForwardIcon />}
         >
             {t("signUp")}
         </Button>
-</>
+    </>
 }
 
 export const Home = () => {
     const { t } = useTranslation("home");
 
     return <>
-    <Header CenterComponent={<HeaderText text={t("header")}/>}/>
-    <Container className={styles.background} maxWidth={false}><img src='imagenes/home-background.svg' alt="background"/></Container>
-    
-    <Grid className={styles['home-container']} container direction='column'>
-        <Container className={styles.logo} maxWidth="sm"><img src="imagenes/pblogo-whiteborder.svg" alt="pilas bloques logo"/></Container>
-        <Typography className={styles.title} variant="h5">{t("title")}</Typography>
-        <RegisterButton />
-        <BookCards/>
-        <Divider style={{ width:'90%', borderColor: 'white' }}/>
-        <CreatorCards/>
-    </Grid>
-    <Footer/>
-</>
+        <Header CenterComponent={<HeaderText text={t("header")} />} />
+        <Container className={styles.background} maxWidth={false}><img src='imagenes/home-background.svg' alt="background" /></Container>
+
+        <Grid className={styles['home-container']} container direction='column'>
+            <Container className={styles.logo} maxWidth="sm"><img src="imagenes/pblogo-whiteborder.svg" alt="pilas bloques logo" /></Container>
+            <Typography className={styles.title} variant="h5">{t("title")}</Typography>
+            <RegisterButton />
+            <PBDHomeButton />
+            <BookCards />
+            <Divider style={{ width: '90%', borderColor: 'white' }} />
+            <CreatorCards />
+        </Grid>
+        <Footer />
+    </>
 }
