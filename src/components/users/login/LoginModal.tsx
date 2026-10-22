@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { PilasBloquesApi } from "../../../pbApi";
 import { DialogSnackbar } from "../../dialogSnackbar/DialogSnackbar";
 import { useThemeContext } from "../../../theme/ThemeContext";
+import ReactGA from "react-ga4";
 
 export type LoginModalProps = {
     open: boolean
@@ -27,6 +28,10 @@ export const LoginModal:FC<LoginModalProps> = ({open, onClose}) => {
         const credentials = {username, password}
         try{
            await PilasBloquesApi.login(credentials)
+           ReactGA.event({
+               category: "authentication",
+               action: "login_success"
+           });
            handleOnClose()
         }catch(error: any){
             if (error.status === 400){
