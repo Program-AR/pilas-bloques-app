@@ -172,7 +172,11 @@ export const commonBlocks: BlockType[] = [
     intlId: 'canMoveRight',
     categoryId: 'sensors'
   },
-
+  {
+    id:'operadorNot',
+    intlId:'notOperator',
+    categoryId:'operators'
+  },
   {
     id: 'andBasic',
     intlId: 'andBasic',

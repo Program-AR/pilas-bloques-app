@@ -164,6 +164,14 @@ export const createOthersBlocks = (t: (key: string) => string) => {
 
     delegateGenerator('OpComparacion', 'logic_compare');
 
+    Blockly.Blocks['operadorNot']={
+        init: function () {
+            Blockly.Blocks["logic_negate"].init.call(this);
+        },
+        categoryId: 'operators'
+    };
+    delegateGenerator('operadorNot', 'logic_negate');
+
     // IMPORTANTE:
     // primero inicializamos proceds, y DESPUÉS sobrescribimos generators.
     enableUnwantedProcedureBlocks();

@@ -145,6 +145,7 @@
     "rightBorder": "¿Estoy en el borde de la derecha?",
     "bottomBorder": "¿Estoy en el borde de abajo?",
     "topBorder": "¿Estoy en el borde de arriba?",
+    "notOperator": "No",
     "andBasic": "And Basico",
     "OpLogico": "Operadores Lógicos",
     "andText": "Y",

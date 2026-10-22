@@ -146,6 +146,7 @@
     "rightBorder": "Am I on the right edge?",
     "bottomBorder": "Am I on the bottom edge?",
     "topBorder": "Am I on the top edge?",
+    "notOperator": "Not",
     "andBasic": "Basic AND",
     "OpLogico": "Logical Operators",
     "andText": "AND",

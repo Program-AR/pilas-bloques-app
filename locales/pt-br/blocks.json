@@ -126,6 +126,7 @@
     "rightBorder": "Estou na borda direita?",
     "bottomBorder": "Estou na borda inferior?",
     "topBorder": "Estou na borda superior?",
+    "notOperator": "Não",
     "andBasic": "AND/E Básico",
     "OpLogico": "Operadores lógicos",
     "andText": "E",
