@@ -144,13 +144,56 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  testExecutionWithBlocks('True OR True moves to the right', trueOrTrueSolution('orLogic'), 1, false)
-  testExecutionWithBlocks('True OR False moves to the right', trueOrFalseSolution('orLogic'), 1, false)
-  testExecutionWithBlocks('False OR True moves to the right', falseOrTrueSolution('orLogic'), 1, false)
-  testExecutionWithBlocks('False OR False does not move to the right', falseOrFalseSolution('orLogic'), 0, false)
 
-  testExecutionWithBlocks('True AND True moves to the right', trueOrTrueSolution('andLogic'), 1, false)
-  testExecutionWithBlocks('True AND False does not moves to the right', trueOrFalseSolution('andLogic'), 0, false)
-  testExecutionWithBlocks('False AND True does not moves to the right', falseOrTrueSolution('andLogic'), 0, false)
-  testExecutionWithBlocks('False AND False does not move to the right', falseOrFalseSolution('andLogic'), 0, false)
+  const notTrue = `<xml xmlns="https://developers.google.com/blockly/xml">
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+        <statement name="program">
+            <block type="Si" >
+                <value name="condition">
+                    <block type="operadorNot" >
+                        <value name="BOOL">
+                            <block type="BordeArriba" >
+                        </value>
+                    </block>
+                </value>
+                <statement name="block">
+                    <block type="MoverACasillaDerecha" />
+                </statement>
+            </block>
+        </statement>
+    </block>
+  </xml>`
+
+  const notFalse = `<xml xmlns="https://developers.google.com/blockly/xml">
+    <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
+        <statement name="program">
+            <block type="Si" >
+                <value name="condition">
+                    <block type="operadorNot" >
+                        <value name="BOOL">
+                            <block type="BordeAbajo" >
+                        </value>
+                    </block>
+                </value>
+                <statement name="block">
+                    <block type="MoverACasillaDerecha" />
+                </statement>
+            </block>
+        </statement>
+    </block>
+  </xml>`
+
+
+  testExecutionWithBlocks('True OR True moves to the right', trueOrTrueSolution('orLogic'), 1)
+  testExecutionWithBlocks('True OR False moves to the right', trueOrFalseSolution('orLogic'), 1)
+  testExecutionWithBlocks('False OR True moves to the right', falseOrTrueSolution('orLogic'), 1)
+  testExecutionWithBlocks('False OR False does not move to the right', falseOrFalseSolution('orLogic'), 0)
+
+  testExecutionWithBlocks('True AND True moves to the right', trueOrTrueSolution('andLogic'), 1)
+  testExecutionWithBlocks('True AND False does not moves to the right', trueOrFalseSolution('andLogic'), 0)
+  testExecutionWithBlocks('False AND True does not moves to the right', falseOrTrueSolution('andLogic'), 0)
+  testExecutionWithBlocks('False AND False does not move to the right', falseOrFalseSolution('andLogic'), 0)
+
+  testExecutionWithBlocks('NOT True does not move to the right', notTrue, 0)
+  testExecutionWithBlocks('NOT False move to the right', notFalse, 1)
 })
