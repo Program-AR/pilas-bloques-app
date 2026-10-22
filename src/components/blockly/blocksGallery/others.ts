@@ -164,10 +164,12 @@ export const createOthersBlocks = (t: (key: string) => string) => {
 
     delegateGenerator('OpComparacion', 'logic_compare');
 
-    Blockly.Blocks['operadorNot']={
+    Blockly.Blocks['operadorNot'] = {
         init: function () {
             Blockly.Blocks["logic_negate"].init.call(this);
+            this.setColour(sensorsColor);
         },
+        inputsInline: true,
         categoryId: 'operators'
     };
     delegateGenerator('operadorNot', 'logic_negate');
