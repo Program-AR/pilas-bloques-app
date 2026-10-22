@@ -18,7 +18,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
         maps: [[["A", "L", "-"], ["-", "-", "-"], ["-", "-", "-"]]]
       },
       toolbox: {
-        blocks: ["MoverACasillaDerecha", "Si", "BordeArriba", "BordeAbajo", "or_logic"],
+        blocks: ["MoverACasillaDerecha", "Si", "BordeArriba", "BordeAbajo", "or_logic", "andBasic"],
         categorized: true
       },
       predefinedSolution: solution
@@ -56,12 +56,12 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     })
   }
 
-  const trueOrTrueSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
+  const trueOrTrueSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
                 <value name="condition">
-                    <block type="or_logic">
+                    <block type="${logicBlock}">
                         <value name="A">
                             <block type="BordeArriba" />
                         </value>
@@ -78,12 +78,12 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const trueOrFalseSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
+  const trueOrFalseSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
                 <value name="condition">
-                    <block type="or_logic">
+                    <block type="${logicBlock}">
                         <value name="A">
                             <block type="BordeArriba" />
                         </value>
@@ -100,12 +100,12 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const falseOrTrueSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
+  const falseOrTrueSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
                 <value name="condition">
-                    <block type="or_logic">
+                    <block type="${logicBlock}">
                         <value name="A">
                             <block type="BordeAbajo" />
                         </value>
@@ -122,12 +122,12 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const falseOrFalseSolution = `<xml xmlns="https://developers.google.com/blockly/xml">
+  const falseOrFalseSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
                 <value name="condition">
-                    <block type="or_logic">
+                    <block type="${logicBlock}">
                         <value name="A">
                             <block type="BordeAbajo" />
                         </value>
@@ -144,8 +144,13 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  testExecutionWithBlocks('OR test: True OR True moves to the right', trueOrTrueSolution, 1, false)
-  testExecutionWithBlocks('OR test: True OR False moves to the right', trueOrFalseSolution, 1, false)
-  testExecutionWithBlocks('OR test: False OR True moves to the right', falseOrTrueSolution, 1, false)
-  testExecutionWithBlocks('OR test: False OR False does not move to the right', falseOrFalseSolution, 0, false)
+  testExecutionWithBlocks('True OR True moves to the right', trueOrTrueSolution('or_logic'), 1, false)
+  testExecutionWithBlocks('True OR False moves to the right', trueOrFalseSolution('or_logic'), 1, false)
+  testExecutionWithBlocks('False OR True moves to the right', falseOrTrueSolution('or_logic'), 1, false)
+  testExecutionWithBlocks('False OR False does not move to the right', falseOrFalseSolution('or_logic'), 0, false)
+
+  testExecutionWithBlocks('True AND True moves to the right', trueOrTrueSolution('andBasic'), 1, false)
+  testExecutionWithBlocks('True AND False does not moves to the right', trueOrFalseSolution('andBasic'), 0, false)
+  testExecutionWithBlocks('False AND True does not moves to the right', falseOrTrueSolution('andBasic'), 0, false)
+  testExecutionWithBlocks('False AND False does not move to the right', falseOrFalseSolution('andBasic'), 0, false)
 })
