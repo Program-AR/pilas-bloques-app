@@ -106,11 +106,16 @@ export const useInterpreterRunner = (
           setStepping(false);
           interpreterFactory.clearHighlight();
 
-          checkProblemSolved(currentMulangResults).then(async (solved) => {
-            const staticAnalysis = { couldExecute: true };
-            if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
-            resolve();
-          });
+          checkProblemSolved()
+            .then(async (solved) => {
+              const staticAnalysis = { couldExecute: true };
+              if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
+              resolve();
+            })
+            .catch((err) => {
+              console.warn("La escena finalizó con error o no se pudo verificar el resultado:", err);
+              resolve();
+            });
         }
       };
 
@@ -126,8 +131,8 @@ export const useInterpreterRunner = (
     });
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
-  const checkProblemSolved = async (currentMulangResults: MulangExpectationResult[]) => {
-    const solved = await scene.isTheProblemSolved();    
+  const checkProblemSolved = async () => {
+    const solved = await scene.isTheProblemSolved();
     setSolved(solved);
 
     let outcome: 'success' | 'success_with_warnings' | 'failure' = 'failure';
