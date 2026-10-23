@@ -53,6 +53,7 @@ export const ChallengeView = ({ path, height, serializedChallenge }: ChallengeVi
       predefinedSolution: sc.predefinedSolution,
       shouldShowMultipleScenarioHelp: (sc.scene.maps.length > 1),
       id: 0,
+      title: sc.title,
       imageURL: () => `imagenes/sceneImages/${sc.scene.type}/tool.png`
     }
   )

@@ -1,0 +1,195 @@
+/* FIX TEMPORAL PBD - ver instrucciones de borrado en PBDView.tsx */
+
+/* ---------- Página ---------- */
+
+.pbd-page {
+    min-height: 70vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+    background-color: var(--home-background);
+}
+
+/* ---------- Botón de la home ---------- */
+
+.pbd-home-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 2.5rem 1rem 3rem;
+    background-color: var(--home-background);
+}
+
+.pbd-home-button {
+    border-radius: 999px !important;
+    padding: 0.75rem 2rem !important;
+    background-color: #fff6a6 !important;
+    color: #311c3b !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    font-size: 1.1rem !important;
+    transition: transform 0.2s ease !important;
+}
+
+.pbd-home-button:hover {
+    transform: translateY(-3px);
+    background-color: #fff07a !important;
+}
+
+/* ---------- Sección ---------- */
+
+.pbd-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1rem 3rem;
+    box-sizing: border-box;
+    background-color: var(--home-background);
+}
+
+/* ---------- Título ---------- */
+
+.pbd-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1rem 0 0.5rem !important;
+    color: #ffffff !important;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    text-align: center;
+}
+
+.pbd-title-icon {
+    font-size: 2rem !important;
+    transform: rotate(-90deg);
+    opacity: 0.85;
+}
+
+.pbd-title-text {
+    padding-bottom: 0.25rem;
+    border-bottom: 3px dashed rgba(255, 255, 255, 0.6);
+}
+
+/* ---------- Tarjetas ---------- */
+
+.pbd-cards {
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin: 2rem 0;
+}
+
+.pbd-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 14rem;
+    padding: 2rem 1.5rem 1.75rem;
+    border-radius: 24px;
+    background-color: #fff6a6;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pbd-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+}
+
+.pbd-card-image {
+    width: 9rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 4px solid;
+    background-color: #ffffff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.pbd-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pbd-card-title {
+    font-size: 1.35rem !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.pbd-card-subtitle {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    line-height: 1.2 !important;
+    text-align: center;
+    margin-bottom: 1.5rem !important;
+}
+
+.pbd-card-button {
+    margin-top: auto !important;
+    border-radius: 999px !important;
+    padding: 0.6rem 1.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
+    color: #ffffff !important;
+    transition: filter 0.2s ease !important;
+}
+
+.pbd-card-button:hover {
+    filter: brightness(1.1);
+}
+
+/* ---------- Banner formulario ---------- */
+
+.pbd-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 52rem;
+    box-sizing: border-box;
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    border: 4px solid #ffffff;
+    background-color: #bf7fb8;
+}
+
+.pbd-banner-text {
+    color: #ffffff !important;
+    font-size: 1.1rem !important;
+}
+
+.pbd-banner-button {
+    border-radius: 999px !important;
+    padding: 0.6rem 1.5rem !important;
+    background-color: #5a6acf !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+}
+
+.pbd-banner-button:hover {
+    background-color: #4757bd !important;
+}
+
+@media (max-width: 600px) {
+    .pbd-title {
+        font-size: 1.5rem !important;
+    }
+
+    .pbd-banner {
+        justify-content: center;
+        text-align: center;
+    }
+}

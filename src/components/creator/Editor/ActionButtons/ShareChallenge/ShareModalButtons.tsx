@@ -12,6 +12,7 @@ import { DialogSnackbar } from '../../../../dialogSnackbar/DialogSnackbar';
 import { useTranslation } from 'react-i18next';
 import { SerializedChallenge } from '../../../../serializedChallenge';
 import { DownloadButton } from '../DownloadButton';
+import ReactGA from "react-ga4";
 
 export const CopyToClipboardButton = ({ textToCopy }: { textToCopy: string }) => {
 
@@ -67,6 +68,11 @@ export const ChallengeUpsertButton = ({ Icon, challengeUpsert, nametag }: { Icon
             const savedChallenge = await challengeUpsert(LocalStorage.getCreatorChallenge()!)
             setSharedId(savedChallenge.sharedId!)
             setSavedSnackbarOpen(true)
+
+            ReactGA.event({
+                category: "creator",
+                action: nametag === 'save' ? "update_shared_challenge" : "share_new_challenge"
+            });
         }
         catch (error) {
             setServerError(true)
