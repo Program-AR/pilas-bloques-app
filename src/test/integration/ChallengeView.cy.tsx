@@ -31,6 +31,7 @@ describe('Challenge view with blocks', () => {
       .then($iframe => {
         const iframe = $iframe[0] as HTMLIFrameElement
 
+        cy.get('[data-testid="turbo-switch"]').click()
         cy.get('[data-testid="execute-button"]').click()
 
         cy.wrap(null).should(() => {

@@ -70,6 +70,7 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
     })
 
     // Ejecutar el programa
+    cy.get('[data-testid="turbo-switch"]').click()
     cy.get('[data-testid="execute-button"]').click()
 
 
