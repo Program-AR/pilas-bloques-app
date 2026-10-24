@@ -1,63 +1,13 @@
-import { ChallengeView } from '../../components/challengeView/ChallengeView'
-import { mount } from 'cypress/react'
-import { LocalStorage } from '../../localStorage'
-import { SerializedChallenge } from '../../components/serializedChallenge'
-import { EMBER_IMPORTED_CHALLENGE_PATH } from '../../components/ImportedChallengeView'
-import { ThemeContextProvider } from '../../theme/ThemeContext'
+import { Scene } from '../../../components/serializedChallenge'
+import { testCustomChallengeAtColumn } from '../challengeTest'
 
-describe('Challenge view with blocks - Logical OR Operator', () => {
-  const challenge = (solution: string): SerializedChallenge => {
-    return {
-      fileVersion: 0,
-      title: 'Test de Operadores Logicos',
-      statement: {
-        description: '',
-      },
-      scene: {
+describe('Logical Operators', () => {
+    const scene: Scene = {
         type: 'Lita',
-        maps: [[["A", "L", "-"], ["-", "-", "-"], ["-", "-", "-"]]]
-      },
-      toolbox: {
-        blocks: ["MoverACasillaDerecha", "Si", "BordeArriba", "BordeAbajo", "orLogic", "andLogic"],
-        categorized: true
-      },
-      predefinedSolution: solution
+        maps: [[["A", "-", "-"], ["-", "-", "L"]]]
     }
-  }
 
-  const executeChallengeWithEval = (expression: string, expected: any) => {
-    cy.get('[data-testid="scene-iframe"]')
-      .should('have.attr', 'data-loaded', 'true')
-      .then($iframe => {
-        const iframe = $iframe[0] as HTMLIFrameElement
-
-        cy.get('[data-testid="turbo-switch"]').click()
-        cy.get('[data-testid="execute-button"]').click()
-
-        cy.wrap(null).should(() => {
-          const value = (iframe.contentWindow as any).eval(`
-          pilas.escena_actual().${expression}
-        `)
-
-          expect(value).to.equal(expected)
-        })
-      })
-  }
-
-  const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = false) => {
-    (skip ? it.skip : it)(name, () => {
-      LocalStorage.saveCreatorChallenge(challenge(solution))
-      mount(
-        <ThemeContextProvider>
-          <ChallengeView
-            path={EMBER_IMPORTED_CHALLENGE_PATH} />
-        </ThemeContextProvider>
-      )
-      executeChallengeWithEval('automata.casillaActual().nroColumna', expected)
-    })
-  }
-
-  const trueOrTrueSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
+    const trueTrueSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
@@ -79,7 +29,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const trueOrFalseSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
+    const trueFalseSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
@@ -101,7 +51,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const falseOrTrueSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
+    const falseTrueSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
@@ -123,7 +73,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const falseOrFalseSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
+    const falseFalseSolution = (logicBlock: string) => `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si">
@@ -146,7 +96,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
   </xml>`
 
 
-  const notTrue = `<xml xmlns="https://developers.google.com/blockly/xml">
+    const notTrue = `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si" >
@@ -165,7 +115,7 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
     </block>
   </xml>`
 
-  const notFalse = `<xml xmlns="https://developers.google.com/blockly/xml">
+    const notFalse = `<xml xmlns="https://developers.google.com/blockly/xml">
     <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="15" y="15">
         <statement name="program">
             <block type="Si" >
@@ -185,16 +135,16 @@ describe('Challenge view with blocks - Logical OR Operator', () => {
   </xml>`
 
 
-  testExecutionWithBlocks('True OR True moves to the right', trueOrTrueSolution('orLogic'), 1)
-  testExecutionWithBlocks('True OR False moves to the right', trueOrFalseSolution('orLogic'), 1)
-  testExecutionWithBlocks('False OR True moves to the right', falseOrTrueSolution('orLogic'), 1)
-  testExecutionWithBlocks('False OR False does not move to the right', falseOrFalseSolution('orLogic'), 0)
+    testCustomChallengeAtColumn('True OR True moves to the right', scene, trueTrueSolution('orLogic'), 1)
+    testCustomChallengeAtColumn('True OR False moves to the right', scene, trueFalseSolution('orLogic'), 1)
+    testCustomChallengeAtColumn('False OR True moves to the right', scene, falseTrueSolution('orLogic'), 1)
+    testCustomChallengeAtColumn('False OR False does not move to the right', scene, falseFalseSolution('orLogic'), 0)
 
-  testExecutionWithBlocks('True AND True moves to the right', trueOrTrueSolution('andLogic'), 1)
-  testExecutionWithBlocks('True AND False does not moves to the right', trueOrFalseSolution('andLogic'), 0)
-  testExecutionWithBlocks('False AND True does not moves to the right', falseOrTrueSolution('andLogic'), 0)
-  testExecutionWithBlocks('False AND False does not move to the right', falseOrFalseSolution('andLogic'), 0)
+    testCustomChallengeAtColumn('True AND True moves to the right', scene, trueTrueSolution('andLogic'), 1)
+    testCustomChallengeAtColumn('True AND False does not moves to the right', scene, trueFalseSolution('andLogic'), 0)
+    testCustomChallengeAtColumn('False AND True does not moves to the right', scene, falseTrueSolution('andLogic'), 0)
+    testCustomChallengeAtColumn('False AND False does not move to the right', scene, falseFalseSolution('andLogic'), 0)
 
-  testExecutionWithBlocks('NOT True does not move to the right', notTrue, 0)
-  testExecutionWithBlocks('NOT False move to the right', notFalse, 1)
+    testCustomChallengeAtColumn('NOT True does not move to the right', scene, notTrue, 0)
+    testCustomChallengeAtColumn('NOT False move to the right', scene, notFalse, 1)
 })

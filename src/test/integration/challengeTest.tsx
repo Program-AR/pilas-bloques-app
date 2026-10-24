@@ -5,6 +5,9 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '../../i18n'
 import Blockly from 'blockly/core'
+import { Scene, SerializedChallenge } from '../../components/serializedChallenge'
+import { LocalStorage } from '../../localStorage'
+import { EMBER_IMPORTED_CHALLENGE_PATH } from '../../components/ImportedChallengeView'
 
 type ChallengeTestOptions = {
   solucion: string
@@ -69,11 +72,7 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
       Blockly.Xml.clearWorkspaceAndLoadFromXml(xml, workspace)
     })
 
-    // Ejecutar el programa
-    cy.get('[data-testid="turbo-switch"]').click()
-    cy.get('[data-testid="execute-button"]').click()
-
-
+    exectueChallenge()
 
     if (errorEsperado) {
       cy.window({ timeout: 60000 }).should((win) => {
@@ -98,4 +97,46 @@ export const challengeTest = (challengeId: number, optionsOrSolucion: ChallengeT
  */
 export const moduloDesafio = (challengeId: number, tests: () => void) => {
   describe(`Desafío ${challengeId}`, tests)
+}
+
+export const customChallenge = (scene: Scene, predefinedSolution: string): SerializedChallenge =>
+({
+  fileVersion: 0,
+  title: 'Custom challenge',
+  statement: { description: '' },
+  toolbox: { blocks: [] },
+  scene,
+  predefinedSolution
+})
+
+export const testCustomChallengeAtColumn = (name: string, scene: Scene, solution: string, column: number, skip = false) => {
+  (skip ? it.skip : it)(name, () => {
+    LocalStorage.saveCreatorChallenge(customChallenge(scene, solution))
+    mount(
+      <ThemeContextProvider>
+        <ChallengeView
+          path={EMBER_IMPORTED_CHALLENGE_PATH} />
+      </ThemeContextProvider>
+    )
+    executeChallengeWithEval('pilas.escena_actual().automata.casillaActual().nroColumna', column)
+  })
+}
+
+const executeChallengeWithEval = (expression: string, expected: any) => {
+  cy.get('[data-testid="scene-iframe"]')
+    .should('have.attr', 'data-loaded', 'true')
+    .then($iframe => {
+      exectueChallenge()
+      cy.wrap(null).should(() => {
+        const iframe = $iframe[0] as HTMLIFrameElement
+        const value = (iframe.contentWindow as any).eval(expression)
+        console.log({ value })
+        expect(value).to.equal(expected)
+      })
+    })
+}
+
+const exectueChallenge = () => {
+  cy.get('[data-testid="turbo-switch"]').click()
+  cy.get('[data-testid="execute-button"]').click()
 }
