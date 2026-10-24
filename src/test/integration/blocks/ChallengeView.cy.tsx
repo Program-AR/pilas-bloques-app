@@ -1,59 +1,10 @@
-import { ChallengeView } from '../../components/challengeView/ChallengeView'
-import { mount } from 'cypress/react18'
-import { LocalStorage } from '../../localStorage'
-import { SerializedChallenge } from '../../components/serializedChallenge'
-import { EMBER_IMPORTED_CHALLENGE_PATH } from '../../components/ImportedChallengeView'
-import { ThemeContextProvider } from '../../theme/ThemeContext'
+import { Scene } from '../../../components/serializedChallenge'
+import { testCustomChallengeAtColumn } from '../challengeTest'
 
 describe('Challenge view with blocks', () => {
-  const challenge = (solution: string): SerializedChallenge => {
-    return {
-      fileVersion: 0,
-      title: '',
-      statement: {
-        description: '',
-      },
-      scene: {
-        type: 'Lita',
-        maps: [[["A", "L", "-"], ["-", "-", "-"], ["-", "-", "-"]]]
-      },
-      toolbox: {
-        blocks: ["AgarrarLechuga", "MoverACasillaDerecha", "MoverA", "Repetir", "Hasta", "Si", "SiNo", "ParaLaDerecha", "ParaLaIzquierda", "ParaArriba", "ParaAbajo", "Numero", "HayLechuga", "OpAritmetica"],
-        categorized: true
-      },
-      predefinedSolution: solution
-    }
-  }
-
-  const executeChallengeWithEval = (expression: string, expected: any) => {
-    cy.get('[data-testid="scene-iframe"]')
-      .should('have.attr', 'data-loaded', 'true')
-      .then($iframe => {
-        const iframe = $iframe[0] as HTMLIFrameElement
-
-        cy.get('[data-testid="execute-button"]').click()
-
-        cy.wrap(null).should(() => {
-          const value = (iframe.contentWindow as any).eval(`
-          pilas.escena_actual().${expression}
-        `)
-
-          expect(value).to.equal(expected)
-        })
-      })
-  }
-
-  const testExecutionWithBlocks = (name: string, solution: string, expected: any, skip = true) => {
-    (skip ? it.skip : it)(name, () => {
-      LocalStorage.saveCreatorChallenge(challenge(solution))
-      mount(
-        <ThemeContextProvider>
-          <ChallengeView
-            path={EMBER_IMPORTED_CHALLENGE_PATH} />
-        </ThemeContextProvider>
-      )
-      executeChallengeWithEval('automata.casillaActual().nroColumna', expected)
-    })
+  const scene: Scene = {
+    type: 'Lita',
+    maps: [[["A", "L", "-"]]]
   }
 
   const simpleMoveSolution = `<xml xmlns="http://www.w3.org/1999/xhtml">
@@ -279,23 +230,13 @@ describe('Challenge view with blocks', () => {
   </block>
 </xml>`;
 
-  testExecutionWithBlocks('Execution of a solution has effect on scene view', simpleMoveSolution, 0, false)
-
-  //Code from blocks have effect 
-  testExecutionWithBlocks('Code from blocks have effect - boolean operators', operatorSolution, 1, false)
-
-  testExecutionWithBlocks('Code from blocks have effect - aritmethic operators', aritmethicSolution, 2, false)
-
-  testExecutionWithBlocks('Code from blocks have effect - move with parameters', moveWithParameterSolution, 1, false)
-
-  testExecutionWithBlocks('Code from blocks have effect -  if', ifSolution, 0, false)
-
-  testExecutionWithBlocks('Code from blocks have effect - repeat', repeatSolution, 2, false)
-
-  testExecutionWithBlocks('Code from blocks have effect - repeat until', repeatUntilSolution, 1, false)
-
-  testExecutionWithBlocks('Code from blocks have effect - procedures', procedureSolution, 1, false)
-
-  testExecutionWithBlocks('Code from blocks have effect - procedures with parameter', procedureWithParameterSolution, 1, false)
-
+  testCustomChallengeAtColumn('Execution of a solution has effect on scene view', scene, simpleMoveSolution, 1)
+  testCustomChallengeAtColumn('Code from blocks have effect - boolean operators', scene, operatorSolution, 1)
+  testCustomChallengeAtColumn('Code from blocks have effect - aritmethic operators', scene, aritmethicSolution, 2)
+  testCustomChallengeAtColumn('Code from blocks have effect - move with parameters', scene, moveWithParameterSolution, 1)
+  testCustomChallengeAtColumn('Code from blocks have effect -  if', scene, ifSolution, 0)
+  testCustomChallengeAtColumn('Code from blocks have effect - repeat', scene, repeatSolution, 2)
+  testCustomChallengeAtColumn('Code from blocks have effect - repeat until', scene, repeatUntilSolution, 1)
+  testCustomChallengeAtColumn('Code from blocks have effect - procedures', scene, procedureSolution, 1)
+  testCustomChallengeAtColumn('Code from blocks have effect - procedures with parameter', scene, procedureWithParameterSolution, 1)
 })

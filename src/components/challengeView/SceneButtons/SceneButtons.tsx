@@ -64,6 +64,7 @@ const TurboModeSwitch = () => {
         },
       },
     }}
+    data-testid='turbo-switch'
     icon={<BoltIcon sx={pbIconStyle(theme)} />}
     checkedIcon={<BoltIcon sx={pbIconStyle(theme)} />}
     onChange={() => handleTurboMode()} />

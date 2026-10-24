@@ -1,4 +1,4 @@
-import { challengeTest } from '../../helpers/challengeTest'
+import { challengeTest } from '../challengeTest'
 
 describe('Desafío 1024 - PrendiendoLasCompusYvoty', () => {
   it('Resuelve el desafío 1024', () => {

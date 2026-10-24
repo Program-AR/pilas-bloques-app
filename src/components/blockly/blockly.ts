@@ -475,6 +475,7 @@ const defineBlocklyTranslations = (t: (key: string) => string) => {
   Blockly.Msg.REDO = t("contextMenu.redo")
   Blockly.Msg.CLEAN_UP = t("contextMenu.cleanUp")
   Blockly.Msg.EXTERNAL_INPUTS = t("contextMenu.externalInputs")
+  Blockly.Msg.LOGIC_NEGATE_TITLE = `${t('blocks.notOperator')} %1`
 
   // ProcedsBlockly.init() needs all procedure blocks to work, so we need to put them back
   // After calling init(), we disable unwanted toolbox blocks again

@@ -1,4 +1,4 @@
-import { challengeTest } from '../../helpers/challengeTest'
+import { challengeTest } from '../challengeTest'
 
 describe('Desafío 1043 - ElPasilloCurvoDeCelus', () => {
   it('Resuelve el desafío 1043', () => {

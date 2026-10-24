@@ -5,7 +5,7 @@ import Blockly from "blockly/core"
 
 export const sensorsColor = '#2ca5e2';
 
-export const createSensorBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition) => {
+export const createSensorBlock = (id: string, message: string, options: optionType, icon?: string, blockDefinition?: BlocklyBlockDefinition, outputType: string = 'Boolean') => {
   validateRequiredOptions(id, options, ['funcionSensor']);
 
   const jsonInit: BlocklyBlockDefinition = (blockDefinition ? blockDefinition : {
@@ -13,7 +13,7 @@ export const createSensorBlock = (id: string, message: string, options: optionTy
     colour: sensorsColor,
     inputsInline: true,
     args0: [],
-    output: null,
+    output: outputType,
   })
 
   if (icon) {
@@ -132,7 +132,7 @@ export const createSensorBlocks = (t: (key: string) => string) => {
 
   createSensorBlock('KmsTotales', t('blocks.kmToTravel'), {
     'funcionSensor': 'kmsTotales()',
-  }, 'icono.kms.png'
+  }, 'icono.kms.png', undefined, 'Number'
   );
 
   createSensorBlock('EstoyEnEsquina', t('blocks.atTheSquare'), {
@@ -162,7 +162,7 @@ export const createSensorBlocks = (t: (key: string) => string) => {
 
   createSensorBlock('LargoColumnaActual', t('blocks.currentColumnLength'), {
     'funcionSensor': 'largoColumnaActual()-1',
-  }, 'icono.largoCol.png'
+  }, 'icono.largoCol.png', undefined, 'Number'
   );
 
   createSensorBlock('TocandoAbajo', t('blocks.canMoveDown'), {
@@ -300,7 +300,7 @@ export const createSensorBlocks = (t: (key: string) => string) => {
           ]
         }
       ],
-      "output": null,
+      "output": "Boolean",
     }
   );
   javascriptGenerator.forBlock['HayVocalRMT'] = function (block: any) {

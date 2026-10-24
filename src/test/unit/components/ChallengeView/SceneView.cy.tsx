@@ -1,4 +1,4 @@
-import { mount } from 'cypress/react18'
+import { mount } from 'cypress/react'
 import React from 'react'
 import { SceneView } from '../../../../components/challengeView/SceneView'
 import { allDescriptors } from '../../../../staticData/challenges'

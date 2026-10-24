@@ -124,7 +124,11 @@
     "leftBorder": "Estou na borda esquerda?",
     "rightBorder": "Estou na borda direita?",
     "bottomBorder": "Estou na borda inferior?",
-    "topBorder": "Estou na borda superior?"
+    "topBorder": "Estou na borda superior?",
+    "andLogic": "E",
+    "orLogic": "Ou",
+    "notOperator": "Não",
+    "logicOperator": "Operadores lógicos"
   },
   "procedures": {
     "definition": "Definir",

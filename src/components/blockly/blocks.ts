@@ -166,7 +166,28 @@ export const commonBlocks: BlockType[] = [
     id: 'PuedeMoverDerecha',
     intlId: 'canMoveRight',
     categoryId: 'sensors'
-  }
+  },
+  {
+    id: 'andLogic',
+    intlId: 'andLogic',
+    categoryId: 'operators'
+  },
+  {
+    id: 'orLogic',
+    intlId: 'orLogic',
+    categoryId: 'operators'
+  },
+  {
+    id:'operadorNot',
+    intlId:'notOperator',
+    categoryId:'operators'
+  },
+  {
+    id: 'logicOperator',
+    intlId: 'logicOperator',
+    categoryId: 'operators'
+  },
+
 ]
 
 
@@ -391,8 +412,8 @@ export const sceneBlocks: BlockType[] = [
     intlId: 'bouncePingPong',
     categoryId: 'primitives'
   },
-  
-  
+
+
 ]
 
 const challengeOnlyBlocks: BlockType[] = [
@@ -723,7 +744,7 @@ const challengeOnlyBlocks: BlockType[] = [
     id: 'OpComparacion',
     intlId: 'logic_compare',
     categoryId: 'operators'
-  } 
+  }
 ]
 
 const allBlocks: BlockType[] = commonBlocks.concat(sceneBlocks).concat(challengeOnlyBlocks)

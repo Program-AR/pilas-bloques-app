@@ -1,4 +1,4 @@
-import { challengeTest, moduloDesafio } from '../../helpers/challengeTest'
+import { challengeTest, moduloDesafio } from '../challengeTest'
 
 // Fuente: https://github.com/Program-AR/pilas-bloques-ember/blob/develop/tests/integration/desafios/ChuyHaciendoJueguito-test.js
 
