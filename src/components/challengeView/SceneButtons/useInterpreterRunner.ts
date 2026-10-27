@@ -106,7 +106,7 @@ export const useInterpreterRunner = (
           setStepping(false);
           interpreterFactory.clearHighlight();
 
-          checkProblemSolved()
+          checkProblemSolved(currentMulangResults)
             .then(async (solved) => {
               const staticAnalysis = { couldExecute: true };
               if (solutionId) await PilasBloquesApi.executionFinishedEvent(solutionId, staticAnalysis, solved);
@@ -131,7 +131,7 @@ export const useInterpreterRunner = (
     });
   }, [challenge, mode, setRunning, getBlocklyXML]);
 
-  const checkProblemSolved = async () => {
+  const checkProblemSolved = async (currentMulangResults: MulangExpectationResult[] = []) => {
     const solved = await scene.isTheProblemSolved();
     setSolved(solved);
 
@@ -139,16 +139,16 @@ export const useInterpreterRunner = (
     let failedExpectationsString = "";
 
     if (solved) {
-       const failedExpectations = currentMulangResults.filter(req => req.result === false);
-       if (failedExpectations.length > 0) {
-           outcome = 'success_with_warnings';
-           // Join the IDs of the failed expectations (e.g. "Uses Simple Repetition")
-           failedExpectationsString = failedExpectations.map(req => req.id).join(', ');
-       } else {
-           outcome = 'success';
-       }
+      const failedExpectations = currentMulangResults.filter(req => req.result === false);
+      if (failedExpectations.length > 0) {
+        outcome = 'success_with_warnings';
+        // Join the IDs of the failed expectations (e.g. "Uses Simple Repetition")
+        failedExpectationsString = failedExpectations.map(req => req.id).join(', ');
+      } else {
+        outcome = 'success';
+      }
     }
-    
+
     trackExecutionEvent(outcome, failedExpectationsString);
 
     if (solved) setShowModal(true);
