@@ -164,7 +164,8 @@ export namespace PilasBloquesApi{
         return _doFetch(url, {
           method,
           body: JSON.stringify(await bodyWithContext<T>(body)),
-          headers
+          headers,
+          credentials: 'include'
         })  
           .catch(connectionErr => {
             if (critical) throw connectionErr
