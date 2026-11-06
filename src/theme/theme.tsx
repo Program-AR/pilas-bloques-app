@@ -21,7 +21,9 @@ const lightTheme: ThemeOptions = {
             main: '#777777',
         },
         secondary: {
-            main: '#ffb600'
+            main: '#ffb600',
+            dark: '#e6a400',
+            contrastText: '#202020'
         },
         text: {
             primary: '#777777',
@@ -54,7 +56,9 @@ const darkTheme: ThemeOptions = {
             main: '#f8f8f8',
         },
         secondary: {
-            main: '#ffb600'
+            main: '#ffb600',
+            dark: '#e6a400',
+            contrastText: '#202020'
         },
         text: {
             primary: '#f8f8f8',

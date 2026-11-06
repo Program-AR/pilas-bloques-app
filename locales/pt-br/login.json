@@ -9,5 +9,6 @@
   "password": "Senha",
   "logout": "Fechar sessão",
   "changeUser": "Mudar usuário",
+  "community": "Comunidade",
   "serverError": "Problema com o servidor, tente novamente mais tarde"
 }

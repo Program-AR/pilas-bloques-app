@@ -9,5 +9,6 @@
   "password": "Password",
   "logout": "Log out",
   "changeUser": "Change user",
+  "community": "Community",
   "serverError": "There's a problem with the server, try again later"
 }

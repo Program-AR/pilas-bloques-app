@@ -25,6 +25,24 @@ export interface Credentials{
   password: string | null
 }
 
+export type ForumAccount = {
+  id: string
+  username: string
+  nickName: string
+  isForumPrimary: boolean
+}
+
+export type ForumStatus = {
+  hasEmail: boolean
+  email: string | null
+  isVerified: boolean
+  hasMultipleAccounts: boolean
+  accountsWithSameEmail: ForumAccount[]
+  isCurrentAccountPrimary: boolean
+  primaryAccountUsername: string | null
+  canAccessForum: boolean
+}
+
 export class ApiError extends Error {
   status: number;
   constructor(status: number, message: string) {
@@ -37,7 +55,7 @@ type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 declare global { // see public/index.html
   interface Window {
-    PBRuntime: {apiURL: string}
+    PBRuntime: {apiURL: string; forumURL?: string}
   }
 }
 
@@ -140,6 +158,46 @@ export namespace PilasBloquesApi{
       return isValid
     }
 
+    export type ForumAccount = {
+      id: string
+      username: string
+      nickName: string
+      isForumPrimary: boolean
+    }
+
+    export type ForumStatus = {
+      hasEmail: boolean
+      email: string | null
+      isVerified: boolean
+      hasMultipleAccounts: boolean
+      accountsWithSameEmail: ForumAccount[]
+      isCurrentAccountPrimary: boolean
+      primaryAccountUsername: string | null
+      canAccessForum: boolean
+    }
+
+    export const getForumStatus = async (): Promise<ForumStatus> => {
+      return await _send('GET', 'forum/status')
+    }
+
+    export const sendForumCode = async (email?: string): Promise<{ ok: boolean, email: string }> => {
+      return await _send('POST', 'forum/send-code', email ? { email } : {})
+    }
+
+    export const verifyForumCode = async (code: string, selectedPrimaryUserId?: string, email?: string) => {
+      return await _send('POST', 'forum/verify-code', { code, selectedPrimaryUserId, email })
+    }
+
+    export const getForumSession = async () => {
+      return await _send('POST', 'forum/session')
+    }
+
+    export const logout = async () => {
+      return await _send('POST', 'logout')
+    }
+
+    export const forumURL = window.PBRuntime?.forumURL || process.env.VITE_FORUM_URL || 'https://comunidad.pilasbloques.program.ar'
+
     export const baseURL = window.PBRuntime?.apiURL || process.env.VITE_API_URL
 
     async function bodyWithContext<T>(body?: T) {
@@ -179,7 +237,7 @@ export namespace PilasBloquesApi{
     
       function _doFetch(url: RequestInfo | URL, options: RequestInit) {
         try {
-          return fetch(url, options)
+          return fetch(url, { ...options, credentials: 'include' })
         } catch (err) {
           return Promise.reject(err)
         }
