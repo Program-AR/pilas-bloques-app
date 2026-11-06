@@ -154,17 +154,17 @@ class Scene {
   }
 
   isTheProblemSolved() {
-    return this.eval(`pilas.escena_actual().estaResueltoElProblema();`);
+    return this.eval(`pilas.escena_actual().estaResueltoElProblema();`)
   }
 
   behaviourClass(behaviour: string): Behaviour {
     return this.eval(`
             var comportamiento = null;
     
-            if (window['${behaviour}']) {
-              comportamiento = ${behaviour};
+            if (typeof window['${behaviour}'] !== 'undefined') {
+              comportamiento = window['${behaviour}'];
             } else {
-              if (pilas.comportamientos['${behaviour}']) {
+              if (typeof pilas !== 'undefined' && pilas.comportamientos && pilas.comportamientos['${behaviour}']) {
                 comportamiento = pilas.comportamientos['${behaviour}'];
               } else {
                 throw new Error("No existe un comportamiento llamado '${behaviour}'.");
@@ -177,13 +177,18 @@ class Scene {
 
   evaluateExpression(expression: string): boolean {
     return this.eval(`
-        try {
-          var value = pilas.escena_actual().automata.${expression}
-        } catch (e) {
-          pilas.escena_actual().errorHandler.handle(e);
-        }
-
-        value`)
+        (function() {
+          if (typeof pilas === 'undefined' || !pilas.escena_actual || !pilas.escena_actual()) return false;
+          try {
+            var value = pilas.escena_actual().automata.${expression};
+          } catch (e) {
+            if (pilas.escena_actual().errorHandler) {
+              pilas.escena_actual().errorHandler.handle(e);
+            }
+          }
+          return value;
+        })()
+    `)
   }
 }
 

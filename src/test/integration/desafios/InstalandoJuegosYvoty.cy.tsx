@@ -1,8 +1,8 @@
-import { challengeTest } from '../../helpers/challengeTest'
+import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
-describe('Desafío 1010 - InstalandoJuegosYvoty', () => {
-  it('Resuelve el desafío 1010', () => {
-    const solucion = `<?xml version="1.0" encoding="UTF-8"?>
+moduloDesafio(1010, () => {
+  challengeTest(1010, {
+    solucion: `<?xml version="1.0" encoding="UTF-8"?>
 	<xml xmlns="http://www.w3.org/1999/xhtml">
 	   <block type="al_empezar_a_ejecutar" id="193" deletable="false" movable="false" editable="false" x="0" y="0">
 		  <statement name="program">
@@ -59,8 +59,6 @@ describe('Desafío 1010 - InstalandoJuegosYvoty', () => {
 			 </block>
 		  </statement>
 	   </block>
-	</xml>`;
-    challengeTest(1010, solucion)
+	</xml>`,
   })
-
 })

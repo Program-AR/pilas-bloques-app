@@ -69,8 +69,26 @@ export const setupBlocklyBlocks = (t: (key: string) => string, simpleReadModeEna
   createCommonCode()
 }
 
-const restoreVariablesGetFieldsFromXml = (workspace: Blockly.Workspace, xml: string) => {
-  const xmlDom = Blockly.utils.xml.textToDom(xml);
+const ensureBlockIdsInDom = (xmlDom: Element) => {
+  const blocks = Array.from(xmlDom.getElementsByTagName('block'));
+  const usedIds = new Set(
+    blocks.map((block) => block.getAttribute('id')).filter(Boolean)
+  );
+  let nextAutoId = 1;
+
+  blocks.forEach((block) => {
+    if (!block.getAttribute('id')) {
+      while (usedIds.has(`pb_auto_block_${nextAutoId}`)) {
+        nextAutoId++;
+      }
+      const generatedId = `pb_auto_block_${nextAutoId++}`;
+      block.setAttribute('id', generatedId);
+      usedIds.add(generatedId);
+    }
+  });
+};
+
+const restoreVariablesGetFieldsFromXml = (workspace: Blockly.Workspace, xmlDom: Element) => {
   const xmlBlocks = Array.from(xmlDom.getElementsByTagName('block'));
 
   xmlBlocks.forEach((xmlBlock) => {
@@ -101,13 +119,13 @@ const restoreVariablesGetFieldsFromXml = (workspace: Blockly.Workspace, xml: str
   });
 };
 
-const removeProcedureMutationsBeforeLoad = (xml: string): Element => {
-  const xmlDom = Blockly.utils.xml.textToDom(xml);
+const isProcedureDefBlock = (type: string | null) =>
+  type === 'procedures_defnoreturn' || type === 'procedures_defreturn' || type === 'Procedimiento';
 
-  const procedureBlocks = Array.from(xmlDom.getElementsByTagName('block')).filter((node) => {
-    const type = node.getAttribute('type');
-    return type === 'procedures_defnoreturn' || type === 'procedures_defreturn';
-  });
+const removeProcedureMutationsBeforeLoad = (xmlDom: Element): Element => {
+  const procedureBlocks = Array.from(xmlDom.getElementsByTagName('block')).filter((node) =>
+    isProcedureDefBlock(node.getAttribute('type'))
+  );
 
   procedureBlocks.forEach((node) => {
     const mutationNode = Array.from(node.children).find(
@@ -136,7 +154,7 @@ const ensureProcedureMutationsInDom = (xmlDom: Element) => {
 
   blocks.forEach((block) => {
     const type = block.getAttribute('type');
-    if (type !== 'procedures_defnoreturn' && type !== 'procedures_defreturn') return;
+    if (!isProcedureDefBlock(type)) return;
 
     const hasMutation = Array.from(block.children).some(
       (child) => child.tagName.toLowerCase() === 'mutation'
@@ -177,15 +195,14 @@ const ensureProcedureMutationsInDom = (xmlDom: Element) => {
   });
 };
 
-const getProcedureArgsFromXml = (xml: string): Map<string, string[]> => {
-  const xmlDom = Blockly.utils.xml.textToDom(xml);
+const getProcedureArgsFromXml = (xmlDom: Element): Map<string, string[]> => {
   const result = new Map<string, string[]>();
 
   const blocks = Array.from(xmlDom.getElementsByTagName('block'));
 
   blocks.forEach((block) => {
     const type = block.getAttribute('type');
-    if (type !== 'procedures_defnoreturn' && type !== 'procedures_defreturn') return;
+    if (!isProcedureDefBlock(type)) return;
 
     const blockId = block.getAttribute('id');
     if (!blockId) return;
@@ -318,13 +335,16 @@ export const setXml = (xml: string) => {
   const workspace = Blockly.getMainWorkspace();
   workspace.clear();
 
-  const procedureArgsMap = getProcedureArgsFromXml(xml);
-  const xmlDom = removeProcedureMutationsBeforeLoad(xml);
+  const xmlDom = Blockly.utils.xml.textToDom(xml);
+  ensureBlockIdsInDom(xmlDom);
+
+  const procedureArgsMap = getProcedureArgsFromXml(xmlDom);
+  removeProcedureMutationsBeforeLoad(xmlDom);
 
   Blockly.Xml.domToWorkspace(xmlDom, workspace);
 
   restoreProcedureArgsFromXmlMap(workspace, procedureArgsMap);
-  restoreVariablesGetFieldsFromXml(workspace, xml);
+  restoreVariablesGetFieldsFromXml(workspace, xmlDom);
   revalidateVariableBlocks(workspace);
 };
 
@@ -389,6 +409,7 @@ const createAliases = () => {
     if (!Blockly.Blocks[original]) return;
 
     Blockly.Blocks[alias] = {
+      ...Blockly.Blocks[original],
       init: function () {
         Blockly.Blocks[original].init.call(this);
       },
@@ -402,6 +423,7 @@ const createAliases = () => {
     }
   };
 
+  aliasBlock('Procedimiento', 'procedures_defnoreturn', { categoryId: 'myprocedures' });
   aliasBlock('si', 'Si', { categoryId: 'alternatives' });
   aliasBlock('Sino', 'SiNo', { categoryId: 'alternatives' });
   aliasBlock('sino', 'SiNo', { categoryId: 'alternatives' });

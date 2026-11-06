@@ -54,6 +54,7 @@ const TurboModeSwitch = () => {
   }
 
   return <PBSwitch
+    data-testid="turbo-switch"
     sx={{
       "& .MuiSwitch-switchBase": {
         "&.Mui-checked": {

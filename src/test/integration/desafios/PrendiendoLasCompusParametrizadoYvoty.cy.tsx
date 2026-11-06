@@ -1,8 +1,8 @@
-import { challengeTest } from '../../helpers/challengeTest'
+import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
-describe('Desafío 1132 - PrendiendoLasCompusParametrizadoYvoty', () => {
-  it('Resuelve el desafío 1132', () => {
-    const solucion = `<xml xmlns="http://www.w3.org/1999/xhtml">
+moduloDesafio(1132, () => {
+  challengeTest(1132, {
+    solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
 		<variables>
 		  <variable type="" id="i0)F?:LYp*zutb,AI.@E">direccion</variable>
 		</variables>
@@ -94,14 +94,13 @@ describe('Desafío 1132 - PrendiendoLasCompusParametrizadoYvoty', () => {
 			</block>
 		  </statement>
 		</block>
-	  </xml> 
-	\`
-	});
+	  </xml>`
+  })
 
-	actividadTest(nombre, {
-		descripcionAdicional: 'Da error si se intenta prender una computadora donde no hay',
-		errorEsperado: 'No hay una computadora aquí',
-		solucion: \`<?xml version="1.0" encoding="UTF-8"?>
+  challengeTest(1132, {
+    descripcionAdicional: 'Da error si se intenta prender una computadora donde no hay',
+    errorEsperado: 'No hay una computadora aquí',
+    solucion: `<?xml version="1.0" encoding="UTF-8"?>
 							<xml xmlns="http://www.w3.org/1999/xhtml">
    							<variables />
   	 						<block type="al_empezar_a_ejecutar" id="IAu_wXvP7R@SfU%v^Vtk" deletable="false" movable="false" editable="false" x="15" y="15">
@@ -109,8 +108,6 @@ describe('Desafío 1132 - PrendiendoLasCompusParametrizadoYvoty', () => {
         		 				<block type="PrenderComputadora" id="zcbpp]rCxf0V_fAjI_B," />
       						</statement>
    							</block>
-						</xml>`;
-    challengeTest(1132, solucion)
+						</xml>`
   })
-
 })
