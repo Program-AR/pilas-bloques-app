@@ -26,7 +26,6 @@ class Scene {
    * @param descriptor The scene descriptor
    */
   async load(descriptor: Challenge["sceneDescriptor"]) {
-
     await this.initializePilasWeb(descriptor)
     this.isReady = true
     this.setChallenge(descriptor)
@@ -143,19 +142,19 @@ class Scene {
   }
 
   isTurboModeActive() {
-    return this.eval('ComportamientoConVelocidad').modoTurbo;
+    return this.eval('ComportamientoConVelocidad').modoTurbo
   }
 
   sceneActor(): Actor {
-    return this.eval('pilas.escena_actual().automata');
+    return this.eval('pilas.escena_actual().automata')
   }
 
   sceneReceptor(receptor: string): Actor {
-    return this.eval('pilas.escena_actual().automata');
+    return this.eval(`pilas.escena_actual().${receptor}`)
   }
 
   isTheProblemSolved() {
-    return this.eval(`pilas.escena_actual().estaResueltoElProblema();`);
+    return this.eval(`pilas.escena_actual().estaResueltoElProblema();`)
   }
 
   behaviourClass(behaviour: string): Behaviour {
