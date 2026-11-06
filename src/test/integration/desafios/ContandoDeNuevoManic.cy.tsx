@@ -2,9 +2,10 @@ import { challengeTest, moduloDesafio } from '../../helpers/challengeTest'
 
 // Fuente: https://github.com/Program-AR/pilas-bloques-ember/blob/develop/tests/integration/desafios/ContandoDeNuevoManic-test.js
 
-describe('Desafío 1027 - ContandoDeNuevoManic', () => {
-   it('Resuelve el desafío 1027', () => {
-      const solucion = `<?xml version="1.0" encoding="UTF-8"?>
+moduloDesafio(1027, () => {
+
+  challengeTest(1027, {
+    solucion: `<?xml version="1.0" encoding="UTF-8"?>
 <xml xmlns="http://www.w3.org/1999/xhtml">
          <block type="al_empezar_a_ejecutar" id="3" deletable="false" movable="false" editable="false" x="0" y="0">
             <statement name="program">
@@ -92,10 +93,8 @@ describe('Desafío 1027 - ContandoDeNuevoManic', () => {
                </block>
             </statement>
          </block>
-      </xml>`;
-      challengeTest(1027, solucion)
-   })
+      </xml>`,
+    resuelveDesafio: true,
+  })
 
 })
-
-

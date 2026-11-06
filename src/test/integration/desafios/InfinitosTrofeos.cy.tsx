@@ -1,10 +1,8 @@
-import { challengeTest } from '../../helpers/challengeTest'
+import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
-
-describe('Desafío 1134 - InfinitosTrofeos', () => {
-
-	it('Resuelve el desafío 1134', () => {
-		const solucion = `<xml xmlns="http://www.w3.org/1999/xhtml">
+moduloDesafio(1134, () => {
+	challengeTest(1134, {
+		solucion: `<xml xmlns="http://www.w3.org/1999/xhtml">
 			<block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="0" y="0">
 				<statement name="program">
 					<block type="procedures_callnoreturn" inline="true">
@@ -151,8 +149,6 @@ describe('Desafío 1134 - InfinitosTrofeos', () => {
 					</block>
 				</statement>
 			</block>
-		</xml>`;
-		challengeTest(1134, solucion)
-	});
-
-});
+		</xml>`,
+	})
+})

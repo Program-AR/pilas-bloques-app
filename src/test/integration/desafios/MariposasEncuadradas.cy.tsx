@@ -1,9 +1,8 @@
 import { moduloDesafio, challengeTest } from '../../helpers/challengeTest'
 
-
-describe('Desafío 1133 - MariposasEncuadradas', () => {
-   it('Resuelve el desafío 1133', () => {
-      const solucion = `<?xml version="1.0" encoding="UTF-8"?>
+moduloDesafio(1133, () => {
+   challengeTest(1133, {
+      solucion: `<?xml version="1.0" encoding="UTF-8"?>
         <xml xmlns="http://www.w3.org/1999/xhtml">
          <block type="al_empezar_a_ejecutar" deletable="false" movable="false" editable="false" x="0" y="0">
             <statement name="program">
@@ -90,9 +89,7 @@ describe('Desafío 1133 - MariposasEncuadradas', () => {
                </block>
             </statement>
          </block>
-      </xml>`;
-      challengeTest(1133, solucion)
+      </xml>`,
    })
-
 })
 
