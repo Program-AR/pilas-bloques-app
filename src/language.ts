@@ -23,6 +23,10 @@ export const availableLanguages: InternalizationLanguage[] = [
   {
     name: "Português",
     languageCode: "pt-br"
+  },
+  {
+    name: "Українська",
+    languageCode: "uk-ua"
   }
 ];
 
