@@ -15,9 +15,20 @@ export const CreatorActionButton = ({ isshortversion = false, ...props }: Creato
   return (
     <Tooltip title={isSmallScreen ? t(`editor.buttons.${props.nametag}`) : ''}>
       <Button {...props} variant="outlined" 
+        size={isSmallScreen ? "small" : "medium"}
         sx={{ textTransform: "none",
-              margin: '0 10px',
+              margin: isSmallScreen ? '0 2px' : '0 10px',
+              padding: isSmallScreen ? '3px 6px' : undefined,
+              fontSize: isSmallScreen ? '0.75rem' : undefined,
+              minWidth: isSmallScreen ? 0 : undefined,
               whiteSpace: 'nowrap',
+              '& .MuiButton-startIcon': isSmallScreen ? {
+                marginRight: '3px',
+                marginLeft: '-1px',
+                '& svg': {
+                  fontSize: '1.1rem',
+                }
+              } : undefined,
               ...props.sx
             }}>
         {t(`editor.buttons.${props.nametag}${!isshortversion && isSmallScreen ? 'Short' : ''}`)}
@@ -27,12 +38,13 @@ export const CreatorActionButton = ({ isshortversion = false, ...props }: Creato
 }
 
 export const StyledCreatorActionButton = (props: CreatorActionButtonProps) => {
+  const { isSmallScreen } = useThemeContext()
   const backgroundColor = '#ffb600'
 
   return <CreatorActionButton
     sx={{
-      height: 45,
-      fontSize: 18,
+      height: isSmallScreen ? 30 : 45,
+      fontSize: isSmallScreen ? '0.75rem' : 18,
       color: 'white',
       fontWeight: 'bold',
       border: 0,

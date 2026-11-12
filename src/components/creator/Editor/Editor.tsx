@@ -34,15 +34,25 @@ export const CreatorEditor = () => {
     <>
       {challengeExists ?
         (<CreatorContextProvider>
-          <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
+          <Stack
+            alignItems="center"
+            sx={{
+              backgroundColor: theme.palette.background.paper,
+              width: '100%',
+              maxWidth: '100vw',
+              height: isSmallScreen ? '100dvh' : 'inherit',
+              maxHeight: isSmallScreen ? '100dvh' : 'inherit',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Header CenterComponent={<HeaderText text={t("editor.editorHeader")} />}
               SubHeader={<EditorSubHeader viewButton={shouldShow ? <EmberPreviewButton /> : undefined} reactViewButton={<PreviewButton />} />} />
 
             {isSmallScreen
               // ── Mobile: full-height vertical layout ──────────────────────
-              ? <Stack sx={{ width: '100%', flex: 1, overflow: 'hidden' }}>
-                  <VerticalEditorView />
-                </Stack>
+              ? <VerticalEditorView />
               // ── Desktop: original horizontal layout ──────────────────────
               : <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
                   <SceneEdition />

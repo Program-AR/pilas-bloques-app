@@ -24,13 +24,26 @@ export const VerticalEditorView = () => {
         <Stack
             direction="column"
             sx={{
+                flex: 1,
+                minHeight: 0,
                 height: '100%',
+                width: '100%',
                 overflow: 'hidden',
                 backgroundColor: theme.palette.background.default,
             }}
         >
             {/* ── 1. Scene grid: fills remaining vertical space ── */}
-            <Box sx={{ flex: 1, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Box
+                sx={{
+                    flex: 1,
+                    minHeight: 0,
+                    width: '100%',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                }}
+            >
                 <Scenarios styling={styleGrid} />
             </Box>
 
@@ -39,13 +52,12 @@ export const VerticalEditorView = () => {
                 sx={{
                     position: 'relative',
                     flexShrink: 0,
-                    paddingBottom: 'env(safe-area-inset-bottom)',
+                    width: '100%',
+                    backgroundColor: theme.palette.background.paper,
+                    pb: 'env(safe-area-inset-bottom)',
                 }}
             >
-                {/* Horizontal scrollable tool strip */}
-                <SceneTools horizontal />
-
-                {/* Floating Action Button — pencil icon — opens config drawer */}
+                {/* Floating Action Button — pencil icon — placed directly above toolbar */}
                 <Fab
                     color="primary"
                     aria-label="configuración"
@@ -53,16 +65,16 @@ export const VerticalEditorView = () => {
                     sx={{
                         position: 'absolute',
                         right: 16,
-                        // Centre the FAB vertically relative to the tool bar.
-                        // The SceneTools bar is ~80px tall (56px button + 2*12px padding);
-                        // 50% of that minus half the FAB (28px) = 12px from bottom of bar.
-                        bottom: `calc(env(safe-area-inset-bottom) + 12px)`,
+                        bottom: 'calc(100% + 12px)',
                         zIndex: 10,
                         boxShadow: theme.shadows[6],
                     }}
                 >
                     <EditIcon />
                 </Fab>
+
+                {/* Horizontal scrollable tool strip */}
+                <SceneTools horizontal />
             </Box>
 
             {/* ── 3. Configuration drawer ── */}

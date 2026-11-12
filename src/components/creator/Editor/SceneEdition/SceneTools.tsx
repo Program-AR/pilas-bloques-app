@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Stack, Button, Typography } from "@mui/material";
+import { useContext, useState, useRef } from 'react';
+import { Stack, Button, Typography, Box, Paper, Popper, ClickAwayListener } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { LocalStorage } from '../../../../localStorage';
 import { SerializedChallenge, sceneObjectByType } from '../../../serializedChallenge';
@@ -72,7 +72,7 @@ export const SceneTools = ({ horizontal = false }: SceneToolsProps) => {
             alignItems="center"
             sx={{
                 marginY: horizontal ? 0 : theme.spacing(0.5),
-                marginX: horizontal ? theme.spacing(0.5) : 0,
+                marginX: horizontal ? theme.spacing(0.75) : 0,
                 flexShrink: 0,
             }}
         >
@@ -98,11 +98,124 @@ export const SceneTools = ({ horizontal = false }: SceneToolsProps) => {
             <Tool id="O" image={`${imagePathScene}/O.png`} />
         </ToolGroup>
 
-    const PutObjectTool = () =>
-        <ToolGroup type='putObject'>
-            {sceneObjectByType(challenge!.scene.type).validCells.map((object) =>
-                <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`} />)}
-        </ToolGroup>
+    const PutObjectTool = () => {
+        const validCells = sceneObjectByType(challenge!.scene.type).validCells;
+        const [menuOpen, setMenuOpen] = useState(false);
+        const anchorRef = useRef<HTMLDivElement | null>(null);
+
+        // Desktop: render all valid cells vertically inside PBCard
+        if (!horizontal) {
+            return (
+                <ToolGroup type='putObject'>
+                    {validCells.map((object) =>
+                        <Tool id={object} key={object} image={`${imagePathScene}/${object}.png`} />)}
+                </ToolGroup>
+            );
+        }
+
+        // Horizontal mobile: single object available -> render standard tool button
+        if (validCells.length <= 1) {
+            return (
+                <ToolGroup type='putObject'>
+                    <Tool id={validCells[0]} image={`${imagePathScene}/${validCells[0]}.png`} />
+                </ToolGroup>
+            );
+        }
+
+        // Horizontal mobile with multiple objects:
+        // Main button with an upward popover submenu (position: absolute upward / placement="top")
+        const activeObject = validCells.includes(selectedTool) ? selectedTool : validCells[0];
+        const isSelected = validCells.includes(selectedTool);
+
+        const handleToggle = () => {
+            if (!isSelected) {
+                setSelectedTool(activeObject);
+            }
+            setMenuOpen((prev) => !prev);
+        };
+
+        return (
+            <ClickAwayListener onClickAway={() => setMenuOpen(false)}>
+                <Box ref={anchorRef} sx={{ position: 'relative' }}>
+                    <ToolGroup type='putObject'>
+                        <Button
+                            variant='outlined'
+                            id="putObject-tool-main"
+                            data-testid="putObject-tool-main"
+                            onClick={handleToggle}
+                            style={{
+                                backgroundImage: `url("${imagePathScene}/${activeObject}.png")`,
+                                backgroundSize: "contain",
+                                backgroundRepeat: "no-repeat",
+                                backgroundPositionX: "center",
+                                backgroundPositionY: "center",
+                                boxShadow: `0 0px calc(10px * ${Number(isSelected)})`,
+                                height: '56px',
+                                minWidth: '56px',
+                                width: '56px',
+                                borderRadius: '12px',
+                                marginTop: 0,
+                                borderColor: isSelected ? theme.palette.primary.main : undefined,
+                                borderWidth: isSelected ? 2 : undefined,
+                            }}
+                        />
+                    </ToolGroup>
+
+                    {/* Upward submenu popover: absolute positioned above toolbar (bottom: 100%) */}
+                    <Popper
+                        open={menuOpen}
+                        anchorEl={anchorRef.current}
+                        placement="top"
+                        sx={{ zIndex: 1200, mb: 1 }}
+                    >
+                        <Paper
+                            elevation={6}
+                            sx={{
+                                p: 0.75,
+                                display: 'flex',
+                                flexDirection: 'row',
+                                gap: 0.75,
+                                borderRadius: '12px',
+                                backgroundColor: theme.palette.background.paper,
+                                border: `1px solid ${theme.palette.divider}`,
+                                boxShadow: theme.shadows[6],
+                            }}
+                        >
+                            {validCells.map((object) => {
+                                const isObjSelected = object === selectedTool;
+                                return (
+                                    <Button
+                                        key={object}
+                                        id={object}
+                                        data-testid={`object-tool-${object}`}
+                                        onClick={() => {
+                                            setSelectedTool(object);
+                                            setMenuOpen(false);
+                                        }}
+                                        variant="outlined"
+                                        style={{
+                                            backgroundImage: `url("${imagePathScene}/${object}.png")`,
+                                            backgroundSize: "contain",
+                                            backgroundRepeat: "no-repeat",
+                                            backgroundPositionX: "center",
+                                            backgroundPositionY: "center",
+                                            height: '48px',
+                                            width: '48px',
+                                            minWidth: '48px',
+                                            borderRadius: '8px',
+                                            boxShadow: isObjSelected ? `0 0 8px ${theme.palette.primary.main}` : undefined,
+                                            borderColor: isObjSelected ? theme.palette.primary.main : theme.palette.divider,
+                                            borderWidth: isObjSelected ? 2 : 1,
+                                        }}
+                                    />
+                                );
+                            })}
+                        </Paper>
+                    </Popper>
+                </Box>
+            </ClickAwayListener>
+        );
+    };
 
     const PutActorTool = () =>
         <ToolGroup type='putActor' name={t(`selection.cards.${challenge?.scene.type}.name`)!}>
@@ -124,13 +237,12 @@ export const SceneTools = ({ horizontal = false }: SceneToolsProps) => {
                     overflowX: 'auto',
                     overflowY: 'hidden',
                     padding: theme.spacing(1, 1.5),
-                    // Leave space for the FAB (56px button + 8px gap + 8px padding)
-                    paddingRight: theme.spacing(10),
                     WebkitOverflowScrolling: 'touch',
                     '&::-webkit-scrollbar': { display: 'none' },
                     scrollbarWidth: 'none',
                     backgroundColor: theme.palette.background.paper,
                     borderTop: `1px solid ${theme.palette.divider}`,
+                    width: '100%',
                 }}
             >
                 <PutActorTool />
