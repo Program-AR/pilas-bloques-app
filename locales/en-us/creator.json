@@ -170,5 +170,31 @@
 		"prev": "Previous",
 		"multipleInitialScenarios": "Initial scenarios"
 	},
-	"importedChallengedHeader": "Challenge created by the community"
+	"importedChallengedHeader": "Challenge created by the community",
+	"drawer": {
+		"title": "Settings",
+		"saveButton": "Save Settings",
+		"tabs": {
+			"scene": "SCENE",
+			"blocks": "BLOCKS",
+			"info": "INFORMATION"
+		},
+		"scene": {
+			"title": "Scene",
+			"subtitle": "Set the grid size and the environment characteristics.",
+			"scenarioLabel": "SCENE {{current}} OF {{total}}"
+		},
+		"blocks": {
+			"title": "Available Blocks",
+			"subtitle": "Enable the primitives, structures and sensors for the toolbox."
+		},
+		"info": {
+			"title": "Challenge Information",
+			"subtitle": "Fill in the descriptive data and instructions for the student.",
+			"titleLabel": "CHALLENGE TITLE",
+			"statementLabel": "STATEMENT",
+			"clueLabel": "CLUE (OPTIONAL)",
+			"cluePlaceholder": "E.g.: Check how many steps there are before turning..."
+		}
+	}
 }

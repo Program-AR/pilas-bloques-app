@@ -13,9 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { LocalStorage } from "../../../localStorage";
 import { useEffect } from "react";
 import { ShareButton } from "./ActionButtons/ShareChallenge/ShareButton";
+import { VerticalEditorView } from "./VerticalEditorView";
 
 export const CreatorEditor = () => {
-  const { theme } = useThemeContext()
+  const { theme, isSmallScreen } = useThemeContext()
 
   const { t } = useTranslation('creator')
 
@@ -36,9 +37,17 @@ export const CreatorEditor = () => {
           <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
             <Header CenterComponent={<HeaderText text={t("editor.editorHeader")} />}
               SubHeader={<EditorSubHeader viewButton={shouldShow ? <EmberPreviewButton /> : undefined} reactViewButton={<PreviewButton />} />} />
-            <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
-              <SceneEdition />
-            </Stack>
+
+            {isSmallScreen
+              // ── Mobile: full-height vertical layout ──────────────────────
+              ? <Stack sx={{ width: '100%', flex: 1, overflow: 'hidden' }}>
+                  <VerticalEditorView />
+                </Stack>
+              // ── Desktop: original horizontal layout ──────────────────────
+              : <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
+                  <SceneEdition />
+                </Stack>
+            }
           </Stack>
         </CreatorContextProvider>
         ) : <></>}

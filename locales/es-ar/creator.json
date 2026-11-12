@@ -170,5 +170,31 @@
 		"prev": "Anterior",
 		"multipleInitialScenarios": "Escenarios iniciales"
 	},
-	"importedChallengedHeader": "Desafío creado por la comunidad"
+	"importedChallengedHeader": "Desafío creado por la comunidad",
+	"drawer": {
+		"title": "Configuración",
+		"saveButton": "Guardar Configuración",
+		"tabs": {
+			"scene": "ESCENARIO",
+			"blocks": "BLOQUES",
+			"info": "INFORMACIÓN"
+		},
+		"scene": {
+			"title": "Escenario",
+			"subtitle": "Definí el tamaño de la cuadrícula y las características del entorno.",
+			"scenarioLabel": "ESCENARIO {{current}} DE {{total}}"
+		},
+		"blocks": {
+			"title": "Bloques Disponibles",
+			"subtitle": "Habilitá las primitivas, estructuras y sensores para la caja de herramientas."
+		},
+		"info": {
+			"title": "Información del Desafío",
+			"subtitle": "Completá los datos descriptivos y las consignas para el estudiante.",
+			"titleLabel": "TÍTULO DEL DESAFÍO",
+			"statementLabel": "ENUNCIADO (CONSIGNA)",
+			"clueLabel": "PISTA (OPCIONAL)",
+			"cluePlaceholder": "Ej: Fijate cuántos pasos hay antes de doblar..."
+		}
+	}
 }

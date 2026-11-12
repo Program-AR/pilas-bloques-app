@@ -12,6 +12,41 @@ import { availableBlocksFor, categories } from "../../../../blockly/blocks";
 import { PBCard } from "../../../../PBCard";
 import { useThemeContext } from "../../../../../theme/ThemeContext";
 
+// ─── Inline content, exported for reuse in ConfigDrawer ───────────────────────
+type ToolboxContentProps = {
+    toolboxState: ToolboxState
+    toolBoxItems: string[]
+    setToolBoxItems: (blocks: string[]) => void
+    isCategorized: boolean
+    setIsCategorized: (val: boolean) => void
+    challenge: SerializedChallenge
+}
+
+export const ToolboxContent = ({
+    toolboxState,
+    toolBoxItems,
+    setToolBoxItems,
+    isCategorized,
+    setIsCategorized,
+    challenge,
+}: ToolboxContentProps) => {
+    const { isSmallScreen } = useThemeContext()
+    const [contentHeight,] = useState(window.innerHeight * 0.6)
+
+    return (
+        <Stack direction="row">
+            <PBCard sx={{ display: "flex", maxWidth: isSmallScreen ? '50%' : 'inherit', flexDirection: "column", padding: "5px", maxHeight: `${contentHeight}px` }}>
+                <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized} />
+                <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)} />
+            </PBCard>
+            <ToolboxPreview
+                blockIds={toolBoxItems}
+                categorized={isCategorized || toolboxState.categorizationShouldBeForced()} />
+        </Stack>
+    )
+}
+// ─────────────────────────────────────────────────────────────────────────────
+
 export const ToolBoxEditor = () => {
 
     const [contentHeight,] = useState(window.innerHeight * 0.7)

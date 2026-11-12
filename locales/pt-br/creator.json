@@ -170,5 +170,31 @@
 		"prev": "Anterior",
 		"multipleInitialScenarios": "Cenários iniciais"
 	},
-	"importedChallengedHeader": "Desafio criado pela comunidade"
+	"importedChallengedHeader": "Desafio criado pela comunidade",
+	"drawer": {
+		"title": "Configuração",
+		"saveButton": "Salvar Configuração",
+		"tabs": {
+			"scene": "CENÁRIO",
+			"blocks": "BLOCOS",
+			"info": "INFORMAÇÃO"
+		},
+		"scene": {
+			"title": "Cenário",
+			"subtitle": "Defina o tamanho da grade e as características do ambiente.",
+			"scenarioLabel": "CENÁRIO {{current}} DE {{total}}"
+		},
+		"blocks": {
+			"title": "Blocos Disponíveis",
+			"subtitle": "Habilite as primitivas, estruturas e sensores para a caixa de ferramentas."
+		},
+		"info": {
+			"title": "Informação do Desafio",
+			"subtitle": "Preencha os dados descritivos e as instruções para o estudante.",
+			"titleLabel": "TÍTULO DO DESAFIO",
+			"statementLabel": "ENUNCIADO",
+			"clueLabel": "PISTA (OPCIONAL)",
+			"cluePlaceholder": "Ex: Veja quantos passos há antes de virar..."
+		}
+	}
 }
