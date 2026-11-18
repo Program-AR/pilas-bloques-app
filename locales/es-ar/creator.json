@@ -170,5 +170,40 @@
 		"prev": "Anterior",
 		"multipleInitialScenarios": "Escenarios iniciales"
 	},
-	"importedChallengedHeader": "Desafío creado por la comunidad"
+	"importedChallengedHeader": "Desafío creado por la comunidad",
+	"rules": {
+		"button": "Seleccionar reglas",
+		"title": "Seleccioná las reglas para el desafío de ",
+		"enable": "Activar evaluación de reglas",
+		"enableHint": "Verifica automáticamente las buenas prácticas de programación en la solución.",
+		"groups": {
+			"structures": "Estructuras de programación",
+			"organization": "Organización y procedimientos"
+		},
+		"options": {
+			"simpleRepetition": "Usar repetición simple",
+			"conditionalAlternative": "Usar alternativas condicionales (Si / Si-No)",
+			"conditionalRepetition": "Usar repetición condicional (Hasta que)",
+			"mainNotTooLong": "Mantener corto el programa principal",
+			"proceduresNotTooLong": "Mantener cortos los procedimientos",
+			"noEmptyProcedures": "Evitar procedimientos vacíos",
+			"proceduresNamed": "Nombrar adecuadamente los procedimientos",
+			"doesNotNestControlStructures": "Dividir en procedimientos el interior de repeticiones y alternativas"
+		},
+		"preview": {
+			"title": "Vista previa del feedback de reglas",
+			"disabled": "La evaluación de reglas está desactivada: el estudiante no va a recibir sugerencias ni objetivos sobre cómo está armado su programa.",
+			"empty": "Todavía no elegiste ninguna regla.",
+			"intro": "Cuando el estudiante ejecute la solución:",
+			"simpleRepetition": "Se requerirá usar al menos una repetición simple.",
+			"conditionalAlternative": "Se requerirá usar al menos una alternativa condicional.",
+			"conditionalRepetition": "Se requerirá usar al menos una repetición condicional.",
+			"mainNotTooLong": "Se verificará que el programa principal tenga menos de {{limit}} bloques.",
+			"proceduresNotTooLong": "Se verificará que cada procedimiento tenga menos de {{limit}} bloques.",
+			"noEmptyProcedures": "Se alertará si existen procedimientos vacíos.",
+			"proceduresNamed": "Se verificará que los procedimientos tengan un nombre elegido por el estudiante.",
+			"doesNotNestControlStructures": "Se sugerirá dividir en subtareas, con procedimientos, el interior de las repeticiones y alternativas."
+		},
+		"hint": "Las reglas ayudan a guiar a los estudiantes hacia soluciones legibles y modulares sin restringir su creatividad."
+	}
 }

@@ -170,5 +170,40 @@
 		"prev": "Anterior",
 		"multipleInitialScenarios": "Cenários iniciais"
 	},
-	"importedChallengedHeader": "Desafio criado pela comunidade"
+	"importedChallengedHeader": "Desafio criado pela comunidade",
+	"rules": {
+		"button": "Selecionar regras",
+		"title": "Selecione as regras para o desafio de ",
+		"enable": "Ativar avaliação de regras",
+		"enableHint": "Verifica automaticamente as boas práticas de programação na solução.",
+		"groups": {
+			"structures": "Estruturas de programação",
+			"organization": "Organização e procedimentos"
+		},
+		"options": {
+			"simpleRepetition": "Usar repetição simples",
+			"conditionalAlternative": "Usar alternativas condicionais (Se / Se-Senão)",
+			"conditionalRepetition": "Usar repetição condicional (Até que)",
+			"mainNotTooLong": "Manter curto o programa principal",
+			"proceduresNotTooLong": "Manter curtos os procedimentos",
+			"noEmptyProcedures": "Evitar procedimentos vazios",
+			"proceduresNamed": "Nomear adequadamente os procedimentos",
+			"doesNotNestControlStructures": "Dividir em procedimentos o interior de repetições e alternativas"
+		},
+		"preview": {
+			"title": "Prévia do feedback das regras",
+			"disabled": "A avaliação de regras está desativada: o estudante não vai receber sugestões nem objetivos sobre como o programa está montado.",
+			"empty": "Você ainda não escolheu nenhuma regra.",
+			"intro": "Quando o estudante executar a solução:",
+			"simpleRepetition": "Será exigido usar pelo menos uma repetição simples.",
+			"conditionalAlternative": "Será exigido usar pelo menos uma alternativa condicional.",
+			"conditionalRepetition": "Será exigido usar pelo menos uma repetição condicional.",
+			"mainNotTooLong": "Será verificado que o programa principal tenha menos de {{limit}} blocos.",
+			"proceduresNotTooLong": "Será verificado que cada procedimento tenha menos de {{limit}} blocos.",
+			"noEmptyProcedures": "O estudante será alertado se houver procedimentos vazios.",
+			"proceduresNamed": "Será verificado que os procedimentos tenham um nome escolhido pelo estudante.",
+			"doesNotNestControlStructures": "Será sugerido dividir em subtarefas, com procedimentos, o interior das repetições e alternativas."
+		},
+		"hint": "As regras ajudam a guiar os estudantes para soluções legíveis e modulares sem restringir a sua criatividade."
+	}
 }

@@ -6,6 +6,7 @@ import { TitleEdition } from "../../ChallengeDetailsEdition/TitleEdition";
 import { ScenarioEditionButtons } from "./ScenarioEditionButtons";
 import { useThemeContext } from "../../../../../theme/ThemeContext";
 import { ToolBoxEditor } from "../../ChallengeDetailsEdition/ToolBoxEditor/ToolBoxEditor";
+import { RulesEditor } from "../../ChallengeDetailsEdition/RulesEditor/rulesEditor";
 
 export const GridOptions = (props: StyleGridProps) => {
     const { theme } = useThemeContext()
@@ -24,6 +25,8 @@ export const GridOptions = (props: StyleGridProps) => {
                     <StatementEdition />
                 </Stack>
                 <ToolBoxEditor/>
+                <ToolBoxEditor/>
+                <RulesEditor/>
             {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
         </Stack>
     </>

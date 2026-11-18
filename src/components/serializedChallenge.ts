@@ -182,7 +182,7 @@ export const defaultChallenge = (type: SceneType, defaultDescription = "", defau
   }
 }
 
-type Assesments = {
+export type Assesments = {
   itWorks?: boolean, // old "debeFelicitar", default true
   decomposition?: DecompositionAssessment,
   simpleRepetition?: boolean,

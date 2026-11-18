@@ -170,5 +170,40 @@
 		"prev": "Previous",
 		"multipleInitialScenarios": "Initial scenarios"
 	},
-	"importedChallengedHeader": "Challenge created by the community"
+	"importedChallengedHeader": "Challenge created by the community",
+	"rules": {
+		"button": "Select rules",
+		"title": "Select the rules for the challenge of ",
+		"enable": "Enable rules evaluation",
+		"enableHint": "Automatically checks the good programming practices in the solution.",
+		"groups": {
+			"structures": "Programming structures",
+			"organization": "Organization and procedures"
+		},
+		"options": {
+			"simpleRepetition": "Use simple repetition",
+			"conditionalAlternative": "Use conditional alternatives (If / If-Else)",
+			"conditionalRepetition": "Use conditional repetition (Until)",
+			"mainNotTooLong": "Keep the main program short",
+			"proceduresNotTooLong": "Keep procedures short",
+			"noEmptyProcedures": "Avoid empty procedures",
+			"proceduresNamed": "Give procedures a proper name",
+			"doesNotNestControlStructures": "Split the inside of repetitions and alternatives into procedures"
+		},
+		"preview": {
+			"title": "Rules feedback preview",
+			"disabled": "Rules evaluation is disabled: the student won't get suggestions or goals about how their program is built.",
+			"empty": "You haven't chosen any rule yet.",
+			"intro": "When the student runs the solution:",
+			"simpleRepetition": "At least one simple repetition will be required.",
+			"conditionalAlternative": "At least one conditional alternative will be required.",
+			"conditionalRepetition": "At least one conditional repetition will be required.",
+			"mainNotTooLong": "The main program will be checked to have fewer than {{limit}} blocks.",
+			"proceduresNotTooLong": "Each procedure will be checked to have fewer than {{limit}} blocks.",
+			"noEmptyProcedures": "The student will be warned if there are empty procedures.",
+			"proceduresNamed": "Procedures will be checked to have a name chosen by the student.",
+			"doesNotNestControlStructures": "The student will be advised to split the inside of repetitions and alternatives into subtasks using procedures."
+		},
+		"hint": "Rules help guide students towards readable and modular solutions without restricting their creativity."
+	}
 }
