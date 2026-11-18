@@ -25,7 +25,6 @@ export const GridOptions = (props: StyleGridProps) => {
                     <StatementEdition />
                 </Stack>
                 <ToolBoxEditor/>
-                <ToolBoxEditor/>
                 <RulesEditor/>
             {/*<Button>Bloques iniciales</Button> Not in the MVP*/}
         </Stack>
