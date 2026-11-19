@@ -17,6 +17,9 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import ExtensionIcon from '@mui/icons-material/Extension';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CheckIcon from '@mui/icons-material/Check';
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import remarkemoji from 'remark-emoji';
 import { useContext, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { LocalStorage } from "../../../localStorage";
@@ -67,9 +70,9 @@ const SectionHeader = ({ icon, title, subtitle }: SectionHeaderProps) =>
     <Stack spacing={0.5} mb={2}>
         <Stack direction="row" alignItems="center" spacing={1}>
             {icon}
-            <Typography variant="h6" fontWeight="bold">{title}</Typography>
+            <Typography variant="h6" fontWeight="bold" sx={{ color: '#000000' }}>{title}</Typography>
         </Stack>
-        <Typography variant="body2" color="text.secondary">{subtitle}</Typography>
+        <Typography variant="body2" sx={{ color: '#000000' }}>{subtitle}</Typography>
     </Stack>
 
 // ─── Tab 0: Escenario ─────────────────────────────────────────────────────────
@@ -86,11 +89,11 @@ const SceneTab = () => {
 
     return (
         <Stack spacing={2}>
-            <SectionHeader
+            {/* <SectionHeader
                 icon={<GridViewIcon color="primary" />}
                 title={t('drawer.scene.title')}
                 subtitle={t('drawer.scene.subtitle')}
-            />
+            /> */}
 
             {/* Scenario navigation bar */}
             <Stack
@@ -111,7 +114,7 @@ const SceneTab = () => {
                     disabled={isFirstMap}
                     sx={{ visibility: isFirstMap ? 'hidden' : 'visible' }}
                 />
-                <Typography variant="subtitle2" fontWeight="bold" color="primary" letterSpacing={1}>
+                <Typography variant="subtitle2" fontWeight="bold" sx={{ color: '#000000' }} letterSpacing={1}>
                     {t('drawer.scene.scenarioLabel', { current: index + 1, total: maps.length })}
                 </Typography>
                 <IconButtonTooltip
@@ -238,15 +241,15 @@ const InfoTab = () => {
 
     return (
         <Stack spacing={2.5}>
-            <SectionHeader
+            {/* <SectionHeader
                 icon={<InfoOutlinedIcon color="primary" />}
                 title={t('drawer.info.title')}
                 subtitle={t('drawer.info.subtitle')}
-            />
+            /> */}
 
             {/* Title */}
             <Stack spacing={0.5}>
-                <Typography variant="caption" fontWeight="bold" letterSpacing={1} color="text.secondary">
+                <Typography variant="caption" fontWeight="bold" letterSpacing={1} sx={{ color: '#000000' }}>
                     {t('drawer.info.titleLabel')}
                 </Typography>
                 <TextField
@@ -261,7 +264,7 @@ const InfoTab = () => {
 
             {/* Statement */}
             <Stack spacing={0.5}>
-                <Typography variant="caption" fontWeight="bold" letterSpacing={1} color="text.secondary">
+                <Typography variant="caption" fontWeight="bold" letterSpacing={1} sx={{ color: '#000000' }}>
                     {t('drawer.info.statementLabel')}
                 </Typography>
                 <TextField
@@ -275,11 +278,55 @@ const InfoTab = () => {
                 />
             </Stack>
 
+            {/* ── Markdown preview ── */}
+            <Stack spacing={0.5}>
+                <Typography
+                    variant="caption"
+                    fontWeight="bold"
+                    letterSpacing={1}
+                    sx={{ color: '#000000' }}
+                >
+                    {t('drawer.info.previewLabel')}
+                </Typography>
+                <Box
+                    sx={{
+                        border: '1px solid',
+                        borderColor: 'divider',
+                        borderRadius: 2,
+                        p: 1.5,
+                        backgroundColor: '#f5f7fa',
+                        minHeight: '72px',
+                        overflowX: 'hidden',
+                        wordBreak: 'break-word',
+                        '& p': { margin: 0, color: '#000000' },
+                        '& *': { color: '#000000' },
+                    }}
+                >
+                    {statement
+                        ? (
+                            <ReactMarkdown
+                                remarkPlugins={[remarkGfm, [remarkemoji, { emoticon: true }]]}
+                            >
+                                {statement}
+                            </ReactMarkdown>
+                        )
+                        : (
+                            <Typography
+                                variant="body2"
+                                sx={{ color: '#999999', fontStyle: 'italic' }}
+                            >
+                                {t('drawer.info.previewPlaceholder')}
+                            </Typography>
+                        )
+                    }
+                </Box>
+            </Stack>
+
             {/* Clue toggle + field */}
             <Stack spacing={0.5}>
                 <FormControlLabel
                     control={<Switch color="secondary" checked={clueEnabled} onChange={handleClueToggle} />}
-                    label={<Typography variant="caption" fontWeight="bold" letterSpacing={1} color="text.secondary">
+                    label={<Typography variant="caption" fontWeight="bold" letterSpacing={1} sx={{ color: '#000000' }}>
                         {t('drawer.info.clueLabel')}
                     </Typography>}
                     labelPlacement="start"
@@ -341,6 +388,32 @@ export const ConfigDrawer = ({ open, onClose }: ConfigDrawerProps) => {
                     display: 'flex',
                     flexDirection: 'column',
                     paddingBottom: 'env(safe-area-inset-bottom)',
+                    backgroundColor: '#ffffff',
+                    color: '#000000',
+                    '& .MuiTypography-root': {
+                        color: '#000000',
+                    },
+                    '& .MuiInputBase-root': {
+                        color: '#000000',
+                    },
+                    '& .MuiInputBase-input': {
+                        color: '#000000',
+                    },
+                    '& .MuiFormLabel-root': {
+                        color: '#000000',
+                    },
+                    '& .MuiFormControlLabel-label': {
+                        color: '#000000',
+                    },
+                    '& .MuiTab-root': {
+                        color: '#000000',
+                    },
+                    '& .MuiIconButton-root': {
+                        color: '#000000',
+                    },
+                    '& .MuiButton-root:not(.MuiButton-contained)': {
+                        color: '#000000',
+                    },
                 },
             }}
             PaperProps={{
@@ -358,6 +431,8 @@ export const ConfigDrawer = ({ open, onClose }: ConfigDrawerProps) => {
                     display: 'flex',
                     flexDirection: 'column',
                     paddingBottom: 'env(safe-area-inset-bottom)',
+                    backgroundColor: '#ffffff',
+                    color: '#000000',
                 },
             }}
         >
@@ -369,14 +444,14 @@ export const ConfigDrawer = ({ open, onClose }: ConfigDrawerProps) => {
                 sx={{ px: 2, pt: 2, pb: 1 }}
             >
                 <Stack direction="row" alignItems="center" spacing={1}>
-                    <IconButton onClick={onClose} size="small" aria-label="back">
+                    <IconButton onClick={onClose} size="small" aria-label="back" sx={{ color: '#000000' }}>
                         <ArrowBack />
                     </IconButton>
-                    <Typography variant="h6" fontWeight="bold">
+                    <Typography variant="h6" fontWeight="bold" sx={{ color: '#000000' }}>
                         {t('drawer.title')}
                     </Typography>
                 </Stack>
-                <IconButton onClick={onClose} size="small" aria-label="close">
+                <IconButton onClick={onClose} size="small" aria-label="close" sx={{ color: '#000000' }}>
                     <Close />
                 </IconButton>
             </Stack>
@@ -386,27 +461,33 @@ export const ConfigDrawer = ({ open, onClose }: ConfigDrawerProps) => {
                 value={activeTab}
                 onChange={handleTabChange}
                 variant="fullWidth"
-                textColor="primary"
+                textColor="inherit"
                 indicatorColor="primary"
-                sx={{ borderBottom: `1px solid ${theme.palette.divider}` }}
+                sx={{
+                    borderBottom: `1px solid ${theme.palette.divider}`,
+                    '& .MuiTab-root': {
+                        color: '#000000',
+                        fontWeight: 'bold',
+                    },
+                }}
             >
                 <Tab
                     label={t('drawer.tabs.scene')}
                     id="config-tab-0"
                     aria-controls="config-tabpanel-0"
-                    sx={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: 0.5 }}
+                    sx={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: 0.5, color: '#000000' }}
                 />
                 <Tab
                     label={t('drawer.tabs.blocks')}
                     id="config-tab-1"
                     aria-controls="config-tabpanel-1"
-                    sx={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: 0.5 }}
+                    sx={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: 0.5, color: '#000000' }}
                 />
                 <Tab
                     label={t('drawer.tabs.info')}
                     id="config-tab-2"
                     aria-controls="config-tabpanel-2"
-                    sx={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: 0.5 }}
+                    sx={{ fontSize: '0.7rem', fontWeight: 'bold', letterSpacing: 0.5, color: '#000000' }}
                 />
             </Tabs>
 
@@ -423,7 +504,7 @@ export const ConfigDrawer = ({ open, onClose }: ConfigDrawerProps) => {
                 </TabPanel>
             </Box>
 
-            {/* ── Footer: Save button ── */}
+            {/* ── Footer: Save button ──
             <Divider />
             <Box sx={{ p: 2, paddingBottom: 'max(env(safe-area-inset-bottom), 16px)' }}>
                 <Button
@@ -439,11 +520,12 @@ export const ConfigDrawer = ({ open, onClose }: ConfigDrawerProps) => {
                         fontWeight: 'bold',
                         fontSize: '1rem',
                         py: 1.5,
+                        color: '#ffffff !important',
                     }}
                 >
                     {t('drawer.saveButton')}
                 </Button>
-            </Box>
+            </Box> */}
         </Drawer>
     )
 }

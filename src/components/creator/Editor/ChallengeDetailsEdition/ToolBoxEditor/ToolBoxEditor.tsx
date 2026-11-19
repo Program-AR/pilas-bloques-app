@@ -34,15 +34,15 @@ export const ToolboxContent = ({
     const [contentHeight,] = useState(window.innerHeight * 0.6)
 
     return (
-        <Stack direction="row">
-            <PBCard sx={{ display: "flex", maxWidth: isSmallScreen ? '50%' : 'inherit', flexDirection: "column", padding: "5px", maxHeight: `${contentHeight}px` }}>
+        < >
+            <PBCard sx={{ display: "flex", maxWidth: 'inherit', flexDirection: "column", padding: "5px", maxHeight: `${contentHeight}px` }}>
                 <CategorizedToggle toolboxState={toolboxState} isCategorized={isCategorized} setIsCategorized={setIsCategorized} />
                 <BlocksSelector toolboxState={toolboxState} setToolBoxItems={setToolBoxItems} toolBoxItems={toolBoxItems} availableBlocks={availableBlocksFor(challenge!.scene.type)} />
             </PBCard>
-            <ToolboxPreview
+            {/* <ToolboxPreview
                 blockIds={toolBoxItems}
-                categorized={isCategorized || toolboxState.categorizationShouldBeForced()} />
-        </Stack>
+                categorized={isCategorized || toolboxState.categorizationShouldBeForced()} /> */}
+        </>
     )
 }
 // ─────────────────────────────────────────────────────────────────────────────

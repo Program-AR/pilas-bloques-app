@@ -68,6 +68,7 @@ export const VerticalEditorView = () => {
                         bottom: 'calc(100% + 12px)',
                         zIndex: 10,
                         boxShadow: theme.shadows[6],
+                        backgroundColor: '#613fd8',
                     }}
                 >
                     <EditIcon />
