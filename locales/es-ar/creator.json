@@ -178,6 +178,11 @@
       "blocks": "BLOQUES",
       "info": "INFORMACIÓN"
     },
+    "scene": {
+      "title": "Escenario",
+      "subtitle": "Definí el tamaño de la cuadrícula y las características del entorno.",
+      "scenarioLabel": "ESCENARIO {{current}} DE {{total}}"
+    },
     "blocks": {
       "title": "Bloques Disponibles",
       "subtitle": "Habilitá las primitivas, estructuras y sensores para la caja de herramientas."

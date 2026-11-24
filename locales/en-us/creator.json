@@ -178,6 +178,11 @@
       "blocks": "BLOCKS",
       "info": "INFORMATION"
     },
+    "scene": {
+      "title": "Scene",
+      "subtitle": "Set the grid size and the environment characteristics.",
+      "scenarioLabel": "SCENE {{current}} OF {{total}}"
+    },
     "blocks": {
       "title": "Available Blocks",
       "subtitle": "Enable the primitives, structures and sensors for the toolbox."

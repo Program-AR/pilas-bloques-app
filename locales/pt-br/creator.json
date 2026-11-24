@@ -178,6 +178,11 @@
       "blocks": "BLOCOS",
       "info": "INFORMAÇÃO"
     },
+    "scene": {
+      "title": "Cenário",
+      "subtitle": "Defina o tamanho da grade e as características do ambiente.",
+      "scenarioLabel": "CENÁRIO {{current}} DE {{total}}"
+    },
     "blocks": {
       "title": "Blocos Disponíveis",
       "subtitle": "Habilite as primitivas, estruturas e sensores para a caixa de ferramentas."
