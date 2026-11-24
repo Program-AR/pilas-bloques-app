@@ -13,9 +13,10 @@ import { useNavigate } from "react-router-dom";
 import { LocalStorage } from "../../../localStorage";
 import { useEffect } from "react";
 import { ShareButton } from "./ActionButtons/ShareChallenge/ShareButton";
+import { VerticalEditorView } from "./VerticalEditorView";
 
 export const CreatorEditor = () => {
-  const { theme } = useThemeContext()
+  const { theme, isSmallScreen } = useThemeContext()
 
   const { t } = useTranslation('creator')
 
@@ -33,12 +34,30 @@ export const CreatorEditor = () => {
     <>
       {challengeExists ?
         (<CreatorContextProvider>
-          <Stack alignItems="center" height="inherit" sx={{ backgroundColor: theme.palette.background.paper }}>
+          <Stack
+            alignItems="center"
+            sx={{
+              backgroundColor: theme.palette.background.paper,
+              width: '100%',
+              maxWidth: '100vw',
+              height: isSmallScreen ? '100dvh' : 'inherit',
+              maxHeight: isSmallScreen ? '100dvh' : 'inherit',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
             <Header CenterComponent={<HeaderText text={t("editor.editorHeader")} />}
               SubHeader={<EditorSubHeader viewButton={shouldShow ? <EmberPreviewButton /> : undefined} reactViewButton={<PreviewButton />} />} />
-            <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
-              <SceneEdition />
-            </Stack>
+
+            {isSmallScreen
+              // ── Mobile: full-height vertical layout ──────────────────────
+              ? <VerticalEditorView />
+              // ── Desktop: original horizontal layout ──────────────────────
+              : <Stack justifyContent="center" height="100%" width="100%" sx={{ maxWidth: 'var(--creator-max-width)', maxHeight: 'var(--creator-max-height)' }}>
+                  <SceneEdition />
+                </Stack>
+            }
           </Stack>
         </CreatorContextProvider>
         ) : <></>}

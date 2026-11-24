@@ -22,7 +22,7 @@ export const ToolboxPreview = ({ categorized, blockIds }: ToolboxPreviewProps) =
     title
     blockIds={blockIds}
     categorized={categorized}
-    workspaceConfiguration={{ trashcan: false, scrollbars: false }} //Needed to make it look like this is only the toolbox
+    workspaceConfiguration={{ trashcan: false, scrollbars: false, zoom: { startScale: 0.8 } }} //Needed to make it look like this is only the toolbox
   />
 
 }
