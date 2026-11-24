@@ -178,11 +178,6 @@
       "blocks": "BLOCKS",
       "info": "INFORMATION"
     },
-    "scene": {
-      "title": "Scene",
-      "subtitle": "Set the grid size and the environment characteristics.",
-      "scenarioLabel": "SCENE {{current}} OF {{total}}"
-    },
     "blocks": {
       "title": "Available Blocks",
       "subtitle": "Enable the primitives, structures and sensors for the toolbox."
@@ -190,12 +185,12 @@
     "info": {
       "title": "Challenge Information",
       "subtitle": "Fill in the descriptive data and instructions for the student.",
-      "titleLabel": "CHALLENGE TITLE",
-      "statementLabel": "STATEMENT",
+      "titleLabel": "Write the challenge's title for ",
+      "statementLabel": "Write the challenge's statement for ",
       "clueLabel": "CLUE (OPTIONAL)",
-      "cluePlaceholder": "E.g.: Check how many steps there are before turning...",
-      "previewLabel": "HOW THE STUDENT WILL SEE IT",
-      "previewPlaceholder": "The statement preview will appear here..."
+      "cluePlaceholder": "This is how your clue will look like",
+      "previewLabel": "This is how your statement will look like",
+      "previewPlaceholder": "Your statement will look like this..."
     }
   }
 }

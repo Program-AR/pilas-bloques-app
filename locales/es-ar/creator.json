@@ -178,11 +178,6 @@
       "blocks": "BLOQUES",
       "info": "INFORMACIÓN"
     },
-    "scene": {
-      "title": "Escenario",
-      "subtitle": "Definí el tamaño de la cuadrícula y las características del entorno.",
-      "scenarioLabel": "ESCENARIO {{current}} DE {{total}}"
-    },
     "blocks": {
       "title": "Bloques Disponibles",
       "subtitle": "Habilitá las primitivas, estructuras y sensores para la caja de herramientas."
@@ -190,11 +185,11 @@
     "info": {
       "title": "Información del Desafío",
       "subtitle": "Completá los datos descriptivos y las consignas para el estudiante.",
-      "titleLabel": "TÍTULO DEL DESAFÍO",
-      "statementLabel": "ENUNCIADO (CONSIGNA)",
+      "titleLabel": "Escribí el título del desafío para ",
+      "statementLabel": "Escribí el enunciado del desafío para ",
       "clueLabel": "PISTA (OPCIONAL)",
       "cluePlaceholder": "Asi se verá tu pista",
-      "previewLabel": "ASÍ LO VERÁ EL ESTUDIANTE",
+      "previewLabel": "Así se verá tu enunciado",
       "previewPlaceholder": "La vista previa del enunciado aparecerá aquí..."
     }
   }
